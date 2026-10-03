@@ -29,15 +29,21 @@ const base64UrlJson = (obj) => base64Url(encoder.encode(JSON.stringify(obj)));
 // Mã hóa từng đoạn của đường dẫn, giữ nguyên dấu gạch chéo.
 const encodePath = (p) => p.split('/').map(encodeURIComponent).join('/');
 
-async function importKey(pem) {
+async function importKey(rawPem) {
+  // Secret dán thành một dòng thường chứa chuỗi \n chữ thay cho xuống dòng.
+  const pem = rawPem.replace(/\\n/g, '\n');
   if (pem.includes('BEGIN RSA PRIVATE KEY')) {
     throw new Error(
-      'Khóa riêng đang ở dạng PKCS#1. Chuyển sang PKCS#8 bằng: openssl pkcs8 -topk8 -nocrypt -in key.pem -out key-pkcs8.pem',
+      'Không đọc được khóa GitHub App. Khóa đang ở dạng PKCS#1, chuyển sang PKCS#8 bằng: openssl pkcs8 -topk8 -nocrypt -in key.pem -out key-pkcs8.pem.',
     );
   }
-  const b64 = pem.replace(/-----[^-]+-----/g, '').replace(/\s+/g, '');
-  const der = Uint8Array.from(atob(b64), (c) => c.charCodeAt(0));
-  return crypto.subtle.importKey('pkcs8', der, { name: 'RSASSA-PKCS1-v1_5', hash: 'SHA-256' }, false, ['sign']);
+  try {
+    const b64 = pem.replace(/-----[^-]+-----/g, '').replace(/\s+/g, '');
+    const der = Uint8Array.from(atob(b64), (c) => c.charCodeAt(0));
+    return await crypto.subtle.importKey('pkcs8', der, { name: 'RSASSA-PKCS1-v1_5', hash: 'SHA-256' }, false, ['sign']);
+  } catch {
+    throw new Error('Không đọc được khóa GitHub App. Kiểm tra secret là khóa PKCS#8 dạng PEM đầy đủ.');
+  }
 }
 
 export async function appJwt(appId, pkcs8Pem, now) {
@@ -74,8 +80,10 @@ export class GitHub {
   constructor({ repo, token, fetch }) {
     this.repo = repo;
     this.token = token;
-    this.fetch = fetch;
+    this.#fetch = fetch;
   }
+
+  #fetch;
 
   // Gửi request tới /repos/<repo><sub>; trả Response (đã kiểm lỗi, trừ các mã trong allow).
   async #call(method, sub, body, allow = []) {
@@ -85,7 +93,9 @@ export class GitHub {
       init.headers = { ...init.headers, 'Content-Type': 'application/json' };
       init.body = JSON.stringify(body);
     }
-    const res = await this.fetch(API + path, init);
+    // Gọi fetch không gắn this: fetch toàn cục của Workers ném Illegal invocation nếu this là đối tượng khác.
+    const doFetch = this.#fetch;
+    const res = await doFetch(API + path, init);
     if (!res.ok && !allow.includes(res.status)) throw await failure(res, path);
     return res;
   }
@@ -94,6 +104,9 @@ export class GitHub {
     const res = await this.#call('GET', `/contents/${encodePath(path)}?ref=${encodeURIComponent(ref)}`, undefined, [404]);
     if (res.status === 404) return null;
     const data = await res.json();
+    const where = `/repos/${this.repo}/contents/${encodePath(path)}`;
+    if (Array.isArray(data)) throw new GitHubError(res.status, where, 'đường dẫn là thư mục, không phải file');
+    if (data.encoding !== 'base64') throw new GitHubError(res.status, where, 'file quá lớn để đọc qua API');
     const bin = atob(data.content.replace(/\s+/g, ''));
     const text = new TextDecoder().decode(Uint8Array.from(bin, (c) => c.charCodeAt(0)));
     return { text, sha: data.sha };
@@ -127,6 +140,6 @@ export class GitHub {
   }
 
   async addLabels(number, labels) {
-    await this.#call('POST', `/issues/${number}/labels`, { labels });
+    await this.#call('POST', `/issues/${encodeURIComponent(String(number))}/labels`, { labels });
   }
 }

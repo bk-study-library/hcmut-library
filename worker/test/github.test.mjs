@@ -86,6 +86,23 @@ describe('installationToken', () => {
   });
 });
 
+describe('khóa riêng', () => {
+  it('chấp nhận khóa dán thành một dòng với \\n chữ', async () => {
+    const { publicKey, pem } = await genKey();
+    const oneLine = pem.trim().replace(/\n/g, '\\n');
+    expect(oneLine).not.toContain('\n');
+    const jwt = await appJwt('1', oneLine, 100);
+    const [h, p, s] = jwt.split('.');
+    expect(
+      await crypto.subtle.verify('RSASSA-PKCS1-v1_5', publicKey, b64urlToBytes(s), new TextEncoder().encode(`${h}.${p}`)),
+    ).toBe(true);
+  });
+
+  it('khóa hỏng báo lỗi tiếng Việt', async () => {
+    await expect(appJwt('1', 'rác', 0)).rejects.toThrow(/^Không đọc được khóa GitHub App\. /);
+  });
+});
+
 describe('GitHub', () => {
   const make = (handler) => {
     const f = fakeFetch(handler);
@@ -111,7 +128,7 @@ describe('GitHub', () => {
     const bytes = new TextEncoder().encode(text);
     let bin = '';
     for (const b of bytes) bin += String.fromCharCode(b);
-    const { gh, f } = make(() => json({ content: btoa(bin).replace(/(.{20})/g, '$1\n'), sha: 'abc' }));
+    const { gh, f } = make(() => json({ content: btoa(bin).replace(/(.{20})/g, '$1\n'), encoding: 'base64', sha: 'abc' }));
     expect(await gh.getFile('a/b.json', 'main')).toEqual({ text, sha: 'abc' });
     expect(f.calls[0].url).toBe('https://api.github.com/repos/own/name/contents/a/b.json?ref=main');
   });
@@ -157,5 +174,30 @@ describe('GitHub', () => {
     await gh.addLabels(5, ['tai-lieu']);
     expect(f.calls[1].url).toBe('https://api.github.com/repos/own/name/issues/5/labels');
     expect(JSON.parse(f.calls[1].body)).toEqual({ labels: ['tai-lieu'] });
+  });
+
+  it('gọi fetch không gắn this', async () => {
+    const calls = [];
+    const f = function (url) {
+      if (this !== undefined) throw new TypeError('Illegal invocation');
+      calls.push(url);
+      return Promise.resolve(json({ object: { sha: 's' } }));
+    };
+    const gh = new GitHub({ repo: 'own/name', token: 't', fetch: f });
+    expect(await gh.branchSha('main')).toBe('s');
+    expect(calls).toHaveLength(1);
+  });
+
+  it('getFile ném GitHubError khi gặp thư mục hoặc file quá lớn', async () => {
+    const dir = make(() => json([{ name: 'a' }]));
+    await expect(dir.gh.getFile('catalog', 'main')).rejects.toBeInstanceOf(GitHubError);
+    const big = make(() => json({ content: '', encoding: 'none', sha: 'x' }));
+    await expect(big.gh.getFile('big.json', 'main')).rejects.toBeInstanceOf(GitHubError);
+  });
+
+  it('addLabels mã hóa số PR trong đường dẫn', async () => {
+    const { gh, f } = make(() => json([]));
+    await gh.addLabels('5/../x', ['a']);
+    expect(f.calls[0].url).toBe('https://api.github.com/repos/own/name/issues/5%2F..%2Fx/labels');
   });
 });
