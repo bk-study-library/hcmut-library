@@ -48,7 +48,7 @@ const raw = (init, text) =>
   init.headers?.Accept === 'application/vnd.github.raw' ? new Response(text) : json({ encoding: 'none', content: '', sha: 's' });
 
 // fetch giả cho Turnstile và GitHub; fail[tên bước] = mã lỗi để giả lập GitHub hỏng.
-function fakeFetch({ turnstile = true, fail = {} } = {}) {
+function fakeFetch({ turnstile = true, hostname = 'site.example', fail = {} } = {}) {
   const calls = [];
   let pr = 0;
   const fn = async (url, init = {}) => {
@@ -58,7 +58,7 @@ function fakeFetch({ turnstile = true, fail = {} } = {}) {
     const u = new URL(call.url);
     const p = u.pathname;
     const step = (name, ok) => (fail[name] ? json({ message: 'Server Error' }, fail[name]) : ok());
-    if (u.host === 'challenges.cloudflare.com') return json({ success: turnstile });
+    if (u.host === 'challenges.cloudflare.com') return json({ success: turnstile, hostname });
     if (p.startsWith('/app/installations/')) return step('token', () => json({ token: 'ghs_secret' }, 201));
     if (method === 'GET' && p === `/repos/${REPO}/contents/catalog/policy.json`) {
       return step('catalog', () => raw(init, JSON.stringify(policy)));
@@ -229,6 +229,53 @@ describe('POST /submit', () => {
     expect(fetch.find('POST', '/git/refs')).toEqual([]);
     const [verify] = fetch.find('POST', 'challenges.cloudflare.com');
     expect(verify.url).toBe('https://challenges.cloudflare.com/turnstile/v0/siteverify');
+  });
+
+  it('Turnstile qua nhưng hostname không thuộc ALLOWED_ORIGINS: 403', async () => {
+    const { res, fetch } = await run(post(form()), { fetch: fakeFetch({ hostname: 'evil.example' }) });
+    expect(res.status).toBe(403);
+    expect(await r2Keys()).toEqual([]);
+    expect(fetch.find('POST', '/git/refs')).toEqual([]);
+  });
+
+  it('hostname của origin thứ hai trong danh sách cũng được nhận', async () => {
+    const { res } = await run(post(form()), { fetch: fakeFetch({ hostname: 'other.example' }) });
+    expect(res.status).toBe(201);
+  });
+
+  it('lấy token GitHub App lỗi 401: 502', async () => {
+    const { res, body } = await run(post(form()), { fetch: fakeFetch({ fail: { token: 401 } }) });
+    expect(res.status).toBe(502);
+    expect(body).toEqual({ ok: false, error: 'Chưa gửi được. Thử lại sau ít phút.' });
+  });
+
+  it('phụ thuộc ném lỗi: 500 JSON có CORS, kho rỗng', async () => {
+    const boom = () => {
+      throw new Error('boom');
+    };
+    const handler = createHandler({ fetch: fakeFetch(), now: boom });
+    const res = await handler.fetch(post(form()), makeEnv(), ctx());
+    expect(res.status).toBe(500);
+    expect(res.headers.get('Access-Control-Allow-Origin')).toBe(SITE);
+    expect(await res.json()).toEqual({ ok: false, error: 'Chưa gửi được. Thử lại sau ít phút.' });
+    expect(await r2Keys()).toEqual([]);
+
+    const res2 = await createHandler({ fetch: fakeFetch() }).fetch(post(form()), makeEnv({ SUBMIT_LIMIT: { limit: boom } }), ctx());
+    expect(res2.status).toBe(500);
+    expect(res2.headers.get('Access-Control-Allow-Origin')).toBe(SITE);
+    expect((await res2.json()).ok).toBe(false);
+  });
+
+  it('PR không tạo liên kết hay tham chiếu từ chữ người gửi', async () => {
+    const title = 'Xem owner/repo#1 va [x](http://a)';
+    const { res, fetch } = await run(post(form({ title, description: 'owner/repo#1 [x](http://a)' })));
+    expect(res.status).toBe(201);
+    const pr = JSON.parse(fetch.find('POST', '/pulls')[0].body);
+    for (const text of [pr.title, pr.body]) {
+      expect(text).not.toContain('#1');
+      expect(text).not.toContain('[x]');
+      expect(text).not.toContain('](');
+    }
   });
 
   it('quá số lần gửi: 429', async () => {
@@ -409,6 +456,21 @@ describe('nhật ký', () => {
   });
   afterEach(() => {
     for (const s of spies) s.mockRestore();
+  });
+
+  it('dọn kho lỗi thì ghi bước cleanup, chỉ có bước, mã và tên lỗi', async () => {
+    const r2 = {
+      head: (...a) => env.QUARANTINE.head(...a),
+      put: (...a) => env.QUARANTINE.put(...a),
+      delete: async () => {
+        throw new TypeError('khong xoa duoc');
+      },
+    };
+    const { res } = await run(post(form()), { fetch: fakeFetch({ fail: { openPr: 500 } }), envOver: { QUARANTINE: r2 } });
+    expect(res.status).toBe(502);
+    const logged = spies.flatMap((sp) => sp.mock.calls.flat()).map((a) => JSON.parse(a));
+    expect(logged).toContainEqual({ event: 'submit_failed', step: 'cleanup', status: null, error: 'TypeError' });
+    expect(logged).toContainEqual({ event: 'submit_failed', step: 'pr', status: 500, error: 'GitHubError' });
   });
 
   it('không in IP, tên hiển thị, tên file hay tiêu đề', async () => {

@@ -16,6 +16,8 @@ const MESSAGES = {
   fileSize: (max) => `File quá lớn. Chọn file nhỏ hơn ${max}.`,
   fileMagic: (ext) => `Nội dung file không khớp đuôi ${ext}.`,
   lang: 'Mã ngôn ngữ không hợp lệ. Dùng dạng vi hoặc en.',
+  description: (max) => `Mô tả quá dài. Rút xuống tối đa ${max} ký tự.`,
+  textTotal: 'Nội dung các ô quá dài. Rút gọn bớt rồi gửi lại.',
   term: 'Học kỳ không hợp lệ. Dùng dạng HK251.',
   chapter: 'Chương không hợp lệ. Dùng số hoặc chữ không dấu, ví dụ 3 hay 3.2.',
   examKind: 'Loại kiểm tra không hợp lệ. Chọn trong danh sách.',
@@ -39,6 +41,10 @@ const TERM_PATTERN = /^HK[0-9]{3}$/;
 const CHAPTER_PATTERN = /^[0-9A-Za-z.-]{1,20}$/;
 const EXAM_KINDS = ['gk', 'ck', 'quiz', 'kt'];
 const NAME_MAX = 80;
+const DESCRIPTION_MAX = 1000;
+// Tổng byte UTF-8 của mọi ô chữ (trừ mã Turnstile): chặn đẩy dữ liệu lớn vào repo, nhất là qua book-ref.
+const TEXT_TOTAL_MAX = 8 * 1024;
+const TEXT_TOTAL_SKIP = new Set(['cf-turnstile-response']);
 const CONFIRMS = ['confirm-own', 'confirm-license', 'confirm-not-book'];
 const OPTIONAL = ['description', 'term', 'chapter', 'examKind', 'teacher', 'displayName'];
 
@@ -130,7 +136,13 @@ export function validateSubmission(fields, file, ctx) {
 
   if (!CONFIRMS.every((k) => val(fields, k))) errors.confirm = MESSAGES.confirm;
 
+  const textBytes = Object.entries(fields)
+    .filter(([k, v]) => !TEXT_TOTAL_SKIP.has(k) && typeof v === 'string')
+    .reduce((sum, [, v]) => sum + new TextEncoder().encode(v).length, 0);
+  if (textBytes > TEXT_TOTAL_MAX) errors.form = MESSAGES.textTotal;
+
   // Ô tùy chọn: để trống thì bỏ qua (tên hiển thị trống là ẩn danh).
+  if (val(fields, 'description').length > DESCRIPTION_MAX) errors.description = MESSAGES.description(DESCRIPTION_MAX);
   const term = val(fields, 'term');
   if (term && !TERM_PATTERN.test(term)) errors.term = MESSAGES.term;
   const chapter = val(fields, 'chapter');

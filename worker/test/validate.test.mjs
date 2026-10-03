@@ -177,4 +177,15 @@ describe('validateSubmission', () => {
     expect(r.ok).toBe(true);
     expect(r.form).not.toHaveProperty('displayName');
   });
+  it('mô tả tối đa 1000 ký tự sau khi bỏ khoảng trắng', () => {
+    expect(validateSubmission({ ...base, description: ` ${'a'.repeat(1000)} ` }, pdf, ctx).form.description).toBe('a'.repeat(1000));
+    expect(validateSubmission({ ...base, description: 'a'.repeat(1001) }, pdf, ctx).errors.description).toBe('Mô tả quá dài. Rút xuống tối đa 1000 ký tự.');
+  });
+
+  it('tổng chữ của mọi ô vượt 8 KB bị từ chối', () => {
+    const authors = Array.from({ length: 600 }, (_, i) => `Tac gia so ${i}`).join(', ');
+    const f = { ...base, type: 'book-ref', 'book-title': 'S', 'book-authors': authors };
+    expect(validateSubmission(f, null, ctx).errors.form).toBe('Nội dung các ô quá dài. Rút gọn bớt rồi gửi lại.');
+    expect(validateSubmission({ ...f, 'book-authors': 'A, B' }, null, ctx).ok).toBe(true);
+  });
 });

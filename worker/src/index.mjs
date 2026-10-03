@@ -53,11 +53,12 @@ const PR_BOOK_FIELDS = [
   ['isbn', 'ISBN'],
 ];
 
+const allowedOrigins = (env) => String(env.ALLOWED_ORIGINS ?? '').split(',').map((s) => s.trim()).filter(Boolean);
+
 function corsHeaders(req, env) {
   const origin = req.headers.get('Origin');
-  const allowed = String(env.ALLOWED_ORIGINS ?? '').split(',').map((s) => s.trim()).filter(Boolean);
   const h = { Vary: 'Origin' };
-  if (origin && allowed.includes(origin)) h['Access-Control-Allow-Origin'] = origin;
+  if (origin && allowedOrigins(env).includes(origin)) h['Access-Control-Allow-Origin'] = origin;
   return h;
 }
 
@@ -94,7 +95,8 @@ async function readForm(req, max) {
   }
 }
 
-async function verifyTurnstile(token, secret, fetch) {
+// Qua Turnstile và widget nằm trên trang của mình (hostname thuộc ALLOWED_ORIGINS).
+async function verifyTurnstile(token, secret, hosts, fetch) {
   if (!token) return false;
   const body = new FormData();
   body.set('secret', secret);
@@ -102,7 +104,7 @@ async function verifyTurnstile(token, secret, fetch) {
   try {
     const res = await fetch(TURNSTILE_URL, { method: 'POST', body });
     const out = await res.json();
-    return out.success === true;
+    return out.success === true && hosts.includes(out.hostname);
   } catch {
     return false;
   }
@@ -123,13 +125,17 @@ async function sha256Hex(bytes) {
   return Array.from(digest, (b) => b.toString(16).padStart(2, '0')).join('');
 }
 
-// Ô bảng Markdown: không vỡ bảng, không thành thẻ HTML, không nhắc tên ai bằng @.
+// Chữ người gửi trong PR: không vỡ bảng, không thành thẻ HTML, không nhắc tên ai bằng @,
+// không thành liên kết hay tham chiếu issue (#, [ ]).
 function cell(value) {
   return String(value)
     .replace(/&/g, '&amp;')
     .replace(/</g, '&lt;')
     .replace(/>/g, '&gt;')
     .replace(/@/g, '&#64;')
+    .replace(/#/g, '&#35;')
+    .replace(/\[/g, '&#91;')
+    .replace(/\]/g, '&#93;')
     .replace(/\|/g, '\\|')
     .replace(/\s*\r?\n\s*/g, ' ');
 }
@@ -207,7 +213,8 @@ async function handleSubmit(req, env, deps, cors) {
   const data = read.data;
 
   // Turnstile.
-  if (!(await verifyTurnstile(data.get('cf-turnstile-response'), env.TURNSTILE_SECRET, deps.fetch))) {
+  const hosts = allowedOrigins(env).map((o) => (URL.canParse(o) ? new URL(o).hostname : '')).filter(Boolean);
+  if (!(await verifyTurnstile(data.get('cf-turnstile-response'), env.TURNSTILE_SECRET, hosts, deps.fetch))) {
     return reply(403, { ok: false, error: MESSAGES.turnstile }, cors);
   }
 
@@ -227,30 +234,40 @@ async function handleSubmit(req, env, deps, cors) {
   const slug = slugify(form.title);
   const id = uniqueId(slug, course.ids);
   let stored = null;
-  const keys = [];
-
+  let shaKey = null;
   if (bytes) {
-    // Trùng tài liệu đã có hoặc đang chờ duyệt.
+    // Trùng tài liệu đã có trong thư viện.
     const sha256 = await sha256Hex(bytes);
     if (catalog.shas.has(sha256)) return reply(409, { ok: false, error: MESSAGES.exists }, cors);
-    const shaKey = `sha/${sha256}`;
+    shaKey = `sha/${sha256}`;
     const name = fileName({ code: course.code, type: form.type, slug, term: form.term, ext });
-    const quarantine = `pending/${code}/${name}`;
+    stored = { name, size: bytes.length, sha256, mime: policy.extensions[ext].mime, quarantine: `pending/${code}/${name}` };
+  }
+
+  // Dựng sẵn mục và PR trước khi ghi R2, để lỗi ở đây không để lại file mồ côi.
+  const today = new Date(deps.now() + VN_OFFSET_MS).toISOString().slice(0, 10);
+  const itemText = `${JSON.stringify({ $schema: ITEM_SCHEMA, ...buildItem(form, stored, today, id) }, null, 2)}\n`;
+  const prTitle = `Tài liệu mới: ${course.code} ${cell(form.title)}`;
+  const prText = prBody(form, code, stored);
+
+  const keys = [];
+  const cleanup = async () => {
+    if (keys.length) await env.QUARANTINE.delete(keys).catch((e) => logFailure('cleanup', e));
+  };
+  if (stored) {
     try {
+      // Trùng tài liệu đang chờ duyệt.
       if (await env.QUARANTINE.head(shaKey)) return reply(409, { ok: false, error: MESSAGES.pending }, cors);
-      await env.QUARANTINE.put(quarantine, bytes, { httpMetadata: { contentType: policy.extensions[ext].mime } });
-      keys.push(quarantine);
+      await env.QUARANTINE.put(stored.quarantine, bytes, { httpMetadata: { contentType: stored.mime } });
+      keys.push(stored.quarantine);
       await env.QUARANTINE.put(shaKey, code);
       keys.push(shaKey);
     } catch (err) {
-      if (keys.length) await env.QUARANTINE.delete(keys).catch(() => {});
+      await cleanup();
       return fail('store', err);
     }
-    stored = { name, size: bytes.length, sha256, mime: policy.extensions[ext].mime, quarantine };
   }
 
-  const today = new Date(deps.now() + VN_OFFSET_MS).toISOString().slice(0, 10);
-  const item = { $schema: ITEM_SCHEMA, ...buildItem(form, stored, today, id) };
   const branch = `upload/${code}`;
   let branchMade = false;
   let step = 'token';
@@ -260,14 +277,9 @@ async function handleSubmit(req, env, deps, cors) {
     await gh.createBranch(branch, await gh.branchSha(env.BRANCH));
     branchMade = true;
     step = 'item';
-    await gh.putFile(`courses/${course.id}/items/${id}.json`, `${JSON.stringify(item, null, 2)}\n`, branch, `feat(courses): thêm tài liệu gửi qua form ${code}`);
+    await gh.putFile(`courses/${course.id}/items/${id}.json`, itemText, branch, `feat(courses): thêm tài liệu gửi qua form ${code}`);
     step = 'pr';
-    const pr = await gh.openPr({
-      head: branch,
-      base: env.BRANCH,
-      title: `Tài liệu mới: ${course.code} ${form.title}`,
-      body: prBody(form, code, stored),
-    });
+    const pr = await gh.openPr({ head: branch, base: env.BRANCH, title: prTitle, body: prText });
     step = 'label';
     await gh.addLabels(pr.number, [LABEL]);
     const out = { ok: true, code };
@@ -275,7 +287,7 @@ async function handleSubmit(req, env, deps, cors) {
     return reply(201, out, cors);
   } catch (err) {
     // Dọn hết để không còn file hay nhánh mồ côi; xóa nhánh cũng đóng PR nếu đã mở.
-    if (keys.length) await env.QUARANTINE.delete(keys).catch(() => {});
+    await cleanup();
     if (branchMade) {
       const gh = await github();
       await gh.deleteBranch(branch).catch((e) => logFailure('cleanup', e));
@@ -308,7 +320,13 @@ export function createHandler(deps = {}) {
         });
       }
       if (req.method !== 'POST') return reply(405, { ok: false, error: MESSAGES.method }, cors, { Allow: 'POST, OPTIONS' });
-      return handleSubmit(req, env, d, cors);
+      // Lỗi không lường trước vẫn trả JSON kèm CORS để form hiện được thông báo.
+      try {
+        return await handleSubmit(req, env, d, cors);
+      } catch (err) {
+        logFailure('unexpected', err);
+        return reply(500, { ok: false, error: MESSAGES.failed }, cors);
+      }
     },
   };
 }

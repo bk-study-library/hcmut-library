@@ -3,7 +3,13 @@
   "name": "bk-study-library-upload",
   "main": "src/index.mjs",
   "compatibility_date": "2026-10-01",
-  "observability": { "enabled": true, "head_sampling_rate": 1 },
+  // Tắt nhật ký mỗi lượt gọi vì nó ghi cả IP người gửi (spec: IP không ghi log).
+  // Vẫn giữ console.error của Worker, chỉ chứa bước và mã lỗi.
+  "observability": {
+    "enabled": true,
+    "head_sampling_rate": 1,
+    "logs": { "enabled": true, "invocation_logs": false }
+  },
   // Giá trị có thể đổi khi chuyển repo hay tên miền. Khóa bí mật nhập bằng wrangler secret put:
   // TURNSTILE_SECRET, GH_APP_ID, GH_APP_PRIVATE_KEY, GH_INSTALLATION_ID.
   "vars": {
