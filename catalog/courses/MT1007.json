@@ -1,0 +1,17 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "MT1007",
+  "code": "MT1007",
+  "name": "Đại số Tuyến tính",
+  "credits": 3,
+  "faculty": "MT",
+  "aliases": [],
+  "status": "active",
+  "programs": [],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "note": "Mục tạm để chạy các tài liệu ví dụ. Danh mục đầy đủ (mọi khoa, chương trình) sẽ nhập sau bằng scripts/import-seed.mjs.",
+  "updated": "2026-10-03"
+}

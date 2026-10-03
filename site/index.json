@@ -1,0 +1,2257 @@
+{
+  "version": 1,
+  "repo": "xeroz369/bk-study-library",
+  "generated": "2026-10-03",
+  "counts": {
+    "faculties": 10,
+    "courses": 84,
+    "programs": 1,
+    "items": 3
+  },
+  "faculties": [
+    {
+      "key": "EE",
+      "name": {
+        "vi": "Khoa Điện - Điện tử",
+        "en": "Faculty of Electrical and Electronics Engineering"
+      },
+      "courses": [
+        {
+          "id": "EE1001",
+          "code": "EE1001",
+          "name": "Nhập môn Về kỹ Thuật",
+          "credits": 3,
+          "faculty": "EE",
+          "aliases": [],
+          "status": "active",
+          "programs": [
+            {
+              "program": "DH_CQ_DD_KDI_2019",
+              "block": "3679",
+              "required": true
+            }
+          ],
+          "parts": [
+            "theory"
+          ],
+          "related": [],
+          "updated": "2026-10-03",
+          "items": []
+        },
+        {
+          "id": "EE1007",
+          "code": "EE1007",
+          "name": "Vật lý Bán dẫn",
+          "credits": 4,
+          "faculty": "EE",
+          "aliases": [],
+          "status": "active",
+          "programs": [
+            {
+              "program": "DH_CQ_DD_KDI_2019",
+              "block": "3674",
+              "required": true
+            }
+          ],
+          "parts": [
+            "theory"
+          ],
+          "related": [
+            "EE2411"
+          ],
+          "updated": "2026-10-03",
+          "items": []
+        },
+        {
+          "id": "EE1009",
+          "code": "EE1009",
+          "name": "Kỹ thuật số",
+          "credits": 3,
+          "faculty": "EE",
+          "aliases": [],
+          "status": "active",
+          "programs": [
+            {
+              "program": "DH_CQ_DD_KDI_2019",
+              "block": "3682",
+              "required": true
+            }
+          ],
+          "parts": [
+            "theory"
+          ],
+          "related": [
+            "EE1010",
+            "EE2413"
+          ],
+          "updated": "2026-10-03",
+          "items": []
+        },
+        {
+          "id": "EE1010",
+          "code": "EE1010",
+          "name": "Kỹ thuật số (Thí nghiệm)",
+          "credits": 0,
+          "faculty": "EE",
+          "aliases": [],
+          "status": "active",
+          "programs": [],
+          "parts": [
+            "lab"
+          ],
+          "related": [
+            "EE1009"
+          ],
+          "updated": "2026-10-03",
+          "note": "Phần thí nghiệm của EE1009; có trên BK-LMS và thời khóa biểu MyBK HK261, không nằm trong danh sách CTĐT của seed",
+          "items": []
+        },
+        {
+          "id": "EE2003",
+          "code": "EE2003",
+          "name": "Trường điện từ",
+          "credits": 3,
+          "faculty": "EE",
+          "aliases": [],
+          "status": "active",
+          "programs": [
+            {
+              "program": "DH_CQ_DD_KDI_2019",
+              "block": "3682",
+              "required": true
+            }
+          ],
+          "parts": [
+            "theory"
+          ],
+          "related": [],
+          "updated": "2026-10-03",
+          "items": []
+        },
+        {
+          "id": "EE2009",
+          "code": "EE2009",
+          "name": "Hệ thống Máy tính và Ngôn ngữ Lập trình",
+          "credits": 3,
+          "faculty": "EE",
+          "aliases": [],
+          "status": "active",
+          "programs": [
+            {
+              "program": "DH_CQ_DD_KDI_2019",
+              "block": "3682",
+              "required": true
+            }
+          ],
+          "parts": [
+            "theory"
+          ],
+          "related": [],
+          "updated": "2026-10-03",
+          "items": []
+        },
+        {
+          "id": "EE2017",
+          "code": "EE2017",
+          "name": "Cơ sở Kỹ thuật điện",
+          "credits": 3,
+          "faculty": "EE",
+          "aliases": [],
+          "status": "active",
+          "programs": [
+            {
+              "program": "DH_CQ_DD_KDI_2019",
+              "block": "3682",
+              "required": true
+            }
+          ],
+          "parts": [
+            "theory"
+          ],
+          "related": [],
+          "updated": "2026-10-03",
+          "items": []
+        },
+        {
+          "id": "EE2019",
+          "code": "EE2019",
+          "name": "Cơ sở Điều khiển Tự động",
+          "credits": 3,
+          "faculty": "EE",
+          "aliases": [],
+          "status": "active",
+          "programs": [
+            {
+              "program": "DH_CQ_DD_KDI_2019",
+              "block": "3682",
+              "required": true
+            }
+          ],
+          "parts": [
+            "theory"
+          ],
+          "related": [],
+          "updated": "2026-10-03",
+          "items": []
+        },
+        {
+          "id": "EE2021",
+          "code": "EE2021",
+          "name": "Cơ sở Điện tử Công suất",
+          "credits": 3,
+          "faculty": "EE",
+          "aliases": [],
+          "status": "active",
+          "programs": [
+            {
+              "program": "DH_CQ_DD_KDI_2019",
+              "block": "3682",
+              "required": true
+            }
+          ],
+          "parts": [
+            "theory"
+          ],
+          "related": [],
+          "updated": "2026-10-03",
+          "items": []
+        },
+        {
+          "id": "EE2023",
+          "code": "EE2023",
+          "name": "Thực tập Điện tử 1",
+          "credits": 1,
+          "faculty": "EE",
+          "aliases": [],
+          "status": "active",
+          "programs": [
+            {
+              "program": "DH_CQ_DD_KDI_2019",
+              "block": "3682",
+              "required": true
+            }
+          ],
+          "parts": [
+            "lab"
+          ],
+          "related": [],
+          "updated": "2026-10-03",
+          "items": []
+        },
+        {
+          "id": "EE2025",
+          "code": "EE2025",
+          "name": "Thực tập Điện 1",
+          "credits": 1,
+          "faculty": "EE",
+          "aliases": [],
+          "status": "active",
+          "programs": [
+            {
+              "program": "DH_CQ_DD_KDI_2019",
+              "block": "3682",
+              "required": true
+            }
+          ],
+          "parts": [
+            "lab"
+          ],
+          "related": [],
+          "updated": "2026-10-03",
+          "items": []
+        },
+        {
+          "id": "EE2033",
+          "code": "EE2033",
+          "name": "Giải tích mạch",
+          "credits": 3,
+          "faculty": "EE",
+          "aliases": [],
+          "status": "active",
+          "programs": [
+            {
+              "program": "DH_CQ_DD_KDI_2019",
+              "block": "3682",
+              "required": true
+            }
+          ],
+          "parts": [
+            "theory"
+          ],
+          "related": [],
+          "updated": "2026-10-03",
+          "items": [
+            {
+              "id": "vi-du-mit-ocw-6-002-circuits-and-electronics",
+              "course": "EE2033",
+              "type": "link",
+              "title": "[Ví dụ] MIT OCW 6.002 Circuits and Electronics (Spring 2007)",
+              "description": "Khóa học mở, tiếng Anh: phân tích mạch, mạch tương đương, mạch RC và RL. Mục ví dụ để minh họa định dạng link.",
+              "lang": "en",
+              "authors": [
+                "Anant Agarwal"
+              ],
+              "license": "CC-BY-NC-SA-4.0",
+              "origin": "link",
+              "source": "MIT OpenCourseWare",
+              "url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/",
+              "example": true,
+              "added": "2026-10-03",
+              "removed": false
+            }
+          ]
+        },
+        {
+          "id": "EE2035",
+          "code": "EE2035",
+          "name": "Mạch điện tử",
+          "credits": 3,
+          "faculty": "EE",
+          "aliases": [],
+          "status": "active",
+          "programs": [
+            {
+              "program": "DH_CQ_DD_KDI_2019",
+              "block": "3682",
+              "required": true
+            }
+          ],
+          "parts": [
+            "theory"
+          ],
+          "related": [],
+          "updated": "2026-10-03",
+          "items": []
+        },
+        {
+          "id": "EE2039",
+          "code": "EE2039",
+          "name": "Vi xử lý",
+          "credits": 3,
+          "faculty": "EE",
+          "aliases": [],
+          "status": "active",
+          "programs": [
+            {
+              "program": "DH_CQ_DD_KDI_2019",
+              "block": "3682",
+              "required": true
+            }
+          ],
+          "parts": [
+            "theory"
+          ],
+          "related": [],
+          "updated": "2026-10-03",
+          "items": []
+        },
+        {
+          "id": "EE2409",
+          "code": "EE2409",
+          "name": "Cơ sở Trường điện từ",
+          "credits": 3,
+          "faculty": "EE",
+          "aliases": [],
+          "status": "active",
+          "programs": [
+            {
+              "program": "DH_CQ_DD_KDI_2019",
+              "block": "0",
+              "required": false
+            }
+          ],
+          "parts": [
+            "theory"
+          ],
+          "related": [],
+          "updated": "2026-10-03",
+          "items": []
+        },
+        {
+          "id": "EE2411",
+          "code": "EE2411",
+          "name": "Linh kiện Bán dẫn",
+          "credits": 3,
+          "faculty": "EE",
+          "aliases": [],
+          "status": "active",
+          "programs": [
+            {
+              "program": "DH_CQ_DD_KDI_2019",
+              "block": "0",
+              "required": false
+            }
+          ],
+          "parts": [
+            "theory"
+          ],
+          "related": [
+            "EE1007"
+          ],
+          "updated": "2026-10-03",
+          "items": []
+        },
+        {
+          "id": "EE2413",
+          "code": "EE2413",
+          "name": "Thí nghiệm Kỹ thuật số",
+          "credits": 2,
+          "faculty": "EE",
+          "aliases": [],
+          "status": "active",
+          "programs": [
+            {
+              "program": "DH_CQ_DD_KDI_2019",
+              "block": "0",
+              "required": false
+            }
+          ],
+          "parts": [
+            "lab"
+          ],
+          "related": [
+            "EE1009"
+          ],
+          "updated": "2026-10-03",
+          "items": []
+        },
+        {
+          "id": "EE3001",
+          "code": "EE3001",
+          "name": "Hệ thống Cung cấp Điện",
+          "credits": 3,
+          "faculty": "EE",
+          "aliases": [],
+          "status": "active",
+          "programs": [
+            {
+              "program": "DH_CQ_DD_KDI_2019",
+              "block": "3683",
+              "required": true
+            }
+          ],
+          "parts": [
+            "theory"
+          ],
+          "related": [],
+          "updated": "2026-10-03",
+          "items": []
+        },
+        {
+          "id": "EE3009",
+          "code": "EE3009",
+          "name": "Máy điện",
+          "credits": 3,
+          "faculty": "EE",
+          "aliases": [],
+          "status": "active",
+          "programs": [
+            {
+              "program": "DH_CQ_DD_KDI_2019",
+              "block": "3683",
+              "required": true
+            }
+          ],
+          "parts": [
+            "theory"
+          ],
+          "related": [],
+          "updated": "2026-10-03",
+          "items": []
+        },
+        {
+          "id": "EE3013",
+          "code": "EE3013",
+          "name": "Giải tích Hệ thống điện",
+          "credits": 3,
+          "faculty": "EE",
+          "aliases": [],
+          "status": "active",
+          "programs": [
+            {
+              "program": "DH_CQ_DD_KDI_2019",
+              "block": "3683",
+              "required": true
+            }
+          ],
+          "parts": [
+            "theory"
+          ],
+          "related": [],
+          "updated": "2026-10-03",
+          "items": []
+        },
+        {
+          "id": "EE3023",
+          "code": "EE3023",
+          "name": "Thực tập Điện 2",
+          "credits": 1,
+          "faculty": "EE",
+          "aliases": [],
+          "status": "active",
+          "programs": [
+            {
+              "program": "DH_CQ_DD_KDI_2019",
+              "block": "3682",
+              "required": true
+            }
+          ],
+          "parts": [
+            "lab"
+          ],
+          "related": [],
+          "updated": "2026-10-03",
+          "items": []
+        },
+        {
+          "id": "EE3027",
+          "code": "EE3027",
+          "name": "Nhà máy Điện và Trạm biến áp",
+          "credits": 3,
+          "faculty": "EE",
+          "aliases": [],
+          "status": "active",
+          "programs": [
+            {
+              "program": "DH_CQ_DD_KDI_2019",
+              "block": "3683",
+              "required": true
+            }
+          ],
+          "parts": [
+            "theory"
+          ],
+          "related": [],
+          "updated": "2026-10-03",
+          "items": []
+        },
+        {
+          "id": "EE3087",
+          "code": "EE3087",
+          "name": "Bảo vệ Rơle trong Hệ thống Điện",
+          "credits": 3,
+          "faculty": "EE",
+          "aliases": [],
+          "status": "active",
+          "programs": [
+            {
+              "program": "DH_CQ_DD_KDI_2019",
+              "block": "3684",
+              "required": false
+            }
+          ],
+          "parts": [
+            "theory"
+          ],
+          "related": [],
+          "updated": "2026-10-03",
+          "items": []
+        },
+        {
+          "id": "EE3089",
+          "code": "EE3089",
+          "name": "Kỹ thuật Cao áp",
+          "credits": 3,
+          "faculty": "EE",
+          "aliases": [],
+          "status": "active",
+          "programs": [
+            {
+              "program": "DH_CQ_DD_KDI_2019",
+              "block": "3684",
+              "required": false
+            }
+          ],
+          "parts": [
+            "theory"
+          ],
+          "related": [],
+          "updated": "2026-10-03",
+          "items": []
+        },
+        {
+          "id": "EE3091",
+          "code": "EE3091",
+          "name": "Vật liệu Kỹ thuật điện",
+          "credits": 3,
+          "faculty": "EE",
+          "aliases": [],
+          "status": "active",
+          "programs": [
+            {
+              "program": "DH_CQ_DD_KDI_2019",
+              "block": "3684",
+              "required": false
+            }
+          ],
+          "parts": [
+            "theory"
+          ],
+          "related": [],
+          "updated": "2026-10-03",
+          "items": []
+        },
+        {
+          "id": "EE3093",
+          "code": "EE3093",
+          "name": "Vận hành và Điều khiển Hệ thống điện",
+          "credits": 3,
+          "faculty": "EE",
+          "aliases": [],
+          "status": "active",
+          "programs": [
+            {
+              "program": "DH_CQ_DD_KDI_2019",
+              "block": "3684",
+              "required": false
+            }
+          ],
+          "parts": [
+            "theory"
+          ],
+          "related": [],
+          "updated": "2026-10-03",
+          "items": []
+        },
+        {
+          "id": "EE3095",
+          "code": "EE3095",
+          "name": "Ổn định Hệ thống điện",
+          "credits": 3,
+          "faculty": "EE",
+          "aliases": [],
+          "status": "active",
+          "programs": [
+            {
+              "program": "DH_CQ_DD_KDI_2019",
+              "block": "3684",
+              "required": false
+            }
+          ],
+          "parts": [
+            "theory"
+          ],
+          "related": [],
+          "updated": "2026-10-03",
+          "items": []
+        },
+        {
+          "id": "EE3097",
+          "code": "EE3097",
+          "name": "Kỹ thuật An toàn điện",
+          "credits": 3,
+          "faculty": "EE",
+          "aliases": [],
+          "status": "active",
+          "programs": [
+            {
+              "program": "DH_CQ_DD_KDI_2019",
+              "block": "3683",
+              "required": true
+            }
+          ],
+          "parts": [
+            "theory"
+          ],
+          "related": [],
+          "updated": "2026-10-03",
+          "items": []
+        },
+        {
+          "id": "EE3099",
+          "code": "EE3099",
+          "name": "Kỹ thuật Chiếu sáng",
+          "credits": 3,
+          "faculty": "EE",
+          "aliases": [],
+          "status": "active",
+          "programs": [
+            {
+              "program": "DH_CQ_DD_KDI_2019",
+              "block": "3684",
+              "required": false
+            }
+          ],
+          "parts": [
+            "theory"
+          ],
+          "related": [],
+          "updated": "2026-10-03",
+          "items": []
+        },
+        {
+          "id": "EE3101",
+          "code": "EE3101",
+          "name": "Kỹ thuật Tiết kiệm và Sử dụng Hiệu quả Điện năng",
+          "credits": 3,
+          "faculty": "EE",
+          "aliases": [],
+          "status": "active",
+          "programs": [
+            {
+              "program": "DH_CQ_DD_KDI_2019",
+              "block": "3684",
+              "required": false
+            }
+          ],
+          "parts": [
+            "theory"
+          ],
+          "related": [],
+          "updated": "2026-10-03",
+          "items": []
+        },
+        {
+          "id": "EE3131",
+          "code": "EE3131",
+          "name": "Hệ thống Năng lượng xanh",
+          "credits": 3,
+          "faculty": "EE",
+          "aliases": [],
+          "status": "active",
+          "programs": [
+            {
+              "program": "DH_CQ_DD_KDI_2019",
+              "block": "3684",
+              "required": false
+            }
+          ],
+          "parts": [
+            "theory"
+          ],
+          "related": [],
+          "updated": "2026-10-03",
+          "items": []
+        },
+        {
+          "id": "EE3133",
+          "code": "EE3133",
+          "name": "Thiết bị điện trong Phân phối điện",
+          "credits": 3,
+          "faculty": "EE",
+          "aliases": [],
+          "status": "active",
+          "programs": [
+            {
+              "program": "DH_CQ_DD_KDI_2019",
+              "block": "3684",
+              "required": false
+            }
+          ],
+          "parts": [
+            "theory"
+          ],
+          "related": [],
+          "updated": "2026-10-03",
+          "items": []
+        },
+        {
+          "id": "EE3135",
+          "code": "EE3135",
+          "name": "Kỹ thuật Nhiệt lạnh",
+          "credits": 3,
+          "faculty": "EE",
+          "aliases": [],
+          "status": "active",
+          "programs": [
+            {
+              "program": "DH_CQ_DD_KDI_2019",
+              "block": "3684",
+              "required": false
+            }
+          ],
+          "parts": [
+            "theory"
+          ],
+          "related": [],
+          "updated": "2026-10-03",
+          "items": []
+        },
+        {
+          "id": "EE3139",
+          "code": "EE3139",
+          "name": "Cảm biến và Đo lường",
+          "credits": 3,
+          "faculty": "EE",
+          "aliases": [],
+          "status": "active",
+          "programs": [
+            {
+              "program": "DH_CQ_DD_KDI_2019",
+              "block": "3684",
+              "required": false
+            }
+          ],
+          "parts": [
+            "theory"
+          ],
+          "related": [],
+          "updated": "2026-10-03",
+          "items": []
+        },
+        {
+          "id": "EE3143",
+          "code": "EE3143",
+          "name": "Điều khiển và ứng dụng các bộ biến đổi công suất",
+          "credits": 3,
+          "faculty": "EE",
+          "aliases": [],
+          "status": "active",
+          "programs": [
+            {
+              "program": "DH_CQ_DD_KDI_2019",
+              "block": "3684",
+              "required": false
+            }
+          ],
+          "parts": [
+            "theory"
+          ],
+          "related": [],
+          "updated": "2026-10-03",
+          "items": []
+        },
+        {
+          "id": "EE3145",
+          "code": "EE3145",
+          "name": "Kỹ thuật ra Quyết định",
+          "credits": 3,
+          "faculty": "EE",
+          "aliases": [],
+          "status": "active",
+          "programs": [
+            {
+              "program": "DH_CQ_DD_KDI_2019",
+              "block": "3684",
+              "required": false
+            }
+          ],
+          "parts": [
+            "theory"
+          ],
+          "related": [],
+          "updated": "2026-10-03",
+          "items": []
+        },
+        {
+          "id": "EE3171",
+          "code": "EE3171",
+          "name": "IoT trong Công nghiệp và Dân dụng",
+          "credits": 3,
+          "faculty": "EE",
+          "aliases": [],
+          "status": "active",
+          "programs": [
+            {
+              "program": "DH_CQ_DD_KDI_2019",
+              "block": "3684",
+              "required": false
+            }
+          ],
+          "parts": [
+            "theory"
+          ],
+          "related": [],
+          "updated": "2026-10-03",
+          "items": []
+        },
+        {
+          "id": "EE3179",
+          "code": "EE3179",
+          "name": "Truyền động điện",
+          "credits": 3,
+          "faculty": "EE",
+          "aliases": [],
+          "status": "active",
+          "programs": [
+            {
+              "program": "DH_CQ_DD_KDI_2019",
+              "block": "3684",
+              "required": false
+            }
+          ],
+          "parts": [
+            "theory"
+          ],
+          "related": [],
+          "updated": "2026-10-03",
+          "items": []
+        },
+        {
+          "id": "EE3181",
+          "code": "EE3181",
+          "name": "Đồ án 1 (Kỹ thuật điện)",
+          "credits": 1,
+          "faculty": "EE",
+          "aliases": [],
+          "status": "active",
+          "programs": [
+            {
+              "program": "DH_CQ_DD_KDI_2019",
+              "block": "3682",
+              "required": true
+            }
+          ],
+          "parts": [
+            "project"
+          ],
+          "related": [],
+          "updated": "2026-10-03",
+          "items": []
+        },
+        {
+          "id": "EE3345",
+          "code": "EE3345",
+          "name": "Thực tập Ngoài trường",
+          "credits": 2,
+          "faculty": "EE",
+          "aliases": [],
+          "status": "active",
+          "programs": [
+            {
+              "program": "DH_CQ_DD_KDI_2019",
+              "block": "3685",
+              "required": true
+            }
+          ],
+          "parts": [],
+          "related": [],
+          "updated": "2026-10-03",
+          "items": []
+        },
+        {
+          "id": "EE4007",
+          "code": "EE4007",
+          "name": "Đồ án 2 (Kỹ thuật điện)",
+          "credits": 2,
+          "faculty": "EE",
+          "aliases": [],
+          "status": "active",
+          "programs": [
+            {
+              "program": "DH_CQ_DD_KDI_2019",
+              "block": "3685",
+              "required": true
+            }
+          ],
+          "parts": [
+            "project"
+          ],
+          "related": [],
+          "updated": "2026-10-03",
+          "items": []
+        },
+        {
+          "id": "EE4347",
+          "code": "EE4347",
+          "name": "Đồ án Tốt nghiệp",
+          "credits": 4,
+          "faculty": "EE",
+          "aliases": [],
+          "status": "active",
+          "programs": [
+            {
+              "program": "DH_CQ_DD_KDI_2019",
+              "block": "3685",
+              "required": true
+            }
+          ],
+          "parts": [
+            "project"
+          ],
+          "related": [],
+          "updated": "2026-10-03",
+          "items": []
+        }
+      ]
+    },
+    {
+      "key": "MT",
+      "name": {
+        "vi": "Toán ứng dụng",
+        "en": "Applied Mathematics"
+      },
+      "courses": [
+        {
+          "id": "MT1003",
+          "code": "MT1003",
+          "name": "Giải tích 1",
+          "credits": 4,
+          "faculty": "MT",
+          "aliases": [],
+          "status": "active",
+          "programs": [
+            {
+              "program": "DH_CQ_DD_KDI_2019",
+              "block": "3675",
+              "required": true
+            }
+          ],
+          "parts": [
+            "theory"
+          ],
+          "related": [],
+          "updated": "2026-10-03",
+          "items": []
+        },
+        {
+          "id": "MT1005",
+          "code": "MT1005",
+          "name": "Giải tích 2",
+          "credits": 4,
+          "faculty": "MT",
+          "aliases": [],
+          "status": "active",
+          "programs": [
+            {
+              "program": "DH_CQ_DD_KDI_2019",
+              "block": "3675",
+              "required": true
+            }
+          ],
+          "parts": [
+            "theory"
+          ],
+          "related": [],
+          "updated": "2026-10-03",
+          "items": [
+            {
+              "id": "vi-du-openstax-calculus-volume-3",
+              "course": "MT1005",
+              "type": "link",
+              "title": "[Ví dụ] OpenStax Calculus Volume 3",
+              "description": "Giáo trình mở, tiếng Anh: hàm nhiều biến, đạo hàm riêng, tích phân bội, tích phân đường và mặt. Mục ví dụ để minh họa định dạng link.",
+              "lang": "en",
+              "authors": [
+                "Gilbert Strang",
+                "Edwin Herman"
+              ],
+              "license": "CC-BY-NC-SA-4.0",
+              "origin": "link",
+              "source": "OpenStax",
+              "url": "https://openstax.org/details/books/calculus-volume-3",
+              "example": true,
+              "added": "2026-10-03",
+              "removed": false
+            }
+          ]
+        },
+        {
+          "id": "MT1007",
+          "code": "MT1007",
+          "name": "Đại số Tuyến tính",
+          "credits": 3,
+          "faculty": "MT",
+          "aliases": [],
+          "status": "active",
+          "programs": [
+            {
+              "program": "DH_CQ_DD_KDI_2019",
+              "block": "3675",
+              "required": true
+            }
+          ],
+          "parts": [
+            "theory"
+          ],
+          "related": [],
+          "updated": "2026-10-03",
+          "items": [
+            {
+              "id": "vi-du-mit-ocw-18-06sc-linear-algebra",
+              "course": "MT1007",
+              "type": "link",
+              "title": "[Ví dụ] MIT OCW 18.06SC Linear Algebra (Fall 2011)",
+              "description": "Khóa học mở, tiếng Anh, có video bài giảng, bài tập và lời giải. Mục ví dụ để minh họa định dạng link.",
+              "lang": "en",
+              "authors": [
+                "Gilbert Strang"
+              ],
+              "license": "CC-BY-NC-SA-4.0",
+              "origin": "link",
+              "source": "MIT OpenCourseWare",
+              "url": "https://ocw.mit.edu/courses/18-06sc-linear-algebra-fall-2011/",
+              "example": true,
+              "added": "2026-10-03",
+              "removed": false
+            }
+          ]
+        },
+        {
+          "id": "MT1009",
+          "code": "MT1009",
+          "name": "Phương pháp tính",
+          "credits": 3,
+          "faculty": "MT",
+          "aliases": [],
+          "status": "active",
+          "programs": [
+            {
+              "program": "DH_CQ_DD_KDI_2019",
+              "block": "3674",
+              "required": true
+            }
+          ],
+          "parts": [
+            "theory"
+          ],
+          "related": [],
+          "updated": "2026-10-03",
+          "items": []
+        },
+        {
+          "id": "MT1023",
+          "code": "MT1023",
+          "name": "Cơ sở Phương trình Vi phân",
+          "credits": 3,
+          "faculty": "MT",
+          "aliases": [],
+          "status": "active",
+          "programs": [
+            {
+              "program": "DH_CQ_DD_KDI_2019",
+              "block": "0",
+              "required": false
+            }
+          ],
+          "parts": [
+            "theory"
+          ],
+          "related": [],
+          "updated": "2026-10-03",
+          "items": []
+        },
+        {
+          "id": "MT2013",
+          "code": "MT2013",
+          "name": "Xác suất và Thống kê",
+          "credits": 4,
+          "faculty": "MT",
+          "aliases": [],
+          "status": "active",
+          "programs": [
+            {
+              "program": "DH_CQ_DD_KDI_2019",
+              "block": "3675",
+              "required": true
+            }
+          ],
+          "parts": [
+            "theory"
+          ],
+          "related": [],
+          "updated": "2026-10-03",
+          "items": []
+        }
+      ]
+    },
+    {
+      "key": "PH",
+      "name": {
+        "vi": "Vật lý",
+        "en": "Physics"
+      },
+      "courses": [
+        {
+          "id": "PH1003",
+          "code": "PH1003",
+          "name": "Vật lý 1",
+          "credits": 4,
+          "faculty": "PH",
+          "aliases": [],
+          "status": "active",
+          "programs": [
+            {
+              "program": "DH_CQ_DD_KDI_2019",
+              "block": "3676",
+              "required": true
+            }
+          ],
+          "parts": [
+            "theory"
+          ],
+          "related": [],
+          "updated": "2026-10-03",
+          "items": []
+        },
+        {
+          "id": "PH1007",
+          "code": "PH1007",
+          "name": "Thí nghiệm Vật lý",
+          "credits": 1,
+          "faculty": "PH",
+          "aliases": [],
+          "status": "active",
+          "programs": [
+            {
+              "program": "DH_CQ_DD_KDI_2019",
+              "block": "3676",
+              "required": true
+            }
+          ],
+          "parts": [
+            "lab"
+          ],
+          "related": [],
+          "updated": "2026-10-03",
+          "items": []
+        },
+        {
+          "id": "PH1013",
+          "code": "PH1013",
+          "name": "Vật lý - Nhiệt, Lượng tử",
+          "credits": 3,
+          "faculty": "PH",
+          "aliases": [],
+          "status": "active",
+          "programs": [
+            {
+              "program": "DH_CQ_DD_KDI_2019",
+              "block": "0",
+              "required": false
+            }
+          ],
+          "parts": [
+            "theory"
+          ],
+          "related": [],
+          "updated": "2026-10-03",
+          "items": []
+        }
+      ]
+    },
+    {
+      "key": "CH",
+      "name": {
+        "vi": "Hóa học",
+        "en": "Chemistry"
+      },
+      "courses": [
+        {
+          "id": "CH1003",
+          "code": "CH1003",
+          "name": "Hóa đại cương",
+          "credits": 3,
+          "faculty": "CH",
+          "aliases": [],
+          "status": "active",
+          "programs": [
+            {
+              "program": "DH_CQ_DD_KDI_2019",
+              "block": "3676",
+              "required": true
+            }
+          ],
+          "parts": [
+            "theory"
+          ],
+          "related": [
+            "604046"
+          ],
+          "updated": "2026-10-03",
+          "items": []
+        }
+      ]
+    },
+    {
+      "key": "LA",
+      "name": {
+        "vi": "Ngoại ngữ",
+        "en": "Foreign Languages"
+      },
+      "courses": [
+        {
+          "id": "LA1003",
+          "code": "LA1003",
+          "name": "Anh văn 1",
+          "credits": 2,
+          "faculty": "LA",
+          "aliases": [],
+          "status": "active",
+          "programs": [
+            {
+              "program": "DH_CQ_DD_KDI_2019",
+              "block": "3678",
+              "required": true
+            }
+          ],
+          "parts": [
+            "theory"
+          ],
+          "related": [],
+          "updated": "2026-10-03",
+          "items": []
+        },
+        {
+          "id": "LA1005",
+          "code": "LA1005",
+          "name": "Anh văn 2",
+          "credits": 2,
+          "faculty": "LA",
+          "aliases": [],
+          "status": "active",
+          "programs": [
+            {
+              "program": "DH_CQ_DD_KDI_2019",
+              "block": "3678",
+              "required": true
+            }
+          ],
+          "parts": [
+            "theory"
+          ],
+          "related": [],
+          "updated": "2026-10-03",
+          "items": []
+        },
+        {
+          "id": "LA1007",
+          "code": "LA1007",
+          "name": "Anh văn 3",
+          "credits": 2,
+          "faculty": "LA",
+          "aliases": [],
+          "status": "active",
+          "programs": [
+            {
+              "program": "DH_CQ_DD_KDI_2019",
+              "block": "3678",
+              "required": true
+            }
+          ],
+          "parts": [
+            "theory"
+          ],
+          "related": [],
+          "updated": "2026-10-03",
+          "items": []
+        },
+        {
+          "id": "LA1009",
+          "code": "LA1009",
+          "name": "Anh văn 4",
+          "credits": 2,
+          "faculty": "LA",
+          "aliases": [],
+          "status": "active",
+          "programs": [
+            {
+              "program": "DH_CQ_DD_KDI_2019",
+              "block": "3678",
+              "required": true
+            }
+          ],
+          "parts": [
+            "theory"
+          ],
+          "related": [],
+          "updated": "2026-10-03",
+          "items": []
+        }
+      ]
+    },
+    {
+      "key": "SP",
+      "name": {
+        "vi": "Lý luận chính trị",
+        "en": "Political Theory"
+      },
+      "courses": [
+        {
+          "id": "SP1007",
+          "code": "SP1007",
+          "name": "Pháp luật Việt Nam Đại cương",
+          "credits": 2,
+          "faculty": "SP",
+          "aliases": [],
+          "status": "active",
+          "programs": [
+            {
+              "program": "DH_CQ_DD_KDI_2019",
+              "block": "3677",
+              "required": true
+            }
+          ],
+          "parts": [
+            "theory"
+          ],
+          "related": [
+            "008001"
+          ],
+          "updated": "2026-10-03",
+          "items": []
+        },
+        {
+          "id": "SP1019",
+          "code": "SP1019",
+          "name": "Kỹ năng Xã hội D (Nhiếp Ảnh)",
+          "credits": 0,
+          "faculty": "SP",
+          "aliases": [],
+          "status": "active",
+          "programs": [
+            {
+              "program": "DH_CQ_DD_KDI_2019",
+              "block": "0",
+              "required": false
+            }
+          ],
+          "parts": [
+            "theory"
+          ],
+          "related": [],
+          "updated": "2026-10-03",
+          "items": []
+        },
+        {
+          "id": "SP1031",
+          "code": "SP1031",
+          "name": "Triết học Mác - Lênin",
+          "credits": 3,
+          "faculty": "SP",
+          "aliases": [],
+          "status": "active",
+          "programs": [
+            {
+              "program": "DH_CQ_DD_KDI_2019",
+              "block": "3677",
+              "required": true
+            }
+          ],
+          "parts": [
+            "theory"
+          ],
+          "related": [],
+          "updated": "2026-10-03",
+          "items": []
+        },
+        {
+          "id": "SP1033",
+          "code": "SP1033",
+          "name": "Kinh tế Chính trị Mác - Lênin",
+          "credits": 2,
+          "faculty": "SP",
+          "aliases": [],
+          "status": "active",
+          "programs": [
+            {
+              "program": "DH_CQ_DD_KDI_2019",
+              "block": "3677",
+              "required": true
+            }
+          ],
+          "parts": [
+            "theory"
+          ],
+          "related": [],
+          "updated": "2026-10-03",
+          "items": []
+        },
+        {
+          "id": "SP1035",
+          "code": "SP1035",
+          "name": "Chủ nghĩa Xã hội Khoa học",
+          "credits": 2,
+          "faculty": "SP",
+          "aliases": [],
+          "status": "active",
+          "programs": [
+            {
+              "program": "DH_CQ_DD_KDI_2019",
+              "block": "3677",
+              "required": true
+            }
+          ],
+          "parts": [
+            "theory"
+          ],
+          "related": [],
+          "updated": "2026-10-03",
+          "items": []
+        },
+        {
+          "id": "SP1037",
+          "code": "SP1037",
+          "name": "Tư tưởng Hồ Chí Minh",
+          "credits": 2,
+          "faculty": "SP",
+          "aliases": [],
+          "status": "active",
+          "programs": [
+            {
+              "program": "DH_CQ_DD_KDI_2019",
+              "block": "3677",
+              "required": true
+            }
+          ],
+          "parts": [
+            "theory"
+          ],
+          "related": [],
+          "updated": "2026-10-03",
+          "items": []
+        },
+        {
+          "id": "SP1039",
+          "code": "SP1039",
+          "name": "Lịch sử Đảng Cộng sản Việt Nam",
+          "credits": 2,
+          "faculty": "SP",
+          "aliases": [],
+          "status": "active",
+          "programs": [
+            {
+              "program": "DH_CQ_DD_KDI_2019",
+              "block": "3677",
+              "required": true
+            }
+          ],
+          "parts": [
+            "theory"
+          ],
+          "related": [],
+          "updated": "2026-10-03",
+          "items": []
+        },
+        {
+          "id": "SP1041",
+          "code": "SP1041",
+          "name": "Kỹ năng mềm",
+          "credits": 0,
+          "faculty": "SP",
+          "aliases": [],
+          "status": "active",
+          "programs": [
+            {
+              "program": "DH_CQ_DD_KDI_2019",
+              "block": "0",
+              "required": false
+            }
+          ],
+          "parts": [
+            "theory"
+          ],
+          "related": [],
+          "updated": "2026-10-03",
+          "items": []
+        }
+      ]
+    },
+    {
+      "key": "IM",
+      "name": {
+        "vi": "Quản lý công nghiệp",
+        "en": "Industrial Management"
+      },
+      "courses": [
+        {
+          "id": "IM1013",
+          "code": "IM1013",
+          "name": "Kinh tế học Đại cương",
+          "credits": 3,
+          "faculty": "IM",
+          "aliases": [],
+          "status": "active",
+          "programs": [
+            {
+              "program": "DH_CQ_DD_KDI_2019",
+              "block": "3680",
+              "required": false
+            }
+          ],
+          "parts": [
+            "theory"
+          ],
+          "related": [],
+          "updated": "2026-10-03",
+          "items": []
+        },
+        {
+          "id": "IM1023",
+          "code": "IM1023",
+          "name": "Quản lý Sản xuất cho Kỹ sư",
+          "credits": 3,
+          "faculty": "IM",
+          "aliases": [],
+          "status": "active",
+          "programs": [
+            {
+              "program": "DH_CQ_DD_KDI_2019",
+              "block": "3680",
+              "required": false
+            }
+          ],
+          "parts": [
+            "theory"
+          ],
+          "related": [],
+          "updated": "2026-10-03",
+          "items": []
+        },
+        {
+          "id": "IM1025",
+          "code": "IM1025",
+          "name": "Quản lý Dự án cho Kỹ sư",
+          "credits": 3,
+          "faculty": "IM",
+          "aliases": [],
+          "status": "active",
+          "programs": [
+            {
+              "program": "DH_CQ_DD_KDI_2019",
+              "block": "3680",
+              "required": false
+            }
+          ],
+          "parts": [
+            "theory"
+          ],
+          "related": [],
+          "updated": "2026-10-03",
+          "items": []
+        },
+        {
+          "id": "IM1027",
+          "code": "IM1027",
+          "name": "Kinh tế Kỹ thuật",
+          "credits": 3,
+          "faculty": "IM",
+          "aliases": [],
+          "status": "active",
+          "programs": [
+            {
+              "program": "DH_CQ_DD_KDI_2019",
+              "block": "3680",
+              "required": false
+            }
+          ],
+          "parts": [
+            "theory"
+          ],
+          "related": [],
+          "updated": "2026-10-03",
+          "items": []
+        },
+        {
+          "id": "IM3001",
+          "code": "IM3001",
+          "name": "Quản trị Kinh doanh cho Kỹ sư",
+          "credits": 3,
+          "faculty": "IM",
+          "aliases": [],
+          "status": "active",
+          "programs": [
+            {
+              "program": "DH_CQ_DD_KDI_2019",
+              "block": "3680",
+              "required": false
+            }
+          ],
+          "parts": [
+            "theory"
+          ],
+          "related": [],
+          "updated": "2026-10-03",
+          "items": []
+        }
+      ]
+    },
+    {
+      "key": "PE",
+      "name": {
+        "vi": "Giáo dục thể chất",
+        "en": "Physical Education"
+      },
+      "courses": [
+        {
+          "id": "PE1003",
+          "code": "PE1003",
+          "name": "Giáo dục thể chất 1",
+          "credits": 0,
+          "faculty": "PE",
+          "aliases": [],
+          "status": "active",
+          "programs": [
+            {
+              "program": "DH_CQ_DD_KDI_2019",
+              "block": "0",
+              "required": false
+            }
+          ],
+          "parts": [],
+          "related": [
+            "PE1025"
+          ],
+          "updated": "2026-10-03",
+          "items": []
+        },
+        {
+          "id": "PE1005",
+          "code": "PE1005",
+          "name": "Giáo dục thể chất 2",
+          "credits": 0,
+          "faculty": "PE",
+          "aliases": [],
+          "status": "active",
+          "programs": [
+            {
+              "program": "DH_CQ_DD_KDI_2019",
+              "block": "0",
+              "required": false
+            }
+          ],
+          "parts": [],
+          "related": [
+            "PE1023"
+          ],
+          "updated": "2026-10-03",
+          "items": []
+        },
+        {
+          "id": "PE1007",
+          "code": "PE1007",
+          "name": "Giáo dục thể chất 3",
+          "credits": 0,
+          "faculty": "PE",
+          "aliases": [],
+          "status": "active",
+          "programs": [
+            {
+              "program": "DH_CQ_DD_KDI_2019",
+              "block": "0",
+              "required": false
+            }
+          ],
+          "parts": [],
+          "related": [],
+          "updated": "2026-10-03",
+          "items": []
+        },
+        {
+          "id": "PE1011",
+          "code": "PE1011",
+          "name": "Bóng chuyền (Học phần 1)",
+          "credits": 0,
+          "faculty": "PE",
+          "aliases": [],
+          "status": "active",
+          "programs": [
+            {
+              "program": "DH_CQ_DD_KDI_2019",
+              "block": "0",
+              "required": false
+            }
+          ],
+          "parts": [],
+          "related": [],
+          "updated": "2026-10-03",
+          "items": []
+        },
+        {
+          "id": "PE1023",
+          "code": "PE1023",
+          "name": "Võ (Vovinam, Karate, Taewondo) (Học phần 1)",
+          "credits": 0,
+          "faculty": "PE",
+          "aliases": [],
+          "status": "active",
+          "programs": [
+            {
+              "program": "DH_CQ_DD_KDI_2019",
+              "block": "0",
+              "required": false
+            }
+          ],
+          "parts": [],
+          "related": [
+            "PE1005"
+          ],
+          "updated": "2026-10-03",
+          "items": []
+        },
+        {
+          "id": "PE1025",
+          "code": "PE1025",
+          "name": "Điền kinh (Học phần 1)",
+          "credits": 0,
+          "faculty": "PE",
+          "aliases": [],
+          "status": "active",
+          "programs": [
+            {
+              "program": "DH_CQ_DD_KDI_2019",
+              "block": "0",
+              "required": false
+            }
+          ],
+          "parts": [],
+          "related": [
+            "PE1003"
+          ],
+          "updated": "2026-10-03",
+          "items": []
+        }
+      ]
+    },
+    {
+      "key": "EN",
+      "name": {
+        "vi": "Môi trường",
+        "en": "Environment"
+      },
+      "courses": [
+        {
+          "id": "EN1003",
+          "code": "EN1003",
+          "name": "Con người và Môi trường",
+          "credits": 3,
+          "faculty": "EN",
+          "aliases": [],
+          "status": "active",
+          "programs": [
+            {
+              "program": "DH_CQ_DD_KDI_2019",
+              "block": "3681",
+              "required": true
+            }
+          ],
+          "parts": [
+            "theory"
+          ],
+          "related": [],
+          "updated": "2026-10-03",
+          "items": []
+        }
+      ]
+    },
+    {
+      "key": "unknown",
+      "name": {
+        "vi": "Chưa xác định",
+        "en": "Unassigned"
+      },
+      "courses": [
+        {
+          "id": "007401",
+          "code": "007401",
+          "name": "Vật lý - cơ học",
+          "credits": 4,
+          "faculty": "unknown",
+          "aliases": [],
+          "status": "active",
+          "programs": [
+            {
+              "program": "DH_CQ_DD_KDI_2019",
+              "block": "0",
+              "required": false
+            }
+          ],
+          "parts": [
+            "theory"
+          ],
+          "related": [],
+          "updated": "2026-10-03",
+          "items": []
+        },
+        {
+          "id": "008001",
+          "code": "008001",
+          "name": "Pháp luật Việt Nam đại cương",
+          "credits": 2,
+          "faculty": "unknown",
+          "aliases": [],
+          "status": "active",
+          "programs": [
+            {
+              "program": "DH_CQ_DD_KDI_2019",
+              "block": "0",
+              "required": false
+            }
+          ],
+          "parts": [
+            "theory"
+          ],
+          "related": [
+            "SP1007"
+          ],
+          "updated": "2026-10-03",
+          "items": []
+        },
+        {
+          "id": "400400",
+          "code": "400400",
+          "name": "Nhập môn về kỹ thuật",
+          "credits": 0,
+          "faculty": "unknown",
+          "aliases": [],
+          "status": "active",
+          "programs": [
+            {
+              "program": "DH_CQ_DD_KDI_2019",
+              "block": "0",
+              "required": false
+            }
+          ],
+          "parts": [
+            "theory"
+          ],
+          "related": [],
+          "updated": "2026-10-03",
+          "items": []
+        },
+        {
+          "id": "604046",
+          "code": "604046",
+          "name": "Thí nghiệm hóa đại cương",
+          "credits": 1,
+          "faculty": "unknown",
+          "aliases": [],
+          "status": "active",
+          "programs": [
+            {
+              "program": "DH_CQ_DD_KDI_2019",
+              "block": "0",
+              "required": false
+            }
+          ],
+          "parts": [
+            "lab"
+          ],
+          "related": [
+            "CH1003"
+          ],
+          "updated": "2026-10-03",
+          "items": []
+        },
+        {
+          "id": "CCGDTC",
+          "code": "CCGDTC",
+          "name": "Chứng chỉ Giáo Dục Thể Chất",
+          "credits": 0,
+          "faculty": "unknown",
+          "aliases": [],
+          "status": "active",
+          "programs": [
+            {
+              "program": "DH_CQ_DD_KDI_2019",
+              "block": "6919",
+              "required": true
+            }
+          ],
+          "parts": [],
+          "related": [],
+          "updated": "2026-10-03",
+          "items": []
+        },
+        {
+          "id": "ENG_GC",
+          "code": "ENG_GC",
+          "name": "Đ/kiện tiếng Anh tốt nghiệp ĐH tiêu chuẩn, VLVH",
+          "credits": 0,
+          "faculty": "unknown",
+          "aliases": [],
+          "status": "active",
+          "programs": [
+            {
+              "program": "DH_CQ_DD_KDI_2019",
+              "block": "6918",
+              "required": true
+            }
+          ],
+          "parts": [],
+          "related": [],
+          "updated": "2026-10-03",
+          "items": []
+        },
+        {
+          "id": "MI1003",
+          "code": "MI1003",
+          "name": "Giáo dục Quốc phòng",
+          "credits": 0,
+          "faculty": "unknown",
+          "aliases": [],
+          "status": "active",
+          "programs": [
+            {
+              "program": "DH_CQ_DD_KDI_2019",
+              "block": "6920",
+              "required": true
+            }
+          ],
+          "parts": [],
+          "related": [],
+          "updated": "2026-10-03",
+          "items": []
+        },
+        {
+          "id": "SA4001",
+          "code": "SA4001",
+          "name": "Hoạt động sinh viên",
+          "credits": 0,
+          "faculty": "unknown",
+          "aliases": [],
+          "status": "active",
+          "programs": [
+            {
+              "program": "DH_CQ_DD_KDI_2019",
+              "block": "6918",
+              "required": true
+            }
+          ],
+          "parts": [],
+          "related": [],
+          "updated": "2026-10-03",
+          "items": []
+        }
+      ]
+    }
+  ],
+  "programs": [
+    {
+      "code": "DH_CQ_DD_KDI_2019",
+      "name": "Kỹ thuật Điện",
+      "faculty": "EE",
+      "year": "2019",
+      "source": "MyBK, chương trình đào tạo (CTĐT) K2019 của ngành Kỹ thuật Điện; chỉ giữ cấu trúc chương trình, không có điểm",
+      "blocks": [
+        {
+          "id": "3674",
+          "name": "Toán và KH tự nhiên khác",
+          "group": "TOAN_KHTN_OTHER",
+          "required": true,
+          "creditsNeed": 7,
+          "courses": [
+            "EE1007",
+            "MT1009"
+          ]
+        },
+        {
+          "id": "3675",
+          "name": "Toán",
+          "group": "TOAN",
+          "required": true,
+          "creditsNeed": 15,
+          "courses": [
+            "MT1003",
+            "MT1005",
+            "MT1007",
+            "MT2013"
+          ]
+        },
+        {
+          "id": "3676",
+          "name": "Khoa học tự nhiên",
+          "group": "KHTN",
+          "required": true,
+          "creditsNeed": 8,
+          "courses": [
+            "CH1003",
+            "PH1003",
+            "PH1007"
+          ]
+        },
+        {
+          "id": "3677",
+          "name": "Kinh tế- Chính trị- Xã hội- Luật",
+          "group": "CHINHTRI",
+          "required": true,
+          "creditsNeed": 13,
+          "courses": [
+            "SP1007",
+            "SP1031",
+            "SP1033",
+            "SP1035",
+            "SP1037",
+            "SP1039"
+          ]
+        },
+        {
+          "id": "3678",
+          "name": "Ngoại ngữ",
+          "group": "NGOAINGU",
+          "required": true,
+          "creditsNeed": 8,
+          "courses": [
+            "LA1003",
+            "LA1005",
+            "LA1007",
+            "LA1009"
+          ]
+        },
+        {
+          "id": "3679",
+          "name": "Nhập môn",
+          "group": "NHAPMON",
+          "required": true,
+          "creditsNeed": 3,
+          "courses": [
+            "EE1001"
+          ]
+        },
+        {
+          "id": "3680",
+          "name": "Quản lý (Nhóm B)",
+          "group": "QUANLY",
+          "required": false,
+          "creditsNeed": 3,
+          "courses": [
+            "IM1013",
+            "IM1023",
+            "IM1025",
+            "IM1027",
+            "IM3001"
+          ]
+        },
+        {
+          "id": "3681",
+          "name": "Con người và môi trường",
+          "group": "CONNGUOI_MOITRUONG",
+          "required": true,
+          "creditsNeed": 3,
+          "courses": [
+            "EN1003"
+          ]
+        },
+        {
+          "id": "3682",
+          "name": "Cơ sở ngành",
+          "group": "COSONGANH",
+          "required": true,
+          "creditsNeed": 31,
+          "courses": [
+            "EE1009",
+            "EE2003",
+            "EE2009",
+            "EE2017",
+            "EE2019",
+            "EE2021",
+            "EE2023",
+            "EE2025",
+            "EE2033",
+            "EE2035",
+            "EE2039",
+            "EE3023",
+            "EE3181"
+          ]
+        },
+        {
+          "id": "3683",
+          "name": "Chuyên ngành",
+          "group": "CHUYENNGANH",
+          "required": true,
+          "creditsNeed": 15,
+          "courses": [
+            "EE3001",
+            "EE3009",
+            "EE3013",
+            "EE3027",
+            "EE3097"
+          ]
+        },
+        {
+          "id": "3684",
+          "name": "Chuyên ngành (Nhóm A)",
+          "group": "CHUYENNGANH",
+          "required": false,
+          "creditsNeed": 9,
+          "courses": [
+            "EE3087",
+            "EE3089",
+            "EE3091",
+            "EE3093",
+            "EE3095",
+            "EE3099",
+            "EE3101",
+            "EE3131",
+            "EE3133",
+            "EE3135",
+            "EE3139",
+            "EE3143",
+            "EE3145",
+            "EE3171",
+            "EE3179"
+          ]
+        },
+        {
+          "id": "6919",
+          "name": "Chứng chỉ Giáo dục Thể chất",
+          "group": "CC_GDTC",
+          "required": true,
+          "creditsNeed": 0,
+          "courses": [
+            "CCGDTC"
+          ]
+        },
+        {
+          "id": "6920",
+          "name": "Chứng chỉ Giáo dục Quốc phòng",
+          "group": "CC_GDQP",
+          "required": true,
+          "creditsNeed": 0,
+          "courses": [
+            "MI1003"
+          ]
+        },
+        {
+          "id": "6030",
+          "name": "Tự chọn tự do",
+          "group": "TUCHON_TUDO",
+          "required": false,
+          "creditsNeed": 9,
+          "courses": []
+        },
+        {
+          "id": "3685",
+          "name": "Tốt nghiệp",
+          "group": "TOTNGHIEP",
+          "required": true,
+          "creditsNeed": 8,
+          "courses": [
+            "EE3345",
+            "EE4007",
+            "EE4347"
+          ]
+        },
+        {
+          "id": "6918",
+          "name": "Điều kiện tốt nghiệp",
+          "group": "DIEUKIEN_TOTNGHIEP",
+          "required": true,
+          "creditsNeed": 0,
+          "courses": [
+            "ENG_GC",
+            "SA4001"
+          ]
+        },
+        {
+          "id": "0",
+          "name": "NGOAICTDT",
+          "group": "NGOAICTDT",
+          "required": false,
+          "creditsNeed": 0,
+          "courses": [
+            "007401",
+            "008001",
+            "400400",
+            "604046",
+            "EE2409",
+            "EE2411",
+            "EE2413",
+            "MT1023",
+            "PE1003",
+            "PE1005",
+            "PE1007",
+            "PE1011",
+            "PE1023",
+            "PE1025",
+            "PH1013",
+            "SP1019",
+            "SP1041"
+          ]
+        }
+      ],
+      "updated": "2026-10-03"
+    }
+  ],
+  "partners": []
+}

@@ -1,0 +1,95 @@
+name: Đóng góp tài liệu / Contribute material
+description: Gửi tài liệu bạn tự soạn (tóm tắt, ghi chú, mẫu prelab, gói quiz...) / Send material you wrote yourself (summaries, notes, prelab templates, quiz packs...)
+title: "[Tài liệu] "
+labels: [đóng góp, cần duyệt]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Chỉ gửi tài liệu **bạn tự soạn**. Không gửi slide, đề thi, đáp án của giảng viên hay của trường, không gửi file chép từ Scribd, Studocu hay trang tương tự. Quy định đầy đủ: [CONTRIBUTING.md](../blob/main/CONTRIBUTING.md).
+        Issue là **công khai**: đừng ghi MSSV, email, số điện thoại ở đây.
+
+        Only send material **you wrote yourself**. Don't send lecturer or university slides, exams or answer keys, or files copied from Scribd, Studocu or similar sites. Full rules: [CONTRIBUTING.md](../blob/main/docs/en/CONTRIBUTING.md).
+        Issues are **public**: don't write student IDs, emails or phone numbers here.
+  - type: input
+    id: course
+    attributes:
+      label: Mã môn / Course code
+      description: Mã trên MyBK hoặc BK-LMS, ví dụ MT1005. / The code on MyBK or BK-LMS, for example MT1005.
+      placeholder: MT1005
+    validations: { required: true }
+  - type: dropdown
+    id: type
+    attributes:
+      label: Loại / Type
+      options:
+        - summary (tóm tắt / summary)
+        - notes (ghi chú / notes)
+        - cheatsheet (bảng công thức / cheat sheet)
+        - solution (lời giải tự làm / worked solution)
+        - quiz-pack (gói quiz Study Pack v1 / quiz pack)
+        - prelab-template (mẫu prelab, không có số liệu đã chấm / prelab template, no graded data)
+        - prelab-reference (prelab tham khảo, đã hết hạn chấm / prelab reference, after grading)
+    validations: { required: true }
+  - type: input
+    id: title
+    attributes:
+      label: Tiêu đề / Title
+      placeholder: Tóm tắt chương 2, tích phân bội
+    validations: { required: true }
+  - type: input
+    id: term
+    attributes:
+      label: Học kỳ / Term
+      description: Học kỳ bạn học môn này, dạng HK251. / The term you took the course, as HK251.
+      placeholder: HK251
+  - type: input
+    id: lab
+    attributes:
+      label: Bài thí nghiệm (nếu có) / Lab number (if any)
+      placeholder: "2"
+  - type: input
+    id: graded-after
+    attributes:
+      label: Hạn chấm đã qua (chỉ với prelab tham khảo) / Grading deadline passed (prelab references only)
+      description: Ngày hết hạn nộp và chấm, dạng YYYY-MM-DD. / The submission and grading deadline, as YYYY-MM-DD.
+      placeholder: "2026-09-30"
+  - type: input
+    id: authors
+    attributes:
+      label: Tên hiển thị (không bắt buộc) / Display name (optional)
+      description: Tên hoặc nickname muốn được ghi. Bỏ trống thì ghi "Ẩn danh". Không ghi MSSV. / The name or handle to credit. Leave it empty to stay anonymous. No student IDs.
+  - type: dropdown
+    id: lang
+    attributes:
+      label: Ngôn ngữ / Language
+      options: [Tiếng Việt, English]
+    validations: { required: true }
+  - type: textarea
+    id: description
+    attributes:
+      label: Mô tả ngắn / Short description
+      description: Nội dung gồm gì, dùng để ôn phần nào. / What it covers and what it helps you study.
+  - type: textarea
+    id: files
+    attributes:
+      label: File đính kèm / Attachments
+      description: |
+        Kéo file vào ô này. GitHub nhận tới 25 MB cho tài liệu và .zip, 10 MB cho ảnh; thư viện nhận tới 20 MB mỗi file.
+        Nhận .pdf .md .docx .pptx .xlsx .zip .png .jpg .json. File KiCad và nhiều file một lúc thì nén thành .zip.
+        Drag files into this box. GitHub accepts up to 25 MB for documents and .zip files and 10 MB for images; the library accepts up to 20 MB per file.
+        Accepted: .pdf .md .docx .pptx .xlsx .zip .png .jpg .json. Zip KiCad projects and multiple files into one .zip.
+    validations: { required: true }
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Cam kết / Confirmation
+      options:
+        - label: Tài liệu do tôi tự soạn (hoặc cùng nhóm soạn và cả nhóm đồng ý). / I wrote this material myself (or with my group, and the group agrees).
+          required: true
+        - label: Tôi đồng ý đăng theo giấy phép CC BY-SA 4.0. / I agree to publish it under CC BY-SA 4.0.
+          required: true
+        - label: Tôi đã xóa thông tin cá nhân (MSSV, họ tên, chữ ký, email, số điện thoại, ảnh mặt người, tên tác giả trong thuộc tính file). / I removed personal information (student IDs, names, signatures, emails, phone numbers, faces, the author name in file properties).
+          required: true
+        - label: Không phải bài còn trong hạn nộp hoặc hạn chấm. / It is not work that is still open for submission or grading.
+          required: true

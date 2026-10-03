@@ -1,0 +1,47 @@
+name: Thêm link / Add a link
+description: Link tới tài liệu công khai, hợp pháp (giáo trình mở, video, trang của khoa) / A link to a public, legal resource (open textbook, video, faculty page)
+title: "[Link] "
+labels: [link, cần duyệt]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Chỉ thêm link tới nguồn **công khai và hợp pháp**. Không thêm link tới bản chép trên Scribd, Studocu, hay thư mục Google Drive cá nhân có slide, đề của giảng viên.
+
+        Only add links to **public, legal** sources. Don't add links to copies on Scribd or Studocu, or to personal Google Drive folders with lecturer slides or exams.
+  - type: input
+    id: course
+    attributes:
+      label: Mã môn / Course code
+      placeholder: MT1005
+    validations: { required: true }
+  - type: input
+    id: url
+    attributes:
+      label: Link / URL
+      placeholder: https://openstax.org/details/books/calculus-volume-3
+    validations: { required: true }
+  - type: input
+    id: title
+    attributes:
+      label: Tiêu đề / Title
+    validations: { required: true }
+  - type: input
+    id: source
+    attributes:
+      label: Nguồn / Source
+      description: Tên trang hoặc tổ chức, ví dụ OpenStax, MIT OpenCourseWare, Khoa Điện - Điện tử. / The site or organization.
+  - type: input
+    id: license
+    attributes:
+      label: Giấy phép của nguồn / Source license
+      description: Ghi đúng giấy phép trang đó công bố, ví dụ CC-BY-NC-SA-4.0. Không rõ thì ghi "không rõ". / The license the source states, for example CC-BY-NC-SA-4.0. If unsure, write "unknown".
+  - type: dropdown
+    id: lang
+    attributes:
+      label: Ngôn ngữ / Language
+      options: [Tiếng Việt, English, Khác / Other]
+  - type: textarea
+    id: description
+    attributes:
+      label: Vì sao hữu ích / Why it helps

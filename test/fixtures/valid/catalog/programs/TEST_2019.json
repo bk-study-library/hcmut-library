@@ -1,0 +1,8 @@
+{
+  "code": "TEST_2019",
+  "name": "Chương trình thử",
+  "faculty": "EE",
+  "year": "2019",
+  "blocks": [{ "id": "B1", "name": "Cơ sở ngành", "required": true, "creditsNeed": 3, "courses": ["EE1009"] }],
+  "updated": "2026-10-01"
+}

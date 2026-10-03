@@ -1,0 +1,10 @@
+{
+  "faculties": [
+    { "key": "EE", "name": { "vi": "Khoa Điện - Điện tử", "en": "Faculty of Electrical and Electronics Engineering" } },
+    { "key": "unknown", "name": { "vi": "Chưa xác định", "en": "Unassigned" } }
+  ],
+  "prefixes": [
+    { "pattern": "^EE[0-9]{4}$", "faculty": "EE", "verified": true },
+    { "pattern": "^[0-9]{6}$", "faculty": "unknown", "verified": false }
+  ]
+}

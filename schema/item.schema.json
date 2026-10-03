@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/xeroz369/bk-study-library/schema/item.schema.json",
+  "title": "Item",
+  "description": "Một tài liệu hoặc link của một môn. / One resource or link for a course.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "course", "type", "title", "lang", "license", "origin", "added", "removed"],
+  "properties": {
+    "$schema": { "type": "string" },
+    "id": { "type": "string", "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$", "maxLength": 80 },
+    "course": { "type": "string", "pattern": "^[A-Z0-9_]{3,12}$" },
+    "type": { "enum": ["prelab-template", "prelab-reference", "summary", "notes", "solution", "cheatsheet", "quiz-pack", "link"] },
+    "title": { "type": "string", "minLength": 1, "maxLength": 200 },
+    "description": { "type": "string", "maxLength": 1000 },
+    "lang": { "type": "string", "pattern": "^[a-z]{2}(-[A-Z]{2})?$" },
+    "term": { "type": "string", "pattern": "^HK[0-9]{3}$" },
+    "lab": { "type": ["integer", "string"] },
+    "authors": { "type": "array", "items": { "type": "string", "minLength": 1, "maxLength": 80 } },
+    "license": { "type": "string", "minLength": 1, "description": "SPDX, ví dụ CC-BY-SA-4.0. Với link: giấy phép của nguồn." },
+    "origin": { "type": "string", "pattern": "^(self-made|link|partner:[a-z0-9-]+)$" },
+    "files": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["name", "size", "sha256"],
+        "properties": {
+          "name": { "type": "string", "pattern": "^[^/\\\\]+\\.[A-Za-z0-9]+$" },
+          "size": { "type": "integer", "minimum": 1 },
+          "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+          "url": { "type": "string", "pattern": "^https://" },
+          "path": { "type": "string", "pattern": "^files/[^/\\\\]+\\.md$", "description": "File .md nhỏ nằm trong git, đường dẫn tính từ thư mục môn." }
+        }
+      }
+    },
+    "url": { "type": "string", "pattern": "^https://" },
+    "source": { "type": "string", "description": "Tên nguồn của link, ví dụ OpenStax." },
+    "example": { "type": "boolean", "description": "Mục mẫu để minh họa định dạng." },
+    "added": { "type": "string", "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$" },
+    "removed": { "type": "boolean" },
+    "removedReason": { "type": "string", "minLength": 1 },
+    "gradedAfter": { "type": "string", "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$" }
+  }
+}

@@ -1,0 +1,32 @@
+<div class="prose">
+<h1>Duyệt bài</h1>
+<p class="lead">Mỗi tài liệu được người duyệt kiểm trước khi lên thư viện. Người duyệt là sinh viên đã học qua môn, tình nguyện giúp.</p>
+
+<h2>Ai duyệt</h2>
+<ul>
+  <li>Hiện tại: người duy trì repo (<a href="https://github.com/xeroz369" rel="noopener">@xeroz369</a>), ghi trong file <code>.github/CODEOWNERS</code>.</li>
+  <li>Khi có thêm người, mỗi khoa hoặc nhóm môn có người duyệt riêng, cũng ghi trong <code>CODEOWNERS</code> theo thư mục môn. GitHub tự mời đúng người duyệt khi có Pull Request.</li>
+  <li>Muốn duyệt cho môn bạn giỏi: mở form <a href="{{issue:dang-ky-duyet.yml}}" rel="noopener">Đăng ký duyệt bài</a>.</li>
+</ul>
+
+<h2>Bài đi qua những bước nào</h2>
+<ol>
+  <li><strong>Gửi</strong>: issue có nhãn <code>cần duyệt</code>, hoặc Pull Request.</li>
+  <li><strong>Kiểm tự động</strong>: CI kiểm định dạng, loại file, dung lượng, file trùng, và quét MSSV, email, số điện thoại.</li>
+  <li><strong>Người duyệt đọc</strong>: theo danh sách bên dưới, hỏi lại người gửi ngay trong issue nếu cần.</li>
+  <li><strong>Đưa lên</strong>: người duyệt tạo Pull Request (với bài gửi qua form), tải file lên GitHub Release, ghi <code>url</code> và <code>sha256</code>, rồi merge.</li>
+  <li><strong>Đóng issue</strong> với link tới trang môn.</li>
+</ol>
+<p>Mục tiêu: trả lời bài gửi trong 7 ngày. Yêu cầu gỡ được ưu tiên, xem <a href="{{root}}takedown/">Gỡ tài liệu</a>.</p>
+
+<h2>Danh sách kiểm của người duyệt</h2>
+<ul>
+  <li>Đúng là tự soạn: không phải slide, đề, đáp án của giảng viên; không chép từ trang khác. Nghi ngờ thì hỏi nguồn.</li>
+  <li>Không còn thông tin cá nhân: mở từng trang, xem cả ảnh chụp, header, footer, thuộc tính file (Author trong .docx, .pdf).</li>
+  <li>Bài có chấm điểm: đã qua hạn nộp và hạn chấm, có <code>gradedAfter</code>, ghi rõ là bản tham khảo.</li>
+  <li>Giấy phép: tự soạn thì CC BY-SA 4.0 (hoặc CC BY 4.0, CC0); link thì ghi đúng giấy phép của nguồn.</li>
+  <li>Nội dung đúng môn, đúng loại, tiêu đề rõ, không quảng cáo.</li>
+  <li>File .zip: mở ra xem, không có file chạy được.</li>
+</ul>
+<p>Chi tiết: <a href="{{repo}}/blob/main/docs/review.md" rel="noopener">docs/review.md</a>.</p>
+</div>

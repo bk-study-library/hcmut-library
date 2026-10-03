@@ -1,0 +1,17 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "MT1005",
+  "code": "MT1005",
+  "name": "Giải tích 2",
+  "credits": 4,
+  "faculty": "MT",
+  "aliases": [],
+  "status": "active",
+  "programs": [],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "note": "Mục tạm để chạy các tài liệu ví dụ. Danh mục đầy đủ (mọi khoa, chương trình) sẽ nhập sau bằng scripts/import-seed.mjs.",
+  "updated": "2026-10-03"
+}

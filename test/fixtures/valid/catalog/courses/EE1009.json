@@ -1,0 +1,14 @@
+{
+  "id": "EE1009",
+  "code": "EE1009",
+  "name": "Kỹ thuật số",
+  "credits": 3,
+  "faculty": "EE",
+  "aliases": [{ "code": "402030", "name": "Kỹ thuật số (mã cũ)", "to": "HK191" }],
+  "status": "active",
+  "replaces": ["400111"],
+  "programs": [{ "program": "TEST_2019", "block": "B1", "required": true }],
+  "parts": ["theory"],
+  "related": ["EE1010"],
+  "updated": "2026-10-01"
+}

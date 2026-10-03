@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en" data-root="../../" data-lang-prefix="en/">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Review | BK Study Library</title>
+<meta name="description" content="A study library written and shared by HCMUT students">
+<link rel="stylesheet" href="../../assets/site.css">
+<link rel="alternate" hreflang="vi" href="../../review/">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="top">
+  <div class="wrap top-in">
+    <a class="brand" href="../../en/"><span class="brand-mark" aria-hidden="true">BK</span><span class="brand-text"><strong>BK Study Library</strong><span>A study library written and shared by HCMUT students</span></span></a>
+    <nav class="nav" aria-label="Home">
+      <ul><li><a href="../../en/">Home</a></li><li><a href="../../en/contribute/">Contribute</a></li><li><a href="../../en/review/" aria-current="page">Review</a></li><li><a href="../../en/takedown/">Takedown</a></li>
+      <li><a href="https://github.com/xeroz369/bk-study-library" rel="noopener">GitHub</a></li>
+      <li><a class="lang" href="../../review/" hreflang="vi" lang="vi">Tiếng Việt</a></li></ul>
+    </nav>
+  </div>
+</header>
+<main id="main" class="wrap" tabindex="-1">
+<nav class="crumbs" aria-label="Breadcrumb"><ol><li><a href="../../en/">Home</a></li><li aria-current="page">Review</li></ol></nav>
+<div class="prose">
+<h1>Review</h1>
+<p class="lead">A reviewer checks every contribution before it appears in the library. Reviewers are students who have taken the course and volunteer to help.</p>
+
+<h2>Who reviews</h2>
+<ul>
+  <li>For now: the repository maintainer (<a href="https://github.com/xeroz369" rel="noopener">@xeroz369</a>), listed in <code>.github/CODEOWNERS</code>.</li>
+  <li>As more people join, each faculty or group of courses gets its own reviewers, also listed in <code>CODEOWNERS</code> by course folder. GitHub then requests the right reviewer on each pull request.</li>
+  <li>To review for a course you know well, open the <a href="https://github.com/xeroz369/bk-study-library/issues/new?template=dang-ky-duyet.yml" rel="noopener">Become a reviewer</a> form.</li>
+</ul>
+
+<h2>The steps a contribution goes through</h2>
+<ol>
+  <li><strong>Sent</strong>: an issue with the <code>cần duyệt</code> (needs review) label, or a pull request.</li>
+  <li><strong>Automatic checks</strong>: CI checks the format, file types, sizes and duplicates, and scans for student IDs, emails and phone numbers.</li>
+  <li><strong>A reviewer reads it</strong> using the checklist below and asks the sender questions in the issue when needed.</li>
+  <li><strong>Published</strong>: for form submissions, the reviewer opens a pull request, uploads the file to a GitHub release, records <code>url</code> and <code>sha256</code>, and merges.</li>
+  <li><strong>The issue is closed</strong> with a link to the course page.</li>
+</ol>
+<p>Target: a reply to every contribution within seven days. Takedown requests come first; see <a href="../../en/takedown/">Takedown</a>.</p>
+
+<h2>Reviewer checklist</h2>
+<ul>
+  <li>It really is the sender's own work: not lecturer slides, exams or answer keys, and not copied from another site. If in doubt, ask for the source.</li>
+  <li>No personal information is left: open every page and check photos, headers, footers and file properties (Author in .docx and .pdf).</li>
+  <li>Graded work: the submission and grading deadlines have passed, <code>gradedAfter</code> is set, and it is labelled as a reference.</li>
+  <li>License: CC BY-SA 4.0 (or CC BY 4.0, CC0) for the sender's own work; for links, the source's actual license.</li>
+  <li>Right course, right type, a clear title, no advertising.</li>
+  <li>For .zip files: open them and check that there are no executables.</li>
+</ul>
+<p>Details: <a href="https://github.com/xeroz369/bk-study-library/blob/main/docs/en/review.md" rel="noopener">docs/en/review.md</a>.</p>
+</div>
+
+</main>
+<footer class="foot">
+  <div class="wrap">
+    <p>A student project, not an official site of Ho Chi Minh City University of Technology (HCMUT).</p>
+    <p>Content is under CC BY-SA 4.0 unless marked otherwise; links keep the license of their source. Code (scripts/) is under MIT. This site uses no cookies, no tracking and no ads.</p>
+    <p class="muted">Data updated: 2026-10-03</p>
+  </div>
+</footer>
+</body>
+</html>

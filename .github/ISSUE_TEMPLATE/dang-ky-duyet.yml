@@ -1,0 +1,29 @@
+name: Đăng ký duyệt bài / Become a reviewer
+description: Nhận duyệt tài liệu cho môn hoặc khoa bạn rành / Review material for courses or a faculty you know well
+title: "[Người duyệt] "
+labels: [người duyệt]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Người duyệt đọc bài gửi theo danh sách kiểm trong [docs/review.md](../blob/main/docs/review.md) và được ghi trong CODEOWNERS cho thư mục môn của mình.
+
+        Reviewers check contributions against the checklist in [docs/review.md](../blob/main/docs/en/review.md) and are listed in CODEOWNERS for their course folders.
+  - type: input
+    id: courses
+    attributes:
+      label: Môn hoặc khoa muốn duyệt / Courses or faculty
+      placeholder: MT1005, MT1007 hoặc Khoa Điện - Điện tử
+    validations: { required: true }
+  - type: textarea
+    id: why
+    attributes:
+      label: Bạn đã học môn này thế nào / How you know these courses
+      description: Ví dụ đã học xong, làm trợ giảng, ôn cho bạn bè. Không cần ghi điểm. / For example, you passed it, you were a TA, you tutor friends. No grades needed.
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Cam kết / Commitment
+      options:
+        - label: Tôi đã đọc docs/review.md và sẽ không duyệt slide, đề thi của giảng viên khi chưa được phép. / I read docs/review.md and won't approve lecturer slides or exams without permission.
+          required: true

@@ -1,0 +1,50 @@
+name: Sửa danh mục môn / Fix the course catalog
+description: Môn đổi tên hoặc mã, môn mới, môn ngừng dạy, sai khoa / A renamed or recoded course, a new course, a retired course, a wrong faculty
+title: "[Danh mục] "
+labels: [danh mục]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ID của môn không bao giờ đổi. Đổi tên thì giữ ID và thêm mã, tên cũ vào aliases; môn ngừng dạy thì đặt status retired và vẫn giữ trong danh mục. Xem [docs/catalog.md](../blob/main/docs/catalog.md).
+
+        A course ID never changes. A rename keeps the ID and adds the old code and name to aliases; a retired course gets status retired and stays in the catalog. See [docs/catalog.md](../blob/main/docs/en/catalog.md).
+  - type: dropdown
+    id: change
+    attributes:
+      label: Thay đổi / Change
+      options:
+        - Đổi tên hoặc mã / Rename or new code
+        - Môn mới / New course
+        - Ngừng dạy (có hoặc không có môn thay thế) / Retired (with or without a replacement)
+        - Sai khoa, tín chỉ, phần (lý thuyết, thí nghiệm...) / Wrong faculty, credits or parts
+        - Khác / Other
+    validations: { required: true }
+  - type: input
+    id: course
+    attributes:
+      label: ID hoặc mã môn hiện tại / Current course ID or code
+      placeholder: EE1009
+  - type: input
+    id: new-code
+    attributes:
+      label: Mã mới (nếu có) / New code (if any)
+  - type: input
+    id: new-name
+    attributes:
+      label: Tên mới (nếu có) / New name (if any)
+  - type: input
+    id: since
+    attributes:
+      label: Áp dụng từ học kỳ / Since term
+      placeholder: HK261
+  - type: input
+    id: replaced-by
+    attributes:
+      label: Môn thay thế (nếu ngừng dạy) / Replacement course (if retired)
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Nguồn kiểm chứng / Evidence
+      description: Link công khai (trang khoa, chương trình đào tạo đã công bố) hoặc nơi bạn thấy (MyBK, BK-LMS). Không dán ảnh có MSSV hay điểm. / A public link (faculty page, published curriculum) or where you saw it (MyBK, BK-LMS). No screenshots with student IDs or grades.
+    validations: { required: true }

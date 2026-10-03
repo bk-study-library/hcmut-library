@@ -1,0 +1,30 @@
+name: issue-to-pr (placeholder)
+
+# CHƯA TỰ ĐỘNG HÓA. File này chỉ giữ chỗ và ghi lại các bước người duyệt làm tay
+# khi một issue "Đóng góp tài liệu" đã được duyệt. Xem docs/review.md.
+# Cố ý không tải file lên Release, không ghi vào repo, không có quyền gì.
+#
+# Các bước (làm tay):
+#   1. Tải file đính kèm trong issue về máy, mở kiểm (thông tin cá nhân, file chạy được trong .zip).
+#   2. Tạo nhánh contrib/<issue>-<course>, thêm courses/<ID>/items/<id>.json.
+#   3. Tính size, sha256; tải file lên GitHub Release "files-<ID>" (gh release upload), ghi url.
+#   4. npm test, npm run build, mở Pull Request ghi "Closes #<issue>", ghi tên người gửi nếu họ đồng ý.
+
+on:
+  workflow_dispatch:
+    inputs:
+      issue:
+        description: Số issue đã duyệt / Approved issue number
+        required: true
+
+permissions: {}
+
+jobs:
+  steps:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print the manual steps
+        env:
+          ISSUE: ${{ inputs.issue }}
+        run: |
+          echo "Issue #$ISSUE: chưa có tự động hóa. Làm theo docs/review.md (mục Đưa bài từ issue lên)."

@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="vi" data-root="../" data-lang-prefix="">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Duyệt bài | BK Study Library</title>
+<meta name="description" content="Thư viện tài liệu do sinh viên Bách Khoa TP.HCM soạn và chia sẻ">
+<link rel="stylesheet" href="../assets/site.css">
+<link rel="alternate" hreflang="en" href="../en/review/">
+</head>
+<body>
+<a class="skip" href="#main">Bỏ qua, tới nội dung</a>
+<header class="top">
+  <div class="wrap top-in">
+    <a class="brand" href="../"><span class="brand-mark" aria-hidden="true">BK</span><span class="brand-text"><strong>BK Study Library</strong><span>Thư viện tài liệu do sinh viên Bách Khoa TP.HCM soạn và chia sẻ</span></span></a>
+    <nav class="nav" aria-label="Trang chủ">
+      <ul><li><a href="../">Trang chủ</a></li><li><a href="../contribute/">Đóng góp</a></li><li><a href="../review/" aria-current="page">Duyệt bài</a></li><li><a href="../takedown/">Gỡ tài liệu</a></li>
+      <li><a href="https://github.com/xeroz369/bk-study-library" rel="noopener">GitHub</a></li>
+      <li><a class="lang" href="../en/review/" hreflang="en" lang="en">English</a></li></ul>
+    </nav>
+  </div>
+</header>
+<main id="main" class="wrap" tabindex="-1">
+<nav class="crumbs" aria-label="Đường dẫn"><ol><li><a href="../">Trang chủ</a></li><li aria-current="page">Duyệt bài</li></ol></nav>
+<div class="prose">
+<h1>Duyệt bài</h1>
+<p class="lead">Mỗi tài liệu được người duyệt kiểm trước khi lên thư viện. Người duyệt là sinh viên đã học qua môn, tình nguyện giúp.</p>
+
+<h2>Ai duyệt</h2>
+<ul>
+  <li>Hiện tại: người duy trì repo (<a href="https://github.com/xeroz369" rel="noopener">@xeroz369</a>), ghi trong file <code>.github/CODEOWNERS</code>.</li>
+  <li>Khi có thêm người, mỗi khoa hoặc nhóm môn có người duyệt riêng, cũng ghi trong <code>CODEOWNERS</code> theo thư mục môn. GitHub tự mời đúng người duyệt khi có Pull Request.</li>
+  <li>Muốn duyệt cho môn bạn giỏi: mở form <a href="https://github.com/xeroz369/bk-study-library/issues/new?template=dang-ky-duyet.yml" rel="noopener">Đăng ký duyệt bài</a>.</li>
+</ul>
+
+<h2>Bài đi qua những bước nào</h2>
+<ol>
+  <li><strong>Gửi</strong>: issue có nhãn <code>cần duyệt</code>, hoặc Pull Request.</li>
+  <li><strong>Kiểm tự động</strong>: CI kiểm định dạng, loại file, dung lượng, file trùng, và quét MSSV, email, số điện thoại.</li>
+  <li><strong>Người duyệt đọc</strong>: theo danh sách bên dưới, hỏi lại người gửi ngay trong issue nếu cần.</li>
+  <li><strong>Đưa lên</strong>: người duyệt tạo Pull Request (với bài gửi qua form), tải file lên GitHub Release, ghi <code>url</code> và <code>sha256</code>, rồi merge.</li>
+  <li><strong>Đóng issue</strong> với link tới trang môn.</li>
+</ol>
+<p>Mục tiêu: trả lời bài gửi trong 7 ngày. Yêu cầu gỡ được ưu tiên, xem <a href="../takedown/">Gỡ tài liệu</a>.</p>
+
+<h2>Danh sách kiểm của người duyệt</h2>
+<ul>
+  <li>Đúng là tự soạn: không phải slide, đề, đáp án của giảng viên; không chép từ trang khác. Nghi ngờ thì hỏi nguồn.</li>
+  <li>Không còn thông tin cá nhân: mở từng trang, xem cả ảnh chụp, header, footer, thuộc tính file (Author trong .docx, .pdf).</li>
+  <li>Bài có chấm điểm: đã qua hạn nộp và hạn chấm, có <code>gradedAfter</code>, ghi rõ là bản tham khảo.</li>
+  <li>Giấy phép: tự soạn thì CC BY-SA 4.0 (hoặc CC BY 4.0, CC0); link thì ghi đúng giấy phép của nguồn.</li>
+  <li>Nội dung đúng môn, đúng loại, tiêu đề rõ, không quảng cáo.</li>
+  <li>File .zip: mở ra xem, không có file chạy được.</li>
+</ul>
+<p>Chi tiết: <a href="https://github.com/xeroz369/bk-study-library/blob/main/docs/review.md" rel="noopener">docs/review.md</a>.</p>
+</div>
+
+</main>
+<footer class="foot">
+  <div class="wrap">
+    <p>Dự án của sinh viên, không phải trang chính thức của Trường Đại học Bách khoa - ĐHQG-HCM.</p>
+    <p>Nội dung theo CC BY-SA 4.0 trừ khi ghi khác; link giữ giấy phép của nguồn. Mã nguồn (scripts/) theo MIT. Trang không dùng cookie, không theo dõi, không quảng cáo.</p>
+    <p class="muted">Cập nhật dữ liệu: 2026-10-03</p>
+  </div>
+</footer>
+</body>
+</html>
