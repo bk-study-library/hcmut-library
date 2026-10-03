@@ -14,7 +14,7 @@
 
 - Không ghi cứng giá trị có thể đổi: loại, đuôi file, kích thước, dấu đầu file, bảng tháng học kỳ ở `catalog/policy.json`; địa chỉ Worker và site key Turnstile ở `catalog/site.json`; repo, nhánh, origin được phép ở `worker/wrangler.jsonc` `vars`; khóa ở secrets.
 - `scripts/` và `test/` không thêm dependency; dependency của Worker chỉ nằm trong `worker/package.json`.
-- Mọi file văn bản qua `test/style.test.mjs` (không `— – → ⇒ ↔ · … “ ” ‘ ’ ★ ✓ ✔`, không emoji).
+- Mọi file văn bản qua `test/style.test.mjs` (không gạch dài, mũi tên, chấm giữa, ký tự ba chấm, ngoặc kép cong, dấu tích, emoji).
 - Chữ cho người dùng: tiếng Việt, gọi người dùng là "bạn", câu ngắn, lỗi theo mẫu "Không ... được. <việc cần làm>." Không quảng cáo.
 - Kích thước tối đa mỗi file: 20 MB (`policy.json`, giá trị hiện có của `LIMITS.maxFileBytes`).
 - Chỉ cấm file sách có bản quyền; thông tin cá nhân chỉ cảnh báo, không chặn.
