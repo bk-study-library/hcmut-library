@@ -221,3 +221,9 @@ test('schema: isbn sai định dạng và quarantine sai dạng', () => {
   assert.deepEqual(errorsAfter((d) => writeJson(d, 'courses/EE1009/items/sach-giai-tich.json', bookItem({ book: { ...BOOK, isbn: '12-3' } }))), ['SCHEMA']);
   assert.deepEqual(errorsAfter((d) => editJson(d, ITEM, (it) => { it.files[0].quarantine = 'bad/path'; })), ['SCHEMA']);
 });
+
+test('book-ref: book cần ít nhất một tác giả không rỗng', () => {
+  for (const authors of [[], ['  ']]) {
+    assert.ok(errorsAfter((d) => writeJson(d, 'courses/EE1009/items/sach-giai-tich.json', bookItem({ book: { ...BOOK, authors } }))).includes('ITEM_BOOK'));
+  }
+});

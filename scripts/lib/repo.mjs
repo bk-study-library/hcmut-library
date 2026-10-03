@@ -269,6 +269,7 @@ export function loadRepo(root) {
         if (it.type === 'book-ref') {
           // Sách tham khảo chỉ ghi tên: có book, không có file hay url.
           if (!it.removed && !it.book) err('ITEM_BOOK', f, 'book-ref cần trường book');
+          if (it.book && !(it.book.authors || []).some((a) => typeof a === 'string' && a.trim())) err('ITEM_BOOK', f, 'book cần ít nhất một tác giả');
           if (it.url) err('ITEM_BOOK', f, 'book-ref không có url');
           if (it.files && it.files.length) err('ITEM_BOOK', f, 'book-ref không có files');
           if (origin === 'link') err('ITEM_BOOK', f, 'origin link chỉ dùng cho type link');

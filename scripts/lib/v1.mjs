@@ -10,6 +10,7 @@
 // - Mục đã gỡ chỉ còn id, type, removed, removedReason, added; bên đọc xóa bản lưu của mục đó.
 // Mô tả cho người đọc: docs/v1.md.
 
+import path from 'node:path';
 import { SITE_URL, RAW_URL } from './labels.mjs';
 
 export const SCHEMA_VERSION = 1;
@@ -40,9 +41,9 @@ const ITEM_FIELDS = ['id', 'type', 'title', 'description', 'lang', 'term', 'teac
 // mime của file: ưu tiên giá trị ghi trong item, không có thì theo đuôi trong policy.
 function fileMime(f, extensions) {
   if (f.mime) return f.mime;
-  const dot = f.name.lastIndexOf('.');
-  const ext = dot < 0 ? '' : f.name.slice(dot).toLowerCase();
-  return extensions[ext] ? extensions[ext].mime : 'application/octet-stream';
+  const ext = path.extname(f.name).toLowerCase();
+  if (!extensions[ext]) throw new Error(`Không suy ra được mime của ${f.name}: đuôi ${ext || '(trống)'} không có trong catalog/policy.json`);
+  return extensions[ext].mime;
 }
 
 function v1Item(it, site, extensions) {

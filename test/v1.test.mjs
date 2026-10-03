@@ -146,9 +146,17 @@ test('v1: book-ref ra book, không files, không url', () => {
     book: { title: 'Giải tích 1', authors: ['Nguyễn Văn A'], year: 2020 }, added: '2026-10-01', removed: false,
   });
   const repo = loadRepo(dir);
+  assert.deepEqual(repo.errors, []);
   const out = buildV1(repo).details.get('EE1009').items.find((x) => x.id === 'sach-giai-tich');
   assert.equal(out.book.title, 'Giải tích 1');
   assert.deepEqual(out.book.authors, ['Nguyễn Văn A']);
   assert.equal(out.files, undefined);
   assert.equal(out.url, undefined);
+});
+
+test('v1: đuôi file không có trong policy thì ném lỗi nêu tên file', () => {
+  const repo = loadRepo(copyFixture());
+  const it = repo.items.find((x) => x.files && x.files.length && !x.removed);
+  it.files = [{ name: 'a.xyz', size: 10, sha256: 'a'.repeat(64), url: 'https://example.org/a.xyz' }];
+  assert.throws(() => buildV1(repo), /a\.xyz.*\.xyz/);
 });
