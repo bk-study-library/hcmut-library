@@ -1,0 +1,169 @@
+name: phat-hanh-file
+
+# Phát hành file của bài gửi qua form khi người duyệt merge PR, và xóa file trên
+# Release khi một mục tài liệu chuyển sang removed. Logic nằm ở scripts/upload/publish.mjs.
+#
+#   phat-hanh  (pull_request_target closed, đã merge)  tải bản đã làm sạch từ kho cách ly R2,
+#              kiểm sha256 và kích thước theo mục tài liệu, đưa lên Release (pre-release nếu
+#              chưa có), rồi xóa pending/, clean/ và khóa sha/ trong kho.
+#   go-file    (push vào main, đổi courses/**/items/*.json)  mục vừa chuyển sang removed thì
+#              xóa file tương ứng trên Release của repo; link ngoài bỏ qua.
+#
+# Mô hình đe dọa. pull_request_target chạy với quyền ghi. Workflow và script lấy từ main,
+# không bao giờ checkout hay chạy mã của nhánh PR. Chỉ chạy khi PR cùng repo, nhánh upload/*
+# và do bot mở. Mục tài liệu đọc từ main sau khi merge. File tải từ R2 chỉ bị tính hash và
+# đưa lên Release, không bị chạy. Khóa R2 chỉ nằm trong env của bước cần chúng; mọi giá trị
+# chưa tin được (tên nhánh, tên file) đi qua env, không đặt trong lệnh run.
+#
+# Chạy lại an toàn: file đã có trên Release cùng sha256 thì bỏ qua; cùng tên khác sha256 thì
+# dừng và báo lỗi. Dọn kho xóa cả khi file đã mất.
+#
+# Secrets: R2_ACCOUNT_ID, R2_ACCESS_KEY_ID, R2_SECRET_ACCESS_KEY (khóa R2 đọc, ghi, xóa bucket
+# kho cách ly). Variables: R2_BUCKET (tên bucket), BOT_LOGIN (tên bot mở PR).
+
+on:
+  pull_request_target:
+    types: [closed]
+  push:
+    branches: [main]
+    paths:
+      - 'courses/**/items/*.json'
+
+permissions: {}
+
+concurrency:
+  group: phat-hanh-file-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: false
+
+env:
+  REPO: ${{ github.repository }}
+  PR: ${{ github.event.pull_request.number }}
+  BRANCH: ${{ github.event.pull_request.head.ref }}
+
+jobs:
+  phat-hanh:
+    if: >-
+      github.event_name == 'pull_request_target' &&
+      github.event.pull_request.merged == true &&
+      github.event.pull_request.head.repo.full_name == github.repository &&
+      startsWith(github.event.pull_request.head.ref, 'upload/') &&
+      vars.BOT_LOGIN != '' &&
+      github.event.pull_request.user.login == vars.BOT_LOGIN
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    env:
+      R2_BUCKET: ${{ vars.R2_BUCKET }}
+      AWS_DEFAULT_REGION: auto
+      AWS_REQUEST_CHECKSUM_CALCULATION: when_required
+      AWS_RESPONSE_CHECKSUM_VALIDATION: when_required
+    steps:
+      # Bản main sau khi merge: script và mục tài liệu đều đọc từ đây.
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: main
+          persist-credentials: false
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: 24
+      - name: Tìm mục tài liệu của PR
+        id: locate
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh api --paginate "repos/$REPO/pulls/$PR/files" \
+            --jq '.[] | {filename, status, previous_filename} | @json' > "$RUNNER_TEMP/files.jsonl"
+          node scripts/upload/publish.mjs locate --files "$RUNNER_TEMP/files.jsonl" --root . \
+            --branch "$BRANCH" --output-file "$GITHUB_OUTPUT"
+      - name: Lập kế hoạch phát hành
+        id: plan
+        env:
+          GH_TOKEN: ${{ github.token }}
+          ITEM: ${{ steps.locate.outputs.item }}
+        run: node scripts/upload/publish.mjs plan --item "$ITEM" --branch "$BRANCH" --repo "$REPO" --output-file "$GITHUB_OUTPUT"
+
+      - name: Tải bản đã làm sạch từ kho cách ly
+        if: steps.plan.outputs.publish == 'true'
+        env:
+          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          QUARANTINE: ${{ steps.plan.outputs.quarantine }}
+          NAME: ${{ steps.plan.outputs.name }}
+        run: |
+          mkdir -p "$RUNNER_TEMP/dl"
+          aws s3 cp "s3://$R2_BUCKET/$QUARANTINE" "$RUNNER_TEMP/dl/$NAME" \
+            --endpoint-url "https://${R2_ACCOUNT_ID}.r2.cloudflarestorage.com" --only-show-errors
+      - name: Kiểm sha256 và kích thước
+        if: steps.plan.outputs.publish == 'true'
+        env:
+          NAME: ${{ steps.plan.outputs.name }}
+          SHA256: ${{ steps.plan.outputs.sha256 }}
+          SIZE: ${{ steps.plan.outputs.size }}
+        run: node scripts/upload/publish.mjs verify --file "$RUNNER_TEMP/dl/$NAME" --sha256 "$SHA256" --size "$SIZE"
+      - name: Đưa lên Release
+        if: steps.plan.outputs.publish == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ steps.plan.outputs.tag }}
+          NAME: ${{ steps.plan.outputs.name }}
+        run: |
+          # Release chưa có thì tạo pre-release; hai bài cùng học kỳ tạo cùng lúc thì đọc lại.
+          if ! gh release view "$TAG" --repo "$REPO" > /dev/null 2>&1; then
+            gh release create "$TAG" --repo "$REPO" --prerelease --title "$TAG" \
+              --notes "File tài liệu của thư viện, do workflow phat-hanh-file đưa lên." ||
+              gh release view "$TAG" --repo "$REPO" > /dev/null
+          fi
+          gh release upload "$TAG" "$RUNNER_TEMP/dl/$NAME" --repo "$REPO"
+
+      # Dọn kho chỉ chạy khi các bước trên thành công (kể cả khi file đã có sẵn trên Release).
+      # Khóa sha/ đặt theo sha256 của file gốc, mục tài liệu chỉ có sha256 bản sạch, nên tính lại
+      # từ pending/ nếu còn; đã bị luật vòng đời xóa thì không còn gì để tính.
+      - name: Tải file cách ly gốc để tính khóa sha
+        env:
+          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          CODE: ${{ steps.locate.outputs.code }}
+        run: |
+          mkdir -p "$RUNNER_TEMP/pending"
+          aws s3 cp "s3://$R2_BUCKET/pending/$CODE/" "$RUNNER_TEMP/pending/" --recursive \
+            --endpoint-url "https://${R2_ACCOUNT_ID}.r2.cloudflarestorage.com" --only-show-errors
+      - name: Tính sha256 của file gốc
+        id: sha
+        run: node scripts/upload/publish.mjs pending-sha --dir "$RUNNER_TEMP/pending" --output-file "$GITHUB_OUTPUT"
+      - name: Xóa file trong kho cách ly
+        env:
+          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          CODE: ${{ steps.locate.outputs.code }}
+          SHA: ${{ steps.sha.outputs.sha }}
+        run: |
+          endpoint="https://${R2_ACCOUNT_ID}.r2.cloudflarestorage.com"
+          aws s3 rm "s3://$R2_BUCKET/pending/$CODE/" --recursive --endpoint-url "$endpoint" --only-show-errors
+          aws s3 rm "s3://$R2_BUCKET/clean/$CODE/" --recursive --endpoint-url "$endpoint" --only-show-errors
+          if [ -n "$SHA" ]; then
+            aws s3 rm "s3://$R2_BUCKET/sha/$SHA" --endpoint-url "$endpoint" --only-show-errors
+          fi
+
+  go-file:
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      # Cần đủ lịch sử để đọc bản trước của mục tài liệu theo github.event.before.
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: 24
+      - name: Xóa file của mục vừa gỡ trên Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          BEFORE: ${{ github.event.before }}
+          AFTER: ${{ github.sha }}
+        run: node scripts/upload/publish.mjs unpublish --before "$BEFORE" --after "$AFTER" --repo "$REPO"

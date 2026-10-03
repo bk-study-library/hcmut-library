@@ -238,7 +238,7 @@ function pdfPages(p) {
 }
 
 // Tên và sha256 các file đã có trên Release; Release chưa có thì rỗng.
-function releaseAssets(repo, tag) {
+export function releaseAssets(repo, tag) {
   const r = spawnSync('gh', ['api', `repos/${repo}/releases/tags/${tag}`], { encoding: 'utf8' });
   if (r.status !== 0) {
     if (/HTTP 404/.test(r.stderr)) return new Map();

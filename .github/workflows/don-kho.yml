@@ -1,0 +1,97 @@
+name: don-kho
+
+# Dọn kho cách ly R2 và nhánh khi PR của bài gửi bị đóng mà không merge.
+# Logic nằm ở scripts/upload/publish.mjs.
+#
+# Mô hình đe dọa. pull_request_target chạy với quyền ghi, nên workflow và script lấy từ main,
+# không bao giờ checkout hay chạy mã của nhánh PR. Chỉ chạy khi PR cùng repo, nhánh upload/*
+# và do bot mở. Tên nhánh đi qua env và được kiểm dạng upload/<mã 10 ký tự> trước khi dùng
+# làm đường dẫn R2 hay tên nhánh cần xóa, nên không xóa được gì ngoài upload/*.
+# File gốc tải từ R2 chỉ bị tính hash. Khóa R2 chỉ nằm trong env của bước cần chúng.
+#
+# Dọn: pending/<mã>/, clean/<mã>/, khóa sha/<sha256 file gốc> (tính từ pending/ nếu còn;
+# đã bị luật vòng đời xóa thì bỏ qua), rồi nhánh upload/<mã>. Chạy lại an toàn.
+#
+# Secrets: R2_ACCOUNT_ID, R2_ACCESS_KEY_ID, R2_SECRET_ACCESS_KEY.
+# Variables: R2_BUCKET, BOT_LOGIN.
+
+on:
+  pull_request_target:
+    types: [closed]
+
+permissions: {}
+
+concurrency:
+  group: don-kho-${{ github.event.pull_request.number }}
+  cancel-in-progress: false
+
+env:
+  REPO: ${{ github.repository }}
+  BRANCH: ${{ github.event.pull_request.head.ref }}
+
+jobs:
+  don-kho:
+    if: >-
+      github.event.pull_request.merged == false &&
+      github.event.pull_request.head.repo.full_name == github.repository &&
+      startsWith(github.event.pull_request.head.ref, 'upload/') &&
+      vars.BOT_LOGIN != '' &&
+      github.event.pull_request.user.login == vars.BOT_LOGIN
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    env:
+      R2_BUCKET: ${{ vars.R2_BUCKET }}
+      AWS_DEFAULT_REGION: auto
+      AWS_REQUEST_CHECKSUM_CALCULATION: when_required
+      AWS_RESPONSE_CHECKSUM_VALIDATION: when_required
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: main
+          persist-credentials: false
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: 24
+      - name: Kiểm tên nhánh
+        id: code
+        run: node scripts/upload/publish.mjs code --branch "$BRANCH" --output-file "$GITHUB_OUTPUT"
+      - name: Tải file cách ly gốc để tính khóa sha
+        env:
+          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          CODE: ${{ steps.code.outputs.code }}
+        run: |
+          mkdir -p "$RUNNER_TEMP/pending"
+          aws s3 cp "s3://$R2_BUCKET/pending/$CODE/" "$RUNNER_TEMP/pending/" --recursive \
+            --endpoint-url "https://${R2_ACCOUNT_ID}.r2.cloudflarestorage.com" --only-show-errors
+      - name: Tính sha256 của file gốc
+        id: sha
+        run: node scripts/upload/publish.mjs pending-sha --dir "$RUNNER_TEMP/pending" --output-file "$GITHUB_OUTPUT"
+      - name: Xóa file trong kho cách ly
+        env:
+          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          CODE: ${{ steps.code.outputs.code }}
+          SHA: ${{ steps.sha.outputs.sha }}
+        run: |
+          endpoint="https://${R2_ACCOUNT_ID}.r2.cloudflarestorage.com"
+          aws s3 rm "s3://$R2_BUCKET/pending/$CODE/" --recursive --endpoint-url "$endpoint" --only-show-errors
+          aws s3 rm "s3://$R2_BUCKET/clean/$CODE/" --recursive --endpoint-url "$endpoint" --only-show-errors
+          if [ -n "$SHA" ]; then
+            aws s3 rm "s3://$R2_BUCKET/sha/$SHA" --endpoint-url "$endpoint" --only-show-errors
+          fi
+      # Chỉ xóa nhánh upload/<mã> đã kiểm dạng ở bước đầu. Nhánh đã mất thì coi như xong.
+      - name: Xóa nhánh
+        env:
+          GH_TOKEN: ${{ github.token }}
+          UPLOAD_BRANCH: ${{ steps.code.outputs.branch }}
+        run: |
+          if ! out=$(gh api -X DELETE "repos/$REPO/git/refs/heads/$UPLOAD_BRANCH" 2>&1); then
+            case "$out" in
+              *"Reference does not exist"*|*"HTTP 404"*) echo "Nhánh $UPLOAD_BRANCH đã không còn." ;;
+              *) echo "$out" >&2; exit 1 ;;
+            esac
+          fi
