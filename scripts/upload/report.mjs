@@ -5,7 +5,7 @@ export const REPORT_MARKER = '<!-- kiem-file -->';
 export function parseClamscan(stdout, exitCode) {
   if (exitCode === 0) return { infected: false };
   if (exitCode === 1) {
-    const m = String(stdout).match(/:\s*(\S+)\s+FOUND/);
+    const m = String(stdout).match(/^.*: ([\w.\-/:]+) FOUND\r?$/m);
     if (!m) throw new Error('Không đọc được tên virus từ kết quả ClamAV.');
     return { infected: true, signature: m[1] };
   }
@@ -19,7 +19,7 @@ function mask(s) {
   return t.slice(0, 2) + '*'.repeat(t.length - 3) + t.slice(-1);
 }
 
-export function renderReport({ code, virus, metadataRemoved, hasText, pii, url }) {
+export function renderReport({ code, virus, metadataRemoved = [], hasText, pii = [], url }) {
   const out = [REPORT_MARKER, `## Kết quả kiểm file ${code}`, ''];
 
   if (virus) {
