@@ -19,7 +19,8 @@ function mask(s) {
   return t.slice(0, 2) + '*'.repeat(t.length - 3) + t.slice(-1);
 }
 
-export function renderReport({ code, virus, metadataRemoved = [], hasText, pii = [], url }) {
+// piiChecked false: loại file này không đọc được chữ nên chưa tìm thông tin cá nhân.
+export function renderReport({ code, virus, metadataRemoved = [], hasText, pii = [], url, piiChecked = true }) {
   const out = [REPORT_MARKER, `## Kết quả kiểm file ${code}`, ''];
 
   if (virus) {
@@ -33,6 +34,9 @@ export function renderReport({ code, virus, metadataRemoved = [], hasText, pii =
   }
   if (hasText === false) {
     out.push('Cảnh báo: file PDF không có lớp chữ nên không tìm kiếm được. Người duyệt sẽ xem xét.');
+  }
+  if (!piiChecked) {
+    out.push('Chưa kiểm thông tin cá nhân và lớp chữ với loại file này. Người duyệt sẽ xem trực tiếp.');
   }
   if (pii.length) {
     out.push('', 'Cảnh báo: có thể có thông tin cá nhân. Người duyệt sẽ kiểm tra lại, chưa có gì bị chặn.', '');

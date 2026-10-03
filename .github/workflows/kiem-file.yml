@@ -6,10 +6,18 @@ name: kiem-file
 #
 # pull_request_target chạy với quyền ghi, nên không bao giờ chạy mã của nhánh PR:
 # script lấy từ main (thư mục trusted), nhánh PR chỉ là dữ liệu (thư mục pr).
-# Không chạy npm install hay npm script trong thư mục pr.
+# Không chạy npm install hay npm script trong thư mục pr. Token và khóa chỉ có
+# trong env của bước cần chúng; bước chạy clamscan, exiftool, qpdf, pdftotext
+# trên file tải lên không có token hay khóa nào.
 #
 # Có virus: comment, đóng PR, xóa file trong kho rồi dừng. Job vẫn thành công,
 # PR bị đóng chính là kết quả.
+#
+# Secrets: R2_ACCOUNT_ID, R2_ACCESS_KEY_ID, R2_SECRET_ACCESS_KEY (khóa R2 đọc,
+# ghi, xóa bucket kho cách ly); GH_APP_CLIENT_ID (Client ID của GitHub App,
+# trang cài đặt của App, dạng Iv...); GH_APP_PRIVATE_KEY (file .pem của App).
+# Variables: R2_BUCKET (tên bucket), BOT_LOGIN (tên bot mở PR, ví dụ
+# bk-study-library-bot[bot]).
 
 on:
   pull_request_target:
@@ -57,15 +65,12 @@ jobs:
     permissions:
       contents: write
       pull-requests: write
+    # Chỉ giá trị không bí mật ở đây.
     env:
-      GH_TOKEN: ${{ github.token }}
       REPO: ${{ github.repository }}
       PR: ${{ github.event.pull_request.number }}
       BRANCH: ${{ github.event.pull_request.head.ref }}
-      HEAD_SHA: ${{ github.event.pull_request.head.sha }}
       R2_BUCKET: ${{ vars.R2_BUCKET }}
-      AWS_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
-      AWS_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
       AWS_DEFAULT_REGION: auto
       AWS_REQUEST_CHECKSUM_CALCULATION: when_required
       AWS_RESPONSE_CHECKSUM_VALIDATION: when_required
@@ -88,23 +93,23 @@ jobs:
           node-version: 24
 
       - name: Chuẩn bị
-        env:
-          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
         run: |
-          endpoint="https://${R2_ACCOUNT_ID}.r2.cloudflarestorage.com"
-          echo "::add-mask::$endpoint"
-          echo "R2_ENDPOINT=$endpoint" >> "$GITHUB_ENV"
           echo "CHECK_ERROR_FILE=$RUNNER_TEMP/loi.txt" >> "$GITHUB_ENV"
           echo "CHECK=$GITHUB_WORKSPACE/trusted/scripts/upload/check.mjs" >> "$GITHUB_ENV"
 
+      # PR chỉ được có một mục tài liệu và file sinh ra của môn đó; sai thì dừng trước khi đụng R2.
       - name: Tìm mục tài liệu trong PR
         id: locate
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           gh api --paginate "repos/$REPO/pulls/$PR/files" --jq '.[] | {filename, status} | @json' > "$RUNNER_TEMP/files.jsonl"
-          node "$CHECK" locate --files "$RUNNER_TEMP/files.jsonl" --pr pr --branch "$BRANCH" > "$RUNNER_TEMP/locate.json"
-          for k in item code key name sha256; do
-            echo "$k=$(jq -r ".$k" "$RUNNER_TEMP/locate.json")" >> "$GITHUB_OUTPUT"
-          done
+          node "$CHECK" locate --files "$RUNNER_TEMP/files.jsonl" --pr pr --branch "$BRANCH" --output-file "$GITHUB_OUTPUT"
+
+      - name: Đọc file đã có trên Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: node "$CHECK" assets --repo "$REPO" --out "$RUNNER_TEMP/assets.json"
 
       - name: Cài công cụ kiểm file
         run: |
@@ -115,46 +120,61 @@ jobs:
 
       - name: Tải file từ kho cách ly
         env:
+          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
           KEY: ${{ steps.locate.outputs.key }}
           NAME: ${{ steps.locate.outputs.name }}
         run: |
           mkdir -p "$RUNNER_TEMP/file"
-          aws s3 cp "s3://$R2_BUCKET/$KEY" "$RUNNER_TEMP/file/$NAME" --endpoint-url "$R2_ENDPOINT" --only-show-errors || {
+          aws s3 cp "s3://$R2_BUCKET/$KEY" "$RUNNER_TEMP/file/$NAME" \
+            --endpoint-url "https://${R2_ACCOUNT_ID}.r2.cloudflarestorage.com" --only-show-errors || {
             echo "Không tải được file từ kho cách ly. File có thể đã bị xóa sau 30 ngày. Bạn hãy gửi lại bài." > "$CHECK_ERROR_FILE"
             exit 1
           }
 
+      # Bước duy nhất chạy công cụ trên file tải lên: không có token hay khóa.
       - name: Kiểm file
         id: check
         env:
           ITEM: ${{ steps.locate.outputs.item }}
-        run: |
-          node "$CHECK" --item "pr/$ITEM" --dir "$RUNNER_TEMP/file" --repo "$REPO" > "$RUNNER_TEMP/check.json"
-          jq -r .report "$RUNNER_TEMP/check.json" > "$RUNNER_TEMP/report.md"
-          echo "virus=$(jq -r '.virus // ""' "$RUNNER_TEMP/check.json")" >> "$GITHUB_OUTPUT"
-          echo "clean=$(jq -r '.cleanFile // ""' "$RUNNER_TEMP/check.json")" >> "$GITHUB_OUTPUT"
-          echo "quarantine=$(jq -r '.item.files[0].quarantine // ""' "$RUNNER_TEMP/check.json")" >> "$GITHUB_OUTPUT"
+        run: >-
+          node "$CHECK" --item "pr/$ITEM" --dir "$RUNNER_TEMP/file" --repo "$REPO"
+          --assets "$RUNNER_TEMP/assets.json" --report "$RUNNER_TEMP/report.md"
+          --output-file "$GITHUB_OUTPUT" > "$RUNNER_TEMP/check.json"
 
       - name: Comment kết quả
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: node "$CHECK" comment --repo "$REPO" --pr "$PR" --body-file "$RUNNER_TEMP/report.md"
 
       - name: Có virus thì đóng PR và xóa file trong kho
         if: steps.check.outputs.virus != ''
         env:
+          GH_TOKEN: ${{ github.token }}
+          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
           CODE: ${{ steps.locate.outputs.code }}
           SHA: ${{ steps.locate.outputs.sha256 }}
         run: |
           gh pr close "$PR" --repo "$REPO"
-          aws s3 rm "s3://$R2_BUCKET/pending/$CODE/" --recursive --endpoint-url "$R2_ENDPOINT" --only-show-errors
-          aws s3 rm "s3://$R2_BUCKET/clean/$CODE/" --recursive --endpoint-url "$R2_ENDPOINT" --only-show-errors
-          aws s3 rm "s3://$R2_BUCKET/sha/$SHA" --endpoint-url "$R2_ENDPOINT" --only-show-errors
+          endpoint="https://${R2_ACCOUNT_ID}.r2.cloudflarestorage.com"
+          aws s3 rm "s3://$R2_BUCKET/pending/$CODE/" --recursive --endpoint-url "$endpoint" --only-show-errors
+          aws s3 rm "s3://$R2_BUCKET/clean/$CODE/" --recursive --endpoint-url "$endpoint" --only-show-errors
+          aws s3 rm "s3://$R2_BUCKET/sha/$SHA" --endpoint-url "$endpoint" --only-show-errors
 
       - name: Đưa bản đã làm sạch về kho cách ly
         if: steps.check.outputs.virus == ''
         env:
+          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
           CLEAN: ${{ steps.check.outputs.clean }}
           QUARANTINE: ${{ steps.check.outputs.quarantine }}
-        run: aws s3 cp "$CLEAN" "s3://$R2_BUCKET/$QUARANTINE" --endpoint-url "$R2_ENDPOINT" --only-show-errors
+        run: >-
+          aws s3 cp "$CLEAN" "s3://$R2_BUCKET/$QUARANTINE"
+          --endpoint-url "https://${R2_ACCOUNT_ID}.r2.cloudflarestorage.com" --only-show-errors
 
       - name: Dựng lại file sinh ra trong nhánh PR
         if: steps.check.outputs.virus == ''
@@ -165,35 +185,55 @@ jobs:
         id: app
         uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1 # v3.2.0
         with:
-          client-id: ${{ secrets.GH_APP_ID }}
+          # Bản này nhận client-id (app-id đã cũ). Secret chứa Client ID của App.
+          client-id: ${{ secrets.GH_APP_CLIENT_ID }}
           private-key: ${{ secrets.GH_APP_PRIVATE_KEY }}
           permission-contents: write
 
       # Commit bằng token của App để workflow validate chạy lại trên PR;
       # commit bằng GITHUB_TOKEN thì GitHub không chạy workflow khác.
+      # Chỉ commit mục tài liệu và file sinh ra của môn đó.
       - name: Commit link Release vào nhánh PR
         if: steps.check.outputs.virus == ''
         working-directory: pr
         env:
+          GH_TOKEN: ${{ github.token }}
           APP_TOKEN: ${{ steps.app.outputs.token }}
           APP_SLUG: ${{ steps.app.outputs.app-slug }}
           CODE: ${{ steps.locate.outputs.code }}
+          ITEM: ${{ steps.locate.outputs.item }}
+          COURSE: ${{ steps.locate.outputs.course }}
         run: |
-          if [ -z "$(git status --porcelain)" ]; then
+          for p in "$ITEM" index.json index.min.json v1 "courses/$COURSE/README.md"; do
+            if [ -e "$p" ] || git ls-files --error-unmatch -- "$p" > /dev/null 2>&1; then
+              git add -A -- "$p"
+            fi
+          done
+          if git diff --cached --quiet; then
             echo "Không có gì thay đổi."
             exit 0
           fi
           bot_id=$(gh api "users/${APP_SLUG}%5Bbot%5D" --jq .id)
           git config user.name "${APP_SLUG}[bot]"
           git config user.email "${bot_id}+${APP_SLUG}[bot]@users.noreply.github.com"
-          git add -A
           git commit -m "kiem-file: $CODE"
+          if [ -n "$(git status --porcelain)" ]; then
+            echo "::warning::Có file khác thay đổi nhưng không được commit: $(git status --porcelain | tr '\n' ' ')"
+          fi
+          # Token đi qua header trong biến môi trường của git, không nằm trong URL.
           # Push thường (không ép), nên nhánh đã có commit mới hơn thì push bị từ chối.
-          git push "https://x-access-token:${APP_TOKEN}@github.com/${REPO}.git" "HEAD:refs/heads/${BRANCH}"
+          auth=$(printf 'x-access-token:%s' "$APP_TOKEN" | base64 -w0)
+          echo "::add-mask::$auth"
+          GIT_CONFIG_COUNT=1 \
+          GIT_CONFIG_KEY_0="http.${GITHUB_SERVER_URL}/.extraheader" \
+          GIT_CONFIG_VALUE_0="AUTHORIZATION: basic $auth" \
+            git push "${GITHUB_SERVER_URL}/${REPO}.git" "HEAD:refs/heads/${BRANCH}"
 
       # Lỗi sau khi đã báo có virus thì giữ nguyên comment báo virus.
       - name: Báo không kiểm được
         if: failure() && steps.check.outputs.virus == ''
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           node "$CHECK" failure --run-url "$RUN_URL" --reason-file "$CHECK_ERROR_FILE" > "$RUNNER_TEMP/failure.md"
           node "$CHECK" comment --repo "$REPO" --pr "$PR" --body-file "$RUNNER_TEMP/failure.md"

@@ -77,3 +77,10 @@ test('báo cáo che hết chuỗi ngắn và bỏ dòng siêu dữ liệu khi r�
 test('renderReport chịu được thiếu metadataRemoved và pii', () => {
   assert.doesNotThrow(() => renderReport({ code: 'MT1005', virus: null, hasText: true, url: URL }));
 });
+
+test('báo cáo nói rõ chưa kiểm thông tin cá nhân khi loại file không đọc được chữ', () => {
+  const out = renderReport({ ...clean, hasText: null, piiChecked: false });
+  assert.match(out, /Chưa kiểm thông tin cá nhân/);
+  assert.ok(!/Chưa kiểm/.test(renderReport(clean)));
+  assert.ok(!BANNED.test(out));
+});

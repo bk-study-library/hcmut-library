@@ -2,15 +2,20 @@
 // tìm lớp chữ và thông tin cá nhân, ghi link Release vào mục tài liệu.
 // Phần logic là hàm thuần để test; phần CLI cuối file chỉ chạy khi gọi trực tiếp.
 //
-//   node scripts/upload/check.mjs locate --files <pr-files.jsonl> --pr <thư mục PR> --branch <nhánh>
-//     in JSON { item, code, key, name, sha256 } của mục tài liệu duy nhất trong PR
-//   node scripts/upload/check.mjs --item <path> --dir <thư mục file đã tải> --repo <owner/name>
-//     in JSON { report, item, virus, cleanFile }; không có virus thì ghi lại mục vào <path>
+//   node scripts/upload/check.mjs locate --files <pr-files.jsonl> --pr <thư mục PR> --branch <nhánh> [--output-file <f>]
+//     in JSON { item, course, code, key, name, sha256 } của mục tài liệu duy nhất trong PR
+//   node scripts/upload/check.mjs assets --repo <owner/name> --out <file>
+//     ghi { term, assets: { tên: sha256 } } của Release học kỳ hiện tại (cần GH_TOKEN)
+//   node scripts/upload/check.mjs --item <path> --dir <thư mục file đã tải> --repo <owner/name> --assets <file>
+//       [--report <file>] [--output-file <f>]
+//     in JSON { report, item, virus, cleanFile }; không có virus thì ghi lại mục vào <path>.
+//     Bước này chạy công cụ trên file chưa tin được nên không dùng token nào.
 //   node scripts/upload/check.mjs comment --repo <owner/name> --pr <số> --body-file <file>
 //     tạo hoặc sửa comment báo cáo (cần GH_TOKEN)
 //   node scripts/upload/check.mjs failure --run-url <url> [--reason-file <file>]
 //     in comment báo không kiểm được
 //
+// --output-file (thường là $GITHUB_OUTPUT) nhận giá trị cho bước sau, viết bằng dấu phân cách.
 // Lỗi thì in ra stderr, thoát mã 1 và ghi thêm vào file CHECK_ERROR_FILE nếu có biến này.
 
 import fs from 'node:fs';
@@ -24,7 +29,9 @@ import { scanText, TOOL_ROOT } from '../lib/repo.mjs';
 import { loadPolicy } from '../lib/policy.mjs';
 
 const QUARANTINE = /^(pending|clean)\/([A-Za-z0-9]{10})\/([^/]+)$/;
-const ITEM_FILE = /^courses\/[^/]+\/items\/[^/]+\.json$/;
+const ITEM_FILE = /^courses\/([^/]+)\/items\/[^/]+\.json$/;
+// Tên file chỉ gồm chữ không dấu, số, chấm, gạch dưới, gạch ngang.
+const SAFE_NAME = /^[A-Za-z0-9._-]+$/;
 // Nhóm exiftool mô tả chính file hoặc công cụ, không phải siêu dữ liệu trong file.
 const NOT_METADATA = new Set(['SourceFile', 'ExifTool', 'File', 'System', 'Composite']);
 
@@ -37,17 +44,42 @@ export function quarantineInfo(item, branch) {
   if (!Array.isArray(files) || files.length !== 1) throw new Error('Mục tài liệu cần đúng một file.');
   const f = files[0];
   const m = QUARANTINE.exec(String(f.quarantine || ''));
+  if (!SAFE_NAME.test(String(f.name || ''))) throw new Error('Mục tài liệu có tên file không hợp lệ.');
   if (!m || m[3] !== f.name) throw new Error('Mục tài liệu không có chỗ cách ly hợp lệ.');
   if (!/^[0-9a-f]{64}$/.test(String(f.sha256 || ''))) throw new Error('Mục tài liệu không có sha256 hợp lệ.');
   if (branch !== undefined && branch !== `upload/${m[2]}`) throw new Error('Mã bài không khớp với nhánh của PR.');
   return { code: m[2], key: f.quarantine, name: f.name, sha256: f.sha256 };
 }
 
-// files: [{ filename, status }] của PR. Trả đường dẫn mục tài liệu duy nhất.
+// files: [{ filename, status }] của PR. Trả đường dẫn mục tài liệu duy nhất. Ngoài mục đó
+// PR chỉ được có file do validate.mjs --write sinh ra: chỉ mục, v1/ và README của cùng môn.
 export function pickItemFile(files) {
   const hits = files.filter((f) => ITEM_FILE.test(f.filename) && f.status !== 'removed');
   if (hits.length !== 1) throw new Error(`PR cần sửa đúng một file courses/<môn>/items/<id>.json, gặp ${hits.length}.`);
+  const allowed = generatedPaths(ITEM_FILE.exec(hits[0].filename)[1]);
+  for (const f of files) {
+    if (f === hits[0]) continue;
+    if (!allowed.some((a) => (a.endsWith('/') ? f.filename.startsWith(a) : f.filename === a))) {
+      throw new Error(`PR sửa file ngoài phạm vi: ${f.filename}.`);
+    }
+  }
   return hits[0].filename;
+}
+
+// Đường dẫn validate.mjs --write ghi cho một môn; dấu '/' ở cuối là cả thư mục.
+export function generatedPaths(course) {
+  return ['index.json', 'index.min.json', 'v1/', `courses/${course}/README.md`];
+}
+
+// Output cho GitHub Actions dạng name<<delimiter, nên xuống dòng không đè được output khác.
+export function githubOutput(values, delimiter) {
+  let out = '';
+  for (const [k, v] of Object.entries(values)) {
+    const text = String(v ?? '');
+    if (text.split('\n').includes(delimiter)) throw new Error(`Giá trị ${k} chứa dấu phân cách.`);
+    out += `${k}<<${delimiter}\n${text}\n${delimiter}\n`;
+  }
+  return out;
 }
 
 // pages: chữ của từng trang (trang 1 ở vị trí 0).
@@ -88,6 +120,7 @@ function releaseName(name, sha256, existingAssets) {
   const prev = existingAssets.get(name);
   if (prev === undefined || prev === sha256) return name;
   const dot = name.lastIndexOf('.');
+  if (dot < 0) return `${name}-${sha256.slice(0, 6)}`;
   return `${name.slice(0, dot)}-${sha256.slice(0, 6)}${name.slice(dot)}`;
 }
 
@@ -160,18 +193,40 @@ function pdfPages(p) {
 function releaseAssets(repo, tag) {
   const r = spawnSync('gh', ['api', `repos/${repo}/releases/tags/${tag}`], { encoding: 'utf8' });
   if (r.status !== 0) {
-    if (/HTTP 404/.test(r.stderr)) return new Map();
+    if (/HTTP 404/.test(r.stderr)) return {};
     throw new Error(`Không đọc được Release ${tag}: ${String(r.stderr).trim()}`);
   }
   const assets = JSON.parse(r.stdout).assets || [];
-  return new Map(assets.map((a) => [a.name, String(a.digest || '').replace(/^sha256:/, '')]));
+  return Object.fromEntries(assets.map((a) => [a.name, String(a.digest || '').replace(/^sha256:/, '')]));
+}
+
+// Chạy trước khi quét file, khi bước còn token; bước quét chỉ đọc file kết quả.
+function assets(a) {
+  const term = termFor(new Date(), loadPolicy(TOOL_ROOT).terms);
+  fs.writeFileSync(a.out, JSON.stringify({ term, assets: releaseAssets(a.repo, releaseTag(term)) }));
+}
+
+function writeOutputs(file, values) {
+  if (file) fs.appendFileSync(file, githubOutput(values, `EOF_${crypto.randomBytes(16).toString('hex')}`));
 }
 
 function locate(a) {
   const files = fs.readFileSync(a.files, 'utf8').split('\n').filter((l) => l.trim()).map((l) => JSON.parse(l));
   const rel = pickItemFile(files);
   const item = JSON.parse(fs.readFileSync(path.join(a.pr, rel), 'utf8'));
-  return { item: rel, ...quarantineInfo(item, a.branch) };
+  const out = { item: rel, course: ITEM_FILE.exec(rel)[1], ...quarantineInfo(item, a.branch) };
+  writeOutputs(a['output-file'], out);
+  return out;
+}
+
+function finish(a, out) {
+  if (a.report) fs.writeFileSync(a.report, out.report);
+  writeOutputs(a['output-file'], {
+    virus: out.virus || '',
+    clean: out.cleanFile || '',
+    quarantine: out.item ? out.item.files[0].quarantine : '',
+  });
+  return out;
 }
 
 function check(a) {
@@ -183,11 +238,13 @@ function check(a) {
   if (!rule) throw new Error(`Không nhận đuôi ${ext}.`);
   const src = path.join(a.dir, info.name);
   if (sha256File(src) !== info.sha256) throw new Error('File trong kho cách ly khác sha256 ghi trong mục.');
+  // Học kỳ và file đã có trên Release do bước assets đọc trước.
+  const { term, assets: existing } = JSON.parse(fs.readFileSync(a.assets, 'utf8'));
 
   const scan = tool('clamscan', ['--no-summary', src], [0, 1, 2]);
   const av = parseClamscan(scan.stdout, scan.status);
   if (av.infected) {
-    return { report: renderReport({ code: info.code, virus: av.signature }), item: null, virus: av.signature, cleanFile: null };
+    return finish(a, { report: renderReport({ code: info.code, virus: av.signature }), item: null, virus: av.signature, cleanFile: null });
   }
 
   const cleanDir = path.join(a.dir, 'clean');
@@ -196,15 +253,16 @@ function check(a) {
   let metadataRemoved = [];
   let hasText = null;
   let pii = [];
+  let piiChecked = true;
   if (ext === '.pdf') {
     metadataRemoved = cleanPdf(src, cleanFile);
     ({ hasText, pii } = piiFromPages(pdfPages(cleanFile)));
   } else {
     fs.copyFileSync(src, cleanFile);
     if (ext === '.md' || ext === '.json') ({ pii } = piiFromPages([fs.readFileSync(cleanFile, 'utf8')]));
+    else piiChecked = false;
   }
 
-  const term = termFor(new Date(), policy.terms);
   const next = applyCheck(item, {
     cleanName: info.name,
     size: fs.statSync(cleanFile).size,
@@ -212,11 +270,11 @@ function check(a) {
     mime: rule.mime,
     term,
     repo: a.repo,
-    existingAssets: releaseAssets(a.repo, releaseTag(term)),
+    existingAssets: new Map(Object.entries(existing)),
   });
   fs.writeFileSync(a.item, `${JSON.stringify(next, null, 2)}\n`);
-  const report = renderReport({ code: info.code, virus: null, metadataRemoved, hasText, pii, url: next.files[0].url });
-  return { report, item: next, virus: null, cleanFile };
+  const report = renderReport({ code: info.code, virus: null, metadataRemoved, hasText, pii, url: next.files[0].url, piiChecked });
+  return finish(a, { report, item: next, virus: null, cleanFile });
 }
 
 async function comment(a) {
@@ -246,6 +304,7 @@ async function main(argv) {
   const cmd = argv[0] && !argv[0].startsWith('--') ? argv.shift() : 'check';
   const a = args(argv);
   if (cmd === 'locate') console.log(JSON.stringify(locate(a)));
+  else if (cmd === 'assets') assets(a);
   else if (cmd === 'check') console.log(JSON.stringify(check(a)));
   else if (cmd === 'comment') await comment(a);
   else if (cmd === 'failure') {
