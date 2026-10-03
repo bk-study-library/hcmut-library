@@ -5,6 +5,7 @@ import { formatSize } from '../../scripts/lib/labels.mjs';
 const MESSAGES = {
   course: 'Không tìm thấy môn này. Chọn môn trong danh sách.',
   type: 'Không nhận loại tài liệu này. Chọn loại trong danh sách.',
+  typeLink: 'Không gửi link qua form này được. Dùng nút "Thêm link" trên trang môn.',
   titleEmpty: 'Chưa có tiêu đề. Nhập tiêu đề cho tài liệu.',
   titleLong: (max) => `Tiêu đề quá dài. Rút xuống tối đa ${max} ký tự.`,
   titleSlug: 'Không đặt tên được từ tiêu đề này. Thêm chữ hoặc số vào tiêu đề.',
@@ -121,7 +122,9 @@ export function validateSubmission(fields, file, ctx) {
   if (!courses.has(course)) errors.course = MESSAGES.course;
 
   const type = val(fields, 'type');
-  if (!policy.openTypes.includes(type)) errors.type = MESSAGES.type;
+  // Link đi theo form Issue "Thêm link", không qua đường tải file.
+  if (type === 'link') errors.type = MESSAGES.typeLink;
+  else if (!policy.openTypes.includes(type)) errors.type = MESSAGES.type;
 
   const title = val(fields, 'title');
   if (!title) errors.title = MESSAGES.titleEmpty;

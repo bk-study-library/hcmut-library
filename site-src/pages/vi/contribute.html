@@ -1,42 +1,36 @@
 <div class="prose">
 <h1>Đóng góp tài liệu</h1>
-<p class="lead">Thư viện sống nhờ sinh viên gửi bài và duyệt bài cho nhau. Bạn không cần biết Git: điền form trên GitHub, đính kèm file là xong.</p>
+<p class="lead">Thư viện sống nhờ sinh viên gửi bài và duyệt bài cho nhau. Bạn không cần tài khoản GitHub: điền form, chọn file, xong.</p>
 
-<h2>Được đăng</h2>
-<ul>
-  <li>Tài liệu <strong>bạn tự soạn</strong>: tóm tắt, ghi chú, bảng công thức, lời giải bạn tự làm, mẫu prelab (khung báo cáo, câu hỏi chuẩn bị, không có số liệu đã chấm).</li>
-  <li>Gói quiz theo định dạng Study Pack v1 của BK Study Desk.</li>
-  <li><strong>Link</strong> tới tài liệu công khai, hợp pháp: giáo trình mở (OpenStax, MIT OpenCourseWare...), video công khai, trang của khoa.</li>
-  <li>Prelab hoặc báo cáo tham khảo, chỉ sau khi đã hết hạn nộp và hết hạn chấm, ghi rõ là bản tham khảo.</li>
-</ul>
-
-<h2>Không đăng</h2>
-<ul>
-  <li>Slide, giáo trình, đề thi, đáp án của giảng viên hoặc của trường khi chưa có phép bằng văn bản.</li>
-  <li>File chép từ Scribd, Studocu, Course Hero hay trang tương tự.</li>
-  <li>Bài có MSSV, họ tên, chữ ký, email, số điện thoại, ảnh mặt người (của bạn hay của người khác).</li>
-  <li>Bài đang trong hạn nộp hoặc hạn chấm.</li>
-  <li>File chạy được (.exe, .bat...), file trên 20 MB.</li>
-</ul>
+<h2>Tài liệu nào được đăng</h2>
+<p>Gần như mọi thứ: tóm tắt, ghi chú, bảng công thức, lời giải, đề cũ, mẫu và bài tham khảo cho prelab, báo cáo, bài tập lớn, gói quiz của BK Study Desk.</p>
+<p>Điều duy nhất không nhận là <strong>file sách có bản quyền</strong> (sách thương mại, sách của nhà xuất bản). Muốn giới thiệu một cuốn sách, chọn loại <strong>Sách tham khảo</strong> và chỉ ghi tên sách, tác giả, năm, nhà xuất bản, ISBN. Không gửi kèm file.</p>
+<p>Để an toàn cho người tải, thư viện chỉ nhận các đuôi file được liệt kê trên form và chặn file có virus.</p>
 
 <h2>Cách 1: gửi qua form, không cần Git</h2>
 <ol>
-  <li>Đăng nhập GitHub (tạo tài khoản miễn phí nếu chưa có).</li>
-  <li>Mở form <a href="{{issue:dong-gop-tai-lieu.yml}}" rel="noopener">Đóng góp tài liệu</a>, hoặc chọn <strong>Gửi tài liệu</strong> trên trang môn để form điền sẵn mã môn.</li>
-  <li>Điền mã môn, loại, tiêu đề, học kỳ; đánh dấu ba ô cam kết (tự soạn, đồng ý giấy phép CC BY-SA 4.0, đã xóa thông tin cá nhân).</li>
-  <li>Kéo file vào ô <strong>File đính kèm</strong>. GitHub nhận file đính kèm tới 25 MB cho tài liệu và .zip, 10 MB cho ảnh; thư viện chỉ nhận tới 20 MB. File KiCad và nhiều file một lúc thì nén thành .zip.</li>
-  <li>Gửi. Người duyệt sẽ trả lời ngay trong issue.</li>
+  <li>Mở <a href="{{viroot}}gui-tai-lieu/">Gửi tài liệu</a>, hoặc bấm <strong>Gửi tài liệu</strong> trên trang môn để form chọn sẵn môn.</li>
+  <li>Chọn môn, loại tài liệu, nhập tiêu đề, chọn file. Nhiều file thì nén thành một file .zip.</li>
+  <li>Chọn giấy phép và đánh dấu ba ô cam kết.</li>
+  <li>Bấm <strong>Gửi tài liệu</strong>. Trang hiện mã bài của bạn, hãy lưu lại.</li>
 </ol>
-<p>Chỉ có link? Dùng form <a href="{{issue:them-link.yml}}" rel="noopener">Thêm link</a>.</p>
+<p>Chỉ có link, không có file? Dùng form <a href="{{issue:them-link.yml}}" rel="noopener">Thêm link</a> (cần tài khoản GitHub).</p>
 
 <h2>Cách 2: Pull Request (nếu bạn dùng Git)</h2>
 <ol>
-  <li>Fork repo, thêm <code>courses/&lt;ID&gt;/items/&lt;id&gt;.json</code>. File .md nhỏ (dưới 1 MB) đặt ở <code>courses/&lt;ID&gt;/files/</code>; PDF, .docx, ảnh, .zip không đưa vào git, người duyệt sẽ tải lên GitHub Release.</li>
+  <li>Fork repo, thêm <code>courses/&lt;ID&gt;/items/&lt;id&gt;.json</code>. Cách này chỉ nhận thông tin tài liệu (JSON) và file <code>.md</code> dưới 1 MB, đặt ở <code>courses/&lt;ID&gt;/files/</code>. File khác thì gửi qua form.</li>
   <li>Chạy <code>npm test</code> và <code>npm run build</code>, rồi commit cả file sinh ra.</li>
   <li>Mở Pull Request và đánh dấu checklist.</li>
 </ol>
 <p>Chi tiết các trường: <a href="{{repo}}/blob/main/CONTRIBUTING.md" rel="noopener">CONTRIBUTING.md</a>.</p>
 
+<h2>Thông tin cá nhân</h2>
+<p>Thư viện không cấm đăng thông tin cá nhân, nhưng máy sẽ cảnh báo nếu thấy MSSV, email hay số điện thoại trong bài, để bạn và người duyệt cân nhắc có nên xóa không. Bạn nên tự xóa phần này trước khi gửi. Form không bắt nhập email; tên hiển thị để trống thì bài hiện là Ẩn danh. Cách thư viện xử lý dữ liệu: <a href="{{repo}}/blob/main/PRIVACY.md" rel="noopener">PRIVACY.md</a>.</p>
+
 <h2>Sau khi gửi</h2>
-<p>Mỗi bài được ít nhất một người duyệt kiểm trước khi lên thư viện. Xem <a href="{{root}}review/">cách duyệt bài</a>. Muốn gỡ một tài liệu: <a href="{{root}}takedown/">Gỡ tài liệu</a>.</p>
+<ul>
+  <li><strong>Mã bài</strong>: dùng mã này khi hỏi về bài của bạn.</li>
+  <li><strong>Thời gian duyệt</strong>: người duyệt làm việc tự nguyện nên chưa có hạn cố định. Bài được duyệt sẽ hiện trên trang môn. Xem <a href="{{root}}review/">cách duyệt bài</a>.</li>
+  <li><strong>Xin gỡ</strong>: nếu bài của bạn hoặc bài bạn có quyền với đang nằm trên thư viện, làm theo <a href="{{root}}takedown/">Gỡ tài liệu</a>.</li>
+</ul>
 </div>

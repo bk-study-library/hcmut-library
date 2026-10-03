@@ -189,3 +189,11 @@ describe('validateSubmission', () => {
     expect(validateSubmission({ ...f, 'book-authors': 'A, B' }, null, ctx).ok).toBe(true);
   });
 });
+
+describe('loại link', () => {
+  it('từ chối link qua form web và chỉ sang form Thêm link', () => {
+    const r = validateSubmission({ ...base, type: 'link' }, pdf, ctx);
+    expect(r.ok).toBe(false);
+    expect(r.errors.type).toMatch(/Thêm link/);
+  });
+});

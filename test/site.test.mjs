@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { buildSite } from '../scripts/build-site.mjs';
 import { FIXTURES, copyFixture, editJson } from './helpers.mjs';
 
@@ -36,7 +37,8 @@ test('trang môn: thông tin, mã cũ, tài liệu theo loại, nút đóng góp
   assert.match(html, /Tóm tắt chương 1/);
   assert.match(html, /Prelab tham khảo/);
   assert.match(html, /Chỉ để tham khảo sau khi đã hết hạn chấm/);
-  assert.match(html, /issues\/new\?template=dong-gop-tai-lieu\.yml&amp;course=EE1009/);
+  assert.match(html, /href="\.\.\/\.\.\/gui-tai-lieu\/\?course=EE1009"/);
+  assert.doesNotMatch(html, /template=dong-gop-tai-lieu/);
   assert.match(html, /issues\/new\?template=them-link\.yml&amp;course=EE1009/);
   assert.match(html, /href="\.\.\/\.\.\/en\/course\/EE1009\/"/);
   assert.match(html, /href="\.\.\/\.\.\/assets\/site\.css"/);
@@ -100,4 +102,48 @@ test('mỗi trang có lang, viewport, tiêu đề và link bỏ qua tới nội 
     assert.match(html, /class="skip" href="#main"/, f);
     assert.equal((html.match(/<h1[\s>]/g) || []).length, 1, f);
   }
+});
+
+const siteJson = JSON.parse(fs.readFileSync(path.join(path.dirname(fileURLToPath(import.meta.url)), '..', 'catalog', 'site.json'), 'utf8'));
+
+test('trang Gửi tài liệu: có site key, loại sách, không có loại link, form đóng khi chưa có địa chỉ Worker', () => {
+  const html = read('gui-tai-lieu/index.html');
+  assert.ok(html.includes(`data-endpoint="${siteJson.uploadEndpoint}"`));
+  assert.match(html, /data-sitekey="0x4AAAAAAFMxSkFCGbs--qcI"/);
+  assert.match(html, /<option value="book-ref">/);
+  assert.match(html, /<option value="summary">/);
+  assert.doesNotMatch(html, /<option value="link">/);
+  assert.match(html, /<option value="CC-BY-SA-4\.0">/);
+  assert.match(html, /Form gửi tài liệu chưa mở\./);
+  assert.match(html, /<fieldset class="upload-set" disabled/);
+  assert.doesNotMatch(html, /challenges\.cloudflare\.com/);
+  assert.match(html, /20\.0 MB/);
+  assert.match(html, /src="\.\.\/assets\/upload\.js"/);
+});
+
+test('trang Gửi tài liệu: có địa chỉ Worker thì form mở và nạp Turnstile', () => {
+  const dir = copyFixture();
+  fs.mkdirSync(path.join(dir, 'catalog'), { recursive: true });
+  fs.writeFileSync(path.join(dir, 'catalog', 'site.json'), JSON.stringify({ uploadEndpoint: 'https://up.example.test/submit', turnstileSiteKey: 'KEY123' }));
+  const out2 = fs.mkdtempSync(path.join(os.tmpdir(), 'bk-lib-site-up-'));
+  buildSite({ root: dir, out: out2 });
+  const html = fs.readFileSync(path.join(out2, 'gui-tai-lieu/index.html'), 'utf8');
+  assert.match(html, /data-endpoint="https:\/\/up\.example\.test\/submit"/);
+  assert.match(html, /data-sitekey="KEY123"/);
+  assert.doesNotMatch(html, /<fieldset class="upload-set" disabled/);
+  assert.doesNotMatch(html, /Form gửi tài liệu chưa mở/);
+  assert.match(html, /<script src="https:\/\/challenges\.cloudflare\.com\/turnstile\/v0\/api\.js"/);
+});
+
+test('trang môn tiếng Anh trỏ tới form tiếng Việt', () => {
+  assert.match(read('en/course/EE1009/index.html'), /href="\.\.\/\.\.\/\.\.\/gui-tai-lieu\/\?course=EE1009"/);
+});
+
+test('hướng dẫn đóng góp: chỉ cấm sách có bản quyền, không còn luật cũ', () => {
+  const html = read('contribute/index.html');
+  assert.match(html, /sách có bản quyền/);
+  assert.doesNotMatch(html, /Bài đang trong hạn nộp/);
+  assert.doesNotMatch(html, /Scribd/);
+  assert.match(html, /PRIVACY\.md/);
+  assert.match(read('en/contribute/index.html'), /href="\.\.\/\.\.\/contribute\/"/);
 });
