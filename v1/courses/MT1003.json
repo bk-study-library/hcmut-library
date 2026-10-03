@@ -22,6 +22,7 @@
       "files": [
         {
           "name": "quiz-gioi-han-dao-ham.md",
+          "mime": "text/markdown",
           "size": 1227,
           "sha256": "cf6e7ca888ae2d759080d096d407de5d9be42b59e062e532f3293636c0c2e21e",
           "urls": [
@@ -49,6 +50,7 @@
       "files": [
         {
           "name": "tom-tat-gioi-han-dao-ham.md",
+          "mime": "text/markdown",
           "size": 2350,
           "sha256": "c7ce30ea2d1d701335549b8e0456bc7e2a9cb3525f8077e4af6d023bf40c791c",
           "urls": [

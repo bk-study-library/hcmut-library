@@ -3,7 +3,7 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
-import { TYPES, TYPE_ORDER, PARTS, STATUS, issueUrl, formatSize, REPO_URL } from './labels.mjs';
+import { TYPES, TYPE_ORDER, PARTS, STATUS, issueUrl, formatSize, formatBook, REPO_URL } from './labels.mjs';
 
 const TIPS_START = '<!-- meo-hoc:start -->';
 const TIPS_END = '<!-- meo-hoc:end -->';
@@ -21,6 +21,7 @@ function itemLine(it) {
   const meta = [it.term, it.lab != null ? `bài ${it.lab}` : null, it.lang, it.license].filter(Boolean).join(', ');
   const ex = it.example ? ' (ví dụ minh họa)' : '';
   if (it.removed) return `- ~~${it.title}~~ (đã gỡ: ${it.removedReason})`;
+  if (it.type === 'book-ref') return `- ${formatBook(it.book)}${ex}`;
   if (it.type === 'link') return `- [${it.title}](${it.url})${ex}: ${it.source ? it.source + ', ' : ''}${meta}`;
   const files = (it.files || [])
     .map((f) => {

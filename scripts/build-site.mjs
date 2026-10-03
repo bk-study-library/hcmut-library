@@ -11,7 +11,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { loadRepo, buildIndex, serializeIndex, TOOL_ROOT } from './lib/repo.mjs';
-import { TYPES, TYPE_ORDER, PARTS, STATUS, REPO_URL, issueUrl, formatSize } from './lib/labels.mjs';
+import { TYPES, TYPE_ORDER, PARTS, STATUS, REPO_URL, issueUrl, formatSize, formatBook } from './lib/labels.mjs';
 import { S } from './lib/strings.mjs';
 import { buildV1, serializeV1 } from './lib/v1.mjs';
 
@@ -123,6 +123,7 @@ function renderItem(t, it) {
   const badges = [it.example ? `<span class="tag accent">${esc(t.example)}</span>` : '', it.removed ? `<span class="tag warn">${esc(t.removed)}</span>` : ''].join('');
   let actions = '';
   if (it.removed) actions = `<p class="muted">${esc(it.removedReason || '')}</p>`;
+  else if (it.type === 'book-ref') actions = `<p>${esc(formatBook(it.book))}</p>`;
   else if (it.type === 'link') actions = `<p><a class="btn" href="${esc(it.url)}" rel="noopener">${esc(t.openLink)}</a></p>`;
   else {
     actions = `<ul class="files">${(it.files || [])

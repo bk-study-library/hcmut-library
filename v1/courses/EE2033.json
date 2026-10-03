@@ -21,6 +21,7 @@
       "files": [
         {
           "name": "meo-hoc-giai-tich-mach.md",
+          "mime": "text/markdown",
           "size": 1691,
           "sha256": "4a181936c0147a7988b9ed839802b6f19a36dff66d012ac4183cd09ba21b22c1",
           "urls": [

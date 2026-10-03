@@ -8,7 +8,7 @@ export const RAW_URL = `https://raw.githubusercontent.com/${REPO}/main/`;
 
 export const TYPE_ORDER = [
   'summary', 'notes', 'cheatsheet', 'quiz-pack', 'tips', 'exercise-solution', 'exam-past', 'exam-solution',
-  'prelab-template', 'prelab-reference', 'lab-report-reference', 'project-reference', 'link',
+  'prelab-template', 'prelab-reference', 'lab-report-reference', 'project-reference', 'book-ref', 'link',
 ];
 
 export const TYPES = {
@@ -24,6 +24,7 @@ export const TYPES = {
   'prelab-reference': { vi: 'Prelab tham khảo (đã hết hạn chấm)', en: 'Prelab references (after grading)' },
   'lab-report-reference': { vi: 'Báo cáo thí nghiệm tham khảo', en: 'Lab report references' },
   'project-reference': { vi: 'Bài tập lớn tham khảo', en: 'Project references' },
+  'book-ref': { vi: 'Sách tham khảo (chỉ ghi tên)', en: 'Reference books (title only)' },
   link: { vi: 'Link', en: 'Links' },
 };
 
@@ -48,4 +49,9 @@ export function formatSize(bytes) {
   if (bytes < 1024) return `${bytes} B`;
   if (bytes < 1024 * 1024) return `${Math.round(bytes / 1024)} KB`;
   return `${(bytes / 1024 / 1024).toFixed(1)} MB`;
+}
+
+// "Tên, tác giả, năm, NXB, ISBN", bỏ phần không có.
+export function formatBook(b) {
+  return [b.title, b.authors.join(', '), b.year, b.publisher, b.isbn].filter((x) => x !== undefined && x !== '').join(', ');
 }

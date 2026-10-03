@@ -266,7 +266,13 @@ export function loadRepo(root) {
         if (origin.startsWith('partner:') && !partnerNames.has(origin.slice(8))) {
           err('PARTNER_UNKNOWN', f, `đối tác "${origin.slice(8)}" chưa có trong catalog/partners.json`);
         }
-        if (it.type === 'link') {
+        if (it.type === 'book-ref') {
+          // Sách tham khảo chỉ ghi tên: có book, không có file hay url.
+          if (!it.removed && !it.book) err('ITEM_BOOK', f, 'book-ref cần trường book');
+          if (it.url) err('ITEM_BOOK', f, 'book-ref không có url');
+          if (it.files && it.files.length) err('ITEM_BOOK', f, 'book-ref không có files');
+          if (origin === 'link') err('ITEM_BOOK', f, 'origin link chỉ dùng cho type link');
+        } else if (it.type === 'link') {
           if (!it.url) err('ITEM_LINK', f, 'link cần trường url');
           if (it.files && it.files.length) err('ITEM_LINK', f, 'link không có files');
           if (origin === 'self-made') err('ITEM_LINK', f, 'link có origin là link hoặc partner:<tên>');
@@ -275,6 +281,7 @@ export function loadRepo(root) {
           if (origin === 'link') err('ITEM_FILES', f, 'origin link chỉ dùng cho type link');
           if (!it.removed && !(it.files && it.files.length)) err('ITEM_FILES', f, 'cần ít nhất một file');
         }
+        if (it.book && it.type !== 'book-ref') err('ITEM_BOOK', f, 'chỉ type book-ref mới có book');
         if (origin === 'self-made' && !LIMITS.selfMadeLicenses.includes(it.license)) {
           err('ITEM_LICENSE', f, `tài liệu tự soạn dùng ${LIMITS.selfMadeLicenses.join(', ')}, gặp ${it.license}`);
         }
@@ -315,7 +322,7 @@ export function loadRepo(root) {
     for (const s of jsonStrings(c, '', [])) for (const h of scanText(s)) err(h.code, c._file, `có thể là ${h.label}: "${h.match}"`);
   }
 
-  return { root, faculties, partners, courses, programs, items, errors, warnings };
+  return { root, policy, faculties, partners, courses, programs, items, errors, warnings };
 }
 
 function scanDisk(root, dir, err, LIMITS) {

@@ -199,3 +199,25 @@ test('policy.json thiếu khóa thì báo SCHEMA, không ném lỗi', () => {
   const e = loadRepo(dir).errors.find((x) => x.code === 'SCHEMA' && x.file === 'catalog/policy.json');
   assert.match(e.msg, /terms/);
 });
+
+const BOOK = { title: 'Giải tích 1', authors: ['Nguyễn Văn A'], year: 2020, publisher: 'NXB ĐHQG', isbn: '9780306406157' };
+const bookItem = (extra = {}) => ({
+  id: 'sach-giai-tich', course: 'EE1009', type: 'book-ref', title: 'Giải tích 1', lang: 'vi', license: 'CC0-1.0', origin: 'partner:vi-du',
+  book: BOOK, added: '2026-10-01', removed: false, ...extra,
+});
+
+test('book-ref: cần book, không có files hay url; loại khác không có book', () => {
+  const put = (d, it) => writeJson(d, 'courses/EE1009/items/sach-giai-tich.json', it);
+  const noBook = bookItem();
+  delete noBook.book;
+  assert.deepEqual(errorsAfter((d) => put(d, noBook)), ['ITEM_BOOK']);
+  const withFiles = bookItem({ files: [{ name: 'a.pdf', size: 10, sha256: 'b'.repeat(64) }] });
+  assert.ok(errorsAfter((d) => put(d, withFiles)).includes('ITEM_BOOK'));
+  assert.ok(errorsAfter((d) => put(d, bookItem({ url: 'https://example.org/' }))).includes('ITEM_BOOK'));
+  assert.deepEqual(errorsAfter((d) => editJson(d, ITEM, (it) => { it.book = BOOK; })), ['ITEM_BOOK']);
+});
+
+test('schema: isbn sai định dạng và quarantine sai dạng', () => {
+  assert.deepEqual(errorsAfter((d) => writeJson(d, 'courses/EE1009/items/sach-giai-tich.json', bookItem({ book: { ...BOOK, isbn: '12-3' } }))), ['SCHEMA']);
+  assert.deepEqual(errorsAfter((d) => editJson(d, ITEM, (it) => { it.files[0].quarantine = 'bad/path'; })), ['SCHEMA']);
+});
