@@ -42,12 +42,10 @@ beforeAll(async () => {
 });
 
 const json = (obj, status = 200) => new Response(JSON.stringify(obj), { status, headers: { 'content-type': 'application/json' } });
-const b64 = (text) => {
-  const bytes = new TextEncoder().encode(text);
-  let bin = '';
-  for (const b of bytes) bin += String.fromCharCode(b);
-  return btoa(bin);
-};
+
+// Nội dung thô chỉ trả khi xin đúng Accept raw, để file lớn hơn 1 MB vẫn đọc được.
+const raw = (init, text) =>
+  init.headers?.Accept === 'application/vnd.github.raw' ? new Response(text) : json({ encoding: 'none', content: '', sha: 's' });
 
 // fetch giả cho Turnstile và GitHub; fail[tên bước] = mã lỗi để giả lập GitHub hỏng.
 function fakeFetch({ turnstile = true, fail = {} } = {}) {
@@ -63,10 +61,10 @@ function fakeFetch({ turnstile = true, fail = {} } = {}) {
     if (u.host === 'challenges.cloudflare.com') return json({ success: turnstile });
     if (p.startsWith('/app/installations/')) return step('token', () => json({ token: 'ghs_secret' }, 201));
     if (method === 'GET' && p === `/repos/${REPO}/contents/catalog/policy.json`) {
-      return step('catalog', () => json({ encoding: 'base64', content: b64(JSON.stringify(policy)), sha: 's1' }));
+      return step('catalog', () => raw(init, JSON.stringify(policy)));
     }
     if (method === 'GET' && p === `/repos/${REPO}/contents/index.json`) {
-      return step('catalog', () => json({ encoding: 'base64', content: b64(JSON.stringify(index)), sha: 's2' }));
+      return step('catalog', () => raw(init, JSON.stringify(index)));
     }
     if (method === 'GET' && p.startsWith(`/repos/${REPO}/git/ref/heads/`)) return step('branchSha', () => json({ object: { sha: 'base1' } }));
     if (method === 'POST' && p === `/repos/${REPO}/git/refs`) return step('createBranch', () => json({}, 201));
@@ -238,6 +236,15 @@ describe('POST /submit', () => {
     expect(res.status).toBe(429);
     expect(body.ok).toBe(false);
     expect(await r2Keys()).toEqual([]);
+  });
+
+  it('quá số lần gửi: không gọi GitHub, không đọc body', async () => {
+    const req = post(form());
+    const { res, fetch } = await run(req, { envOver: { SUBMIT_LIMIT: { limit: async () => ({ success: false }) } } });
+    expect(res.status).toBe(429);
+    expect(fetch.calls.filter((c) => c.url.startsWith('https://api.github.com'))).toEqual([]);
+    expect(fetch.calls).toEqual([]);
+    expect(req.bodyUsed).toBe(false);
   });
 
   it('khóa giới hạn là IP của người gửi', async () => {

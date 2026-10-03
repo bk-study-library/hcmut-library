@@ -16,6 +16,11 @@ const MESSAGES = {
   fileSize: (max) => `File quá lớn. Chọn file nhỏ hơn ${max}.`,
   fileMagic: (ext) => `Nội dung file không khớp đuôi ${ext}.`,
   lang: 'Mã ngôn ngữ không hợp lệ. Dùng dạng vi hoặc en.',
+  term: 'Học kỳ không hợp lệ. Dùng dạng HK251.',
+  chapter: 'Chương không hợp lệ. Dùng số hoặc chữ không dấu, ví dụ 3 hay 3.2.',
+  examKind: 'Loại kiểm tra không hợp lệ. Chọn trong danh sách.',
+  teacher: (max) => `Tên giảng viên quá dài. Rút xuống tối đa ${max} ký tự.`,
+  displayName: (max) => `Tên hiển thị quá dài. Rút xuống tối đa ${max} ký tự.`,
   bookFile: 'Không nhận file cho sách tham khảo. Sách chỉ ghi tên, hãy bỏ file đi.',
   bookTitle: 'Chưa có tên sách. Nhập tên sách.',
   bookAuthors: 'Chưa có tác giả. Nhập ít nhất một tác giả.',
@@ -29,6 +34,11 @@ const BOOK_TITLE_MAX = 200;
 const BOOK_PUBLISHER_MAX = 120;
 const BOOK_AUTHOR_MAX = 80;
 const LANG_PATTERN = /^[a-z]{2}(-[A-Z]{2})?$/;
+// Theo schema/item.schema.json.
+const TERM_PATTERN = /^HK[0-9]{3}$/;
+const CHAPTER_PATTERN = /^[0-9A-Za-z.-]{1,20}$/;
+const EXAM_KINDS = ['gk', 'ck', 'quiz', 'kt'];
+const NAME_MAX = 80;
 const CONFIRMS = ['confirm-own', 'confirm-license', 'confirm-not-book'];
 const OPTIONAL = ['description', 'term', 'chapter', 'examKind', 'teacher', 'displayName'];
 
@@ -119,6 +129,16 @@ export function validateSubmission(fields, file, ctx) {
   if (!LANG_PATTERN.test(lang)) errors.lang = MESSAGES.lang;
 
   if (!CONFIRMS.every((k) => val(fields, k))) errors.confirm = MESSAGES.confirm;
+
+  // Ô tùy chọn: để trống thì bỏ qua (tên hiển thị trống là ẩn danh).
+  const term = val(fields, 'term');
+  if (term && !TERM_PATTERN.test(term)) errors.term = MESSAGES.term;
+  const chapter = val(fields, 'chapter');
+  if (chapter && !CHAPTER_PATTERN.test(chapter)) errors.chapter = MESSAGES.chapter;
+  const examKind = val(fields, 'examKind');
+  if (examKind && !EXAM_KINDS.includes(examKind)) errors.examKind = MESSAGES.examKind;
+  if (val(fields, 'teacher').length > NAME_MAX) errors.teacher = MESSAGES.teacher(NAME_MAX);
+  if (val(fields, 'displayName').length > NAME_MAX) errors.displayName = MESSAGES.displayName(NAME_MAX);
 
   let ext;
   let book;

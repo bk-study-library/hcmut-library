@@ -33,10 +33,10 @@ const pdf = { name: 'Bai 1.PDF', size: 1000, head: new Uint8Array([0x25, 0x50, 0
 
 describe('validateSubmission', () => {
   it('nhận bài hợp lệ và dựng form', () => {
-    const r = validateSubmission({ ...base, term: '2025-HK1', displayName: 'An' }, pdf, ctx);
+    const r = validateSubmission({ ...base, term: 'HK251', displayName: 'An' }, pdf, ctx);
     expect(r.ok).toBe(true);
     expect(r.ext).toBe('.pdf');
-    expect(r.form).toMatchObject({ course: 'CO1005', type: 'summary', title: 'Tóm tắt chương 1', lang: 'vi', license: 'CC-BY-SA-4.0', term: '2025-HK1', displayName: 'An' });
+    expect(r.form).toMatchObject({ course: 'CO1005', type: 'summary', title: 'Tóm tắt chương 1', lang: 'vi', license: 'CC-BY-SA-4.0', term: 'HK251', displayName: 'An' });
   });
 
   it('môn không có', () => {
@@ -144,5 +144,37 @@ describe('validateSubmission', () => {
 
   it('loại khác không file: lỗi file', () => {
     expect(validateSubmission(base, null, ctx).errors.file).toBeTruthy();
+  });
+  it('học kỳ theo dạng HKxxx', () => {
+    expect(validateSubmission({ ...base, term: 'HK251' }, pdf, ctx).ok).toBe(true);
+    for (const t of ['2025-HK1', 'HK25', 'hk251', '../HK251']) {
+      expect(validateSubmission({ ...base, term: t }, pdf, ctx).errors.term).toBe('Học kỳ không hợp lệ. Dùng dạng HK251.');
+    }
+  });
+
+  it('chương: chữ, số, dấu chấm, gạch nối, tối đa 20 ký tự', () => {
+    expect(validateSubmission({ ...base, chapter: '3.2' }, pdf, ctx).ok).toBe(true);
+    expect(validateSubmission({ ...base, chapter: 'a'.repeat(20) }, pdf, ctx).ok).toBe(true);
+    for (const c of ['a'.repeat(21), 'chương 3', '3/2']) {
+      expect(validateSubmission({ ...base, chapter: c }, pdf, ctx).errors.chapter).toBe('Chương không hợp lệ. Dùng số hoặc chữ không dấu, ví dụ 3 hay 3.2.');
+    }
+  });
+
+  it('loại kiểm tra thuộc gk, ck, quiz, kt', () => {
+    for (const k of ['gk', 'ck', 'quiz', 'kt']) expect(validateSubmission({ ...base, examKind: k }, pdf, ctx).ok).toBe(true);
+    expect(validateSubmission({ ...base, examKind: 'final' }, pdf, ctx).errors.examKind).toBe('Loại kiểm tra không hợp lệ. Chọn trong danh sách.');
+  });
+
+  it('giảng viên tối đa 80 ký tự', () => {
+    expect(validateSubmission({ ...base, teacher: 'a'.repeat(80) }, pdf, ctx).ok).toBe(true);
+    expect(validateSubmission({ ...base, teacher: 'a'.repeat(81) }, pdf, ctx).errors.teacher).toBe('Tên giảng viên quá dài. Rút xuống tối đa 80 ký tự.');
+  });
+
+  it('tên hiển thị tối đa 80 ký tự sau khi bỏ khoảng trắng, để trống là ẩn danh', () => {
+    expect(validateSubmission({ ...base, displayName: `  ${'a'.repeat(80)}  ` }, pdf, ctx).form.displayName).toBe('a'.repeat(80));
+    expect(validateSubmission({ ...base, displayName: 'a'.repeat(81) }, pdf, ctx).errors.displayName).toBe('Tên hiển thị quá dài. Rút xuống tối đa 80 ký tự.');
+    const r = validateSubmission({ ...base, displayName: '   ' }, pdf, ctx);
+    expect(r.ok).toBe(true);
+    expect(r.form).not.toHaveProperty('displayName');
   });
 });

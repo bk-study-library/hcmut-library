@@ -176,6 +176,11 @@ async function handleSubmit(req, env, deps, cors) {
     return reply(err instanceof GitHubError ? 502 : 500, { ok: false, error: MESSAGES.failed }, cors);
   };
 
+  // Số lần gửi theo IP, trước mọi lời gọi GitHub và trước khi đọc body. IP chỉ dùng làm khóa, không lưu.
+  const limit = await env.SUBMIT_LIMIT.limit({ key: req.headers.get('CF-Connecting-IP') ?? 'unknown' });
+  if (!limit.success) return reply(429, { ok: false, error: MESSAGES.rateLimit }, cors);
+
+  // Danh mục cần trước khi đọc body: giới hạn kích thước lấy từ policy.json.
   let catalog;
   try {
     catalog = await loadCatalog({
@@ -201,16 +206,12 @@ async function handleSubmit(req, env, deps, cors) {
   if (read.error) return reply(400, { ok: false, errors: { form: MESSAGES.badForm } }, cors);
   const data = read.data;
 
-  // 1. Turnstile.
+  // Turnstile.
   if (!(await verifyTurnstile(data.get('cf-turnstile-response'), env.TURNSTILE_SECRET, deps.fetch))) {
     return reply(403, { ok: false, error: MESSAGES.turnstile }, cors);
   }
 
-  // 2. Số lần gửi theo IP; IP chỉ dùng làm khóa, không lưu.
-  const limit = await env.SUBMIT_LIMIT.limit({ key: req.headers.get('CF-Connecting-IP') ?? 'unknown' });
-  if (!limit.success) return reply(429, { ok: false, error: MESSAGES.rateLimit }, cors);
-
-  // 3 đến 5. Môn, loại, file, các ô.
+  // Môn, loại, file, các ô.
   const fields = {};
   for (const [k, v] of data.entries()) if (typeof v === 'string') fields[k] = v;
   const upload = data.get('file');

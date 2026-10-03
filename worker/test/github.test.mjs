@@ -138,6 +138,22 @@ describe('GitHub', () => {
     expect(await gh.getFile('a.json', 'main')).toBeNull();
   });
 
+  it('getRaw đọc nội dung thô với Accept raw, giải mã UTF-8', async () => {
+    const text = '{"a":"Tiếng Việt"}';
+    const { gh, f } = make(() => new Response(new TextEncoder().encode(text), { status: 200 }));
+    expect(await gh.getRaw('a/b.json', 'main')).toBe(text);
+    expect(f.calls[0].url).toBe('https://api.github.com/repos/own/name/contents/a/b.json?ref=main');
+    expect(f.calls[0].method).toBe('GET');
+    expect(f.calls[0].headers.Accept).toBe('application/vnd.github.raw');
+  });
+
+  it('getRaw trả null khi 404, ném GitHubError khi 500', async () => {
+    expect(await make(() => json({ message: 'Not Found' }, 404)).gh.getRaw('a.json', 'main')).toBeNull();
+    const err = await make(() => json({ message: 'boom' }, 500)).gh.getRaw('a.json', 'main').catch((e) => e);
+    expect(err).toBeInstanceOf(GitHubError);
+    expect(err.status).toBe(500);
+  });
+
   it('500 ném GitHubError có status và path, không lộ token', async () => {
     const { gh } = make(() => json({ message: 'boom' }, 500));
     const err = await gh.branchSha('main').catch((e) => e);

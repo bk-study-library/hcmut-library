@@ -26,9 +26,10 @@ function hydrate(data) {
 }
 
 async function fetchCatalog(gh, branch) {
-  const [policyFile, indexFile] = await Promise.all([gh.getFile('catalog/policy.json', branch), gh.getFile('index.json', branch)]);
-  if (!policyFile || !indexFile) throw new Error('Thiếu catalog/policy.json hoặc index.json trên nhánh');
-  return summarize(JSON.parse(policyFile.text), JSON.parse(indexFile.text));
+  // Đọc thô vì index.json sẽ vượt 1 MB, giới hạn của getFile.
+  const [policyText, indexText] = await Promise.all([gh.getRaw('catalog/policy.json', branch), gh.getRaw('index.json', branch)]);
+  if (policyText === null || indexText === null) throw new Error('Thiếu catalog/policy.json hoặc index.json trên nhánh');
+  return summarize(JSON.parse(policyText), JSON.parse(indexText));
 }
 
 // github: hàm trả client GitHub, chỉ gọi khi cache trống. ttl <= 0 thì không dùng cache.

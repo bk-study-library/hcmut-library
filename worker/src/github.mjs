@@ -1,6 +1,7 @@
 // Client GitHub App cho Worker: chỉ dùng WebCrypto và fetch được truyền vào, không phụ thuộc gói ngoài.
 const API = 'https://api.github.com';
 const ACCEPT = 'application/vnd.github+json';
+const RAW_ACCEPT = 'application/vnd.github.raw';
 const API_VERSION = '2022-11-28';
 const USER_AGENT = 'bk-study-library-upload';
 
@@ -86,9 +87,9 @@ export class GitHub {
   #fetch;
 
   // Gửi request tới /repos/<repo><sub>; trả Response (đã kiểm lỗi, trừ các mã trong allow).
-  async #call(method, sub, body, allow = []) {
+  async #call(method, sub, body, allow = [], accept = ACCEPT) {
     const path = `/repos/${this.repo}${sub}`;
-    const init = { method, headers: headers(this.token) };
+    const init = { method, headers: { ...headers(this.token), Accept: accept } };
     if (body !== undefined) {
       init.headers = { ...init.headers, 'Content-Type': 'application/json' };
       init.body = JSON.stringify(body);
@@ -110,6 +111,13 @@ export class GitHub {
     const bin = atob(data.content.replace(/\s+/g, ''));
     const text = new TextDecoder().decode(Uint8Array.from(bin, (c) => c.charCodeAt(0)));
     return { text, sha: data.sha };
+  }
+
+  // Đọc nội dung thô (Accept raw): không giới hạn 1 MB như getFile. Trả text, hoặc null khi 404.
+  async getRaw(path, ref) {
+    const res = await this.#call('GET', `/contents/${encodePath(path)}?ref=${encodeURIComponent(ref)}`, undefined, [404], RAW_ACCEPT);
+    if (res.status === 404) return null;
+    return new TextDecoder().decode(await res.arrayBuffer());
   }
 
   async branchSha(branch) {
