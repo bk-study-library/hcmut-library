@@ -32,19 +32,12 @@ const MESSAGES = {
   bookIsbn: 'ISBN không hợp lệ. Nhập 10 hoặc 13 chữ số, hoặc để trống.',
 };
 
-const TITLE_MAX = 200;
-const BOOK_TITLE_MAX = 200;
-const BOOK_PUBLISHER_MAX = 120;
-const BOOK_AUTHOR_MAX = 80;
 const LANG_PATTERN = /^[a-z]{2}(-[A-Z]{2})?$/;
 // Theo schema/item.schema.json.
 const TERM_PATTERN = /^HK[0-9]{3}$/;
-const CHAPTER_PATTERN = /^[0-9A-Za-z.-]{1,20}$/;
-const EXAM_KINDS = ['gk', 'ck', 'quiz', 'kt'];
-const NAME_MAX = 80;
-const DESCRIPTION_MAX = 1000;
-// Tổng byte UTF-8 của mọi ô chữ (trừ mã Turnstile): chặn đẩy dữ liệu lớn vào repo, nhất là qua book-ref.
-const TEXT_TOTAL_MAX = 8 * 1024;
+const CHAPTER_PATTERN = /^[0-9A-Za-z.-]+$/;
+// Giới hạn độ dài và danh sách loại kiểm tra nằm ở policy.fields. textTotalMax là tổng byte UTF-8 của
+// mọi ô chữ (trừ mã Turnstile): chặn đẩy dữ liệu lớn vào repo, nhất là qua book-ref.
 const TEXT_TOTAL_SKIP = new Set(['cf-turnstile-response']);
 const CONFIRMS = ['confirm-own', 'confirm-license', 'confirm-not-book'];
 const OPTIONAL = ['description', 'term', 'chapter', 'examKind', 'teacher', 'displayName'];
@@ -77,7 +70,7 @@ function checkFile(file, policy, errors) {
   return ext;
 }
 
-function parseBook(fields, errors) {
+function parseBook(fields, errors, lim) {
   const title = val(fields, 'book-title');
   if (!title) {
     errors.book = MESSAGES.bookTitle;
@@ -89,7 +82,7 @@ function parseBook(fields, errors) {
     return undefined;
   }
   const publisher = val(fields, 'book-publisher');
-  if (title.length > BOOK_TITLE_MAX || publisher.length > BOOK_PUBLISHER_MAX || authors.some((a) => a.length > BOOK_AUTHOR_MAX)) {
+  if (title.length > lim.bookTitleMax || publisher.length > lim.bookPublisherMax || authors.some((a) => a.length > lim.bookAuthorMax)) {
     errors.book = MESSAGES.bookLimit;
     return undefined;
   }
@@ -116,6 +109,7 @@ function parseBook(fields, errors) {
 
 export function validateSubmission(fields, file, ctx) {
   const { policy, courses } = ctx;
+  const lim = policy.fields;
   const errors = {};
 
   const course = val(fields, 'course');
@@ -128,7 +122,7 @@ export function validateSubmission(fields, file, ctx) {
 
   const title = val(fields, 'title');
   if (!title) errors.title = MESSAGES.titleEmpty;
-  else if (title.length > TITLE_MAX) errors.title = MESSAGES.titleLong(TITLE_MAX);
+  else if (title.length > lim.titleMax) errors.title = MESSAGES.titleLong(lim.titleMax);
   else if (!slugify(title)) errors.title = MESSAGES.titleSlug;
 
   const license = val(fields, 'license');
@@ -142,18 +136,18 @@ export function validateSubmission(fields, file, ctx) {
   const textBytes = Object.entries(fields)
     .filter(([k, v]) => !TEXT_TOTAL_SKIP.has(k) && typeof v === 'string')
     .reduce((sum, [, v]) => sum + new TextEncoder().encode(v).length, 0);
-  if (textBytes > TEXT_TOTAL_MAX) errors.form = MESSAGES.textTotal;
+  if (textBytes > lim.textTotalMax) errors.form = MESSAGES.textTotal;
 
   // Ô tùy chọn: để trống thì bỏ qua (tên hiển thị trống là ẩn danh).
-  if (val(fields, 'description').length > DESCRIPTION_MAX) errors.description = MESSAGES.description(DESCRIPTION_MAX);
+  if (val(fields, 'description').length > lim.descriptionMax) errors.description = MESSAGES.description(lim.descriptionMax);
   const term = val(fields, 'term');
   if (term && !TERM_PATTERN.test(term)) errors.term = MESSAGES.term;
   const chapter = val(fields, 'chapter');
-  if (chapter && !CHAPTER_PATTERN.test(chapter)) errors.chapter = MESSAGES.chapter;
+  if (chapter && !(chapter.length <= lim.chapterMax && CHAPTER_PATTERN.test(chapter))) errors.chapter = MESSAGES.chapter;
   const examKind = val(fields, 'examKind');
-  if (examKind && !EXAM_KINDS.includes(examKind)) errors.examKind = MESSAGES.examKind;
-  if (val(fields, 'teacher').length > NAME_MAX) errors.teacher = MESSAGES.teacher(NAME_MAX);
-  if (val(fields, 'displayName').length > NAME_MAX) errors.displayName = MESSAGES.displayName(NAME_MAX);
+  if (examKind && !lim.examKinds.includes(examKind)) errors.examKind = MESSAGES.examKind;
+  if (val(fields, 'teacher').length > lim.teacherMax) errors.teacher = MESSAGES.teacher(lim.teacherMax);
+  if (val(fields, 'displayName').length > lim.displayNameMax) errors.displayName = MESSAGES.displayName(lim.displayNameMax);
 
   let ext;
   let book;
@@ -162,7 +156,7 @@ export function validateSubmission(fields, file, ctx) {
   } else if (file) {
     ext = checkFile(file, policy, errors) ?? undefined;
   } else if (type === 'book-ref') {
-    book = parseBook(fields, errors);
+    book = parseBook(fields, errors, lim);
   } else {
     errors.file = MESSAGES.fileMissing;
   }

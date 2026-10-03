@@ -27,7 +27,7 @@
 
 <div class="field">
   <label for="title">Tiêu đề</label>
-  <input id="title" name="title" type="text" maxlength="200" autocomplete="off">
+  <input id="title" name="title" type="text" maxlength="{{upload:titleMax}}" autocomplete="off">
   <p class="err" data-err="title" role="alert"></p>
 </div>
 
@@ -42,13 +42,13 @@
   <legend>Thông tin sách</legend>
   <p class="muted">Sách chỉ ghi tên, không đăng file.</p>
   <label for="book-title">Tên sách</label>
-  <input id="book-title" name="book-title" type="text" maxlength="200">
+  <input id="book-title" name="book-title" type="text" maxlength="{{upload:bookTitleMax}}">
   <label for="book-authors">Tác giả (cách nhau bằng dấu phẩy)</label>
   <input id="book-authors" name="book-authors" type="text">
   <label for="book-year">Năm xuất bản (không bắt buộc)</label>
   <input id="book-year" name="book-year" type="text" inputmode="numeric">
   <label for="book-publisher">Nhà xuất bản (không bắt buộc)</label>
-  <input id="book-publisher" name="book-publisher" type="text" maxlength="120">
+  <input id="book-publisher" name="book-publisher" type="text" maxlength="{{upload:bookPublisherMax}}">
   <label for="book-isbn">ISBN (không bắt buộc)</label>
   <input id="book-isbn" name="book-isbn" type="text">
   <p class="err" data-err="book" role="alert"></p>
@@ -65,24 +65,26 @@
 <details class="field more">
   <summary>Thông tin thêm (không bắt buộc)</summary>
   <label for="description">Mô tả</label>
-  <textarea id="description" name="description" rows="3" maxlength="1000"></textarea>
+  <textarea id="description" name="description" rows="3" maxlength="{{upload:descriptionMax}}"></textarea>
   <p class="err" data-err="description" role="alert"></p>
   <label for="lang">Ngôn ngữ</label>
   <select id="lang" name="lang"><option value="vi">Tiếng Việt</option><option value="en">English</option></select>
   <label for="term">Học kỳ, ví dụ HK251</label>
-  <input id="term" name="term" type="text" maxlength="5">
+  <input id="term" name="term" type="text">
   <p class="err" data-err="term" role="alert"></p>
   <label for="chapter">Chương, ví dụ 3 hoặc 3.2</label>
-  <input id="chapter" name="chapter" type="text" maxlength="20">
+  <input id="chapter" name="chapter" type="text" maxlength="{{upload:chapterMax}}">
   <p class="err" data-err="chapter" role="alert"></p>
   <label for="examKind">Loại kiểm tra (nếu là đề)</label>
-  <select id="examKind" name="examKind"><option value="">Không chọn</option><option value="gk">Giữa kỳ</option><option value="ck">Cuối kỳ</option><option value="quiz">Quiz</option><option value="kt">Kiểm tra</option></select>
+  <select id="examKind" name="examKind"><option value="">Không chọn</option>
+{{upload:examKinds}}
+  </select>
   <p class="err" data-err="examKind" role="alert"></p>
   <label for="teacher">Giảng viên</label>
-  <input id="teacher" name="teacher" type="text" maxlength="80">
+  <input id="teacher" name="teacher" type="text" maxlength="{{upload:teacherMax}}">
   <p class="err" data-err="teacher" role="alert"></p>
   <label for="displayName">Tên hiển thị của bạn</label>
-  <input id="displayName" name="displayName" type="text" maxlength="80" aria-describedby="name-hint">
+  <input id="displayName" name="displayName" type="text" maxlength="{{upload:displayNameMax}}" aria-describedby="name-hint">
   <p id="name-hint" class="muted">Để trống thì bài hiện là Ẩn danh. Không cần email.</p>
   <p class="err" data-err="displayName" role="alert"></p>
 </details>

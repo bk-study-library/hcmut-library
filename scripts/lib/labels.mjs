@@ -28,6 +28,9 @@ export const TYPES = {
   link: { vi: 'Link', en: 'Links' },
 };
 
+// Loại kiểm tra của đề (khóa lấy từ policy.fields.examKinds).
+export const EXAM_KINDS = { gk: 'Giữa kỳ', ck: 'Cuối kỳ', quiz: 'Quiz', kt: 'Kiểm tra' };
+
 export const PARTS = {
   theory: { vi: 'Lý thuyết', en: 'Theory' },
   lab: { vi: 'Thí nghiệm', en: 'Lab' },

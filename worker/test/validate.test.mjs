@@ -10,6 +10,7 @@ const policy = {
     '.md': { mime: 'text/markdown' },
   },
   selfMadeLicenses: ['CC-BY-SA-4.0', 'CC-BY-4.0', 'CC0-1.0'],
+  fields: { titleMax: 200, descriptionMax: 1000, chapterMax: 20, teacherMax: 80, displayNameMax: 80, bookTitleMax: 200, bookAuthorMax: 80, bookPublisherMax: 120, textTotalMax: 8192, examKinds: ['gk', 'ck', 'quiz', 'kt'] },
 };
 const courses = new Map([
   ['GE1007', { id: 'GE1007', status: 'retired' }],
@@ -195,5 +196,14 @@ describe('loại link', () => {
     const r = validateSubmission({ ...base, type: 'link' }, pdf, ctx);
     expect(r.ok).toBe(false);
     expect(r.errors.type).toMatch(/Thêm link/);
+  });
+});
+
+describe('giới hạn lấy từ policy.fields', () => {
+  it('đổi titleMax trong policy thì đổi ngưỡng chặn', () => {
+    const small = { ...ctx, policy: { ...policy, fields: { ...policy.fields, titleMax: 5 } } };
+    const r = validateSubmission({ ...base, title: 'Tiêu đề dài' }, pdf, small);
+    expect(r.ok).toBe(false);
+    expect(r.errors.title).toMatch(/5 ký tự/);
   });
 });

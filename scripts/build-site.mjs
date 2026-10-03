@@ -11,7 +11,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { loadRepo, buildIndex, serializeIndex, TOOL_ROOT } from './lib/repo.mjs';
-import { TYPES, TYPE_ORDER, PARTS, STATUS, REPO_URL, issueUrl, formatSize, formatBook } from './lib/labels.mjs';
+import { EXAM_KINDS, TYPES, TYPE_ORDER, PARTS, STATUS, REPO_URL, issueUrl, formatSize, formatBook } from './lib/labels.mjs';
 import { S } from './lib/strings.mjs';
 import { buildV1, serializeV1 } from './lib/v1.mjs';
 import { loadPolicy } from './lib/policy.mjs';
@@ -65,6 +65,8 @@ function uploadPage({ policy, site, root, raw, t }) {
     sitekey: esc(site.turnstileSiteKey),
     // Loại "link" đi theo form Issue "Thêm link", không qua form này.
     types: policy.openTypes.filter((x) => x !== 'link').map((x) => opt(x, TYPES[x].vi)).join('\n'),
+    examKinds: policy.fields.examKinds.map((x) => opt(x, EXAM_KINDS[x] || x)).join('\n'),
+    ...Object.fromEntries(['titleMax', 'descriptionMax', 'chapterMax', 'teacherMax', 'displayNameMax', 'bookTitleMax', 'bookPublisherMax'].map((k) => [k, String(policy.fields[k])])),
     licenses: policy.selfMadeLicenses.map((x) => opt(x, x)).join('\n'),
     accept: esc(exts.join(',')),
     exts: esc(exts.join(', ')),

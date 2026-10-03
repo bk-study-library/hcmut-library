@@ -147,3 +147,9 @@ test('hướng dẫn đóng góp: chỉ cấm sách có bản quyền, không c�
   assert.match(html, /PRIVACY\.md/);
   assert.match(read('en/contribute/index.html'), /href="\.\.\/\.\.\/contribute\/"/);
 });
+
+test('trang Gửi tài liệu: maxlength và loại kiểm tra lấy từ policy.fields', () => {
+  const html = read('gui-tai-lieu/index.html');
+  assert.match(html, /name="title" type="text" maxlength="200"/);
+  assert.match(html, /<option value="ck">Cuối kỳ<\/option>/);
+});

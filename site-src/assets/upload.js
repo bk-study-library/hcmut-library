@@ -23,23 +23,32 @@
   var statusBox = document.getElementById('upload-status');
   var MAX_SHOWN = 8;
   var idx = null;
-  var byId = {};
+  var byId = Object.create(null);
   var timer = null;
 
+  // Chỗ hiện lỗi dựng một lần lúc khởi động; khóa lạ từ server không tra được thì rơi về dòng chung.
+  var errBoxes = Object.create(null);
+  var errOrder = [];
+  Array.prototype.forEach.call(form.querySelectorAll('[data-err]'), function (b) {
+    errBoxes[b.getAttribute('data-err')] = b;
+    errOrder.push(b);
+  });
+
   function errBox(key) {
-    return form.querySelector('[data-err="' + key + '"]');
+    return errBoxes[key] || errBoxes.form;
   }
 
   function clearErrors() {
-    var boxes = form.querySelectorAll('[data-err]');
-    for (var i = 0; i < boxes.length; i++) boxes[i].textContent = '';
+    errOrder.forEach(function (b) {
+      b.textContent = '';
+    });
     statusBox.hidden = true;
     statusBox.textContent = '';
   }
 
   // Lỗi của ô không có chỗ riêng thì hiện ở dòng chung cuối form.
   function showError(key, text) {
-    var box = errBox(key) || errBox('form');
+    var box = errBox(key);
     if (!box.textContent) box.textContent = text;
   }
 
@@ -52,10 +61,9 @@
 
   // Lỗi đầu tiên theo thứ tự trên trang: đưa người dùng tới đúng ô.
   function focusFirstError() {
-    var boxes = form.querySelectorAll('[data-err]');
-    for (var i = 0; i < boxes.length; i++) {
-      if (boxes[i].textContent) {
-        var f = fieldOf(boxes[i].getAttribute('data-err'));
+    for (var i = 0; i < errOrder.length; i++) {
+      if (errOrder[i].textContent) {
+        var f = fieldOf(errOrder[i].getAttribute('data-err'));
         if (f) f.focus();
         return;
       }

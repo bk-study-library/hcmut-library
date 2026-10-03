@@ -33,3 +33,19 @@ test('thiếu policy.json thì báo lỗi nêu catalog/policy.json', () => {
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'pol-'));
   assert.throws(() => loadPolicy(dir), /catalog\/policy\.json/);
 });
+
+test('fields: giới hạn độ dài và loại kiểm tra cho form và Worker', () => {
+  const f = loadPolicy(TOOL_ROOT).fields;
+  for (const k of ['titleMax', 'descriptionMax', 'chapterMax', 'teacherMax', 'displayNameMax', 'bookTitleMax', 'bookAuthorMax', 'bookPublisherMax', 'textTotalMax']) {
+    assert.ok(Number.isInteger(f[k]) && f[k] > 0, k);
+  }
+  assert.deepEqual(f.examKinds, ['gk', 'ck', 'quiz', 'kt']);
+});
+
+test('policy thiếu fields thì báo lỗi nêu khóa', () => {
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'pol-'));
+  fs.mkdirSync(path.join(dir, 'catalog'));
+  const { fields, ...rest } = loadPolicy(TOOL_ROOT);
+  fs.writeFileSync(path.join(dir, 'catalog', 'policy.json'), JSON.stringify(rest));
+  assert.throws(() => loadPolicy(dir), /fields/);
+});
