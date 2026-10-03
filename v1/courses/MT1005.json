@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 1,
+  "id": "MT1005",
+  "code": "MT1005",
+  "name": "Giải tích 2",
+  "items": [
+    {
+      "id": "bang-cong-thuc-giai-tich-2",
+      "type": "cheatsheet",
+      "title": "[Mẫu] Bảng công thức Giải tích 2",
+      "description": "Đạo hàm riêng, cực trị, tích phân bội, tích phân đường và mặt, chuỗi. Vừa một mặt A4.",
+      "lang": "vi",
+      "license": "CC-BY-SA-4.0",
+      "origin": "self-made",
+      "authors": [
+        "BK Study Library"
+      ],
+      "added": "2026-10-03",
+      "example": true,
+      "updated": "2026-10-03",
+      "files": [
+        {
+          "name": "bang-cong-thuc-giai-tich-2.md",
+          "size": 2566,
+          "sha256": "2c9957c28b94671f4a5a8af3c67dfb12b2902872fbfe038bbd8c742fdfaf31c7",
+          "urls": [
+            "https://bk-study-library.github.io/bk-study-library/files/MT1005/bang-cong-thuc-giai-tich-2.md",
+            "https://raw.githubusercontent.com/bk-study-library/bk-study-library/main/courses/MT1005/files/bang-cong-thuc-giai-tich-2.md"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "vi-du-openstax-calculus-volume-3",
+      "type": "link",
+      "title": "[Ví dụ] OpenStax Calculus Volume 3",
+      "description": "Giáo trình mở, tiếng Anh: hàm nhiều biến, đạo hàm riêng, tích phân bội, tích phân đường và mặt. Mục ví dụ để minh họa định dạng link.",
+      "lang": "en",
+      "license": "CC-BY-NC-SA-4.0",
+      "origin": "link",
+      "source": "OpenStax",
+      "authors": [
+        "Gilbert Strang",
+        "Edwin Herman"
+      ],
+      "added": "2026-10-03",
+      "example": true,
+      "updated": "2026-10-03",
+      "url": "https://openstax.org/details/books/calculus-volume-3"
+    }
+  ]
+}

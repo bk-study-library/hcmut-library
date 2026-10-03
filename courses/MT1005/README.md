@@ -5,15 +5,18 @@
 | Mục | Thông tin |
 |---|---|
 | Mã môn | MT1005 |
-| Tên | Giải tích 2 |
+| Tên | Giải tích 2 / Calculus 2 |
 | Tín chỉ | 4 |
-| Khoa | Toán ứng dụng |
+| Khoa | Khoa Khoa học Ứng dụng |
 | Phần | Lý thuyết |
 | Trạng thái | Đang dạy |
+| Môn liên quan | [MT1003](../MT1003/README.md) Giải tích 1 |
 
 ## Tài liệu
 
-Chưa có tài liệu.
+### Bảng công thức
+
+- **[Mẫu] Bảng công thức Giải tích 2** (ví dụ minh họa) (vi, CC-BY-SA-4.0, BK Study Library): [bang-cong-thuc-giai-tich-2.md, 3 KB](files/bang-cong-thuc-giai-tich-2.md)
 
 ## Link
 

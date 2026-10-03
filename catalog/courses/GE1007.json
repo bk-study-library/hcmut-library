@@ -1,0 +1,18 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "GE1007",
+  "code": "GE1007",
+  "name": "Tinh thể - khoáng vật - thạch học",
+  "credits": 3,
+  "faculty": "geopet",
+  "aliases": [],
+  "status": "retired",
+  "replacedBy": "GE2033",
+  "programs": [],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "note": "Dữ liệu mẫu cho hợp đồng v1. Tên, mã, tín chỉ lấy từ CTĐT công khai (truy cập 03/10/2026). Mã cũ, chỉ còn trong bảng môn tương đương; từ K2019 học GE2033.",
+  "updated": "2026-10-03"
+}

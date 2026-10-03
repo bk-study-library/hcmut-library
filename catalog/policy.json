@@ -1,0 +1,4 @@
+{
+  "openTypes": ["summary", "notes", "cheatsheet", "quiz-pack", "tips", "link"],
+  "note": "Loại tài liệu đang nhận. Các loại khác có trong hợp đồng v1 nhưng chỉ mở khi có người duyệt thứ hai và quy định riêng (liêm chính học thuật)."
+}

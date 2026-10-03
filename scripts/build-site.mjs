@@ -13,6 +13,7 @@ import { fileURLToPath } from 'node:url';
 import { loadRepo, buildIndex, serializeIndex, TOOL_ROOT } from './lib/repo.mjs';
 import { TYPES, TYPE_ORDER, PARTS, STATUS, REPO_URL, issueUrl, formatSize } from './lib/labels.mjs';
 import { S } from './lib/strings.mjs';
+import { buildV1, serializeV1 } from './lib/v1.mjs';
 
 const SRC = path.join(TOOL_ROOT, 'site-src');
 let GENERATED = null;
@@ -160,6 +161,16 @@ export function buildSite({ root = TOOL_ROOT, out = path.join(TOOL_ROOT, 'site')
   write('index.json', full);
   write('index.min.json', min);
   write('.nojekyll', '');
+  // Dữ liệu cho app và ô tìm kiếm: cùng nội dung với v1/ trong repo.
+  for (const [p, content] of serializeV1(buildV1(repo))) write(`v1/${p}`, content);
+  // File .md nhỏ nằm trong git: phục vụ ở files/<ID>/<tên>, khớp urls trong v1.
+  for (const it of repo.items) {
+    if (it.removed) continue;
+    for (const f of it.files || []) {
+      if (!f.path) continue;
+      write(`files/${it.course}/${f.path.split('/').pop()}`, fs.readFileSync(path.join(root, 'courses', it.course, f.path)));
+    }
+  }
 
   const allCourses = new Map();
   for (const f of index.faculties) for (const c of f.courses) allCourses.set(c.id, { ...c, faculty: c.faculty });
@@ -218,6 +229,7 @@ export function buildSite({ root = TOOL_ROOT, out = path.join(TOOL_ROOT, 'site')
   <div class="panel"><p>${esc(t.reviewCta)}</p><p><a class="btn" href="${root}${P('review/')}">${esc(t.reviewBtn)}</a></p></div>
 </section>
 <script type="application/json" id="search-strings">${JSON.stringify({ results: [t.results(0), t.results(1), t.results(2)], lang })}</script>
+<script src="${root}assets/search-core.js" defer></script>
 <script src="${root}assets/search.js" defer></script>`;
       write(here, finish(layout({ t, path: here, title: '', body, alt: 'index.html' }), t));
     }

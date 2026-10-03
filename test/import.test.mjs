@@ -5,16 +5,17 @@ import os from 'node:os';
 import path from 'node:path';
 import { importSeed, inferParts } from '../scripts/import-seed.mjs';
 import { run } from '../scripts/validate.mjs';
-import { TOOL_ROOT } from '../scripts/lib/repo.mjs';
 import { FIXTURES, readJson, editJson } from './helpers.mjs';
 
 const seed = JSON.parse(fs.readFileSync(path.join(FIXTURES, 'seed-k2019.json'), 'utf8'));
-const faculties = JSON.parse(fs.readFileSync(path.join(TOOL_ROOT, 'catalog', 'faculties.json'), 'utf8'));
+// Bộ khoa cố định cho test (khóa theo tiền tố mã), không phụ thuộc catalog/faculties.json đang dùng.
+const FACULTIES = path.join(FIXTURES, 'faculties-prefix.json');
+const faculties = JSON.parse(fs.readFileSync(FACULTIES, 'utf8'));
 
 function freshRoot() {
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'bk-lib-import-'));
   fs.mkdirSync(path.join(dir, 'catalog'));
-  fs.copyFileSync(path.join(TOOL_ROOT, 'catalog', 'faculties.json'), path.join(dir, 'catalog', 'faculties.json'));
+  fs.copyFileSync(FACULTIES, path.join(dir, 'catalog', 'faculties.json'));
   return dir;
 }
 

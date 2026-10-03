@@ -26,7 +26,7 @@
           "group": { "type": "string" },
           "required": { "type": "boolean" },
           "creditsNeed": { "type": "integer", "minimum": 0 },
-          "courses": { "type": "array", "items": { "type": "string", "pattern": "^[A-Z0-9_]{3,12}$" } }
+          "courses": { "type": "array", "items": { "type": "string", "pattern": "^[A-Z0-9_]{3,12}(-[0-9]{4})?$" } }
         }
       }
     },

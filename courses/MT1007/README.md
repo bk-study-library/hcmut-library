@@ -1,19 +1,21 @@
-# MT1007 Đại số Tuyến tính
+# MT1007 Đại số tuyến tính
 
 <!-- File này do "npm run build" sinh từ catalog/courses/MT1007.json và items/. Chỉ sửa phần Mẹo học, giữa hai dòng meo-hoc. -->
 
 | Mục | Thông tin |
 |---|---|
 | Mã môn | MT1007 |
-| Tên | Đại số Tuyến tính |
+| Tên | Đại số tuyến tính / Linear Algebra |
 | Tín chỉ | 3 |
-| Khoa | Toán ứng dụng |
+| Khoa | Khoa Khoa học Ứng dụng |
 | Phần | Lý thuyết |
 | Trạng thái | Đang dạy |
 
 ## Tài liệu
 
-Chưa có tài liệu.
+### Ghi chú
+
+- **[Mẫu] Ghi chú ma trận và hệ phương trình** (ví dụ minh họa) (vi, CC-BY-SA-4.0, BK Study Library): [ghi-chu-ma-tran-he-phuong-trinh.md, 2 KB](files/ghi-chu-ma-tran-he-phuong-trinh.md)
 
 ## Link
 

@@ -3,14 +3,30 @@
   "repo": "bk-study-library/bk-study-library",
   "generated": "2026-10-03",
   "counts": {
-    "faculties": 10,
-    "courses": 3,
+    "faculties": 15,
+    "courses": 8,
     "programs": 0,
-    "items": 3
+    "items": 9
   },
   "faculties": [
     {
-      "key": "EE",
+      "key": "fme",
+      "name": {
+        "vi": "Khoa Cơ khí",
+        "en": "Faculty of Mechanical Engineering"
+      },
+      "courses": []
+    },
+    {
+      "key": "fmt",
+      "name": {
+        "vi": "Khoa Công nghệ Vật liệu",
+        "en": "Faculty of Materials Technology"
+      },
+      "courses": []
+    },
+    {
+      "key": "dee",
       "name": {
         "vi": "Khoa Điện - Điện tử",
         "en": "Faculty of Electrical and Electronics Engineering"
@@ -20,8 +36,9 @@
           "id": "EE2033",
           "code": "EE2033",
           "name": "Giải tích mạch",
+          "nameEn": "Electric Circuit Analysis",
           "credits": 3,
-          "faculty": "EE",
+          "faculty": "dee",
           "aliases": [],
           "status": "active",
           "programs": [],
@@ -29,9 +46,46 @@
             "theory"
           ],
           "related": [],
-          "note": "Mục tạm để chạy các tài liệu ví dụ. Danh mục đầy đủ (mọi khoa, chương trình) sẽ nhập sau bằng scripts/import-seed.mjs.",
+          "note": "Dữ liệu mẫu cho hợp đồng v1. Tên, mã, tín chỉ lấy từ CTĐT công khai (truy cập 03/10/2026).",
           "updated": "2026-10-03",
           "items": [
+            {
+              "id": "meo-hoc-giai-tich-mach",
+              "course": "EE2033",
+              "type": "tips",
+              "title": "[Mẫu] Mẹo học Giải tích mạch",
+              "description": "Kinh nghiệm chung: chọn phương pháp, kiểm cân bằng công suất, phasor, quá độ bậc một.",
+              "lang": "vi",
+              "authors": [
+                "BK Study Library"
+              ],
+              "license": "CC-BY-SA-4.0",
+              "origin": "self-made",
+              "files": [
+                {
+                  "name": "meo-hoc-giai-tich-mach.md",
+                  "size": 1691,
+                  "sha256": "4a181936c0147a7988b9ed839802b6f19a36dff66d012ac4183cd09ba21b22c1",
+                  "path": "courses/EE2033/files/meo-hoc-giai-tich-mach.md"
+                }
+              ],
+              "example": true,
+              "added": "2026-10-03",
+              "removed": false
+            },
+            {
+              "id": "vi-du-da-go",
+              "course": "EE2033",
+              "type": "notes",
+              "title": "[Mẫu] Mục đã gỡ",
+              "lang": "vi",
+              "license": "CC-BY-SA-4.0",
+              "origin": "self-made",
+              "example": true,
+              "added": "2026-10-03",
+              "removed": true,
+              "removedReason": "Mục mẫu minh họa tài liệu đã gỡ. Bên đọc (web, app) chỉ còn thấy id, loại và lý do gỡ."
+            },
             {
               "id": "vi-du-mit-ocw-6-002-circuits-and-electronics",
               "course": "EE2033",
@@ -55,28 +109,126 @@
       ]
     },
     {
-      "key": "MT",
+      "key": "fas",
       "name": {
-        "vi": "Toán ứng dụng",
-        "en": "Applied Mathematics"
+        "vi": "Khoa Khoa học Ứng dụng",
+        "en": "Faculty of Applied Science"
       },
       "courses": [
         {
-          "id": "MT1005",
-          "code": "MT1005",
-          "name": "Giải tích 2",
+          "id": "MT1003",
+          "code": "MT1003",
+          "name": "Giải tích 1",
+          "nameEn": "Calculus 1",
           "credits": 4,
-          "faculty": "MT",
+          "faculty": "fas",
           "aliases": [],
           "status": "active",
           "programs": [],
           "parts": [
             "theory"
           ],
-          "related": [],
-          "note": "Mục tạm để chạy các tài liệu ví dụ. Danh mục đầy đủ (mọi khoa, chương trình) sẽ nhập sau bằng scripts/import-seed.mjs.",
+          "related": [
+            "MT1005"
+          ],
+          "note": "Dữ liệu mẫu cho hợp đồng v1. Tên, mã, tín chỉ lấy từ CTĐT công khai (truy cập 03/10/2026).",
           "updated": "2026-10-03",
           "items": [
+            {
+              "id": "quiz-gioi-han-dao-ham",
+              "course": "MT1003",
+              "type": "quiz-pack",
+              "title": "[Mẫu] Gói quiz giới hạn và đạo hàm",
+              "description": "4 câu (điền số, một đáp án, đúng/sai) theo định dạng Study Pack v1, mở được bằng Luyện tập trong BK Study Desk.",
+              "lang": "vi",
+              "chapter": "1",
+              "authors": [
+                "BK Study Library"
+              ],
+              "license": "CC-BY-SA-4.0",
+              "origin": "self-made",
+              "files": [
+                {
+                  "name": "quiz-gioi-han-dao-ham.md",
+                  "size": 1227,
+                  "sha256": "cf6e7ca888ae2d759080d096d407de5d9be42b59e062e532f3293636c0c2e21e",
+                  "path": "courses/MT1003/files/quiz-gioi-han-dao-ham.md"
+                }
+              ],
+              "example": true,
+              "added": "2026-10-03",
+              "removed": false
+            },
+            {
+              "id": "tom-tat-gioi-han-dao-ham",
+              "course": "MT1003",
+              "type": "summary",
+              "title": "[Mẫu] Tóm tắt giới hạn và đạo hàm",
+              "description": "Giới hạn cơ bản, vô cùng bé tương đương, liên tục, đạo hàm, L'Hôpital, Maclaurin.",
+              "lang": "vi",
+              "chapter": "1",
+              "authors": [
+                "BK Study Library"
+              ],
+              "license": "CC-BY-SA-4.0",
+              "origin": "self-made",
+              "files": [
+                {
+                  "name": "tom-tat-gioi-han-dao-ham.md",
+                  "size": 2350,
+                  "sha256": "c7ce30ea2d1d701335549b8e0456bc7e2a9cb3525f8077e4af6d023bf40c791c",
+                  "path": "courses/MT1003/files/tom-tat-gioi-han-dao-ham.md"
+                }
+              ],
+              "example": true,
+              "added": "2026-10-03",
+              "removed": false
+            }
+          ]
+        },
+        {
+          "id": "MT1005",
+          "code": "MT1005",
+          "name": "Giải tích 2",
+          "nameEn": "Calculus 2",
+          "credits": 4,
+          "faculty": "fas",
+          "aliases": [],
+          "status": "active",
+          "programs": [],
+          "parts": [
+            "theory"
+          ],
+          "related": [
+            "MT1003"
+          ],
+          "note": "Dữ liệu mẫu cho hợp đồng v1. Tên, mã, tín chỉ lấy từ CTĐT công khai (truy cập 03/10/2026).",
+          "updated": "2026-10-03",
+          "items": [
+            {
+              "id": "bang-cong-thuc-giai-tich-2",
+              "course": "MT1005",
+              "type": "cheatsheet",
+              "title": "[Mẫu] Bảng công thức Giải tích 2",
+              "description": "Đạo hàm riêng, cực trị, tích phân bội, tích phân đường và mặt, chuỗi. Vừa một mặt A4.",
+              "lang": "vi",
+              "authors": [
+                "BK Study Library"
+              ],
+              "license": "CC-BY-SA-4.0",
+              "origin": "self-made",
+              "files": [
+                {
+                  "name": "bang-cong-thuc-giai-tich-2.md",
+                  "size": 2566,
+                  "sha256": "2c9957c28b94671f4a5a8af3c67dfb12b2902872fbfe038bbd8c742fdfaf31c7",
+                  "path": "courses/MT1005/files/bang-cong-thuc-giai-tich-2.md"
+                }
+              ],
+              "example": true,
+              "added": "2026-10-03",
+              "removed": false
+            },
             {
               "id": "vi-du-openstax-calculus-volume-3",
               "course": "MT1005",
@@ -101,9 +253,10 @@
         {
           "id": "MT1007",
           "code": "MT1007",
-          "name": "Đại số Tuyến tính",
+          "name": "Đại số tuyến tính",
+          "nameEn": "Linear Algebra",
           "credits": 3,
-          "faculty": "MT",
+          "faculty": "fas",
           "aliases": [],
           "status": "active",
           "programs": [],
@@ -111,9 +264,34 @@
             "theory"
           ],
           "related": [],
-          "note": "Mục tạm để chạy các tài liệu ví dụ. Danh mục đầy đủ (mọi khoa, chương trình) sẽ nhập sau bằng scripts/import-seed.mjs.",
+          "note": "Dữ liệu mẫu cho hợp đồng v1. Tên, mã, tín chỉ lấy từ CTĐT công khai (truy cập 03/10/2026).",
           "updated": "2026-10-03",
           "items": [
+            {
+              "id": "ghi-chu-ma-tran-he-phuong-trinh",
+              "course": "MT1007",
+              "type": "notes",
+              "title": "[Mẫu] Ghi chú ma trận và hệ phương trình",
+              "description": "Ma trận, định thức, hạng, Kronecker - Capelli, trị riêng.",
+              "lang": "vi",
+              "chapter": "1-3",
+              "authors": [
+                "BK Study Library"
+              ],
+              "license": "CC-BY-SA-4.0",
+              "origin": "self-made",
+              "files": [
+                {
+                  "name": "ghi-chu-ma-tran-he-phuong-trinh.md",
+                  "size": 2008,
+                  "sha256": "bbc70c2e617c40ca844acbd4ad402c9f6e30b1cd1af2f0cb5b756605df9101ed",
+                  "path": "courses/MT1007/files/ghi-chu-ma-tran-he-phuong-trinh.md"
+                }
+              ],
+              "example": true,
+              "added": "2026-10-03",
+              "removed": false
+            },
             {
               "id": "vi-du-mit-ocw-18-06sc-linear-algebra",
               "course": "MT1007",
@@ -137,58 +315,165 @@
       ]
     },
     {
-      "key": "PH",
+      "key": "cse",
       "name": {
-        "vi": "Vật lý",
-        "en": "Physics"
+        "vi": "Khoa Khoa học và Kỹ thuật Máy tính",
+        "en": "Faculty of Computer Science and Engineering"
       },
       "courses": []
     },
     {
-      "key": "CH",
+      "key": "geopet",
       "name": {
-        "vi": "Hóa học",
-        "en": "Chemistry"
+        "vi": "Khoa Kỹ thuật Địa chất và Dầu khí",
+        "en": "Faculty of Geology and Petroleum Engineering"
+      },
+      "courses": [
+        {
+          "id": "GE1007",
+          "code": "GE1007",
+          "name": "Tinh thể - khoáng vật - thạch học",
+          "credits": 3,
+          "faculty": "geopet",
+          "aliases": [],
+          "status": "retired",
+          "replacedBy": "GE2033",
+          "programs": [],
+          "parts": [
+            "theory"
+          ],
+          "related": [],
+          "note": "Dữ liệu mẫu cho hợp đồng v1. Tên, mã, tín chỉ lấy từ CTĐT công khai (truy cập 03/10/2026). Mã cũ, chỉ còn trong bảng môn tương đương; từ K2019 học GE2033.",
+          "updated": "2026-10-03",
+          "items": []
+        },
+        {
+          "id": "GE2033",
+          "code": "GE2033",
+          "name": "Tinh thể - khoáng vật - thạch học + thực tập",
+          "nameEn": "Crystallography - Mineralogy - Petrography",
+          "credits": 3,
+          "faculty": "geopet",
+          "aliases": [
+            {
+              "code": "GE1007",
+              "name": "Tinh thể - khoáng vật - thạch học",
+              "to": "2018-12-31"
+            }
+          ],
+          "status": "active",
+          "replaces": [
+            "GE1007"
+          ],
+          "programs": [],
+          "parts": [
+            "theory",
+            "lab"
+          ],
+          "related": [],
+          "note": "Dữ liệu mẫu cho hợp đồng v1. Tên, mã, tín chỉ lấy từ CTĐT công khai (truy cập 03/10/2026). Tương đương GE1007 (khóa 2018 về trước) theo bảng môn tương đương của Khoa Kỹ thuật Địa chất và Dầu khí.",
+          "updated": "2026-10-03",
+          "items": []
+        },
+        {
+          "id": "GE4169",
+          "code": "GE4169",
+          "name": "Khai phá dữ liệu",
+          "nameEn": "Data Mining",
+          "credits": 3,
+          "faculty": "geopet",
+          "aliases": [],
+          "status": "active",
+          "programs": [],
+          "parts": [
+            "theory"
+          ],
+          "related": [],
+          "note": "Dữ liệu mẫu cho hợp đồng v1. Tên, mã, tín chỉ lấy từ CTĐT công khai (truy cập 03/10/2026). CTĐT Kỹ thuật Địa chất 2023. Mã GE4169 xuất hiện với môn khác trong CTĐT 2024, xem GE4169-2024. Chờ người duyệt xác nhận.",
+          "updated": "2026-10-03",
+          "items": []
+        },
+        {
+          "id": "GE4169-2024",
+          "code": "GE4169",
+          "name": "Kỹ thuật thi công công trình ngầm",
+          "nameEn": "Underground construction engineering",
+          "credits": 3,
+          "faculty": "geopet",
+          "aliases": [],
+          "status": "active",
+          "programs": [],
+          "parts": [
+            "theory"
+          ],
+          "related": [],
+          "note": "Dữ liệu mẫu cho hợp đồng v1. Tên, mã, tín chỉ lấy từ CTĐT công khai (truy cập 03/10/2026). CTĐT Địa kỹ thuật Xây dựng 2024 dùng lại mã GE4169 cho môn này. Chờ người duyệt xác nhận.",
+          "updated": "2026-10-03",
+          "items": []
+        }
+      ]
+    },
+    {
+      "key": "fte",
+      "name": {
+        "vi": "Khoa Kỹ thuật Giao thông",
+        "en": "Faculty of Transportation Engineering"
       },
       "courses": []
     },
     {
-      "key": "LA",
+      "key": "che",
       "name": {
-        "vi": "Ngoại ngữ",
-        "en": "Foreign Languages"
+        "vi": "Khoa Kỹ thuật Hóa học",
+        "en": "Faculty of Chemical Engineering"
       },
       "courses": []
     },
     {
-      "key": "SP",
+      "key": "fce",
       "name": {
-        "vi": "Lý luận chính trị",
-        "en": "Political Theory"
+        "vi": "Khoa Kỹ thuật Xây dựng",
+        "en": "Faculty of Civil Engineering"
       },
       "courses": []
     },
     {
-      "key": "IM",
+      "key": "fenr",
       "name": {
-        "vi": "Quản lý công nghiệp",
-        "en": "Industrial Management"
+        "vi": "Khoa Môi trường và Tài nguyên",
+        "en": "Faculty of Environment and Natural Resources"
       },
       "courses": []
     },
     {
-      "key": "PE",
+      "key": "sim",
       "name": {
-        "vi": "Giáo dục thể chất",
-        "en": "Physical Education"
+        "vi": "Khoa Quản lý Công nghiệp",
+        "en": "School of Industrial Management"
       },
       "courses": []
     },
     {
-      "key": "EN",
+      "key": "flc",
       "name": {
-        "vi": "Môi trường",
-        "en": "Environment"
+        "vi": "Trung tâm Ngoại ngữ",
+        "en": "Foreign Language Center"
+      },
+      "courses": []
+    },
+    {
+      "key": "llct",
+      "name": {
+        "vi": "Lý luận chính trị (chưa xác định đơn vị)",
+        "en": "Political theory (unit not identified)"
+      },
+      "courses": []
+    },
+    {
+      "key": "gdtc-qp",
+      "name": {
+        "vi": "Giáo dục thể chất và Quốc phòng (chưa xác định đơn vị)",
+        "en": "Physical education and military training (unit not identified)"
       },
       "courses": []
     },
