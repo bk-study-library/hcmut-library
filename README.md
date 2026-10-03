@@ -2,7 +2,7 @@
 
 [![Tiếng Việt](https://img.shields.io/badge/lang-Ti%E1%BA%BFng%20Vi%E1%BB%87t-red.svg)](README.md) [![English](https://img.shields.io/badge/lang-English-blue.svg)](docs/en/README.md)
 
-Thư viện tài liệu học tập do sinh viên Bách Khoa TP.HCM (HCMUT) tự soạn và chia sẻ, xếp theo mã môn. Đọc ngay trên web, không cần cài gì: **https://xeroz369.github.io/bk-study-library/**
+Thư viện tài liệu học tập do sinh viên Bách Khoa TP.HCM (HCMUT) tự soạn và chia sẻ, xếp theo mã môn. Đọc ngay trên web, không cần cài gì: **https://bk-study-library.github.io/bk-study-library/**
 
 Đây là dự án của sinh viên, không phải trang chính thức của Trường Đại học Bách khoa - ĐHQG-HCM.
 
@@ -32,7 +32,7 @@ Lý do: Luật Sở hữu trí tuệ chỉ cho tự sao một bản để học,
 ### Không cần Git: gửi qua issue
 
 1. Đăng nhập GitHub.
-2. Mở form [Đóng góp tài liệu](https://github.com/xeroz369/bk-study-library/issues/new?template=dong-gop-tai-lieu.yml) (hoặc chọn **Gửi tài liệu** trên trang môn để form điền sẵn mã môn). Chỉ có link thì dùng [Thêm link](https://github.com/xeroz369/bk-study-library/issues/new?template=them-link.yml).
+2. Mở form [Đóng góp tài liệu](https://github.com/bk-study-library/bk-study-library/issues/new?template=dong-gop-tai-lieu.yml) (hoặc chọn **Gửi tài liệu** trên trang môn để form điền sẵn mã môn). Chỉ có link thì dùng [Thêm link](https://github.com/bk-study-library/bk-study-library/issues/new?template=them-link.yml).
 3. Điền thông tin, đánh dấu các ô cam kết, kéo file vào ô đính kèm. GitHub nhận file đính kèm tới 25 MB cho tài liệu và .zip, 10 MB cho ảnh; thư viện nhận tới 20 MB. File KiCad thì nén thành .zip.
 4. Người duyệt trả lời trong issue, rồi đưa bài lên thư viện.
 
@@ -44,7 +44,7 @@ Lý do: Luật Sở hữu trí tuệ chỉ cho tự sao một bản để học,
 
 ### Duyệt bài
 
-Người duyệt là sinh viên đã học qua môn. Hiện tại người duyệt mặc định là [@xeroz369](https://github.com/xeroz369) (file [CODEOWNERS](.github/CODEOWNERS)); khi có thêm người, mỗi khoa hoặc nhóm môn sẽ có người duyệt riêng. Muốn tham gia: mở form [Đăng ký duyệt bài](https://github.com/xeroz369/bk-study-library/issues/new?template=dang-ky-duyet.yml). Quy trình và danh sách kiểm: [docs/review.md](docs/review.md).
+Người duyệt là sinh viên đã học qua môn. Hiện tại người duyệt mặc định là [@xeroz369](https://github.com/xeroz369) (file [CODEOWNERS](.github/CODEOWNERS)); khi có thêm người, mỗi khoa hoặc nhóm môn sẽ có người duyệt riêng. Muốn tham gia: mở form [Đăng ký duyệt bài](https://github.com/bk-study-library/bk-study-library/issues/new?template=dang-ky-duyet.yml). Quy trình và danh sách kiểm: [docs/review.md](docs/review.md).
 
 ## Cấu trúc
 

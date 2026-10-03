@@ -1,7 +1,7 @@
 blank_issues_enabled: false
 contact_links:
   - name: Xem thư viện / Browse the library
-    url: https://xeroz369.github.io/bk-study-library/
+    url: https://bk-study-library.github.io/bk-study-library/
     about: Tìm tài liệu theo mã môn. / Find material by course code.
   - name: BK Study Desk (app)
     url: https://github.com/xeroz369/bk-study-desk

@@ -1,6 +1,6 @@
 // Nhãn hiển thị dùng chung cho README môn và trang web.
 
-export const REPO = 'xeroz369/bk-study-library';
+export const REPO = 'bk-study-library/bk-study-library';
 export const REPO_URL = `https://github.com/${REPO}`;
 
 export const TYPE_ORDER = ['summary', 'notes', 'cheatsheet', 'solution', 'quiz-pack', 'prelab-template', 'prelab-reference', 'link'];

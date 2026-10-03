@@ -8,7 +8,7 @@
   "lab": 2,
   "license": "CC-BY-SA-4.0",
   "origin": "self-made",
-  "files": [{ "name": "prelab-2.pdf", "size": 120000, "sha256": "1111111111111111111111111111111111111111111111111111111111111111", "url": "https://github.com/xeroz369/bk-study-library/releases/download/files-EE1009/prelab-2.pdf" }],
+  "files": [{ "name": "prelab-2.pdf", "size": 120000, "sha256": "1111111111111111111111111111111111111111111111111111111111111111", "url": "https://github.com/bk-study-library/bk-study-library/releases/download/files-EE1009/prelab-2.pdf" }],
   "added": "2026-02-10",
   "gradedAfter": "2026-01-20",
   "removed": false

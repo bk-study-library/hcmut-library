@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "repo": "xeroz369/bk-study-library",
+  "repo": "bk-study-library/bk-study-library",
   "generated": "2026-10-01",
   "counts": {
     "faculties": 2,
@@ -63,7 +63,7 @@
                   "name": "prelab-2.pdf",
                   "size": 120000,
                   "sha256": "1111111111111111111111111111111111111111111111111111111111111111",
-                  "url": "https://github.com/xeroz369/bk-study-library/releases/download/files-EE1009/prelab-2.pdf"
+                  "url": "https://github.com/bk-study-library/bk-study-library/releases/download/files-EE1009/prelab-2.pdf"
                 }
               ],
               "added": "2026-02-10",

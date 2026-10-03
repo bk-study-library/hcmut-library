@@ -22,7 +22,7 @@
 
 ### Prelab tham khảo (đã hết hạn chấm)
 
-- **Prelab bài 2 (tham khảo)** (HK251, bài 2, vi, CC-BY-SA-4.0): [prelab-2.pdf, 117 KB](https://github.com/xeroz369/bk-study-library/releases/download/files-EE1009/prelab-2.pdf)
+- **Prelab bài 2 (tham khảo)** (HK251, bài 2, vi, CC-BY-SA-4.0): [prelab-2.pdf, 117 KB](https://github.com/bk-study-library/bk-study-library/releases/download/files-EE1009/prelab-2.pdf)
 
 ## Link
 
@@ -36,7 +36,7 @@ Chưa có mẹo. Bạn có kinh nghiệm học môn này? Mở Pull Request sử
 
 ## Đóng góp
 
-- Gửi tài liệu tự soạn, không cần biết Git: [mở form Đóng góp tài liệu](https://github.com/xeroz369/bk-study-library/issues/new?template=dong-gop-tai-lieu.yml&course=EE1009).
-- Thêm link tới tài liệu công khai: [mở form Thêm link](https://github.com/xeroz369/bk-study-library/issues/new?template=them-link.yml&course=EE1009).
-- Sửa tên, mã môn: [mở form Sửa danh mục môn](https://github.com/xeroz369/bk-study-library/issues/new?template=sua-danh-muc.yml&course=EE1009).
-- Quy định: [CONTRIBUTING.md](https://github.com/xeroz369/bk-study-library/blob/main/CONTRIBUTING.md). Gỡ tài liệu: [TAKEDOWN.md](https://github.com/xeroz369/bk-study-library/blob/main/TAKEDOWN.md).
+- Gửi tài liệu tự soạn, không cần biết Git: [mở form Đóng góp tài liệu](https://github.com/bk-study-library/bk-study-library/issues/new?template=dong-gop-tai-lieu.yml&course=EE1009).
+- Thêm link tới tài liệu công khai: [mở form Thêm link](https://github.com/bk-study-library/bk-study-library/issues/new?template=them-link.yml&course=EE1009).
+- Sửa tên, mã môn: [mở form Sửa danh mục môn](https://github.com/bk-study-library/bk-study-library/issues/new?template=sua-danh-muc.yml&course=EE1009).
+- Quy định: [CONTRIBUTING.md](https://github.com/bk-study-library/bk-study-library/blob/main/CONTRIBUTING.md). Gỡ tài liệu: [TAKEDOWN.md](https://github.com/bk-study-library/bk-study-library/blob/main/TAKEDOWN.md).
