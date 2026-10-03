@@ -97,7 +97,7 @@ export const S = {
     breadcrumb: 'Đường dẫn',
     footerLicense:
       'Nội dung theo CC BY-SA 4.0 trừ khi ghi khác; link giữ giấy phép của nguồn. Mã nguồn (scripts/) theo MIT.',
-    footerPrivacy: 'Trang không dùng cookie, không theo dõi, không quảng cáo.',
+    footerPrivacy: 'Các trang của thư viện không đặt cookie, không có công cụ phân tích, không quảng cáo. Widget Turnstile ở trang Gửi tài liệu do Cloudflare vận hành.',
     footerUpdated: (d) => `Cập nhật dữ liệu: ${d}`,
     notFoundTitle: 'Không tìm thấy trang',
     notFoundText: 'Trang này không có hoặc đã đổi địa chỉ. Địa chỉ môn dùng ID cố định, nên link tới môn không bị hỏng khi môn đổi tên.',
@@ -178,7 +178,7 @@ export const S = {
     breadcrumb: 'Breadcrumb',
     footerLicense:
       'Content is under CC BY-SA 4.0 unless marked otherwise; links keep the license of their source. Code (scripts/) is under MIT.',
-    footerPrivacy: 'This site uses no cookies, no tracking and no ads.',
+    footerPrivacy: 'Library pages set no cookies and have no analytics or ads. The Turnstile widget on the Gửi tài liệu (submit) page is run by Cloudflare.',
     footerUpdated: (d) => `Data updated: ${d}`,
     notFoundTitle: 'Page not found',
     notFoundText: 'This page does not exist or has moved. Course addresses use a fixed ID, so links to a course keep working after it is renamed.',

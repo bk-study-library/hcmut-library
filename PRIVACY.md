@@ -4,7 +4,7 @@ Tài liệu này nói thư viện và form gửi tài liệu thu thập gì, gi�
 
 ## Khi bạn đọc và tải tài liệu
 
-Trang web và file `v1` là nội dung công khai, phục vụ qua GitHub Pages và GitHub Releases. Trang không dùng cookie, không theo dõi, không quảng cáo. GitHub, như mọi máy chủ web, có thể thấy địa chỉ IP của bạn khi bạn tải trang hay tải file; chính sách của GitHub áp dụng cho phần đó.
+Trang web và file `v1` là nội dung công khai, phục vụ qua GitHub Pages và GitHub Releases. Các trang của thư viện không đặt cookie, không có công cụ phân tích, không quảng cáo. Riêng trang Gửi tài liệu có widget Cloudflare Turnstile, do Cloudflare vận hành (xem mục dưới). GitHub, như mọi máy chủ web, có thể thấy địa chỉ IP của bạn khi bạn tải trang hay tải file; chính sách của GitHub áp dụng cho phần đó.
 
 ## Khi bạn gửi tài liệu qua form
 
@@ -20,7 +20,7 @@ Form không bắt nhập email. Những gì form gửi đi:
 
 Địa chỉ IP của bạn:
 
-- Worker nhận bài dùng IP chỉ để giới hạn số lần gửi (5 lần mỗi 60 giây) qua tính năng Rate Limiting của Cloudflare. Worker không lưu IP vào kho, vào PR hay vào nhật ký, và nhật ký từng lượt gọi của Worker đã tắt.
+- Worker nhận bài dùng IP chỉ để giới hạn số lần gửi theo IP, qua tính năng Rate Limiting của Cloudflare. Ngưỡng đặt trong cấu hình Worker (`worker/wrangler.jsonc`). Worker không lưu IP vào kho, vào PR hay vào nhật ký, và nhật ký từng lượt gọi của Worker đã tắt.
 - Cloudflare, với vai trò nhà cung cấp hạ tầng, vẫn nhìn thấy IP khi xử lý yêu cầu. Chính sách của Cloudflare áp dụng cho phần đó.
 
 ## File chờ duyệt
@@ -29,14 +29,15 @@ Form không bắt nhập email. Những gì form gửi đi:
 - Khi PR được merge, bản đã làm sạch được đưa lên Release công khai và file trong kho bị xóa. Khi PR bị đóng, file trong kho bị xóa.
 - Bài bị bỏ quên: luật vòng đời của kho xóa mọi file sau 30 ngày.
 - Với PDF, máy xóa siêu dữ liệu (Author, Creator, Producer, XMP) khỏi bản được đăng. Bản gốc chỉ nằm trong kho riêng cho tới khi bị xóa như trên.
-- Máy quét virus và quét thông tin cá nhân (MSSV, email, số điện thoại). Thông tin cá nhân chỉ bị cảnh báo trong PR, không bị chặn: người gửi và người duyệt tự quyết có xóa không. Hãy tự xóa phần này trước khi gửi.
+- Máy quét virus và quét thông tin cá nhân (MSSV, email, số điện thoại) trong file. Thông tin cá nhân trong file chỉ bị cảnh báo trong PR, không bị chặn: người gửi và người duyệt tự quyết có xóa không. Hãy tự xóa phần này trước khi gửi.
+- Các ô chữ của form (tiêu đề, mô tả, chương, giảng viên, tên hiển thị, thông tin sách) hiện công khai, nên form từ chối bài có MSSV, email hay số điện thoại trong các ô này.
 
 ## Những gì công khai khi repo public
 
 Mỗi bài gửi tạo một Pull Request. Khi repo public, PR đó công khai, gồm:
 
 - các trường trong bảng thông tin (môn, loại, tiêu đề, mô tả, chương, học kỳ, giảng viên, tên hiển thị nếu có, giấy phép);
-- mã bài, giá trị `sha256` và kích thước của file;
+- mã bài, giá trị `sha256` và kích thước của file (cả `sha256` của file gốc, dùng để chặn gửi trùng);
 - comment kết quả kiểm của máy, có thể gồm loại thông tin cá nhân tìm thấy và số trang;
 - người mở PR là bot của thư viện, không phải bạn. Thư viện không ghi tài khoản hay email của bạn vào PR.
 

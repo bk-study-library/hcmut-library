@@ -83,7 +83,7 @@ Cần Node 22 trở lên. Không có gói npm nào phải cài.
 
 ## Trang web
 
-GitHub Pages dựng trang từ `catalog/` và `courses/` mỗi khi `main` thay đổi (workflow `pages.yml`). Trang tĩnh, không cookie, không theo dõi, không CDN, dùng font của máy. Có trang chủ với ô tìm kiếm (gõ không dấu được, tìm cả mã cũ), trang khoa, trang chương trình, trang môn, trang Đóng góp, Duyệt bài, Gỡ tài liệu. Bản tiếng Anh ở `/en/`.
+GitHub Pages dựng trang từ `catalog/` và `courses/` mỗi khi `main` thay đổi (workflow `pages.yml`). Trang tĩnh, không đặt cookie, không có công cụ phân tích, không CDN, dùng font của máy (riêng trang Gửi tài liệu có widget Turnstile của Cloudflare). Có trang chủ với ô tìm kiếm (gõ không dấu được, tìm cả mã cũ), trang khoa, trang chương trình, trang môn, trang Đóng góp, Duyệt bài, Gỡ tài liệu. Bản tiếng Anh ở `/en/`.
 
 ## App BK Study Desk dùng thư viện thế nào
 
