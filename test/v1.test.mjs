@@ -132,6 +132,16 @@ test('v1: mime lấy từ policy khi file không ghi, ưu tiên mime của file;
   assert.ok(!JSON.stringify(out).includes('quarantine'));
 });
 
+test('v1: uploadSha256 (sha256 file gốc) không lọt ra', () => {
+  const repo = loadRepo(copyFixture());
+  const it = repo.items.find((x) => x.files && x.files.length && !x.removed);
+  it.files = [{ name: 'a.pdf', size: 10, sha256: 'a'.repeat(64), uploadSha256: 'c'.repeat(64), url: 'https://example.org/a.pdf' }];
+  const out = buildV1(repo).details.get(it.course).items.find((x) => x.id === it.id);
+  assert.equal(out.files[0].sha256, 'a'.repeat(64));
+  assert.ok(!JSON.stringify(out).includes('uploadSha256'));
+  assert.ok(!JSON.stringify(out).includes('c'.repeat(64)));
+});
+
 test('v1: mục chỉ có quarantine, không url, vẫn bị loại', () => {
   const repo = loadRepo(copyFixture());
   const it = repo.items.find((x) => x.files && x.files.length && !x.removed);

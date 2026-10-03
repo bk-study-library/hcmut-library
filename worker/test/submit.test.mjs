@@ -195,7 +195,7 @@ describe('POST /submit', () => {
       term: 'HK251',
       authors: [DISPLAY],
       origin: 'self-made',
-      files: [{ name, size: bytes.length, sha256: sha, mime: 'application/pdf', quarantine: `pending/${body.code}/${name}` }],
+      files: [{ name, size: bytes.length, sha256: sha, uploadSha256: sha, mime: 'application/pdf', quarantine: `pending/${body.code}/${name}` }],
     });
     expect(item.added).toMatch(/^\d{4}-\d{2}-\d{2}$/);
     expect(item.files[0]).not.toHaveProperty('url');
@@ -351,6 +351,21 @@ describe('POST /submit', () => {
       expect(await r2Keys()).toEqual([]);
     } finally {
       index.faculties[0].courses[0].items[0].files[0].sha256 = saved;
+    }
+  });
+
+  it('trùng sha256 file gốc của tài liệu đã có (bản sạch khác sha256): 409', async () => {
+    const bytes = pdfBytes(600, 9);
+    const sha = await sha256Hex(bytes);
+    const f = index.faculties[0].courses[0].items[0].files[0];
+    f.uploadSha256 = sha;
+    try {
+      const { res, body } = await run(post(form({}, bytes)));
+      expect(res.status).toBe(409);
+      expect(body).toEqual({ ok: false, error: 'Tài liệu này đã có trong thư viện.' });
+      expect(await r2Keys()).toEqual([]);
+    } finally {
+      delete f.uploadSha256;
     }
   });
 

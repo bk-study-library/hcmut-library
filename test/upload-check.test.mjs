@@ -230,3 +230,11 @@ test('validateFailureReason: chỉ giữ dòng lỗi, bỏ dấu backtick, gói 
   // Không có dòng lỗi nào thì vẫn có lý do.
   assert.match(validateFailureReason(''), /Kiểm dữ liệu của repo không qua/);
 });
+
+test('applyCheck giữ uploadSha256 của file gốc khi thay sha256 bằng bản sạch', () => {
+  const withUpload = { ...item, files: [{ ...item.files[0], uploadSha256: OLD_SHA }] };
+  const out = applyCheck(withUpload, opts);
+  assert.equal(out.files[0].sha256, SHA);
+  assert.equal(out.files[0].uploadSha256, OLD_SHA);
+  assert.deepEqual(validate(itemSchema, out), []);
+});

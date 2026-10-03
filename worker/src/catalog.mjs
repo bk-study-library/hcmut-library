@@ -1,6 +1,7 @@
 // Danh mục cho Worker: policy.json và index.json đọc qua GitHub, giữ trong Cache API.
 
-// Gọn index.json còn những gì Worker cần: môn, mã môn hiện tại, id đã dùng, sha256 tài liệu đang có.
+// Gọn index.json còn những gì Worker cần: môn, mã môn hiện tại, id đã dùng, sha256 tài liệu đang có
+// (cả bản đã làm sạch lẫn file gốc người gửi tải lên).
 export function summarize(policy, index) {
   const courses = [];
   const shas = [];
@@ -10,7 +11,10 @@ export function summarize(policy, index) {
       courses.push({ id: c.id, code: c.code, status: c.status, ids: items.map((i) => i.id) });
       for (const it of items) {
         if (it.removed) continue;
-        for (const f of it.files ?? []) if (f.sha256) shas.push(f.sha256);
+        for (const f of it.files ?? []) {
+          if (f.sha256) shas.push(f.sha256);
+          if (f.uploadSha256) shas.push(f.uploadSha256);
+        }
       }
     }
   }

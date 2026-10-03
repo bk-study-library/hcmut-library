@@ -36,3 +36,10 @@ test('buildItem book-ref có book, không có files', () => {
   assert.equal('files' in item, false);
   assert.deepEqual(validate(itemSchema, item), []);
 });
+
+test('buildItem giữ sha256 của file gốc trong uploadSha256', () => {
+  const item = buildItem(base, { ...file, uploadSha256: file.sha256 }, '2026-10-03', 'tom-tat');
+  assert.equal(item.files[0].uploadSha256, file.sha256);
+  assert.deepEqual(validate(itemSchema, item), []);
+  assert.equal('uploadSha256' in buildItem(base, file, '2026-10-03', 'tom-tat').files[0], false);
+});

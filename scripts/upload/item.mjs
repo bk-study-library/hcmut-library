@@ -28,6 +28,8 @@ export function buildItem(form, file, today, id) {
       mime: file.mime,
       quarantine: file.quarantine,
     }];
+    // sha256 file gốc: kiem-file thay sha256 bằng bản đã làm sạch, Worker vẫn cần bản gốc để chặn trùng.
+    if (file.uploadSha256) item.files[0].uploadSha256 = file.uploadSha256;
   }
   return item;
 }

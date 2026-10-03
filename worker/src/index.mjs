@@ -236,12 +236,12 @@ async function handleSubmit(req, env, deps, cors) {
   let stored = null;
   let shaKey = null;
   if (bytes) {
-    // Trùng tài liệu đã có trong thư viện.
+    // Trùng tài liệu đã có trong thư viện (so cả sha256 file gốc, vì bản đã làm sạch khác sha256).
     const sha256 = await sha256Hex(bytes);
     if (catalog.shas.has(sha256)) return reply(409, { ok: false, error: MESSAGES.exists }, cors);
     shaKey = `sha/${sha256}`;
     const name = fileName({ code: course.code, type: form.type, slug, term: form.term, ext });
-    stored = { name, size: bytes.length, sha256, mime: policy.extensions[ext].mime, quarantine: `pending/${code}/${name}` };
+    stored = { name, size: bytes.length, sha256, uploadSha256: sha256, mime: policy.extensions[ext].mime, quarantine: `pending/${code}/${name}` };
   }
 
   // Dựng sẵn mục và PR trước khi ghi R2, để lỗi ở đây không để lại file mồ côi.

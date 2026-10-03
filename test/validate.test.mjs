@@ -243,3 +243,10 @@ test('mẫu thông tin cá nhân dùng chung: repo.mjs xuất lại đúng pii.m
   assert.equal(pii.scanText('an@hcmut.edu.vn pii-ok').length, 0);
   assert.equal(pii.scanText('an@hcmut.edu.vn pii-ok', { skipMarked: false })[0].code, 'PII_EMAIL');
 });
+
+test('uploadSha256 hợp lệ trong schema và không bị quét như số điện thoại', () => {
+  // Chuỗi hex có đoạn giống số điện thoại.
+  const hex = '0912345678' + 'a'.repeat(54);
+  assert.deepEqual(errorsAfter((d) => editJson(d, ITEM, (it) => { it.files[0].uploadSha256 = hex; })), []);
+  assert.deepEqual(errorsAfter((d) => editJson(d, ITEM, (it) => { it.files[0].uploadSha256 = 'x'; })), ['SCHEMA']);
+});

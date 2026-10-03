@@ -39,7 +39,8 @@
           "mirrors": { "type": "array", "items": { "type": "string", "pattern": "^https://" }, "description": "Link dự phòng của cùng file (cùng sha256)." },
           "path": { "type": "string", "pattern": "^files/[^/\\\\]+\\.md$", "description": "File .md nhỏ nằm trong git, đường dẫn tính từ thư mục môn." },
           "mime": { "type": "string", "pattern": "^[a-z]+/[A-Za-z0-9.+-]+$", "description": "Loại nội dung của file. Không có thì lấy theo đuôi trong catalog/policy.json." },
-          "quarantine": { "type": "string", "pattern": "^(pending|clean)/[A-Za-z0-9]{10}/[^/]+$", "description": "Chỗ file nằm trong kho cách ly khi chưa có url. Chỉ dùng nội bộ, không ra v1." }
+          "quarantine": { "type": "string", "pattern": "^(pending|clean)/[A-Za-z0-9]{10}/[^/]+$", "description": "Chỗ file nằm trong kho cách ly khi chưa có url. Chỉ dùng nội bộ, không ra v1." },
+          "uploadSha256": { "type": "string", "pattern": "^[0-9a-f]{64}$", "description": "sha256 của file gốc người gửi tải lên, trước khi làm sạch. Worker dùng để chặn gửi trùng. Chỉ dùng nội bộ, không ra v1." }
         }
       }
     },

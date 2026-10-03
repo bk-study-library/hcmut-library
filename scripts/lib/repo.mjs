@@ -41,7 +41,7 @@ function fmtSize(n) {
 export { PII_PATTERNS, scanText };
 
 // Trong JSON chỉ quét giá trị chuỗi, bỏ url, mã băm và ISBN (dãy số dài theo mẫu cố định).
-const NOT_TEXT = new Set(['url', 'sha256', 'isbn', '$schema']);
+const NOT_TEXT = new Set(['url', 'sha256', 'uploadSha256', 'isbn', '$schema']);
 function jsonStrings(v, key, out) {
   if (typeof v === 'string') {
     if (!NOT_TEXT.has(key)) out.push(v);

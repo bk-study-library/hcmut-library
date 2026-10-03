@@ -269,8 +269,9 @@ function cleanPdf(src, dest) {
   fs.copyFileSync(src, work);
   const before = exifJson(work);
   tool('exiftool', ['-all:all=', '-overwrite_original', work]);
-  // qpdf trả mã 3 khi chỉ có cảnh báo, file vẫn được ghi.
-  tool('qpdf', ['--linearize', work, dest], [0, 3]);
+  // qpdf trả mã 3 khi chỉ có cảnh báo, file vẫn được ghi. --deterministic-id: cùng file gốc
+  // cho cùng bản sạch (ID không lấy theo giờ), nên sha256 bản sạch ổn định giữa các lần chạy.
+  tool('qpdf', ['--linearize', '--deterministic-id', work, dest], [0, 3]);
   fs.rmSync(work);
   return removedTags(before, exifJson(dest));
 }
