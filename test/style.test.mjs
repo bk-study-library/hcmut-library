@@ -8,7 +8,7 @@ import { TOOL_ROOT } from '../scripts/lib/repo.mjs';
 
 const BANNED = /[—–→⇒↔·…“”‘’★✓✔]|\p{Extended_Pictographic}/u;
 const EXT = new Set(['.md', '.yml', '.yaml', '.html', '.json', '.mjs', '.js', '.css']);
-const SKIP = new Set(['.git', 'node_modules', 'site']);
+const SKIP = new Set(['.git', '.superpowers', 'node_modules', 'site']);
 
 function files(dir, acc = []) {
   for (const e of fs.readdirSync(dir, { withFileTypes: true })) {

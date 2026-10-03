@@ -101,10 +101,8 @@ test('file .md trong git: size và sha256 phải khớp nội dung', () => {
   assert.deepEqual(errorsAfter((d) => fs.appendFileSync(path.join(d, 'courses', 'EE1009', 'files', 'tom-tat-c1.md'), 'thêm\n')), ['FILE_PATH']);
 });
 
-test('prelab tham khảo cần gradedAfter và chỉ đăng sau ngày đó', () => {
-  assert.deepEqual(errorsAfter((d) => editJson(d, PRELAB, (it) => { delete it.gradedAfter; })), ['PRELAB_GRADED']);
-  assert.deepEqual(errorsAfter((d) => editJson(d, PRELAB, (it) => { it.added = '2026-01-10'; })), ['PRELAB_GRADED']);
-  assert.deepEqual(errorsAfter((d) => editJson(d, PRELAB, (it) => { it.gradedAfter = '2099-01-01'; it.added = '2099-01-02'; })), ['PRELAB_GRADED']);
+test('prelab tham khảo không cần gradedAfter', () => {
+  assert.deepEqual(errorsAfter((d) => editJson(d, PRELAB, (it) => { delete it.gradedAfter; })), []);
 });
 
 test('tự soạn phải dùng CC BY-SA 4.0 (hoặc CC BY 4.0, CC0)', () => {

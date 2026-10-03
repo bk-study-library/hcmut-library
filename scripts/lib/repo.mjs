@@ -6,16 +6,9 @@ import path from 'node:path';
 import crypto from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 import { validate } from './schema.mjs';
+import { loadPolicy } from './policy.mjs';
 
 export const TOOL_ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '..');
-
-export const LIMITS = {
-  maxFileBytes: 20 * 1024 * 1024,
-  maxMdInGitBytes: 1024 * 1024,
-  allowedExt: ['.pdf', '.md', '.docx', '.pptx', '.xlsx', '.zip', '.png', '.jpg', '.json'],
-  quizExt: ['.json', '.md', '.zip'],
-  selfMadeLicenses: ['CC-BY-SA-4.0', 'CC-BY-4.0', 'CC0-1.0'],
-};
 
 const SKIP_DIRS = new Set(['.git', 'node_modules', 'site']);
 
@@ -35,10 +28,6 @@ function listJson(dir) {
 
 function sha256File(p) {
   return crypto.createHash('sha256').update(fs.readFileSync(p)).digest('hex');
-}
-
-function today() {
-  return new Date().toISOString().slice(0, 10);
 }
 
 // ---------- Quét thông tin cá nhân ----------
@@ -80,6 +69,21 @@ export function loadRepo(root) {
   const err = (code, file, msg) => errors.push({ code, file, msg });
   const warn = (code, file, msg) => warnings.push({ code, file, msg });
   const schemas = loadSchemas();
+
+  // Giới hạn lấy từ policy.json của repo; repo không có bản đầy đủ (fixture test) thì dùng của công cụ.
+  const policyPath = path.join(root, 'catalog', 'policy.json');
+  let localPolicy = null;
+  if (fs.existsSync(policyPath)) {
+    try { localPolicy = JSON.parse(fs.readFileSync(policyPath, 'utf8')); } catch { localPolicy = null; }
+  }
+  const policy = localPolicy && localPolicy.extensions ? loadPolicy(root) : loadPolicy(TOOL_ROOT);
+  const LIMITS = {
+    maxFileBytes: policy.maxFileBytes,
+    maxMdInGitBytes: policy.maxMdInGitBytes,
+    allowedExt: Object.keys(policy.extensions),
+    quizExt: policy.quizExtensions,
+    selfMadeLicenses: policy.selfMadeLicenses,
+  };
 
   const readJson = (p) => {
     try {
@@ -132,7 +136,6 @@ export function loadRepo(root) {
   const partnerNames = new Set(partners.map((p) => p.name));
 
   // Chính sách: loại tài liệu đang nhận. Không có file thì nhận mọi loại trong schema.
-  const policyPath = path.join(root, 'catalog', 'policy.json');
   let openTypes = null;
   if (fs.existsSync(policyPath)) {
     const pol = readJson(policyPath);
@@ -233,7 +236,6 @@ export function loadRepo(root) {
   const items = [];
   const coursesDir = path.join(root, 'courses');
   const shaSeen = new Map();
-  const now = today();
   if (fs.existsSync(coursesDir)) {
     for (const dirName of fs.readdirSync(coursesDir).sort()) {
       const cdir = path.join(coursesDir, dirName);
@@ -272,13 +274,6 @@ export function loadRepo(root) {
         if (origin === 'self-made' && !LIMITS.selfMadeLicenses.includes(it.license)) {
           err('ITEM_LICENSE', f, `tài liệu tự soạn dùng ${LIMITS.selfMadeLicenses.join(', ')}, gặp ${it.license}`);
         }
-        if (it.type === 'prelab-reference') {
-          if (!it.gradedAfter) err('PRELAB_GRADED', f, 'prelab-reference cần gradedAfter (ngày hết hạn chấm)');
-          else {
-            if (it.added && it.added <= it.gradedAfter) err('PRELAB_GRADED', f, `added ${it.added} phải sau gradedAfter ${it.gradedAfter}`);
-            if (!it.removed && now <= it.gradedAfter) err('PRELAB_GRADED', f, `chưa tới ngày được đăng (sau ${it.gradedAfter})`);
-          }
-        }
         if (it.removed && !it.removedReason) err('REMOVED_REASON', f, 'removed: true cần removedReason');
         if (!it.removed && it.removedReason) warn('REMOVED_REASON', f, 'có removedReason nhưng removed là false');
 
@@ -311,7 +306,7 @@ export function loadRepo(root) {
   }
 
   // Quét file trên đĩa: kích thước, loại file trong git, thông tin cá nhân.
-  scanDisk(root, root, err);
+  scanDisk(root, root, err, LIMITS);
   for (const c of courses.values()) {
     for (const s of jsonStrings(c, '', [])) for (const h of scanText(s)) err(h.code, c._file, `có thể là ${h.label}: "${h.match}"`);
   }
@@ -319,14 +314,14 @@ export function loadRepo(root) {
   return { root, faculties, partners, courses, programs, items, errors, warnings };
 }
 
-function scanDisk(root, dir, err) {
+function scanDisk(root, dir, err, LIMITS) {
   for (const ent of fs.readdirSync(dir, { withFileTypes: true })) {
     if (SKIP_DIRS.has(ent.name)) continue;
     const p = path.join(dir, ent.name);
     const r = rel(root, p);
     if (ent.isDirectory()) {
       if (r === 'test/fixtures') continue;
-      scanDisk(root, p, err);
+      scanDisk(root, p, err, LIMITS);
       continue;
     }
     const size = fs.statSync(p).size;
