@@ -15,7 +15,7 @@ name: kiem-file
 #   fetch  (contents: read, khóa R2)  tải file cách ly và mục tài liệu, đưa lên artifact.
 #   scan   (contents: read, không khóa, không token ghi)  bước duy nhất chạy công cụ
 #                            trên file tải lên; ghi kết quả và bản sạch lên artifact.
-#   apply  (contents: write, pull-requests: write, khóa R2, token App)  coi artifact
+#   apply  (contents: read, pull-requests: write, khóa R2, token App để push)  coi artifact
 #                            của scan là dữ liệu: kiểm dạng từng trường, tính lại sha256
 #                            của bản sạch, không chạy gì từ artifact, không chạy lại công cụ.
 #   report-failure (pull-requests: write)  job nào lỗi thì sửa comment báo không kiểm được.
@@ -208,8 +208,9 @@ jobs:
   apply:
     needs: [gate, scan]
     runs-on: ubuntu-latest
+    # Push dùng token App, nên github.token chỉ cần đọc repo, comment và đóng PR.
     permissions:
-      contents: write
+      contents: read
       pull-requests: write
     outputs:
       virus: ${{ steps.apply.outputs.virus }}
@@ -255,7 +256,8 @@ jobs:
         run: node trusted/scripts/upload/check.mjs comment --repo "$REPO" --pr "$PR" --body-file "$RUNNER_TEMP/report.md"
 
       - name: Có virus thì đóng PR và xóa file trong kho
-        if: steps.apply.outputs.virus != ''
+        # Chạy cả khi bước comment lỗi: PR có virus vẫn phải đóng và kho phải sạch.
+        if: always() && steps.apply.outputs.virus != ''
         env:
           GH_TOKEN: ${{ github.token }}
           R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
