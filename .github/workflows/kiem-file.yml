@@ -1,0 +1,199 @@
+name: kiem-file
+
+# Kiểm file của bài gửi qua form: tải từ kho cách ly R2, quét virus, làm sạch
+# siêu dữ liệu PDF, tìm lớp chữ và thông tin cá nhân, comment kết quả, rồi ghi
+# link Release vào nhánh của PR. Logic nằm ở scripts/upload/check.mjs.
+#
+# pull_request_target chạy với quyền ghi, nên không bao giờ chạy mã của nhánh PR:
+# script lấy từ main (thư mục trusted), nhánh PR chỉ là dữ liệu (thư mục pr).
+# Không chạy npm install hay npm script trong thư mục pr.
+#
+# Có virus: comment, đóng PR, xóa file trong kho rồi dừng. Job vẫn thành công,
+# PR bị đóng chính là kết quả.
+
+on:
+  pull_request_target:
+    types: [labeled, synchronize]
+
+permissions: {}
+
+concurrency:
+  group: kiem-file-${{ github.event.pull_request.number }}
+  cancel-in-progress: false
+
+jobs:
+  # Bỏ qua khi commit mới nhất là commit của chính workflow này (tránh tự gọi lại).
+  gate:
+    if: >-
+      github.event.pull_request.state == 'open' &&
+      github.event.pull_request.head.repo.full_name == github.repository &&
+      startsWith(github.event.pull_request.head.ref, 'upload/') &&
+      contains(github.event.pull_request.labels.*.name, 'tai-lieu-moi') &&
+      (github.event.action != 'labeled' || github.event.label.name == 'tai-lieu-moi') &&
+      vars.BOT_LOGIN != '' &&
+      github.event.pull_request.user.login == vars.BOT_LOGIN
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    outputs:
+      run: ${{ steps.head.outputs.run }}
+    steps:
+      - id: head
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          msg=$(gh api "repos/$REPO/commits/$HEAD_SHA" --jq .commit.message)
+          case "$msg" in
+            kiem-file:*) echo "run=false" >> "$GITHUB_OUTPUT" ;;
+            *) echo "run=true" >> "$GITHUB_OUTPUT" ;;
+          esac
+
+  check:
+    needs: gate
+    if: needs.gate.outputs.run == 'true'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    env:
+      GH_TOKEN: ${{ github.token }}
+      REPO: ${{ github.repository }}
+      PR: ${{ github.event.pull_request.number }}
+      BRANCH: ${{ github.event.pull_request.head.ref }}
+      HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+      R2_BUCKET: ${{ vars.R2_BUCKET }}
+      AWS_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+      AWS_DEFAULT_REGION: auto
+      AWS_REQUEST_CHECKSUM_CALCULATION: when_required
+      AWS_RESPONSE_CHECKSUM_VALIDATION: when_required
+      RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+    steps:
+      - name: Checkout script từ main
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: main
+          path: trusted
+          persist-credentials: false
+      - name: Checkout dữ liệu của PR (không chạy mã trong này)
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          path: pr
+          persist-credentials: false
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: 24
+
+      - name: Chuẩn bị
+        env:
+          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+        run: |
+          endpoint="https://${R2_ACCOUNT_ID}.r2.cloudflarestorage.com"
+          echo "::add-mask::$endpoint"
+          echo "R2_ENDPOINT=$endpoint" >> "$GITHUB_ENV"
+          echo "CHECK_ERROR_FILE=$RUNNER_TEMP/loi.txt" >> "$GITHUB_ENV"
+          echo "CHECK=$GITHUB_WORKSPACE/trusted/scripts/upload/check.mjs" >> "$GITHUB_ENV"
+
+      - name: Tìm mục tài liệu trong PR
+        id: locate
+        run: |
+          gh api --paginate "repos/$REPO/pulls/$PR/files" --jq '.[] | {filename, status} | @json' > "$RUNNER_TEMP/files.jsonl"
+          node "$CHECK" locate --files "$RUNNER_TEMP/files.jsonl" --pr pr --branch "$BRANCH" > "$RUNNER_TEMP/locate.json"
+          for k in item code key name sha256; do
+            echo "$k=$(jq -r ".$k" "$RUNNER_TEMP/locate.json")" >> "$GITHUB_OUTPUT"
+          done
+
+      - name: Cài công cụ kiểm file
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends clamav clamav-freshclam libimage-exiftool-perl qpdf poppler-utils
+          sudo systemctl stop clamav-freshclam || true
+          sudo freshclam
+
+      - name: Tải file từ kho cách ly
+        env:
+          KEY: ${{ steps.locate.outputs.key }}
+          NAME: ${{ steps.locate.outputs.name }}
+        run: |
+          mkdir -p "$RUNNER_TEMP/file"
+          aws s3 cp "s3://$R2_BUCKET/$KEY" "$RUNNER_TEMP/file/$NAME" --endpoint-url "$R2_ENDPOINT" --only-show-errors || {
+            echo "Không tải được file từ kho cách ly. File có thể đã bị xóa sau 30 ngày. Bạn hãy gửi lại bài." > "$CHECK_ERROR_FILE"
+            exit 1
+          }
+
+      - name: Kiểm file
+        id: check
+        env:
+          ITEM: ${{ steps.locate.outputs.item }}
+        run: |
+          node "$CHECK" --item "pr/$ITEM" --dir "$RUNNER_TEMP/file" --repo "$REPO" > "$RUNNER_TEMP/check.json"
+          jq -r .report "$RUNNER_TEMP/check.json" > "$RUNNER_TEMP/report.md"
+          echo "virus=$(jq -r '.virus // ""' "$RUNNER_TEMP/check.json")" >> "$GITHUB_OUTPUT"
+          echo "clean=$(jq -r '.cleanFile // ""' "$RUNNER_TEMP/check.json")" >> "$GITHUB_OUTPUT"
+          echo "quarantine=$(jq -r '.item.files[0].quarantine // ""' "$RUNNER_TEMP/check.json")" >> "$GITHUB_OUTPUT"
+
+      - name: Comment kết quả
+        run: node "$CHECK" comment --repo "$REPO" --pr "$PR" --body-file "$RUNNER_TEMP/report.md"
+
+      - name: Có virus thì đóng PR và xóa file trong kho
+        if: steps.check.outputs.virus != ''
+        env:
+          CODE: ${{ steps.locate.outputs.code }}
+          SHA: ${{ steps.locate.outputs.sha256 }}
+        run: |
+          gh pr close "$PR" --repo "$REPO"
+          aws s3 rm "s3://$R2_BUCKET/pending/$CODE/" --recursive --endpoint-url "$R2_ENDPOINT" --only-show-errors
+          aws s3 rm "s3://$R2_BUCKET/clean/$CODE/" --recursive --endpoint-url "$R2_ENDPOINT" --only-show-errors
+          aws s3 rm "s3://$R2_BUCKET/sha/$SHA" --endpoint-url "$R2_ENDPOINT" --only-show-errors
+
+      - name: Đưa bản đã làm sạch về kho cách ly
+        if: steps.check.outputs.virus == ''
+        env:
+          CLEAN: ${{ steps.check.outputs.clean }}
+          QUARANTINE: ${{ steps.check.outputs.quarantine }}
+        run: aws s3 cp "$CLEAN" "s3://$R2_BUCKET/$QUARANTINE" --endpoint-url "$R2_ENDPOINT" --only-show-errors
+
+      - name: Dựng lại file sinh ra trong nhánh PR
+        if: steps.check.outputs.virus == ''
+        run: node trusted/scripts/validate.mjs --root pr --write
+
+      - name: Tạo token của GitHub App
+        if: steps.check.outputs.virus == ''
+        id: app
+        uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1 # v3.2.0
+        with:
+          client-id: ${{ secrets.GH_APP_ID }}
+          private-key: ${{ secrets.GH_APP_PRIVATE_KEY }}
+          permission-contents: write
+
+      # Commit bằng token của App để workflow validate chạy lại trên PR;
+      # commit bằng GITHUB_TOKEN thì GitHub không chạy workflow khác.
+      - name: Commit link Release vào nhánh PR
+        if: steps.check.outputs.virus == ''
+        working-directory: pr
+        env:
+          APP_TOKEN: ${{ steps.app.outputs.token }}
+          APP_SLUG: ${{ steps.app.outputs.app-slug }}
+          CODE: ${{ steps.locate.outputs.code }}
+        run: |
+          if [ -z "$(git status --porcelain)" ]; then
+            echo "Không có gì thay đổi."
+            exit 0
+          fi
+          bot_id=$(gh api "users/${APP_SLUG}%5Bbot%5D" --jq .id)
+          git config user.name "${APP_SLUG}[bot]"
+          git config user.email "${bot_id}+${APP_SLUG}[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "kiem-file: $CODE"
+          # Push thường (không ép), nên nhánh đã có commit mới hơn thì push bị từ chối.
+          git push "https://x-access-token:${APP_TOKEN}@github.com/${REPO}.git" "HEAD:refs/heads/${BRANCH}"
+
+      # Lỗi sau khi đã báo có virus thì giữ nguyên comment báo virus.
+      - name: Báo không kiểm được
+        if: failure() && steps.check.outputs.virus == ''
+        run: |
+          node "$CHECK" failure --run-url "$RUN_URL" --reason-file "$CHECK_ERROR_FILE" > "$RUNNER_TEMP/failure.md"
+          node "$CHECK" comment --repo "$REPO" --pr "$PR" --body-file "$RUNNER_TEMP/failure.md"
