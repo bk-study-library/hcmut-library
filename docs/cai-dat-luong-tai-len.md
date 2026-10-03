@@ -64,11 +64,11 @@ npx wrangler r2 bucket lifecycle list bk-lib-quarantine
 
 ## Bước 3. Turnstile
 
-Widget đã được tạo, site key `0x4AAAAAAFMxSkFCGbs--qcI` (có sẵn trong `catalog/site.json`). Chỉ cần kiểm hostname:
+Widget đã được tạo, site key nằm trong `catalog/site.json` (`turnstileSiteKey`). Chỉ cần kiểm hostname. Hostname là nơi trang có widget được mở, không phải nơi Worker chạy: Worker không hiện widget nên không cần thêm host `workers.dev`.
 
 1. Trong Cloudflare dashboard, vào **Turnstile**, mở widget của thư viện.
-2. Ở **Hostname management**, bảo đảm có `bk-study-library.github.io`. Sau khi deploy Worker (bước 4), thêm host `workers.dev` của Worker, dạng `bk-study-library-upload.<tên-bạn>.workers.dev`.
-3. Nếu cần thử form từ máy bạn, thêm `localhost`, và gỡ đi khi chạy thật.
+2. Ở **Hostname management**, khi chạy thử trên máy (repo còn private), thêm `localhost`.
+3. Khi repo public và web chạy trên GitHub Pages, thêm `bk-study-library.github.io`, rồi gỡ `localhost`.
 
 Worker chỉ nhận token Turnstile có hostname nằm trong `ALLOWED_ORIGINS`, nên danh sách này phải khớp với `ALLOWED_ORIGINS` ở bước 4.
 
@@ -112,7 +112,7 @@ Mở `worker/wrangler.jsonc`, mục `vars`, kiểm lại:
 |---|---|
 | `REPO` | `bk-study-library/bk-study-library` (đổi nếu repo ở nơi khác) |
 | `BRANCH` | `main` |
-| `ALLOWED_ORIGINS` | các nguồn được gọi Worker, cách nhau bằng dấu phẩy. Phải có `https://bk-study-library.github.io`. Nếu thử form từ máy bạn, thêm nguồn thử, ví dụ `http://localhost:8080` |
+| `ALLOWED_ORIGINS` | các nguồn được gọi Worker, cách nhau bằng dấu phẩy. Khi chạy thử trên máy: `http://localhost:8080`. Khi repo public: `https://bk-study-library.github.io`, gỡ nguồn localhost |
 | `CATALOG_TTL_SECONDS` | `300` |
 | `PUBLIC_PR_LINKS` | `"false"` khi repo còn private (Worker không trả link PR cho người gửi); đổi thành `"true"` sau khi repo public |
 
@@ -122,19 +122,13 @@ Mở `worker/wrangler.jsonc`, mục `vars`, kiểm lại:
 npx wrangler deploy
 ```
 
-Lệnh in ra địa chỉ Worker, dạng `https://bk-study-library-upload.<tên-bạn>.workers.dev`. Lần đầu, wrangler có thể hỏi đặt tên miền con `workers.dev` cho tài khoản. Ghi địa chỉ này vào `catalog/site.json`, kèm đuôi `/submit` vì Worker chỉ trả lời ở đường dẫn đó:
+Lệnh in ra địa chỉ Worker, dạng `https://bk-study-library-upload.<tên-bạn>.workers.dev`. Lần đầu, wrangler có thể hỏi đặt tên miền con `workers.dev` cho tài khoản. Ghi địa chỉ này vào ô `uploadEndpoint` của `catalog/site.json`, kèm đuôi `/submit` vì Worker chỉ trả lời ở đường dẫn đó. Giữ nguyên `turnstileSiteKey`:
 
 ```json
-{
-  "uploadEndpoint": "https://bk-study-library-upload.<tên-bạn>.workers.dev/submit",
-  "turnstileSiteKey": "0x4AAAAAAFMxSkFCGbs--qcI"
-}
+"uploadEndpoint": "https://bk-study-library-upload.<tên-bạn>.workers.dev/submit"
 ```
 
-Sau đó:
-
-1. Thêm host `workers.dev` vào Turnstile (bước 3).
-2. Commit `catalog/site.json`, chạy `npm run build`, rồi dựng lại web để form có địa chỉ mới.
+Sau đó commit `catalog/site.json`, chạy `npm run build`, rồi dựng lại web để form có địa chỉ mới.
 
 Nhật ký từng lượt gọi của Worker đã tắt có chủ ý (`invocation_logs: false`) để không ghi IP người gửi. Đừng bật lại. Khi cần xem lỗi, chạy `npx wrangler tail`: dòng lỗi chỉ có bước và mã lỗi.
 
@@ -177,7 +171,21 @@ Ruleset bắt buộc PR và một lượt duyệt chỉ bật được sau khi r
 
 ## Chạy thử (repo private)
 
-Gửi bốn bài qua trang **Gửi tài liệu** của web, mỗi bài một lần gửi, và lưu mã bài trang trả về. Vì `PUBLIC_PR_LINKS` là `"false"`, trang không đưa link PR: tìm PR trong tab **Pull requests** của repo, tên dạng `Tài liệu mới: <mã môn> <tiêu đề>`, nhánh `upload/<mã bài>`.
+GitHub Pages không chạy cho repo private ở gói Free, nên khi repo còn private bạn dựng web và mở trên máy:
+
+1. Kiểm `ALLOWED_ORIGINS` có `http://localhost:8080` (bước 4) và widget Turnstile có `localhost` (bước 3).
+2. Dựng web từ thư mục gốc của repo, rồi mở bằng một máy chủ tĩnh ở cổng 8080:
+
+```bash
+npm run site
+npx --yes http-server site -p 8080 -c-1
+```
+
+3. Mở http://localhost:8080/gui-tai-lieu/ trên trình duyệt.
+
+Sau khi repo public, web chạy trên GitHub Pages: đổi `ALLOWED_ORIGINS` thành `https://bk-study-library.github.io`, thêm host đó vào Turnstile, gỡ `localhost` ở cả hai nơi, rồi `npx wrangler deploy` lại.
+
+Gửi bốn bài qua trang **Gửi tài liệu**, mỗi bài một lần gửi, và lưu mã bài trang trả về. Vì `PUBLIC_PR_LINKS` là `"false"`, trang không đưa link PR: tìm PR trong tab **Pull requests** của repo, tên dạng `Tài liệu mới: <mã môn> <tiêu đề>`, nhánh `upload/<mã bài>`.
 
 Sau mỗi lần gửi, đợi vài phút cho workflow `kiem-file` chạy xong (xem tab **Actions**).
 
@@ -188,7 +196,7 @@ Dùng một PDF nhỏ, không có thông tin cá nhân. Điền đủ form và b
 Kết quả mong đợi:
 - Có một PR mới, nhãn `tai-lieu-moi`, do bot mở.
 - Một comment kết quả: không có virus, không có cảnh báo, không báo thiếu lớp chữ (nếu PDF có chữ).
-- Nhánh của PR có thêm một commit ghi `url`, `mime`, `sha256`, `size` vào `files[]` của mục tài liệu. `url` trỏ tới Release `files-HK<xxx>` theo ngày hiện tại (ví dụ `files-HK251`).
+- Nhánh của PR có thêm một commit ghi `url`, `mime`, `sha256`, `size` vào `files[]` của mục tài liệu. `url` trỏ tới Release `files-HK<xxx>` của học kỳ hiện tại, tính theo bảng tháng trong `catalog/policy.json` (ví dụ tháng 10 năm 2026 là `files-HK261`).
 
 ### Bài 2. File EICAR
 
@@ -227,9 +235,20 @@ Chọn PR của bài 1, xem lại nội dung, bấm **Merge pull request**. Work
 - tạo Release `files-HK<xxx>` (đánh dấu pre-release) nếu chưa có, rồi đưa file đã làm sạch lên đúng tên đã ghi trong `files[]`;
 - xóa file của bài đó trong kho cách ly.
 
-Kiểm: trong **Releases** có pre-release `files-HK<xxx>` kèm file, và link của tài liệu có trong `v1` sau khi web dựng lại (workflow `pages`).
+Kiểm: trong **Releases** có pre-release `files-HK<xxx>` kèm file, và link của tài liệu có trong `v1/` trên `main` (workflow `kiem-file` đã dựng lại `v1/` trong PR).
 
 Khi repo còn private, file trên Release chỉ thành viên đã đăng nhập mới tải được. Web và app BK Study Desk tải được sau khi repo public.
+
+## Duyệt nhiều bài cùng lúc
+
+Mỗi PR gửi bài đều sửa các file sinh ra: `index.json`, `index.min.json`, `v1/` và README của môn. Sau khi merge một PR, các PR khác đang mở sẽ xung đột ở các file này. Với từng PR còn lại:
+
+1. Bấm **Update branch** trên trang PR. Nếu GitHub báo xung đột, bấm **Resolve conflicts**.
+2. Với `index.json`, `index.min.json`, các file trong `v1/` và README, giữ bên nào cũng được.
+3. Commit. Lần push này làm `kiem-file` chạy lại và dựng lại đúng các file sinh ra trong nhánh PR.
+4. Đợi `kiem-file` và `validate` xanh rồi mới merge.
+
+Không sửa tay mục tài liệu `courses/<môn>/items/<id>.json` khi giải xung đột.
 
 ### Nếu có gì không chạy
 
@@ -237,3 +256,4 @@ Khi repo còn private, file trên Release chỉ thành viên đã đăng nhập 
 - Có PR nhưng workflow không chạy: kiểm biến `BOT_LOGIN` có đúng tên bot, PR có nhãn `tai-lieu-moi`.
 - Workflow báo lỗi khóa R2 hoặc khóa App: kiểm lại các secret ở bước 5. `GH_APP_PRIVATE_KEY` của Actions là file `.pem` gốc, của Worker là `bot-pkcs8.pem`.
 - Form báo không xác minh được: kiểm hostname trong Turnstile (bước 3) và `turnstileSiteKey` trong `catalog/site.json`.
+- PR mở quá 30 ngày, file trong kho đã bị xóa (comment báo không tải được file từ kho cách ly): đóng PR, nhờ người gửi gửi lại.

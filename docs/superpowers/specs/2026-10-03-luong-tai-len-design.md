@@ -143,7 +143,7 @@ Giữ quy trình hiện tại. Thêm: khi một mục chuyển sang `removed: tr
 1. Deploy Worker lên `workers.dev`.
 2. Gửi 4 bài: một PDF hợp lệ; file EICAR (file test chuẩn của phần mềm diệt virus, vô hại); một PDF có tên trong Author; một file có MSSV giả.
 3. Kiểm: mỗi bài một PR, comment kết quả đúng, PDF có Author đã được làm sạch.
-4. Đóng một PR: file trong kho bị xóa. Merge một PR: file lên `files-HK251`, link có trong `v1`.
+4. Đóng một PR: file trong kho bị xóa. Merge một PR: file lên Release `files-HK<xxx>` của học kỳ hiện tại (tháng 10 năm 2026 là `files-HK261`), link có trong `v1`.
 
 Khi repo còn private, file trên Release chỉ thành viên đăng nhập mới tải được; web và app tải được sau khi repo public.
 
@@ -153,7 +153,7 @@ Không ai khác được tạo tài khoản hay nhập khóa bí mật thay ch�
 
 1. Tạo GitHub App với đúng các quyền ở mục "Thành phần", cài vào repo, tạo private key.
 2. Bật R2 trên Cloudflare, tạo bucket `bk-lib-quarantine`.
-3. Tạo widget Turnstile cho tên miền của web và Worker.
+3. Tạo widget Turnstile cho tên miền của web (và `localhost` khi chạy thử trên máy). Worker không hiện widget nên không cần tên miền của Worker.
 4. Chạy `npx wrangler login`, rồi nhập khóa bằng `npx wrangler secret put`.
 5. Thêm các khóa cho workflow trong **Settings** > **Secrets and variables** > **Actions**.
 
