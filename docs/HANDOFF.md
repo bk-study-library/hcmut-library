@@ -10,7 +10,7 @@ Khung repo dựng bởi phiên BK Study Desk, dừng giữa chừng để chuy�
 
 ## Còn dở
 - Workflow CI (`.github/workflows/validate.yml`, Pages deploy), issue forms, PR template, CODEOWNERS: kiểm lại có đủ chưa.
-- Danh mục thật: đã thu thập xong (03/10/2026), lưu cố định ở `D:\LocalCodek-study-desk\library-research\catalog-2026-10-03\`
+- Danh mục thật: đã thu thập xong (03/10/2026), lưu cố định ở `D:\LocalCode\bk-study-desk\library-research\catalog-2026-10-03\`
   (`report.md` đọc trước, `faculties.json`, `programs.json`, `courses.json` 736 môn, `lessons-learned.md` 22 quy tắc, `html/conflicts.json`, bản sao PDF nguồn và script tái tạo).
   Mới phủ 3/11 khoa (Cơ khí, Điện - Điện tử, Địa chất và Dầu khí); 8 khoa còn lại web không truy cập được, xem report mục 1 và 5.
 - Seed CTĐT Kỹ thuật Điện K2019 (83 môn, không có điểm): `catalog-seed.json` trong cùng thư mục trên.
