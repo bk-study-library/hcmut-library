@@ -10,7 +10,7 @@ name: kiem-file
 # - Không bao giờ chạy mã của nhánh PR. Script lấy từ main (thư mục trusted), nhánh
 #   PR chỉ là dữ liệu (thư mục pr). Không chạy npm install hay npm script trong pr.
 # - Mỗi job chỉ giữ đúng quyền và khóa nó cần:
-#   gate   (contents: read)  bỏ qua commit của chính workflow, tìm mục tài liệu,
+#   gate   (contents: read, pull-requests: read)  bỏ qua commit của chính workflow, tìm mục tài liệu,
 #                            kiểm PR chỉ sửa mục đó và file sinh ra của môn đó.
 #   fetch  (contents: read, khóa R2)  tải file cách ly và mục tài liệu, đưa lên artifact.
 #   scan   (contents: read, không khóa, không token ghi)  bước duy nhất chạy công cụ
@@ -59,6 +59,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
+      pull-requests: read
     outputs:
       run: ${{ steps.head.outputs.run }}
       item: ${{ steps.locate.outputs.item }}

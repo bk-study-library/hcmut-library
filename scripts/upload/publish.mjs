@@ -22,6 +22,7 @@ import path from 'node:path';
 import crypto from 'node:crypto';
 import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
+import { loadRepo } from '../lib/repo.mjs';
 import { quarantineInfo, pickItemFile, githubOutput, releaseAssets } from './check.mjs';
 
 const TAG = /^files-[A-Za-z0-9]{1,32}$/;
@@ -62,6 +63,7 @@ export function planPublish(itemsChanged, existingAssets, repo) {
     if (!Number.isInteger(file.size) || file.size <= 0) throw new Error('Mục tài liệu không có kích thước hợp lệ.');
     const have = existingAssets.get(target.tag)?.get(target.name);
     if (have === info.sha256) continue;
+    if (have === '') throw new Error(`Release ${target.tag} đã có ${target.name} nhưng không có digest sha256. Hãy kiểm tay file này rồi đổi tên file trong mục tài liệu.`);
     if (have !== undefined) throw new Error(`Release ${target.tag} đã có ${target.name} khác nội dung. Hãy đổi tên file rồi gửi lại.`);
     plan.push({ tag: target.tag, name: target.name, quarantine: info.key, sha256: info.sha256, size: file.size, code: info.code });
   }
@@ -69,7 +71,16 @@ export function planPublish(itemsChanged, existingAssets, repo) {
 }
 
 // Mục vừa chuyển sang removed: true (trước chưa gỡ) thì xóa file trên Release của repo; link ngoài bỏ qua.
-export function planRemovals(itemsBefore, itemsAfter, repo) {
+// liveItems: mọi mục ở bản sau; file mà mục còn hiệu lực khác vẫn dùng thì giữ lại.
+export function planRemovals(itemsBefore, itemsAfter, repo, liveItems = []) {
+  const inUse = new Set();
+  for (const it of liveItems) {
+    if (it.removed) continue;
+    for (const f of it.files || []) {
+      const t = parseReleaseUrl(f.url, repo);
+      if (t) inUse.add(`${t.tag}/${t.name}`);
+    }
+  }
   const key = (i) => `${i.course}/${i.id}`;
   const before = new Map(itemsBefore.map((i) => [key(i), i]));
   const out = [];
@@ -78,7 +89,7 @@ export function planRemovals(itemsBefore, itemsAfter, repo) {
     if (!prev || prev.removed || !item.removed) continue;
     for (const f of item.files || []) {
       const target = parseReleaseUrl(f.url, repo);
-      if (target && !out.some((o) => o.tag === target.tag && o.name === target.name)) out.push(target);
+      if (target && !inUse.has(`${target.tag}/${target.name}`) && !out.some((o) => o.tag === target.tag && o.name === target.name)) out.push(target);
     }
   }
   return out;
@@ -175,7 +186,8 @@ function unpublish(a) {
     itemsBefore.push(JSON.parse(shown.stdout));
     itemsAfter.push(readJson(p));
   }
-  for (const { tag, name } of planRemovals(itemsBefore, itemsAfter, a.repo)) {
+  const live = loadRepo('.').items;
+  for (const { tag, name } of planRemovals(itemsBefore, itemsAfter, a.repo, live)) {
     if (!releaseAssets(a.repo, tag).has(name)) {
       console.log(`Release ${tag} không có ${name}, bỏ qua.`);
       continue;

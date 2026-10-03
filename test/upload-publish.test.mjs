@@ -113,3 +113,16 @@ test('pendingSha và verifyFile: tính sha256 trong script tin cậy', () => {
     fs.rmSync(dir, { recursive: true, force: true });
   }
 });
+
+test('planPublish: asset có sẵn nhưng không có digest thì báo lỗi rõ', () => {
+  const existing = new Map([['files-HK251', new Map([[NAME, '']])]]);
+  assert.throws(() => planPublish([item()], existing, REPO), /không có digest sha256/);
+});
+
+test('planRemovals: file còn mục khác dùng thì giữ lại', () => {
+  const before = [item(), item({ id: 'khac' })];
+  const after = [item({ removed: true }), item({ id: 'khac' })];
+  assert.deepEqual(planRemovals(before, after, REPO, after), []);
+  const afterAll = [item({ removed: true }), item({ id: 'khac', removed: true })];
+  assert.deepEqual(planRemovals(before, afterAll, REPO, afterAll), [{ tag: 'files-HK251', name: NAME }]);
+});

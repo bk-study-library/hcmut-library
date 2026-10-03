@@ -32,7 +32,8 @@ on:
 permissions: {}
 
 concurrency:
-  group: phat-hanh-file-${{ github.event.pull_request.number || github.ref }}
+  # Mỗi lần push một nhóm riêng để không bị hủy giữa chừng; unpublish chạy lại được nên chạy song song cũng an toàn.
+  group: phat-hanh-file-${{ github.event.pull_request.number || github.sha }}
   cancel-in-progress: false
 
 env:
@@ -52,6 +53,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+      pull-requests: read
     env:
       R2_BUCKET: ${{ vars.R2_BUCKET }}
       AWS_DEFAULT_REGION: auto
@@ -146,6 +148,12 @@ jobs:
           if [ -n "$SHA" ]; then
             aws s3 rm "s3://$R2_BUCKET/sha/$SHA" --endpoint-url "$endpoint" --only-show-errors
           fi
+      - name: Hướng dẫn khi phát hành lỗi
+        if: failure()
+        run: |
+          msg="Phát hành file lỗi. Xem bước lỗi ở trên. Nếu file trùng tên khác nội dung hoặc Release không có digest: đổi tên file trong mục tài liệu trên main (sửa name, url, quarantine cho khớp) rồi chạy lại workflow này. File trong pending/ và clean/ của kho cách ly được giữ 30 ngày."
+          echo "::error::$msg"
+          echo "$msg" >> "$GITHUB_STEP_SUMMARY"
 
   go-file:
     if: github.event_name == 'push'
