@@ -278,6 +278,17 @@ describe('POST /submit', () => {
     }
   });
 
+  it('tiêu đề PR: chặn tham chiếu và nhắc tên mà không hiện mã HTML', async () => {
+    const title = 'Xem owner/repo#1 va [x](http://a) @an C# GH-2 & <b>';
+    const { res, fetch } = await run(post(form({ title })));
+    expect(res.status).toBe(201);
+    const pr = JSON.parse(fetch.find('POST', '/pulls')[0].body);
+    expect(pr.title).toBe('Tài liệu mới: MT1005 Xem owner/repo# 1 va x(http://a) an C# GH- 2 & <b>');
+    expect(pr.title).not.toMatch(/&#|&amp;|&lt;/);
+    // Bảng trong thân PR vẫn thoát như cũ.
+    expect(pr.body).toContain('&#35;1');
+  });
+
   it('quá số lần gửi: 429', async () => {
     const { res, body } = await run(post(form()), { envOver: { SUBMIT_LIMIT: { limit: async () => ({ success: false }) } } });
     expect(res.status).toBe(429);

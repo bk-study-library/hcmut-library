@@ -140,6 +140,17 @@ function cell(value) {
     .replace(/\s*\r?\n\s*/g, ' ');
 }
 
+// Tiêu đề PR hiện dạng chữ thường nên không dùng mã HTML (sẽ hiện nguyên "&#35;").
+// Chặn tham chiếu issue (#số, GH-số), nhắc tên (@) và liên kết ([ ]) bằng cách đổi chữ.
+function titleText(value) {
+  return String(value)
+    .replace(/[[\]@]/g, '')
+    .replace(/#(?=\d)/g, '# ')
+    .replace(/\bGH-(?=\d)/gi, (m) => `${m} `)
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
 function prBody(form, code, file) {
   const rows = [];
   for (const [key, label] of PR_FIELDS) if (form[key]) rows.push([label, form[key]]);
@@ -247,7 +258,7 @@ async function handleSubmit(req, env, deps, cors) {
   // Dựng sẵn mục và PR trước khi ghi R2, để lỗi ở đây không để lại file mồ côi.
   const today = new Date(deps.now() + VN_OFFSET_MS).toISOString().slice(0, 10);
   const itemText = `${JSON.stringify({ $schema: ITEM_SCHEMA, ...buildItem(form, stored, today, id) }, null, 2)}\n`;
-  const prTitle = `Tài liệu mới: ${course.code} ${cell(form.title)}`;
+  const prTitle = `Tài liệu mới: ${course.code} ${titleText(form.title)}`;
   const prText = prBody(form, code, stored);
 
   const keys = [];
