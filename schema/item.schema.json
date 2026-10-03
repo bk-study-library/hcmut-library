@@ -54,7 +54,7 @@
         "authors": { "type": "array", "items": { "type": "string", "minLength": 1, "maxLength": 80 } },
         "year": { "type": "integer", "minimum": 1000, "maximum": 2100 },
         "publisher": { "type": "string", "minLength": 1, "maxLength": 120 },
-        "isbn": { "type": "string", "pattern": "^(97[89])?[0-9]{9}[0-9X]$" }
+        "isbn": { "type": "string", "pattern": "^(97[89][0-9]{10}|[0-9]{9}[0-9X])$" }
       }
     },
     "source": { "type": "string", "description": "Tên nguồn của link, ví dụ OpenStax." },

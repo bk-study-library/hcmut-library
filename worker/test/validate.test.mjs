@@ -124,6 +124,24 @@ describe('validateSubmission', () => {
     expect(validateSubmission({ ...f, 'book-isbn': '12' }, null, ctx).errors.book).toBeTruthy();
   });
 
+  it('ISBN 13 số kết thúc X bị từ chối, ISBN-10 có X được nhận', () => {
+    const f = { ...base, type: 'book-ref', 'book-title': 'S', 'book-authors': 'A' };
+    expect(validateSubmission({ ...f, 'book-isbn': '978013110362X' }, null, ctx).errors.book).toBeTruthy();
+    const r = validateSubmission({ ...f, 'book-isbn': '0-8044-2957-X' }, null, ctx);
+    expect(r.ok).toBe(true);
+    expect(r.form.book.isbn).toBe('080442957X');
+  });
+
+  it('book-ref kèm file bị từ chối', () => {
+    const f = { ...base, type: 'book-ref', 'book-title': 'S', 'book-authors': 'A' };
+    expect(validateSubmission(f, pdf, ctx).errors.file).toContain('bỏ file');
+  });
+
+  it('lang: giữ "en", từ chối "english"', () => {
+    expect(validateSubmission({ ...base, lang: 'en' }, pdf, ctx).form.lang).toBe('en');
+    expect(validateSubmission({ ...base, lang: 'english' }, pdf, ctx).errors.lang).toBeTruthy();
+  });
+
   it('loại khác không file: lỗi file', () => {
     expect(validateSubmission(base, null, ctx).errors.file).toBeTruthy();
   });

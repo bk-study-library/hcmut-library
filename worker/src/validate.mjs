@@ -15,6 +15,8 @@ const MESSAGES = {
   fileExt: (list) => `Không nhận đuôi file này. Dùng một trong: ${list}.`,
   fileSize: (max) => `File quá lớn. Chọn file nhỏ hơn ${max}.`,
   fileMagic: (ext) => `Nội dung file không khớp đuôi ${ext}.`,
+  lang: 'Mã ngôn ngữ không hợp lệ. Dùng dạng vi hoặc en.',
+  bookFile: 'Không nhận file cho sách tham khảo. Sách chỉ ghi tên, hãy bỏ file đi.',
   bookTitle: 'Chưa có tên sách. Nhập tên sách.',
   bookAuthors: 'Chưa có tác giả. Nhập ít nhất một tác giả.',
   bookLimit: 'Thông tin sách quá dài. Rút gọn tên, tác giả hoặc nhà xuất bản.',
@@ -23,6 +25,10 @@ const MESSAGES = {
 };
 
 const TITLE_MAX = 200;
+const BOOK_TITLE_MAX = 200;
+const BOOK_PUBLISHER_MAX = 120;
+const BOOK_AUTHOR_MAX = 80;
+const LANG_PATTERN = /^[a-z]{2}(-[A-Z]{2})?$/;
 const CONFIRMS = ['confirm-own', 'confirm-license', 'confirm-not-book'];
 const OPTIONAL = ['description', 'term', 'chapter', 'examKind', 'teacher', 'displayName'];
 
@@ -66,7 +72,7 @@ function parseBook(fields, errors) {
     return undefined;
   }
   const publisher = val(fields, 'book-publisher');
-  if (title.length > 200 || publisher.length > 120 || authors.some((a) => a.length > 80)) {
+  if (title.length > BOOK_TITLE_MAX || publisher.length > BOOK_PUBLISHER_MAX || authors.some((a) => a.length > BOOK_AUTHOR_MAX)) {
     errors.book = MESSAGES.bookLimit;
     return undefined;
   }
@@ -82,7 +88,7 @@ function parseBook(fields, errors) {
   if (publisher) book.publisher = publisher;
   const isbn = val(fields, 'book-isbn').replace(/[-\s]/g, '').toUpperCase();
   if (isbn) {
-    if (!/^(97[89])?[0-9]{9}[0-9X]$/.test(isbn)) {
+    if (!/^(97[89][0-9]{10}|[0-9]{9}[0-9X])$/.test(isbn)) {
       errors.book = MESSAGES.bookIsbn;
       return undefined;
     }
@@ -109,11 +115,16 @@ export function validateSubmission(fields, file, ctx) {
   const license = val(fields, 'license');
   if (!policy.selfMadeLicenses.includes(license)) errors.license = MESSAGES.license;
 
+  const lang = val(fields, 'lang') || 'vi';
+  if (!LANG_PATTERN.test(lang)) errors.lang = MESSAGES.lang;
+
   if (!CONFIRMS.every((k) => val(fields, k))) errors.confirm = MESSAGES.confirm;
 
   let ext;
   let book;
-  if (file) {
+  if (file && type === 'book-ref') {
+    errors.file = MESSAGES.bookFile;
+  } else if (file) {
     ext = checkFile(file, policy, errors) ?? undefined;
   } else if (type === 'book-ref') {
     book = parseBook(fields, errors);
@@ -123,7 +134,7 @@ export function validateSubmission(fields, file, ctx) {
 
   if (Object.keys(errors).length) return { ok: false, errors };
 
-  const form = { course, type, title, lang: val(fields, 'lang') || 'vi', license };
+  const form = { course, type, title, lang, license };
   for (const key of OPTIONAL) {
     const v = val(fields, key);
     if (v) form[key] = v;
