@@ -4,7 +4,7 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import crypto from 'node:crypto';
-import { parseReleaseUrl, planPublish, planRemovals, branchCode, pendingSha, verifyFile } from '../scripts/upload/publish.mjs';
+import { parseReleaseUrl, planPublish, planRemovals, branchCode, pendingSha, verifyFile, isLightPr } from '../scripts/upload/publish.mjs';
 import { releaseAssetUrl } from '../scripts/upload/term.mjs';
 
 const REPO = 'bk-study-library/bk-study-library';
@@ -125,4 +125,17 @@ test('planRemovals: file còn mục khác dùng thì giữ lại', () => {
   assert.deepEqual(planRemovals(before, after, REPO, after), []);
   const afterAll = [item({ removed: true }), item({ id: 'khac', removed: true })];
   assert.deepEqual(planRemovals(before, afterAll, REPO, afterAll), [{ tag: 'files-HK251', name: NAME }]);
+});
+
+test('isLightPr: chỉ PR có một mục sách tham khảo không file mới bỏ qua kho', () => {
+  const book = { id: 'sach', course: 'MT1005', type: 'book-ref', title: 'Sách', removed: false, book: { title: 'S', authors: ['A'] } };
+  const files = [{ filename: 'courses/MT1005/items/sach.json', status: 'added' }, { filename: 'index.json', status: 'modified' }];
+  const read = (m) => () => m;
+  assert.equal(isLightPr(files, read(book), `upload/${CODE}`), true);
+  // Mục có file, PR lạ, nhánh sai hay đọc lỗi thì dọn kho như thường (không ném lỗi).
+  assert.equal(isLightPr(files, read(item()), `upload/${CODE}`), false);
+  assert.equal(isLightPr([], read(book), `upload/${CODE}`), false);
+  assert.equal(isLightPr([...files, { filename: 'scripts/x.mjs', status: 'added' }], read(book), `upload/${CODE}`), false);
+  assert.equal(isLightPr(files, read(book), 'main'), false);
+  assert.equal(isLightPr(files, () => { throw new Error('mất file'); }, `upload/${CODE}`), false);
 });

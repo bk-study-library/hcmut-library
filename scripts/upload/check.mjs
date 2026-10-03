@@ -3,7 +3,8 @@
 // Phần logic là hàm thuần để test; phần CLI cuối file chỉ chạy khi gọi trực tiếp.
 //
 //   node scripts/upload/check.mjs locate --files <pr-files.jsonl> --pr <thư mục PR> --branch <nhánh> [--output-file <f>]
-//     in JSON { item, course, code, key, name, sha256 } của mục tài liệu duy nhất trong PR
+//     in JSON { item, course, light, code, key, name, sha256 } của mục tài liệu duy nhất trong PR;
+//     light=true là sách tham khảo không file: không có gì để tải, quét hay đưa lên kho
 //   node scripts/upload/check.mjs scan --item <item.json> --dir <thư mục file đã tải> --out <thư mục>
 //     quét và làm sạch, ghi <out>/result.json và <out>/clean/<tên>. Chạy công cụ trên file
 //     chưa tin được nên không cần và không được có token hay khóa nào.
@@ -15,6 +16,10 @@
 //     tạo hoặc sửa comment báo cáo (cần GH_TOKEN)
 //   node scripts/upload/check.mjs failure --run-url <url> [--reason-dir <thư mục>]
 //     in comment báo không kiểm được, kèm lý do trong các file của thư mục
+//   node scripts/upload/check.mjs book-report --code <mã bài>
+//     in comment cho sách tham khảo (không có file để kiểm)
+//   node scripts/upload/check.mjs rebuild --root <thư mục PR>
+//     chạy validate.mjs --write của bản tin cậy trên thư mục PR; không qua thì lý do vào CHECK_ERROR_FILE
 //
 // --output-file (thường là $GITHUB_OUTPUT) nhận giá trị cho bước sau, viết bằng dấu phân cách.
 // Lỗi thì in ra stderr, thoát mã 1 và ghi thêm vào file CHECK_ERROR_FILE nếu có biến này.
@@ -30,6 +35,7 @@ import { scanText, PII_PATTERNS, TOOL_ROOT } from '../lib/repo.mjs';
 import { loadPolicy } from '../lib/policy.mjs';
 
 const QUARANTINE = /^(pending|clean)\/([A-Za-z0-9]{10})\/([^/]+)$/;
+const BRANCH = /^upload\/([A-Za-z0-9]{10})$/;
 const ITEM_FILE = /^courses\/([A-Za-z0-9_-]+)\/items\/[A-Za-z0-9_-]+\.json$/;
 // Tên file: chữ không dấu, số, chấm, gạch dưới, gạch ngang; có phần tên trước đuôi.
 const SAFE_NAME = /^[A-Za-z0-9_-][A-Za-z0-9._-]*\.[A-Za-z0-9]+$/;
@@ -55,6 +61,23 @@ export function quarantineInfo(item, branch) {
   if (!SHA256.test(String(f.sha256 || ''))) throw new Error('Mục tài liệu không có sha256 hợp lệ.');
   if (branch !== undefined && branch !== `upload/${m[2]}`) throw new Error('Mã bài không khớp với nhánh của PR.');
   return { code: m[2], key: f.quarantine, name: f.name, sha256: f.sha256 };
+}
+
+// Tên nhánh upload/<mã bài> thì trả mã bài.
+export function branchCode(branch) {
+  const m = BRANCH.exec(String(branch));
+  if (!m) throw new Error('Nhánh không đúng dạng upload/<mã bài>.');
+  return m[1];
+}
+
+// Sách tham khảo không có file đi đường nhẹ: light 'true', mã bài lấy từ nhánh.
+// Mục khác cần đúng một file trong kho cách ly như quarantineInfo.
+export function locateInfo(item, branch) {
+  const files = item && item.files;
+  if (item && item.type === 'book-ref' && (files === undefined || (Array.isArray(files) && files.length === 0))) {
+    return { light: 'true', code: branchCode(branch), key: '', name: '', sha256: '' };
+  }
+  return { light: 'false', ...quarantineInfo(item, branch) };
 }
 
 // files: [{ filename, status, previous_filename }] của PR. Trả đường dẫn mục tài liệu duy nhất.
@@ -155,6 +178,31 @@ export function failureReport({ reason, runUrl }) {
   return out.join('\n') + '\n';
 }
 
+export function bookReport(code) {
+  return [
+    REPORT_MARKER,
+    `## Kết quả kiểm bài ${code}`,
+    '',
+    'Bài này là sách tham khảo, không có file, nên không quét virus hay tìm thông tin cá nhân trong file.',
+    'Đã dựng lại chỉ mục của môn. Người duyệt kiểm tên sách và tác giả rồi gộp bài.',
+  ].join('\n') + '\n';
+}
+
+// Lý do khi validate.mjs không qua: chỉ dòng LỖI, bỏ backtick để không thoát khỏi khối code
+// (trong khối code, @tên và #số không thành nhắc tên hay tham chiếu), có giới hạn độ dài.
+const REASON_MAX = 1500;
+const FENCE = '`'.repeat(3);
+export function validateFailureReason(output) {
+  let body = String(output).split(/\r?\n/).filter((l) => l.startsWith('LỖI ')).join('\n').replace(/`/g, "'");
+  if (body.length > REASON_MAX) body = `${body.slice(0, REASON_MAX)}\n(còn nữa, xem nhật ký)`;
+  return [
+    'Kiểm dữ liệu của repo không qua. Người duyệt sửa mục tài liệu theo các lỗi dưới đây.',
+    FENCE,
+    body || '(không có dòng lỗi, xem nhật ký)',
+    FENCE,
+  ].join('\n');
+}
+
 // Release đã có file cùng tên khác nội dung thì thêm 6 ký tự đầu sha256 trước đuôi.
 export function releaseName(name, sha256, existingAssets) {
   const prev = existingAssets.get(name);
@@ -248,10 +296,13 @@ export function releaseAssets(repo, tag) {
   return new Map(assets.map((x) => [x.name, String(x.digest || '').replace(/^sha256:/, '')]));
 }
 
+export function readPrFiles(p) {
+  return fs.readFileSync(p, 'utf8').split('\n').filter((l) => l.trim()).map((l) => JSON.parse(l));
+}
+
 function locate(a) {
-  const files = fs.readFileSync(a.files, 'utf8').split('\n').filter((l) => l.trim()).map((l) => JSON.parse(l));
-  const rel = pickItemFile(files);
-  const out = { item: rel, course: ITEM_FILE.exec(rel)[1], ...quarantineInfo(readJson(path.join(a.pr, rel)), a.branch) };
+  const rel = pickItemFile(readPrFiles(a.files));
+  const out = { item: rel, course: ITEM_FILE.exec(rel)[1], ...locateInfo(readJson(path.join(a.pr, rel)), a.branch) };
   writeOutputs(a['output-file'], out);
   return out;
 }
@@ -353,6 +404,16 @@ function failure(a) {
   process.stdout.write(failureReport({ reason, runUrl: a['run-url'] }));
 }
 
+// Chạy validate.mjs của bản tin cậy trên thư mục PR; in nhật ký, không qua thì ném lý do đã lọc.
+function rebuild(a) {
+  const script = path.join(TOOL_ROOT, 'scripts', 'validate.mjs');
+  const r = spawnSync(process.execPath, [script, '--root', a.root, '--write'], { encoding: 'utf8', maxBuffer: 64 * 1024 * 1024 });
+  if (r.error) throw new Error(`Không chạy được validate.mjs: ${r.error.message}`);
+  process.stdout.write(r.stdout);
+  process.stderr.write(r.stderr);
+  if (r.status !== 0) throw new Error(validateFailureReason(r.stdout));
+}
+
 async function main(argv) {
   const cmd = argv.shift();
   const a = args(argv);
@@ -361,6 +422,8 @@ async function main(argv) {
   else if (cmd === 'apply') apply(a);
   else if (cmd === 'comment') await comment(a);
   else if (cmd === 'failure') failure(a);
+  else if (cmd === 'book-report') process.stdout.write(bookReport(branchCode(`upload/${a.code}`)));
+  else if (cmd === 'rebuild') rebuild(a);
   else throw new Error(`lệnh lạ: ${cmd}`);
 }
 

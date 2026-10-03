@@ -18,6 +18,9 @@ name: kiem-file
 #   apply  (contents: read, pull-requests: write, khóa R2, token App để push)  coi artifact
 #                            của scan là dữ liệu: kiểm dạng từng trường, tính lại sha256
 #                            của bản sạch, không chạy gì từ artifact, không chạy lại công cụ.
+#   apply-sach (contents: read, pull-requests: write, token App để push)  sách tham khảo
+#                            không có file: bỏ fetch, scan, R2; chỉ dựng lại file sinh ra,
+#                            commit và comment ngắn.
 #   report-failure (pull-requests: write)  job nào lỗi thì sửa comment báo không kiểm được.
 # - Khóa chỉ nằm trong env của bước cần chúng.
 #
@@ -63,6 +66,7 @@ jobs:
     outputs:
       run: ${{ steps.head.outputs.run }}
       item: ${{ steps.locate.outputs.item }}
+      light: ${{ steps.locate.outputs.light }}
       course: ${{ steps.locate.outputs.course }}
       code: ${{ steps.locate.outputs.code }}
       key: ${{ steps.locate.outputs.key }}
@@ -117,7 +121,7 @@ jobs:
 
   fetch:
     needs: gate
-    if: needs.gate.outputs.run == 'true'
+    if: needs.gate.outputs.run == 'true' && needs.gate.outputs.light == 'false'
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -284,9 +288,10 @@ jobs:
           aws s3 cp "$CLEAN" "s3://$R2_BUCKET/$QUARANTINE"
           --endpoint-url "https://${R2_ACCOUNT_ID}.r2.cloudflarestorage.com" --only-show-errors
 
+      # Kiểm không qua thì lý do (chỉ dòng LỖI) vào loi-apply để comment nêu rõ.
       - name: Dựng lại file sinh ra trong nhánh PR
         if: steps.apply.outputs.virus == ''
-        run: node trusted/scripts/validate.mjs --root pr --write
+        run: node trusted/scripts/upload/check.mjs rebuild --root pr
 
       - name: Tạo token của GitHub App
         if: steps.apply.outputs.virus == ''
@@ -298,9 +303,7 @@ jobs:
           private-key: ${{ secrets.GH_APP_PRIVATE_KEY }}
           permission-contents: write
 
-      # Commit bằng token của App để workflow validate chạy lại trên PR;
-      # commit bằng GITHUB_TOKEN thì GitHub không chạy workflow khác.
-      # Chỉ commit mục tài liệu và file sinh ra của môn đó.
+      # Chỉ commit mục tài liệu và file sinh ra của môn đó, push bằng token của App.
       - name: Commit link Release vào nhánh PR
         if: steps.apply.outputs.virus == ''
         working-directory: pr
@@ -311,31 +314,7 @@ jobs:
           CODE: ${{ needs.gate.outputs.code }}
           ITEM: ${{ needs.gate.outputs.item }}
           COURSE: ${{ needs.gate.outputs.course }}
-        run: |
-          for p in "$ITEM" index.json index.min.json v1 "courses/$COURSE/README.md"; do
-            if [ -e "$p" ] || git ls-files --error-unmatch -- "$p" > /dev/null 2>&1; then
-              git add -A -- "$p"
-            fi
-          done
-          if git diff --cached --quiet; then
-            echo "Không có gì thay đổi."
-            exit 0
-          fi
-          bot_id=$(gh api "users/${APP_SLUG}%5Bbot%5D" --jq .id)
-          git config user.name "${APP_SLUG}[bot]"
-          git config user.email "${bot_id}+${APP_SLUG}[bot]@users.noreply.github.com"
-          git commit -m "kiem-file: $CODE"
-          if [ -n "$(git status --porcelain)" ]; then
-            echo "::warning::Có file khác thay đổi nhưng không được commit: $(git status --porcelain | tr '\n' ' ')"
-          fi
-          # Token đi qua header trong biến môi trường của git, không nằm trong URL.
-          # Push thường (không ép), nên nhánh đã có commit mới hơn thì push bị từ chối.
-          auth=$(printf 'x-access-token:%s' "$APP_TOKEN" | base64 -w0)
-          echo "::add-mask::$auth"
-          GIT_CONFIG_COUNT=1 \
-          GIT_CONFIG_KEY_0="http.${GITHUB_SERVER_URL}/.extraheader" \
-          GIT_CONFIG_VALUE_0="AUTHORIZATION: basic $auth" \
-            git push "${GITHUB_SERVER_URL}/${REPO}.git" "HEAD:refs/heads/${BRANCH}"
+        run: bash ../trusted/scripts/upload/commit-pr.sh
       - if: failure()
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
@@ -344,9 +323,68 @@ jobs:
           if-no-files-found: ignore
           retention-days: 1
 
+  # Sách tham khảo không file: không có gì để tải hay quét, không đụng R2, không có khóa R2.
+  apply-sach:
+    needs: gate
+    if: needs.gate.outputs.run == 'true' && needs.gate.outputs.light == 'true'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+    env:
+      CHECK_ERROR_FILE: ${{ github.workspace }}/loi/loi-sach.txt
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: main
+          path: trusted
+          persist-credentials: false
+      - name: Checkout dữ liệu của PR (không chạy mã trong này)
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          path: pr
+          persist-credentials: false
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: 24
+      - name: Dựng lại file sinh ra trong nhánh PR
+        run: node trusted/scripts/upload/check.mjs rebuild --root pr
+      - name: Tạo token của GitHub App
+        id: app
+        uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1 # v3.2.0
+        with:
+          client-id: ${{ secrets.GH_APP_CLIENT_ID }}
+          private-key: ${{ secrets.GH_APP_PRIVATE_KEY }}
+          permission-contents: write
+      - name: Commit file sinh ra vào nhánh PR
+        working-directory: pr
+        env:
+          GH_TOKEN: ${{ github.token }}
+          APP_TOKEN: ${{ steps.app.outputs.token }}
+          APP_SLUG: ${{ steps.app.outputs.app-slug }}
+          CODE: ${{ needs.gate.outputs.code }}
+          ITEM: ${{ needs.gate.outputs.item }}
+          COURSE: ${{ needs.gate.outputs.course }}
+        run: bash ../trusted/scripts/upload/commit-pr.sh
+      - name: Comment kết quả
+        env:
+          GH_TOKEN: ${{ github.token }}
+          CODE: ${{ needs.gate.outputs.code }}
+        run: |
+          node trusted/scripts/upload/check.mjs book-report --code "$CODE" > "$RUNNER_TEMP/report.md"
+          node trusted/scripts/upload/check.mjs comment --repo "$REPO" --pr "$PR" --body-file "$RUNNER_TEMP/report.md"
+      - if: failure()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: loi-sach
+          path: ${{ github.workspace }}/loi/
+          if-no-files-found: ignore
+          retention-days: 1
+
   # Lỗi sau khi đã báo có virus thì giữ nguyên comment báo virus.
   report-failure:
-    needs: [gate, fetch, scan, apply]
+    needs: [gate, fetch, scan, apply, apply-sach]
     if: always() && contains(needs.*.result, 'failure') && needs.apply.outputs.virus == ''
     runs-on: ubuntu-latest
     permissions:

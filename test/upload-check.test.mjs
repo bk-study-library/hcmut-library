@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import {
   applyCheck, quarantineInfo, pickItemFile, piiFromPages, removedTags, findReportComment, failureReport, githubOutput,
-  releaseName, validateResult,
+  releaseName, validateResult, locateInfo, bookReport, validateFailureReason,
 } from '../scripts/upload/check.mjs';
 import { releaseAssetUrl } from '../scripts/upload/term.mjs';
 import { REPORT_MARKER } from '../scripts/upload/report.mjs';
@@ -177,4 +177,56 @@ test('failureReport bắt đầu bằng marker và có link nhật ký', () => {
   assert.match(out, /Không tải được file\./);
   assert.match(out, /actions\/runs\/1/);
   assert.ok(failureReport({ reason: '', runUrl: 'https://a' }).startsWith(REPORT_MARKER));
+});
+
+const book = {
+  id: 'giai-tich', course: 'MT1005', type: 'book-ref', title: 'Giải tích', lang: 'vi', license: 'CC-BY-SA-4.0',
+  origin: 'self-made', added: '2026-10-03', removed: false, book: { title: 'Giải tích 1', authors: ['A'] },
+};
+
+test('locateInfo: sách tham khảo không file đi đường nhẹ, mã bài lấy từ nhánh', () => {
+  assert.deepEqual(locateInfo(book, 'upload/abcdEF1234'), { light: 'true', code: 'abcdEF1234', key: '', name: '', sha256: '' });
+  assert.deepEqual(locateInfo({ ...book, files: [] }, 'upload/abcdEF1234').light, 'true');
+  assert.throws(() => locateInfo(book, 'upload/x'), /Nhánh/);
+  assert.throws(() => locateInfo(book, undefined), /Nhánh/);
+});
+
+test('locateInfo: mục có file vẫn cần đúng một file trong kho cách ly', () => {
+  assert.deepEqual(locateInfo(item, 'upload/abcdEF1234'), {
+    light: 'false', code: 'abcdEF1234', key: `pending/abcdEF1234/${NAME}`, name: NAME, sha256: OLD_SHA,
+  });
+  // Loại khác không có file không được đi đường nhẹ.
+  const { files, ...noFile } = item;
+  assert.throws(() => locateInfo(noFile, 'upload/abcdEF1234'), /đúng một file/);
+  assert.throws(() => locateInfo({ ...item, files: [] }, 'upload/abcdEF1234'), /đúng một file/);
+  // book-ref có file thì kiểm như mục có file (rồi validate báo lỗi).
+  assert.equal(locateInfo({ ...book, files: item.files }, 'upload/abcdEF1234').light, 'false');
+});
+
+test('bookReport: có marker, mã bài, nói rõ không có file để quét', () => {
+  const out = bookReport('abcdEF1234');
+  assert.ok(out.startsWith(REPORT_MARKER));
+  assert.match(out, /abcdEF1234/);
+  assert.match(out, /không có file/);
+  assert.doesNotMatch(out, /virus:/);
+});
+
+test('validateFailureReason: chỉ giữ dòng lỗi, bỏ dấu backtick, gói trong khối code, có giới hạn', () => {
+  const output = [
+    'cảnh báo [X] a: b',
+    'LỖI [PII_EMAIL] courses/MT1005/items/a.json: có thể là email: "a@b.vn"',
+    'LỖI [SCHEMA] courses/MT1005/items/a.json: `x` @someone #12',
+    '8 môn, 0 chương trình, 9 tài liệu; 2 lỗi, 1 cảnh báo',
+  ].join('\n');
+  const r = validateFailureReason(output);
+  assert.match(r, /^Kiểm dữ liệu của repo không qua/);
+  assert.match(r, /PII_EMAIL/);
+  assert.doesNotMatch(r, /cảnh báo \[X\]/);
+  const body = r.split('```')[1];
+  assert.ok(!body.includes('`'));
+  assert.equal(r.split('```').length, 3);
+  const long = validateFailureReason(Array.from({ length: 500 }, (_, i) => `LỖI [SCHEMA] f${i}: ${'x'.repeat(50)}`).join('\n'));
+  assert.ok(long.length < 2000, String(long.length));
+  // Không có dòng lỗi nào thì vẫn có lý do.
+  assert.match(validateFailureReason(''), /Kiểm dữ liệu của repo không qua/);
 });

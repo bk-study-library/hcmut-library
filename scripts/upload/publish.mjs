@@ -3,7 +3,10 @@
 // Mọi lệnh chạy từ bản main (tin được); file tải từ R2 chỉ được tính hash, không chạy gì.
 //
 //   node scripts/upload/publish.mjs locate --files <pr-files.jsonl> --root <repo> --branch <nhánh> --output-file <f>
-//     tìm mục tài liệu duy nhất của PR đã merge, đọc ở <repo> (bản main)
+//     tìm mục tài liệu duy nhất của PR đã merge, đọc ở <repo> (bản main); ghi item, code, light
+//     (light=true: sách tham khảo không file, không có gì để phát hành hay dọn trong kho)
+//   node scripts/upload/publish.mjs kind --files <pr-files.jsonl> --root <thư mục PR> --branch <nhánh> --output-file <f>
+//     ghi light=true khi chắc chắn PR là sách tham khảo không file; mọi trường hợp khác light=false, không lỗi
 //   node scripts/upload/publish.mjs plan --item <path> --branch <nhánh> --repo <owner/name> --output-file <f>
 //     kế hoạch phát hành (cần GH_TOKEN): publish=true thì có tag, name, quarantine, sha256, size để tải và đưa lên
 //   node scripts/upload/publish.mjs verify --file <path> --sha256 <hex> --size <byte>
@@ -23,10 +26,11 @@ import crypto from 'node:crypto';
 import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import { loadRepo } from '../lib/repo.mjs';
-import { quarantineInfo, pickItemFile, githubOutput, releaseAssets } from './check.mjs';
+import { quarantineInfo, locateInfo, pickItemFile, githubOutput, releaseAssets, branchCode, readPrFiles } from './check.mjs';
+
+export { branchCode };
 
 const TAG = /^files-[A-Za-z0-9]{1,32}$/;
-const BRANCH = /^upload\/([A-Za-z0-9]{10})$/;
 const ITEM_PATH = /^courses\/[A-Za-z0-9_-]+\/items\/[A-Za-z0-9_-]+\.json$/;
 
 // ---------- Hàm thuần ----------
@@ -95,11 +99,15 @@ export function planRemovals(itemsBefore, itemsAfter, repo, liveItems = []) {
   return out;
 }
 
-// Tên nhánh upload/<mã bài> thì trả mã bài.
-export function branchCode(branch) {
-  const m = BRANCH.exec(String(branch));
-  if (!m) throw new Error('Nhánh không đúng dạng upload/<mã bài>.');
-  return m[1];
+// Dọn kho: chỉ bỏ qua R2 khi chắc chắn PR là sách tham khảo không file. PR lạ hay đọc lỗi thì
+// trả false để dọn như thường (dọn chỗ trống không hại gì), không bao giờ ném lỗi.
+// readItem(rel): đọc mục tài liệu theo đường dẫn trong PR.
+export function isLightPr(files, readItem, branch) {
+  try {
+    return locateInfo(readItem(pickItemFile(files)), branch).light === 'true';
+  } catch {
+    return false;
+  }
 }
 
 function sha256File(p) {
@@ -147,10 +155,20 @@ function run(cmd, argv) {
 }
 
 function locate(a) {
-  const files = fs.readFileSync(a.files, 'utf8').split('\n').filter((l) => l.trim()).map((l) => JSON.parse(l));
-  const rel = pickItemFile(files);
-  const info = quarantineInfo(readJson(path.join(a.root, rel)), a.branch);
-  writeOutputs(a['output-file'], { item: rel, code: info.code });
+  const rel = pickItemFile(readPrFiles(a.files));
+  const info = locateInfo(readJson(path.join(a.root, rel)), a.branch);
+  writeOutputs(a['output-file'], { item: rel, code: info.code, light: info.light });
+}
+
+function kind(a) {
+  let files = [];
+  try {
+    files = readPrFiles(a.files);
+  } catch {
+    // Không đọc được danh sách file: dọn như thường.
+  }
+  const light = isLightPr(files, (rel) => readJson(path.join(a.root, rel)), a.branch);
+  writeOutputs(a['output-file'], { light: String(light) });
 }
 
 function plan(a) {
@@ -202,6 +220,7 @@ function main(argv) {
   const cmd = argv.shift();
   const a = args(argv);
   if (cmd === 'locate') locate(a);
+  else if (cmd === 'kind') kind(a);
   else if (cmd === 'plan') plan(a);
   else if (cmd === 'verify') verifyFile(a.file, a.sha256, a.size);
   else if (cmd === 'code') code(a);

@@ -6,6 +6,8 @@ name: phat-hanh-file
 #   phat-hanh  (pull_request_target closed, đã merge)  tải bản đã làm sạch từ kho cách ly R2,
 #              kiểm sha256 và kích thước theo mục tài liệu, đưa lên Release (pre-release nếu
 #              chưa có), rồi xóa pending/, clean/ và khóa sha/ trong kho.
+#              Sách tham khảo không file (locate ghi light=true) thì không có gì để phát hành
+#              hay dọn: các bước sau đều bỏ qua.
 #   go-file    (push vào main, đổi courses/**/items/*.json)  mục vừa chuyển sang removed thì
 #              xóa file tương ứng trên Release của repo; link ngoài bỏ qua.
 #
@@ -79,6 +81,7 @@ jobs:
             --branch "$BRANCH" --output-file "$GITHUB_OUTPUT"
       - name: Lập kế hoạch phát hành
         id: plan
+        if: steps.locate.outputs.light == 'false'
         env:
           GH_TOKEN: ${{ github.token }}
           ITEM: ${{ steps.locate.outputs.item }}
@@ -122,6 +125,7 @@ jobs:
       # Khóa sha/ đặt theo sha256 của file gốc, mục tài liệu chỉ có sha256 bản sạch, nên tính lại
       # từ pending/ nếu còn; đã bị luật vòng đời xóa thì không còn gì để tính.
       - name: Tải file cách ly gốc để tính khóa sha
+        if: steps.locate.outputs.light == 'false'
         env:
           R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
           AWS_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
@@ -133,8 +137,10 @@ jobs:
             --endpoint-url "https://${R2_ACCOUNT_ID}.r2.cloudflarestorage.com" --only-show-errors
       - name: Tính sha256 của file gốc
         id: sha
+        if: steps.locate.outputs.light == 'false'
         run: node scripts/upload/publish.mjs pending-sha --dir "$RUNNER_TEMP/pending" --output-file "$GITHUB_OUTPUT"
       - name: Xóa file trong kho cách ly
+        if: steps.locate.outputs.light == 'false'
         env:
           R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
           AWS_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
