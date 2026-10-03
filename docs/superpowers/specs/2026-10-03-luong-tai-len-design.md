@@ -1,6 +1,6 @@
 # Luồng tải tài liệu lên không cần tài khoản GitHub
 
-Ngày: 03/10/2026. Trạng thái: chờ duyệt. Phụ thuộc: PR #1 (dữ liệu công khai v1).
+Ngày: 03/10/2026. Trạng thái: đã duyệt. Phụ thuộc: PR #1 (dữ liệu công khai v1, đã merge).
 
 ## Mục tiêu
 
@@ -10,14 +10,13 @@ Xong khi: chạy thử trên repo private qua đủ 4 bài ở mục "Chạy th�
 
 ## Quy định nội dung
 
-Tài liệu là của sinh viên. Mọi loại tài liệu trong hợp đồng v1 đều được nhận, kể cả lời giải, đề cũ, báo cáo tham khảo. `catalog/policy.json` mở cả 13 loại; ràng buộc `gradedAfter` của `prelab-reference` không còn bắt buộc.
+Tài liệu là của sinh viên, thư viện không giới hạn sinh viên đăng gì. Mọi loại tài liệu trong hợp đồng v1 đều được nhận. `catalog/policy.json` mở cả 13 loại; bỏ ràng buộc `gradedAfter` của `prelab-reference`.
 
-Chỉ không nhận:
+Chỉ một điều cấm: **file sách có bản quyền** (sách thương mại, sách của nhà xuất bản). Sách chỉ được ghi tên: tên sách, tác giả, năm, nhà xuất bản, ISBN, không kèm file.
 
-- Sách, giáo trình có bản quyền (sách thương mại, sách của nhà xuất bản), slide và giáo trình của giảng viên khi chưa có phép.
-- File tải từ Scribd, Studocu, Course Hero và trang tương tự.
-- File có thông tin cá nhân: MSSV, họ tên, email, số điện thoại, chữ ký, ảnh mặt người.
-- File chạy được, file ảnh rời (gộp thành một PDF).
+Ngoài nội dung, còn hai giới hạn kỹ thuật để giữ an toàn cho người tải: chỉ nhận các đuôi file trong `policy.json` (không file chạy được), và file có virus bị chặn.
+
+Thông tin cá nhân (MSSV, email, số điện thoại) không bị cấm: máy chỉ cảnh báo trong PR để người gửi hoặc người duyệt biết, người duyệt quyết.
 
 ## Hai đường đóng góp
 
@@ -43,6 +42,7 @@ Không ghi cứng giá trị có thể đổi.
 
 - `files[]` thêm `quarantine` (khóa trong kho cách ly, chỉ dùng nội bộ, không xuất ra `v1`) và `mime`.
 - `v1` thêm `files[].mime`. Đây là trường cộng thêm, không phá hợp đồng v1.
+- Loại `book-ref` với trường `book: { title, authors, year, publisher, isbn }` (`year`, `publisher`, `isbn` tùy chọn). Cộng thêm, không phá v1: app cũ xếp vào nhóm "Khác".
 
 ## Thành phần
 
@@ -56,6 +56,7 @@ Không ghi cứng giá trị có thể đổi.
 | Workflow `phat-hanh-file` | Khi PR được merge: đưa file đã làm sạch lên Release, xóa file trong kho |
 | Workflow `don-kho` | Khi PR bị đóng mà không merge: xóa file trong kho và xóa nhánh |
 | Trang hướng dẫn | Thay `contribute`: cách gửi qua form từng bước, cách gửi qua PR, quy định nội dung, sau khi gửi thì sao |
+| Ghi tên sách | Loại `book-ref` mới trong hợp đồng v1 (cộng thêm): tên, tác giả, năm, nhà xuất bản, ISBN, không có `files` hay `url`. Gửi qua cùng form, không cần file |
 
 ## Luồng gửi bài
 
