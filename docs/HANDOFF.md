@@ -10,10 +10,10 @@ Khung repo dựng bởi phiên BK Study Desk, dừng giữa chừng để chuy�
 
 ## Còn dở
 - Workflow CI (`.github/workflows/validate.yml`, Pages deploy), issue forms, PR template, CODEOWNERS: kiểm lại có đủ chưa.
-- Danh mục thật: một agent đang thu thập khoa, ngành, môn của HCMUT từ nguồn công khai, kết quả ở
-  `C:\Users\PC\AppData\Local\Temp\claude\D--Study\627f507a-9f77-48e2-b99e-4c606ac67736\scratchpad\catalog\`
-  (`faculties.json`, `programs.json`, `courses.json`, `lessons-learned.md`, `report.md`).
-- Seed CTĐT Kỹ thuật Điện K2019 (83 môn, không có điểm): `...\scratchpad\catalog-seed.json`.
+- Danh mục thật: đã thu thập xong (03/10/2026), lưu cố định ở `D:\LocalCodek-study-desk\library-research\catalog-2026-10-03\`
+  (`report.md` đọc trước, `faculties.json`, `programs.json`, `courses.json` 736 môn, `lessons-learned.md` 22 quy tắc, `html/conflicts.json`, bản sao PDF nguồn và script tái tạo).
+  Mới phủ 3/11 khoa (Cơ khí, Điện - Điện tử, Địa chất và Dầu khí); 8 khoa còn lại web không truy cập được, xem report mục 1 và 5.
+- Seed CTĐT Kỹ thuật Điện K2019 (83 môn, không có điểm): `catalog-seed.json` trong cùng thư mục trên.
 
 ## Nguyên tắc đã chốt
 - Web là chính (GitHub Pages), app BK Study Desk chỉ đọc `index.json`.
