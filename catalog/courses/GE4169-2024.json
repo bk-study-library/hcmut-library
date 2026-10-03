@@ -1,0 +1,18 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "GE4169-2024",
+  "code": "GE4169",
+  "name": "Kỹ thuật thi công công trình ngầm",
+  "nameEn": "Underground construction engineering",
+  "credits": 3,
+  "faculty": "geopet",
+  "aliases": [],
+  "status": "active",
+  "programs": [],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "note": "Dữ liệu mẫu cho hợp đồng v1. Tên, mã, tín chỉ lấy từ CTĐT công khai (truy cập 03/10/2026). CTĐT Địa kỹ thuật Xây dựng 2024 dùng lại mã GE4169 cho môn này. Chờ người duyệt xác nhận.",
+  "updated": "2026-10-03"
+}

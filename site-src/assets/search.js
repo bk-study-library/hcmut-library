@@ -1,11 +1,11 @@
-// Tìm môn trên trang chủ. Chạy hoàn toàn trên máy người xem: tải index.min.json
-// một lần, so khớp không dấu. Không gửi chữ người dùng gõ đi đâu.
+// Ô tìm môn trên trang chủ. Tải v1/index.json một lần, tìm bằng search-core.js
+// (cùng logic với app BK Study Desk). Chạy hoàn toàn trên máy người xem, không gửi chữ người dùng gõ đi đâu.
 (function () {
   'use strict';
   var input = document.getElementById('q');
   var list = document.getElementById('q-results');
   var status = document.getElementById('q-status');
-  if (!input || !list) return;
+  if (!input || !list || !window.BkSearch) return;
 
   var html = document.documentElement;
   var root = html.getAttribute('data-root') || './';
@@ -13,16 +13,9 @@
   var strings = JSON.parse(document.getElementById('search-strings').textContent);
   var en = strings.lang === 'en';
   var MAX = 30;
-  var courses = [];
-
-  function fold(s) {
-    return String(s || '')
-      .normalize('NFD')
-      .replace(/[̀-ͯ]/g, '')
-      .replace(/đ/g, 'd')
-      .replace(/Đ/g, 'D')
-      .toLowerCase();
-  }
+  var idx = null;
+  var byId = {};
+  var facultyName = {};
 
   function countText(n) {
     if (n === 0) return strings.results[0];
@@ -36,60 +29,40 @@
 
   function load(index) {
     index.faculties.forEach(function (f) {
-      var fname = (en ? f.name.en : f.name.vi) || f.name.vi;
-      f.courses.forEach(function (c) {
-        var codes = [c.code, c.id].concat((c.aliases || []).map(function (a) { return a.code; }));
-        var names = [c.name, c.nameEn || ''].concat((c.aliases || []).map(function (a) { return a.name; }));
-        courses.push({
-          id: c.id,
-          code: c.code,
-          name: en && c.nameEn ? c.nameEn : c.name,
-          faculty: fname,
-          retired: c.status === 'retired',
-          items: (c.items || []).filter(function (i) { return !i.removed; }).length,
-          codes: codes.map(fold),
-          hay: fold(codes.concat(names).join(' ')),
-        });
-      });
+      facultyName[f.key] = (en ? f.name.en : f.name.vi) || f.name.vi;
     });
+    index.courses.forEach(function (c) {
+      byId[c.id] = c;
+    });
+    idx = window.BkSearch.prepare(index);
     input.disabled = false;
     if (input.value) run();
   }
 
-  function score(c, q, tokens) {
-    for (var i = 0; i < tokens.length; i++) if (c.hay.indexOf(tokens[i]) < 0) return -1;
-    if (c.codes.indexOf(q) >= 0) return 0;
-    for (var j = 0; j < c.codes.length; j++) if (c.codes[j].indexOf(q) === 0) return 1;
-    return c.retired ? 3 : 2;
-  }
-
   function run() {
-    var q = fold(input.value).trim();
     list.textContent = '';
-    if (!q) {
+    if (!idx || !input.value.trim()) {
       status.textContent = '';
       return;
     }
-    var tokens = q.split(/\s+/);
-    var hits = [];
-    courses.forEach(function (c) {
-      var s = score(c, q, tokens);
-      if (s >= 0) hits.push({ c: c, s: s });
-    });
-    hits.sort(function (a, b) { return a.s - b.s || a.c.code.localeCompare(b.c.code); });
+    var hits = window.BkSearch.search(idx, input.value, { limit: 10000 });
     status.textContent = countText(hits.length) + (hits.length > MAX ? '. ' + moreText(hits.length - MAX) : '');
     hits.slice(0, MAX).forEach(function (h) {
+      var c = byId[h.id];
       var li = document.createElement('li');
       var a = document.createElement('a');
-      a.href = root + prefix + 'course/' + encodeURIComponent(h.c.id) + '/';
+      a.href = root + prefix + 'course/' + encodeURIComponent(c.id) + '/';
       var code = document.createElement('span');
       code.className = 'code';
-      code.textContent = h.c.code;
+      code.textContent = c.code;
       var name = document.createElement('span');
-      name.textContent = h.c.name;
+      name.textContent = en && c.nameEn ? c.nameEn : c.name;
       var meta = document.createElement('span');
       meta.className = 'muted';
-      meta.textContent = h.c.faculty + (h.c.items ? (en ? ', ' + h.c.items + ' items' : ', ' + h.c.items + ' tài liệu') : '');
+      var parts = [facultyName[c.faculty] || c.faculty];
+      if (c.status === 'retired') parts.push(en ? 'retired' : 'đã ngừng');
+      if (c.items) parts.push(en ? c.items + ' items' : c.items + ' tài liệu');
+      meta.textContent = parts.join(', ');
       a.appendChild(code);
       a.appendChild(name);
       a.appendChild(meta);
@@ -104,7 +77,7 @@
     timer = setTimeout(run, 80);
   });
 
-  fetch(root + 'index.min.json')
+  fetch(root + 'v1/index.json')
     .then(function (r) {
       if (!r.ok) throw new Error(r.status);
       return r.json();

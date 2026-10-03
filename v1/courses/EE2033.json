@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 1,
+  "id": "EE2033",
+  "code": "EE2033",
+  "name": "Giải tích mạch",
+  "items": [
+    {
+      "id": "meo-hoc-giai-tich-mach",
+      "type": "tips",
+      "title": "[Mẫu] Mẹo học Giải tích mạch",
+      "description": "Kinh nghiệm chung: chọn phương pháp, kiểm cân bằng công suất, phasor, quá độ bậc một.",
+      "lang": "vi",
+      "license": "CC-BY-SA-4.0",
+      "origin": "self-made",
+      "authors": [
+        "BK Study Library"
+      ],
+      "added": "2026-10-03",
+      "example": true,
+      "updated": "2026-10-03",
+      "files": [
+        {
+          "name": "meo-hoc-giai-tich-mach.md",
+          "size": 1691,
+          "sha256": "4a181936c0147a7988b9ed839802b6f19a36dff66d012ac4183cd09ba21b22c1",
+          "urls": [
+            "https://bk-study-library.github.io/bk-study-library/files/EE2033/meo-hoc-giai-tich-mach.md",
+            "https://raw.githubusercontent.com/bk-study-library/bk-study-library/main/courses/EE2033/files/meo-hoc-giai-tich-mach.md"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "vi-du-da-go",
+      "type": "notes",
+      "removed": true,
+      "removedReason": "Mục mẫu minh họa tài liệu đã gỡ. Bên đọc (web, app) chỉ còn thấy id, loại và lý do gỡ.",
+      "added": "2026-10-03"
+    },
+    {
+      "id": "vi-du-mit-ocw-6-002-circuits-and-electronics",
+      "type": "link",
+      "title": "[Ví dụ] MIT OCW 6.002 Circuits and Electronics (Spring 2007)",
+      "description": "Khóa học mở, tiếng Anh: phân tích mạch, mạch tương đương, mạch RC và RL. Mục ví dụ để minh họa định dạng link.",
+      "lang": "en",
+      "license": "CC-BY-NC-SA-4.0",
+      "origin": "link",
+      "source": "MIT OpenCourseWare",
+      "authors": [
+        "Anant Agarwal"
+      ],
+      "added": "2026-10-03",
+      "example": true,
+      "updated": "2026-10-03",
+      "url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/"
+    }
+  ]
+}

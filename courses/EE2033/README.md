@@ -5,7 +5,7 @@
 | Mục | Thông tin |
 |---|---|
 | Mã môn | EE2033 |
-| Tên | Giải tích mạch |
+| Tên | Giải tích mạch / Electric Circuit Analysis |
 | Tín chỉ | 3 |
 | Khoa | Khoa Điện - Điện tử |
 | Phần | Lý thuyết |
@@ -13,7 +13,13 @@
 
 ## Tài liệu
 
-Chưa có tài liệu.
+### Ghi chú
+
+- ~~[Mẫu] Mục đã gỡ~~ (đã gỡ: Mục mẫu minh họa tài liệu đã gỡ. Bên đọc (web, app) chỉ còn thấy id, loại và lý do gỡ.)
+
+### Mẹo học
+
+- **[Mẫu] Mẹo học Giải tích mạch** (ví dụ minh họa) (vi, CC-BY-SA-4.0, BK Study Library): [meo-hoc-giai-tich-mach.md, 2 KB](files/meo-hoc-giai-tich-mach.md)
 
 ## Link
 

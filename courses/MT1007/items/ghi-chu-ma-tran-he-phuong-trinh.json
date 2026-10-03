@@ -1,0 +1,26 @@
+{
+  "$schema": "../../../schema/item.schema.json",
+  "id": "ghi-chu-ma-tran-he-phuong-trinh",
+  "course": "MT1007",
+  "type": "notes",
+  "title": "[Mẫu] Ghi chú ma trận và hệ phương trình",
+  "description": "Ma trận, định thức, hạng, Kronecker - Capelli, trị riêng.",
+  "lang": "vi",
+  "chapter": "1-3",
+  "authors": [
+    "BK Study Library"
+  ],
+  "license": "CC-BY-SA-4.0",
+  "origin": "self-made",
+  "files": [
+    {
+      "name": "ghi-chu-ma-tran-he-phuong-trinh.md",
+      "size": 2008,
+      "sha256": "bbc70c2e617c40ca844acbd4ad402c9f6e30b1cd1af2f0cb5b756605df9101ed",
+      "path": "files/ghi-chu-ma-tran-he-phuong-trinh.md"
+    }
+  ],
+  "example": true,
+  "added": "2026-10-03",
+  "removed": false
+}

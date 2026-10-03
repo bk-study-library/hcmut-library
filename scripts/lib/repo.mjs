@@ -131,6 +131,20 @@ export function loadRepo(root) {
   }
   const partnerNames = new Set(partners.map((p) => p.name));
 
+  // Chính sách: loại tài liệu đang nhận. Không có file thì nhận mọi loại trong schema.
+  const policyPath = path.join(root, 'catalog', 'policy.json');
+  let openTypes = null;
+  if (fs.existsSync(policyPath)) {
+    const pol = readJson(policyPath);
+    if (pol && !Array.isArray(pol.openTypes)) err('SCHEMA', 'catalog/policy.json', 'cần {"openTypes": [...]}');
+    else if (pol) {
+      openTypes = new Set(pol.openTypes);
+      for (const t of pol.openTypes) {
+        if (!schemas.item.properties.type.enum.includes(t)) err('SCHEMA', 'catalog/policy.json', `loại lạ trong openTypes: ${t}`);
+      }
+    }
+  }
+
   // Môn
   const courses = new Map();
   for (const p of listJson(path.join(root, 'catalog', 'courses'))) {
@@ -155,10 +169,14 @@ export function loadRepo(root) {
   }
 
   // Tham chiếu giữa các môn
+  // Hai môn chỉ được dùng chung mã hiện tại khi trường dùng lại mã cho môn khác,
+  // và môn sau có ID kèm năm khóa (ví dụ GE4169 và GE4169-2024).
   const codeOwner = new Map();
+  const suffixed = (id) => /-[0-9]{4}$/.test(id);
   for (const c of courses.values()) {
-    if (codeOwner.has(c.code)) err('DUP_CODE', c._file, `mã ${c.code} đang dùng cho cả ${codeOwner.get(c.code)} và ${c.id}`);
-    codeOwner.set(c.code, c.id);
+    const prev = codeOwner.get(c.code);
+    if (prev && !(suffixed(prev) || suffixed(c.id))) err('DUP_CODE', c._file, `mã ${c.code} đang dùng cho cả ${prev} và ${c.id}`);
+    if (!prev || suffixed(prev)) codeOwner.set(c.code, c.id);
   }
   for (const c of courses.values()) {
     const f = c._file;
@@ -170,7 +188,9 @@ export function loadRepo(root) {
     }
     for (const a of c.aliases || []) {
       const owner = codeOwner.get(a.code);
-      if (owner && owner !== c.id) warn('ALIAS_CONFLICT', f, `mã cũ ${a.code} đang là mã hiện tại của ${owner}`);
+      // Mã cũ của môn đã ngừng, khi môn đó ghi replacedBy là môn này, thì hợp lệ.
+      const retiredInto = owner && courses.get(owner).status === 'retired' && courses.get(owner).replacedBy === c.id;
+      if (owner && owner !== c.id && !retiredInto && owner.replace(/-[0-9]{4}$/, '') !== c.id.replace(/-[0-9]{4}$/, '')) warn('ALIAS_CONFLICT', f, `mã cũ ${a.code} đang là mã hiện tại của ${owner}`);
     }
     for (const r of c.related || []) {
       if (!courses.has(r)) err('REF_RELATED', f, `related trỏ tới môn không có: ${r}`);
@@ -232,6 +252,10 @@ export function loadRepo(root) {
         if (it.course !== dirName) err('ITEM_COURSE', f, `course "${it.course}" khác thư mục ${dirName}`);
         if (!courses.has(it.course)) err('ITEM_COURSE', f, `môn ${it.course} không có trong danh mục`);
 
+        if (openTypes && !it.removed && !openTypes.has(it.type)) {
+          err('ITEM_TYPE_CLOSED', f, `loại ${it.type} chưa mở nhận (catalog/policy.json)`);
+        }
+        if (it.updated && it.added && it.updated < it.added) err('ITEM_UPDATED', f, `updated ${it.updated} trước added ${it.added}`);
         const origin = it.origin || '';
         if (origin.startsWith('partner:') && !partnerNames.has(origin.slice(8))) {
           err('PARTNER_UNKNOWN', f, `đối tác "${origin.slice(8)}" chưa có trong catalog/partners.json`);

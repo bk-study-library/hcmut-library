@@ -1,0 +1,55 @@
+{
+  "schemaVersion": 1,
+  "id": "EE1009",
+  "code": "EE1009",
+  "name": "Kỹ thuật số",
+  "items": [
+    {
+      "id": "prelab-2-tham-khao",
+      "type": "prelab-reference",
+      "title": "Prelab bài 2 (tham khảo)",
+      "lang": "vi",
+      "term": "HK251",
+      "lab": "2",
+      "license": "CC-BY-SA-4.0",
+      "origin": "self-made",
+      "added": "2026-02-10",
+      "updated": "2026-02-10",
+      "files": [
+        {
+          "name": "prelab-2.pdf",
+          "size": 120000,
+          "sha256": "1111111111111111111111111111111111111111111111111111111111111111",
+          "urls": [
+            "https://github.com/bk-study-library/bk-study-library/releases/download/files-EE1009/prelab-2.pdf"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tom-tat-c1",
+      "type": "summary",
+      "title": "Tóm tắt chương 1",
+      "lang": "vi",
+      "term": "HK251",
+      "license": "CC-BY-SA-4.0",
+      "origin": "self-made",
+      "authors": [
+        "an-danh"
+      ],
+      "added": "2026-10-01",
+      "updated": "2026-10-01",
+      "files": [
+        {
+          "name": "tom-tat-c1.md",
+          "size": 82,
+          "sha256": "48d99f80b7d4df1cbe9be9cf80651255170eddc91ed973193c1c5ea0ba4f932d",
+          "urls": [
+            "https://bk-study-library.github.io/bk-study-library/files/EE1009/tom-tat-c1.md",
+            "https://raw.githubusercontent.com/bk-study-library/bk-study-library/main/courses/EE1009/files/tom-tat-c1.md"
+          ]
+        }
+      ]
+    }
+  ]
+}

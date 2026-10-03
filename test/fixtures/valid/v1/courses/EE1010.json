@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "id": "EE1010",
+  "code": "EE1010",
+  "name": "Kỹ thuật số (Thí nghiệm)",
+  "items": [
+    {
+      "id": "go-bo",
+      "type": "notes",
+      "removed": true,
+      "removedReason": "Người gửi rút lại",
+      "added": "2026-09-01"
+    },
+    {
+      "id": "link-doi-tac",
+      "type": "link",
+      "title": "Link từ đối tác",
+      "lang": "vi",
+      "license": "unknown",
+      "origin": "partner:vi-du",
+      "source": "Đối tác ví dụ",
+      "added": "2026-09-15",
+      "updated": "2026-09-15",
+      "url": "https://example.org/ee1010"
+    }
+  ]
+}

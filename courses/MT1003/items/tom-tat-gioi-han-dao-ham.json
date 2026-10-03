@@ -1,0 +1,26 @@
+{
+  "$schema": "../../../schema/item.schema.json",
+  "id": "tom-tat-gioi-han-dao-ham",
+  "course": "MT1003",
+  "type": "summary",
+  "title": "[Mẫu] Tóm tắt giới hạn và đạo hàm",
+  "description": "Giới hạn cơ bản, vô cùng bé tương đương, liên tục, đạo hàm, L'Hôpital, Maclaurin.",
+  "lang": "vi",
+  "chapter": "1",
+  "authors": [
+    "BK Study Library"
+  ],
+  "license": "CC-BY-SA-4.0",
+  "origin": "self-made",
+  "files": [
+    {
+      "name": "tom-tat-gioi-han-dao-ham.md",
+      "size": 2350,
+      "sha256": "c7ce30ea2d1d701335549b8e0456bc7e2a9cb3525f8077e4af6d023bf40c791c",
+      "path": "files/tom-tat-gioi-han-dao-ham.md"
+    }
+  ],
+  "example": true,
+  "added": "2026-10-03",
+  "removed": false
+}

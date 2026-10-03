@@ -1,0 +1,14 @@
+{
+  "$schema": "../../../schema/item.schema.json",
+  "id": "vi-du-da-go",
+  "course": "EE2033",
+  "type": "notes",
+  "title": "[Mẫu] Mục đã gỡ",
+  "lang": "vi",
+  "license": "CC-BY-SA-4.0",
+  "origin": "self-made",
+  "example": true,
+  "added": "2026-10-03",
+  "removed": true,
+  "removedReason": "Mục mẫu minh họa tài liệu đã gỡ. Bên đọc (web, app) chỉ còn thấy id, loại và lý do gỡ."
+}
