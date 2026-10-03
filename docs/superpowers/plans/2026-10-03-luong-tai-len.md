@@ -292,7 +292,7 @@ Nội dung, từng bước, đúng tên mục trên giao diện:
 2. R2: bucket `bk-lib-quarantine`; luật vòng đời xóa object sau 30 ngày; API token quyền Object Read & Write chỉ cho bucket này.
 3. Turnstile: hostname được phép.
 4. `cd worker && npx wrangler login`, rồi `npx wrangler secret put TURNSTILE_SECRET`, `GH_APP_ID`, `GH_APP_PRIVATE_KEY` (dán nội dung `bot-pkcs8.pem`), `GH_INSTALLATION_ID`; `npx wrangler deploy`; ghi địa chỉ `workers.dev` vào `catalog/site.json`.
-5. Actions secrets `R2_ACCOUNT_ID`, `R2_ACCESS_KEY_ID`, `R2_SECRET_ACCESS_KEY`, `GH_APP_ID`, `GH_APP_PRIVATE_KEY` (file `.pem` gốc); Actions variable `R2_BUCKET`.
+5. Actions secrets `R2_ACCOUNT_ID`, `R2_ACCESS_KEY_ID`, `R2_SECRET_ACCESS_KEY`, `GH_APP_CLIENT_ID` (Client ID của App, dạng `Iv...`, không phải App ID), `GH_APP_PRIVATE_KEY` (file `.pem` gốc); Actions variables `R2_BUCKET`, `BOT_LOGIN` (tên bot, ví dụ `bk-study-library-bot[bot]`).
 6. Nhãn `tai-lieu-moi` trong repo.
 7. Chạy thử 4 bài như spec, kèm kết quả mong đợi của từng bài.
 

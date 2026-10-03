@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import {
   applyCheck, quarantineInfo, pickItemFile, piiFromPages, removedTags, findReportComment, failureReport, githubOutput,
+  releaseName, validateResult,
 } from '../scripts/upload/check.mjs';
 import { releaseAssetUrl } from '../scripts/upload/term.mjs';
 import { REPORT_MARKER } from '../scripts/upload/report.mjs';
@@ -50,10 +51,42 @@ test('applyCheck thêm 6 ký tự sha256 khi Release có file cùng tên khác n
   assert.deepEqual(validate(itemSchema, out), []);
 });
 
-test('applyCheck thêm hậu tố vào cuối khi tên không có dấu chấm', () => {
-  const bare = { ...item, files: [{ ...item.files[0], name: 'README', quarantine: 'pending/abcdEF1234/README' }] };
-  const out = applyCheck(bare, { ...opts, cleanName: 'README', existingAssets: new Map([['README', OLD_SHA]]) });
-  assert.equal(out.files[0].name, 'README-b1c2d3');
+test('releaseName thêm hậu tố vào cuối khi tên không có dấu chấm', () => {
+  assert.equal(releaseName('README', SHA, new Map([['README', OLD_SHA]])), 'README-b1c2d3');
+  assert.equal(releaseName('README', SHA, new Map()), 'README');
+});
+
+const result = {
+  code: 'abcdEF1234', name: NAME, virus: null, metadataRemoved: ['Author', 'Producer'], hasText: true,
+  piiChecked: true, pii: [{ label: 'email', page: 2, match: 'an@hcmut.edu.vn' }], size: 1500, sha256: SHA,
+};
+const info = { code: 'abcdEF1234', key: `pending/abcdEF1234/${NAME}`, name: NAME, sha256: OLD_SHA };
+
+test('validateResult nhận kết quả quét đúng dạng và chỉ giữ trường đã biết', () => {
+  assert.deepEqual(validateResult({ ...result, extra: 'x' }, info), result);
+  const virus = { code: 'abcdEF1234', name: NAME, virus: 'Eicar-Signature' };
+  assert.deepEqual(validateResult(virus, info), { code: 'abcdEF1234', name: NAME, virus: 'Eicar-Signature' });
+});
+
+test('validateResult từ chối kết quả quét sai dạng', () => {
+  const bad = [
+    { ...result, code: 'zzzzzzzzzz' },
+    { ...result, name: 'khac.pdf' },
+    { ...result, virus: '<b>x</b>' },
+    { ...result, sha256: 'x' },
+    { ...result, size: 0 },
+    { ...result, size: 1.5 },
+    { ...result, hasText: 'yes' },
+    { ...result, piiChecked: 1 },
+    { ...result, metadataRemoved: ['<img src=x>'] },
+    { ...result, metadataRemoved: 'Author' },
+    { ...result, pii: [{ label: 'khác', page: 1, match: 'x' }] },
+    { ...result, pii: [{ label: 'email', page: 0, match: 'x' }] },
+    { ...result, pii: [{ label: 'email', page: 1, match: 'x'.repeat(201) }] },
+    { ...result, pii: 'x' },
+    null,
+  ];
+  for (const r of bad) assert.throws(() => validateResult(r, info), /kết quả quét/, JSON.stringify(r));
 });
 
 test('githubOutput dùng dấu phân cách, không cho giá trị chứa dấu phân cách', () => {
@@ -75,7 +108,7 @@ test('quarantineInfo đọc mã bài, khóa và kiểm nhánh', () => {
   assert.throws(() => quarantineInfo({ ...item, files: [] }, 'upload/abcdEF1234'));
   assert.throws(() => quarantineInfo({ ...item, files: [item.files[0], item.files[0]] }, 'upload/abcdEF1234'));
   assert.throws(() => quarantineInfo({ ...item, files: [{ ...item.files[0], sha256: 'x' }] }, 'upload/abcdEF1234'));
-  for (const bad of ['a b.pdf', 'a\nb.pdf','tên.pdf', 'a$(x).pdf']) {
+  for (const bad of ['a b.pdf', 'a\nb.pdf', 'tên.pdf', 'a$(x).pdf', '.', '..', '.pdf', 'a.', 'README', '..pdf']) {
     const f = { ...item.files[0], name: bad, quarantine: `pending/abcdEF1234/${bad}` };
     assert.throws(() => quarantineInfo({ ...item, files: [f] }), /tên file/, bad);
   }
@@ -95,9 +128,18 @@ test('pickItemFile cần đúng một mục tài liệu, chỉ thêm file sinh r
 
 test('pickItemFile từ chối PR sửa file ngoài phạm vi', () => {
   const one = { filename: 'courses/MT1005/items/tom-tat.json', status: 'added' };
-  for (const filename of ['scripts/validate.mjs', '.github/workflows/kiem-file.yml', 'courses/MT1005/course.json', 'courses/CO1005/README.md', 'courses/MT1005/items/sub/x.json', 'catalog/policy.json']) {
+  for (const filename of ['scripts/validate.mjs', '.github/workflows/kiem-file.yml', 'courses/MT1005/course.json', 'courses/CO1005/README.md', 'courses/MT1005/items/sub/x.json', 'catalog/policy.json', 'courses/MT1005/items/a b.json', 'courses/MT1005/items/a\nb.json']) {
     assert.throws(() => pickItemFile([one, { filename, status: 'modified' }]), /ngoài phạm vi/, filename);
   }
+});
+
+test('pickItemFile kiểm cả đường dẫn cũ của file đổi tên', () => {
+  const one = { filename: 'courses/MT1005/items/tom-tat.json', status: 'added' };
+  // Đổi tên từ chỗ không được phép sang chỗ được phép vẫn bị chặn.
+  assert.throws(() => pickItemFile([one, { filename: 'v1/x.json', status: 'renamed', previous_filename: 'scripts/x.mjs' }]), /ngoài phạm vi/);
+  assert.throws(() => pickItemFile([{ ...one, status: 'renamed', previous_filename: 'scripts/x.json' }]), /ngoài phạm vi/);
+  assert.throws(() => pickItemFile([{ ...one, status: 'renamed', previous_filename: 'courses/MT1005/items/cu.json' }]), /ngoài phạm vi/);
+  assert.equal(pickItemFile([one, { filename: 'v1/b.json', status: 'renamed', previous_filename: 'v1/a.json' }]), one.filename);
 });
 
 test('piiFromPages ghi số trang và lớp chữ', () => {
