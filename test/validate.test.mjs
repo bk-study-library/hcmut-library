@@ -2,7 +2,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
-import { loadRepo, buildIndex, serializeIndex, scanText } from '../scripts/lib/repo.mjs';
+import { loadRepo, TOOL_ROOT, buildIndex, serializeIndex, scanText } from '../scripts/lib/repo.mjs';
 import { run } from '../scripts/validate.mjs';
 import { syncReadmes } from '../scripts/lib/readme.mjs';
 import { copyFixture, editJson, writeJson, codes, FIXTURES } from './helpers.mjs';
@@ -180,4 +180,22 @@ test('README môn giữ nguyên phần Mẹo học khi sinh lại', () => {
   const out = fs.readFileSync(p, 'utf8');
   assert.ok(out.includes(tip));
   assert.ok(out.includes('| Tín chỉ | 4 |'));
+});
+
+test('giới hạn dung lượng trong thông báo lấy từ policy.json', () => {
+  const dir = copyFixture();
+  const pol = JSON.parse(fs.readFileSync(path.join(TOOL_ROOT, 'catalog', 'policy.json'), 'utf8'));
+  writeJson(dir, 'catalog/policy.json', { ...pol, maxFileBytes: 5 * 1024 * 1024 });
+  editJson(dir, PRELAB, (it) => { it.files[0].size = 6 * 1024 * 1024; });
+  const e = loadRepo(dir).errors.find((x) => x.code === 'FILE_SIZE');
+  assert.match(e.msg, /quá 5 MB/);
+});
+
+test('policy.json thiếu khóa thì báo SCHEMA, không ném lỗi', () => {
+  const dir = copyFixture();
+  const pol = JSON.parse(fs.readFileSync(path.join(TOOL_ROOT, 'catalog', 'policy.json'), 'utf8'));
+  delete pol.terms;
+  writeJson(dir, 'catalog/policy.json', pol);
+  const e = loadRepo(dir).errors.find((x) => x.code === 'SCHEMA' && x.file === 'catalog/policy.json');
+  assert.match(e.msg, /terms/);
 });

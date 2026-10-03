@@ -6,6 +6,11 @@ import path from 'node:path';
 
 const REQUIRED = ['openTypes', 'maxFileBytes', 'maxMdInGitBytes', 'extensions', 'quizExtensions', 'selfMadeLicenses', 'terms'];
 
+// Trả về danh sách khóa còn thiếu (rỗng nếu đủ).
+export function missingKeys(pol) {
+  return REQUIRED.filter((k) => !pol || pol[k] === undefined);
+}
+
 export function loadPolicy(root) {
   const p = path.join(root, 'catalog', 'policy.json');
   let pol;
@@ -14,8 +19,7 @@ export function loadPolicy(root) {
   } catch (e) {
     throw new Error(`không đọc được catalog/policy.json: ${e.message}`);
   }
-  for (const k of REQUIRED) {
-    if (pol[k] === undefined) throw new Error(`catalog/policy.json thiếu khóa "${k}"`);
-  }
+  const miss = missingKeys(pol);
+  if (miss.length) throw new Error(`catalog/policy.json thiếu khóa: ${miss.join(', ')}`);
   return pol;
 }

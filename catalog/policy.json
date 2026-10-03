@@ -1,6 +1,6 @@
 {
   "openTypes": ["summary", "notes", "cheatsheet", "quiz-pack", "tips", "link", "exercise-solution", "exam-solution", "exam-past", "prelab-template", "prelab-reference", "lab-report-reference", "project-reference", "book-ref"],
-  "note": "Loại tài liệu đang nhận. Các loại khác có trong hợp đồng v1 nhưng chỉ mở khi có người duyệt thứ hai và quy định riêng (liêm chính học thuật).",
+  "note": "Cấu hình chung: loại tài liệu nhận, giới hạn file, đuôi file và học kỳ.",
   "maxFileBytes": 20971520,
   "maxMdInGitBytes": 1048576,
   "extensions": {

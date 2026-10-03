@@ -2,7 +2,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
-import { loadRepo } from '../scripts/lib/repo.mjs';
+import { loadRepo, TOOL_ROOT } from '../scripts/lib/repo.mjs';
 import { buildV1, serializeV1 } from '../scripts/lib/v1.mjs';
 import { copyFixture, editJson, writeJson, codes, FIXTURES, HERE } from './helpers.mjs';
 
@@ -82,7 +82,7 @@ test('v1: mục có file chưa có link tải thì chưa đưa ra ngoài', () =>
 
 test('policy.json: loại chưa mở thì báo ITEM_TYPE_CLOSED', () => {
   const dir = copyFixture();
-  writeJson(dir, 'catalog/policy.json', { openTypes: ['link'] });
+  writeJson(dir, 'catalog/policy.json', { ...JSON.parse(fs.readFileSync(path.join(TOOL_ROOT, 'catalog/policy.json'), 'utf8')), openTypes: ['link'] });
   assert.ok(codes(loadRepo(dir).errors).includes('ITEM_TYPE_CLOSED'));
   writeJson(dir, 'catalog/policy.json', { openTypes: ['khong-co'] });
   assert.ok(codes(loadRepo(dir).errors).includes('SCHEMA'));
