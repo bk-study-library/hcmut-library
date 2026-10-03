@@ -1,6 +1,7 @@
 // Kiểm bài gửi từ form web: thuần hàm, không đụng mạng hay lưu trữ.
 import { slugify } from '../../scripts/upload/naming.mjs';
 import { formatSize } from '../../scripts/lib/labels.mjs';
+import { scanText } from '../../scripts/lib/pii.mjs';
 
 const MESSAGES = {
   course: 'Không tìm thấy môn này. Chọn môn trong danh sách.',
@@ -16,6 +17,8 @@ const MESSAGES = {
   fileExt: (list) => `Không nhận đuôi file này. Dùng một trong: ${list}.`,
   fileSize: (max) => `File quá lớn. Chọn file nhỏ hơn ${max}.`,
   fileMagic: (ext) => `Nội dung file không khớp đuôi ${ext}.`,
+  quizExt: (list) => `Không nhận file này cho gói quiz. Dùng một trong: ${list}.`,
+  pii: (where, label) => `Không nhận thông tin cá nhân trong ${where} (có thể là ${label}). Bỏ phần đó rồi gửi lại.`,
   lang: 'Mã ngôn ngữ không hợp lệ. Dùng dạng vi hoặc en.',
   description: (max) => `Mô tả quá dài. Rút xuống tối đa ${max} ký tự.`,
   textTotal: 'Nội dung các ô quá dài. Rút gọn bớt rồi gửi lại.',
@@ -43,6 +46,25 @@ const CONFIRMS = ['confirm-own', 'confirm-license', 'confirm-not-book'];
 const OPTIONAL = ['description', 'term', 'chapter', 'examKind', 'teacher', 'displayName'];
 
 const val = (fields, key) => String(fields[key] ?? '').trim();
+
+// Các ô chữ thành siêu dữ liệu công khai của mục, nên chặn thông tin cá nhân (cùng mẫu với
+// validate.mjs, không bỏ qua dòng "pii-ok"). Tên ô dùng trong thông báo lỗi.
+const PII_FIELDS = [
+  ['title', 'tiêu đề'],
+  ['description', 'mô tả'],
+  ['chapter', 'chương'],
+  ['teacher', 'tên giảng viên'],
+  ['displayName', 'tên hiển thị'],
+];
+const PII_BOOK = 'thông tin sách';
+
+function piiLabel(...texts) {
+  for (const t of texts) {
+    const hit = scanText(String(t), { skipMarked: false })[0];
+    if (hit) return hit.label;
+  }
+  return null;
+}
 
 function extOf(name) {
   const dot = String(name).lastIndexOf('.');
@@ -159,6 +181,22 @@ export function validateSubmission(fields, file, ctx) {
     book = parseBook(fields, errors, lim);
   } else {
     errors.file = MESSAGES.fileMissing;
+  }
+
+  if (type === 'quiz-pack' && ext && !errors.file && !policy.quizExtensions.includes(ext)) {
+    errors.file = MESSAGES.quizExt(policy.quizExtensions.join(', '));
+  }
+
+  // Thông tin cá nhân: chỉ xét ô chưa có lỗi khác. Tiêu đề xét cả slug vì slug thành id và tên file.
+  for (const [key, where] of PII_FIELDS) {
+    if (errors[key]) continue;
+    const v = val(fields, key);
+    const label = piiLabel(v, ...(key === 'title' ? [slugify(v)] : []));
+    if (label) errors[key] = MESSAGES.pii(where, label);
+  }
+  if (book && !errors.book) {
+    const label = piiLabel(book.title, ...book.authors, book.publisher ?? '');
+    if (label) errors.book = MESSAGES.pii(PII_BOOK, label);
   }
 
   if (Object.keys(errors).length) return { ok: false, errors };

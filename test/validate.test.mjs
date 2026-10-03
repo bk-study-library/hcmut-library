@@ -227,3 +227,19 @@ test('book-ref: book cần ít nhất một tác giả không rỗng', () => {
     assert.ok(errorsAfter((d) => writeJson(d, 'courses/EE1009/items/sach-giai-tich.json', bookItem({ book: { ...BOOK, authors } }))).includes('ITEM_BOOK'));
   }
 });
+
+test('ISBN không bị quét như số điện thoại, tên sách vẫn bị quét', () => {
+  const put = (book) => (d) => writeJson(d, 'courses/EE1009/items/sach-giai-tich.json', bookItem({ book: { ...BOOK, ...book } }));
+  assert.deepEqual(errorsAfter(put({ isbn: '0912345678' })), []);
+  assert.deepEqual(errorsAfter(put({ title: 'Sách 0912345678' })), ['PII_PHONE']);
+});
+
+test('mẫu thông tin cá nhân dùng chung: repo.mjs xuất lại đúng pii.mjs', async () => {
+  const pii = await import('../scripts/lib/pii.mjs');
+  const repo = await import('../scripts/lib/repo.mjs');
+  assert.equal(repo.scanText, pii.scanText);
+  assert.equal(repo.PII_PATTERNS, pii.PII_PATTERNS);
+  // Chữ người gửi không được bỏ qua bằng "pii-ok".
+  assert.equal(pii.scanText('an@hcmut.edu.vn pii-ok').length, 0);
+  assert.equal(pii.scanText('an@hcmut.edu.vn pii-ok', { skipMarked: false })[0].code, 'PII_EMAIL');
+});

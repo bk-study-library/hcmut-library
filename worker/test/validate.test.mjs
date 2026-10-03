@@ -207,3 +207,45 @@ describe('giới hạn lấy từ policy.fields', () => {
     expect(r.errors.title).toMatch(/5 ký tự/);
   });
 });
+
+describe('thông tin cá nhân trong các ô chữ', () => {
+  const book = { ...base, type: 'book-ref', 'book-title': 'Giải tích', 'book-authors': 'A' };
+  it('từ chối email, MSSV, số điện thoại trong từng ô, lỗi nằm đúng ô', () => {
+    const cases = [
+      [{ ...base, title: 'Tóm tắt 2112345' }, pdf, 'title', 'tiêu đề', 'MSSV 7 chữ số'],
+      [{ ...base, title: 'Bai a.2112345' }, pdf, 'title', 'tiêu đề', 'MSSV 7 chữ số'],
+      [{ ...base, description: 'liên hệ an@hcmut.edu.vn' }, pdf, 'description', 'mô tả', 'email'],
+      [{ ...base, description: 'dòng 1\nGọi 0912 345 678 pii-ok' }, pdf, 'description', 'mô tả', 'số điện thoại'],
+      [{ ...base, teacher: 'Thầy B 0912345678' }, pdf, 'teacher', 'tên giảng viên', 'số điện thoại'],
+      [{ ...base, displayName: 'an@hcmut.edu.vn' }, pdf, 'displayName', 'tên hiển thị', 'email'],
+      [{ ...base, chapter: '2112345' }, pdf, 'chapter', 'chương', 'MSSV 7 chữ số'],
+      [{ ...book, 'book-title': 'Sách của 2112345' }, null, 'book', 'thông tin sách', 'MSSV 7 chữ số'],
+      [{ ...book, 'book-authors': 'A, b@x.vn' }, null, 'book', 'thông tin sách', 'email'],
+      [{ ...book, 'book-publisher': 'NXB 0912345678' }, null, 'book', 'thông tin sách', 'số điện thoại'],
+    ];
+    for (const [fields, file, key, where, label] of cases) {
+      const r = validateSubmission(fields, file, ctx);
+      expect(r.ok, JSON.stringify(fields)).toBe(false);
+      expect(r.errors[key]).toBe(`Không nhận thông tin cá nhân trong ${where} (có thể là ${label}). Bỏ phần đó rồi gửi lại.`);
+    }
+  });
+
+  it('ISBN chỉ là số nên không bị coi là số điện thoại', () => {
+    expect(validateSubmission({ ...book, 'book-isbn': '0912345678' }, null, ctx).ok).toBe(true);
+  });
+
+  it('chữ thường không bị chặn', () => {
+    expect(validateSubmission({ ...base, title: 'Đề thi 2023 chương 3', description: 'Bài 1.2345, trang 12' }, pdf, ctx).ok).toBe(true);
+  });
+});
+
+describe('gói quiz', () => {
+  const quizCtx = { ...ctx, policy: { ...policy, openTypes: [...policy.openTypes, 'quiz-pack'], quizExtensions: ['.json', '.md', '.zip'] } };
+  it('chỉ nhận đuôi trong policy.quizExtensions', () => {
+    const r = validateSubmission({ ...base, type: 'quiz-pack' }, pdf, quizCtx);
+    expect(r.ok).toBe(false);
+    expect(r.errors.file).toBe('Không nhận file này cho gói quiz. Dùng một trong: .json, .md, .zip.');
+    const md = { name: 'quiz.md', size: 10, head: new Uint8Array([0x23]) };
+    expect(validateSubmission({ ...base, type: 'quiz-pack' }, md, quizCtx).ok).toBe(true);
+  });
+});
