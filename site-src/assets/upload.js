@@ -1,6 +1,8 @@
 // Form Gửi tài liệu. Số liệu (đuôi file, kích thước tối đa) và thông báo lấy từ #upload-config,
 // do build-site.mjs đổ từ catalog/policy.json, nên file này không giữ số nào.
 // Danh sách môn tải từ assets/courses.json (thiếu thì v1/index.json) và tìm bằng search-core.js, cùng logic với ô tìm trên trang chủ.
+// Chọn môn theo tên (subject-core.js): môn nhiều mã tự chọn mã thuộc nhiều chương trình nhất, ô "Mã môn (nếu bạn
+// biết)" để đổi. Form vẫn gửi một mã môn như cũ.
 (function () {
   'use strict';
   var form = document.getElementById('upload-form');
@@ -29,14 +31,35 @@
   var newName = document.getElementById('newCourseName');
   var suggest = document.getElementById('new-course-suggest');
   var cancelNew = document.getElementById('new-course-cancel');
+  var codeBox = document.getElementById('code-box');
+  var codeSel = document.getElementById('course-code');
+  // Ô giảng viên: danh sách tên đã có của môn (nếu có) và ô gõ tên khác.
+  var teacherPickBox = document.getElementById('teacher-pick-box');
+  var teacherPick = document.getElementById('teacher-pick');
+  var teacherTextBox = document.getElementById('teacher-text-box');
+  var teacherLabel = document.getElementById('teacher-label');
+  var teacherInput = document.getElementById('teacher');
+  var NEW_TEACHER = '__new';
   var nc = cfg.newCourse || {};
   var core = window.BkUpload;
+  // Tài liệu đã có (assets/items.json) để cảnh báo trùng tên và chọn tài liệu được thay.
+  var titleInput = document.getElementById('title');
+  var dupWarn = document.getElementById('dup-warn');
+  var dupList = document.getElementById('dup-list');
+  var updateField = document.getElementById('update-field');
+  var isUpdate = document.getElementById('is-update');
+  var updateBox = document.getElementById('update-box');
+  var replacesSel = document.getElementById('replaces');
+  var allDocs = [];
+  var subjectIds = [];
+  var docs = [];
   var sn = cfg.sameName || {};
   var MAX_SHOWN = 8;
   var SEARCH_LIMIT = 500;
   var idx = null;
   var index = null;
   var byId = Object.create(null);
+  var subjects = { of: Object.create(null), all: Object.create(null) };
   var timer = null;
 
   // Chỗ hiện lỗi dựng một lần lúc khởi động; khóa lạ từ server không tra được thì rơi về dòng chung.
@@ -69,6 +92,7 @@
     if (key === 'course') return q;
     if (key === 'confirm') return form.querySelector('[name="confirm-own"]');
     if (key === 'book') return document.getElementById('book-title');
+    if (key === 'teacher' && teacherTextBox.hidden) return teacherPick;
     return form.elements[key] || null;
   }
 
@@ -109,7 +133,7 @@
       newCode.value = r.code;
       if (r.existing) {
         // Mã đã có trong thư viện: chọn môn đó thay vì thêm môn mới, để người gửi xem lại rồi gửi.
-        select(r.existing.id);
+        select(r.existing.id, true);
         bad('course', msg.courseExists);
       }
       var NEW_MSG = { codeEmpty: msg.newCodeEmpty, codePattern: msg.newCodePattern, nameEmpty: msg.newNameEmpty, nameLong: msg.newNameLong };
@@ -143,16 +167,87 @@
     fileInput.setAttribute('accept', allowedExts().join(','));
   }
 
-  // Ô môn
-  function select(id) {
-    var c = byId[id];
+  // Ô môn. Chọn một mã: môn nhiều mã thì ô hiện tên môn, mã gửi đi là exact (gõ đúng mã, link ?course=, gợi ý
+  // theo mã) hoặc mã thuộc nhiều chương trình nhất; ô Mã môn để đổi.
+  function select(id, exact) {
+    var ch = core.subjectChoice(window.BkSubject, subjects, byId, id, exact ? id : '');
+    var c = byId[ch.id];
     setNew(false);
-    courseId.value = id;
-    q.value = c.code + ' ' + c.name + (c.ctx ? ' (' + c.ctx + ')' : '');
+    courseId.value = ch.id;
+    q.value = ch.slug ? ch.name : c.code + ' ' + c.name;
+    codeSel.textContent = '';
+    ch.codes.forEach(function (x) {
+      var o = document.createElement('option');
+      o.value = x.id;
+      o.textContent = x.code;
+      if (x.id === ch.id) o.selected = true;
+      codeSel.appendChild(o);
+    });
+    codeBox.hidden = ch.codes.length < 2;
     list.textContent = '';
     offer.hidden = true;
     errBox('course').textContent = '';
-    fillTeachers(c.teachers || []);
+    var group = ch.slug
+      ? subjects.all[ch.slug].ids.map(function (x) {
+          return byId[x];
+        })
+      : [c];
+    fillTeachers(core.subjectTeachers(group));
+    subjectIds = group.map(function (x) {
+      return x.id;
+    });
+    refreshDocs();
+  }
+
+  // Tài liệu của môn đang chọn: điền ô "Tài liệu được thay", rồi kiểm trùng tên.
+  function refreshDocs() {
+    docs = updateField ? core.subjectDocs(allDocs, subjectIds) : [];
+    if (!updateField) return;
+    replacesSel.textContent = '';
+    docs.forEach(function (d) {
+      var o = document.createElement('option');
+      o.value = d.course + '/' + d.id;
+      o.textContent = d.title + ' (' + d.code + ')';
+      replacesSel.appendChild(o);
+    });
+    updateField.hidden = !docs.length;
+    if (!docs.length) setUpdate(false);
+    checkDup();
+  }
+
+  function setUpdate(on) {
+    if (!updateField) return;
+    isUpdate.checked = on;
+    updateBox.hidden = !on;
+    replacesSel.disabled = !on;
+  }
+
+  function checkDup() {
+    if (!dupWarn) return;
+    var sims = titleInput.value.trim() && docs.length ? core.similarDocs(titleInput.value, docs, window.BkSearch.fold, 3) : [];
+    dupList.textContent = '';
+    sims.forEach(function (d) {
+      var li = document.createElement('li');
+      var a = document.createElement('a');
+      a.href = root + d.url;
+      a.target = '_blank';
+      a.rel = 'noopener';
+      a.textContent = d.title + ' (' + d.code + ')';
+      li.appendChild(a);
+      dupList.appendChild(li);
+    });
+    dupWarn.hidden = !sims.length;
+    // Đã chọn bản cập nhật mà chưa đổi tài liệu được thay: gợi ý sẵn tài liệu giống nhất.
+    if (sims.length && isUpdate && !isUpdate.checked) replacesSel.value = sims[0].course + '/' + sims[0].id;
+  }
+
+  function clearCourse() {
+    subjectIds = [];
+    refreshDocs();
+    courseId.value = '';
+    codeBox.hidden = true;
+    codeSel.textContent = '';
+    fillTeachers([]);
   }
 
   // Chọn môn có sẵn và thêm môn mới loại trừ nhau: ô môn mới bị ẩn thì cũng bị tắt để không gửi đi.
@@ -165,8 +260,7 @@
     newBox.disabled = !on;
     openNew.setAttribute('aria-expanded', on ? 'true' : 'false');
     if (on) {
-      courseId.value = '';
-      fillTeachers([]);
+      clearCourse();
       offer.hidden = true;
       list.textContent = '';
     } else {
@@ -176,60 +270,60 @@
     }
   }
 
-  // Một dòng gợi ý môn: nút mã và tên, bấm là chọn môn đó. inGroup: dòng trong nhóm cùng tên, chỉ ghi
-  // ngữ cảnh (ngành hoặc khóa) thay cho tên lặp lại.
-  function courseButton(c, inGroup) {
+  function chip(code) {
+    var s = document.createElement('span');
+    s.className = 'code';
+    s.textContent = code;
+    return s;
+  }
+
+  // Một dòng gợi ý theo mã (mã gần, mã trùng): nút mã và tên, bấm là chọn đúng mã đó.
+  function courseButton(c) {
     var li = document.createElement('li');
     var b = document.createElement('button');
     b.type = 'button';
-    var code = document.createElement('span');
-    code.className = 'code';
-    code.textContent = c.code;
+    b.appendChild(chip(c.code));
     var name = document.createElement('span');
-    name.textContent = inGroup && c.ctx ? c.ctx : c.name;
-    b.appendChild(code);
+    name.textContent = c.name;
     b.appendChild(name);
-    // Môn trùng tên (Đồ án tốt nghiệp...): ghi ngành để chọn đúng mã.
-    if (c.ctx && !inGroup) {
-      var ctx = document.createElement('span');
-      ctx.className = 'muted';
-      ctx.textContent = c.ctx;
-      b.appendChild(ctx);
-    }
     b.addEventListener('click', function () {
-      select(c.id);
+      select(c.id, true);
       typeSel.focus();
     });
     li.appendChild(b);
     return li;
   }
 
-  // Một tên, nhiều mã (theo ngành hoặc khóa): một dòng có tên, các mã và số mã; bấm thì mở danh sách
-  // để chọn đúng mã theo ngữ cảnh. Cùng class với ô tìm trang chủ (.same-name).
-  function groupRow(group) {
-    var courses = group
-      .map(function (h) {
-        return byId[h.id];
-      })
-      .sort(function (a, b) {
-        return (a.ctx || '').localeCompare(b.ctx || '', 'vi') || (a.code < b.code ? -1 : 1);
-      });
+  // Một môn một dòng: tên môn và các mã (tối đa chipsMax, còn lại +N). Bấm là chọn môn.
+  function subjectButton(r) {
+    var sub = r.slug ? subjects.all[r.slug] : null;
+    if (!sub) return courseButton(byId[r.id]);
     var li = document.createElement('li');
-    li.className = 'same-name';
     var b = document.createElement('button');
     b.type = 'button';
-    b.setAttribute('aria-expanded', 'false');
     var title = document.createElement('span');
-    title.className = 'same-name-title';
-    title.textContent = courses[0].name;
+    title.className = 'row-title';
+    title.textContent = sub.name;
     var codes = document.createElement('span');
-    codes.className = 'same-name-codes';
+    codes.className = 'row-codes';
+    var courses = sub.ids
+      .map(function (id) {
+        return byId[id];
+      })
+      .sort(function (a, b) {
+        return a.code < b.code ? -1 : a.code > b.code ? 1 : 0;
+      });
+    // Gõ đúng mã thì mã đó đứng đầu.
+    if (r.exact) {
+      courses = [byId[r.id]].concat(
+        courses.filter(function (c) {
+          return c.id !== r.id;
+        }),
+      );
+    }
     var chips = core.codeChips(courses, sn.chipsMax || 4);
     chips.codes.forEach(function (code) {
-      var s = document.createElement('span');
-      s.className = 'code';
-      s.textContent = code;
-      codes.appendChild(s);
+      codes.appendChild(chip(code));
     });
     if (chips.more) {
       var more = document.createElement('span');
@@ -237,24 +331,13 @@
       more.textContent = '+' + chips.more;
       codes.appendChild(more);
     }
-    var count = document.createElement('span');
-    count.className = 'muted';
-    count.textContent = courses.length + ' ' + msg.sameNameCount;
     b.appendChild(title);
     b.appendChild(codes);
-    b.appendChild(count);
-    var inner = document.createElement('ul');
-    inner.className = 'pick';
-    inner.hidden = true;
-    courses.forEach(function (c) {
-      inner.appendChild(courseButton(c, true));
-    });
     b.addEventListener('click', function () {
-      inner.hidden = !inner.hidden;
-      b.setAttribute('aria-expanded', inner.hidden ? 'false' : 'true');
+      select(r.id, r.exact);
+      typeSel.focus();
     });
     li.appendChild(b);
-    li.appendChild(inner);
     return li;
   }
 
@@ -290,17 +373,44 @@
     });
   }
 
-  // Gợi ý tên giảng viên đã có ở môn này, để cùng một người không thành nhiều cách viết.
+  // Giảng viên: môn đã có tên giảng viên trên tài liệu (mọi mã của môn) thì chọn trong danh sách, có lựa chọn
+  // thêm tên khác (mở ô gõ). Chưa có tên nào thì chỉ có ô gõ. Ô gõ (name="teacher") luôn là giá trị gửi đi.
   function fillTeachers(names) {
-    var dl = document.getElementById('teacher-list');
-    if (!dl) return;
-    dl.textContent = '';
-    names.forEach(function (n) {
-      var o = document.createElement('option');
-      o.value = n;
-      dl.appendChild(o);
-    });
+    var has = names.length > 0;
+    teacherPick.textContent = '';
+    if (has) {
+      [['', msg.teacherNone]]
+        .concat(
+          names.map(function (n) {
+            return [n, n];
+          }),
+        )
+        .concat([[NEW_TEACHER, msg.teacherAdd]])
+        .forEach(function (x) {
+          var o = document.createElement('option');
+          o.value = x[0];
+          o.textContent = x[1];
+          teacherPick.appendChild(o);
+        });
+      teacherPick.value = '';
+    }
+    teacherPickBox.hidden = !has;
+    teacherTextBox.hidden = has;
+    teacherLabel.textContent = has ? msg.teacherOther : msg.teacherLabel;
+    teacherInput.value = '';
   }
+
+  teacherPick.addEventListener('change', function () {
+    var v = teacherPick.value;
+    var other = v === NEW_TEACHER;
+    teacherTextBox.hidden = !other;
+    teacherInput.value = other ? '' : v;
+    if (other) teacherInput.focus();
+  });
+
+  codeSel.addEventListener('change', function () {
+    if (byId[codeSel.value]) courseId.value = codeSel.value;
+  });
 
   // Kết quả tìm môn. Không có môn khớp, hay gõ mã môn chưa có: gợi ý môn có mã gần ("Có phải môn
   // này?"), rồi mới mời thêm môn mới.
@@ -327,17 +437,16 @@
       }
     }
     core
-      .groupHits(hits, byId, sn.groupMin || 2)
+      .subjectRows(hits, subjects)
       .slice(0, MAX_SHOWN)
       .forEach(function (r) {
-        list.appendChild(r.group ? groupRow(r.group) : courseButton(byId[r.hit.id]));
+        list.appendChild(subjectButton(r));
       });
     offer.hidden = isNew() || !(!hits.length || (code && !exact));
   }
 
   q.addEventListener('input', function () {
-    courseId.value = '';
-    fillTeachers([]);
+    clearCourse();
     clearTimeout(timer);
     timer = setTimeout(renderResults, 80);
   });
@@ -349,7 +458,7 @@
     var exact = core.exactCode(window.BkSearch.search(idx, q.value, { limit: SEARCH_LIMIT }), byId);
     if (exact) {
       clearTimeout(timer);
-      select(exact.id);
+      select(exact.id, true);
       typeSel.focus();
     }
   });
@@ -380,9 +489,10 @@
       byId[c.id] = c;
     });
     idx = window.BkSearch.prepare(index);
+    if (window.BkSubject) subjects = core.subjectIndex(window.BkSubject, index.courses, sn.groupMin || 2);
     q.disabled = false;
     var pre = new URLSearchParams(location.search).get('course');
-    if (pre && byId[pre]) select(pre);
+    if (pre && byId[pre]) select(pre, true);
   }
 
   // Danh sách môn: bản gọn của web (assets/courses.json, có ngữ cảnh môn trùng tên); thiếu thì dùng v1.
@@ -403,6 +513,28 @@
       });
   }
 
+  if (titleInput) {
+    var dupTimer = null;
+    titleInput.addEventListener('input', function () {
+      clearTimeout(dupTimer);
+      dupTimer = setTimeout(checkDup, 200);
+    });
+  }
+  if (isUpdate) {
+    isUpdate.addEventListener('change', function () {
+      setUpdate(isUpdate.checked);
+    });
+  }
+  // Danh sách tài liệu chỉ để cảnh báo trùng và chọn bản được thay: tải lỗi thì form vẫn gửi được.
+  if (updateField) {
+    getJson(root + 'assets/items.json')
+      .then(function (d) {
+        allDocs = Array.isArray(d) ? d : d.items || [];
+        refreshDocs();
+      })
+      .catch(function () {});
+  }
+
   // Gửi
   function setBusy(busy) {
     submit.disabled = busy;
@@ -410,10 +542,11 @@
   }
 
   function resetForm() {
-    fillTeachers([]);
     form.reset();
+    setUpdate(false);
+    if (dupWarn) dupWarn.hidden = true;
     setNew(false);
-    courseId.value = '';
+    clearCourse();
     list.textContent = '';
     offer.hidden = true;
     syncType();

@@ -33,15 +33,16 @@ test('mọi id trong bộ câu tìm có trong index', () => {
   for (const c of spec.cases) for (const id of [c.top, ...(c.in || [])].filter(Boolean)) assert.ok(known.has(id), id);
 });
 
-// Chạy search.js của trang chủ trên một DOM giả tối thiểu, với v1/index.json thật.
+// Chạy search.js của trang chủ trên một DOM giả tối thiểu, với v1/index.json thật (hoặc courses riêng).
 // programs: nội dung assets/programs.json (mặc định không có); kết quả chương trình nằm ở homeSearch.programs.
+// level: giá trị ô Bậc (mặc định dai-hoc như trang thật; null là trang không có ô Bậc).
 const LEVEL_STRINGS = { 'thac-si': ['Thạc sĩ', 'Master'], 'tien-si': ['Tiến sĩ', 'Doctoral'] };
-async function homeSearch(q, fac = '', programs = null, courses = null) {
+async function homeSearch(q, fac = '', programs = null, courses = null, level = 'dai-hoc') {
   const el = (tag) => {
     const e = { tagName: tag, children: [], className: '', href: '', value: '', disabled: true, listeners: {} };
     let text = '';
     Object.defineProperty(e, 'textContent', {
-      get: () => text,
+      get: () => (e.children.length ? e.children.map((c) => c.textContent).join('') : text),
       set: (v) => {
         text = String(v);
         e.children = [];
@@ -52,7 +53,11 @@ async function homeSearch(q, fac = '', programs = null, courses = null) {
     return e;
   };
   const byId = { q: el('input'), 'q-results': el('ul'), 'q-status': el('p'), 'q-fac': el('select'), 'search-strings': el('script'), 'q-prog': el('div'), 'q-prog-list': el('ul') };
-  byId['search-strings'].textContent = JSON.stringify({ results: ['Không có môn nào khớp', '1 môn khớp', '2 môn khớp'], teacher: 'Giảng viên', lang: 'vi', levels: LEVEL_STRINGS, groupMin: 3 });
+  if (level !== null) {
+    byId['q-level'] = el('select');
+    byId['q-level'].value = level;
+  }
+  byId['search-strings'].textContent = JSON.stringify({ results: ['Không có môn nào khớp', '1 môn khớp', '2 môn khớp'], teacher: 'Giảng viên', lang: 'vi', levels: LEVEL_STRINGS, groupMin: 2, chipsMax: 4 });
   byId['q-fac'].value = fac;
   const document = {
     documentElement: { getAttribute: (k) => ({ 'data-root': './', 'data-lang-prefix': '' })[k] ?? null },
@@ -61,31 +66,34 @@ async function homeSearch(q, fac = '', programs = null, courses = null) {
   };
   const ctx = vm.createContext({ document, setTimeout, clearTimeout, fetch: async (url) => ({ ok: true, json: async () => (String(url).endsWith('programs.json') ? programs || [] : String(url).endsWith('courses.json') && courses ? courses : index) }) });
   ctx.window = ctx;
-  vm.runInContext(fs.readFileSync(path.join(ROOT, 'site-src', 'assets', 'search-core.js'), 'utf8'), ctx);
-  vm.runInContext(fs.readFileSync(path.join(ROOT, 'site-src', 'assets', 'search.js'), 'utf8'), ctx);
+  for (const f of ['search-core.js', 'subject-core.js', 'search.js']) vm.runInContext(fs.readFileSync(path.join(ROOT, 'site-src', 'assets', f), 'utf8'), ctx);
   byId.q.value = q;
   for (const fn of byId.q.listeners.focus) fn();
   await new Promise((r) => setTimeout(r, 20));
-  const rows = byId['q-results'].children.map((li) => li.children[0].children.map((s) => s.textContent));
-  rows.items = byId['q-results'].children;
+  // Một dòng: a > [tên, các mã, (meta)].
+  const rows = byId['q-results'].children.map((li) => {
+    const [title, codes, meta] = li.children[0].children;
+    return { title: title.textContent, codes: codes.children.map((c) => c.textContent), meta: meta ? meta.textContent : '', href: li.children[0].href };
+  });
   rows.status = byId['q-status'].textContent;
-  rows.programs = byId['q-prog-list'].children.map((li) => (li.children[0] ? li.children[0].children.map((s) => s.textContent) : [li.textContent]));
-  rows.tags = byId['q-results'].children.map((li) => li.children[0].children.filter((s) => s.className === 'tag').map((s) => s.textContent));
+  rows.programs = byId['q-prog-list'].children.map((li) => (li.children[0] ? li.children[0].textContent : li.textContent));
   return rows;
 }
 
-test('ô tìm trang chủ: môn có ở sau đại học có nhãn bậc cuối dòng; môn đại học không có', async () => {
-  const pg = await homeSearch('GK5007');
-  assert.equal(pg[0][0], 'GK5007');
-  assert.deepEqual(pg.tags[0], ['Tiến sĩ']);
-  const both = await homeSearch('ENG_B2');
-  assert.deepEqual(both.tags[0], ['Thạc sĩ, Tiến sĩ']);
+test('ô tìm trang chủ: Bậc mặc định Đại học ẩn môn chỉ có ở sau đại học; Tất cả, Tiến sĩ thì hiện', async () => {
+  assert.equal((await homeSearch('GK5007')).length, 0);
+  const all = await homeSearch('GK5007', '', null, null, 'tat-ca');
+  assert.equal(all[0].codes[0], 'GK5007');
+  assert.equal((await homeSearch('GK5007', '', null, null, 'tien-si'))[0].codes[0], 'GK5007');
+  // Môn có cả đại học và sau đại học hiện ở mọi bậc của nó.
+  assert.equal((await homeSearch('ENG_B2', '', null, null, 'thac-si'))[0].codes[0], 'ENG_B2');
+  // Không có ô Bậc (site không có sau đại học): mọi bậc.
+  assert.equal((await homeSearch('GK5007', '', null, null, null))[0].codes[0], 'GK5007');
   const ug = await homeSearch('MT1005');
-  assert.equal(ug[0][0], 'MT1005');
-  assert.deepEqual(ug.tags[0], []);
+  assert.equal(ug[0].codes[0], 'MT1005');
 });
 
-test('ô tìm trang chủ: ngành, chương trình sau đại học ghi bậc, tìm được bằng "thạc sĩ", xếp sau đại học', async () => {
+test('ô tìm trang chủ: ngành, chương trình gọn một dòng, lọc theo Bậc', async () => {
   const programs = [
     { kind: 'major', code: '7520103', key: '7520103', name: 'Kỹ thuật Cơ khí', faculty: 'fme', types: ['CQ'], programs: 2 },
     { kind: 'major', code: '8520103', key: '8520103', name: 'Kỹ thuật cơ khí', faculty: 'fme', level: 'thac-si', types: ['UD'], programs: 1 },
@@ -93,16 +101,12 @@ test('ô tìm trang chủ: ngành, chương trình sau đại học ghi bậc, t
     { code: 'FME_THAC_SI_KY_THUAT_CO_KHI_2025_UD', name: 'Kỹ thuật cơ khí', year: '2025', variant: 'Thạc sĩ định hướng ứng dụng', type: 'UD', major: '8520103', faculty: 'fme', level: 'thac-si', courses: 9 },
     { code: 'FME_THAC_SI_KY_THUAT_CO_KHI_2022', name: 'Kỹ thuật cơ khí', year: '2022', type: 'CQ', major: '8520103', faculty: 'fme', level: 'thac-si', courses: 0 },
   ];
-  const all = (await homeSearch('ky thuat co khi', '', programs)).programs;
-  assert.deepEqual(all.map((r) => r[1].split(', ')[0]), ['Khoa Cơ khí', 'Thạc sĩ', 'Tiến sĩ', 'Khoa Cơ khí', 'Thạc sĩ']);
-  assert.match(all[1][1], /^Thạc sĩ, Khoa Cơ khí, Ngành, mã 8520103, 1 chương trình$/);
-  // Chương trình có nhãn loại (variant) đã ghi bậc thì không lặp; chương trình tiêu chuẩn ghi bậc.
-  assert.match(all[3][1], /^Khoa Cơ khí, Thạc sĩ định hướng ứng dụng, 9 môn$/);
-  assert.match(all[4][1], /^Thạc sĩ, Khoa Cơ khí, chưa có danh sách môn$/);
-  const ths = (await homeSearch('thac si co khi', '', programs)).programs;
-  assert.ok(ths.length >= 2 && ths.every((r) => /Thạc sĩ/.test(r[1])));
-  const ud = (await homeSearch('UD', '', programs)).programs;
-  assert.deepEqual(ud.map((r) => r[0]), ['Kỹ thuật cơ khí', 'Kỹ thuật cơ khí (2025)']);
+  assert.deepEqual((await homeSearch('ky thuat co khi', '', programs)).programs, ['Kỹ thuật Cơ khí']);
+  const all = (await homeSearch('ky thuat co khi', '', programs, null, 'tat-ca')).programs;
+  assert.deepEqual(all, ['Kỹ thuật Cơ khí', 'Thạc sĩ Kỹ thuật cơ khí', 'Tiến sĩ Kỹ thuật Cơ khí', 'Kỹ thuật cơ khí (2025)', 'Thạc sĩ Kỹ thuật cơ khí (2022)']);
+  const ths = (await homeSearch('thac si co khi', '', programs, null, 'thac-si')).programs;
+  assert.ok(ths.length >= 2 && ths.every((r) => /Thạc sĩ|2025/.test(r)), ths.join(' | '));
+  assert.deepEqual((await homeSearch('UD', '', programs, null, 'thac-si')).programs, ['Thạc sĩ Kỹ thuật cơ khí', 'Kỹ thuật cơ khí (2025)']);
 });
 
 test('tìm môn: môn chỉ có ở sau đại học xếp sau môn đại học cùng mức khớp, trừ khi gõ đúng mã', () => {
@@ -120,65 +124,89 @@ test('tìm môn: môn chỉ có ở sau đại học xếp sau môn đại học
   assert.deepEqual(plain(BkSearch.list(m, { faculty: 'chung' }).map((h) => h.id)), ['GK5025', 'PH1003']);
 });
 
-test('ô tìm trang chủ: dòng kết quả có mã, tên, khoa; mã dùng lại ghi ID kèm năm', async () => {
+test('ô tìm trang chủ: mỗi môn một dòng (tên, các mã), không có khoa, ID hay ngữ cảnh', async () => {
   const rows = await homeSearch('GE3239');
-  assert.deepEqual(rows.map((r) => r[0]), ['GE3239', 'GE3239']);
-  assert.match(rows[0][2], /^Khoa Kỹ thuật Địa chất và Dầu khí$/);
-  assert.match(rows[1][2], /^Khoa Kỹ thuật Địa chất và Dầu khí, ID GE3239-2024$/);
+  // Hai mã GE3239 (mã dùng lại, ID kèm năm) khác tên: hai dòng, mỗi dòng chỉ tên và mã.
+  for (const r of rows) {
+    assert.doesNotMatch(r.meta, /Khoa|ID /);
+    assert.equal(r.codes[0], 'GE3239');
+  }
 });
 
-// Đọc một dòng gộp môn cùng tên (li.same-name > details > summary + ul).
-function groupRow(li) {
-  const [sum, ul] = li.children[0].children;
-  return { title: sum.children[0].textContent, meta: sum.children[1].textContent, rows: ul.children.map((x) => x.children[0].children.map((s) => s.textContent)), hrefs: ul.children.map((x) => x.children[0].href) };
-}
-
-test('ô tìm trang chủ: môn cùng tên (Đồ án tốt nghiệp) gộp thành một dòng mở ra được, mỗi mã một dòng con', async () => {
-  const dup = await homeSearch('do an tot nghiep');
-  const groups = dup.items.filter((li) => li.className === 'same-name');
-  assert.ok(groups.length >= 1);
-  const g = groupRow(groups.find((li) => groupRow(li).title.toLowerCase() === 'đồ án tốt nghiệp'));
-  // Mọi môn tên "Đồ án tốt nghiệp" (không phân biệt hoa thường) nằm trong một dòng.
-  const all = index.courses.filter((c) => c.name.toLowerCase() === 'đồ án tốt nghiệp');
-  assert.equal(g.rows.length, all.length);
-  assert.equal(g.meta, `${all.length} môn theo ngành`);
-  assert.equal(new Set(g.rows.map((r) => r[0])).size, all.length);
-  // v1 không có ngữ cảnh: dòng con ghi tên khoa thay cho tên môn lặp lại.
-  assert.ok(g.rows.every((r) => r[1].length > 0 && r[1] !== 'Đồ án tốt nghiệp'));
-  assert.ok(g.hrefs.every((h) => /^\.\/course\/[^/]+\/$/.test(h)));
-  // Dòng gộp chỉ tính là một dòng: không còn 30 dòng "Đồ án tốt nghiệp" chiếm hết kết quả.
-  assert.ok(dup.items.length <= 30);
-  // Lọc theo khoa: nhóm chỉ còn môn của khoa đó.
-  const che = await homeSearch('do an tot nghiep', 'che');
-  const gc = che.items.filter((li) => li.className === 'same-name').map(groupRow).find((x) => x.title.toLowerCase() === 'đồ án tốt nghiệp');
-  const inChe = all.filter((c) => c.faculty === 'che');
-  if (inChe.length >= 3) assert.equal(gc.rows.length, inChe.length);
-  else assert.equal(gc, undefined);
+test('ô tìm trang chủ: "do an tot nghiep" là một dòng tới trang môn theo tên, tối đa 4 mã rồi +N', async () => {
+  const dup = await homeSearch('do an tot nghiep', '', null, null, 'tat-ca');
+  const base = (n) => n.replace(/\s*\(([^()]*)\)\s*$/, '').trim().toLowerCase();
+  const all = index.courses.filter((c) => base(c.name) === 'đồ án tốt nghiệp');
+  const rows = dup.filter((r) => r.href === './mon/do-an-tot-nghiep/');
+  assert.equal(rows.length, 1);
+  const g = rows[0];
+  assert.equal(g.title, 'Đồ án tốt nghiệp');
+  assert.deepEqual(g.codes.slice(-1)[0], `+${new Set(all.map((c) => c.code)).size - 4}`);
+  assert.equal(g.codes.length, 5);
+  assert.doesNotMatch(dup.status + g.meta, /theo ngành hoặc khóa/);
+  // Mỗi môn một dòng: không có hai dòng cùng trang.
+  assert.equal(new Set(dup.map((r) => r.href)).size, dup.length);
+  assert.ok(dup.length <= 30);
 });
 
-test('ô tìm trang chủ: gõ đúng mã thì môn đó đứng riêng, không bị gộp', async () => {
-  const code = index.courses.find((c) => c.name.toLowerCase() === 'đồ án tốt nghiệp').code;
+test('ô tìm trang chủ: gõ đúng mã thì môn chứa mã đó đứng đầu, mã đó là nhãn đầu', async () => {
+  const code = index.courses.find((c) => c.name.toLowerCase() === 'đồ án tốt nghiệp' && !(c.levels || []).some((l) => l !== 'dai-hoc')).code;
   const rows = await homeSearch(code);
-  assert.equal(rows[0][0], code);
-  assert.notEqual(rows.items[0].className, 'same-name');
+  assert.equal(rows[0].href, './mon/do-an-tot-nghiep/');
+  assert.equal(rows[0].codes[0], code);
 });
 
-test('ô tìm trang chủ: assets/courses.json có ngữ cảnh (ctx) thì hiện ngành; dưới ngưỡng gộp thì ghi ngành ở dòng thường', async () => {
-  const mk = (id, ctx, extra = {}) => ({ id, code: id, name: 'Thực tập ngoài trường', faculty: 'fme', ctx, ...extra });
-  const courses = {
-    faculties: [{ key: 'fme', name: { vi: 'Khoa Cơ khí', en: 'Faculty of Mechanical Engineering' } }],
-    courses: [mk('ME3123', 'Kỹ thuật Cơ điện tử', { items: 2 }), mk('ME3125', 'Kỹ thuật Nhiệt'), mk('ME3135', 'Kỹ thuật Cơ khí'), { id: 'ME2001', code: 'ME2001', name: 'Đồ án thiết kế', faculty: 'fme', ctx: 'Kỹ thuật Cơ khí' }, { id: 'EE2001', code: 'EE2001', name: 'Đồ án thiết kế', faculty: 'fme', ctx: 'Kỹ thuật điện' }],
-  };
-  const r = await homeSearch('thuc tap ngoai truong', '', null, courses);
-  assert.equal(r.items.length, 1);
-  const g = groupRow(r.items[0]);
-  assert.equal(g.meta, '3 môn theo ngành');
-  // Môn có tài liệu trước, rồi theo tên ngành.
-  assert.deepEqual(g.rows.map((x) => [x[0], x[1]]), [['ME3123', 'Kỹ thuật Cơ điện tử'], ['ME3135', 'Kỹ thuật Cơ khí'], ['ME3125', 'Kỹ thuật Nhiệt']]);
-  assert.equal(r.status, '3 môn khớp');
-  // Hai môn cùng tên (dưới ngưỡng 3): dòng thường, ngữ cảnh thay cho tên khoa.
-  const two = await homeSearch('do an thiet ke', '', null, courses);
-  assert.deepEqual(JSON.parse(JSON.stringify(two.map((x) => x[2]))).sort(), ['Kỹ thuật Cơ khí', 'Kỹ thuật điện']);
+// Dữ liệu nhỏ: môn có tài liệu và chưa có, một môn nhiều mã.
+const ORDER_COURSES = {
+  faculties: [{ key: 'fme', name: { vi: 'Khoa Cơ khí', en: 'Faculty of Mechanical Engineering' } }],
+  courses: [
+    { id: 'ME1001', code: 'ME1001', name: 'Cơ học ứng dụng', faculty: 'fme' },
+    { id: 'ME1003', code: 'ME1003', name: 'Cơ học kỹ thuật', faculty: 'fme', items: 2 },
+    { id: 'ME1005', code: 'ME1005', name: 'Cơ học chất lưu', faculty: 'fme' },
+    { id: 'ME2001', code: 'ME2001', name: 'Cơ học vật rắn', faculty: 'fme' },
+    { id: 'ME2003', code: 'ME2003', name: 'Cơ học vật rắn (Bài tập)', faculty: 'fme', items: 1 },
+    { id: 'ME1007', code: 'ME1007', name: 'Cơ học đất', faculty: 'fme' },
+  ],
+};
+
+test('ô tìm trang chủ: môn có tài liệu lên trước; tập kết quả không đổi; gõ đúng mã vẫn đứng đầu', async () => {
+  const rows = await homeSearch('co hoc', '', null, ORDER_COURSES);
+  const B = (() => {
+    const c = vm.createContext({});
+    for (const f of ['search-core.js', 'subject-core.js']) vm.runInContext(fs.readFileSync(path.join(ROOT, 'site-src', 'assets', f), 'utf8'), c);
+    return c;
+  })();
+  // Tập kết quả mong đợi tính thẳng từ BkSearch và BkSubject, không qua thứ tự.
+  const groups = JSON.parse(JSON.stringify(B.BkSubject.groups(ORDER_COURSES.courses, 2)));
+  const slugOf = Object.fromEntries(groups.flatMap((g) => g.ids.map((id) => [id, g.slug])));
+  const hits = JSON.parse(JSON.stringify(B.BkSearch.search(B.BkSearch.prepare(ORDER_COURSES), 'co hoc', { limit: 10000 })));
+  const expected = new Set(hits.map((h) => (slugOf[h.id] ? `./mon/${slugOf[h.id]}/` : `./course/${h.id}/`)));
+  assert.deepEqual(new Set(rows.map((r) => r.href)), expected);
+  assert.equal(rows.length, expected.size);
+  // Năm dòng (ME2001, ME2003 cùng tên là một): hai dòng có tài liệu đứng trước ba dòng chưa có.
+  const has = rows.map((r) => /tài liệu/.test(r.meta));
+  assert.deepEqual(has, [true, true, false, false, false]);
+  assert.deepEqual(rows.slice(0, 2).map((r) => r.href), ['./course/ME1003/', './mon/co-hoc-vat-ran/']);
+  // Gõ đúng mã của môn chưa có tài liệu: môn đó vẫn đầu, tập kết quả vẫn như BkSearch.
+  const exact = await homeSearch('ME1007', '', null, ORDER_COURSES);
+  assert.equal(exact[0].href, './course/ME1007/');
+  // Lọc theo khoa không gõ gì: cùng một quy tắc.
+  const list = await homeSearch('', 'fme', null, ORDER_COURSES);
+  assert.equal(list.length, 5);
+  assert.deepEqual(list.slice(0, 2).map((r) => r.href).sort(), ['./course/ME1003/', './mon/co-hoc-vat-ran/']);
+});
+
+test('BkSubject.docsFirst: chỉ đổi thứ tự, giữ thứ tự trong mỗi phần, dòng first đứng đầu', () => {
+  const c = vm.createContext({});
+  vm.runInContext(fs.readFileSync(path.join(ROOT, 'site-src', 'assets', 'subject-core.js'), 'utf8'), c);
+  const rows = [{ id: 1, d: 0 }, { id: 2, d: 1 }, { id: 3, d: 0, x: true }, { id: 4, d: 2 }, { id: 5, d: 0 }];
+  const out = JSON.parse(JSON.stringify(c.BkSubject.docsFirst(rows, (r) => r.x, (r) => r.d > 0)));
+  assert.deepEqual(out.map((r) => r.id), [3, 2, 4, 1, 5]);
+  assert.deepEqual(out.map((r) => r.id).sort(), [1, 2, 3, 4, 5]);
+  assert.equal(c.BkSubject.inLevel(undefined, 'dai-hoc'), true);
+  assert.equal(c.BkSubject.inLevel(['thac-si'], 'dai-hoc'), false);
+  assert.equal(c.BkSubject.inLevel(['thac-si'], 'tat-ca'), true);
+  assert.equal(c.BkSubject.inLevel(['dai-hoc', 'thac-si'], 'thac-si'), true);
 });
 
 test('tìm theo tên giảng viên và lọc theo khoa', () => {

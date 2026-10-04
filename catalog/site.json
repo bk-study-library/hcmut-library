@@ -27,5 +27,6 @@
   "docDescriptionMax": 200,
   "sameNameGroupMin": 2,
   "sameNameChipsMax": 4,
+  "noDocsCollapseMin": 20,
   "socialImage": "assets/social-preview.png"
 }

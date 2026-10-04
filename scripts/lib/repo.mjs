@@ -419,6 +419,26 @@ export function loadRepo(root) {
     }
   }
 
+  // Bản cập nhật: mục còn hiệu lực có replaces thì tài liệu cũ được coi như đã gỡ (trên web, v1, danh mục
+  // của Worker), file trên đĩa không đổi. Tài liệu cũ phải có thật, khác chính nó, chưa bị thay bởi mục khác.
+  const byKey = new Map(items.map((x) => [`${x.course}/${x.id}`, x]));
+  const replacedBy = new Map();
+  for (const it of items) {
+    if (it.removed || !it.replaces) continue;
+    const old = byKey.get(it.replaces);
+    if (!old) err('REPLACES_REF', it._file, `replaces trỏ tới tài liệu không có: ${it.replaces}`);
+    else if (old === it) err('REPLACES_REF', it._file, 'replaces trỏ tới chính nó');
+    else if (replacedBy.has(it.replaces)) err('REPLACES_REF', it._file, `${it.replaces} đã được thay bởi ${replacedBy.get(it.replaces)}`);
+    else replacedBy.set(it.replaces, `${it.course}/${it.id}`);
+  }
+  for (const [key, by] of replacedBy) {
+    const old = byKey.get(key);
+    if (old.removed) continue;
+    old.removed = true;
+    old.removedReason = `Đã có bản cập nhật: ${by}`;
+    old.replacedBy = by;
+  }
+
   // Quét file trên đĩa: kích thước, loại file trong git, thông tin cá nhân.
   scanDisk(root, root, err, LIMITS);
   for (const c of courses.values()) {

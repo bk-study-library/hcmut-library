@@ -42,7 +42,16 @@ const MESSAGES = {
   bookLimit: 'Thông tin sách quá dài. Rút gọn tên, tác giả hoặc nhà xuất bản.',
   bookYear: 'Năm xuất bản không hợp lệ. Nhập số từ 1000 đến 2100.',
   bookIsbn: 'ISBN không hợp lệ. Nhập 10 hoặc 13 chữ số, hoặc để trống.',
+  email: 'Email không hợp lệ. Kiểm lại hoặc để trống.',
+  replaces: 'Không tìm thấy tài liệu cần thay. Chọn lại trong danh sách hoặc bỏ ô bản cập nhật.',
+  replacesNew: 'Môn mới chưa có tài liệu nào để thay. Bỏ ô bản cập nhật.',
 };
+
+// Email nhận kết quả duyệt: dạng đơn giản, đủ để gửi; không lưu vào repo (index.mjs giữ trong kho cách ly).
+const EMAIL = /^[^\s@<>()",;:]+@[A-Za-z0-9-]+(\.[A-Za-z0-9-]+)+$/;
+const EMAIL_MAX = 254;
+// Tài liệu được thay: <ID môn>/<id tài liệu>, như trường replaces của schema mục tài liệu.
+const REPLACES = /^([A-Z0-9_]{3,12}(?:-[0-9]{4})?)\/([a-z0-9][a-z0-9-]*)$/;
 
 const LANG_PATTERN = /^[a-z]{2}(-[A-Z]{2})?$/;
 // Theo schema/item.schema.json.
@@ -249,7 +258,19 @@ export function validateSubmission(fields, file, ctx) {
 
   if (Object.keys(errors).length) return { ok: false, errors };
 
+  // Email báo kết quả (không bắt buộc) và tài liệu được thay (bản cập nhật, không bắt buộc).
+  const email = val(fields, 'notifyEmail');
+  if (email && !(email.length <= EMAIL_MAX && EMAIL.test(email))) return { ok: false, errors: { notifyEmail: MESSAGES.email } };
+  const replaces = val(fields, 'replaces');
+  if (replaces) {
+    const m = REPLACES.exec(replaces);
+    if (newCourse) return { ok: false, errors: { replaces: MESSAGES.replacesNew } };
+    if (!m || !courses.has(m[1]) || !courses.get(m[1]).ids.has(m[2])) return { ok: false, errors: { replaces: MESSAGES.replaces } };
+  }
+
   const form = { course, type, title, lang, license };
+  if (email) form.notifyEmail = email;
+  if (replaces) form.replaces = replaces;
   for (const key of OPTIONAL) {
     const v = val(fields, key);
     if (v) form[key] = v;

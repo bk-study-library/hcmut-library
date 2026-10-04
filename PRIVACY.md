@@ -15,6 +15,8 @@ Form không bắt nhập email. Những gì form gửi đi:
 | Môn, loại, tiêu đề, mô tả, chương, học kỳ, loại kiểm tra, giảng viên, giấy phép, ngôn ngữ | Bạn nhập hoặc chọn. Hiện công khai nếu bài được duyệt |
 | Tên hiển thị | Không bắt buộc. Bỏ trống thì bài hiện là Ẩn danh. Nếu điền, tên hiện công khai cùng bài |
 | Ba ô cam kết | Chỉ để xác nhận bạn có quyền đăng và bài không phải file sách có bản quyền |
+| Email nhận kết quả duyệt | Không bắt buộc. Xem mục "Email báo kết quả" bên dưới |
+| Tài liệu được thay (bản cập nhật) | Không bắt buộc. Ghi vào mục tài liệu để bản cũ được ẩn khi bài được duyệt |
 | File | Lưu tạm trong kho riêng, xem mục "File chờ duyệt" |
 | Mã xác minh của Cloudflare Turnstile | Chống gửi tự động. Turnstile do Cloudflare vận hành, nên Cloudflare xử lý dữ liệu trình duyệt của bạn theo chính sách của họ |
 
@@ -23,6 +25,16 @@ Form không bắt nhập email. Những gì form gửi đi:
 - Worker nhận bài dùng IP chỉ để giới hạn số lần gửi, qua tính năng Rate Limiting của Cloudflare. Khóa giới hạn là địa chỉ IPv4, hoặc 64 bit đầu của địa chỉ IPv6 (cả dải /64 tính chung). Ngưỡng đặt trong cấu hình Worker (`worker/wrangler.jsonc`). Worker không lưu IP vào kho, vào PR hay vào nhật ký, và nhật ký từng lượt gọi của Worker đã tắt.
 - Ngoài ra thư viện có trần chung số bài nhận mỗi ngày (`SUBMIT_DAILY_CAP`). Kho riêng chỉ giữ một con số đếm cho mỗi ngày, không gắn với IP hay người gửi.
 - Cloudflare, với vai trò nhà cung cấp hạ tầng, vẫn nhìn thấy IP khi xử lý yêu cầu. Chính sách của Cloudflare áp dụng cho phần đó.
+
+## Email báo kết quả
+
+Nếu bạn để lại email, thư viện chỉ dùng nó để gửi đúng một email báo bài được duyệt hay chưa, kèm lý do người duyệt ghi trong PR.
+
+- Email được giữ trong kho riêng chờ duyệt (Cloudflare R2), cạnh file bài gửi. Không ghi vào repo, PR, trang web hay nhật ký.
+- Email được gửi qua Resend (nhà cung cấp dịch vụ gửi email), từ địa chỉ thuộc tên miền `mail.xerozsoft.com`. Resend xử lý địa chỉ email và nội dung thư theo chính sách của họ.
+- Ngay sau khi gửi, email bị xóa khỏi kho. Khi PR đóng, bước dọn kho xóa email kể cả khi gửi lỗi.
+- Email không dùng để quảng cáo, không gửi thêm thư nào khác, không chia sẻ cho ai.
+- Thư không có theo dõi mở thư hay theo dõi bấm link.
 
 ## File chờ duyệt
 

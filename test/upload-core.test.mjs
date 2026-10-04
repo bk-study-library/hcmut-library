@@ -1,5 +1,5 @@
-// Logic của form Gửi tài liệu khi chưa có môn: gợi ý môn gần mã, môn trùng tên, kiểm môn mới.
-// Nạp search-core.js và upload-core.js như trình duyệt: script thường gắn vào globalThis.
+// Logic của form Gửi tài liệu: chọn môn theo tên (mã mặc định, giảng viên của môn), gợi ý môn gần mã, kiểm môn mới.
+// Nạp search-core.js, subject-core.js và upload-core.js như trình duyệt: script thường gắn vào globalThis.
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -9,8 +9,8 @@ import { HERE } from './helpers.mjs';
 
 const ROOT = path.join(HERE, '..');
 const ctx = vm.createContext({});
-for (const f of ['search-core.js', 'upload-core.js']) vm.runInContext(fs.readFileSync(path.join(ROOT, 'site-src', 'assets', f), 'utf8'), ctx);
-const { BkSearch, BkUpload } = ctx;
+for (const f of ['search-core.js', 'subject-core.js', 'upload-core.js']) vm.runInContext(fs.readFileSync(path.join(ROOT, 'site-src', 'assets', f), 'utf8'), ctx);
+const { BkSearch, BkSubject, BkUpload } = ctx;
 const index = JSON.parse(fs.readFileSync(path.join(ROOT, 'v1', 'index.json'), 'utf8'));
 const idx = BkSearch.prepare(index);
 const schema = JSON.parse(fs.readFileSync(path.join(ROOT, 'schema', 'course.schema.json'), 'utf8'));
@@ -63,52 +63,79 @@ test('nameMatches: tên gõ khớp tên môn đã có (bỏ dấu) thì gợi ý
   assert.deepEqual(ids(BkUpload.nameMatches(BkSearch, idx, byId, 'Môn này chắc chắn không có zzqx', 3)), []);
 });
 
-test('gợi ý dùng cùng dữ liệu với ô chọn môn (assets/courses.json) và giữ nhãn ngữ cảnh', async () => {
+test('gợi ý dùng cùng dữ liệu với ô chọn môn (assets/courses.json)', async () => {
   const { searchCourses } = await import('../scripts/build-site.mjs');
-  const ctxs = { vi: new Map([['EE5429', 'Thạc sĩ Kỹ thuật điện tử']]), en: new Map() };
-  const web = JSON.parse(JSON.stringify(searchCourses(index, ctxs)));
+  const web = JSON.parse(JSON.stringify(searchCourses(index, new Map([['EE5429', 2]]))));
   const near = BkUpload.nearCodes(web.courses, 'EE5430', 2);
   assert.deepEqual(ids(near), ['EE5429', 'EE5431']);
-  assert.equal(near[0].ctx, 'Thạc sĩ Kỹ thuật điện tử');
+  assert.equal(near[0].progs, 2);
   const webIdx = BkSearch.prepare(web);
   const byId = Object.fromEntries(web.courses.map((c) => [c.id, c]));
   assert.deepEqual(ids(BkUpload.nameMatches(BkSearch, webIdx, byId, 'Kỹ thuật và hệ thống siêu cao tần', 3)), ['EE5429']);
   assert.equal(BkUpload.checkNewCourse({ code: 'EE5429', name: 'X' }, { pattern: PATTERN, nameMax: 10, courses: web.courses }).existing.id, 'EE5429');
 });
 
-test('nameKey: cùng cách so tên với ô tìm trang chủ (chữ hoa, khoảng trắng)', () => {
-  assert.equal(BkUpload.nameKey('  Đồ án  Tốt nghiệp '), BkUpload.nameKey('đồ án tốt nghiệp'));
-  assert.notEqual(BkUpload.nameKey('Đồ án tốt nghiệp'), BkUpload.nameKey('Do an tot nghiep'));
+// Dữ liệu nhỏ: một môn ba mã (A2 thuộc nhiều chương trình nhất), một môn một mã.
+const mini = [
+  { id: 'A1', code: 'A1', name: 'Đồ án tốt nghiệp', progs: 1, teachers: ['Trần B'] },
+  { id: 'A2', code: 'A2', name: 'Đồ án Tốt nghiệp', progs: 4, teachers: ['Nguyễn A', 'Trần B'] },
+  { id: 'A3', code: 'A3', name: 'Đồ án tốt nghiệp (KHMT)' },
+  { id: 'B1', code: 'B1', name: 'Giải tích 2', teachers: ['Lê C'] },
+];
+const miniById = Object.fromEntries(mini.map((c) => [c.id, c]));
+const miniSubjects = BkUpload.subjectIndex(BkSubject, mini, 2);
+
+test('subjectIndex: mã cùng tên (bỏ phần ngoặc cuối) về một môn, tên gặp nhiều nhất', () => {
+  assert.equal(miniSubjects.of.A1, 'do-an-tot-nghiep');
+  assert.equal(miniSubjects.of.A3, 'do-an-tot-nghiep');
+  assert.equal(miniSubjects.of.B1, undefined);
+  assert.deepEqual(Array.from(miniSubjects.all['do-an-tot-nghiep'].ids), ['A1', 'A2', 'A3']);
+  assert.equal(miniSubjects.all['do-an-tot-nghiep'].name, 'Đồ án tốt nghiệp');
 });
 
-test('groupHits: tên có từ min môn thành một dòng, đặt ở chỗ môn đầu nhóm; khớp đúng mã đứng riêng', () => {
-  const byId = {
-    A1: { id: 'A1', name: 'Đồ án tốt nghiệp' },
-    A2: { id: 'A2', name: 'Đồ án Tốt nghiệp' },
-    B1: { id: 'B1', name: 'Giải tích 2' },
-    A3: { id: 'A3', name: 'Đồ án tốt nghiệp' },
-  };
-  const hits = [{ id: 'B1', score: 1.7 }, { id: 'A1', score: 1.7 }, { id: 'A2', score: 1.7 }, { id: 'A3', score: 1.7 }];
-  const rows = BkUpload.groupHits(hits, byId, 2);
-  assert.equal(rows.length, 2);
-  assert.equal(rows[0].hit.id, 'B1');
-  assert.deepEqual(Array.from(rows[1].group, (h) => h.id), ['A1', 'A2', 'A3']);
-  // Ngưỡng 4: nhóm 3 môn không gộp.
-  assert.equal(BkUpload.groupHits(hits, byId, 4).length, 4);
-  // Gõ đúng mã (điểm dưới 1): môn đó đứng riêng, phần còn lại vẫn gộp.
-  const typed = BkUpload.groupHits([{ id: 'A2', score: 0 }, { id: 'A1', score: 1.7 }, { id: 'A3', score: 1.7 }], byId, 2);
-  assert.equal(typed[0].hit.id, 'A2');
-  assert.deepEqual(Array.from(typed[1].group, (h) => h.id), ['A1', 'A3']);
-  // Nhóm còn một môn sau khi tách mã khớp đúng thì là dòng thường.
-  assert.ok(BkUpload.groupHits([{ id: 'A2', score: 0 }, { id: 'A1', score: 1.7 }], byId, 2).every((r) => r.hit));
+test('subjectRows: mỗi môn một dòng, đặt ở chỗ mã xếp đầu; khớp đúng mã thì id là mã đó', () => {
+  const hits = [{ id: 'B1', score: 1.7 }, { id: 'A3', score: 1.7 }, { id: 'A1', score: 1.7 }, { id: 'A2', score: 1.7 }];
+  const rows = BkUpload.subjectRows(hits, miniSubjects);
+  assert.deepEqual(JSON.parse(JSON.stringify(rows)), [
+    { slug: '', id: 'B1', exact: false },
+    { slug: 'do-an-tot-nghiep', id: 'A3', exact: false },
+  ]);
+  const typed = BkUpload.subjectRows([{ id: 'A1', score: 0 }, { id: 'B1', score: 1.7 }, { id: 'A2', score: 1.7 }], miniSubjects);
+  assert.deepEqual(JSON.parse(JSON.stringify(typed)), [
+    { slug: 'do-an-tot-nghiep', id: 'A1', exact: true },
+    { slug: '', id: 'B1', exact: false },
+  ]);
+  // Khớp tên giảng viên không thành dòng môn.
+  assert.equal(BkUpload.subjectRows([{ id: 'B1', score: 4, teacher: 'Lê C' }], miniSubjects).length, 0);
 });
 
-test('groupHits trên dữ liệu thật: "do an tot nghiep" ra một dòng nhiều mã, "MT1005" ra đúng một môn', () => {
+test('subjectChoice: chọn môn nhiều mã thì mã thuộc nhiều chương trình nhất; gõ đúng mã thì mã đó; môn một mã không có ô mã', () => {
+  const pick = BkUpload.subjectChoice(BkSubject, miniSubjects, miniById, 'A3', '');
+  assert.equal(pick.id, 'A2');
+  assert.equal(pick.name, 'Đồ án tốt nghiệp');
+  assert.deepEqual(JSON.parse(JSON.stringify(pick.codes)), [{ id: 'A1', code: 'A1' }, { id: 'A2', code: 'A2' }, { id: 'A3', code: 'A3' }]);
+  assert.equal(BkUpload.subjectChoice(BkSubject, miniSubjects, miniById, 'A3', 'A3').id, 'A3');
+  const one = BkUpload.subjectChoice(BkSubject, miniSubjects, miniById, 'B1', '');
+  assert.equal(one.id, 'B1');
+  assert.equal(one.codes.length, 0);
+});
+
+test('subjectTeachers: tên giảng viên của mọi mã trong môn, bỏ trùng, xếp theo chữ', () => {
+  const list = miniSubjects.all['do-an-tot-nghiep'].ids.map((id) => miniById[id]);
+  assert.deepEqual(Array.from(BkUpload.subjectTeachers(list)), ['Nguyễn A', 'Trần B']);
+  assert.deepEqual(Array.from(BkUpload.subjectTeachers([miniById.A3])), []);
+});
+
+test('dữ liệu thật: "do an tot nghiep" ra một dòng môn nhiều mã; "MT1005" ra môn Giải tích 2 với đúng mã MT1005', () => {
   const byId = Object.fromEntries(index.courses.map((c) => [c.id, c]));
-  const rows = BkUpload.groupHits(BkSearch.search(idx, 'do an tot nghiep', { limit: 500 }), byId, 2);
-  assert.ok(rows[0].group && rows[0].group.length > 10, 'dòng đầu là nhóm Đồ án tốt nghiệp');
-  const exact = BkUpload.groupHits(BkSearch.search(idx, 'MT1005', { limit: 500 }), byId, 2);
-  assert.equal(exact[0].hit.id, 'MT1005');
+  const subjects = BkUpload.subjectIndex(BkSubject, index.courses, 2);
+  const rows = BkUpload.subjectRows(BkSearch.search(idx, 'do an tot nghiep', { limit: 500 }), subjects);
+  assert.equal(rows[0].slug, 'do-an-tot-nghiep');
+  assert.ok(subjects.all['do-an-tot-nghiep'].ids.length > 10);
+  const exact = BkUpload.subjectRows(BkSearch.search(idx, 'MT1005', { limit: 500 }), subjects);
+  assert.equal(exact[0].id, 'MT1005');
+  assert.equal(exact[0].exact, true);
+  assert.equal(BkUpload.subjectChoice(BkSubject, subjects, byId, exact[0].id, exact[0].id).id, 'MT1005');
   assert.equal(BkUpload.exactCode(BkSearch.search(idx, 'mt1005', { limit: 500 }), byId).id, 'MT1005');
   assert.equal(BkUpload.exactCode(BkSearch.search(idx, 'giai tich 2', { limit: 500 }), byId), null);
 });
@@ -134,4 +161,21 @@ test('checkNewCourse: mã theo mẫu, chưa có trong thư viện, tên có gi�
   const dup = BkUpload.checkNewCourse({ code: 'ee5429', name: 'X' }, opts);
   assert.equal(dup.existing.id, 'EE5429');
   assert.deepEqual({ ...dup.errors }, {});
+});
+
+test('cảnh báo trùng tên: trùng hẳn, chứa nhau, chung đa số từ; tiêu đề quá ngắn thì bỏ qua', () => {
+  const fold = BkSearch.fold;
+  const docs = [
+    { id: 'a', course: 'MT1003', code: 'MT1003', title: 'Tóm tắt giới hạn và đạo hàm', added: '2026-10-01' },
+    { id: 'b', course: 'MT1003', code: 'MT1003', title: 'Đề thi cuối kỳ HK241', added: '2026-10-02' },
+    { id: 'c', course: 'MT1011', code: 'MT1011', title: 'Bảng công thức tích phân', added: '2026-10-03' },
+  ];
+  assert.deepEqual(ids(BkUpload.similarDocs('tom tat gioi han va dao ham', docs, fold)), ['a']);
+  assert.deepEqual(ids(BkUpload.similarDocs('Tóm tắt giới hạn, đạo hàm (bản mới)', docs, fold)), ['a']);
+  assert.deepEqual(ids(BkUpload.similarDocs('De thi cuoi ky HK241 ca 2', docs, fold)), ['b']);
+  assert.deepEqual(ids(BkUpload.similarDocs('Slide chương 5', docs, fold)), []);
+  assert.deepEqual(ids(BkUpload.similarDocs('Đề', docs, fold)), []);
+  // Tài liệu của môn: chỉ các mã trong môn, mới nhất trước.
+  assert.deepEqual(ids(BkUpload.subjectDocs(docs, ['MT1003', 'MT1011'])), ['c', 'b', 'a']);
+  assert.deepEqual(ids(BkUpload.subjectDocs(docs, ['MT1003'])), ['b', 'a']);
 });

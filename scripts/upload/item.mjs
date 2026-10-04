@@ -29,6 +29,9 @@ export function buildItem(form, file, today, id) {
   }
   if (item.teacher) item.teacher = normalizeTeacher(item.teacher);
   if (form.displayName) item.authors = [form.displayName];
+  // Bản cập nhật: tài liệu cũ bị ẩn khi bài này được duyệt (scripts/lib/repo.mjs). Email báo kết quả
+  // (form.notifyEmail) không bao giờ ghi vào mục tài liệu.
+  if (form.replaces) item.replaces = form.replaces;
   if (form.type === 'book-ref' && form.book) {
     item.book = form.book;
   } else if (file) {

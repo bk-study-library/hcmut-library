@@ -2,7 +2,7 @@
 // Thuần JS, không DOM, không gửi gì ra mạng. Cần BkSearch.fold của search-core.js (nạp trước file này).
 //
 //   var d = BkDocs.prepare(items, { types: { summary: ['Tóm tắt', 'Summaries'] }, examKinds: { gk: ['Giữa kỳ', 'Midterm'] } })
-//   BkDocs.search(d, 'giua ky hk241', { type: 'exam-past', term: 'HK241', examKind: 'gk', faculty: 'fas' })  ->  [mục, ...]
+//   BkDocs.search(d, 'giua ky hk241', { type: 'exam-past', term: 'HK241', examKind: 'gk', faculty: 'fas', level: 'dai-hoc' })  ->  [mục, ...]
 //   BkDocs.list(d, { term: 'HK241' })  ->  mọi mục khớp bộ lọc, mới nhất trước
 (function (root) {
   'use strict';
@@ -37,6 +37,8 @@
     if (f.term && it.term !== f.term) return false;
     if (f.examKind && it.examKind !== f.examKind) return false;
     if (f.faculty && it.faculty !== f.faculty) return false;
+    // Bậc (đại học mặc định, thạc sĩ, tiến sĩ, tất cả) theo levels của môn, cùng cách so với subject-core.js.
+    if (f.level && root.BkSubject && !root.BkSubject.inLevel(it.levels, f.level)) return false;
     return true;
   }
 
