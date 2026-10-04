@@ -1,0 +1,41 @@
+name: Báo lỗi / Bug report
+description: Trang web, form gửi tài liệu hay dữ liệu thư viện bị lỗi / Something on the site, the upload form or the data is broken
+title: "[Lỗi] "
+labels: [lỗi]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Chỉ dùng cho lỗi. Đề xuất tính năng và câu hỏi đăng ở [Thảo luận](../discussions). Lỗ hổng bảo mật báo riêng theo [SECURITY.md](../blob/main/SECURITY.md).
+        Issue là công khai: đừng ghi MSSV, email, số điện thoại.
+  - type: dropdown
+    id: area
+    attributes:
+      label: Lỗi ở đâu / Where
+      options:
+        - Trang web thư viện
+        - Form gửi tài liệu
+        - Dữ liệu môn, chương trình đào tạo
+        - Link tài liệu hỏng
+        - Khác
+    validations: { required: true }
+  - type: input
+    id: url
+    attributes:
+      label: Link trang bị lỗi / Page link
+      placeholder: https://bk-study-library.github.io/hcmut-library/course/MT1005/
+  - type: textarea
+    id: what
+    attributes:
+      label: Chuyện gì xảy ra, bạn mong đợi gì / What happened, what you expected
+    validations: { required: true }
+  - type: textarea
+    id: steps
+    attributes:
+      label: Cách làm lại lỗi / Steps to reproduce
+      placeholder: "1. Mở trang...\n2. Bấm...\n3. Thấy..."
+  - type: input
+    id: device
+    attributes:
+      label: Thiết bị, trình duyệt / Device, browser
+      placeholder: Ví dụ Chrome trên Android

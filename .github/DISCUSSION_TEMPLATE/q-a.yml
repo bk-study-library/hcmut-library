@@ -1,0 +1,17 @@
+title: "[Hỏi] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Hỏi về cách dùng thư viện, cách gửi tài liệu, tìm tài liệu cho một môn. Người trả lời đúng sẽ được đánh dấu là câu trả lời.
+        Đừng ghi MSSV, email, số điện thoại ở đây: thảo luận là công khai.
+  - type: input
+    id: course
+    attributes:
+      label: Mã môn (nếu có)
+      placeholder: Ví dụ MT1005
+  - type: textarea
+    id: question
+    attributes:
+      label: Câu hỏi
+    validations: { required: true }

@@ -1,0 +1,30 @@
+title: "[Đề xuất] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Đề xuất tính năng hoặc cách làm mới cho thư viện. Lỗi thì mở issue **Báo lỗi** thay vì đăng ở đây.
+        Bấm nút bình chọn (upvote) ở đề xuất bạn muốn có, để người duy trì biết nên làm cái nào trước.
+  - type: textarea
+    id: problem
+    attributes:
+      label: Bạn đang gặp chuyện gì
+      description: Mô tả việc bạn muốn làm mà thư viện chưa giúp được.
+    validations: { required: true }
+  - type: textarea
+    id: idea
+    attributes:
+      label: Bạn đề xuất gì
+      description: Cách bạn hình dung tính năng hoạt động. Có ảnh minh họa thì càng tốt.
+    validations: { required: true }
+  - type: dropdown
+    id: area
+    attributes:
+      label: Phần liên quan
+      options:
+        - Trang web thư viện
+        - Gửi tài liệu
+        - Danh mục môn, chương trình đào tạo
+        - App BK Study Desk
+        - Khác
+    validations: { required: true }
