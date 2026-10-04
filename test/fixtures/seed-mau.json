@@ -1,0 +1,207 @@
+{
+ "source": "Dữ liệu mẫu tự tạo cho test, theo định dạng seed; không lấy từ tài khoản của ai, không có điểm",
+ "program": {
+  "code": "DH_MAU_2019",
+  "name": "Chương trình mẫu",
+  "faculty": "Khoa Điện - Điện tử",
+  "year": "2019"
+ },
+ "courses": [
+  {
+   "code": "MT1003",
+   "name": "Giải tích 1",
+   "credits": 4,
+   "block": "B01"
+  },
+  {
+   "code": "MT1005",
+   "name": "Giải tích 2",
+   "credits": 4,
+   "block": "B01"
+  },
+  {
+   "code": "CH1003",
+   "name": "Hóa đại cương",
+   "credits": 3,
+   "block": "B02"
+  },
+  {
+   "code": "SP1007",
+   "name": "Pháp luật Việt Nam Đại cương",
+   "credits": 2,
+   "block": "B03"
+  },
+  {
+   "code": "EN1003",
+   "name": "Con người và Môi trường",
+   "credits": 3,
+   "block": "B04"
+  },
+  {
+   "code": "EE1009",
+   "name": "Kỹ thuật số",
+   "credits": 3,
+   "block": "B05"
+  },
+  {
+   "code": "EE4347",
+   "name": "Đồ án Tốt nghiệp",
+   "credits": 4,
+   "block": "B06"
+  },
+  {
+   "code": "ENG_GC",
+   "name": "Điều kiện tiếng Anh tốt nghiệp",
+   "credits": 0,
+   "block": "B07"
+  },
+  {
+   "code": "SA4001",
+   "name": "Hoạt động sinh viên",
+   "credits": 0,
+   "block": "B07"
+  },
+  {
+   "code": "CCGDTC",
+   "name": "Chứng chỉ Giáo dục Thể chất",
+   "credits": 0,
+   "block": "B08"
+  },
+  {
+   "code": "MI1003",
+   "name": "Giáo dục Quốc phòng",
+   "credits": 0,
+   "block": "B09"
+  },
+  {
+   "code": "PE1003",
+   "name": "Giáo dục thể chất 1",
+   "credits": 0,
+   "block": "B08"
+  },
+  {
+   "code": "007401",
+   "name": "Vật lý cơ học",
+   "credits": 4,
+   "block": "0"
+  },
+  {
+   "code": "008001",
+   "name": "Pháp luật Việt Nam đại cương",
+   "credits": 2,
+   "block": "0"
+  },
+  {
+   "code": "604046",
+   "name": "Thí nghiệm hóa đại cương",
+   "credits": 1,
+   "block": "0"
+  },
+  {
+   "code": "EE2413",
+   "name": "Thí nghiệm Kỹ thuật số",
+   "credits": 2,
+   "block": "0"
+  }
+ ],
+ "blocks": [
+  {
+   "id": "B01",
+   "name": "Toán",
+   "group": "TOAN",
+   "required": true,
+   "creditsNeed": 8,
+   "order": 1
+  },
+  {
+   "id": "B02",
+   "name": "Khoa học tự nhiên",
+   "group": "KHTN",
+   "required": true,
+   "creditsNeed": 3,
+   "order": 2
+  },
+  {
+   "id": "B03",
+   "name": "Chính trị, pháp luật",
+   "group": "CHINHTRI",
+   "required": true,
+   "creditsNeed": 2,
+   "order": 3
+  },
+  {
+   "id": "B04",
+   "name": "Nhập môn",
+   "group": "NHAPMON",
+   "required": true,
+   "creditsNeed": 3,
+   "order": 4
+  },
+  {
+   "id": "B05",
+   "name": "Cơ sở ngành",
+   "group": "COSO",
+   "required": true,
+   "creditsNeed": 3,
+   "order": 5
+  },
+  {
+   "id": "B06",
+   "name": "Tốt nghiệp",
+   "group": "TOTNGHIEP",
+   "required": true,
+   "creditsNeed": 4,
+   "order": 6
+  },
+  {
+   "id": "B07",
+   "name": "Điều kiện tốt nghiệp",
+   "group": "DIEUKIEN",
+   "required": true,
+   "creditsNeed": 0,
+   "order": 7
+  },
+  {
+   "id": "B08",
+   "name": "Giáo dục thể chất",
+   "group": "GDTC",
+   "required": true,
+   "creditsNeed": 0,
+   "order": 8
+  },
+  {
+   "id": "B09",
+   "name": "Giáo dục quốc phòng",
+   "group": "GDQP",
+   "required": true,
+   "creditsNeed": 0,
+   "order": 9
+  },
+  {
+   "id": "0",
+   "name": "Môn tương đương",
+   "group": "TUONGDUONG",
+   "required": false,
+   "creditsNeed": 0,
+   "order": 10
+  }
+ ],
+ "equiv": [
+  {
+   "code": "SP1007",
+   "note": "Tương đương 008001"
+  },
+  {
+   "code": "008001",
+   "note": "Tương đương SP1007"
+  }
+ ],
+ "extraCourses": [
+  {
+   "code": "EE1010",
+   "name": "Kỹ thuật số (Thí nghiệm)",
+   "credits": 0,
+   "note": "Phần thí nghiệm của EE1009, không nằm trong danh sách môn của chương trình mẫu"
+  }
+ ]
+}

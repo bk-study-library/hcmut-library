@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Dựng bản xem thử với dữ liệu mẫu: nhập test/fixtures/seed-k2019.json (83 môn của một
+// Dựng bản xem thử với dữ liệu mẫu: nhập test/fixtures/seed-mau.json (vài môn của một
 // chương trình) vào một thư mục tạm, chép tài liệu ví dụ của repo, rồi sinh trang vào site/.
 // Không đụng tới catalog/ thật.
 
@@ -19,7 +19,7 @@ export function makeDemo(dir) {
     fs.copyFileSync(path.join(TOOL_ROOT, 'catalog', f), path.join(dir, 'catalog', f));
   }
   const faculties = JSON.parse(fs.readFileSync(path.join(dir, 'catalog', 'faculties.json'), 'utf8'));
-  const seed = JSON.parse(fs.readFileSync(path.join(TOOL_ROOT, 'test', 'fixtures', 'seed-k2019.json'), 'utf8'));
+  const seed = JSON.parse(fs.readFileSync(path.join(TOOL_ROOT, 'test', 'fixtures', 'seed-mau.json'), 'utf8'));
   importSeed(seed, dir, { date: '2026-10-03', faculties });
   for (const id of fs.readdirSync(path.join(TOOL_ROOT, 'courses'))) {
     const items = path.join(TOOL_ROOT, 'courses', id, 'items');
