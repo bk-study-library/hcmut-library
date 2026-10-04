@@ -42,8 +42,16 @@ function readSiteConfig(root) {
     bookSources: Array.isArray(cfg.bookSources) ? cfg.bookSources : [],
     // Số mục hiện sẵn mỗi nhóm tài liệu; phần còn lại gập trong "Xem thêm" để trang môn nhẹ khi có nhiều bài.
     itemsPerGroup: Number.isInteger(cfg.itemsPerGroup) && cfg.itemsPerGroup > 0 ? cfg.itemsPerGroup : Infinity,
+    // Bảng CTĐT chính thức của trường: trang chương trình chưa có link PDF riêng thì trỏ về đây.
+    officialProgramsPage: /^https:\/\//.test(cfg.officialProgramsPage || '') ? String(cfg.officialProgramsPage) : '',
   };
 }
+
+// Khóa khoa của nhóm Môn chung toàn trường (catalog/faculties.json): trang khoa này có ghi chú riêng.
+const SHARED_FACULTY = 'chung';
+
+// Chương trình có listed: false (bản nháp nguồn) vẫn có trang riêng nhưng không vào danh sách.
+export const isListed = (p) => p.listed !== false;
 
 // Link tìm sách ở nguồn hợp pháp, theo catalog/site.json (bookSources). Có ISBN và nguồn có mẫu {isbn} thì
 // tra theo ISBN; không thì tìm theo tên sách và tác giả đầu tiên ({q}); không có mẫu nào thì dùng url.
@@ -141,7 +149,7 @@ function relPrefix(fromPath) {
   return depth ? '../'.repeat(depth) : './';
 }
 
-function layout({ t, path: here, title, description, body, crumbs = [], alt, base, upload = '' }) {
+function layout({ t, path: here, title, description, body, crumbs = [], alt, base, upload = '', noindex = false }) {
   // base: dùng cho 404.html (đường dẫn tuyệt đối); còn lại dùng đường dẫn tương đối.
   const root = base || relPrefix(here);
   const href = (lang, p) => root + pagePath(lang, p).replace(/index\.html$/, '');
@@ -168,7 +176,7 @@ ${cspMeta({ upload })}
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="light dark">
 <meta name="referrer" content="strict-origin-when-cross-origin">
-<title>${esc(title ? `${title} | ${t.siteName}` : t.siteName)}</title>
+${noindex ? '<meta name="robots" content="noindex">\n' : ''}<title>${esc(title ? `${title} | ${t.siteName}` : t.siteName)}</title>
 <meta name="description" content="${esc(description || t.siteTag)}">
 <link rel="stylesheet" href="${root}assets/site.css">
 <link rel="alternate" hreflang="${t.other}" href="${altHref}">
@@ -264,6 +272,21 @@ function programsByYear(t, progs, hrefOf) {
   return [...groups]
     .map(([y, list]) => `<h3>${esc(y ? t.cohort(y) : t.cohortUnknown)}</h3><ul class="list">${list.map((p) => programLi(t, p, hrefOf(p))).join('')}</ul>`)
     .join('');
+}
+
+// Nút tới nguồn chính thức của chương trình. ctdtUrl, planUrl đã được kiểm host khi đọc repo
+// (programPdfHosts trong site.json). pdf: có ít nhất một file PDF của trường.
+export function officialProgramLinks(t, p, site) {
+  const pdfBtn = (href, label) => `<a class="btn" href="${esc(href)}" target="_blank" rel="noopener">${esc(label)}</a>`;
+  const buttons = [];
+  if (p.ctdtUrl) buttons.push(pdfBtn(p.ctdtUrl, t.programCtdtPdf));
+  if (p.planUrl) buttons.push(pdfBtn(p.planUrl, t.programPlanPdf));
+  const pdf = buttons.length > 0;
+  if (!pdf) {
+    if (/^https?:\/\//.test(p.source || '')) buttons.push(`<a class="btn" href="${esc(p.source)}" rel="noopener">${esc(t.programSource)}</a>`);
+    if (site.officialProgramsPage) buttons.push(`<a class="btn subtle" href="${esc(site.officialProgramsPage)}" rel="noopener">${esc(t.programTable)}</a>`);
+  }
+  return { buttons, pdf };
 }
 
 // Link xem trước qua Worker, chỉ cho file nằm trong danh sách được phép (scripts/lib/preview.mjs).
@@ -366,6 +389,7 @@ export function buildSite({ root = TOOL_ROOT, out = path.join(TOOL_ROOT, 'site')
   for (const f of index.faculties) for (const c of f.courses) allCourses.set(c.id, { ...c, faculty: c.faculty });
   const facByKey = new Map(index.faculties.map((f) => [f.key, f]));
   const progByCode = new Map(index.programs.map((p) => [p.code, p]));
+  const listedPrograms = index.programs.filter(isListed);
   const totalItems = index.counts.items;
   GENERATED = index.generated;
   const finish = (html) => html;
@@ -378,7 +402,7 @@ export function buildSite({ root = TOOL_ROOT, out = path.join(TOOL_ROOT, 'site')
     {
       const here = P('index.html');
       const root = relPrefix(here);
-      const progsOf = (key) => index.programs.filter((p) => p.faculty === key);
+      const progsOf = (key) => listedPrograms.filter((p) => p.faculty === key);
       const facList = index.faculties
         .map((f) => {
           const np = progsOf(f.key).length;
@@ -423,7 +447,7 @@ export function buildSite({ root = TOOL_ROOT, out = path.join(TOOL_ROOT, 'site')
 </section>
 <section aria-labelledby="h-prog">
   <h2 id="h-prog">${esc(t.programsTitle)}</h2>
-  <p class="muted">${esc(t.programsCount(index.programs.length))}</p>
+  <p class="muted">${esc(t.programsCount(listedPrograms.length))}</p>
   ${progList}
   <p class="actions"><a class="btn" href="${esc(addProgramUrl(null))}" rel="noopener">${esc(t.addProgram)}</a></p>
 </section>
@@ -441,10 +465,11 @@ export function buildSite({ root = TOOL_ROOT, out = path.join(TOOL_ROOT, 'site')
     for (const f of index.faculties) {
       const here = P(`faculty/${f.key}/index.html`);
       const root = relPrefix(here);
-      const progs = index.programs.filter((p) => p.faculty === f.key);
+      const progs = listedPrograms.filter((p) => p.faculty === f.key);
       const body = `
 <h1>${esc(facultyName(t, f))}</h1>
 ${f.key === 'unknown' ? `<p class="note">${esc(lang === 'vi' ? 'Môn có tiền tố mã chưa xác minh. Khi biết đúng khoa, mở form Sửa danh mục môn.' : 'Courses whose code prefix is not verified yet. If you know the right faculty, open the Fix course details form.')}</p>` : ''}
+${f.key === SHARED_FACULTY ? `<p class="note">${esc(t.facultySharedNote)}</p>` : ''}
 ${!progs.length && !f.courses.length ? `<div class="note" role="note"><p>${esc(t.facultyEmpty)}</p></div>` : ''}
 <h2>${esc(t.facultyPrograms)}</h2>
 <p class="muted">${esc(t.programsCount(progs.length))}</p>
@@ -473,16 +498,25 @@ ${courseTable(t, f.courses, root, t.facultyCourses)}`;
         })
         .join('');
       const pname = programName(t, p);
-      // Chưa có danh sách môn: ghi chú, rồi một hàng nút (gửi CTĐT, xem CTĐT chính thức).
-      const sourceBtn = /^https?:\/\//.test(p.source || '') ? `<a class="btn" href="${esc(p.source)}" rel="noopener">${esc(t.programSource)}</a>` : '';
+      // Link chính thức: PDF CTĐT và kế hoạch giảng dạy của trường nếu có; không có thì link nguồn
+      // (nếu có) và bảng CTĐT của trường. Chưa có danh sách môn: ghi chú, nút gửi CTĐT đứng đầu hàng.
+      const official = officialProgramLinks(t, p, siteCfg);
+      const hosted = official.pdf ? `<p class="muted small">${esc(t.programPdfHosted)}</p>` : '';
       const actions = blocks
-        ? sourceBtn && `<p class="actions">${sourceBtn}</p>`
-        : `<div class="note" role="note"><p>${esc(t.programNoCourses)}</p></div><p class="actions"><a class="btn primary" href="${esc(addProgramUrl(fac, p))}" rel="noopener">${esc(t.addProgram)}</a>${sourceBtn}</p>`;
+        ? official.buttons.length
+          ? `<p class="actions">${official.buttons.join('')}</p>${hosted}`
+          : ''
+        : `<div class="note" role="note"><p>${esc(t.programNoCourses)}</p></div><p class="actions"><a class="btn primary" href="${esc(addProgramUrl(fac, p))}" rel="noopener">${esc(t.addProgram)}</a>${official.buttons.join('')}</p>${hosted}`;
+      // Bản nháp nguồn: ghi rõ, trỏ về bản chính cùng ngành, cùng khóa nếu có.
+      const mains = isListed(p) ? [] : listedPrograms.filter((x) => x.faculty === p.faculty && x.year === p.year && x.name === p.name);
+      const draft = isListed(p)
+        ? ''
+        : `<div class="note" role="note"><p>${esc(t.programDraft)}${mains.length ? ` ${esc(t.programDraftSee)}: ${mains.map((x) => `<a href="${root}${P(`program/${x.code}/`)}">${esc(x.year ? `${programName(t, x)} (${x.year})` : programName(t, x))}</a>`).join(', ')}.` : ''}</p></div>`;
       const n = programCourseCount(p);
       const meta = [esc(t.programCode(p.code)), fac ? `<a href="${root}${P(`faculty/${fac.key}/`)}">${esc(facultyName(t, fac))}</a>` : null, p.variant ? esc(p.variant) : null, esc(n ? t.coursesCount(n) : t.programNoCoursesShort)]
         .filter(Boolean)
         .join(', ');
-      const body = `<h1>${esc(pname)}${p.year ? ` (${esc(p.year)})` : ''}</h1><p class="muted">${meta}</p>${p.note ? `<p class="small" lang="vi">${esc(p.note)}</p>` : ''}${actions}${blocks}`;
+      const body = `<h1>${esc(pname)}${p.year ? ` (${esc(p.year)})` : ''}</h1><p class="muted">${meta}</p>${draft}${p.note ? `<p class="small" lang="vi">${esc(p.note)}</p>` : ''}${actions}${blocks}`;
       write(
         here,
         finish(
@@ -493,6 +527,7 @@ ${courseTable(t, f.courses, root, t.facultyCourses)}`;
             body,
             crumbs: [['', t.nav.home], ...(fac ? [[`faculty/${fac.key}/`, facultyName(t, fac)]] : []), ['', pname]],
             alt: `program/${p.code}/index.html`,
+            noindex: !isListed(p),
           }),
           t,
         ),
@@ -526,7 +561,8 @@ ${courseTable(t, f.courses, root, t.facultyCourses)}`;
           const pr = progByCode.get(pg.program);
           const b = pr && pr.blocks.find((x) => x.id === pg.block);
           const label = pr ? (pr.year ? `${programName(t, pr)} (${pr.year})` : programName(t, pr)) : pg.program;
-          return `<a href="${root}${P(`program/${pg.program}/`)}">${esc(label)}</a>${b ? `, ${esc(b.name)}` : ''}, ${esc(pg.required ? t.required : t.elective)}`;
+          const draft = pr && !isListed(pr) ? ` <span class="tag">${esc(t.programDraftTag)}</span>` : '';
+          return `<a href="${root}${P(`program/${pg.program}/`)}">${esc(label)}</a>${draft}${b ? `, ${esc(b.name)}` : ''}, ${esc(pg.required ? t.required : t.elective)}`;
         });
         // Môn chung (Giải tích, Vật lý...) thuộc vài chục chương trình: gói lại cho gọn.
         const progCount = new Set(c.programs.map((x) => x.program)).size;

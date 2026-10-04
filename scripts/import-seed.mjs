@@ -48,7 +48,18 @@ export function inferParts(name) {
   return ['theory'];
 }
 
-const NO_PARTS_BLOCKS = new Set(['CC_GDTC', 'CC_GDQP', 'DIEUKIEN_TOTNGHIEP']);
+// Trường của chương trình do người duyệt ghi tay, nguồn nhập không có: giữ nguyên khi nhập lại.
+export const KEPT_PROGRAM_FIELDS = ['listed', 'ctdtUrl', 'planUrl'];
+
+export function keptProgramFields(file) {
+  if (!fs.existsSync(file)) return {};
+  const cur = JSON.parse(fs.readFileSync(file, 'utf8'));
+  const out = {};
+  for (const k of KEPT_PROGRAM_FIELDS) if (cur[k] !== undefined) out[k] = cur[k];
+  return out;
+}
+
+const NO_PARTS_BLOCKS =new Set(['CC_GDTC', 'CC_GDQP', 'DIEUKIEN_TOTNGHIEP']);
 
 function norm(s) {
   return s.normalize('NFC').toLowerCase().replace(/\s+/g, ' ').trim();
@@ -171,13 +182,17 @@ export function importSeed(seed, outRoot, { date, faculties, log = () => {} }) {
   for (const id of blockCourses.keys()) {
     if (!blocksById.has(id)) throw new Error(`seed thiếu thông tin khối ${id}`);
   }
+  const kept = keptProgramFields(path.join(programsDir, `${prog.code}.json`));
   const program = {
     $schema: '../../schema/program.schema.json',
     code: prog.code,
     name: prog.name,
     faculty: progFaculty,
     year: String(prog.year),
+    ...('listed' in kept ? { listed: kept.listed } : {}),
     ...(seed.source ? { source: seed.source } : {}),
+    ...(kept.ctdtUrl ? { ctdtUrl: kept.ctdtUrl } : {}),
+    ...(kept.planUrl ? { planUrl: kept.planUrl } : {}),
     blocks,
     updated: date,
   };

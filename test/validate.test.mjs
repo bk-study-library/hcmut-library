@@ -36,6 +36,35 @@ test('item.course phải có trong danh mục và khớp thư mục', () => {
   assert.deepEqual(errorsAfter((d) => editJson(d, ITEM, (it) => { it.course = 'EE9999'; })), ['ITEM_COURSE']);
 });
 
+test('chương trình: ctdtUrl, planUrl chỉ nhận https tới host trong site.json; listed là boolean', () => {
+  const PROG = 'catalog/programs/TEST_2019.json';
+  const withUrl = (k, url, hosts = ['drive.google.com', 'hcmut.edu.vn', '*.hcmut.edu.vn']) =>
+    errorsAfter((d) => {
+      writeJson(d, 'catalog/site.json', { uploadEndpoint: '', turnstileSiteKey: 'K', programPdfHosts: hosts });
+      editJson(d, PROG, (p) => { p[k] = url; });
+    });
+  assert.deepEqual(withUrl('ctdtUrl', 'https://drive.google.com/file/d/abc/view'), []);
+  assert.deepEqual(withUrl('planUrl', 'https://hcmut.edu.vn/a.pdf'), []);
+  assert.deepEqual(withUrl('planUrl', 'https://dee.hcmut.edu.vn/file-system/a.pdf'), []);
+  assert.deepEqual(withUrl('ctdtUrl', 'http://drive.google.com/file/d/abc/view'), ['PROGRAM_URL', 'SCHEMA']);
+  assert.deepEqual(withUrl('ctdtUrl', 'https://example.com/a.pdf'), ['PROGRAM_URL']);
+  assert.deepEqual(withUrl('ctdtUrl', 'https://hcmut.edu.vn.example.com/a.pdf'), ['PROGRAM_URL']);
+  assert.deepEqual(withUrl('ctdtUrl', 'https://evilhcmut.edu.vn/a.pdf'), ['PROGRAM_URL']);
+  assert.deepEqual(withUrl('ctdtUrl', 'https://user@drive.google.com/a.pdf'), ['PROGRAM_URL']);
+  assert.deepEqual(withUrl('ctdtUrl', 'https://drive.google.com:8443/a.pdf'), ['PROGRAM_URL']);
+  // Host chỉ có trong danh sách khi site.json ghi: bỏ drive.google.com thì link Drive bị từ chối.
+  assert.deepEqual(withUrl('ctdtUrl', 'https://drive.google.com/file/d/abc/view', ['hcmut.edu.vn']), ['PROGRAM_URL']);
+  assert.deepEqual(withUrl('ctdtUrl', 'https://drive.google.com/a', 'drive.google.com'), ['PROGRAM_URL', 'SCHEMA']);
+  assert.deepEqual(errorsAfter((d) => editJson(d, PROG, (p) => { p.listed = 'no'; })), ['SCHEMA']);
+  assert.deepEqual(errorsAfter((d) => editJson(d, PROG, (p) => { p.listed = false; })), []);
+});
+
+test('catalog/site.json thật: programPdfHosts chỉ gồm Drive và tên miền của trường, có bảng CTĐT chính thức', () => {
+  const site = JSON.parse(fs.readFileSync(path.join(TOOL_ROOT, 'catalog', 'site.json'), 'utf8'));
+  assert.deepEqual(site.programPdfHosts, ['drive.google.com', 'hcmut.edu.vn', '*.hcmut.edu.vn']);
+  assert.match(site.officialProgramsPage, /^https:\/\/hcmut\.edu\.vn\//);
+});
+
 test('related, replacedBy, replaces phải trỏ tới môn có thật', () => {
   assert.deepEqual(errorsAfter((d) => editJson(d, 'catalog/courses/EE1010.json', (c) => { c.related.push('EE7777'); })), ['REF_RELATED']);
   assert.deepEqual(errorsAfter((d) => editJson(d, 'catalog/courses/400111.json', (c) => { c.replacedBy = 'EE7777'; })), ['REF_REPLACED_BY']);

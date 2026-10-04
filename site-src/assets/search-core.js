@@ -31,6 +31,22 @@
     return w;
   }
 
+  // Từ giữ nguyên dấu (chữ thường, NFC), để phân biệt "vẽ" với "về" khi người dùng gõ có dấu.
+  function markedWords(s) {
+    var w = String(s || '')
+      .normalize('NFC')
+      .toLowerCase()
+      .split(/[^\p{L}\p{N}]+/u)
+      .filter(Boolean);
+    for (var i = 0; i < w.length; i++) if (ROMAN[w[i]]) w[i] = ROMAN[w[i]];
+    return w;
+  }
+
+  // Câu tìm có chữ có dấu (kể cả đ) thì mới so khớp nguyên dấu.
+  function hasMarks(s) {
+    return /[^\u0000-\u007f]/.test(String(s || '').normalize('NFC'));
+  }
+
   // Chữ viết tắt: chữ đầu mỗi từ, giữ nguyên số. "Giải tích 2" -> "gt2", "Đại số tuyến tính" -> "dstt".
   function acronym(ws) {
     var out = '';
@@ -72,10 +88,16 @@
       var names = [c.name, c.nameEn].concat(c.oldNames || []).filter(Boolean);
       var nameWords = [];
       var acr = [];
+      var phrases = [];
+      var phraseLens = [];
+      var marked = [];
       for (var n = 0; n < names.length; n++) {
         var ws = words(names[n]);
         nameWords.push(ws);
         acr.push(acronym(ws));
+        phrases.push(ws.join(' '));
+        phraseLens.push(ws.length);
+        marked = marked.concat(markedWords(names[n]));
       }
       var codes = [c.code, c.id].concat(c.aliases || []).map(compactCode);
       var all = [];
@@ -92,6 +114,9 @@
         codes: codes,
         acronyms: acr,
         words: all,
+        phrases: phrases,
+        phraseLens: phraseLens,
+        marked: marked,
       });
     }
     return { courses: list };
@@ -110,8 +135,34 @@
     return best;
   }
 
-  // Điểm: mã hiện tại 0, mã cũ 0.25, đầu mã 1, viết tắt 1.5, theo từ 2 đến 4. Môn đã ngừng cộng 0.5.
-  function scoreCourse(c, tokens, compact) {
+  // Điểm thưởng khi khớp theo từ (luôn dưới 0.5 để không vượt nhóm điểm khác):
+  // tên đúng bằng câu tìm 0.3; tên bắt đầu bằng cả cụm câu tìm và cụm đó chiếm từ nửa số từ
+  // của tên trở lên 0.25 ("ve ky thuat" khớp "Vẽ kỹ thuật cơ khí" hơn "Nhập môn về kỹ thuật");
+  // gõ có dấu mà mọi từ khớp nguyên dấu thêm 0.15.
+  function phraseBonus(c, tokens, marks) {
+    var phrase = tokens.join(' ');
+    var b = 0;
+    for (var i = 0; i < c.phrases.length; i++) {
+      if (c.phrases[i] === phrase) {
+        b = 0.3;
+        break;
+      }
+      if (c.phrases[i].indexOf(phrase) === 0 && tokens.length * 2 >= c.phraseLens[i]) b = 0.25;
+    }
+    if (marks && marks.length) {
+      var all = true;
+      for (var k = 0; k < marks.length && all; k++) {
+        var hit = false;
+        for (var j = 0; j < c.marked.length && !hit; j++) hit = c.marked[j].indexOf(marks[k]) === 0;
+        all = hit;
+      }
+      if (all) b += 0.15;
+    }
+    return b;
+  }
+
+  // Điểm: mã hiện tại 0, mã cũ 0.25, đầu mã 1, viết tắt 1.5, theo từ 2 đến 4 (trừ điểm thưởng cụm từ). Môn đã ngừng cộng 0.5.
+  function scoreCourse(c, tokens, compact, marks) {
     var s;
     var exact = c.codes.indexOf(compact);
     if (exact >= 0) s = exact < 2 ? 0 : 0.25;
@@ -127,7 +178,7 @@
         }
         if (ts > worst) worst = ts;
       }
-      if (worst >= 0) s = 2 + worst;
+      if (worst >= 0) s = Math.round((2 + worst - phraseBonus(c, tokens, marks)) * 100) / 100;
       else if (tokens.length === 1 && compact.length >= 3 && c.acronyms.some(function (a) { return a.indexOf(compact) === 0; })) s = 3.5;
       else return -1;
     }
@@ -162,11 +213,12 @@
     var tokens = words(query);
     if (!tokens.length) return [];
     var compact = tokens.join('');
+    var marks = hasMarks(query) ? markedWords(query) : null;
     var hits = [];
     for (var i = 0; i < idx.courses.length; i++) {
       var c = idx.courses[i];
       if (!inFaculty(c, opts)) continue;
-      var s = scoreCourse(c, tokens, compact);
+      var s = scoreCourse(c, tokens, compact, marks);
       if (s >= 0) hits.push({ id: c.id, score: s, code: c.code, items: c.items });
       else if (compact.length >= 3) {
         var teacher = teacherMatch(c, tokens);
