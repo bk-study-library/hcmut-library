@@ -1,4 +1,6 @@
-/* BK Study Library. Thư viện tra theo mã môn: mã môn là nhãn gáy sách, thứ duy nhất được làm nổi;
+/* BK Study Library. Thư viện tra theo mã môn: mã môn là nhãn gáy sách, thứ duy nhất được làm nổi.
+   Một bộ quy tắc cho mọi thành phần: bo góc --radius (nhãn 4 px), viền 1 px đều bốn cạnh, không vạch màu
+   một bên, không đổ bóng; trạng thái đang chọn dùng nền --surface-2, không gạch dưới;
    phần còn lại trung tính, viền mảnh, ô nhập viền đều bốn cạnh. Font hệ thống, không tải font từ mạng. */
 
 :root {
@@ -125,8 +127,8 @@ a:hover { color: var(--accent-hover); }
   text-decoration: none;
 }
 .nav a:hover { background: var(--surface-2); color: var(--text); }
-.nav a[aria-current="page"] { box-shadow: inset 0 -2px 0 var(--accent); }
-.nav .lang { border: 1px solid var(--border-strong); }
+.nav a[aria-current="page"] { background: var(--surface-2); font-weight: 600; }
+.nav .lang { color: var(--muted); }
 
 main { flex: 1 0 auto; width: 100%; outline: none; }
 /* main cũng có class .wrap (padding: 0 16px) nên khoảng trên, dưới phải đặt riêng để không bị ghi đè. */
@@ -183,18 +185,18 @@ h1 .code { font-size: 0.62em; vertical-align: 0.28em; margin-right: 6px; }
 .panel {
   background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: 8px;
+  border-radius: var(--radius);
   padding: 16px;
-  box-shadow: var(--shadow);
 }
 
+/* Ghi chú: hộp nền nhạt viền đều, không có vạch màu bên trái. */
 .note {
-  background: var(--accent-soft);
-  border-left: 3px solid var(--accent);
-  padding: 10px 12px;
-  border-radius: 4px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  padding: 10px 14px;
+  border-radius: var(--radius);
 }
-.note.warn { background: var(--warn-soft); border-left-color: var(--warn); }
+.note.warn { background: var(--warn-soft); border-color: var(--warn); }
 .note p { margin: 0; }
 
 /* Tìm kiếm */
@@ -233,12 +235,11 @@ h1 .code { font-size: 0.62em; vertical-align: 0.28em; margin-right: 6px; }
   padding: 14px 16px;
   background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: 8px;
-  box-shadow: var(--shadow);
+  border-radius: var(--radius);
   color: var(--text);
   text-decoration: none;
 }
-.card:hover { border-color: var(--border-strong); background: var(--surface-2); color: var(--text); }
+.card:hover { border-color: var(--accent); color: var(--text); }
 .card .muted { font-size: 13px; }
 
 .list { padding-left: 20px; }
@@ -252,10 +253,10 @@ h1 .code { font-size: 0.62em; vertical-align: 0.28em; margin-right: 6px; }
 .btn {
   display: inline-flex;
   align-items: center;
-  min-height: 32px;
-  padding: 5px 14px;
+  min-height: 40px;
+  padding: 8px 16px;
   border: 1px solid var(--border-strong);
-  border-radius: 4px;
+  border-radius: var(--radius);
   background: var(--surface);
   color: var(--text);
   font-weight: 600;
@@ -272,7 +273,7 @@ h1 .code { font-size: 0.62em; vertical-align: 0.28em; margin-right: 6px; }
 :is(p, ul, ol):has(+ .actions) { margin-bottom: 0; }
 
 /* Bảng */
-.table-wrap { overflow-x: auto; border: 1px solid var(--border); border-radius: 8px; background: var(--surface); }
+.table-wrap { overflow-x: auto; border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface); }
 table { width: 100%; border-collapse: collapse; }
 th, td { text-align: left; padding: 8px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
 thead th { font-size: 13px; color: var(--muted); font-weight: 600; background: var(--surface-2); }
@@ -283,26 +284,26 @@ tr.retired td, tr.retired th { color: var(--muted); }
 
 .tag {
   display: inline-block;
-  padding: 0 6px;
+  padding: 1px 7px;
   border-radius: 4px;
   font-size: 12px;
   font-weight: 600;
-  border: 1px solid var(--border-strong);
+  background: var(--surface-2);
   color: var(--muted);
   vertical-align: 1px;
   margin-left: 6px;
 }
-.tag.accent { border-color: var(--accent); color: var(--accent); }
-.tag.warn { border-color: var(--warn); color: var(--warn); }
+.tag.accent { background: var(--accent-soft); color: var(--accent); }
+.tag.warn { background: var(--warn-soft); color: var(--warn); }
 
 /* Thông tin môn */
-.facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 0; margin: 12px 0 0; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; }
+.facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 0; margin: 12px 0 0; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); }
 .facts div { padding: 10px 14px; border-bottom: 1px solid var(--border); }
 .facts dt { font-size: 12px; color: var(--muted); }
 .facts dd { margin: 2px 0 0; }
 
 .items { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
-.item { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 12px 14px; }
+.item { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 12px 14px; }
 .item p { margin: 4px 0; }
 .item .meta { font-size: 13px; color: var(--muted); }
 /* Hàng nút của mục: Xem trước, Tải xuống, Yêu cầu gỡ. */
@@ -436,7 +437,7 @@ main h1, main h2, main p, main li { overflow-wrap: break-word; }
 
 /* Nhãn loại chương trình là link mở ô tìm trang chủ (?q=<loại>): giữ dáng .tag, vùng bấm 24 px, có focus. */
 a.tag { display: inline-flex; align-items: center; min-height: 24px; padding: 0 8px; text-decoration: none; vertical-align: baseline; }
-a.tag:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-soft); }
+a.tag:hover { color: var(--accent); background: var(--accent-soft); }
 a.tag:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
 
 /* Môn trùng tên: ngữ cảnh (ngành) dưới tên ở trang môn và bảng môn; dòng gộp ở ô tìm trang chủ */
@@ -448,7 +449,7 @@ td .sub { display: block; font-size: 13px; color: var(--muted); }
 .results .same-name > details > summary:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
 .same-name-title { margin-right: 12px; font-weight: 600; }
 .same-name-codes { display: inline-flex; flex-wrap: wrap; gap: 4px; margin-right: 12px; vertical-align: middle; }
-.results .same-name .results { margin: 0 0 8px 16px; border-left: 2px solid var(--border); }
+.results .same-name .results { margin: 0 0 8px 16px; }
 .results .same-name .results li:last-child { border-bottom: 0; }
 
 /* Tài liệu mới ở trang chủ */

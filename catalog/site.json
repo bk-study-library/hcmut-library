@@ -24,5 +24,6 @@
   "docResultsMax": 10,
   "docDescriptionMax": 200,
   "sameNameGroupMin": 2,
+  "contextWideMajors": 5,
   "socialImage": "assets/social-preview.png"
 }

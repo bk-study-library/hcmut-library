@@ -534,7 +534,7 @@ test('trang khoa Môn chung toàn trường có ghi chú riêng', () => {
   });
   const o = fs.mkdtempSync(path.join(os.tmpdir(), 'bk-lib-site-chung-'));
   buildSite({ root: dir, out: o });
-  assert.match(fs.readFileSync(path.join(o, 'faculty/chung/index.html'), 'utf8'), /<div class="note" role="note"><p>Môn và điều kiện tốt nghiệp chung cho mọi ngành/);
+  assert.match(fs.readFileSync(path.join(o, 'faculty/chung/index.html'), 'utf8'), /<div class="note" role="note"><p>Các môn và điều kiện tốt nghiệp mọi ngành đều học/);
   assert.doesNotMatch(fs.readFileSync(path.join(o, 'faculty/EE/index.html'), 'utf8'), /áp dụng cho mọi ngành/);
 });
 
@@ -809,7 +809,7 @@ test('trang khoa: ngành trước, rồi Môn của khoa và Môn chung khoa dù
   assert.match(shared, /<p class="muted">4 môn\. Danh sách đủ ở trang <a href="\.\.\/\.\.\/faculty\/chung\/">Môn chung toàn trường<\/a>\.<\/p>/);
   for (const id of ['MT1003', 'PH1003', 'LA1003', 'PE1009']) assert.match(shared, new RegExp(`course/${id}/`), id);
   const chung = mainOf(readM('faculty/chung/index.html'));
-  assert.match(chung, /<div class="note" role="note"><p>Môn và điều kiện tốt nghiệp chung cho mọi ngành/);
+  assert.match(chung, /<div class="note" role="note"><p>Các môn và điều kiện tốt nghiệp mọi ngành đều học/);
   assert.match(chung, /course\/MT1003\//);
   assert.doesNotMatch(chung, /Môn chung khoa dùng/);
   // Khóa cũ (flc, movedTo: chung): trang ngắn chuyển tới Môn chung toàn trường, không có trong trang chủ.

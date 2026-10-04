@@ -44,7 +44,9 @@ export function yearRanges(years, range) {
 //   programs: Map mã -> chương trình; majors: Map mã -> ngành; faculties: Map khóa -> khoa
 //   t: chữ của một ngôn ngữ (strings.mjs): contextMore, contextCohorts, yearRange, levelName
 //   listed: chương trình nào được tính (bản nháp nguồn không tính)
-export function courseContexts({ courses, programs, majors, faculties, t, listed = () => true, groups = sameNameGroups(courses.values()) }) {
+//   wide: môn có trong hơn ngần này ngành thì ghi "chung cho N ngành" thay cho tên một ngành
+//   (môn như Giải tích 1 có trong vài chục ngành, ghi tên một ngành nghe lạ)
+export function courseContexts({ courses, programs, majors, faculties, t, listed = () => true, groups = sameNameGroups(courses.values()), wide = 5 }) {
   const lang = t.lang;
   const majorName = (m) => (lang === 'en' && m.nameEn ? m.nameEn : m.name);
   const facultyName = (f) => (f ? f.name[lang] || f.name.vi : '');
@@ -69,7 +71,7 @@ export function courseContexts({ courses, programs, majors, faculties, t, listed
     const label = (m) => (levels.size > 1 && isPostgrad(m) && LEVELS[m.level] ? t.levelName(LEVELS[m.level][lang], majorName(m)) : majorName(m));
     for (const x of info) {
       const names = [...new Set(x.majors.sort((a, b) => b.n - a.n || label(a.m).localeCompare(label(b.m), lang)).map(({ m }) => label(m)))];
-      x.text = !names.length ? facultyName(faculties.get(x.c.faculty)) : names.length <= 2 ? names.join(', ') : t.contextMore(names[0], names.length - 1);
+      x.text = !names.length ? facultyName(faculties.get(x.c.faculty)) : names.length > wide ? t.contextWide(names.length) : names.length <= 2 ? names.join(', ') : t.contextMore(names[0], names.length - 1);
     }
     // Hai môn cùng tên vẫn trùng ngữ cảnh (cùng ngành, khác khóa): ghi thêm các khóa có môn đó.
     const seen = new Map();

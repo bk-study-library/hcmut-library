@@ -55,7 +55,7 @@ test('trang khoa: bảng môn của khoa chỉ gồm đại học; sau đại h�
   assert.match(pg, /<details class="prog-empty"><summary>Môn sau đại học \(5 môn\)<\/summary>/);
   for (const id of ['ME5021', 'ME5327', 'ME6139', 'ME6201', 'ME7377']) assert.match(pg, new RegExp(`course/${id}/`), id);
   const chung = mainOf(read('faculty/chung/index.html'));
-  const chungOwn = chung.slice(chung.indexOf('<h2>Môn của khoa</h2>'), chung.indexOf('<h2 id="h-sdh">'));
+  const chungOwn = chung.slice(chung.indexOf('<h2>Danh sách môn</h2>'), chung.indexOf('<h2 id="h-sdh">'));
   assert.match(chungOwn, /course\/MT1003\//);
   assert.doesNotMatch(chungOwn, /GK5047|ENG_B2/);
   assert.match(chung.slice(chung.indexOf('<h2 id="h-sdh">')), /course\/GK5047\/[\s\S]*course\/MT1003-2025\//);

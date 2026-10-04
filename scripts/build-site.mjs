@@ -48,6 +48,8 @@ function readSiteConfig(root) {
     // Ô tìm trang chủ: số tài liệu hiện tối đa, độ dài mô tả giữ trong assets/items.json.
     docResultsMax: Number.isInteger(cfg.docResultsMax) && cfg.docResultsMax > 0 ? cfg.docResultsMax : 10,
     // Số tài liệu mới hiện ngay dưới ô tìm ở trang chủ. 0 thì không hiện mục này.
+    // Môn có trong hơn ngần này ngành: ngữ cảnh ghi "chung cho N ngành" (scripts/lib/course-context.mjs).
+    contextWideMajors: Number.isInteger(cfg.contextWideMajors) && cfg.contextWideMajors > 0 ? cfg.contextWideMajors : 5,
     recentItemsMax: Number.isInteger(cfg.recentItemsMax) && cfg.recentItemsMax >= 0 ? cfg.recentItemsMax : 8,
     docDescriptionMax: Number.isInteger(cfg.docDescriptionMax) && cfg.docDescriptionMax > 0 ? cfg.docDescriptionMax : 200,
     // Ảnh xem trước khi chia sẻ link (og:image), đường dẫn tính từ gốc site, nằm trong site-src/assets/.
@@ -787,7 +789,7 @@ export function buildSite({ root = TOOL_ROOT, out = path.join(TOOL_ROOT, 'site')
   const sameNameOf = new Map();
   for (const ids of nameGroups.values()) for (const id of ids) sameNameOf.set(id, ids);
   const contexts = Object.fromEntries(
-    ['vi', 'en'].map((lang) => [lang, courseContexts({ courses: allCourses, programs: progByCode, majors: majorByCode, faculties: facByKey, t: S[lang], listed: isListed, groups: nameGroups })]),
+    ['vi', 'en'].map((lang) => [lang, courseContexts({ courses: allCourses, programs: progByCode, majors: majorByCode, faculties: facByKey, t: S[lang], listed: isListed, groups: nameGroups, wide: siteCfg.contextWideMajors })]),
   );
   write('assets/courses.json', JSON.stringify(searchCourses(v1.index, contexts)) + '\n');
   // Danh sách chương trình cho ô tìm ở trang chủ (chỉ web dùng, không thuộc hợp đồng v1).
@@ -1017,7 +1019,7 @@ ${shared && f.key === shared ? `<div class="note" role="note"><p>${esc(t.faculty
 ${emptyFac ? `<div class="note" role="note"><p>${esc(t.facultyEmpty)}${sharedLink ? ` ${esc(t.facultyEmptyShared)} ${sharedLink}.` : ''}</p></div>${ownsPrograms ? addBtn('btn primary') : ''}` : ''}
 ${ms.length ? `<h2>${esc(t.facultyMajors)}</h2>\n<p class="muted">${esc(t.majorsCount(ms.length))}</p>\n${majorList(t, ms, progsOfMajor, root, P, typeOrder)}` : ''}
 ${programBlock}
-${ugCourses.length ? `<h2>${esc(t.facultyCourses)}</h2>\n<p class="muted">${esc(t.coursesCount(ugCourses.length))}</p>\n${courseTable(t, ugCourses, root, t.facultyCourses, ctx)}` : ''}
+${ugCourses.length ? `<h2>${esc(shared && f.key === shared ? t.sharedCourses : t.facultyCourses)}</h2>\n<p class="muted">${esc(t.coursesCount(ugCourses.length))}</p>\n${courseTable(t, ugCourses, root, t.facultyCourses, ctx)}` : ''}
 ${sharedUsed.length ? `<h2>${esc(t.facultySharedCourses)}</h2>\n<p class="muted">${esc(t.coursesCount(sharedUsed.length))}. ${esc(t.facultySharedCoursesNote)} ${sharedLink}.</p>\n${courseTable(t, sharedUsed, root, t.facultySharedCourses, ctx)}` : ''}
 ${pgBlock}`;
       write(
