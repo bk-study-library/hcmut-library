@@ -1,0 +1,18 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "GE3111",
+  "code": "GE3111",
+  "name": "Địa chất động lực công trình",
+  "credits": 2,
+  "faculty": "geopet",
+  "aliases": [],
+  "status": "retired",
+  "replacedBy": "GE4069",
+  "programs": [],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "note": "Nhập từ nguồn công khai (truy cập 03/10/2026).",
+  "updated": "2026-10-04"
+}

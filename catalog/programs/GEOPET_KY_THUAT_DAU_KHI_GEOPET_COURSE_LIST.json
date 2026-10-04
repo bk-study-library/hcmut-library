@@ -1,0 +1,189 @@
+{
+  "$schema": "../../schema/program.schema.json",
+  "code": "GEOPET_KY_THUAT_DAU_KHI_GEOPET_COURSE_LIST",
+  "name": "Kỹ thuật Dầu khí (danh sách môn học theo học kỳ, không ghi khóa)",
+  "nameEn": "Petroleum Engineering (course list by semester, cohort not stated)",
+  "faculty": "geopet",
+  "source": "https://geopet.hcmut.edu.vn/dao-tao/dai-hoc/ky-thuat-dau-khi/danh-sach-cac-mon-hoc",
+  "blocks": [
+    {
+      "id": "K01",
+      "name": "Compulsive Courses",
+      "group": "Semester 1",
+      "required": true,
+      "courses": [
+        "LA1003",
+        "MT1003",
+        "PH1003",
+        "CH1003",
+        "GE1001",
+        "MI1003",
+        "PE1003"
+      ]
+    },
+    {
+      "id": "K02",
+      "name": "Compulsive Courses",
+      "group": "Semester 2",
+      "required": true,
+      "courses": [
+        "LA1005",
+        "MT1007",
+        "PH1007",
+        "MT1005",
+        "GE1011",
+        "GE1013",
+        "PE1005"
+      ]
+    },
+    {
+      "id": "K03",
+      "name": "Compulsive Courses",
+      "group": "Semester 3",
+      "required": true,
+      "courses": [
+        "LA1007",
+        "MT1009",
+        "GE2033",
+        "GE2043",
+        "GE2035",
+        "SP1031",
+        "PE1007"
+      ]
+    },
+    {
+      "id": "K04",
+      "name": "Compulsive Courses",
+      "group": "Semester 4",
+      "required": true,
+      "courses": [
+        "LA1009",
+        "MT2013",
+        "GE2041",
+        "SP1033"
+      ]
+    },
+    {
+      "id": "K05",
+      "name": "Elective Courses Group A (3 credit hours from one of the following course)",
+      "group": "Semester 4",
+      "required": false,
+      "courses": [
+        "GE2011",
+        "GE2001",
+        "GE2045"
+      ]
+    },
+    {
+      "id": "K06",
+      "name": "Compulsive Courses",
+      "group": "Semester 5",
+      "required": true,
+      "courses": [
+        "GE3155",
+        "GE3141",
+        "GE3157",
+        "SP1035"
+      ]
+    },
+    {
+      "id": "K07",
+      "name": "Elective Courses Group B (6 credit hours from two of the following course)",
+      "group": "Semester 5",
+      "required": false,
+      "courses": [
+        "GE3163",
+        "GE3045",
+        "GE3165",
+        "GE3167",
+        "GE3179",
+        "GE3169",
+        "GE3205",
+        "GE3171",
+        "GE3173"
+      ]
+    },
+    {
+      "id": "K08",
+      "name": "Compulsive Courses",
+      "group": "Semester 6",
+      "required": true,
+      "courses": [
+        "CH2089",
+        "GE3017",
+        "SP1039",
+        "GE3159",
+        "GE3345"
+      ]
+    },
+    {
+      "id": "K09",
+      "name": "Elective Courses Group C (3 credit hours from one of the following course)",
+      "group": "Semester 6",
+      "required": false,
+      "courses": [
+        "GE3079",
+        "GE3175",
+        "GE3177",
+        "GE3199",
+        "GE2029",
+        "GE3181",
+        "GE3183",
+        "GE3185",
+        "GE3187",
+        "GE3189",
+        "GE3191"
+      ]
+    },
+    {
+      "id": "K10",
+      "name": "Compulsive Courses",
+      "group": "Semester 7",
+      "required": true,
+      "courses": [
+        "GE3105",
+        "GE3015",
+        "GE4091",
+        "SP1037"
+      ]
+    },
+    {
+      "id": "K11",
+      "name": "Elective Courses Group D (2 credit hours from one of the following course)",
+      "group": "Semester 7",
+      "required": false,
+      "courses": [
+        "GE4095",
+        "GE4059",
+        "GE4097",
+        "GE4099"
+      ]
+    },
+    {
+      "id": "K12",
+      "name": "Compulsive Courses",
+      "group": "Semester 8",
+      "required": true,
+      "courses": [
+        "GE3151",
+        "GE4093",
+        "SP1007",
+        "GE4347"
+      ]
+    },
+    {
+      "id": "K13",
+      "name": "Elective Courses Group E (3 credit hours from one of the following course)",
+      "group": "Semester 8",
+      "required": false,
+      "courses": [
+        "IM1023",
+        "IM1027",
+        "GE3161",
+        "GE4101",
+        "GE4103"
+      ]
+    }
+  ],
+  "updated": "2026-10-04"
+}

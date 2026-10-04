@@ -1,0 +1,54 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "ME4121",
+  "code": "ME4121",
+  "name": "Đồ án ngành 1",
+  "nameEn": "Project 1",
+  "credits": 2,
+  "faculty": "fme",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "FME_CONG_NGHE_DET_MAY_2024",
+      "block": "K14",
+      "required": true
+    },
+    {
+      "program": "FME_CONG_NGHE_DET_MAY_2019",
+      "block": "K02",
+      "required": false
+    },
+    {
+      "program": "FME_CONG_NGHE_DET_MAY_2022",
+      "block": "K11",
+      "required": true
+    },
+    {
+      "program": "FME_CONG_NGHE_DET_MAY_2023",
+      "block": "K11",
+      "required": true
+    },
+    {
+      "program": "FME_CONG_NGHE_DET_MAY_2021",
+      "block": "K11",
+      "required": true
+    },
+    {
+      "program": "FME_CONG_NGHE_DET_MAY_2020",
+      "block": "K02",
+      "required": false
+    },
+    {
+      "program": "FME_KY_THUAT_DET_2024",
+      "block": "K14",
+      "required": true
+    }
+  ],
+  "parts": [
+    "project"
+  ],
+  "related": [],
+  "note": "Nhập từ nguồn công khai (truy cập 03/10/2026). Tín chỉ khác nhau giữa các khóa: 2 (2019, 2020, 2023, 2024); 1 (2021, 2022).",
+  "updated": "2026-10-04"
+}

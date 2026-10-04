@@ -1,0 +1,104 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "CI2003",
+  "code": "CI2003",
+  "name": "Cơ lưu chất",
+  "nameEn": "Fluid Mechanics",
+  "credits": 3,
+  "faculty": "fce",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "FME_KY_THUAT_NHIET_2020",
+      "block": "K01",
+      "required": true
+    },
+    {
+      "program": "FME_KY_THUAT_NHIET_2021",
+      "block": "K09",
+      "required": true
+    },
+    {
+      "program": "FME_KY_THUAT_NHIET_2022",
+      "block": "K09",
+      "required": true
+    },
+    {
+      "program": "FME_KY_THUAT_NHIET_2024",
+      "block": "K12",
+      "required": true
+    },
+    {
+      "program": "FME_KY_THUAT_NHIET_2023",
+      "block": "K09",
+      "required": true
+    },
+    {
+      "program": "FME_KY_THUAT_NHIET_2019",
+      "block": "K01",
+      "required": true
+    },
+    {
+      "program": "FME_BAO_DUONG_CONG_NGHIEP_2020",
+      "block": "K01",
+      "required": true
+    },
+    {
+      "program": "FME_BAO_DUONG_CONG_NGHIEP_2024",
+      "block": "K10",
+      "required": true
+    },
+    {
+      "program": "FME_BAO_DUONG_CONG_NGHIEP_2023",
+      "block": "K09",
+      "required": true
+    },
+    {
+      "program": "FME_BAO_DUONG_CONG_NGHIEP_2022",
+      "block": "K09",
+      "required": true
+    },
+    {
+      "program": "FME_BAO_DUONG_CONG_NGHIEP_2021",
+      "block": "K09",
+      "required": true
+    },
+    {
+      "program": "FME_BAO_DUONG_CONG_NGHIEP_2019",
+      "block": "K01",
+      "required": true
+    },
+    {
+      "program": "FME_KY_THUAT_CO_KHI_2023",
+      "block": "K09",
+      "required": true
+    },
+    {
+      "program": "FME_KY_THUAT_CO_KHI_2020",
+      "block": "K01",
+      "required": true
+    },
+    {
+      "program": "FME_KY_THUAT_CO_KHI_2022",
+      "block": "K09",
+      "required": true
+    },
+    {
+      "program": "FME_KY_THUAT_CO_KHI_2021",
+      "block": "K09",
+      "required": true
+    },
+    {
+      "program": "FME_KY_THUAT_CO_KHI_2019",
+      "block": "K01",
+      "required": true
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "note": "Nhập từ nguồn công khai (truy cập 03/10/2026).",
+  "updated": "2026-10-04"
+}

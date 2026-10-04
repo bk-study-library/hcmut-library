@@ -1,12 +1,12 @@
 # BK Study Library
 
-Thư viện tài liệu học tập do sinh viên Bách Khoa TP.HCM (HCMUT) chia sẻ, xếp theo mã môn. Đọc trên web, không cần cài gì: **https://bk-study-library.github.io/bk-study-library/**
+Thư viện tài liệu học tập do sinh viên Bách Khoa TP.HCM (HCMUT) chia sẻ, xếp theo mã môn. Đọc trên web, không cần cài gì: **https://bk-study-library.github.io/hcmut-library/**
 
 Đây là dự án của sinh viên, không phải trang chính thức của Trường Đại học Bách khoa - ĐHQG-HCM.
 
 ## Trạng thái
 
-Bản khung (0.1.0). Danh mục mới có 8 môn và các tài liệu trong đó là dữ liệu mẫu (có đánh dấu "mẫu") để thử giao diện và quy trình. Danh mục đầy đủ sẽ được nhập sau, từ nguồn công khai.
+Bản khung (0.1.0). Danh mục có 737 môn và 195 chương trình đào tạo, nhập từ nguồn công khai (truy cập 03/10/2026). Mới có danh sách môn của Khoa Cơ khí, Khoa Điện - Điện tử, Khoa Kỹ thuật Địa chất và Dầu khí; 100 chương trình còn lại chưa có danh sách môn. Các tài liệu hiện có là dữ liệu mẫu (có đánh dấu "mẫu") để thử giao diện và quy trình.
 
 ## Quy định
 
@@ -22,8 +22,8 @@ Máy chỉ cảnh báo khi thấy MSSV, email, số điện thoại trong file, 
 
 Có ba cách. Chi tiết từng bước nằm trong [CONTRIBUTING.md](CONTRIBUTING.md).
 
-1. **Gửi file qua trang web, không cần tài khoản GitHub.** Mở [Gửi tài liệu](https://bk-study-library.github.io/bk-study-library/gui-tai-lieu/), điền form, chọn file. Worker kiểm form và cất file vào kho riêng. Một bot mở Pull Request, rồi bài đi qua phần Duyệt bài bên dưới.
-2. **Thêm link qua form issue.** Dùng form [Thêm link](https://github.com/bk-study-library/bk-study-library/issues/new?template=them-link.yml). Người duyệt đọc và tự mở Pull Request.
+1. **Gửi file qua trang web, không cần tài khoản GitHub.** Mở [Gửi tài liệu](https://bk-study-library.github.io/hcmut-library/gui-tai-lieu/), điền form, chọn file. Worker kiểm form và cất file vào kho riêng. Một bot mở Pull Request, rồi bài đi qua phần Duyệt bài bên dưới.
+2. **Thêm link qua form issue.** Dùng form [Thêm link](https://github.com/bk-study-library/hcmut-library/issues/new?template=them-link.yml). Người duyệt đọc và tự mở Pull Request.
 3. **Pull Request, nếu bạn dùng Git.** Thêm `courses/<ID>/items/<id>.json` và file `.md` nhỏ (dưới 1 MB) nếu có. File khác gửi qua cách 1.
 
 Không gửi file qua issue: file đính kèm trên repo công khai thành công khai ngay, trước khi có người duyệt.
@@ -37,11 +37,11 @@ Người duyệt là sinh viên đã học qua môn, làm tình nguyện; danh s
 3. Workflow `phat-hanh-file` đưa file lên GitHub pre-release `files-HKxxx`.
 4. Pull Request bị đóng thì `don-kho` dọn file chờ duyệt.
 
-Danh sách kiểm và luồng đầy đủ: [CONTRIBUTING.md](CONTRIBUTING.md). Muốn làm người duyệt: form [Đăng ký duyệt bài](https://github.com/bk-study-library/bk-study-library/issues/new?template=dang-ky-duyet.yml).
+Danh sách kiểm và luồng đầy đủ: [CONTRIBUTING.md](CONTRIBUTING.md). Muốn làm người duyệt: form [Đăng ký duyệt bài](https://github.com/bk-study-library/hcmut-library/issues/new?template=dang-ky-duyet.yml).
 
 ## Gỡ tài liệu
 
-Tác giả, chủ bản quyền, người có thông tin cá nhân trong tài liệu hoặc người đã gửi đều có thể yêu cầu gỡ bằng form [Yêu cầu gỡ](https://github.com/bk-study-library/bk-study-library/issues/new?template=yeu-cau-go.yml). Mục tiêu xử lý: 1 ngày làm việc. Mục đã gỡ vẫn giữ `id` và lý do. Xem [TAKEDOWN.md](TAKEDOWN.md).
+Tác giả, chủ bản quyền, người có thông tin cá nhân trong tài liệu hoặc người đã gửi đều có thể yêu cầu gỡ bằng form [Yêu cầu gỡ](https://github.com/bk-study-library/hcmut-library/issues/new?template=yeu-cau-go.yml). Mục tiêu xử lý: 1 ngày làm việc. Mục đã gỡ vẫn giữ `id` và lý do. Xem [TAKEDOWN.md](TAKEDOWN.md).
 
 ## Dữ liệu cho app và công cụ khác
 
@@ -57,7 +57,7 @@ catalog/
   policy.json               quy định chung: loại nhận, dung lượng, đuôi file, học kỳ
   site.json                 địa chỉ Worker nhận bài và khóa công khai Turnstile
   courses/<ID>.json         một file mỗi môn; ID cố định, không bao giờ đổi
-  programs/<mã CTĐT>.json   chương trình đào tạo (hiện chưa có)
+  programs/<mã CTĐT>.json   chương trình đào tạo; khối có thể rỗng khi chưa có danh sách môn
 courses/<ID>/
   README.md                 sinh tự động; chỉ sửa phần "Mẹo học"
   items/<item-id>.json      một mục mỗi tài liệu hoặc link
@@ -87,6 +87,7 @@ Cần Node 22 trở lên. Phần chính của repo không có gói npm nào ph�
 | `npm run site` | sinh trang web vào `site/` |
 | `npm run demo` | sinh trang web xem thử với dữ liệu mẫu lớn hơn (không đụng `catalog/`) |
 | `node scripts/import-seed.mjs --seed <file>` | nhập một chương trình đào tạo vào danh mục |
+| `node scripts/import-research.mjs --research <thư mục>` | nhập môn và chương trình từ bản thu thập nguồn công khai (`courses.json`, `programs.json`); môn đã có thì giữ, chỉ cập nhật chương trình |
 | `cd worker && npm ci && npm test` | cài và chạy test của Worker (cần Node 24 theo CI) |
 
 ## Trang web

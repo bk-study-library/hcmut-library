@@ -1,0 +1,146 @@
+{
+  "$schema": "../../schema/program.schema.json",
+  "code": "FME_CONG_NGHE_DET_MAY_2021",
+  "name": "Công nghệ Dệt, May",
+  "faculty": "fme",
+  "year": "2021",
+  "source": "https://drive.google.com/file/d/1gCbx1Jd6bvuEkRTWFY6FNl9Zr13J9-U8/view",
+  "blocks": [
+    {
+      "id": "K01",
+      "name": "Toá n (Mathematics)",
+      "group": "1. Kiến thức giá o dục đại cương (Genera l Kno wled ge )",
+      "required": true,
+      "courses": [
+        "MT1003",
+        "MT1005",
+        "MT1007",
+        "MT2013"
+      ]
+    },
+    {
+      "id": "K02",
+      "name": "Kho a học tự nhiên (Science)",
+      "group": "1. Kiến thức giá o dục đại cương (Genera l Kno wled ge )",
+      "required": true,
+      "courses": [
+        "CH1003",
+        "PH1003",
+        "PH1007"
+      ]
+    },
+    {
+      "id": "K03",
+      "name": "Toá n và KH tự nhiên khá c (Other Mathematics and Science)",
+      "group": "1. Kiến thức giá o dục đại cương (Genera l Kno wled ge )",
+      "required": true,
+      "courses": [
+        "MT1009",
+        "PH1005"
+      ]
+    },
+    {
+      "id": "K04",
+      "name": "Kinh tế- Chính trị- Xã hội- Luật (Econo mics - Politics - Sociology - Law)",
+      "group": "1. Kiến thức giá o dục đại cương (Genera l Kno wled ge )",
+      "required": true,
+      "courses": [
+        "SP1007",
+        "SP1031",
+        "SP1033",
+        "SP1035",
+        "SP1037",
+        "SP1039"
+      ]
+    },
+    {
+      "id": "K05",
+      "name": "Nhập mô n (Intro duction to Engineering )",
+      "group": "1. Kiến thức giá o dục đại cương (Genera l Kno wled ge )",
+      "required": true,
+      "courses": [
+        "ME1001"
+      ]
+    },
+    {
+      "id": "K06",
+      "name": "17 Nhóm Quản lý (chọn 3 tín chỉ tro ng các học phầ n sau)",
+      "group": "Nhập mô n (Intro duction to Engineering )",
+      "required": false,
+      "courses": [
+        "IM1013",
+        "IM1023",
+        "IM1025",
+        "IM1027"
+      ]
+    },
+    {
+      "id": "K07",
+      "name": "Co n người và m ôi trường (Humans and Enviro nment)",
+      "group": "17. 5 IM3001 Quản trị kinh do anh cho kỹ sư 3",
+      "required": false,
+      "courses": [
+        "ME2019"
+      ]
+    },
+    {
+      "id": "K08",
+      "name": "Ngoại ngữ (Foreig n Language)",
+      "group": "17. 5 IM3001 Quản trị kinh do anh cho kỹ sư 3",
+      "required": false,
+      "courses": [
+        "LA1003",
+        "LA1005",
+        "LA1007",
+        "LA1009"
+      ]
+    },
+    {
+      "id": "K09",
+      "name": "Cơ sở ngành (Core)",
+      "group": "2. Kiến thức giá o dục chuyên nghiệp (Professional Kno wled ge )",
+      "required": true,
+      "courses": [
+        "ME1003",
+        "ME2065",
+        "ME2101",
+        "ME2103",
+        "ME2107",
+        "ME3173",
+        "ME4105",
+        "ME4111",
+        "ME4125"
+      ]
+    },
+    {
+      "id": "K10",
+      "name": "Chuyên ngà nh (Speciality)",
+      "group": "2. Kiến thức giá o dục chuyên nghiệp (Professional Kno wled ge )",
+      "required": true,
+      "courses": [
+        "ME2033",
+        "ME2105",
+        "ME2109",
+        "ME3095",
+        "ME3105",
+        "ME3115",
+        "ME3137",
+        "ME3175",
+        "ME3177",
+        "ME4123"
+      ]
+    },
+    {
+      "id": "K11",
+      "name": "Tốt nghiệp (Graduation)",
+      "group": "2. Kiến thức giá o dục chuyên nghiệp (Professional Kno wled ge )",
+      "required": true,
+      "courses": [
+        "ME3133",
+        "ME4121",
+        "ME4357"
+      ]
+    }
+  ],
+  "updated": "2026-10-04"
+}

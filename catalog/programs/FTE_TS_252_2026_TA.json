@@ -1,0 +1,12 @@
+{
+  "$schema": "../../schema/program.schema.json",
+  "code": "FTE_TS_252_2026_TA",
+  "name": "(Ngành mới) Kỹ thuật Đường sắt",
+  "faculty": "fte",
+  "year": "2026",
+  "variant": "Dạy và học bằng tiếng Anh",
+  "source": "https://hcmut.edu.vn/tuyen-sinh/dai-hoc-chinh-quy",
+  "note": "Ngành tuyển sinh 2026, mã tuyển sinh 252. Chưa có danh sách môn công khai.",
+  "blocks": [],
+  "updated": "2026-10-04"
+}

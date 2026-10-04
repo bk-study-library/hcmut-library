@@ -13,7 +13,7 @@
   // Giá trị có thể đổi khi chuyển repo hay tên miền. Khóa bí mật nhập bằng wrangler secret put:
   // TURNSTILE_SECRET, GH_APP_ID, GH_APP_PRIVATE_KEY, GH_INSTALLATION_ID.
   "vars": {
-    "REPO": "bk-study-library/bk-study-library",
+    "REPO": "bk-study-library/hcmut-library",
     "BRANCH": "main",
     "ALLOWED_ORIGINS": "https://bk-study-library.github.io",
     "CATALOG_TTL_SECONDS": "300",

@@ -1,0 +1,11 @@
+{
+  "$schema": "../../schema/program.schema.json",
+  "code": "FAS_TS_137_2026",
+  "name": "Vật lý Kỹ thuật (Chuyên ngành: Kỹ thuật Y sinh, Vật lý Tính toán, Vật lý Kỹ thuật)",
+  "faculty": "fas",
+  "year": "2026",
+  "source": "https://hcmut.edu.vn/tuyen-sinh/dai-hoc-chinh-quy",
+  "note": "Ngành tuyển sinh 2026, mã tuyển sinh 137. Chưa có danh sách môn công khai.",
+  "blocks": [],
+  "updated": "2026-10-04"
+}

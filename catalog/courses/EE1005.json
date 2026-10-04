@@ -1,0 +1,49 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "EE1005",
+  "code": "EE1005",
+  "name": "Kỹ thuật điện",
+  "nameEn": "Electrical Engineering",
+  "credits": 3,
+  "faculty": "dee",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "FME_KY_THUAT_NHIET_2020",
+      "block": "K01",
+      "required": true
+    },
+    {
+      "program": "FME_KY_THUAT_NHIET_2021",
+      "block": "K09",
+      "required": true
+    },
+    {
+      "program": "FME_KY_THUAT_NHIET_2022",
+      "block": "K09",
+      "required": true
+    },
+    {
+      "program": "FME_KY_THUAT_NHIET_2024",
+      "block": "K12",
+      "required": true
+    },
+    {
+      "program": "FME_KY_THUAT_NHIET_2023",
+      "block": "K09",
+      "required": true
+    },
+    {
+      "program": "FME_KY_THUAT_NHIET_2019",
+      "block": "K01",
+      "required": true
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "note": "Nhập từ nguồn công khai (truy cập 03/10/2026).",
+  "updated": "2026-10-04"
+}

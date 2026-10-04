@@ -1,0 +1,18 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "GE4063",
+  "code": "GE4063",
+  "name": "Địa chất dầu khí Việt Nam",
+  "credits": 3,
+  "faculty": "geopet",
+  "aliases": [],
+  "status": "retired",
+  "replacedBy": "GE3183",
+  "programs": [],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "note": "Nhập từ nguồn công khai (truy cập 03/10/2026).",
+  "updated": "2026-10-04"
+}

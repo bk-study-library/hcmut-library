@@ -1,0 +1,18 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "ME4647",
+  "code": "ME4647",
+  "name": "Quản lý tinh gọn trong chuỗi cung ứng",
+  "nameEn": "Introduction Lean Management into The Supply Chain KT",
+  "credits": 3,
+  "faculty": "fme",
+  "aliases": [],
+  "status": "active",
+  "programs": [],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "note": "Nhập từ nguồn công khai (truy cập 03/10/2026).",
+  "updated": "2026-10-04"
+}

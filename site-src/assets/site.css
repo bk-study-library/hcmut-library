@@ -121,7 +121,9 @@ a:hover { color: var(--accent-hover); }
 .nav a[aria-current="page"] { box-shadow: inset 0 -2px 0 var(--accent); }
 .nav .lang { border: 1px solid var(--border-strong); }
 
-main { flex: 1 0 auto; width: 100%; padding-top: 20px; padding-bottom: 40px; outline: none; }
+main { flex: 1 0 auto; width: 100%; outline: none; }
+/* main cũng có class .wrap (padding: 0 16px) nên khoảng trên, dưới phải đặt riêng để không bị ghi đè. */
+main.wrap { padding-top: 20px; padding-bottom: 40px; }
 
 h1 { font-size: 28px; line-height: 1.25; margin: 8px 0 12px; font-weight: 600; }
 h2 { font-size: 20px; margin: 28px 0 10px; font-weight: 600; }
@@ -301,7 +303,7 @@ tr.retired td, tr.retired th { color: var(--muted); }
 }
 .upload input:focus-visible, .upload select:focus-visible, .upload textarea:focus-visible, .upload summary:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
 .upload label.check { display: flex; gap: 8px; align-items: flex-start; font-weight: 400; margin: 8px 0; }
-.upload label.check input { margin-top: 4px; }
+
 .upload .book { border: 1px solid var(--border); border-radius: var(--radius); padding: 12px 14px; }
 .upload .book[hidden] { display: none; }
 .upload .more { border: 1px solid var(--border); border-radius: var(--radius); padding: 10px 14px; }
@@ -314,3 +316,30 @@ tr.retired td, tr.retired th { color: var(--muted); }
 .upload .pick li:first-child button { border-top: 1px solid var(--border); }
 .upload .pick button:hover, .upload .pick button:focus-visible { background: var(--surface-2); }
 .upload fieldset:disabled { opacity: 0.6; }
+.upload label.check input { width: 18px; height: 18px; flex: none; margin-top: 2px; accent-color: var(--accent); }
+.upload .more summary { padding: 4px 0; }
+/* Nhãn đứng cạnh nhau hoặc cạnh tiêu đề luôn có khoảng cách. */
+.tag { margin-left: 6px; }
+h4 .tag:first-child, .tag + .tag { margin-left: 6px; }
+.item.is-removed { opacity: 1; }
+.item.is-removed h4, .item.is-removed .meta { color: var(--muted); }
+.upload label.check { min-height: 24px; padding: 2px 0; }
+/* Trang chủ yếu là chữ: thu khung về đúng cột đọc để cả đường dẫn, tiêu đề, nội dung nằm giữa trang. */
+main.wrap:has(> .prose) { max-width: 792px; }
+.hero, .search { margin-left: auto; margin-right: auto; }
+.upload { max-width: none; }
+
+/* Chương trình gộp theo khoa (trang chủ) */
+.prog-groups { border-top: 1px solid var(--border); margin: 8px 0 12px; }
+.prog-fac { border-bottom: 1px solid var(--border); }
+.prog-fac summary { cursor: pointer; padding: 10px 4px; display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 8px; }
+.prog-fac summary:hover { background: var(--surface-2); }
+.prog-fac summary:focus-visible, .facts summary:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+.prog-fac-name { font-weight: 600; }
+.prog-fac > .list, .prog-fac > p { margin: 0 0 10px; }
+.prog-fac > p.muted { padding: 0 4px; }
+.facts summary { cursor: pointer; }
+.block p.small { margin: -4px 0 8px; }
+.facts summary { padding: 6px 0; }
+/* Mã chương trình và tên dài không có khoảng trắng: xuống dòng thay vì làm trang cuộn ngang. */
+main h1, main h2, main p, main li { overflow-wrap: break-word; }

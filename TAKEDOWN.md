@@ -11,7 +11,7 @@ Nếu một tài liệu trong thư viện vi phạm bản quyền của bạn, l
 
 ## Cách yêu cầu
 
-1. Mở form [Yêu cầu gỡ](https://github.com/bk-study-library/bk-study-library/issues/new?template=yeu-cau-go.yml).
+1. Mở form [Yêu cầu gỡ](https://github.com/bk-study-library/hcmut-library/issues/new?template=yeu-cau-go.yml).
 2. Dán link trang môn hoặc tên tài liệu, chọn lý do, ghi bạn là ai với tài liệu này (tác giả, chủ bản quyền, người gửi).
 3. **Đừng** chép thông tin cá nhân vào issue. Issue là công khai, chỉ cần link tới tài liệu.
 4. Cần trao đổi riêng thì ghi "cần liên hệ riêng". Người duy trì sẽ trả lời cách liên hệ.

@@ -1,0 +1,64 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "ME4075",
+  "code": "ME4075",
+  "name": "Thực hành tính toán mô phỏng trong nhiệt lạnh",
+  "nameEn": "Simulation Practice in Thermal Engineering",
+  "credits": 1,
+  "faculty": "fme",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "FME_KY_THUAT_NHIET_2020",
+      "block": "K02",
+      "required": false
+    },
+    {
+      "program": "FME_KY_THUAT_NHIET_2020",
+      "block": "K05",
+      "required": false
+    },
+    {
+      "program": "FME_KY_THUAT_NHIET_2021",
+      "block": "K10",
+      "required": true
+    },
+    {
+      "program": "FME_KY_THUAT_NHIET_2022",
+      "block": "K10",
+      "required": true
+    },
+    {
+      "program": "FME_KY_THUAT_NHIET_2024",
+      "block": "K15",
+      "required": true
+    },
+    {
+      "program": "FME_KY_THUAT_NHIET_2024",
+      "block": "K17",
+      "required": true
+    },
+    {
+      "program": "FME_KY_THUAT_NHIET_2023",
+      "block": "K10",
+      "required": true
+    },
+    {
+      "program": "FME_KY_THUAT_NHIET_2019",
+      "block": "K02",
+      "required": false
+    },
+    {
+      "program": "FME_KY_THUAT_NHIET_2019",
+      "block": "K05",
+      "required": false
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "note": "Nhập từ nguồn công khai (truy cập 03/10/2026).",
+  "updated": "2026-10-04"
+}

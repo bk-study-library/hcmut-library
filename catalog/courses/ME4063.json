@@ -1,0 +1,49 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "ME4063",
+  "code": "ME4063",
+  "name": "Công nghệ 4.0 trong lãnh vực cơ khí",
+  "nameEn": "Industry 4.0 in Mechanical Engineering",
+  "credits": 3,
+  "faculty": "fme",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "FME_KY_THUAT_CO_KHI_2023",
+      "block": "K11",
+      "required": true
+    },
+    {
+      "program": "FME_KY_THUAT_CO_KHI_2020",
+      "block": "K03",
+      "required": false
+    },
+    {
+      "program": "FME_KY_THUAT_CO_KHI_2024",
+      "block": "K13",
+      "required": true
+    },
+    {
+      "program": "FME_KY_THUAT_CO_KHI_2022",
+      "block": "K11",
+      "required": true
+    },
+    {
+      "program": "FME_KY_THUAT_CO_KHI_2021",
+      "block": "K11",
+      "required": true
+    },
+    {
+      "program": "FME_KY_THUAT_CO_KHI_2019",
+      "block": "K03",
+      "required": false
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "note": "Nhập từ nguồn công khai (truy cập 03/10/2026).",
+  "updated": "2026-10-04"
+}

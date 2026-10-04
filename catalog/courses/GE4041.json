@@ -1,0 +1,18 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "GE4041",
+  "code": "GE4041",
+  "name": "Địa chất công trình - địa chất thủy văn khu vực",
+  "credits": 2,
+  "faculty": "geopet",
+  "aliases": [],
+  "status": "retired",
+  "replacedBy": "GE3201",
+  "programs": [],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "note": "Nhập từ nguồn công khai (truy cập 03/10/2026).",
+  "updated": "2026-10-04"
+}

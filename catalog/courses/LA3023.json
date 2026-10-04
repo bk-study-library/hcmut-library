@@ -1,0 +1,24 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "LA3023",
+  "code": "LA3023",
+  "name": "Pháp văn 6",
+  "nameEn": "French 6",
+  "credits": 2,
+  "faculty": "flc",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "DEE_CTDT_PFIEV_CHUYEN_NGANH_HE_THONG_NANG_LUONG_DIEN_2023_DEE_FILE_SYSTEM",
+      "block": "K06",
+      "required": true
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "note": "Nhập từ nguồn công khai (truy cập 03/10/2026).",
+  "updated": "2026-10-04"
+}

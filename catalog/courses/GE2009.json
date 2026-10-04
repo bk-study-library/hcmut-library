@@ -1,0 +1,18 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "GE2009",
+  "code": "GE2009",
+  "name": "Cơ học Đá",
+  "credits": 2,
+  "faculty": "geopet",
+  "aliases": [],
+  "status": "retired",
+  "replacedBy": "GE3205",
+  "programs": [],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "note": "Nhập từ nguồn công khai (truy cập 03/10/2026).",
+  "updated": "2026-10-04"
+}

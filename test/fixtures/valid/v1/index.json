@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "generated": "2026-10-01",
-  "site": "https://bk-study-library.github.io/bk-study-library/",
+  "site": "https://bk-study-library.github.io/hcmut-library/",
   "counts": {
     "courses": 3,
     "items": 3
@@ -34,7 +34,7 @@
       "status": "retired",
       "replacedBy": "EE1009",
       "items": 0,
-      "url": "https://bk-study-library.github.io/bk-study-library/course/400111/",
+      "url": "https://bk-study-library.github.io/hcmut-library/course/400111/",
       "detail": "courses/400111.json"
     },
     {
@@ -51,7 +51,7 @@
       ],
       "status": "active",
       "items": 2,
-      "url": "https://bk-study-library.github.io/bk-study-library/course/EE1009/",
+      "url": "https://bk-study-library.github.io/hcmut-library/course/EE1009/",
       "detail": "courses/EE1009.json"
     },
     {
@@ -64,7 +64,7 @@
       "oldNames": [],
       "status": "active",
       "items": 1,
-      "url": "https://bk-study-library.github.io/bk-study-library/course/EE1010/",
+      "url": "https://bk-study-library.github.io/hcmut-library/course/EE1010/",
       "detail": "courses/EE1010.json"
     }
   ]

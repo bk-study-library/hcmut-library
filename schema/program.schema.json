@@ -1,21 +1,24 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://github.com/bk-study-library/bk-study-library/schema/program.schema.json",
+  "$id": "https://github.com/bk-study-library/hcmut-library/schema/program.schema.json",
   "title": "Program",
   "description": "Một chương trình đào tạo (CTĐT): khối kiến thức và ID môn. Không chứa điểm. / One curriculum: blocks and course IDs. No grades.",
   "type": "object",
   "additionalProperties": false,
-  "required": ["code", "name", "faculty", "year", "blocks", "updated"],
+  "required": ["code", "name", "faculty", "blocks", "updated"],
   "properties": {
     "$schema": { "type": "string" },
     "code": { "type": "string", "pattern": "^[A-Z0-9_]+$" },
     "name": { "type": "string", "minLength": 1 },
     "nameEn": { "type": "string", "minLength": 1 },
     "faculty": { "type": "string", "pattern": "^[A-Za-z0-9_-]+$" },
-    "year": { "type": "string", "pattern": "^[0-9]{4}$" },
+    "year": { "type": "string", "pattern": "^[0-9]{4}$", "description": "Khóa (năm vào trường). Bỏ trống khi nguồn không ghi khóa." },
+    "variant": { "type": "string", "minLength": 1, "description": "Loại chương trình, ví dụ Dạy và học bằng tiếng Anh. Loại thường thì bỏ trống." },
+    "note": { "type": "string" },
     "source": { "type": "string" },
     "blocks": {
       "type": "array",
+      "description": "Có thể rỗng khi chưa có danh sách môn.",
       "items": {
         "type": "object",
         "additionalProperties": false,

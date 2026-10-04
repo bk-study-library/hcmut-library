@@ -1,0 +1,59 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "ME4337",
+  "code": "ME4337",
+  "name": "Đồ án tốt nghiệp",
+  "nameEn": "Capstone Project",
+  "credits": 4,
+  "faculty": "fme",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "FME_KY_THUAT_NHIET_2020",
+      "block": "K02",
+      "required": false
+    },
+    {
+      "program": "FME_KY_THUAT_NHIET_2020",
+      "block": "K05",
+      "required": false
+    },
+    {
+      "program": "FME_KY_THUAT_NHIET_2021",
+      "block": "K13",
+      "required": true
+    },
+    {
+      "program": "FME_KY_THUAT_NHIET_2022",
+      "block": "K13",
+      "required": true
+    },
+    {
+      "program": "FME_KY_THUAT_NHIET_2024",
+      "block": "K20",
+      "required": true
+    },
+    {
+      "program": "FME_KY_THUAT_NHIET_2023",
+      "block": "K13",
+      "required": true
+    },
+    {
+      "program": "FME_KY_THUAT_NHIET_2019",
+      "block": "K02",
+      "required": false
+    },
+    {
+      "program": "FME_KY_THUAT_NHIET_2019",
+      "block": "K05",
+      "required": false
+    }
+  ],
+  "parts": [
+    "project"
+  ],
+  "related": [],
+  "note": "Nhập từ nguồn công khai (truy cập 03/10/2026).",
+  "updated": "2026-10-04"
+}

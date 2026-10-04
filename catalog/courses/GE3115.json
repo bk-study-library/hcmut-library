@@ -1,0 +1,18 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "GE3115",
+  "code": "GE3115",
+  "name": "Quản lý mỏ và dự án dầu khí tích hợp",
+  "credits": 2,
+  "faculty": "geopet",
+  "aliases": [],
+  "status": "retired",
+  "replacedBy": "GE4093",
+  "programs": [],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "note": "Nhập từ nguồn công khai (truy cập 03/10/2026).",
+  "updated": "2026-10-04"
+}

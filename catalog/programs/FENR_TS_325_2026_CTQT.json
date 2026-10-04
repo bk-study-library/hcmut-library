@@ -1,0 +1,12 @@
+{
+  "$schema": "../../schema/program.schema.json",
+  "code": "FENR_TS_325_2026_CTQT",
+  "name": "Nhóm ngành: Kỹ thuật Môi trường; Quản lý Tài nguyên & Môi trường Đại học đối tác tại Úc: ĐH Griffith",
+  "faculty": "fenr",
+  "year": "2026",
+  "variant": "Chuyển tiếp quốc tế",
+  "source": "https://hcmut.edu.vn/tuyen-sinh/dai-hoc-chinh-quy",
+  "note": "Ngành tuyển sinh 2026, mã tuyển sinh 325. Chưa có danh sách môn công khai.",
+  "blocks": [],
+  "updated": "2026-10-04"
+}
