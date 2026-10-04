@@ -102,6 +102,11 @@ Dành cho chủ repo: tạo GitHub App, kho R2, Turnstile, Worker, khóa cho Act
 
 Thư viện thu thập gì khi bạn gửi bài, giữ ở đâu, bao lâu: [PRIVACY.md](PRIVACY.md).
 
+## Bảo mật và ứng xử
+
+- Tìm thấy lỗ hổng: báo riêng theo [SECURITY.md](SECURITY.md), đừng mở issue công khai.
+- Quy tắc ứng xử khi gửi bài, duyệt bài, bình luận: [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md).
+
 ## Chỉ đọc với hệ thống của trường
 
 Thư viện và các script không đăng nhập, không đọc, không ghi vào BK-LMS, MyBK hay hệ thống nào của trường. Danh mục môn do người nhập từ nguồn công khai và được duyệt qua Pull Request.
