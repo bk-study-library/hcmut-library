@@ -1,0 +1,22 @@
+{
+  "$schema": "../../../schema/item.schema.json",
+  "id": "thu-nghiem-4-bai-lam-co-thong-tin-ca-nhan-trong-file",
+  "course": "MT1005",
+  "type": "exercise-solution",
+  "title": "Thu nghiem 4: bai lam co thong tin ca nhan trong file",
+  "lang": "vi",
+  "license": "CC-BY-SA-4.0",
+  "origin": "self-made",
+  "added": "2026-10-04",
+  "removed": false,
+  "files": [
+    {
+      "name": "MT1005_exercise-solution_thu-nghiem-4-bai-lam-co-thong-tin-ca-nhan-trong-file.pdf",
+      "size": 662,
+      "sha256": "ca969b992768e0f5c7d846d4d27f5f629b0c50439e2649edc92ccde90987d82c",
+      "mime": "application/pdf",
+      "quarantine": "pending/K96ByroyMC/MT1005_exercise-solution_thu-nghiem-4-bai-lam-co-thong-tin-ca-nhan-trong-file.pdf",
+      "uploadSha256": "ca969b992768e0f5c7d846d4d27f5f629b0c50439e2649edc92ccde90987d82c"
+    }
+  ]
+}
