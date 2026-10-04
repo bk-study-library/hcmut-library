@@ -342,7 +342,7 @@ describe('GET /xem-duyet/<mã>', () => {
     expect(html).toContain('<dt>Tên môn</dt><dd>Siêu cao tần &lt;b&gt;x&lt;/b&gt;</dd>');
     expect(html).toContain('<dt>Khoa</dt><dd>dee</dd>');
     expect(html).toContain('href="https://hcmut.edu.vn/study/handbook/subject/MT1005"');
-    expect(html.indexOf('Môn mới: MT1005')).toBeLessThan(html.indexOf('Nội dung người gửi nhập'));
+    expect(html.indexOf('Môn mới: MT1005')).toBeLessThan(html.indexOf('Chữ dưới đây do người gửi nhập'));
 
     // Link không phải https thì không thành link; file môn đã có trên main (sửa) không coi là môn mới.
     const bad = { ...course, handbookUrl: 'javascript:alert(1)' };
@@ -357,15 +357,14 @@ describe('GET /xem-duyet/<mã>', () => {
     expect(html4).not.toContain('Môn mới');
   });
 
-  it('trang duyệt: không đọc được mục (nhánh mất, nhiều mục, JSON hỏng) thì báo, vẫn hiện phần file', async () => {
+  it('trang duyệt: không đọc được mục (nhánh mất, JSON hỏng) thì báo; JSON hỏng vẫn hiện file của bài', async () => {
     await env.QUARANTINE.put(`clean/${CODE}/${NAME}`, pdf);
-    const two = [{ filename: ITEM_PATH, status: 'added' }, { filename: 'courses/MT1005/items/khac.json', status: 'added' }];
-    for (const fetch of [fakeFetch({ fail: { compare: 404 } }), fakeFetch({ files: two }), fakeFetch({ item: '{hỏng' }), fakeFetch({ item: [1] })]) {
+    for (const [fetch, hasFile] of [[fakeFetch({ fail: { compare: 404 } }), false], [fakeFetch({ item: '{hỏng' }), true], [fakeFetch({ item: [1] }), true]]) {
       const { res } = await get(`/xem-duyet/${CODE}`, { headers: await auth(), fetch });
       expect(res.status).toBe(200);
       const html = await res.text();
       expect(html).toContain('Không đọc được mục tài liệu');
-      expect(html).toContain(`href="/xem-duyet/${CODE}/file"`);
+      expect(html.includes(`href="/xem-duyet/${CODE}/file"`)).toBe(hasFile);
     }
   });
 

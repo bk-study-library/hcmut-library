@@ -47,6 +47,17 @@ export const VIEW_MESSAGES = {
   newCourseName: 'Tên môn',
   newCourseFaculty: 'Khoa',
   newCourseHandbook: 'Mở trang môn trên Sổ tay',
+  batchFile: (i, n) => `File ${i} trên ${n}`,
+  decideTitle: 'Quyết định',
+  keep: 'Duyệt',
+  drop: 'Không duyệt',
+  reasonLabel: 'Lý do không duyệt (gửi cho người gửi qua email nếu họ để lại)',
+  submit: 'Hoàn tất duyệt',
+  submitNote: 'Bấm Hoàn tất: file không duyệt bị bỏ khỏi bài, phần còn lại được gộp vào thư viện. Không duyệt hết thì bài bị đóng.',
+  checksWait: 'Bước kiểm file trên GitHub chưa xong. Xem nội dung trước, rồi tải lại trang khi bước kiểm xong để duyệt.',
+  closedNote: 'Bài này đã đóng hoặc đã gộp, không duyệt được nữa.',
+  resultTitle: 'Kết quả duyệt',
+  backToReview: 'Quay lại trang duyệt',
 };
 
 const esc = (s) =>
@@ -65,6 +76,10 @@ const CSS = [
   '.btn{display:inline-block;padding:.5rem 1rem;border-radius:6px;background:var(--accent);color:var(--accent-text);text-decoration:none}',
   'h2{font-size:1.1rem;margin:1.5rem 0 .5rem}.actions{display:flex;flex-wrap:wrap;gap:8px}',
   'dl.fields{margin:0 0 1rem}dl.fields dt{font-weight:600;margin-top:.75rem}dl.fields dd{margin:.25rem 0 0;white-space:pre-wrap;overflow-wrap:anywhere}',
+  'section.doc{border:1px solid var(--border);border-radius:8px;padding:1rem;margin:1rem 0}fieldset{border:0;margin:.75rem 0 0;padding:0}',
+  'fieldset label{display:inline-flex;align-items:center;gap:.4rem;margin-right:1rem;min-height:2rem}',
+  'textarea{width:100%;box-sizing:border-box;min-height:4rem;font:inherit;padding:.5rem;border:1px solid var(--border);border-radius:6px;background:var(--surface);color:var(--text)}',
+  'button.btn{border:0;font:inherit;cursor:pointer}',
 ].join('');
 
 const SECURITY_HEADERS = {
@@ -73,13 +88,14 @@ const SECURITY_HEADERS = {
   'Referrer-Policy': 'no-referrer',
 };
 
-export function htmlPage(status, title, body, extra = {}) {
+// formSelf: trang có form gửi về chính Worker (trang duyệt); trang khác không gửi form đi đâu.
+export function htmlPage(status, title, body, extra = {}, { formSelf = false } = {}) {
   const html = `<!doctype html><html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex"><title>${esc(title)}</title><style>${CSS}</style></head><body><main><h1>${esc(title)}</h1>${body}</main></body></html>`;
   return new Response(html, {
     status,
     headers: {
       'Content-Type': 'text/html; charset=utf-8',
-      'Content-Security-Policy': "default-src 'none'; style-src 'unsafe-inline'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'",
+      'Content-Security-Policy': `default-src 'none'; style-src 'unsafe-inline'; base-uri 'none'; form-action ${formSelf ? "'self'" : "'none'"}; frame-ancestors 'none'`,
       'X-Robots-Tag': 'noindex',
       ...SECURITY_HEADERS,
       ...extra,
@@ -136,8 +152,14 @@ export async function checkToken(r2, code, k) {
 // ---------- File trong kho cách ly ----------
 
 // Ưu tiên bản đã làm sạch; chưa có thì bản gốc chưa quét. Trả { key, name, clean } hoặc null.
-export async function locateFile(r2, code) {
+// name: tên file trong đợt gửi nhiều file (đã qua mẫu tên an toàn); không có thì file đầu tiên.
+export async function locateFile(r2, code, name = null) {
   for (const [prefix, clean] of [[`clean/${code}/`, true], [`pending/${code}/`, false]]) {
+    if (name) {
+      const obj = await r2.head(`${prefix}${name}`);
+      if (obj) return { key: `${prefix}${name}`, name, clean };
+      continue;
+    }
     const list = await r2.list({ prefix, limit: 1 });
     const obj = list.objects?.[0];
     if (obj) return { key: obj.key, name: obj.key.slice(prefix.length), clean };
@@ -164,8 +186,8 @@ export function fileHeaders(name, policy, { forceDownload = false } = {}) {
 }
 
 // Trả file của bài. Bản chưa quét: trang cảnh báo kèm nút tải (download=true thì tải, luôn dạng attachment).
-export async function serveFile(r2, code, { policy, download, downloadHref }) {
-  const found = await locateFile(r2, code);
+export async function serveFile(r2, code, { policy, download, downloadHref, name = null }) {
+  const found = await locateFile(r2, code, name);
   if (!found) return notFoundPage();
   if (!found.clean && !download) {
     const body = `${para(VIEW_MESSAGES.pending, 'warn')}<p><a class="btn" href="${esc(downloadHref)}">${esc(VIEW_MESSAGES.pendingButton)}</a></p>`;
@@ -290,6 +312,50 @@ function newCourseSection(c) {
     out.push(`<p class="actions"><a class="btn" href="${esc(c.handbookUrl)}" rel="noopener noreferrer">${esc(m.newCourseHandbook)}</a></p>`);
   }
   return out.join('');
+}
+
+// Trang duyệt đợt gửi: mỗi file một khối (chữ người gửi, nút xem, tải, chọn Duyệt hay Không duyệt và lý do),
+// cuối trang nút Hoàn tất gửi form về /xem-duyet/<mã>/duyet. docs: [{ id, item, file }] (file: locateFile
+// theo tên). canDecide: PR còn mở và bước kiểm đã qua; open: PR còn mở.
+export function reviewBatchPage({ code, docs, newCourse = null, open = true, canDecide = false, error = '' }) {
+  const m = VIEW_MESSAGES;
+  const parts = [];
+  if (error) parts.push(para(error, 'warn'));
+  if (newCourse) parts.push(newCourseSection(newCourse));
+  if (!docs.length) parts.push(para(m.noItem, 'warn'));
+  else parts.push(para(m.fieldsNote, 'muted'));
+  if (!open) parts.push(para(m.closedNote, 'warn'));
+  else if (!canDecide) parts.push(para(m.checksWait, 'warn'));
+  const blocks = docs.map((d, i) => {
+    const rows = itemFieldRows(d.item);
+    const out = [`<section class="doc"><h2>${esc(m.batchFile(i + 1, docs.length))}</h2>`];
+    out.push(rows.length ? `<dl class="fields">${rows.map(([k, v]) => `<dt>${esc(k)}</dt><dd>${esc(v)}</dd>`).join('')}</dl>` : para(m.noItem, 'warn'));
+    // Bài một file giữ link /file như trước; đợt gửi nhiều file thì link theo tên file.
+    const href = !d.file ? '' : docs.length === 1 ? `/xem-duyet/${code}/file` : `/xem-duyet/${code}/file/${encodeURIComponent(d.file.name)}`;
+    if (d.file?.clean) out.push(`<p class="actions"><a class="btn" href="${esc(href)}">${esc(m.viewFile)}</a><a class="btn" href="${esc(`${href}?tai=1`)}">${esc(m.downloadFile)}</a></p>`);
+    else if (d.file) out.push(para(m.pending, 'warn'), `<p class="actions"><a class="btn" href="${esc(`${href}?tai=1`)}">${esc(m.pendingButton)}</a></p>`);
+    else out.push(para(d.item?.type === 'book-ref' ? m.noFileBook : m.noFile, 'muted'));
+    if (open && canDecide) {
+      out.push(
+        `<fieldset><legend>${esc(m.decideTitle)}</legend>`,
+        `<label><input type="radio" name="d-${esc(d.id)}" value="keep" required> ${esc(m.keep)}</label>`,
+        `<label><input type="radio" name="d-${esc(d.id)}" value="drop"> ${esc(m.drop)}</label>`,
+        `<p><label for="r-${esc(d.id)}">${esc(m.reasonLabel)}</label></p><textarea id="r-${esc(d.id)}" name="r-${esc(d.id)}" maxlength="500"></textarea>`,
+        '</fieldset>',
+      );
+    }
+    out.push('</section>');
+    return out.join('');
+  });
+  if (open && canDecide && docs.length) {
+    parts.push(`<form method="post" action="/xem-duyet/${esc(code)}/duyet">${blocks.join('')}${para(m.submitNote, 'muted')}<p class="actions"><button class="btn" type="submit">${esc(m.submit)}</button></p></form>`);
+  } else parts.push(blocks.join(''));
+  return htmlPage(200, m.reviewTitle(code), parts.join(''), {}, { formSelf: open && canDecide });
+}
+
+export function resultPage(code, message, ok = true) {
+  const m = VIEW_MESSAGES;
+  return htmlPage(ok ? 200 : 409, m.resultTitle, `${para(message, ok ? '' : 'warn')}<p class="actions"><a class="btn" href="/xem-duyet/${esc(code)}">${esc(m.backToReview)}</a></p>`);
 }
 
 export function reviewPage({ code, item, file, newCourse = null }) {

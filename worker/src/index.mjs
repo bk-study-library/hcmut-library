@@ -10,7 +10,8 @@ import faculties from '../../catalog/faculties.json';
 import site from '../../catalog/site.json';
 import { formatSize, TYPES } from '../../scripts/lib/labels.mjs';
 import { rateKey, dailyCap, dailyCapReached, countSubmission } from './limits.mjs';
-import { accessConfigured, verifyAccessJwt } from './access.mjs';
+import { accessConfigured, accessEmail, verifyAccessJwt } from './access.mjs';
+import { checksGreen, decisionComment, ITEM_ID, parseDecisions, REVIEW_MESSAGES, reviewKey } from './review.mjs';
 import { handlePreview } from './preview.mjs';
 import { notifyKey, notifyMessage, plainReason, sendEmail } from './notify.mjs';
 import {
@@ -23,7 +24,8 @@ import {
   methodPage,
   newToken,
   notFoundPage,
-  reviewPage,
+  resultPage,
+  reviewBatchPage,
   serveFile,
   statusPage,
   tokenKey,
@@ -55,6 +57,10 @@ const MESSAGES = {
   removed: 'Tài liệu này đã bị gỡ khỏi thư viện nên không nhận lại.',
   dailyCap: 'Hôm nay thư viện đã nhận đủ số bài. Gửi lại vào ngày mai.',
   failed: 'Chưa gửi được. Thử lại sau ít phút.',
+  batchTooLarge: (max) => `Tổng các file quá lớn. Gửi tối đa ${max} mỗi lần, chia thành nhiều lần gửi.`,
+  batchCount: (max) => `Mỗi lần gửi tối đa ${max} file. Chia thành nhiều lần gửi.`,
+  batchSame: 'Có hai file giống hệt nhau trong lần gửi này. Bỏ bớt một file.',
+  batchReplaces: 'Bản cập nhật chỉ gửi được từng file một. Gửi riêng file này.',
   oneCourse: 'Mỗi bài chỉ gửi cho một môn. Tải lại trang rồi chọn lại môn.',
 };
 
@@ -156,13 +162,17 @@ export const prTitle = (code, courseCode) => `Bài gửi ${code}: ${courseCode}`
 // newCourse: { code, handbookUrl } khi bài đề xuất môn chưa có. Mã đã qua mẫu mã môn nên được ghi;
 // tên môn là chữ người gửi nên chỉ nằm trong file môn của PR, không ghi ở đây.
 // replaces: <ID môn>/<id> của tài liệu được thay (đã qua mẫu nên ghi được); siteBase: gốc web để dẫn tới bản đang có.
-export function prBody({ code, courseCode, type, file, viewBase, newCourse = null, replaces = null, siteBase = '' }) {
+// files: đợt gửi nhiều file, [{ type, file }]; có thì bảng liệt kê từng file thay cho một dòng loại, cỡ.
+export function prBody({ code, courseCode, type, file, files = null, viewBase, newCourse = null, replaces = null, siteBase = '' }) {
   const rows = [
     ['Mã bài', code],
     ['Môn', courseCode],
-    ['Loại', TYPES[type]?.vi ?? type],
   ];
-  if (file) rows.push(['Kích thước', formatSize(file.size)], ['sha256', file.sha256]);
+  if (files) rows.push(['Số file', String(files.length)]);
+  else {
+    rows.push(['Loại', TYPES[type]?.vi ?? type]);
+    if (file) rows.push(['Kích thước', formatSize(file.size)], ['sha256', file.sha256]);
+  }
   const lines = [];
   if (newCourse) {
     lines.push(
@@ -179,7 +189,13 @@ export function prBody({ code, courseCode, type, file, viewBase, newCourse = nul
     lines.push('');
   }
   lines.push('| Trường | Giá trị |', '|---|---|', ...rows.map(([k, v]) => `| ${k} | ${cell(v)} |`), '');
-  if (file) lines.push('File nằm trong kho cách ly. CI sẽ kiểm file và ghi kết quả vào PR này.', '');
+  if (files) {
+    // Tên file đã qua slugify và mẫu tên an toàn nên ghi được; tiêu đề người gửi không ghi ở đây.
+    lines.push('| # | Loại | File | Kích thước |', '|---|---|---|---|');
+    files.forEach((x, i) => lines.push(`| ${i + 1} | ${cell(TYPES[x.type]?.vi ?? x.type)} | ${x.file ? cell(x.file.name) : ''} | ${x.file ? formatSize(x.file.size) : ''} |`));
+    lines.push('');
+  }
+  if (file) lines.push(files ? 'Các file nằm trong kho cách ly. CI sẽ kiểm từng file và ghi kết quả vào PR này.' : 'File nằm trong kho cách ly. CI sẽ kiểm file và ghi kết quả vào PR này.', '');
   if (viewBase) {
     lines.push(`${file ? 'Xem file' : 'Xem bài'} (người duyệt): ${viewBase}/xem-duyet/${code}`, '');
     lines.push('Tiêu đề, mô tả và các ô khác người gửi nhập hiện ở trang trên và trong file mục tài liệu của PR, không ghi ở tiêu đề hay nội dung PR.');
@@ -245,8 +261,11 @@ async function handleSubmit(req, env, deps, cors) {
     return reply(502, { ok: false, error: MESSAGES.failed }, cors);
   }
   const { policy } = catalog;
-  const maxBody = policy.maxFileBytes + MULTIPART_OVERHEAD;
-  const tooLarge = () => reply(413, { ok: false, error: MESSAGES.tooLarge(formatSize(policy.maxFileBytes)) }, cors);
+  // Đợt gửi: tối đa batchMaxFiles file, tổng batchMaxBytes (policy.json); thiếu thì một file như cũ.
+  const maxFiles = Number.isInteger(policy.batchMaxFiles) && policy.batchMaxFiles > 0 ? policy.batchMaxFiles : 1;
+  const maxTotal = maxFiles > 1 && Number.isInteger(policy.batchMaxBytes) && policy.batchMaxBytes > 0 ? policy.batchMaxBytes : policy.maxFileBytes;
+  const maxBody = maxTotal + MULTIPART_OVERHEAD;
+  const tooLarge = () => reply(413, { ok: false, error: maxFiles > 1 ? MESSAGES.batchTooLarge(formatSize(maxTotal)) : MESSAGES.tooLarge(formatSize(policy.maxFileBytes)) }, cors);
 
   const declared = Number(req.headers.get('Content-Length'));
   if (Number.isFinite(declared) && declared > maxBody) return tooLarge();
@@ -262,40 +281,63 @@ async function handleSubmit(req, env, deps, cors) {
     return reply(403, { ok: false, error: MESSAGES.turnstile }, cors);
   }
 
-  // Môn, loại, file, các ô.
+  // Môn, loại, file, các ô. Đợt gửi nhiều file: mỗi file i có tiêu đề title-<i> và loại type-<i> riêng
+  // (không có thì dùng ô chung title, type); các ô khác dùng chung cho cả đợt.
   const fields = {};
   for (const [k, v] of data.entries()) if (typeof v === 'string') fields[k] = v;
-  const upload = data.get('file');
-  const hasFile = upload && typeof upload === 'object' && (upload.size > 0 || upload.name);
-  const bytes = hasFile ? new Uint8Array(await upload.arrayBuffer()) : null;
-  const file = bytes ? { name: upload.name, size: bytes.length, head: bytes.subarray(0, HEAD_BYTES) } : null;
+  const uploads = data.getAll('file').filter((u) => u && typeof u === 'object' && (u.size > 0 || u.name));
+  if (uploads.length > maxFiles) return reply(400, { ok: false, errors: { file: MESSAGES.batchCount(maxFiles) } }, cors);
   // Mỗi bài đúng một môn: ô môn hay môn mới gửi lặp thì không đoán ô nào là đúng.
   if (COURSE_FIELDS.some((k) => data.getAll(k).length > 1)) return reply(400, { ok: false, errors: { course: MESSAGES.oneCourse } }, cors);
-  const checked = validateSubmission(fields, file, { policy, courses: catalog.courses });
-  if (!checked.ok) return reply(400, { ok: false, errors: checked.errors }, cors);
-  const { form, ext } = checked;
+  const batch = uploads.length > 1;
+  if (batch && String(fields.replaces ?? '').trim()) return reply(400, { ok: false, errors: { replaces: MESSAGES.batchReplaces } }, cors);
+  const entries = [];
+  for (let i = 0; i < Math.max(uploads.length, 1); i += 1) {
+    const upload = uploads[i];
+    const bytes = upload ? new Uint8Array(await upload.arrayBuffer()) : null;
+    const file = bytes ? { name: upload.name, size: bytes.length, head: bytes.subarray(0, HEAD_BYTES) } : null;
+    const own = { ...fields };
+    if (fields[`title-${i}`] !== undefined) own.title = fields[`title-${i}`];
+    if (fields[`type-${i}`] !== undefined) own.type = fields[`type-${i}`];
+    const checked = validateSubmission(own, file, { policy, courses: catalog.courses });
+    if (!checked.ok) {
+      // Lỗi riêng của một file trong đợt gửi ghi kèm số thứ tự để form đặt đúng chỗ.
+      const errors = {};
+      for (const [k, v] of Object.entries(checked.errors)) errors[batch && ['title', 'type', 'file'].includes(k) ? `${k}-${i}` : k] = v;
+      return reply(400, { ok: false, errors }, cors);
+    }
+    entries.push({ form: checked.form, ext: checked.ext, bytes });
+  }
+  const totalBytes = entries.reduce((n, e) => n + (e.bytes ? e.bytes.length : 0), 0);
+  if (totalBytes > maxTotal) return tooLarge();
+  const form = entries[0].form;
   const { newCourse } = form;
   const course = newCourse ? { id: newCourse.code, code: newCourse.code, ids: new Set() } : catalog.courses.get(form.course);
 
   const code = makeCode(deps.random);
-  const slug = slugify(form.title);
-  const id = uniqueId(slug, course.ids);
-  let stored = null;
-  let shaKey = null;
-  if (bytes) {
+  const used = new Set(course.ids);
+  const seenSha = new Set();
+  for (const e of entries) {
+    e.slug = slugify(e.form.title);
+    e.id = uniqueId(e.slug, used);
+    used.add(e.id);
+    e.stored = null;
+    if (!e.bytes) continue;
     // Trùng tài liệu đã có trong thư viện (so cả sha256 file gốc, vì bản đã làm sạch khác sha256).
     // Tài liệu đã gỡ vẫn chặn gửi lại, để file bị gỡ theo yêu cầu không quay lại qua form.
-    const sha256 = await sha256Hex(bytes);
+    const sha256 = await sha256Hex(e.bytes);
     if (catalog.blocked.has(sha256)) return reply(409, { ok: false, error: MESSAGES.removed }, cors);
     if (catalog.shas.has(sha256)) return reply(409, { ok: false, error: MESSAGES.exists }, cors);
-    shaKey = `sha/${sha256}`;
-    const name = fileName({ code: course.code, type: form.type, slug, term: form.term, ext });
-    stored = { name, size: bytes.length, sha256, uploadSha256: sha256, mime: policy.extensions[ext].mime, quarantine: `pending/${code}/${name}` };
+    if (seenSha.has(sha256)) return reply(400, { ok: false, errors: { file: MESSAGES.batchSame } }, cors);
+    seenSha.add(sha256);
+    const name = fileName({ code: course.code, type: e.form.type, slug: e.slug, term: e.form.term, ext: e.ext });
+    e.stored = { name, size: e.bytes.length, sha256, uploadSha256: sha256, mime: policy.extensions[e.ext].mime, quarantine: `pending/${code}/${name}` };
   }
+  const stored = entries[0].stored;
 
   // Dựng sẵn mục và PR trước khi ghi R2, để lỗi ở đây không để lại file mồ côi.
   const today = new Date(deps.now() + VN_OFFSET_MS).toISOString().slice(0, 10);
-  const itemText = `${JSON.stringify({ $schema: ITEM_SCHEMA, ...buildItem(form, stored, today, id) }, null, 2)}\n`;
+  for (const e of entries) e.itemText = `${JSON.stringify({ $schema: ITEM_SCHEMA, ...buildItem(e.form, e.stored, today, e.id) }, null, 2)}\n`;
   const courseText = newCourse
     ? `${JSON.stringify(buildNewCourse({ ...newCourse, today, prefixes: faculties.prefixes, handbookTemplate: site.handbookSubjectUrl }), null, 2)}\n`
     : null;
@@ -305,6 +347,7 @@ async function handleSubmit(req, env, deps, cors) {
     courseCode: course.code,
     type: form.type,
     file: stored,
+    files: batch ? entries.map((e) => ({ type: e.form.type, file: e.stored })) : null,
     viewBase: base,
     newCourse: newCourse ? { code: newCourse.code, handbookUrl: handbookUrlFor(newCourse.code, site.handbookSubjectUrl) } : null,
     replaces: form.replaces ?? null,
@@ -319,13 +362,16 @@ async function handleSubmit(req, env, deps, cors) {
   };
   try {
     // Trùng tài liệu đang chờ duyệt.
-    if (stored && (await env.QUARANTINE.head(shaKey))) return reply(409, { ok: false, error: MESSAGES.pending }, cors);
+    for (const e of entries) {
+      if (e.stored && (await env.QUARANTINE.head(`sha/${e.stored.sha256}`))) return reply(409, { ok: false, error: MESSAGES.pending }, cors);
+    }
     if (!(await countSubmission(env.QUARANTINE, cap, deps.now()))) return capReached();
-    if (stored) {
-      await env.QUARANTINE.put(stored.quarantine, bytes, { httpMetadata: { contentType: stored.mime } });
-      keys.push(stored.quarantine);
-      await env.QUARANTINE.put(shaKey, code);
-      keys.push(shaKey);
+    for (const e of entries) {
+      if (!e.stored) continue;
+      await env.QUARANTINE.put(e.stored.quarantine, e.bytes, { httpMetadata: { contentType: e.stored.mime } });
+      keys.push(e.stored.quarantine);
+      await env.QUARANTINE.put(`sha/${e.stored.sha256}`, code);
+      keys.push(`sha/${e.stored.sha256}`);
     }
     if (view) {
       await env.QUARANTINE.put(tokenKey(code), view.hash, { customMetadata: { course: course.id } });
@@ -354,7 +400,9 @@ async function handleSubmit(req, env, deps, cors) {
       await gh.putFile(newCoursePath(course.code), courseText, branch, `feat(catalog): thêm môn mới ${course.code} gửi qua form ${code}`);
     }
     step = 'item';
-    await gh.putFile(`courses/${course.id}/items/${id}.json`, itemText, branch, `feat(courses): thêm tài liệu gửi qua form ${code}`);
+    for (const e of entries) {
+      await gh.putFile(`courses/${course.id}/items/${e.id}.json`, e.itemText, branch, `feat(courses): thêm tài liệu gửi qua form ${code}`);
+    }
     step = 'pr';
     const pr = await gh.openPr({ head: branch, base: env.BRANCH, title: prTitle(code, course.code), body: prText });
     step = 'label';
@@ -374,59 +422,169 @@ async function handleSubmit(req, env, deps, cors) {
   }
 }
 
+// JSON hỏng hay không phải object thì null (trang duyệt vẫn hiện file của mục).
 const asObject = (text) => {
-  const v = text === null ? null : JSON.parse(text);
+  let v = null;
+  try {
+    v = text === null ? null : JSON.parse(text);
+  } catch {
+    return null;
+  }
   return v && typeof v === 'object' && !Array.isArray(v) ? v : null;
 };
 
-// Mục tài liệu trên nhánh upload/<mã> (đúng một file mục, đọc thô), và file môn mới của đúng môn đó
-// nếu bài thêm môn chưa có (file thêm mới so với nhánh chính). Lỗi hay không rõ thì null.
-async function branchItem(env, github, code) {
-  const out = { item: null, newCourse: null };
+// Mọi mục tài liệu trên nhánh upload/<mã> (đợt gửi có nhiều mục) kèm file của từng mục trong kho,
+// và file môn mới nếu có. [{ id, path, item, file }]. Lỗi đọc thì danh sách rỗng.
+async function branchDocs(env, github, code) {
+  const out = { docs: [], newCourse: null };
   try {
     const gh = await github();
     const branch = `upload/${code}`;
     const files = (await gh.changedFiles(env.BRANCH, branch)) ?? [];
-    const hits = files.filter((f) => ITEM_FILE.test(f.filename) && f.status !== 'removed');
-    if (hits.length !== 1) return out;
-    const coursePath = newCoursePath(hits[0].filename.split('/')[1]);
+    const hits = files.filter((f) => ITEM_FILE.test(f.filename) && f.status !== 'removed').map((f) => f.filename).sort();
+    if (!hits.length) return out;
+    const coursePath = newCoursePath(hits[0].split('/')[1]);
     const added = files.some((f) => f.filename === coursePath && f.status === 'added');
-    const [itemText, courseText] = await Promise.all([gh.getRaw(hits[0].filename, branch), added ? gh.getRaw(coursePath, branch) : null]);
-    out.item = asObject(itemText);
-    if (added) out.newCourse = asObject(courseText);
+    const texts = await Promise.all(hits.map((p) => gh.getRaw(p, branch)));
+    out.docs = await Promise.all(
+      hits.map(async (p, i) => {
+        const item = asObject(texts[i]);
+        const name = item?.files?.[0]?.name;
+        const safe = typeof name === 'string' && /^[A-Za-z0-9_-][A-Za-z0-9._-]*\.[A-Za-z0-9]+$/.test(name);
+        // Bài một file mà mục không ghi tên file (bài cũ): lấy file đầu tiên của bài như trước.
+        const file = safe ? await locateFile(env.QUARANTINE, code, name) : hits.length === 1 ? await locateFile(env.QUARANTINE, code) : null;
+        return { id: p.split('/').pop().replace(/\.json$/, ''), path: p, item, file };
+      }),
+    );
+    if (added) out.newCourse = asObject(await gh.getRaw(coursePath, branch));
   } catch (err) {
     logFailure('review_item', err);
   }
   return out;
 }
 
+// Người duyệt: JWT của Cloudflare Access hợp lệ thì trả { email }, không thì null.
+async function reviewer(req, env, deps) {
+  const jwt = req.headers.get('Cf-Access-Jwt-Assertion');
+  const ok = await verifyAccessJwt(jwt, { team: env.ACCESS_TEAM_DOMAIN, aud: env.ACCESS_AUD, fetch: deps.fetch, cache: deps.cache(), now: deps.now });
+  return ok ? { email: accessEmail(jwt) } : null;
+}
+
+// Trạng thái PR của bài để quyết: PR mở và mọi check của đầu nhánh đã qua.
+async function prState(gh, code) {
+  const found = await gh.findPr(`upload/${code}`);
+  if (!found || found.state !== 'open') return { open: false };
+  const pr = await gh.getPr(found.number);
+  return { open: true, number: pr.number, sha: pr.head.sha, green: checksGreen(await gh.checkRuns(pr.head.sha)) };
+}
+
 // Người duyệt: JWT của Cloudflare Access phải hợp lệ; thiếu cấu hình thì đóng (503).
-// /xem-duyet/<mã>: trang có chữ người gửi nhập (đã thoát HTML) và nút xem, tải file.
-// /xem-duyet/<mã>/file: chính file, cùng luật với người gửi.
-async function handleReview(req, env, deps, code, wantFile) {
+// GET /xem-duyet/<mã>: trang duyệt mọi file của bài (chữ người gửi đã thoát HTML, nút xem, tải, quyết định).
+// GET /xem-duyet/<mã>/file[/<tên>]: chính file, cùng luật với người gửi.
+// POST /xem-duyet/<mã>/duyet: quyết định của người duyệt (xem handleDecision).
+async function handleReview(req, env, deps, code, wantFile, fileName = null, decide = false) {
   if (!accessConfigured(env)) return unconfiguredPage();
-  const ok = await verifyAccessJwt(req.headers.get('Cf-Access-Jwt-Assertion'), {
-    team: env.ACCESS_TEAM_DOMAIN,
-    aud: env.ACCESS_AUD,
-    fetch: deps.fetch,
-    cache: deps.cache(),
-    now: deps.now,
-  });
-  if (!ok) return forbiddenPage();
+  const who = await reviewer(req, env, deps);
+  if (!who) return forbiddenPage();
   // Kiểm quyền trước mã bài, để người ngoài không dò được mã qua 404.
   if (!CODE.test(code)) return notFoundPage();
   const url = new URL(req.url);
   const github = githubFactory(env, deps);
+  if (decide) return handleDecision(req, env, deps, code, who, github);
   if (wantFile) {
     const { policy } = await catalogFor(env, deps, github);
     return serveFile(env.QUARANTINE, code, {
       policy,
+      name: fileName,
       download: url.searchParams.get('tai') === '1',
-      downloadHref: `/xem-duyet/${code}/file?tai=1`,
+      downloadHref: `/xem-duyet/${code}/file${fileName ? `/${encodeURIComponent(fileName)}` : ''}?tai=1`,
     });
   }
-  const [{ item, newCourse }, file] = await Promise.all([branchItem(env, github, code), locateFile(env.QUARANTINE, code)]);
-  return reviewPage({ code, item, file, newCourse });
+  const [{ docs, newCourse }, state] = await Promise.all([branchDocs(env, github, code), prState(await github(), code).catch(() => ({ open: false }))]);
+  return reviewBatchPage({ code, docs, newCourse, open: state.open, canDecide: state.open && state.green });
+}
+
+// Gộp hay đóng PR thay người duyệt và ghi kết quả. Lỗi GitHub thì trả trang lỗi, không đổi gì thêm.
+async function handleDecision(req, env, deps, code, who, github) {
+  // Chống gửi form từ trang khác (cookie Access đi kèm): chỉ nhận khi Origin là chính Worker.
+  const origin = req.headers.get('Origin');
+  if (!origin || origin !== new URL(req.url).origin) return forbiddenPage();
+  const form = await req.formData().catch(() => null);
+  if (!form) return resultPage(code, REVIEW_MESSAGES.missing, false);
+  const fields = {};
+  for (const [k, v] of form.entries()) if (typeof v === 'string') fields[k] = v;
+  const gh = await github();
+  const state = await prState(gh, code);
+  if (!state.open) return resultPage(code, REVIEW_MESSAGES.closed, false);
+  if (!state.green) return resultPage(code, REVIEW_MESSAGES.checks, false);
+  const { docs } = await branchDocs(env, github, code);
+  const ids = docs.map((d) => d.id).filter((id) => ITEM_ID.test(id));
+  if (!ids.length || ids.length !== docs.length) return resultPage(code, REVIEW_MESSAGES.stale, false);
+  const parsed = parseDecisions(fields, ids);
+  if (!parsed.ok) return resultPage(code, parsed.error, false);
+  const { keep, drop } = parsed;
+  // Ghi quyết định (kèm email người duyệt, chỉ trong kho) để email báo người gửi và bước gộp sau dựng lại.
+  const titles = Object.fromEntries(docs.map((d) => [d.id, String(d.item?.title ?? d.id)]));
+  const record = { reviewer: who.email, at: new Date(deps.now()).toISOString(), keep, drop, titles, waiting: keep.length > 0 && drop.length > 0 };
+  await env.QUARANTINE.put(reviewKey(code), JSON.stringify(record));
+  if (!drop.length) {
+    await gh.comment(state.number, decisionComment({ keep, drop }));
+    await gh.mergePr(state.number, state.sha, prTitleMerge(code));
+    return resultPage(code, REVIEW_MESSAGES.done);
+  }
+  if (!keep.length) {
+    await gh.comment(state.number, decisionComment({ keep, drop }));
+    await gh.closePr(state.number);
+    return resultPage(code, REVIEW_MESSAGES.rejected);
+  }
+  // Bỏ file không duyệt khỏi nhánh và khỏi kho; workflow kiem-file dựng lại dữ liệu, rồi tu-gop gọi /duyet-tiep.
+  const branch = `upload/${code}`;
+  for (const d of drop) {
+    const doc = docs.find((x) => x.id === d.id);
+    await gh.deleteFile(doc.path, branch, `review: bỏ ${d.id} khỏi bài ${code}`);
+    const f = doc.item?.files?.[0];
+    const keys = [];
+    if (f?.name) keys.push(`pending/${code}/${f.name}`, `clean/${code}/${f.name}`);
+    for (const sha of [f?.uploadSha256, f?.sha256]) if (typeof sha === 'string' && /^[0-9a-f]{64}$/.test(sha)) keys.push(`sha/${sha}`);
+    if (keys.length) await env.QUARANTINE.delete(keys).catch((e) => logFailure('review_drop', e));
+  }
+  await gh.comment(state.number, decisionComment({ keep, drop, pending: true }));
+  return resultPage(code, REVIEW_MESSAGES.waiting(drop.length));
+}
+
+const prTitleMerge = (code) => `Gộp bài gửi ${code} (đã duyệt trên trang duyệt)`;
+
+// POST /duyet-tiep { code }: workflow tu-gop gọi sau khi bước kiểm qua trên commit dựng lại.
+// Không cần khóa: chỉ gộp khi đã có quyết định của người duyệt (review/<mã>.json, waiting), PR còn mở,
+// mục trên nhánh đúng bằng danh sách được duyệt, và mọi check của đầu nhánh đã qua.
+async function handleContinue(req, env, deps) {
+  if (req.method !== 'POST') return reply(405, { ok: false, error: MESSAGES.method }, {}, { Allow: 'POST' });
+  let code = '';
+  try {
+    code = String((await req.json()).code ?? '');
+  } catch {
+    return reply(400, { ok: false }, {});
+  }
+  if (!CODE.test(code)) return reply(400, { ok: false }, {});
+  const obj = await env.QUARANTINE.get(reviewKey(code));
+  if (!obj) return reply(200, { ok: true, merged: false }, {});
+  try {
+    const record = JSON.parse(await obj.text());
+    if (!record.waiting) return reply(200, { ok: true, merged: false }, {});
+    const github = githubFactory(env, deps);
+    const gh = await github();
+    const state = await prState(gh, code);
+    if (!state.open || !state.green) return reply(200, { ok: true, merged: false }, {});
+    if (!(await gh.commitMessage(state.sha)).startsWith('kiem-file:')) return reply(200, { ok: true, merged: false }, {});
+    const ids = ((await gh.branchItems(env.BRANCH, `upload/${code}`, ITEM_FILE)) ?? []).map((p) => p.split('/').pop().replace(/\.json$/, ''));
+    if (ids.length !== record.keep.length || ids.some((id) => !record.keep.includes(id))) return reply(200, { ok: true, merged: false }, {});
+    await gh.mergePr(state.number, state.sha, prTitleMerge(code));
+    await env.QUARANTINE.put(reviewKey(code), JSON.stringify({ ...record, waiting: false }));
+    return reply(200, { ok: true, merged: true }, {});
+  } catch (err) {
+    logFailure('review_continue', err);
+    return reply(502, { ok: false }, {});
+  }
 }
 
 // Người gửi: mã bí mật sai hay thiếu thì 404 như không có bài.
@@ -483,17 +641,19 @@ async function handleNotify(req, env, deps) {
   }
 }
 
-const REVIEW_PATH = /^\/xem-duyet\/([^/]+)(\/file)?$/;
+// /xem-duyet/<mã>, /xem-duyet/<mã>/file, /xem-duyet/<mã>/file/<tên>, /xem-duyet/<mã>/duyet (POST).
+const REVIEW_PATH = /^\/xem-duyet\/([^/]+)(?:(\/file)(?:\/([A-Za-z0-9_-][A-Za-z0-9._-]*))?|(\/duyet))?$/;
 const OWNER_PATH = /^\/xem\/([^/]+)(\/file)?$/;
 const PREVIEW_PATH = '/xem-truoc';
 
 async function handleView(req, env, deps, path) {
-  if (req.method !== 'GET') return methodPage();
   const review = REVIEW_PATH.exec(path);
+  // Chỉ quyết định duyệt dùng POST; mọi trang khác chỉ GET.
+  if (req.method !== (review && review[4] ? 'POST' : 'GET')) return methodPage();
   const owner = review ? null : OWNER_PATH.exec(path);
   const code = (review ?? owner)?.[1] ?? '';
   try {
-    if (review) return await handleReview(req, env, deps, code, Boolean(review[2]));
+    if (review) return await handleReview(req, env, deps, code, Boolean(review[2]), review[3] ?? null, Boolean(review[4]));
     if (!CODE.test(code)) return notFoundPage();
     return await handleOwner(req, env, deps, code, Boolean(owner[2]));
   } catch (err) {
@@ -515,6 +675,7 @@ export function createHandler(deps = {}) {
       const cors = corsHeaders(req, env);
       if (url.pathname === PREVIEW_PATH) return handlePreview(req, env, d);
       if (url.pathname === '/bao-ket-qua') return handleNotify(req, env, d);
+      if (url.pathname === '/duyet-tiep') return handleContinue(req, env, d);
       if (REVIEW_PATH.test(url.pathname) || OWNER_PATH.test(url.pathname)) return handleView(req, env, d, url.pathname);
       if (url.pathname !== '/submit') return reply(404, { ok: false, error: MESSAGES.notFound }, cors);
       if (req.method === 'OPTIONS') {

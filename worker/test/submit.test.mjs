@@ -402,10 +402,10 @@ describe('POST /submit', () => {
     expect((await r2Keys()).some((k) => k.startsWith('dem/'))).toBe(false);
   });
 
-  it('Content-Length 21 MB: 413 mà không đọc body', async () => {
+  it('Content-Length vượt tổng của đợt gửi (51 MB): 413 mà không đọc body', async () => {
     let pulled = 0;
     const stream = new ReadableStream({ pull(c) { pulled += 1; c.enqueue(new Uint8Array(10)); c.close(); } }, { highWaterMark: 0 });
-    const req = post(stream, { 'Content-Type': 'multipart/form-data; boundary=x', 'Content-Length': String(21 * 1024 * 1024) });
+    const req = post(stream, { 'Content-Type': 'multipart/form-data; boundary=x', 'Content-Length': String(51 * 1024 * 1024) });
     const { res, body } = await run(req);
     expect(res.status).toBe(413);
     expect(body.ok).toBe(false);
@@ -413,8 +413,8 @@ describe('POST /submit', () => {
     expect(req.bodyUsed).toBe(false);
   });
 
-  it('body thật 21 MB với Content-Length nhỏ: 413, kho rỗng', async () => {
-    const big = pdfBytes(21 * 1024 * 1024);
+  it('body thật 51 MB với Content-Length nhỏ: 413, kho rỗng', async () => {
+    const big = pdfBytes(51 * 1024 * 1024);
     const encoded = new Request('https://x/', { method: 'POST', body: form({}, big) });
     const type = encoded.headers.get('content-type');
     const raw = new Uint8Array(await encoded.arrayBuffer());
@@ -858,5 +858,53 @@ describe('POST /bao-ket-qua', () => {
     expect(await env.QUARANTINE.get(`notify/${CODE}`)).not.toBeNull();
     const bad = await run(call('../x'), { fetch, envOver: envMail });
     expect(bad.res.status).toBe(400);
+  });
+});
+
+describe('đợt gửi nhiều file', () => {
+  function batchForm(n, over = {}) {
+    const fd = form({ title: undefined, ...over }, null);
+    for (let i = 0; i < n; i += 1) {
+      fd.append('file', new File([pdfBytes(900 + i * 10, i + 7)], `bai-${i}.pdf`, { type: 'application/pdf' }));
+      fd.set(`title-${i}`, `Slide chương ${i + 1}`);
+      fd.set(`type-${i}`, i === 0 ? 'lecture-slides' : 'summary');
+    }
+    return fd;
+  }
+
+  it('ba file: ba mục cùng môn trong một nhánh, một PR liệt kê từng file', async () => {
+    const { res, body, fetch } = await run(post(batchForm(3)));
+    expect(res.status).toBe(201);
+    const puts = fetch.find('PUT', '/contents/courses/MT1005/items/');
+    expect(puts.map((c) => c.url.split('/items/')[1].split('?')[0])).toEqual(['slide-chuong-1.json', 'slide-chuong-2.json', 'slide-chuong-3.json']);
+    const keys = await r2Keys();
+    expect(keys.filter((k) => k.startsWith(`pending/${body.code}/`))).toHaveLength(3);
+    expect(keys.filter((k) => k.startsWith('sha/'))).toHaveLength(3);
+    const pr = JSON.parse(fetch.find('POST', '/pulls')[0].body);
+    expect(pr.body).toContain('| Số file | 3 |');
+    expect(pr.body).toContain('| 1 | Slide bài giảng | MT1005_lecture-slides_slide-chuong-1.pdf |');
+    expect(pr.body).not.toContain('Slide chương');
+  });
+
+  it('quá số file, file trùng nhau, tiêu đề lỗi của một file, bản cập nhật trong đợt: báo đúng chỗ', async () => {
+    const many = await run(post(batchForm(11)));
+    expect(many.res.status).toBe(400);
+    expect(many.body.errors.file).toContain('tối đa 10 file');
+    const same = form({ title: undefined }, null);
+    for (let i = 0; i < 2; i += 1) {
+      same.append('file', new File([pdfBytes(1000, 3)], `x-${i}.pdf`, { type: 'application/pdf' }));
+      same.set(`title-${i}`, `Tài liệu ${i}`);
+    }
+    const dup = await run(post(same));
+    expect(dup.res.status).toBe(400);
+    expect(dup.body.errors.file).toContain('giống hệt nhau');
+    const bad = batchForm(2);
+    bad.set('title-1', '');
+    const r = await run(post(bad));
+    expect(r.res.status).toBe(400);
+    expect(Object.keys(r.body.errors)).toEqual(['title-1']);
+    const upd = await run(post(batchForm(2, { replaces: 'MT1005/bang-cong-thuc' })));
+    expect(upd.body.errors).toHaveProperty('replaces');
+    expect(await r2Keys()).toEqual([]);
   });
 });

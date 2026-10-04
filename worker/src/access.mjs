@@ -74,3 +74,13 @@ export async function verifyAccessJwt(jwt, { team, aud, fetch, cache, now }) {
     return false;
   }
 }
+
+// Email người duyệt trong JWT. Chỉ gọi sau khi verifyAccessJwt đã trả true.
+export function accessEmail(jwt) {
+  try {
+    const email = b64urlJson(String(jwt).split('.')[1]).email;
+    return typeof email === 'string' && email.length <= 254 ? email : '';
+  } catch {
+    return '';
+  }
+}
