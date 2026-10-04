@@ -6,10 +6,10 @@ import path from 'node:path';
 import { loadPolicy } from '../scripts/lib/policy.mjs';
 import { TOOL_ROOT } from '../scripts/lib/repo.mjs';
 
-test('openTypes có đủ 14 loại', () => {
+test('openTypes có đủ 15 loại, gồm slide bài giảng', () => {
   const t = loadPolicy(TOOL_ROOT).openTypes;
-  assert.equal(t.length, 14);
-  assert.ok(t.includes('book-ref') && t.includes('summary'));
+  assert.equal(t.length, 15);
+  assert.ok(t.includes('book-ref') && t.includes('summary') && t.includes('lecture-slides'));
 });
 
 test('extensions: mime và magic', () => {

@@ -11,7 +11,7 @@
     "id": { "type": "string", "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$", "maxLength": 80 },
     "course": { "type": "string", "pattern": "^[A-Z0-9_]{3,12}(-[0-9]{4})?$" },
     "type": {
-      "enum": ["summary", "notes", "cheatsheet", "quiz-pack", "tips", "link", "exercise-solution", "exam-solution", "exam-past", "prelab-template", "prelab-reference", "lab-report-reference", "project-reference", "book-ref"],
+      "enum": ["lecture-slides", "summary", "notes", "cheatsheet", "quiz-pack", "tips", "link", "exercise-solution", "exam-solution", "exam-past", "prelab-template", "prelab-reference", "lab-report-reference", "project-reference", "book-ref"],
       "description": "Đủ danh sách của hợp đồng v1. Loại nào đang nhận thì xem catalog/policy.json (openTypes)."
     },
     "title": { "type": "string", "minLength": 1, "maxLength": 200 },
