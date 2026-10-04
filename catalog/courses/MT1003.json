@@ -1,0 +1,20 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "MT1003",
+  "code": "MT1003",
+  "name": "Giải tích 1",
+  "nameEn": "Calculus 1",
+  "credits": 4,
+  "faculty": "fas",
+  "aliases": [],
+  "status": "active",
+  "programs": [],
+  "parts": [
+    "theory"
+  ],
+  "related": [
+    "MT1005"
+  ],
+  "note": "Dữ liệu mẫu cho hợp đồng v1. Tên, mã, tín chỉ lấy từ CTĐT công khai (truy cập 03/10/2026).",
+  "updated": "2026-10-03"
+}

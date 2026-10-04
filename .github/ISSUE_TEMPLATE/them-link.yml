@@ -1,0 +1,47 @@
+name: Thêm link / Add a link
+description: Link tới tài liệu học tập (giáo trình mở, video, trang của khoa, thư mục tài liệu) / A link to study material (open textbook, video, faculty page, shared folder)
+title: "[Link] "
+labels: [link, cần duyệt]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thêm link tới tài liệu học tập. Không thêm link tới file sách có bản quyền.
+
+        Add links to study material. Don't link to copyrighted book files.
+  - type: input
+    id: course
+    attributes:
+      label: Mã môn / Course code
+      placeholder: MT1005
+    validations: { required: true }
+  - type: input
+    id: url
+    attributes:
+      label: Link / URL
+      placeholder: https://openstax.org/details/books/calculus-volume-3
+    validations: { required: true }
+  - type: input
+    id: title
+    attributes:
+      label: Tiêu đề / Title
+    validations: { required: true }
+  - type: input
+    id: source
+    attributes:
+      label: Nguồn / Source
+      description: Tên trang hoặc tổ chức, ví dụ OpenStax, MIT OpenCourseWare, Khoa Điện - Điện tử. / The site or organization.
+  - type: input
+    id: license
+    attributes:
+      label: Giấy phép của nguồn / Source license
+      description: Ghi đúng giấy phép trang đó công bố, ví dụ CC-BY-NC-SA-4.0. Không rõ thì ghi "không rõ". / The license the source states, for example CC-BY-NC-SA-4.0. If unsure, write "unknown".
+  - type: dropdown
+    id: lang
+    attributes:
+      label: Ngôn ngữ / Language
+      options: [Tiếng Việt, English, Khác / Other]
+  - type: textarea
+    id: description
+    attributes:
+      label: Vì sao hữu ích / Why it helps

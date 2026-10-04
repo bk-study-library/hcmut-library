@@ -1,0 +1,25 @@
+{
+  "$schema": "../../../schema/item.schema.json",
+  "id": "meo-hoc-giai-tich-mach",
+  "course": "EE2033",
+  "type": "tips",
+  "title": "Mẹo học Giải tích mạch",
+  "description": "Kinh nghiệm chung: chọn phương pháp, kiểm cân bằng công suất, phasor, quá độ bậc một.",
+  "lang": "vi",
+  "authors": [
+    "BK Study Library"
+  ],
+  "license": "CC-BY-SA-4.0",
+  "origin": "self-made",
+  "files": [
+    {
+      "name": "meo-hoc-giai-tich-mach.md",
+      "size": 1691,
+      "sha256": "4a181936c0147a7988b9ed839802b6f19a36dff66d012ac4183cd09ba21b22c1",
+      "path": "files/meo-hoc-giai-tich-mach.md"
+    }
+  ],
+  "example": true,
+  "added": "2026-10-03",
+  "removed": false
+}

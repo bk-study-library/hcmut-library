@@ -1,0 +1,16 @@
+{
+  "name": "bk-study-library",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Thư viện tài liệu do sinh viên Bách Khoa TP.HCM tự soạn: danh mục môn, chỉ mục, trang web tĩnh",
+  "license": "MIT",
+  "type": "module",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "validate": "node scripts/validate.mjs",
+    "build": "node scripts/validate.mjs --write",
+    "site": "node scripts/build-site.mjs",
+    "demo": "node scripts/demo.mjs",
+    "test": "node --test test/*.test.mjs"
+  }
+}

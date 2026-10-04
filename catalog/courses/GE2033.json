@@ -1,0 +1,28 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "GE2033",
+  "code": "GE2033",
+  "name": "Tinh thể - khoáng vật - thạch học + thực tập",
+  "nameEn": "Crystallography - Mineralogy - Petrography",
+  "credits": 3,
+  "faculty": "geopet",
+  "aliases": [
+    {
+      "code": "GE1007",
+      "name": "Tinh thể - khoáng vật - thạch học",
+      "to": "2018-12-31"
+    }
+  ],
+  "status": "active",
+  "replaces": [
+    "GE1007"
+  ],
+  "programs": [],
+  "parts": [
+    "theory",
+    "lab"
+  ],
+  "related": [],
+  "note": "Dữ liệu mẫu cho hợp đồng v1. Tên, mã, tín chỉ lấy từ CTĐT công khai (truy cập 03/10/2026). Tương đương GE1007 (khóa 2018 về trước) theo bảng môn tương đương của Khoa Kỹ thuật Địa chất và Dầu khí.",
+  "updated": "2026-10-03"
+}

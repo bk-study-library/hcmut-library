@@ -1,0 +1,9 @@
+# Người duyệt mặc định cho mọi thay đổi.
+* @xeroz369
+
+# Khi có người duyệt theo khoa hoặc nhóm môn, thêm dòng theo thư mục môn bên dưới.
+# Dòng sau cùng khớp sẽ được dùng, nên giữ "* @xeroz369" ở trên cùng.
+# Ví dụ (bỏ dấu # khi có người nhận):
+# /courses/EE*/  @xeroz369 @nguoi-duyet-khoa-dien
+# /courses/MT*/  @xeroz369 @nguoi-duyet-toan
+# /catalog/      @xeroz369

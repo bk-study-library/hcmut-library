@@ -1,0 +1,17 @@
+{
+  "$schema": "../../../schema/item.schema.json",
+  "id": "vi-du-mit-ocw-18-06sc-linear-algebra",
+  "course": "MT1007",
+  "type": "link",
+  "title": "MIT OCW 18.06SC Linear Algebra (Fall 2011)",
+  "description": "Khóa học mở, tiếng Anh, có video bài giảng, bài tập và lời giải. Mục ví dụ để minh họa định dạng link.",
+  "lang": "en",
+  "authors": ["Gilbert Strang"],
+  "license": "CC-BY-NC-SA-4.0",
+  "origin": "link",
+  "source": "MIT OpenCourseWare",
+  "url": "https://ocw.mit.edu/courses/18-06sc-linear-algebra-fall-2011/",
+  "example": true,
+  "added": "2026-10-03",
+  "removed": false
+}

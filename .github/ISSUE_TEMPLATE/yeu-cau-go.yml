@@ -1,0 +1,40 @@
+name: Yêu cầu gỡ / Takedown request
+description: Gỡ tài liệu vi phạm bản quyền, lộ thông tin cá nhân hoặc sai quy định / Remove material that infringes copyright, exposes personal information or breaks the rules
+title: "[Gỡ] "
+labels: [gỡ tài liệu]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Mục tiêu xử lý: **1 ngày làm việc**. Issue là công khai: **đừng** chép lại thông tin cá nhân vào đây, chỉ cần link. Quy trình: [TAKEDOWN.md](../blob/main/TAKEDOWN.md).
+
+        Target: handled within **one business day**. Issues are public: **don't** copy personal information here; a link is enough. Process: [TAKEDOWN.md](../blob/main/TAKEDOWN.md).
+  - type: input
+    id: item
+    attributes:
+      label: Link hoặc tên tài liệu / Item link or title
+      placeholder: https://bk-study-library.github.io/bk-study-library/course/MT1005/
+    validations: { required: true }
+  - type: dropdown
+    id: reason
+    attributes:
+      label: Lý do / Reason
+      options:
+        - Vi phạm bản quyền của tôi / It infringes my copyright
+        - Có thông tin cá nhân của tôi / It contains my personal information
+        - Tôi là người gửi, muốn rút lại / I sent it and want to withdraw it
+        - Là file sách có bản quyền / It is a copyrighted book file
+        - Khác / Other
+    validations: { required: true }
+  - type: textarea
+    id: details
+    attributes:
+      label: Chi tiết / Details
+      description: Bạn là ai với tài liệu này (tác giả, chủ bản quyền, người gửi). Cần trao đổi riêng thì ghi "cần liên hệ riêng". / Your relation to the item (author, rights holder, sender). Write "need private contact" if you need to talk privately.
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Xác nhận / Confirmation
+      options:
+        - label: Thông tin tôi ghi là đúng. / The information I gave is accurate.
+          required: true

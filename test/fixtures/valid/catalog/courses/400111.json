@@ -1,0 +1,14 @@
+{
+  "id": "400111",
+  "code": "400111",
+  "name": "Môn cũ đã ngừng",
+  "credits": 3,
+  "faculty": "unknown",
+  "aliases": [],
+  "status": "retired",
+  "replacedBy": "EE1009",
+  "programs": [],
+  "parts": ["theory"],
+  "related": [],
+  "updated": "2026-10-01"
+}

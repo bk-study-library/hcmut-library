@@ -1,0 +1,64 @@
+{
+  "schemaVersion": 1,
+  "id": "MT1003",
+  "code": "MT1003",
+  "name": "Giải tích 1",
+  "items": [
+    {
+      "id": "quiz-gioi-han-dao-ham",
+      "type": "quiz-pack",
+      "title": "Gói quiz giới hạn và đạo hàm",
+      "description": "4 câu (điền số, một đáp án, đúng/sai) theo định dạng Study Pack v1, mở được bằng Luyện tập trong BK Study Desk.",
+      "lang": "vi",
+      "chapter": "1",
+      "license": "CC-BY-SA-4.0",
+      "origin": "self-made",
+      "authors": [
+        "BK Study Library"
+      ],
+      "added": "2026-10-03",
+      "example": true,
+      "updated": "2026-10-03",
+      "files": [
+        {
+          "name": "quiz-gioi-han-dao-ham.md",
+          "mime": "text/markdown",
+          "size": 1227,
+          "sha256": "cf6e7ca888ae2d759080d096d407de5d9be42b59e062e532f3293636c0c2e21e",
+          "urls": [
+            "https://bk-study-library.github.io/bk-study-library/files/MT1003/quiz-gioi-han-dao-ham.md",
+            "https://raw.githubusercontent.com/bk-study-library/bk-study-library/main/courses/MT1003/files/quiz-gioi-han-dao-ham.md"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tom-tat-gioi-han-dao-ham",
+      "type": "summary",
+      "title": "Tóm tắt giới hạn và đạo hàm",
+      "description": "Giới hạn cơ bản, vô cùng bé tương đương, liên tục, đạo hàm, L'Hôpital, Maclaurin.",
+      "lang": "vi",
+      "chapter": "1",
+      "license": "CC-BY-SA-4.0",
+      "origin": "self-made",
+      "authors": [
+        "BK Study Library"
+      ],
+      "added": "2026-10-03",
+      "example": true,
+      "updated": "2026-10-03",
+      "files": [
+        {
+          "name": "tom-tat-gioi-han-dao-ham.md",
+          "mime": "text/markdown",
+          "size": 2350,
+          "sha256": "c7ce30ea2d1d701335549b8e0456bc7e2a9cb3525f8077e4af6d023bf40c791c",
+          "urls": [
+            "https://bk-study-library.github.io/bk-study-library/files/MT1003/tom-tat-gioi-han-dao-ham.md",
+            "https://raw.githubusercontent.com/bk-study-library/bk-study-library/main/courses/MT1003/files/tom-tat-gioi-han-dao-ham.md"
+          ]
+        }
+      ]
+    }
+  ]
+}

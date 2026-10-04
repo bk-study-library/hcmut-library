@@ -1,0 +1,25 @@
+{
+  "$schema": "../../../schema/item.schema.json",
+  "id": "bang-cong-thuc-giai-tich-2",
+  "course": "MT1005",
+  "type": "cheatsheet",
+  "title": "Bảng công thức Giải tích 2",
+  "description": "Đạo hàm riêng, cực trị, tích phân bội, tích phân đường và mặt, chuỗi. Vừa một mặt A4.",
+  "lang": "vi",
+  "authors": [
+    "BK Study Library"
+  ],
+  "license": "CC-BY-SA-4.0",
+  "origin": "self-made",
+  "files": [
+    {
+      "name": "bang-cong-thuc-giai-tich-2.md",
+      "size": 2566,
+      "sha256": "2c9957c28b94671f4a5a8af3c67dfb12b2902872fbfe038bbd8c742fdfaf31c7",
+      "path": "files/bang-cong-thuc-giai-tich-2.md"
+    }
+  ],
+  "example": true,
+  "added": "2026-10-03",
+  "removed": false
+}

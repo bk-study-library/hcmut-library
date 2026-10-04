@@ -1,0 +1,414 @@
+name: kiem-file
+
+# Kiểm file của bài gửi qua form: tải từ kho cách ly R2, quét virus, làm sạch
+# siêu dữ liệu PDF, tìm lớp chữ và thông tin cá nhân, comment kết quả, rồi ghi
+# link Release vào nhánh của PR. Logic nằm ở scripts/upload/check.mjs.
+#
+# Mô hình đe dọa. pull_request_target chạy với quyền ghi. Có hai thứ không tin được:
+# nội dung nhánh PR, và file người dùng tải lên (có thể nhắm vào lỗ hổng của
+# clamscan, exiftool, qpdf, pdftotext). Vì vậy:
+# - Không bao giờ chạy mã của nhánh PR. Script lấy từ main (thư mục trusted), nhánh
+#   PR chỉ là dữ liệu (thư mục pr). Không chạy npm install hay npm script trong pr.
+# - Mỗi job chỉ giữ đúng quyền và khóa nó cần:
+#   gate   (contents: read, pull-requests: read)  bỏ qua commit của chính workflow, tìm mục tài liệu,
+#                            kiểm PR chỉ sửa mục đó và file sinh ra của môn đó.
+#   fetch  (contents: read, khóa R2)  tải file cách ly và mục tài liệu, đưa lên artifact.
+#   scan   (contents: read, không khóa, không token ghi)  bước duy nhất chạy công cụ
+#                            trên file tải lên; ghi kết quả và bản sạch lên artifact.
+#   apply  (contents: read, pull-requests: write, khóa R2, token App để push)  coi artifact
+#                            của scan là dữ liệu: kiểm dạng từng trường, tính lại sha256
+#                            của bản sạch, không chạy gì từ artifact, không chạy lại công cụ.
+#   apply-sach (contents: read, pull-requests: write, token App để push)  sách tham khảo
+#                            không có file: bỏ fetch, scan, R2; chỉ dựng lại file sinh ra,
+#                            commit và comment ngắn.
+#   report-failure (pull-requests: write)  job nào lỗi thì sửa comment báo không kiểm được.
+# - Khóa chỉ nằm trong env của bước cần chúng.
+#
+# Có virus: comment, đóng PR, xóa file trong kho rồi dừng. Job vẫn thành công,
+# PR bị đóng chính là kết quả.
+#
+# Secrets: R2_ACCOUNT_ID, R2_ACCESS_KEY_ID, R2_SECRET_ACCESS_KEY (khóa R2 đọc,
+# ghi, xóa bucket kho cách ly); GH_APP_CLIENT_ID (Client ID của GitHub App,
+# trang cài đặt của App, dạng Iv...); GH_APP_PRIVATE_KEY (file .pem của App).
+# Variables: R2_BUCKET (tên bucket), BOT_LOGIN (tên bot mở PR, ví dụ
+# bk-study-library-bot[bot]).
+
+on:
+  pull_request_target:
+    types: [labeled, synchronize]
+
+permissions: {}
+
+concurrency:
+  group: kiem-file-${{ github.event.pull_request.number }}
+  cancel-in-progress: false
+
+env:
+  REPO: ${{ github.repository }}
+  PR: ${{ github.event.pull_request.number }}
+  BRANCH: ${{ github.event.pull_request.head.ref }}
+  HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+
+jobs:
+  gate:
+    if: >-
+      github.event.pull_request.state == 'open' &&
+      github.event.pull_request.head.repo.full_name == github.repository &&
+      startsWith(github.event.pull_request.head.ref, 'upload/') &&
+      contains(github.event.pull_request.labels.*.name, 'tai-lieu-moi') &&
+      (github.event.action != 'labeled' || github.event.label.name == 'tai-lieu-moi') &&
+      vars.BOT_LOGIN != '' &&
+      github.event.pull_request.user.login == vars.BOT_LOGIN
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: read
+    outputs:
+      run: ${{ steps.head.outputs.run }}
+      item: ${{ steps.locate.outputs.item }}
+      light: ${{ steps.locate.outputs.light }}
+      course: ${{ steps.locate.outputs.course }}
+      code: ${{ steps.locate.outputs.code }}
+      key: ${{ steps.locate.outputs.key }}
+      name: ${{ steps.locate.outputs.name }}
+      sha256: ${{ steps.locate.outputs.sha256 }}
+    steps:
+      # Bỏ qua khi commit mới nhất là commit của chính workflow này (tránh tự gọi lại).
+      - id: head
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          msg=$(gh api "repos/$REPO/commits/$HEAD_SHA" --jq .commit.message)
+          case "$msg" in
+            kiem-file:*) echo "run=false" >> "$GITHUB_OUTPUT" ;;
+            *) echo "run=true" >> "$GITHUB_OUTPUT" ;;
+          esac
+      - if: steps.head.outputs.run == 'true'
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: main
+          path: trusted
+          persist-credentials: false
+      - if: steps.head.outputs.run == 'true'
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          path: pr
+          persist-credentials: false
+      - if: steps.head.outputs.run == 'true'
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: 24
+      # PR chỉ được có một mục tài liệu và file sinh ra của môn đó; sai thì dừng trước khi đụng R2.
+      - name: Tìm mục tài liệu trong PR
+        id: locate
+        if: steps.head.outputs.run == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          export CHECK_ERROR_FILE="$RUNNER_TEMP/loi/loi-gate.txt"
+          gh api --paginate "repos/$REPO/pulls/$PR/files" \
+            --jq '.[] | {filename, status, previous_filename} | @json' > "$RUNNER_TEMP/files.jsonl"
+          node trusted/scripts/upload/check.mjs locate --files "$RUNNER_TEMP/files.jsonl" --pr pr \
+            --branch "$BRANCH" --output-file "$GITHUB_OUTPUT"
+      - if: failure()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: loi-gate
+          path: ${{ runner.temp }}/loi/
+          if-no-files-found: ignore
+          retention-days: 1
+
+  fetch:
+    needs: gate
+    if: needs.gate.outputs.run == 'true' && needs.gate.outputs.light == 'false'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Lấy mục tài liệu của PR
+        env:
+          GH_TOKEN: ${{ github.token }}
+          ITEM: ${{ needs.gate.outputs.item }}
+        run: |
+          mkdir -p "$RUNNER_TEMP/in/file"
+          gh api -H "Accept: application/vnd.github.raw+json" "repos/$REPO/contents/$ITEM?ref=$HEAD_SHA" > "$RUNNER_TEMP/in/item.json"
+      - name: Tải file từ kho cách ly
+        env:
+          R2_BUCKET: ${{ vars.R2_BUCKET }}
+          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: auto
+          AWS_REQUEST_CHECKSUM_CALCULATION: when_required
+          AWS_RESPONSE_CHECKSUM_VALIDATION: when_required
+          KEY: ${{ needs.gate.outputs.key }}
+          NAME: ${{ needs.gate.outputs.name }}
+        run: |
+          aws s3 cp "s3://$R2_BUCKET/$KEY" "$RUNNER_TEMP/in/file/$NAME" \
+            --endpoint-url "https://${R2_ACCOUNT_ID}.r2.cloudflarestorage.com" --only-show-errors || {
+            mkdir -p "$RUNNER_TEMP/loi"
+            echo "Không tải được file từ kho cách ly. File có thể đã bị xóa sau 30 ngày. Bạn hãy gửi lại bài." > "$RUNNER_TEMP/loi/loi-fetch.txt"
+            exit 1
+          }
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: kiem-file-goc
+          path: ${{ runner.temp }}/in/
+          if-no-files-found: error
+          retention-days: 1
+      - if: failure()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: loi-fetch
+          path: ${{ runner.temp }}/loi/
+          if-no-files-found: ignore
+          retention-days: 1
+
+  # Không có secret, chỉ quyền đọc: file tải lên có phá được công cụ thì cũng không lấy được gì.
+  scan:
+    needs: [gate, fetch]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: main
+          path: trusted
+          persist-credentials: false
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: 24
+      - name: Cài công cụ kiểm file
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends clamav clamav-freshclam libimage-exiftool-perl qpdf poppler-utils
+          sudo systemctl stop clamav-freshclam || true
+          sudo freshclam
+      - uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
+        with:
+          name: kiem-file-goc
+          path: ${{ runner.temp }}/in
+      - name: Kiểm file
+        run: |
+          export CHECK_ERROR_FILE="$RUNNER_TEMP/loi/loi-scan.txt"
+          node trusted/scripts/upload/check.mjs scan --item "$RUNNER_TEMP/in/item.json" \
+            --dir "$RUNNER_TEMP/in/file" --out "$RUNNER_TEMP/out"
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: kiem-file-ket-qua
+          path: ${{ runner.temp }}/out/
+          if-no-files-found: error
+          retention-days: 1
+      - if: failure()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: loi-scan
+          path: ${{ runner.temp }}/loi/
+          if-no-files-found: ignore
+          retention-days: 1
+
+  apply:
+    needs: [gate, scan]
+    runs-on: ubuntu-latest
+    # Push dùng token App, nên github.token chỉ cần đọc repo, comment và đóng PR.
+    permissions:
+      contents: read
+      pull-requests: write
+    outputs:
+      virus: ${{ steps.apply.outputs.virus }}
+    env:
+      CHECK_ERROR_FILE: ${{ github.workspace }}/loi/loi-apply.txt
+      R2_BUCKET: ${{ vars.R2_BUCKET }}
+      AWS_DEFAULT_REGION: auto
+      AWS_REQUEST_CHECKSUM_CALCULATION: when_required
+      AWS_RESPONSE_CHECKSUM_VALIDATION: when_required
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: main
+          path: trusted
+          persist-credentials: false
+      - name: Checkout dữ liệu của PR (không chạy mã trong này)
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          path: pr
+          persist-credentials: false
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: 24
+      - uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
+        with:
+          name: kiem-file-ket-qua
+          path: ${{ runner.temp }}/res
+
+      - name: Ghi kết quả vào mục tài liệu
+        id: apply
+        env:
+          GH_TOKEN: ${{ github.token }}
+          ITEM: ${{ needs.gate.outputs.item }}
+        run: >-
+          node trusted/scripts/upload/check.mjs apply --item "pr/$ITEM" --result "$RUNNER_TEMP/res/result.json"
+          --clean-dir "$RUNNER_TEMP/res/clean" --repo "$REPO" --report "$RUNNER_TEMP/report.md"
+          --output-file "$GITHUB_OUTPUT"
+
+      - name: Comment kết quả
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: node trusted/scripts/upload/check.mjs comment --repo "$REPO" --pr "$PR" --body-file "$RUNNER_TEMP/report.md"
+
+      - name: Có virus thì đóng PR và xóa file trong kho
+        # Chạy cả khi bước comment lỗi: PR có virus vẫn phải đóng và kho phải sạch.
+        if: always() && steps.apply.outputs.virus != ''
+        env:
+          GH_TOKEN: ${{ github.token }}
+          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          CODE: ${{ needs.gate.outputs.code }}
+          SHA: ${{ needs.gate.outputs.sha256 }}
+        run: |
+          gh pr close "$PR" --repo "$REPO"
+          endpoint="https://${R2_ACCOUNT_ID}.r2.cloudflarestorage.com"
+          aws s3 rm "s3://$R2_BUCKET/pending/$CODE/" --recursive --endpoint-url "$endpoint" --only-show-errors
+          aws s3 rm "s3://$R2_BUCKET/clean/$CODE/" --recursive --endpoint-url "$endpoint" --only-show-errors
+          aws s3 rm "s3://$R2_BUCKET/sha/$SHA" --endpoint-url "$endpoint" --only-show-errors
+
+      - name: Đưa bản đã làm sạch về kho cách ly
+        if: steps.apply.outputs.virus == ''
+        env:
+          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          CLEAN: ${{ steps.apply.outputs.clean }}
+          QUARANTINE: ${{ steps.apply.outputs.quarantine }}
+        run: >-
+          aws s3 cp "$CLEAN" "s3://$R2_BUCKET/$QUARANTINE"
+          --endpoint-url "https://${R2_ACCOUNT_ID}.r2.cloudflarestorage.com" --only-show-errors
+
+      # Kiểm không qua thì lý do (chỉ dòng LỖI) vào loi-apply để comment nêu rõ.
+      - name: Dựng lại file sinh ra trong nhánh PR
+        if: steps.apply.outputs.virus == ''
+        run: node trusted/scripts/upload/check.mjs rebuild --root pr
+
+      - name: Tạo token của GitHub App
+        if: steps.apply.outputs.virus == ''
+        id: app
+        uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1 # v3.2.0
+        with:
+          # Bản này nhận client-id (app-id đã cũ). Secret chứa Client ID của App.
+          client-id: ${{ secrets.GH_APP_CLIENT_ID }}
+          private-key: ${{ secrets.GH_APP_PRIVATE_KEY }}
+          permission-contents: write
+
+      # Chỉ commit mục tài liệu và file sinh ra của môn đó, push bằng token của App.
+      - name: Commit link Release vào nhánh PR
+        if: steps.apply.outputs.virus == ''
+        working-directory: pr
+        env:
+          GH_TOKEN: ${{ github.token }}
+          APP_TOKEN: ${{ steps.app.outputs.token }}
+          APP_SLUG: ${{ steps.app.outputs.app-slug }}
+          CODE: ${{ needs.gate.outputs.code }}
+          ITEM: ${{ needs.gate.outputs.item }}
+          COURSE: ${{ needs.gate.outputs.course }}
+        run: bash ../trusted/scripts/upload/commit-pr.sh
+      - if: failure()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: loi-apply
+          path: ${{ github.workspace }}/loi/
+          if-no-files-found: ignore
+          retention-days: 1
+
+  # Sách tham khảo không file: không có gì để tải hay quét, không đụng R2, không có khóa R2.
+  apply-sach:
+    needs: gate
+    if: needs.gate.outputs.run == 'true' && needs.gate.outputs.light == 'true'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+    env:
+      CHECK_ERROR_FILE: ${{ github.workspace }}/loi/loi-sach.txt
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: main
+          path: trusted
+          persist-credentials: false
+      - name: Checkout dữ liệu của PR (không chạy mã trong này)
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          path: pr
+          persist-credentials: false
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: 24
+      - name: Dựng lại file sinh ra trong nhánh PR
+        run: node trusted/scripts/upload/check.mjs rebuild --root pr
+      - name: Tạo token của GitHub App
+        id: app
+        uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1 # v3.2.0
+        with:
+          client-id: ${{ secrets.GH_APP_CLIENT_ID }}
+          private-key: ${{ secrets.GH_APP_PRIVATE_KEY }}
+          permission-contents: write
+      - name: Commit file sinh ra vào nhánh PR
+        working-directory: pr
+        env:
+          GH_TOKEN: ${{ github.token }}
+          APP_TOKEN: ${{ steps.app.outputs.token }}
+          APP_SLUG: ${{ steps.app.outputs.app-slug }}
+          CODE: ${{ needs.gate.outputs.code }}
+          ITEM: ${{ needs.gate.outputs.item }}
+          COURSE: ${{ needs.gate.outputs.course }}
+        run: bash ../trusted/scripts/upload/commit-pr.sh
+      - name: Comment kết quả
+        env:
+          GH_TOKEN: ${{ github.token }}
+          CODE: ${{ needs.gate.outputs.code }}
+        run: |
+          node trusted/scripts/upload/check.mjs book-report --code "$CODE" > "$RUNNER_TEMP/report.md"
+          node trusted/scripts/upload/check.mjs comment --repo "$REPO" --pr "$PR" --body-file "$RUNNER_TEMP/report.md"
+      - if: failure()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: loi-sach
+          path: ${{ github.workspace }}/loi/
+          if-no-files-found: ignore
+          retention-days: 1
+
+  # Lỗi sau khi đã báo có virus thì giữ nguyên comment báo virus.
+  report-failure:
+    needs: [gate, fetch, scan, apply, apply-sach]
+    if: always() && contains(needs.*.result, 'failure') && needs.apply.outputs.virus == ''
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: main
+          path: trusted
+          persist-credentials: false
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: 24
+      - uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
+        continue-on-error: true
+        with:
+          pattern: loi-*
+          merge-multiple: true
+          path: ${{ runner.temp }}/loi
+      - name: Báo không kiểm được
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          node trusted/scripts/upload/check.mjs failure --run-url "$RUN_URL" --reason-dir "$RUNNER_TEMP/loi" > "$RUNNER_TEMP/failure.md"
+          node trusted/scripts/upload/check.mjs comment --repo "$REPO" --pr "$PR" --body-file "$RUNNER_TEMP/failure.md"
