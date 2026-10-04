@@ -22,7 +22,7 @@
           "size": 120000,
           "sha256": "1111111111111111111111111111111111111111111111111111111111111111",
           "urls": [
-            "https://github.com/bk-study-library/bk-study-library/releases/download/files-EE1009/prelab-2.pdf"
+            "https://github.com/bk-study-library/library/releases/download/files-EE1009/prelab-2.pdf"
           ]
         }
       ]
@@ -47,8 +47,8 @@
           "size": 82,
           "sha256": "48d99f80b7d4df1cbe9be9cf80651255170eddc91ed973193c1c5ea0ba4f932d",
           "urls": [
-            "https://bk-study-library.github.io/bk-study-library/files/EE1009/tom-tat-c1.md",
-            "https://raw.githubusercontent.com/bk-study-library/bk-study-library/main/courses/EE1009/files/tom-tat-c1.md"
+            "https://bk-study-library.github.io/library/files/EE1009/tom-tat-c1.md",
+            "https://raw.githubusercontent.com/bk-study-library/library/main/courses/EE1009/files/tom-tat-c1.md"
           ]
         }
       ]

@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 // Sinh trang web tĩnh (GitHub Pages) từ catalog/ và courses/ vào site/.
 //
-//   node scripts/build-site.mjs [--root DIR] [--out site] [--base /bk-study-library/]
+//   node scripts/build-site.mjs [--root DIR] [--out site] [--base /library/]
 //
 // Mọi link trong trang là link tương đối, nên trang chạy được ở bất kỳ đường dẫn nào.
 // Riêng 404.html dùng --base vì GitHub Pages trả trang này cho mọi đường dẫn sai.
@@ -239,7 +239,7 @@ function renderItem(t, it) {
   return `<li class="item${it.removed ? ' is-removed' : ''}"><h4>${esc(it.title)} ${badges}</h4>${it.description ? `<p>${esc(it.description)}</p>` : ''}<p class="meta">${esc(meta.join(', '))}. ${esc(authors)}</p>${note}${actions}</li>`;
 }
 
-export function buildSite({ root = TOOL_ROOT, out = path.join(TOOL_ROOT, 'site'), base = '/bk-study-library/' } = {}) {
+export function buildSite({ root = TOOL_ROOT, out = path.join(TOOL_ROOT, 'site'), base = '/library/' } = {}) {
   const repo = loadRepo(root);
   if (repo.errors.length) {
     throw new Error(`Danh mục còn ${repo.errors.length} lỗi; chạy "npm run validate" trước.`);

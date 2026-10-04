@@ -8,7 +8,7 @@ import { buildSite } from '../scripts/build-site.mjs';
 import { FIXTURES, copyFixture, editJson } from './helpers.mjs';
 
 const out = fs.mkdtempSync(path.join(os.tmpdir(), 'bk-lib-site-'));
-const result = buildSite({ root: path.join(FIXTURES, 'valid'), out, base: '/bk-study-library/' });
+const result = buildSite({ root: path.join(FIXTURES, 'valid'), out, base: '/library/' });
 const read = (p) => fs.readFileSync(path.join(out, p), 'utf8');
 
 function allHtml(dir = out, acc = []) {
