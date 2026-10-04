@@ -1,0 +1,22 @@
+{
+  "$schema": "../../../schema/item.schema.json",
+  "id": "thu-nghiem-3-ghi-chu-dao-ham-co-metadata",
+  "course": "MT1005",
+  "type": "notes",
+  "title": "Thu nghiem 3: ghi chu dao ham co metadata",
+  "lang": "vi",
+  "license": "CC-BY-SA-4.0",
+  "origin": "self-made",
+  "added": "2026-10-04",
+  "removed": false,
+  "files": [
+    {
+      "name": "MT1005_notes_thu-nghiem-3-ghi-chu-dao-ham-co-metadata.pdf",
+      "size": 812,
+      "sha256": "61f03a0e55df5b399dd8c10d565a19d11e17c8f5b31f7f707a8f9cf400ca3cef",
+      "mime": "application/pdf",
+      "quarantine": "pending/5M6SWap8p3/MT1005_notes_thu-nghiem-3-ghi-chu-dao-ham-co-metadata.pdf",
+      "uploadSha256": "61f03a0e55df5b399dd8c10d565a19d11e17c8f5b31f7f707a8f9cf400ca3cef"
+    }
+  ]
+}
