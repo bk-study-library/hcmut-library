@@ -14,7 +14,7 @@ export const S = {
     homeIntro:
       'Tóm tắt, ghi chú, mẫu prelab, gói quiz do sinh viên tự soạn, cùng link tới tài liệu mở trên mạng. Mọi thứ xếp theo mã môn, đọc được ngay trên trình duyệt, không cần cài app.',
     homeRules:
-      'Thư viện chỉ nhận tài liệu bạn tự soạn và link tới nguồn công khai. Không đăng slide của giảng viên hay đề thi khi chưa được phép.',
+      'Thư viện nhận mọi tài liệu học tập sinh viên muốn chia sẻ. Chỉ không đăng file sách có bản quyền; sách thì ghi tên.',
     searchLabel: 'Tìm môn theo mã hoặc tên',
     searchPlaceholder: 'Ví dụ: MT1005, giai tich, mach dien',
     searchHint: 'Gõ không dấu cũng được. Tìm cả mã môn cũ.',
@@ -117,7 +117,7 @@ export const S = {
     homeIntro:
       'Summaries, notes, prelab templates and quiz packs written by students, plus links to open resources on the web. Everything is sorted by course code and works in the browser, with no app to install.',
     homeRules:
-      'The library accepts only material you wrote yourself and links to public sources. Lecturer slides and exam papers are not accepted without permission.',
+      'The library accepts any study material students want to share. Only copyrighted book files are not posted; books are listed by title.',
     searchLabel: 'Search courses by code or name',
     searchPlaceholder: 'For example: MT1005, giai tich, circuits',
     searchHint: 'Vietnamese without diacritics works too. Old course codes are included.',

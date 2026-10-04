@@ -23,7 +23,7 @@ body:
         - Vi phạm bản quyền của tôi / It infringes my copyright
         - Có thông tin cá nhân của tôi / It contains my personal information
         - Tôi là người gửi, muốn rút lại / I sent it and want to withdraw it
-        - Sai quy định (bài còn trong hạn chấm, đề chưa công bố...) / It breaks the rules (still being graded, unpublished exam...)
+        - Là file sách có bản quyền / It is a copyrighted book file
         - Khác / Other
     validations: { required: true }
   - type: textarea

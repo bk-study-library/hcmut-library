@@ -25,5 +25,5 @@ body:
     attributes:
       label: Cam kết / Commitment
       options:
-        - label: Tôi đã đọc docs/review.md và sẽ không duyệt slide, đề thi của giảng viên khi chưa được phép. / I read docs/review.md and won't approve lecturer slides or exams without permission.
+        - label: Tôi đã đọc docs/review.md và sẽ không duyệt file sách có bản quyền. / I read docs/review.md and won't approve copyrighted book files.
           required: true

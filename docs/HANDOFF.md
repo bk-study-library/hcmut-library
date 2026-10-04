@@ -17,7 +17,7 @@ Khung repo dựng bởi phiên BK Study Desk, dừng giữa chừng để chuy�
 
 ## Nguyên tắc đã chốt
 - Web là chính (GitHub Pages), app BK Study Desk chỉ đọc `index.json`.
-- Chỉ nhận nội dung sinh viên tự soạn (CC BY-SA 4.0) và link tới tài liệu công khai; không slide/đề của giảng viên khi chưa xin phép; không lấy từ Scribd/Studocu.
+- Nhận mọi tài liệu học tập sinh viên gửi; chỉ không nhận file sách có bản quyền (sách ghi tên bằng loại book-ref).
 - ID môn cố định (mã môn lúc tạo), đổi tên thêm alias, bỏ môn thì `retired`, có `replacedBy`.
 - File lớn không để trong git (GitHub Releases); duyệt qua PR, CODEOWNERS @xeroz369.
 - Ý tưởng và nghiên cứu: xem `docs/ideas/thu-vien-tai-lieu.md` trong repo BK Study Desk private.

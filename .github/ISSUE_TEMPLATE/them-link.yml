@@ -1,14 +1,14 @@
 name: Thêm link / Add a link
-description: Link tới tài liệu công khai, hợp pháp (giáo trình mở, video, trang của khoa) / A link to a public, legal resource (open textbook, video, faculty page)
+description: Link tới tài liệu học tập (giáo trình mở, video, trang của khoa, thư mục tài liệu) / A link to study material (open textbook, video, faculty page, shared folder)
 title: "[Link] "
 labels: [link, cần duyệt]
 body:
   - type: markdown
     attributes:
       value: |
-        Chỉ thêm link tới nguồn **công khai và hợp pháp**. Không thêm link tới bản chép trên Scribd, Studocu, hay thư mục Google Drive cá nhân có slide, đề của giảng viên.
+        Thêm link tới tài liệu học tập. Không thêm link tới file sách có bản quyền.
 
-        Only add links to **public, legal** sources. Don't add links to copies on Scribd or Studocu, or to personal Google Drive folders with lecturer slides or exams.
+        Add links to study material. Don't link to copyrighted book files.
   - type: input
     id: course
     attributes:

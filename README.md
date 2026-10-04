@@ -11,7 +11,7 @@ Thư viện tài liệu học tập do sinh viên Bách Khoa TP.HCM (HCMUT) tự
 ## Mục đích
 
 - Mỗi môn có một trang: thông tin môn, tài liệu sinh viên tự soạn, link tới tài liệu mở, mẹo học.
-- Gửi bài dễ: điền form trên GitHub và đính kèm file, không cần biết Git.
+- Gửi bài dễ: điền form trên trang Gửi tài liệu, không cần tài khoản GitHub.
 - Bài nào cũng có người duyệt trước khi lên thư viện.
 - Dữ liệu mở: `index.json` cho app và công cụ khác đọc.
 
@@ -19,13 +19,10 @@ Thư viện tài liệu học tập do sinh viên Bách Khoa TP.HCM (HCMUT) tự
 
 | Được đăng | Không đăng |
 |---|---|
-| Tóm tắt, ghi chú, bảng công thức, lời giải **bạn tự soạn** | Slide, giáo trình, đề thi, đáp án của giảng viên hay của trường khi chưa có phép |
-| Mẫu prelab: khung báo cáo, câu hỏi chuẩn bị, không có số liệu đã chấm | File chép từ Scribd, Studocu, Course Hero hay trang tương tự |
-| Prelab, báo cáo tham khảo **sau khi đã hết hạn nộp và hạn chấm**, ghi rõ là bản tham khảo | Bài còn trong hạn nộp hoặc hạn chấm |
-| Gói quiz Study Pack v1 | Bài có MSSV, họ tên, chữ ký, email, số điện thoại, ảnh mặt người |
-| Link tới tài liệu công khai, hợp pháp (OpenStax, MIT OpenCourseWare, trang khoa...) | File chạy được, file trên 20 MB |
+| Mọi tài liệu học tập bạn muốn chia sẻ: tóm tắt, ghi chú, lời giải, slide, đề thi, đáp án, báo cáo, gói quiz Study Pack v1 | File sách có bản quyền (sách thương mại, sách của nhà xuất bản): chỉ ghi tên sách bằng loại "Sách tham khảo" |
+| Link tới tài liệu khác (OpenStax, MIT OpenCourseWare, trang khoa...) | File chạy được, file trên 20 MB |
 
-Lý do: Luật Sở hữu trí tuệ chỉ cho tự sao một bản để học, không cho phân phối lại bài giảng; thư viện vì vậy chỉ nhận nội dung do sinh viên tự làm và link tới nguồn công khai. Quy định đầy đủ: [CONTRIBUTING.md](CONTRIBUTING.md). Gỡ tài liệu: [TAKEDOWN.md](TAKEDOWN.md).
+Máy chỉ cảnh báo khi thấy MSSV, email, số điện thoại trong file; người duyệt quyết. Quy định đầy đủ: [CONTRIBUTING.md](CONTRIBUTING.md). Gỡ tài liệu: [TAKEDOWN.md](TAKEDOWN.md).
 
 ## Đóng góp
 
@@ -100,7 +97,7 @@ Thư viện và các script không đăng nhập, không đọc, không ghi vào
 
 ## Đối tác
 
-Các nhóm đã có chỉ mục link (ví dụ HCMUT Courseware) có thể góp chỉ mục vào đây, được ghi công trên từng mục. Xem [docs/partners.md](docs/partners.md).
+Các nhóm đã có chỉ mục link có thể góp chỉ mục vào đây, được ghi công trên từng mục. Xem [docs/partners.md](docs/partners.md).
 
 ## Giấy phép
 

@@ -6,10 +6,10 @@ body:
   - type: markdown
     attributes:
       value: |
-        Chỉ gửi tài liệu **bạn tự soạn**. Không gửi slide, đề thi, đáp án của giảng viên hay của trường, không gửi file chép từ Scribd, Studocu hay trang tương tự. Quy định đầy đủ: [CONTRIBUTING.md](../blob/main/CONTRIBUTING.md).
+        Gửi được mọi tài liệu học tập, trừ file sách có bản quyền (sách chỉ ghi tên). Cách dễ nhất là trang Gửi tài liệu trên web, không cần tài khoản GitHub. Quy định đầy đủ: [CONTRIBUTING.md](../blob/main/CONTRIBUTING.md).
         Issue là **công khai**: đừng ghi MSSV, email, số điện thoại ở đây.
 
-        Only send material **you wrote yourself**. Don't send lecturer or university slides, exams or answer keys, or files copied from Scribd, Studocu or similar sites. Full rules: [CONTRIBUTING.md](../blob/main/docs/en/CONTRIBUTING.md).
+        Any study material is welcome except copyrighted book files (list books by title only). The easiest way is the Gửi tài liệu page on the website, no GitHub account needed. Full rules: [CONTRIBUTING.md](../blob/main/docs/en/CONTRIBUTING.md).
         Issues are **public**: don't write student IDs, emails or phone numbers here.
   - type: input
     id: course
