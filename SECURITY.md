@@ -11,7 +11,7 @@ Nên ghi: phần bị ảnh hưởng, cách tái hiện, mức ảnh hưởng b�
 
 ## Phạm vi
 
-- Cloudflare Worker nhận bài gửi (`worker/`): kiểm form, Turnstile, giới hạn số lần gửi, kho cách ly R2.
+- Cloudflare Worker nhận bài gửi (`worker/`): kiểm form, Turnstile, giới hạn số lần gửi, bucket quarantine trên R2.
 - Bot GitHub App và các workflow (`.github/workflows/`): kiểm file, phát hành lên Release, dọn kho, gỡ file.
 - Trang web tĩnh (`site-src/`, `scripts/build-site.mjs`) và dữ liệu công khai `v1/`.
 
@@ -19,6 +19,6 @@ Ngoài phạm vi: lỗ hổng của GitHub, Cloudflare hay trình duyệt; tấn
 
 ## Sau khi báo
 
-Người duy trì sẽ xác nhận đã nhận, cùng bạn đánh giá mức ảnh hưởng, sửa trong nhánh riêng rồi mới công bố. Đây là dự án sinh viên do một người duy trì, nên thời gian trả lời có thể mất vài ngày. Bạn được ghi công trong ghi chú sửa lỗi nếu muốn.
+Người duy trì sẽ xác nhận đã nhận, cùng bạn đánh giá mức ảnh hưởng, sửa trong branch riêng rồi mới công bố. Đây là dự án sinh viên do một người duy trì, nên thời gian trả lời có thể mất vài ngày. Bạn được ghi công trong ghi chú sửa lỗi nếu muốn.
 
 Xin đừng thử tấn công trên dữ liệu thật của người khác, và đừng gửi bài thử quá giới hạn số lần gửi.

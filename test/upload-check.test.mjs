@@ -126,10 +126,10 @@ test('applyCheck giữ tên khi Release có file cùng tên cùng sha256', () =>
   assert.equal(out.files[0].url, releaseAssetUrl(REPO, 'files-HK251', NAME));
 });
 
-test('quarantineInfo đọc mã bài, khóa và kiểm nhánh', () => {
+test('quarantineInfo đọc mã bài, khóa và kiểm branch', () => {
   const info = quarantineInfo(item, 'upload/abcdEF1234');
   assert.deepEqual(info, { code: 'abcdEF1234', key: `pending/abcdEF1234/${NAME}`, name: NAME, sha256: OLD_SHA });
-  assert.throws(() => quarantineInfo(item, 'upload/zzzzzzzzzz'), /nhánh/);
+  assert.throws(() => quarantineInfo(item, 'upload/zzzzzzzzzz'), /branch/);
   assert.throws(() => quarantineInfo({ ...item, files: [{ ...item.files[0], quarantine: '../x' }] }, 'upload/abcdEF1234'));
   assert.throws(() => quarantineInfo({ ...item, files: [] }, 'upload/abcdEF1234'));
   assert.throws(() => quarantineInfo({ ...item, files: [item.files[0], item.files[0]] }, 'upload/abcdEF1234'));
@@ -140,7 +140,7 @@ test('quarantineInfo đọc mã bài, khóa và kiểm nhánh', () => {
   }
 });
 
-test('pickItemFile cần đúng một mục tài liệu, chỉ thêm file sinh ra của môn đó', () => {
+test('pickItemFile cần đúng một item, chỉ thêm file sinh ra của môn đó', () => {
   const one = { filename: 'courses/MT1005/items/tom-tat.json', status: 'added' };
   const generated = ['index.json', 'index.min.json', 'worker-catalog.json', 'v1/courses/MT1005.json', 'v1/index.json', 'courses/MT1005/README.md']
     .map((filename) => ({ filename, status: 'modified' }));
@@ -238,14 +238,14 @@ const book = {
   origin: 'self-made', added: '2026-10-03', removed: false, book: { title: 'Giải tích 1', authors: ['A'] },
 };
 
-test('locateInfo: sách tham khảo không file đi đường nhẹ, mã bài lấy từ nhánh', () => {
+test('locateInfo: sách tham khảo không file đi đường nhẹ, mã bài lấy từ branch', () => {
   assert.deepEqual(locateInfo(book, 'upload/abcdEF1234'), { light: 'true', code: 'abcdEF1234', key: '', name: '', sha256: '' });
   assert.deepEqual(locateInfo({ ...book, files: [] }, 'upload/abcdEF1234').light, 'true');
-  assert.throws(() => locateInfo(book, 'upload/x'), /Nhánh/);
-  assert.throws(() => locateInfo(book, undefined), /Nhánh/);
+  assert.throws(() => locateInfo(book, 'upload/x'), /Branch/);
+  assert.throws(() => locateInfo(book, undefined), /Branch/);
 });
 
-test('locateInfo: mục có file vẫn cần đúng một file trong kho cách ly', () => {
+test('locateInfo: mục có file vẫn cần đúng một file trong bucket quarantine', () => {
   assert.deepEqual(locateInfo(item, 'upload/abcdEF1234'), {
     light: 'false', code: 'abcdEF1234', key: `pending/abcdEF1234/${NAME}`, name: NAME, sha256: OLD_SHA,
   });

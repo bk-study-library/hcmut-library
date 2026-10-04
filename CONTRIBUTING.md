@@ -26,7 +26,7 @@ Một số điều cần nhớ:
 ### 1. Gửi file qua trang web (khuyên dùng, không cần tài khoản GitHub)
 
 1. Mở [Gửi tài liệu](https://bk-study-library.github.io/hcmut-library/gui-tai-lieu/), hoặc bấm **Gửi tài liệu** trên trang môn để form chọn sẵn môn.
-2. Tìm môn theo tên (mã có thể đổi qua các khóa). Môn có nhiều mã cùng tên (ví dụ Đồ án tốt nghiệp) hiện thành một dòng; bấm vào để chọn đúng mã theo ngành hoặc khóa. Chọn loại tài liệu, nhập tiêu đề, chọn file. File .zip chỉ nhận cho loại Gói quiz; loại khác thì gửi từng file, hoặc gộp thành một file PDF.
+2. Tìm môn theo tên (mã có thể đổi qua các khóa). Môn có nhiều mã cùng tên (ví dụ Đồ án tốt nghiệp) hiện thành một dòng; bấm vào để chọn đúng mã theo ngành hoặc khóa. Chọn loại tài liệu, nhập tiêu đề, chọn file. File .zip chỉ nhận cho loại Gói quiz; loại khác thì gửi từng file, hoặc gộp thành một file PDF. Có nhiều file của cùng môn (ví dụ cả bộ slide của giảng viên) thì chọn tất cả một lần, tối đa 10 file và tổng 50 MB: mỗi file có tiêu đề (gợi ý từ tên file) và loại riêng, người duyệt xem cả đợt một lần và có thể duyệt từng file.
 3. Chọn giấy phép, đánh dấu ba ô cam kết, qua bước xác minh Turnstile của Cloudflare.
 4. Bấm **Gửi tài liệu**. Trang hiện mã bài. Hãy lưu mã này để hỏi về bài của bạn.
 
@@ -35,10 +35,10 @@ Không tìm thấy môn: form gợi ý các môn có mã gần (cùng tiền t�
 Điều gì xảy ra tiếp theo:
 
 1. Worker của thư viện kiểm lại form (môn, loại, đuôi file, dung lượng, nội dung file khớp đuôi, thông tin cá nhân trong các ô chữ), rồi cất file vào kho riêng, không công khai.
-2. Một bot mở Pull Request mang nhãn `tai-lieu-moi`, nhánh `upload/<mã bài>`. Người mở PR là bot, không phải bạn. Tiêu đề PR chỉ có mã bài và mã môn; chữ bạn nhập nằm trong file mục tài liệu của PR, **công khai ngay** với ai mở PR, kể cả trước khi duyệt (xem [PRIVACY.md](PRIVACY.md)).
-3. Workflow `kiem-file` quét virus, xóa siêu dữ liệu (PDF, ảnh, file Office), cảnh báo thông tin cá nhân, JavaScript trong PDF, macro trong Office, rồi ghi link Release vào PR. Có virus thì PR bị đóng. Máy không kết luận được thì PR có nhãn `can-xem-tay`.
+2. Một bot mở Pull Request mang label `tai-lieu-moi`, branch `upload/<mã bài>`. Người mở PR là bot, không phải bạn. Tiêu đề PR chỉ có mã bài và mã môn; chữ bạn nhập nằm trong file item của PR, **công khai ngay** với ai mở PR, kể cả trước khi duyệt (xem [PRIVACY.md](PRIVACY.md)).
+3. Workflow `kiem-file` quét virus, xóa metadata (PDF, ảnh, file Office), cảnh báo thông tin cá nhân, JavaScript trong PDF, macro trong Office, rồi ghi link Release vào PR. Có virus thì PR bị đóng. Máy không kết luận được thì PR có label `can-xem-tay`.
 4. Người duyệt đọc và merge.
-5. Workflow `phat-hanh-file` đưa file lên GitHub Release `files-HKxxx` (pre-release) và xóa file trong kho riêng. PR bị đóng mà không merge thì `don-kho` xóa file và nhánh.
+5. Workflow `phat-hanh-file` đưa file lên GitHub Release `files-HKxxx` (pre-release) và xóa file trong kho riêng. PR bị đóng mà không merge thì `don-kho` xóa file và branch.
 
 Bạn nhập tên hiển thị thì tên đó hiện công khai cùng bài; bỏ trống thì bài hiện là Ẩn danh. Chi tiết dữ liệu: [PRIVACY.md](PRIVACY.md).
 
@@ -50,7 +50,7 @@ Chỉ có link, không có file: mở form [Thêm link](https://github.com/bk-st
 
 1. Fork repo. Thêm `courses/<ID>/items/<id>.json`. Nếu tài liệu là file `.md` nhỏ (dưới 1 MB), đặt nó ở `courses/<ID>/files/<tên>.md` và ghi `name`, `size`, `sha256`, `path` trong mục. Mẫu: `courses/MT1005/items/bang-cong-thuc-giai-tich-2.json`.
 2. Trong git chỉ có `README.md`, `items/*.json` và `files/*.md` của từng môn. File khác (PDF, .docx, ảnh, .zip) gửi qua cách 1.
-3. Chạy `npm test` rồi `npm run build`. Commit cả file sinh ra (`index.json`, `index.min.json`, `worker-catalog.json`, `v1/`, README môn).
+3. Chạy `npm test` rồi `npm run build`. Commit cả generated file (`index.json`, `index.min.json`, `worker-catalog.json`, `v1/`, README môn).
 4. Mở Pull Request và đánh dấu danh sách kiểm trong mẫu PR.
 
 ## Sửa danh mục môn
@@ -93,20 +93,20 @@ Người duyệt là sinh viên đã học qua môn, làm tình nguyện. Danh s
 
 ### Danh sách kiểm của người duyệt
 
-- [ ] PR có dòng **Môn mới: <mã>** (bài thêm `catalog/courses/<mã>.json`): mở trang môn trên Sổ tay HCMUT (link trong PR và trang xem bài), kiểm mã, tên, khoa. Sai thì sửa file môn trong PR; trùng môn đã có (ví dụ gõ EE5430 trong khi môn là EE5429) thì đóng PR và nhờ người gửi chọn môn đó. Đã xác nhận thì thay `note` chờ duyệt bằng nguồn đã kiểm trước khi gộp.
+- [ ] PR có dòng **Môn mới: <mã>** (bài thêm `catalog/courses/<mã>.json`): mở trang môn trên Sổ tay HCMUT (link trong PR và trang xem bài), kiểm mã, tên, khoa. Sai thì sửa file môn trong PR; trùng môn đã có (ví dụ gõ EE5430 trong khi môn là EE5429) thì đóng PR và nhờ người gửi chọn môn đó. Đã xác nhận thì thay `note` chờ duyệt bằng nguồn đã kiểm trước khi merge.
 - [ ] Không phải file sách có bản quyền. Nếu là sách, đổi sang loại Sách tham khảo và chỉ giữ tên sách.
 - [ ] Không có file chạy được. File .zip chỉ có ở gói quiz: mở ra xem. Máy đã báo mục có mật khẩu, đường dẫn lạ, file nén lồng hay loại lạ.
-- [ ] PR có nhãn `can-xem-tay`: đọc lý do trong comment của `kiem-file` (ClamAV không quét hết, PDF có JavaScript, Office có macro hay liên kết ngoài, .zip lạ) và mở file trên máy có phần mềm diệt virus trước khi quyết định.
+- [ ] PR có label `can-xem-tay`: đọc lý do trong comment của `kiem-file` (ClamAV không quét hết, PDF có JavaScript, Office có macro hay liên kết ngoài, .zip lạ) và mở file trên máy có phần mềm diệt virus trước khi quyết định.
 - [ ] Đọc chữ người gửi trên trang xem bài của người duyệt: không xúc phạm, không nêu tên để chê bai ai, không quảng cáo, không link lạ.
 - [ ] Đọc cảnh báo thông tin cá nhân của máy trong PR (loại thông tin, số trang) và quyết định: bỏ qua, hoặc yêu cầu người gửi xóa rồi gửi lại. Máy chỉ cảnh báo, không chặn.
-- [ ] Báo cáo của `kiem-file`: không có virus, PDF có lớp chữ khi cần, siêu dữ liệu đã được xóa.
+- [ ] Báo cáo của `kiem-file`: không có virus, PDF có lớp chữ khi cần, metadata đã được xóa.
 - [ ] Giấy phép đúng: tự soạn là CC BY-SA 4.0 (hoặc CC BY 4.0, CC0); link ghi giấy phép của nguồn.
 - [ ] Đúng môn, đúng loại, tiêu đề rõ, không quảng cáo, không nhận xét hay chấm điểm giảng viên.
-- [ ] Mục tài liệu hợp lệ: `npm run validate` sạch, đã commit file sinh ra.
+- [ ] Item hợp lệ: `npm run validate` sạch, đã commit generated file.
 
 ### Khi nhiều PR mở cùng lúc
 
-Mỗi PR gửi bài sửa các file sinh ra (`index.json`, `index.min.json`, `worker-catalog.json`, `v1/`, README môn), nên sau khi merge một PR, các PR còn lại sẽ xung đột ở những file này. Với từng PR: bấm **Update branch**, giải xung đột ở file sinh ra bằng cách giữ bên nào cũng được, commit để `kiem-file` dựng lại, đợi CI xanh rồi mới merge. Không sửa tay `courses/<ID>/items/<id>.json` khi giải xung đột. Chi tiết: [docs/cai-dat-luong-tai-len.md](docs/cai-dat-luong-tai-len.md).
+Mỗi PR gửi bài sửa các generated file (`index.json`, `index.min.json`, `worker-catalog.json`, `v1/`, README môn), nên sau khi merge một PR, các PR còn lại sẽ xung đột ở những file này. Với từng PR: bấm **Update branch**, giải xung đột ở generated file bằng cách giữ bên nào cũng được, commit để `kiem-file` dựng lại, đợi CI xanh rồi mới merge. Không sửa tay `courses/<ID>/items/<id>.json` khi giải xung đột. Chi tiết: [docs/cai-dat-luong-tai-len.md](docs/cai-dat-luong-tai-len.md).
 
 ## Công cụ cho người đóng góp bằng Git
 
@@ -115,7 +115,7 @@ Cần Node 22 trở lên. Không có gói npm nào phải cài cho phần chính
 | Lệnh | Làm gì |
 |---|---|
 | `npm test` | chạy test với dữ liệu mẫu trong `test/fixtures/` |
-| `npm run validate` | kiểm toàn bộ; báo lỗi nếu file sinh ra đã cũ |
-| `npm run build` | kiểm rồi ghi lại các file sinh ra |
+| `npm run validate` | kiểm toàn bộ; báo lỗi nếu generated file đã cũ |
+| `npm run build` | kiểm rồi ghi lại các generated file |
 
 Danh sách lệnh đầy đủ: [README.md](README.md).

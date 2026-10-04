@@ -15,7 +15,7 @@ jobs:
     permissions:
       contents: read
     steps:
-      # Cần commit cha (HEAD^1: main trước khi gộp, hoặc commit trước trên main) để so file mục bị xóa.
+      # Cần commit cha (HEAD^1: main trước khi merge, hoặc commit trước trên main) để so file mục bị xóa.
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
@@ -25,7 +25,7 @@ jobs:
           node-version: 24
       - name: Test (validator, importer, site generator)
         run: npm test
-      # Commit đầu của bot trên nhánh upload/ chưa có file sinh ra (bot không chạy build được);
+      # Commit đầu của bot trên branch upload/ chưa có generated file (bot không chạy build được);
       # kiem-file dựng lại rồi commit "kiem-file: ...", lúc đó validate chạy lại đầy đủ.
       # Chỉ commit đó được bỏ qua lỗi file cũ; mọi kiểm tra khác vẫn chạy.
       - name: Commit đầu của bot?

@@ -106,7 +106,7 @@ test('deletedWithRelease: chỉ mục chưa gỡ, bị xóa, có file trên Rele
 test('branchCode: chỉ nhận upload/<mã 10 ký tự>', () => {
   assert.equal(branchCode(`upload/${CODE}`), CODE);
   for (const b of ['main', 'upload/', 'upload/abc', `upload/${CODE}/x`, `upload/${CODE}x`, 'upload/../../main', 'refs/heads/main']) {
-    assert.throws(() => branchCode(b), /Nhánh/);
+    assert.throws(() => branchCode(b), /Branch/);
   }
 });
 
@@ -147,7 +147,7 @@ test('isLightPr: chỉ PR có một mục sách tham khảo không file mới b�
   const files = [{ filename: 'courses/MT1005/items/sach.json', status: 'added' }, { filename: 'index.json', status: 'modified' }];
   const read = (m) => () => m;
   assert.equal(isLightPr(files, read(book), `upload/${CODE}`), true);
-  // Mục có file, PR lạ, nhánh sai hay đọc lỗi thì dọn kho như thường (không ném lỗi).
+  // Mục có file, PR lạ, branch sai hay đọc lỗi thì dọn kho như thường (không ném lỗi).
   assert.equal(isLightPr(files, read(item()), `upload/${CODE}`), false);
   assert.equal(isLightPr([], read(book), `upload/${CODE}`), false);
   assert.equal(isLightPr([...files, { filename: 'scripts/x.mjs', status: 'added' }], read(book), `upload/${CODE}`), false);
@@ -157,7 +157,7 @@ test('isLightPr: chỉ PR có một mục sách tham khảo không file mới b�
 
 const ITEM_REL = 'courses/MT1005/items/tom-tat.json';
 
-test('dispatchTarget: mục do bot tải lên, còn bản sạch trong kho thì ra mã bài và nhánh', () => {
+test('dispatchTarget: mục do bot tải lên, còn bản sạch trong kho thì ra mã bài và branch', () => {
   const seen = [];
   const read = (rel) => {
     seen.push(rel);
@@ -189,19 +189,19 @@ test('dispatchTarget: đường dẫn sai dạng thì không đọc file', () =>
     'catalog/policy.json',
     'courses/MT1005/README.md',
   ]) {
-    assert.throws(() => dispatchTarget(bad, read), /Đường dẫn mục tài liệu không hợp lệ/, JSON.stringify(bad));
+    assert.throws(() => dispatchTarget(bad, read), /Đường dẫn item không hợp lệ/, JSON.stringify(bad));
   }
 });
 
 test('dispatchTarget: file không có, sai chỗ, đã gỡ hay không do bot tải lên thì lỗi', () => {
   assert.throws(() => dispatchTarget(ITEM_REL, () => { throw new Error('ENOENT'); }), /Không đọc được/);
-  assert.throws(() => dispatchTarget(ITEM_REL, () => null), /không phải mục tài liệu/);
+  assert.throws(() => dispatchTarget(ITEM_REL, () => null), /không phải item/);
   assert.throws(() => dispatchTarget(ITEM_REL, () => item({ id: 'khac' })), /không khớp course và id/);
   assert.throws(() => dispatchTarget(ITEM_REL, () => item({ course: 'CO1005' })), /không khớp course và id/);
   assert.throws(() => dispatchTarget(ITEM_REL, () => item({ removed: true })), /đã gỡ/);
-  // Mục do người bảo trì thêm tay: không có khóa trong kho cách ly.
+  // Mục do người bảo trì thêm tay: không có khóa trong bucket quarantine.
   assert.throws(() => dispatchTarget(ITEM_REL, () => item({}, { quarantine: undefined })), /cách ly/);
-  assert.throws(() => dispatchTarget(ITEM_REL, () => item({}, { quarantine: `pending/${CODE}/${NAME}` })), /bản đã làm sạch/);
+  assert.throws(() => dispatchTarget(ITEM_REL, () => item({}, { quarantine: `pending/${CODE}/${NAME}` })), /bản đã sanitize/);
   assert.throws(() => dispatchTarget(ITEM_REL, () => item({ files: [] })), /đúng một file/);
   const book = { id: 'tom-tat', course: 'MT1005', type: 'book-ref', title: 'Sách', removed: false };
   assert.throws(() => dispatchTarget(ITEM_REL, () => book), /đúng một file/);

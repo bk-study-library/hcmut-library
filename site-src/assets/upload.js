@@ -62,13 +62,27 @@
   var subjects = { of: Object.create(null), all: Object.create(null) };
   var timer = null;
 
-  // Chỗ hiện lỗi dựng một lần lúc khởi động; khóa lạ từ server không tra được thì rơi về dòng chung.
+  // Đợt gửi nhiều file: mỗi file một dòng có tiêu đề title-<i> và loại type-<i>; ô Tiêu đề chung bị ẩn.
+  var titleField = document.getElementById('title-field');
+  var batchBox = document.getElementById('batch-box');
+  var batchList = document.getElementById('batch-list');
+  var batchTotal = document.getElementById('batch-total');
+  var batchFiles = cfg.batchFiles || 1;
+  var batchBytes = cfg.batchBytes || cfg.maxBytes;
+
+  // Chỗ hiện lỗi theo thứ tự trên trang; dựng lại khi danh sách file của đợt gửi đổi. Khóa lạ từ server
+  // không tra được thì rơi về dòng chung.
   var errBoxes = Object.create(null);
   var errOrder = [];
-  Array.prototype.forEach.call(form.querySelectorAll('[data-err]'), function (b) {
-    errBoxes[b.getAttribute('data-err')] = b;
-    errOrder.push(b);
-  });
+  function collectErrBoxes() {
+    errBoxes = Object.create(null);
+    errOrder = [];
+    Array.prototype.forEach.call(form.querySelectorAll('[data-err]'), function (b) {
+      errBoxes[b.getAttribute('data-err')] = b;
+      errOrder.push(b);
+    });
+  }
+  collectErrBoxes();
 
   function errBox(key) {
     return errBoxes[key] || errBoxes.form;
@@ -142,9 +156,23 @@
       });
     } else if (!courseId.value) bad('course', msg.course);
     if (!typeSel.value) bad('type', msg.type);
-    if (!form.elements.title.value.trim()) bad('title', msg.title);
+    if (!isBatch() && !form.elements.title.value.trim()) bad('title', msg.title);
     if (isBook()) {
       if (!form.elements['book-title'].value.trim() || !form.elements['book-authors'].value.trim()) bad('book', msg.book);
+    } else if (isBatch()) {
+      var files = chosenFiles();
+      var problem = core.batchProblem(files, batchFiles, batchBytes);
+      if (problem) bad('file', msg[problem]);
+      files.forEach(function (f, i) {
+        var t = form.elements['type-' + i].value;
+        var exts = (t && (cfg.byType || {})[t]) || cfg.extensions;
+        if (!form.elements['title-' + i].value.trim()) bad('title-' + i, msg.title);
+        if (!t) bad('type-' + i, msg.type);
+        if (cfg.extensions.indexOf(extOf(f.name)) < 0) bad('file-' + i, msg.fileExt);
+        else if (exts.indexOf(extOf(f.name)) < 0) bad('file-' + i, msg.fileExtType + ' ' + exts.join(', ') + '.');
+        else if (f.size <= 0) bad('file-' + i, msg.fileEmpty);
+        else if (f.size > cfg.maxBytes) bad('file-' + i, msg.fileSize);
+      });
     } else {
       var file = fileInput.files && fileInput.files[0];
       if (!file) bad('file', msg.file);
@@ -164,7 +192,89 @@
     fileInput.disabled = book;
     bookBox.hidden = !book;
     bookBox.disabled = !book;
-    fileInput.setAttribute('accept', allowedExts().join(','));
+    // Đợt gửi: mỗi file chọn loại riêng, nên ô chọn file nhận mọi đuôi.
+    fileInput.setAttribute('accept', (batchFiles > 1 ? cfg.extensions : allowedExts()).join(','));
+    renderBatch();
+  }
+
+  function chosenFiles() {
+    return fileInput.files ? Array.prototype.slice.call(fileInput.files) : [];
+  }
+
+  function isBatch() {
+    return !isBook() && chosenFiles().length > 1;
+  }
+
+  // Mỗi file một dòng: tên và cỡ, ô tiêu đề (gợi ý từ tên file), ô loại (mặc định là loại chung).
+  // Giữ chữ đã gõ của file đã có khi đổi lựa chọn file.
+  function renderBatch() {
+    var on = isBatch();
+    var prev = Object.create(null);
+    Array.prototype.forEach.call(batchList.children, function (li) {
+      prev[li.getAttribute('data-key')] = { title: li.querySelector('input').value, type: li.querySelector('select').value };
+    });
+    batchList.textContent = '';
+    batchBox.hidden = !on;
+    titleField.hidden = on;
+    titleInput.disabled = on;
+    if (updateField) {
+      if (on) setUpdate(false);
+      updateField.hidden = on || !docs.length;
+    }
+    if (on) {
+      var files = chosenFiles();
+      var total = 0;
+      files.forEach(function (f, i) {
+        total += f.size;
+        var key = f.name + '\u0000' + f.size;
+        var old = prev[key];
+        var li = document.createElement('li');
+        li.setAttribute('data-key', key);
+        var head = document.createElement('p');
+        head.className = 'batch-file';
+        head.textContent = msg.batchFile + ' ' + (i + 1) + '/' + files.length + ': ' + f.name + ' (' + core.formatSize(f.size) + ')';
+        li.appendChild(head);
+        li.appendChild(errLine('file-' + i));
+        var tl = document.createElement('label');
+        tl.htmlFor = 'title-' + i;
+        tl.textContent = msg.batchTitle;
+        var ti = document.createElement('input');
+        ti.type = 'text';
+        ti.id = 'title-' + i;
+        ti.name = 'title-' + i;
+        ti.maxLength = titleInput.maxLength;
+        ti.autocomplete = 'off';
+        ti.value = old ? old.title : core.titleFromName(f.name, titleInput.maxLength > 0 ? titleInput.maxLength : 0);
+        li.appendChild(tl);
+        li.appendChild(ti);
+        li.appendChild(errLine('title-' + i));
+        var yl = document.createElement('label');
+        yl.htmlFor = 'type-' + i;
+        yl.textContent = msg.batchType;
+        var ys = document.createElement('select');
+        ys.id = 'type-' + i;
+        ys.name = 'type-' + i;
+        Array.prototype.forEach.call(typeSel.options, function (o) {
+          if (o.value !== 'book-ref') ys.appendChild(o.cloneNode(true));
+        });
+        // Dòng chưa chọn loại riêng theo loại chung.
+        ys.value = old && old.type ? old.type : typeSel.value;
+        li.appendChild(yl);
+        li.appendChild(ys);
+        li.appendChild(errLine('type-' + i));
+        batchList.appendChild(li);
+      });
+      batchTotal.textContent = files.length + ' ' + msg.batchSum + ' ' + core.formatSize(total) + '. ' + msg.batchLimit;
+    }
+    collectErrBoxes();
+  }
+
+  function errLine(key) {
+    var p = document.createElement('p');
+    p.className = 'err';
+    p.setAttribute('data-err', key);
+    p.setAttribute('role', 'alert');
+    return p;
   }
 
   // Ô môn. Chọn một mã: môn nhiều mã thì ô hiện tên môn, mã gửi đi là exact (gõ đúng mã, link ?course=, gợi ý
@@ -210,7 +320,7 @@
       o.textContent = d.title + ' (' + d.code + ')';
       replacesSel.appendChild(o);
     });
-    updateField.hidden = !docs.length;
+    updateField.hidden = !docs.length || isBatch();
     if (!docs.length) setUpdate(false);
     checkDup();
   }
@@ -463,6 +573,7 @@
     }
   });
   typeSel.addEventListener('change', syncType);
+  fileInput.addEventListener('change', renderBatch);
 
   openNew.addEventListener('click', function () {
     var code = core.looksLikeCode(q.value, nc.codePattern) ? core.normCode(q.value) : '';

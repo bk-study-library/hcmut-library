@@ -2,6 +2,8 @@
   "openTypes": ["lecture-slides", "summary", "notes", "cheatsheet", "quiz-pack", "tips", "link", "exercise-solution", "exam-solution", "exam-past", "prelab-template", "prelab-reference", "lab-report-reference", "project-reference", "book-ref"],
   "note": "Cấu hình chung: loại tài liệu nhận, giới hạn file, đuôi file (types: chỉ nhận cho các loại này), giới hạn khi quét file (scan) và học kỳ. releaseTagOverrides: tag Release thay cho files-<học kỳ> khi tag cũ không dùng lại được (ví dụ từng là immutable release), giá trị là files-<học kỳ> thêm một chữ thường; xem docs/cai-dat-luong-tai-len.md, mục Release.",
   "maxFileBytes": 20971520,
+  "batchMaxFiles": 10,
+  "batchMaxBytes": 52428800,
   "maxMdInGitBytes": 1048576,
   "extensions": {
     ".pdf": { "mime": "application/pdf", "magic": "25504446" },

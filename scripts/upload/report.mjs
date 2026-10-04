@@ -1,7 +1,7 @@
-// Đọc kết quả ClamAV và soạn bình luận báo cáo kiểm file. Chỉ dùng JS chuẩn.
+// Đọc kết quả ClamAV và soạn comment báo cáo kiểm file. Chỉ dùng JS chuẩn.
 
 export const REPORT_MARKER = '<!-- kiem-file -->';
-// Nhãn gắn vào PR khi máy không kết luận được, người duyệt phải xem tay trước khi gộp.
+// Nhãn gắn vào PR khi máy không kết luận được, người duyệt phải xem tay trước khi merge.
 export const MANUAL_LABEL = 'can-xem-tay';
 
 const SIG = /^.*: ([\w.\-/:]+) FOUND\r?$/gm;
@@ -21,14 +21,14 @@ export function parseClamscan(stdout, exitCode) {
   throw new Error(`ClamAV báo lỗi (mã ${exitCode}).`);
 }
 
-// Câu cố định cho từng mã cảnh báo của job scan. manual: cần người duyệt xem tay (gắn nhãn).
+// Câu cố định cho từng mã cảnh báo của job scan. manual: cần người duyệt xem tay (gắn label).
 export const WARNINGS = {
   'pdf-javascript': { manual: true, text: 'PDF có JavaScript. Người duyệt mở xem tay; tài liệu học tập không cần JavaScript, có thể nhờ người gửi xuất lại PDF.' },
   'pdf-launch': { manual: true, text: 'PDF có lệnh mở chương trình khác (Launch). Người duyệt mở xem tay.' },
   'pdf-openaction': { manual: false, text: 'PDF có hành động tự chạy khi mở hoặc khi bấm (OpenAction, AA). Thường chỉ là chọn trang đầu, người duyệt xem qua.' },
   'pdf-embedded': { manual: false, text: 'PDF có file đính kèm bên trong. Người duyệt mở xem file đính kèm là gì.' },
   'office-macro': { manual: true, text: 'File Office có macro (vbaProject.bin). Người duyệt mở xem tay; tài liệu học tập thường không cần macro.' },
-  'office-comments': { manual: false, text: 'File có bình luận hoặc sửa đổi có theo dõi. Tên người viết đã được xóa, nội dung bình luận vẫn còn.' },
+  'office-comments': { manual: false, text: 'File có comment hoặc sửa đổi có theo dõi. Tên người viết đã được xóa, nội dung comment vẫn còn.' },
   'office-external': { manual: true, text: 'File Office trỏ tới tài nguyên bên ngoài (mẫu, đối tượng nhúng, ảnh tải từ mạng). Người duyệt mở xem tay.' },
   'zip-encrypted': { manual: true, text: 'File .zip có mục đặt mật khẩu nên không quét được bên trong. Người duyệt mở xem tay.' },
   'zip-unsafe-path': { manual: true, text: 'File .zip có đường dẫn lạ (tuyệt đối hoặc có ..). Người duyệt mở xem tay.' },
@@ -36,7 +36,7 @@ export const WARNINGS = {
   'zip-nested': { manual: true, text: 'File .zip chứa file nén khác. Người duyệt mở xem tay.' },
   'zip-other-type': { manual: true, text: 'File .zip có file thuộc loại không nhận trong gói quiz (catalog/policy.json, scan.zipAllowedInside). Người duyệt mở xem tay.' },
   'zip-large': { manual: true, text: 'File .zip giải nén ra lớn hơn giới hạn. Người duyệt mở xem tay.' },
-  'zip-images': { manual: false, text: 'Ảnh bên trong file .zip chưa được xóa siêu dữ liệu (vị trí GPS, tên máy). Người duyệt mở xem.' },
+  'zip-images': { manual: false, text: 'Ảnh bên trong file .zip chưa được xóa metadata (vị trí GPS, tên máy). Người duyệt mở xem.' },
 };
 
 // Có cần người duyệt xem tay không: ClamAV không quét được, hoặc có cảnh báo loại manual.
@@ -44,7 +44,7 @@ export function needsManualReview({ unscannable, warnings = [] }) {
   return Boolean(unscannable) || warnings.some((w) => WARNINGS[w]?.manual);
 }
 
-// Số tên siêu dữ liệu đã xóa hiện trong comment; phần còn lại chỉ ghi số lượng.
+// Số tên metadata đã xóa hiện trong comment; phần còn lại chỉ ghi số lượng.
 const METADATA_SHOWN = 40;
 
 // Giữ 2 ký tự đầu và 1 ký tự cuối, che phần giữa; chuỗi ngắn che hết.
@@ -69,17 +69,17 @@ export function renderReport({
   }
 
   if (unscannable) {
-    out.push(`Không quét hết được file: ClamAV báo ${unscannable} (file mã hóa hoặc vượt giới hạn quét). Người duyệt mở xem tay trước khi gộp.`);
+    out.push(`Không quét hết được file: ClamAV báo ${unscannable} (file mã hóa hoặc vượt giới hạn quét). Người duyệt mở xem tay trước khi merge.`);
   } else {
     out.push('Không phát hiện virus.');
   }
   if (needsManualReview({ unscannable, warnings })) {
-    out.push(`Đã gắn nhãn \`${MANUAL_LABEL}\`: máy không kết luận được, người duyệt cần xem tay trước khi gộp.`);
+    out.push(`Đã gắn label \`${MANUAL_LABEL}\`: máy không kết luận được, người duyệt cần xem tay trước khi merge.`);
   }
   if (metadataRemoved.length) {
     const shown = metadataRemoved.slice(0, METADATA_SHOWN);
     const more = metadataRemoved.length - shown.length;
-    out.push(`Đã xóa siêu dữ liệu: ${shown.join(', ')}${more > 0 ? ` và ${more} mục khác` : ''}.`);
+    out.push(`Đã xóa metadata: ${shown.join(', ')}${more > 0 ? ` và ${more} mục khác` : ''}.`);
   }
   for (const w of warnings) if (WARNINGS[w]) out.push(`Cảnh báo: ${WARNINGS[w].text}`);
   if (hasText === false) {
@@ -96,7 +96,7 @@ export function renderReport({
     for (const p of pii) out.push(`- ${p.label}, trang ${p.page}: ${mask(p.match)}`);
   }
   if (reviewUrl) out.push('', `Xem file (người duyệt): ${reviewUrl}`);
-  out.push('', 'Sau khi người duyệt gộp bài, file được đăng tại:', url);
+  out.push('', 'Sau khi người duyệt merge bài, file được đăng tại:', url);
   return out.join('\n') + '\n';
 }
 

@@ -3,12 +3,12 @@
 //
 // - Zip (docx, pptx, xlsx, zip): đọc thư mục trung tâm, ghi lại zip với các phần đã sửa. Phần không
 //   sửa được chép nguyên byte nén nên kết quả ổn định giữa các lần chạy.
-// - Office: xóa siêu dữ liệu docProps (core, app, custom) và tên người viết trong bình luận, sửa đổi
+// - Office: xóa metadata docProps (core, app, custom) và tên người viết trong bình luận, sửa đổi
 //   có theo dõi; báo macro, liên kết ra ngoài.
 // - Zip của gói quiz: báo mục có mật khẩu, đường dẫn lạ, liên kết tượng trưng, file nén lồng, loại lạ,
 //   dung lượng giải nén quá lớn.
 // - PDF: tìm JavaScript, Launch, OpenAction, AA, EmbeddedFiles trong từ điển (ngoài stream).
-// - Ảnh: siêu dữ liệu còn sót sau exiftool.
+// - Ảnh: metadata còn sót sau exiftool.
 
 import zlib from 'node:zlib';
 
@@ -332,9 +332,9 @@ export function splitPdfText(stdout, maxPages) {
 
 // ---------- Ảnh ----------
 
-// Nhóm exiftool mô tả chính file hay công cụ, không phải siêu dữ liệu trong file.
+// Nhóm exiftool mô tả chính file hay công cụ, không phải metadata trong file.
 const NOT_IN_FILE = new Set(['SourceFile', 'ExifTool', 'File', 'System', 'Composite']);
-// Nhóm chỉ chứa siêu dữ liệu: còn thẻ nào là chưa sạch (trừ các thẻ cấu trúc ở EXIF_KEEP).
+// Nhóm chỉ chứa metadata: còn thẻ nào là chưa sạch (trừ các thẻ cấu trúc ở EXIF_KEEP).
 const META_GROUPS = new Set(['EXIF', 'XMP', 'IPTC', 'MakerNotes', 'Photoshop', 'ICC_Profile', 'GPS', 'APP12', 'APP14', 'FlashPix', 'Comment']);
 // Thẻ exiftool giữ lại hoặc tự thêm khi ghi lại hướng ảnh (Orientation): không chứa thông tin người.
 const EXIF_KEEP = new Set(['Orientation', 'XResolution', 'YResolution', 'ResolutionUnit', 'YCbCrPositioning', 'ExifByteOrder', 'ExifVersion', 'ComponentsConfiguration', 'FlashpixVersion', 'ColorSpace', 'ExifImageWidth', 'ExifImageHeight']);

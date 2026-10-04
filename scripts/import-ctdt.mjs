@@ -461,7 +461,7 @@ export function importCtdt(data, outRoot, { date, faculties, log = () => {} }) {
     if (p.note) note = addSentence(note, clean(p.note));
     for (const f of p.qualityFlags || []) note = addSentence(note, clean(f));
     const how = p.semesterSource?.how || '';
-    if (how.startsWith('cq-plan-of-same-major')) note = addSentence(note, 'Học kỳ đề xuất mượn kế hoạch giảng dạy của chương trình tiêu chuẩn cùng ngành nên chỉ gần đúng.');
+    if (how.startsWith('cq-plan-of-same-major')) note = addSentence(note, 'Học kỳ đề xuất mượn kế hoạch giảng dạy của chương trình chính quy cùng ngành nên chỉ gần đúng.');
     if (hasCourses && !how) note = addSentence(note, 'Chưa gán được học kỳ đề xuất cho chương trình này.');
     if ((p.ctdtUrls || []).length > 1) note = addSentence(note, 'Trường công bố CTĐT riêng cho từng chuyên ngành, xem bảng CTĐT của trường.');
     const ctdtUrl = kept.ctdtUrl || pdfUrl(p.ctdtUrl);

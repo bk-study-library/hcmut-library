@@ -1,6 +1,6 @@
 # Quy tắc ứng xử
 
-Thư viện là nơi sinh viên chia sẻ tài liệu và giúp nhau học. Quy tắc này áp dụng cho mọi người gửi bài, duyệt bài, mở issue, bình luận trong repo.
+Thư viện là nơi sinh viên chia sẻ tài liệu và giúp nhau học. Quy tắc này áp dụng cho mọi người gửi bài, duyệt bài, mở issue, comment trong repo.
 
 ## Nên
 
@@ -13,11 +13,11 @@ Thư viện là nơi sinh viên chia sẻ tài liệu và giúp nhau học. Quy 
 
 - Xúc phạm, quấy rối, phân biệt đối xử dưới mọi hình thức.
 - Đăng thông tin cá nhân của người khác (MSSV, số điện thoại, địa chỉ, ảnh) khi họ chưa đồng ý.
-- Tấn công cá nhân giảng viên hay sinh viên trong tài liệu, mô tả hay bình luận.
+- Tấn công cá nhân giảng viên hay sinh viên trong tài liệu, mô tả hay comment.
 - Spam, quảng cáo, gửi bài thử liên tục.
 
 ## Xử lý
 
-Người duy trì có thể sửa hoặc xóa bình luận, đóng issue và PR, gỡ tài liệu, chặn tài khoản vi phạm khỏi repo. Muốn báo một hành vi vi phạm, gửi email tới `bkstudydesk@xerozsoft.com`; nội dung báo cáo được giữ kín.
+Người duy trì có thể sửa hoặc xóa comment, đóng issue và PR, gỡ tài liệu, chặn tài khoản vi phạm khỏi repo. Muốn báo một hành vi vi phạm, gửi email tới `bkstudydesk@xerozsoft.com`; nội dung báo cáo được giữ kín.
 
 Quy tắc này dựa theo tinh thần của [Contributor Covenant](https://www.contributor-covenant.org/), viết gọn cho thư viện.

@@ -52,8 +52,8 @@ const raw = (init, text) =>
   init.headers?.Accept === 'application/vnd.github.raw' ? new Response(text) : json({ encoding: 'none', content: '', sha: 's' });
 
 // fetch giả cho Turnstile và GitHub; fail[tên bước] = mã lỗi để giả lập GitHub hỏng.
-// smallCatalog: nhánh có worker-catalog.json (sinh từ index lúc gọi, nên test sửa index vẫn thấy);
-// false thì giả nhánh cũ chưa có file này, Worker phải đọc index.json.
+// smallCatalog: branch có worker-catalog.json (sinh từ index lúc gọi, nên test sửa index vẫn thấy);
+// false thì giả branch cũ chưa có file này, Worker phải đọc index.json.
 function fakeFetch({ turnstile = true, hostname = 'site.example', fail = {}, smallCatalog = true } = {}) {
   const calls = [];
   let pr = 0;
@@ -166,7 +166,7 @@ async function sha256Hex(bytes) {
 }
 
 describe('POST /submit', () => {
-  it('bài hợp lệ: lưu vào kho cách ly và mở PR', async () => {
+  it('bài hợp lệ: lưu vào bucket quarantine và mở PR', async () => {
     const bytes = pdfBytes();
     const sha = await sha256Hex(bytes);
     const { res, body, fetch } = await run(post(form({ term: 'HK251' }, bytes)));
@@ -230,7 +230,7 @@ describe('POST /submit', () => {
     for (const userText of [DISPLAY, TITLE, SLUG, UPLOAD_NAME, k, 'pending/']) expect(prBody.body).not.toContain(userText);
     expect(prBody.body).toContain(`Xem file (người duyệt): https://up.example/xem-duyet/${body.code}`);
     expect(prBody.body).toContain('hiện ở trang trên');
-    // Commit trên nhánh cũng không có chữ người gửi.
+    // Commit trên branch cũng không có chữ người gửi.
     expect(sent.message).toBe(`feat(courses): thêm tài liệu gửi qua form ${body.code}`);
     const [labels] = fetch.find('POST', '/labels');
     expect(JSON.parse(labels.body)).toEqual({ labels: ['tai-lieu-moi'] });
@@ -252,7 +252,7 @@ describe('POST /submit', () => {
     expect(body.pr).toBe(`https://github.com/${REPO}/pull/1`);
   });
 
-  it('Turnstile chặn: 403, kho rỗng, không gọi GitHub tạo nhánh', async () => {
+  it('Turnstile chặn: 403, kho rỗng, không gọi GitHub tạo branch', async () => {
     const { res, body, fetch } = await run(post(form()), { fetch: fakeFetch({ turnstile: false }) });
     expect(res.status).toBe(403);
     expect(body.ok).toBe(false);
@@ -402,10 +402,10 @@ describe('POST /submit', () => {
     expect((await r2Keys()).some((k) => k.startsWith('dem/'))).toBe(false);
   });
 
-  it('Content-Length 21 MB: 413 mà không đọc body', async () => {
+  it('Content-Length vượt tổng của đợt gửi (51 MB): 413 mà không đọc body', async () => {
     let pulled = 0;
     const stream = new ReadableStream({ pull(c) { pulled += 1; c.enqueue(new Uint8Array(10)); c.close(); } }, { highWaterMark: 0 });
-    const req = post(stream, { 'Content-Type': 'multipart/form-data; boundary=x', 'Content-Length': String(21 * 1024 * 1024) });
+    const req = post(stream, { 'Content-Type': 'multipart/form-data; boundary=x', 'Content-Length': String(51 * 1024 * 1024) });
     const { res, body } = await run(req);
     expect(res.status).toBe(413);
     expect(body.ok).toBe(false);
@@ -413,8 +413,8 @@ describe('POST /submit', () => {
     expect(req.bodyUsed).toBe(false);
   });
 
-  it('body thật 21 MB với Content-Length nhỏ: 413, kho rỗng', async () => {
-    const big = pdfBytes(21 * 1024 * 1024);
+  it('body thật 51 MB với Content-Length nhỏ: 413, kho rỗng', async () => {
+    const big = pdfBytes(51 * 1024 * 1024);
     const encoded = new Request('https://x/', { method: 'POST', body: form({}, big) });
     const type = encoded.headers.get('content-type');
     const raw = new Uint8Array(await encoded.arrayBuffer());
@@ -490,7 +490,7 @@ describe('POST /submit', () => {
     }
   });
 
-  it('openPr lỗi 500: 502, dọn kho và xóa nhánh', async () => {
+  it('openPr lỗi 500: 502, dọn kho và xóa branch', async () => {
     const fetch = fakeFetch({ fail: { openPr: 500 } });
     const { res, body } = await run(post(form()), { fetch });
     expect(res.status).toBe(502);
@@ -553,7 +553,7 @@ describe('POST /submit', () => {
     const newForm = (over = {}, file) => form({ course: '', newCourseCode: 'EE5430', newCourseName: NEW_NAME, ...over }, file);
     const decode = (put) => new TextDecoder().decode(Uint8Array.from(atob(JSON.parse(put.body).content), (c) => c.charCodeAt(0)));
 
-    it('thêm file môn và mục tài liệu trên nhánh, PR nêu môn mới mà không có tên môn', async () => {
+    it('thêm file môn và item trên branch, PR nêu môn mới mà không có tên môn', async () => {
       const bytes = pdfBytes(900, 17);
       const { res, body, fetch } = await run(post(newForm({}, bytes)));
       expect(res.status).toBe(201);
@@ -599,7 +599,7 @@ describe('POST /submit', () => {
       expect(JSON.parse(puts[0].body).branch).toBe(`upload/${body.code}`);
     });
 
-    it('bài thường: PR không có dòng môn mới, chỉ một file trên nhánh', async () => {
+    it('bài thường: PR không có dòng môn mới, chỉ một file trên branch', async () => {
       const { res, fetch } = await run(post(form({}, pdfBytes(900, 19))));
       expect(res.status).toBe(201);
       expect(fetch.find('PUT', '/contents/')).toHaveLength(1);
@@ -645,7 +645,7 @@ describe('POST /submit', () => {
       await rejected(fd2, 'course');
     });
 
-    it('ghi file môn lỗi: 502, dọn kho và xóa nhánh', async () => {
+    it('ghi file môn lỗi: 502, dọn kho và xóa branch', async () => {
       const fetch = fakeFetch({ fail: { putFile: 500 } });
       const { res } = await run(post(newForm({}, pdfBytes(900, 23))), { fetch });
       expect(res.status).toBe(502);
@@ -673,7 +673,7 @@ describe('POST /submit', () => {
     expect(fetch.find('GET', '/contents/index.json')).toHaveLength(0);
   });
 
-  it('nhánh chưa có worker-catalog.json: đọc index.json như cũ', async () => {
+  it('branch chưa có worker-catalog.json: đọc index.json như cũ', async () => {
     const fetch = fakeFetch({ smallCatalog: false });
     const { res } = await run(post(form({}, pdfBytes(800, 9))), { fetch });
     expect(res.status).toBe(201);
@@ -763,7 +763,7 @@ describe('nhật ký', () => {
 });
 
 describe('email báo kết quả và bản cập nhật', () => {
-  it('email người gửi chỉ nằm trong kho cách ly, không vào mục tài liệu hay PR', async () => {
+  it('email người gửi chỉ nằm trong bucket quarantine, không vào item hay PR', async () => {
     const { res, body, fetch } = await run(post(form({ notifyEmail: 'an@example.com' })));
     expect(res.status).toBe(201);
     const stored = await env.QUARANTINE.get(`notify/${body.code}`);
@@ -858,5 +858,53 @@ describe('POST /bao-ket-qua', () => {
     expect(await env.QUARANTINE.get(`notify/${CODE}`)).not.toBeNull();
     const bad = await run(call('../x'), { fetch, envOver: envMail });
     expect(bad.res.status).toBe(400);
+  });
+});
+
+describe('đợt gửi nhiều file', () => {
+  function batchForm(n, over = {}) {
+    const fd = form({ title: undefined, ...over }, null);
+    for (let i = 0; i < n; i += 1) {
+      fd.append('file', new File([pdfBytes(900 + i * 10, i + 7)], `bai-${i}.pdf`, { type: 'application/pdf' }));
+      fd.set(`title-${i}`, `Slide chương ${i + 1}`);
+      fd.set(`type-${i}`, i === 0 ? 'lecture-slides' : 'summary');
+    }
+    return fd;
+  }
+
+  it('ba file: ba mục cùng môn trong một branch, một PR liệt kê từng file', async () => {
+    const { res, body, fetch } = await run(post(batchForm(3)));
+    expect(res.status).toBe(201);
+    const puts = fetch.find('PUT', '/contents/courses/MT1005/items/');
+    expect(puts.map((c) => c.url.split('/items/')[1].split('?')[0])).toEqual(['slide-chuong-1.json', 'slide-chuong-2.json', 'slide-chuong-3.json']);
+    const keys = await r2Keys();
+    expect(keys.filter((k) => k.startsWith(`pending/${body.code}/`))).toHaveLength(3);
+    expect(keys.filter((k) => k.startsWith('sha/'))).toHaveLength(3);
+    const pr = JSON.parse(fetch.find('POST', '/pulls')[0].body);
+    expect(pr.body).toContain('| Số file | 3 |');
+    expect(pr.body).toContain('| 1 | Slide bài giảng | MT1005_lecture-slides_slide-chuong-1.pdf |');
+    expect(pr.body).not.toContain('Slide chương');
+  });
+
+  it('quá số file, file trùng nhau, tiêu đề lỗi của một file, bản cập nhật trong đợt: báo đúng chỗ', async () => {
+    const many = await run(post(batchForm(11)));
+    expect(many.res.status).toBe(400);
+    expect(many.body.errors.file).toContain('tối đa 10 file');
+    const same = form({ title: undefined }, null);
+    for (let i = 0; i < 2; i += 1) {
+      same.append('file', new File([pdfBytes(1000, 3)], `x-${i}.pdf`, { type: 'application/pdf' }));
+      same.set(`title-${i}`, `Tài liệu ${i}`);
+    }
+    const dup = await run(post(same));
+    expect(dup.res.status).toBe(400);
+    expect(dup.body.errors.file).toContain('giống hệt nhau');
+    const bad = batchForm(2);
+    bad.set('title-1', '');
+    const r = await run(post(bad));
+    expect(r.res.status).toBe(400);
+    expect(Object.keys(r.body.errors)).toEqual(['title-1']);
+    const upd = await run(post(batchForm(2, { replaces: 'MT1005/bang-cong-thuc' })));
+    expect(upd.body.errors).toHaveProperty('replaces');
+    expect(await r2Keys()).toEqual([]);
   });
 });

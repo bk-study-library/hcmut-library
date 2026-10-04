@@ -84,7 +84,7 @@ test('phat-hanh-file: chạy tay chỉ trên main, ô item đi qua env và đư�
   assert.deepEqual([...text.matchAll(/inputs\.item/g)].length, 1);
   assert.match(job, /ITEM_INPUT: \$\{\{ inputs\.item \}\}/);
   assert.match(job, /publish\.mjs dispatch-locate --item "\$ITEM_INPUT" --root \./);
-  // Bước plan lấy nhánh từ locate (PR: nhánh upload/*, chạy tay: upload/<mã bài> của mục).
+  // Bước plan lấy branch từ locate (PR: branch upload/*, chạy tay: upload/<mã bài> của mục).
   assert.match(job, /id: plan[\s\S]*?BRANCH: \$\{\{ steps\.locate\.outputs\.branch \}\}/);
   // go-file không chạy khi chạy tay.
   assert.match(jobs(text)['go-file'], /if: github\.event_name == 'push'\n/);

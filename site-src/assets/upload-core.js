@@ -228,7 +228,39 @@
     });
   }
 
+  // Cùng cách ghi với formatSize của scripts/lib/labels.mjs.
+  function formatSize(bytes) {
+    if (bytes < 1024) return bytes + ' B';
+    if (bytes < 1024 * 1024) return Math.round(bytes / 1024) + ' KB';
+    return (bytes / 1024 / 1024).toFixed(1) + ' MB';
+  }
+
+  // Tiêu đề gợi ý từ tên file: bỏ đuôi, gạch dưới và gạch nối thành dấu cách, cắt theo max.
+  function titleFromName(name, max) {
+    var dot = name.lastIndexOf('.');
+    var base = (dot > 0 ? name.slice(0, dot) : name).replace(/[_-]+/g, ' ').replace(/\s+/g, ' ').trim();
+    return max ? base.slice(0, max) : base;
+  }
+
+  // Lỗi chung của đợt gửi (files: [{ name, size }]): quá số file, quá tổng dung lượng, hai file giống nhau
+  // (cùng tên và kích thước). Trả mã lỗi đầu tiên hoặc ''.
+  function batchProblem(files, maxFiles, maxBytes) {
+    if (files.length > maxFiles) return 'batchCount';
+    var total = 0;
+    var seen = Object.create(null);
+    for (var i = 0; i < files.length; i++) {
+      total += files[i].size;
+      var key = files[i].name + '\u0000' + files[i].size;
+      if (seen[key]) return 'batchSame';
+      seen[key] = true;
+    }
+    return total > maxBytes ? 'batchSize' : '';
+  }
+
   root.BkUpload = {
+    formatSize: formatSize,
+    titleFromName: titleFromName,
+    batchProblem: batchProblem,
     subjectDocs: subjectDocs,
     similarDocs: similarDocs,
     subjectIndex: subjectIndex,

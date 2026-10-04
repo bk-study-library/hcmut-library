@@ -176,6 +176,53 @@ export class GitHub {
     return (Array.isArray(data.files) ? data.files : []).map((f) => ({ filename: String(f.filename), status: String(f.status) }));
   }
 
+  // PR theo số: trạng thái, nhánh, sha đầu nhánh.
+  async getPr(number) {
+    const res = await this.#call('GET', `/pulls/${encodeURIComponent(String(number))}`);
+    const p = await res.json();
+    return { number: p.number, state: p.state, merged: Boolean(p.merged_at), head: { ref: String(p.head?.ref ?? ''), sha: String(p.head?.sha ?? '') } };
+  }
+
+  // Lời nhắn của commit (dòng đầu dùng để biết commit của workflow kiem-file).
+  async commitMessage(sha) {
+    const res = await this.#call('GET', `/commits/${encodePath(sha)}`);
+    return String((await res.json()).commit?.message ?? '');
+  }
+
+  // Các check run của một commit: [{ name, status, conclusion }].
+  async checkRuns(sha) {
+    const res = await this.#call('GET', `/commits/${encodePath(sha)}/check-runs?per_page=100`);
+    const data = await res.json();
+    return (Array.isArray(data.check_runs) ? data.check_runs : []).map((c) => ({ name: String(c.name), status: String(c.status), conclusion: c.conclusion === null ? null : String(c.conclusion) }));
+  }
+
+  async deleteFile(path, branch, message) {
+    const cur = await this.getFile(path, branch);
+    if (!cur) return false;
+    await this.#call('DELETE', `/contents/${encodePath(path)}`, { message, sha: cur.sha, branch });
+    return true;
+  }
+
+  async comment(number, body) {
+    await this.#call('POST', `/issues/${encodeURIComponent(String(number))}/comments`, { body });
+  }
+
+  // Gộp PR đúng sha đã kiểm (sha khác thì GitHub từ chối, tránh gộp nhầm commit mới hơn).
+  async mergePr(number, sha, title) {
+    await this.#call('PUT', `/pulls/${encodeURIComponent(String(number))}/merge`, { sha, merge_method: 'merge', commit_title: title });
+  }
+
+  async closePr(number) {
+    await this.#call('PATCH', `/pulls/${encodeURIComponent(String(number))}`, { state: 'closed' });
+  }
+
+  // Mọi mục tài liệu trên nhánh so với nhánh chính (đợt gửi có nhiều mục). Nhánh không còn thì null.
+  async branchItems(base, head, itemPattern) {
+    const files = await this.changedFiles(base, head);
+    if (files === null) return null;
+    return files.filter((f) => itemPattern.test(f.filename) && f.status !== 'removed').map((f) => f.filename).sort();
+  }
+
   async addLabels(number, labels) {
     await this.#call('POST', `/issues/${encodeURIComponent(String(number))}/labels`, { labels });
   }

@@ -1,10 +1,10 @@
 name: phat-hanh-file
 
 # Phát hành file của bài gửi qua form khi người duyệt merge PR, và xóa file trên
-# Release khi một mục tài liệu chuyển sang removed. Logic nằm ở scripts/upload/publish.mjs.
+# Release khi một item chuyển sang removed. Logic nằm ở scripts/upload/publish.mjs.
 #
-#   phat-hanh  (pull_request_target closed, đã merge)  tải bản đã làm sạch từ kho cách ly R2,
-#              kiểm sha256 và kích thước theo mục tài liệu, đưa lên Release (pre-release nếu
+#   phat-hanh  (pull_request_target closed, đã merge)  tải bản đã sanitize từ bucket quarantine trên R2,
+#              kiểm sha256 và kích thước theo item, đưa lên Release (pre-release nếu
 #              chưa có), rồi xóa pending/, clean/, mã xem bài token/ và khóa sha/ trong kho.
 #              Sách tham khảo không file (locate ghi light=true) thì không có gì để phát hành
 #              hay dọn: các bước sau đều bỏ qua.
@@ -16,20 +16,20 @@ name: phat-hanh-file
 #              khác vẫn dùng); link ngoài bỏ qua. validate.yml cũng báo lỗi ITEM_DELETED khi xóa file mục.
 #
 # Mô hình đe dọa. pull_request_target chạy với quyền ghi. Workflow và script lấy từ main,
-# không bao giờ checkout hay chạy mã của nhánh PR. Chỉ chạy khi PR cùng repo, nhánh upload/*
-# và do bot mở. Mục tài liệu đọc từ main sau khi merge. File tải từ R2 chỉ bị tính hash và
+# không bao giờ checkout hay chạy mã của branch PR. Chỉ chạy khi PR cùng repo, branch upload/*
+# và do bot mở. Item đọc từ main sau khi merge. File tải từ R2 chỉ bị tính hash và
 # đưa lên Release, không bị chạy. Khóa R2 chỉ nằm trong env của bước cần chúng; mọi giá trị
-# chưa tin được (tên nhánh, tên file) đi qua env, không đặt trong lệnh run.
+# chưa tin được (tên branch, tên file) đi qua env, không đặt trong lệnh run.
 # Chạy tay: GitHub chỉ cho người có quyền ghi repo bấm workflow_dispatch, và job chỉ chạy khi
-# chọn nhánh main (workflow và script là bản trên main). Ô item vẫn coi là chưa tin được: đi
+# chọn branch main (workflow và script là bản trên main). Ô item vẫn coi là chưa tin được: đi
 # qua env, publish.mjs dispatch-locate kiểm bằng regex, file phải là file thường có trên main,
-# đúng course và id, chưa gỡ, do bot tải lên (có khóa clean/<mã bài>/<tên> trong kho cách ly).
+# đúng course và id, chưa gỡ, do bot tải lên (có khóa clean/<mã bài>/<tên> trong bucket quarantine).
 #
 # Chạy lại an toàn: file đã có trên Release cùng sha256 thì bỏ qua; cùng tên khác sha256 thì
 # dừng và báo lỗi. Dọn kho xóa cả khi file đã mất.
 #
 # Secrets: R2_ACCOUNT_ID, R2_ACCESS_KEY_ID, R2_SECRET_ACCESS_KEY (khóa R2 đọc, ghi, xóa bucket
-# kho cách ly). Variables: R2_BUCKET (tên bucket), BOT_LOGIN (tên bot mở PR).
+# bucket quarantine). Variables: R2_BUCKET (tên bucket), BOT_LOGIN (tên bot mở PR).
 
 on:
   pull_request_target:
@@ -41,7 +41,7 @@ on:
   workflow_dispatch:
     inputs:
       item:
-        description: 'Mục tài liệu cần phát hành lại, đường dẫn trên main dạng courses/<MÃ>/items/<id>.json'
+        description: 'Item cần phát hành lại, đường dẫn trên main dạng courses/<MÃ>/items/<id>.json'
         required: true
         type: string
 
@@ -79,7 +79,7 @@ jobs:
       AWS_REQUEST_CHECKSUM_CALCULATION: when_required
       AWS_RESPONSE_CHECKSUM_VALIDATION: when_required
     steps:
-      # Bản main sau khi merge (chạy tay: HEAD hiện tại của main): script và mục tài liệu đều đọc từ đây.
+      # Bản main sau khi merge (chạy tay: HEAD hiện tại của main): script và item đều đọc từ đây.
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           ref: main
@@ -88,7 +88,7 @@ jobs:
         with:
           node-version: 24
       # Ghi item, code, light và branch (upload/<mã bài>) cho các bước sau, theo PR hoặc theo ô item khi chạy tay.
-      - name: Tìm mục tài liệu
+      - name: Tìm item
         id: locate
         env:
           GH_TOKEN: ${{ github.token }}
@@ -103,52 +103,44 @@ jobs:
             node scripts/upload/publish.mjs locate --files "$RUNNER_TEMP/files.jsonl" --root . \
               --branch "$BRANCH" --output-file "$GITHUB_OUTPUT"
           fi
-      # Cũng kiểm sớm Release đích: immutable release thì dừng ở đây, trước khi tải gì từ kho cách ly.
+      # Cũng kiểm sớm Release đích: immutable release thì dừng ở đây, trước khi tải gì từ bucket quarantine.
+      # Mọi mục của đợt gửi (chạy tay thì một mục). Kiểm sớm mọi Release đích trước khi tải gì từ kho.
       - name: Lập kế hoạch phát hành
         id: plan
         if: steps.locate.outputs.light == 'false'
         env:
           GH_TOKEN: ${{ github.token }}
-          ITEM: ${{ steps.locate.outputs.item }}
+          ITEMS: ${{ steps.locate.outputs.items || steps.locate.outputs.item }}
           BRANCH: ${{ steps.locate.outputs.branch }}
-        run: node scripts/upload/publish.mjs plan --item "$ITEM" --branch "$BRANCH" --repo "$REPO" --output-file "$GITHUB_OUTPUT"
+        run: >-
+          node scripts/upload/publish.mjs plan-batch --items "$ITEMS" --root . --branch "$BRANCH" --repo "$REPO"
+          --plan-file "$RUNNER_TEMP/plan.tsv" --output-file "$GITHUB_OUTPUT"
 
-      - name: Tải bản đã làm sạch từ kho cách ly
-        if: steps.plan.outputs.publish == 'true'
-        env:
-          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
-          AWS_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
-          QUARANTINE: ${{ steps.plan.outputs.quarantine }}
-          NAME: ${{ steps.plan.outputs.name }}
-        run: |
-          mkdir -p "$RUNNER_TEMP/dl"
-          aws s3 cp "s3://$R2_BUCKET/$QUARANTINE" "$RUNNER_TEMP/dl/$NAME" \
-            --endpoint-url "https://${R2_ACCOUNT_ID}.r2.cloudflarestorage.com" --only-show-errors
-      - name: Kiểm sha256 và kích thước
-        if: steps.plan.outputs.publish == 'true'
-        env:
-          NAME: ${{ steps.plan.outputs.name }}
-          SHA256: ${{ steps.plan.outputs.sha256 }}
-          SIZE: ${{ steps.plan.outputs.size }}
-        run: node scripts/upload/publish.mjs verify --file "$RUNNER_TEMP/dl/$NAME" --sha256 "$SHA256" --size "$SIZE"
-      - name: Đưa lên Release
+      # Từng file: tải bản đã sanitize, kiểm sha256 và kích thước, rồi đưa lên Release (chưa có thì tạo
+      # pre-release; hai bài cùng học kỳ tạo cùng lúc thì đọc lại). Tag, tên, khóa đã qua kiểm ở bước trên.
+      - name: Tải, kiểm và đưa các file lên Release
         if: steps.plan.outputs.publish == 'true'
         env:
           GH_TOKEN: ${{ github.token }}
-          TAG: ${{ steps.plan.outputs.tag }}
-          NAME: ${{ steps.plan.outputs.name }}
+          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
         run: |
-          # Release chưa có thì tạo pre-release; hai bài cùng học kỳ tạo cùng lúc thì đọc lại.
-          if ! gh release view "$TAG" --repo "$REPO" > /dev/null 2>&1; then
-            gh release create "$TAG" --repo "$REPO" --prerelease --title "$TAG" \
-              --notes "File tài liệu của thư viện, do workflow phat-hanh-file đưa lên." ||
-              gh release view "$TAG" --repo "$REPO" > /dev/null
-          fi
-          gh release upload "$TAG" "$RUNNER_TEMP/dl/$NAME" --repo "$REPO"
+          mkdir -p "$RUNNER_TEMP/dl"
+          while IFS=$'\t' read -r tag name quarantine sha256 size; do
+            aws s3 cp "s3://$R2_BUCKET/$quarantine" "$RUNNER_TEMP/dl/$name" \
+              --endpoint-url "https://${R2_ACCOUNT_ID}.r2.cloudflarestorage.com" --only-show-errors
+            node scripts/upload/publish.mjs verify --file "$RUNNER_TEMP/dl/$name" --sha256 "$sha256" --size "$size"
+            if ! gh release view "$tag" --repo "$REPO" > /dev/null 2>&1; then
+              gh release create "$tag" --repo "$REPO" --prerelease --title "$tag" \
+                --notes "File tài liệu của thư viện, do workflow phat-hanh-file đưa lên." ||
+                gh release view "$tag" --repo "$REPO" > /dev/null
+            fi
+            gh release upload "$tag" "$RUNNER_TEMP/dl/$name" --repo "$REPO"
+          done < "$RUNNER_TEMP/plan.tsv"
 
       # Dọn kho chỉ chạy khi các bước trên thành công (kể cả khi file đã có sẵn trên Release).
-      # Khóa sha/ đặt theo sha256 của file gốc, mục tài liệu chỉ có sha256 bản sạch, nên tính lại
+      # Khóa sha/ đặt theo sha256 của file gốc, item chỉ có sha256 bản đã sanitize, nên tính lại
       # từ pending/ nếu còn; đã bị luật vòng đời xóa thì không còn gì để tính.
       - name: Tải file cách ly gốc để tính khóa sha
         if: steps.locate.outputs.light == 'false'
@@ -175,7 +167,7 @@ jobs:
           base=$(node -e "process.stdout.write(String(require('./catalog/site.json').reviewBase || ''))")
           if [ -z "$base" ] || [ -z "$CODE" ]; then exit 0; fi
           curl -fsS -m 30 -X POST "$base/bao-ket-qua" -H 'Content-Type: application/json' --data "{\"code\":\"$CODE\"}"
-      - name: Xóa email báo kết quả khỏi kho cách ly
+      - name: Xóa email và quyết định duyệt khỏi bucket quarantine
         env:
           R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
           AWS_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
@@ -184,26 +176,28 @@ jobs:
         run: |
           if [ -z "$CODE" ]; then exit 0; fi
           aws s3 rm "s3://$R2_BUCKET/notify/$CODE" --endpoint-url "https://${R2_ACCOUNT_ID}.r2.cloudflarestorage.com" --only-show-errors
-      - name: Xóa file trong kho cách ly
+          aws s3 rm "s3://$R2_BUCKET/review/$CODE.json" --endpoint-url "https://${R2_ACCOUNT_ID}.r2.cloudflarestorage.com" --only-show-errors
+      - name: Xóa file trong bucket quarantine
         if: steps.locate.outputs.light == 'false'
         env:
           R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
           AWS_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
           CODE: ${{ steps.locate.outputs.code }}
-          SHA: ${{ steps.sha.outputs.sha }}
+          SHAS: ${{ steps.sha.outputs.shas }}
         run: |
           endpoint="https://${R2_ACCOUNT_ID}.r2.cloudflarestorage.com"
           aws s3 rm "s3://$R2_BUCKET/pending/$CODE/" --recursive --endpoint-url "$endpoint" --only-show-errors
           aws s3 rm "s3://$R2_BUCKET/clean/$CODE/" --recursive --endpoint-url "$endpoint" --only-show-errors
           aws s3 rm "s3://$R2_BUCKET/token/$CODE" --endpoint-url "$endpoint" --only-show-errors
-          if [ -n "$SHA" ]; then
-            aws s3 rm "s3://$R2_BUCKET/sha/$SHA" --endpoint-url "$endpoint" --only-show-errors
-          fi
+          for sha in $SHAS; do
+            case "$sha" in *[!0-9a-f]*|"") continue ;; esac
+            aws s3 rm "s3://$R2_BUCKET/sha/$sha" --endpoint-url "$endpoint" --only-show-errors
+          done
       - name: Hướng dẫn khi phát hành lỗi
         if: failure()
         run: |
-          msg="Phát hành file lỗi. Xem bước lỗi ở trên. Nếu file trùng tên khác nội dung hoặc Release không có digest: đổi tên file trong mục tài liệu trên main (sửa name, url, quarantine cho khớp) rồi chạy lại workflow này. Nếu Release là immutable release hoặc GitHub báo tag đã thuộc một immutable release: tắt Immutable releases trong Settings của repo, đặt tag mới trong releaseTagOverrides của catalog/policy.json, sửa url của mục, chạy npm run build, merge vào main, rồi chạy tay workflow này với ô item (xem docs/cai-dat-luong-tai-len.md, mục Release). File trong pending/ và clean/ của kho cách ly được giữ 30 ngày."
+          msg="Phát hành file lỗi. Xem bước lỗi ở trên. Nếu file trùng tên khác nội dung hoặc Release không có digest: đổi tên file trong item trên main (sửa name, url, quarantine cho khớp) rồi chạy lại workflow này. Nếu Release là immutable release hoặc GitHub báo tag đã thuộc một immutable release: tắt Immutable releases trong Settings của repo, đặt tag mới trong releaseTagOverrides của catalog/policy.json, sửa url của mục, chạy npm run build, merge vào main, rồi chạy tay workflow này với ô item (xem docs/cai-dat-luong-tai-len.md, mục Release). File trong pending/ và clean/ của bucket quarantine được giữ 30 ngày."
           echo "::error::$msg"
           echo "$msg" >> "$GITHUB_STEP_SUMMARY"
 
@@ -214,7 +208,7 @@ jobs:
     permissions:
       contents: write
     steps:
-      # Cần đủ lịch sử để đọc bản trước của mục tài liệu theo github.event.before.
+      # Cần đủ lịch sử để đọc bản trước của item theo github.event.before.
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           fetch-depth: 0

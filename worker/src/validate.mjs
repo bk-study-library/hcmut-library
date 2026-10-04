@@ -97,7 +97,7 @@ function parseNewCourse(fields, errors, lim, courses) {
   return errors.newCourseCode || errors.newCourseName ? undefined : { code, name };
 }
 
-// Các ô chữ thành siêu dữ liệu công khai của mục, nên chặn thông tin cá nhân (cùng mẫu với
+// Các ô chữ thành metadata công khai của mục, nên chặn thông tin cá nhân (cùng mẫu với
 // validate.mjs, không bỏ qua dòng "pii-ok"). Tên ô dùng trong thông báo lỗi.
 const PII_FIELDS = [
   ['title', 'tiêu đề'],
