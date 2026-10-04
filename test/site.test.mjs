@@ -69,8 +69,11 @@ test('404 dùng đường dẫn tuyệt đối theo base', () => {
 });
 
 test('không tải gì từ máy chủ khác: không CDN, không font ngoài, không theo dõi', () => {
+  // Ngoại lệ duy nhất: script Turnstile của Cloudflare trên trang Gửi tài liệu (khi form đã mở).
+  const TURNSTILE = /<script src="https:\/\/challenges\.cloudflare\.com\/turnstile\/v0\/api\.js" async defer><\/script>/;
   for (const f of allHtml()) {
-    const html = fs.readFileSync(f, 'utf8');
+    let html = fs.readFileSync(f, 'utf8');
+    if (/[\\/]gui-tai-lieu[\\/]index\.html$/.test(f)) html = html.replace(TURNSTILE, '');
     assert.doesNotMatch(html, /<script[^>]+src="https?:/i, f);
     assert.doesNotMatch(html, /<link[^>]+rel="stylesheet"[^>]+href="https?:/i, f);
     assert.doesNotMatch(html, /<img[^>]+src="https?:/i, f);
@@ -104,12 +107,20 @@ test('mỗi trang có lang, viewport, tiêu đề và link bỏ qua tới nội 
   }
 });
 
-const siteJson = JSON.parse(fs.readFileSync(path.join(path.dirname(fileURLToPath(import.meta.url)), '..', 'catalog', 'site.json'), 'utf8'));
+// Dựng từ site.json riêng của test, không phụ thuộc địa chỉ Worker đang dùng trong catalog/site.json.
+function buildWithSite(site) {
+  const dir = copyFixture();
+  fs.mkdirSync(path.join(dir, 'catalog'), { recursive: true });
+  fs.writeFileSync(path.join(dir, 'catalog', 'site.json'), JSON.stringify(site));
+  const outDir = fs.mkdtempSync(path.join(os.tmpdir(), 'bk-lib-site-up-'));
+  buildSite({ root: dir, out: outDir });
+  return fs.readFileSync(path.join(outDir, 'gui-tai-lieu/index.html'), 'utf8');
+}
 
 test('trang Gửi tài liệu: có site key, loại sách, không có loại link, form đóng khi chưa có địa chỉ Worker', () => {
-  const html = read('gui-tai-lieu/index.html');
-  assert.ok(html.includes(`data-endpoint="${siteJson.uploadEndpoint}"`));
-  assert.match(html, /data-sitekey="0x4AAAAAAFMxSkFCGbs--qcI"/);
+  const html = buildWithSite({ uploadEndpoint: '', turnstileSiteKey: 'KEY-DONG' });
+  assert.match(html, /data-endpoint=""/);
+  assert.match(html, /data-sitekey="KEY-DONG"/);
   assert.match(html, /<option value="book-ref">/);
   assert.match(html, /<option value="summary">/);
   assert.doesNotMatch(html, /<option value="link">/);
@@ -122,12 +133,7 @@ test('trang Gửi tài liệu: có site key, loại sách, không có loại lin
 });
 
 test('trang Gửi tài liệu: có địa chỉ Worker thì form mở và nạp Turnstile', () => {
-  const dir = copyFixture();
-  fs.mkdirSync(path.join(dir, 'catalog'), { recursive: true });
-  fs.writeFileSync(path.join(dir, 'catalog', 'site.json'), JSON.stringify({ uploadEndpoint: 'https://up.example.test/submit', turnstileSiteKey: 'KEY123' }));
-  const out2 = fs.mkdtempSync(path.join(os.tmpdir(), 'bk-lib-site-up-'));
-  buildSite({ root: dir, out: out2 });
-  const html = fs.readFileSync(path.join(out2, 'gui-tai-lieu/index.html'), 'utf8');
+  const html = buildWithSite({ uploadEndpoint: 'https://up.example.test/submit', turnstileSiteKey: 'KEY123' });
   assert.match(html, /data-endpoint="https:\/\/up\.example\.test\/submit"/);
   assert.match(html, /data-sitekey="KEY123"/);
   assert.doesNotMatch(html, /<fieldset class="upload-set" disabled/);

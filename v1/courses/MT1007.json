@@ -7,7 +7,7 @@
     {
       "id": "ghi-chu-ma-tran-he-phuong-trinh",
       "type": "notes",
-      "title": "[Mẫu] Ghi chú ma trận và hệ phương trình",
+      "title": "Ghi chú ma trận và hệ phương trình",
       "description": "Ma trận, định thức, hạng, Kronecker - Capelli, trị riêng.",
       "lang": "vi",
       "chapter": "1-3",
@@ -35,7 +35,7 @@
     {
       "id": "vi-du-mit-ocw-18-06sc-linear-algebra",
       "type": "link",
-      "title": "[Ví dụ] MIT OCW 18.06SC Linear Algebra (Fall 2011)",
+      "title": "MIT OCW 18.06SC Linear Algebra (Fall 2011)",
       "description": "Khóa học mở, tiếng Anh, có video bài giảng, bài tập và lời giải. Mục ví dụ để minh họa định dạng link.",
       "lang": "en",
       "license": "CC-BY-NC-SA-4.0",

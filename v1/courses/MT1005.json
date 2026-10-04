@@ -7,7 +7,7 @@
     {
       "id": "bang-cong-thuc-giai-tich-2",
       "type": "cheatsheet",
-      "title": "[Mẫu] Bảng công thức Giải tích 2",
+      "title": "Bảng công thức Giải tích 2",
       "description": "Đạo hàm riêng, cực trị, tích phân bội, tích phân đường và mặt, chuỗi. Vừa một mặt A4.",
       "lang": "vi",
       "license": "CC-BY-SA-4.0",
@@ -57,7 +57,7 @@
     {
       "id": "vi-du-openstax-calculus-volume-3",
       "type": "link",
-      "title": "[Ví dụ] OpenStax Calculus Volume 3",
+      "title": "OpenStax Calculus Volume 3",
       "description": "Giáo trình mở, tiếng Anh: hàm nhiều biến, đạo hàm riêng, tích phân bội, tích phân đường và mặt. Mục ví dụ để minh họa định dạng link.",
       "lang": "en",
       "license": "CC-BY-NC-SA-4.0",

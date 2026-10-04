@@ -20,11 +20,11 @@
 
 ### Bảng công thức
 
-- **[Mẫu] Bảng công thức Giải tích 2** (ví dụ minh họa) (vi, CC-BY-SA-4.0, BK Study Library): [bang-cong-thuc-giai-tich-2.md, 3 KB](files/bang-cong-thuc-giai-tich-2.md)
+- **Bảng công thức Giải tích 2** (ví dụ minh họa) (vi, CC-BY-SA-4.0, BK Study Library): [bang-cong-thuc-giai-tich-2.md, 3 KB](files/bang-cong-thuc-giai-tich-2.md)
 
 ## Link
 
-- [[Ví dụ] OpenStax Calculus Volume 3](https://openstax.org/details/books/calculus-volume-3) (ví dụ minh họa): OpenStax, en, CC-BY-NC-SA-4.0
+- [OpenStax Calculus Volume 3](https://openstax.org/details/books/calculus-volume-3) (ví dụ minh họa): OpenStax, en, CC-BY-NC-SA-4.0
 
 ## Mẹo học
 

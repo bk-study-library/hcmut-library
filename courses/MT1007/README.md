@@ -15,11 +15,11 @@
 
 ### Ghi chú
 
-- **[Mẫu] Ghi chú ma trận và hệ phương trình** (ví dụ minh họa) (vi, CC-BY-SA-4.0, BK Study Library): [ghi-chu-ma-tran-he-phuong-trinh.md, 2 KB](files/ghi-chu-ma-tran-he-phuong-trinh.md)
+- **Ghi chú ma trận và hệ phương trình** (ví dụ minh họa) (vi, CC-BY-SA-4.0, BK Study Library): [ghi-chu-ma-tran-he-phuong-trinh.md, 2 KB](files/ghi-chu-ma-tran-he-phuong-trinh.md)
 
 ## Link
 
-- [[Ví dụ] MIT OCW 18.06SC Linear Algebra (Fall 2011)](https://ocw.mit.edu/courses/18-06sc-linear-algebra-fall-2011/) (ví dụ minh họa): MIT OpenCourseWare, en, CC-BY-NC-SA-4.0
+- [MIT OCW 18.06SC Linear Algebra (Fall 2011)](https://ocw.mit.edu/courses/18-06sc-linear-algebra-fall-2011/) (ví dụ minh họa): MIT OpenCourseWare, en, CC-BY-NC-SA-4.0
 
 ## Mẹo học
 

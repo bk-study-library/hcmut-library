@@ -15,15 +15,15 @@
 
 ### Ghi chú
 
-- ~~[Mẫu] Mục đã gỡ~~ (đã gỡ: Mục mẫu minh họa tài liệu đã gỡ. Bên đọc (web, app) chỉ còn thấy id, loại và lý do gỡ.)
+- ~~Mục đã gỡ~~ (đã gỡ: Mục mẫu minh họa tài liệu đã gỡ. Bên đọc (web, app) chỉ còn thấy id, loại và lý do gỡ.)
 
 ### Mẹo học
 
-- **[Mẫu] Mẹo học Giải tích mạch** (ví dụ minh họa) (vi, CC-BY-SA-4.0, BK Study Library): [meo-hoc-giai-tich-mach.md, 2 KB](files/meo-hoc-giai-tich-mach.md)
+- **Mẹo học Giải tích mạch** (ví dụ minh họa) (vi, CC-BY-SA-4.0, BK Study Library): [meo-hoc-giai-tich-mach.md, 2 KB](files/meo-hoc-giai-tich-mach.md)
 
 ## Link
 
-- [[Ví dụ] MIT OCW 6.002 Circuits and Electronics (Spring 2007)](https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/) (ví dụ minh họa): MIT OpenCourseWare, en, CC-BY-NC-SA-4.0
+- [MIT OCW 6.002 Circuits and Electronics (Spring 2007)](https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/) (ví dụ minh họa): MIT OpenCourseWare, en, CC-BY-NC-SA-4.0
 
 ## Mẹo học
 

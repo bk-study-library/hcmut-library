@@ -16,11 +16,11 @@
 
 ### Tóm tắt
 
-- **[Mẫu] Tóm tắt giới hạn và đạo hàm** (ví dụ minh họa) (vi, CC-BY-SA-4.0, BK Study Library): [tom-tat-gioi-han-dao-ham.md, 2 KB](files/tom-tat-gioi-han-dao-ham.md)
+- **Tóm tắt giới hạn và đạo hàm** (ví dụ minh họa) (vi, CC-BY-SA-4.0, BK Study Library): [tom-tat-gioi-han-dao-ham.md, 2 KB](files/tom-tat-gioi-han-dao-ham.md)
 
 ### Gói quiz (Study Pack)
 
-- **[Mẫu] Gói quiz giới hạn và đạo hàm** (ví dụ minh họa) (vi, CC-BY-SA-4.0, BK Study Library): [quiz-gioi-han-dao-ham.md, 1 KB](files/quiz-gioi-han-dao-ham.md)
+- **Gói quiz giới hạn và đạo hàm** (ví dụ minh họa) (vi, CC-BY-SA-4.0, BK Study Library): [quiz-gioi-han-dao-ham.md, 1 KB](files/quiz-gioi-han-dao-ham.md)
 
 ## Link
 
