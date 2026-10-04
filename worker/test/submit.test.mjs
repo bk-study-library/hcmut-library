@@ -1,7 +1,8 @@
 import { describe, it, expect, beforeAll, beforeEach, afterEach, vi } from 'vitest';
 import { env } from 'cloudflare:workers';
 import policy from '../../catalog/policy.json';
-import { createHandler } from '../src/index.mjs';
+import { createHandler, cell } from '../src/index.mjs';
+import { rateKey, countKey } from '../src/limits.mjs';
 
 const REPO = 'own/lib';
 const SITE = 'https://site.example';
@@ -11,6 +12,7 @@ const TITLE = 'Tóm tắt chương 1 giải tích';
 const SLUG = 'tom-tat-chuong-1-giai-tich';
 const UPLOAD_NAME = 'bai-giai-cua-toi.pdf';
 const KNOWN_SHA = 'a'.repeat(64);
+const REMOVED_SHA = 'b'.repeat(64);
 
 const index = {
   version: 1,
@@ -21,6 +23,7 @@ const index = {
         { id: 'MT1005', code: 'MT1005', status: 'active', items: [
           { id: 'bang-cong-thuc', files: [{ sha256: KNOWN_SHA }] },
           { id: SLUG, removed: true },
+          { id: 'da-go', removed: true, files: [{ sha256: REMOVED_SHA }] },
         ] },
         { id: 'GE4169-2024', code: 'GE4169', status: 'active', items: [] },
       ],
@@ -211,14 +214,18 @@ describe('POST /submit', () => {
 
     const [pr] = fetch.find('POST', '/pulls');
     const prBody = JSON.parse(pr.body);
-    expect(prBody).toMatchObject({ head: `upload/${body.code}`, base: 'main', title: `Tài liệu mới: MT1005 ${TITLE}` });
-    expect(prBody.body).toContain(body.code);
-    expect(prBody.body).toContain(sha);
-    expect(prBody.body).toContain(DISPLAY);
-    expect(prBody.body).not.toContain(UPLOAD_NAME);
-    expect(prBody.body).not.toContain('| Mô tả |');
+    // Tiêu đề và nội dung PR trung tính: mã bài, mã môn, loại, cỡ file, sha256; không có chữ người gửi.
+    expect(prBody).toMatchObject({ head: `upload/${body.code}`, base: 'main', title: `Bài gửi ${body.code}: MT1005` });
+    expect(prBody.body).toContain(`| Mã bài | ${body.code} |`);
+    expect(prBody.body).toContain('| Môn | MT1005 |');
+    expect(prBody.body).toContain('| Loại | Tóm tắt |');
+    expect(prBody.body).toContain(`| sha256 | ${sha} |`);
+    expect(prBody.body).toContain('| Kích thước | 1000 B |');
+    for (const userText of [DISPLAY, TITLE, SLUG, UPLOAD_NAME, k, 'pending/']) expect(prBody.body).not.toContain(userText);
     expect(prBody.body).toContain(`Xem file (người duyệt): https://up.example/xem-duyet/${body.code}`);
-    expect(prBody.body).not.toContain(k);
+    expect(prBody.body).toContain('hiện ở trang trên');
+    // Commit trên nhánh cũng không có chữ người gửi.
+    expect(sent.message).toBe(`feat(courses): thêm tài liệu gửi qua form ${body.code}`);
     const [labels] = fetch.find('POST', '/labels');
     expect(JSON.parse(labels.body)).toEqual({ labels: ['tai-lieu-moi'] });
     // Không gửi token GitHub hay secret Turnstile ra ngoài phản hồi.
@@ -297,15 +304,26 @@ describe('POST /submit', () => {
     }
   });
 
-  it('tiêu đề PR: chặn tham chiếu và nhắc tên mà không hiện mã HTML', async () => {
-    const title = 'Xem owner/repo#1 va [x](http://a) @an C# GH-2 & <b>';
-    const { res, fetch } = await run(post(form({ title })));
+  it('chữ người gửi (link, @, mô tả, giảng viên) không vào tiêu đề hay nội dung PR', async () => {
+    const over = { title: 'Xem https://hcmut-login.example/a @an', description: 'www.lua-dao.example noi xau', teacher: 'Thay Nguyen' };
+    const { res, body, fetch } = await run(post(form(over)));
     expect(res.status).toBe(201);
     const pr = JSON.parse(fetch.find('POST', '/pulls')[0].body);
-    expect(pr.title).toBe('Tài liệu mới: MT1005 Xem owner/repo# 1 va x(http://a) an C# GH- 2 & <b>');
-    expect(pr.title).not.toMatch(/&#|&amp;|&lt;/);
-    // Bảng trong thân PR vẫn thoát như cũ.
-    expect(pr.body).toContain('&#35;1');
+    expect(pr.title).toBe(`Bài gửi ${body.code}: MT1005`);
+    for (const text of [pr.title, pr.body]) {
+      for (const bad of ['https://hcmut', 'www.', '@an', 'noi xau', 'Thay Nguyen']) expect(text).not.toContain(bad);
+    }
+    // Mục tài liệu (file trong PR) vẫn giữ đủ chữ để đăng sau khi duyệt.
+    const put = JSON.parse(fetch.find('PUT', '/contents/')[0].body);
+    const item = JSON.parse(new TextDecoder().decode(Uint8Array.from(atob(put.content), (c) => c.charCodeAt(0))));
+    expect(item).toMatchObject({ title: over.title, description: over.description, teacher: over.teacher });
+    expect(put.message).not.toMatch(/https|www|Thay/);
+  });
+
+  it('cell(): thoát bảng, HTML, nhắc tên, tham chiếu và tự tạo link', () => {
+    expect(cell('a|b <i> @x #1 [y](z)')).toBe('a\\|b &lt;i&gt; &#64;x &#35;1 &#91;y&#93;(z)');
+    expect(cell('https://evil.example/a WWW.evil.example')).toBe('https&#58;//evil.example/a WWW&#46;evil.example');
+    expect(cell('dong 1\n dong 2')).toBe('dong 1 dong 2');
   });
 
   it('quá số lần gửi: 429', async () => {
@@ -324,10 +342,58 @@ describe('POST /submit', () => {
     expect(req.bodyUsed).toBe(false);
   });
 
-  it('khóa giới hạn là IP của người gửi', async () => {
+  it('khóa giới hạn: IPv4 giữ nguyên, IPv6 theo dải /64', async () => {
     const keys = [];
-    await run(post(form()), { envOver: { SUBMIT_LIMIT: { limit: async (o) => { keys.push(o.key); return { success: true }; } } } });
-    expect(keys).toEqual([IP]);
+    const envOver = { SUBMIT_LIMIT: { limit: async (o) => { keys.push(o.key); return { success: true }; } } };
+    await run(post(form()), { envOver });
+    await run(post(form({}, pdfBytes(700, 3)), { 'CF-Connecting-IP': '2001:db8:1:2::1' }), { envOver });
+    await run(post(form({}, pdfBytes(700, 5)), { 'CF-Connecting-IP': '2001:db8:1:2:a:b:c:d' }), { envOver });
+    expect(keys).toEqual([IP, '2001:db8:1:2::/64', '2001:db8:1:2::/64']);
+  });
+
+  it('rateKey: viết tắt ::, IPv4 dạng IPv6, chuỗi hỏng', () => {
+    // Cùng dải /64 dù cách viết khác nhau (nhóm 0 bị rút gọn).
+    expect(rateKey('2001:db8::1')).toBe('2001:db8:0:0::/64');
+    expect(rateKey('2001:db8:0:0:ffff:1:2:3')).toBe('2001:db8:0:0::/64');
+    expect(rateKey('2001:DB8:0:0::abcd')).toBe('2001:db8:0:0::/64');
+    expect(rateKey('2001:db8:0:1::1')).toBe('2001:db8:0:1::/64');
+    expect(rateKey('::ffff:198.51.100.7')).toBe('198.51.100.7');
+    for (const bad of ['', null, 'abc', '1.2.3', '1::2::3', '1:2:3:4:5:6:7:8:9', '::ffff:1.2.3.999']) expect(rateKey(bad)).toBe('unknown');
+  });
+
+  it('trần mỗi ngày: đủ SUBMIT_DAILY_CAP bài thì 429, không đọc body, không gọi GitHub', async () => {
+    const now = Date.UTC(2026, 9, 4, 12);
+    const handler = createHandler({ fetch: fakeFetch(), now: () => now });
+    const e = makeEnv({ SUBMIT_DAILY_CAP: '2' });
+    const send = (seed) => handler.fetch(post(form({}, pdfBytes(700, seed))), e, ctx());
+    expect((await send(3)).status).toBe(201);
+    expect((await send(5)).status).toBe(201);
+    expect(await (await env.QUARANTINE.get(countKey(now))).text()).toBe('2');
+    const f = fakeFetch();
+    const req = post(form({}, pdfBytes(700, 7)));
+    const res = await createHandler({ fetch: f, now: () => now }).fetch(req, e, ctx());
+    expect(res.status).toBe(429);
+    expect(await res.json()).toEqual({ ok: false, error: 'Hôm nay thư viện đã nhận đủ số bài. Gửi lại vào ngày mai.' });
+    expect(req.bodyUsed).toBe(false);
+    expect(f.calls).toEqual([]);
+    // Sang ngày mới (UTC) thì gửi lại được.
+    const next = await createHandler({ fetch: fakeFetch(), now: () => now + 86_400_000 }).fetch(post(form({}, pdfBytes(700, 9))), e, ctx());
+    expect(next.status).toBe(201);
+  });
+
+  it('trần mỗi ngày: bài bị từ chối (lỗi ô, Turnstile) không tính', async () => {
+    const now = Date.UTC(2026, 9, 5, 1);
+    const e = makeEnv({ SUBMIT_DAILY_CAP: '1' });
+    await createHandler({ fetch: fakeFetch(), now: () => now }).fetch(post(form({ title: '' })), e, ctx());
+    await createHandler({ fetch: fakeFetch({ turnstile: false }), now: () => now }).fetch(post(form()), e, ctx());
+    expect(await env.QUARANTINE.get(countKey(now))).toBeNull();
+    expect((await createHandler({ fetch: fakeFetch(), now: () => now }).fetch(post(form()), e, ctx())).status).toBe(201);
+  });
+
+  it('không đặt SUBMIT_DAILY_CAP: không đếm', async () => {
+    const { res } = await run(post(form()));
+    expect(res.status).toBe(201);
+    expect((await r2Keys()).some((k) => k.startsWith('dem/'))).toBe(false);
   });
 
   it('Content-Length 21 MB: 413 mà không đọc body', async () => {
@@ -381,6 +447,25 @@ describe('POST /submit', () => {
       expect(await r2Keys()).toEqual([]);
     } finally {
       index.faculties[0].courses[0].items[0].files[0].sha256 = saved;
+    }
+  });
+
+  it('trùng sha256 của tài liệu đã gỡ: 409 không nhận lại', async () => {
+    const bytes = pdfBytes(650, 13);
+    const sha = await sha256Hex(bytes);
+    const f = index.faculties[0].courses[0].items[2].files[0];
+    for (const key of ['sha256', 'uploadSha256']) {
+      const saved = f[key];
+      f[key] = sha;
+      try {
+        const { res, body } = await run(post(form({}, bytes)));
+        expect(res.status).toBe(409);
+        expect(body).toEqual({ ok: false, error: 'Tài liệu này đã bị gỡ khỏi thư viện nên không nhận lại.' });
+        expect(await r2Keys()).toEqual([]);
+      } finally {
+        if (saved === undefined) delete f[key];
+        else f[key] = saved;
+      }
     }
   });
 
@@ -441,14 +526,16 @@ describe('POST /submit', () => {
     const keys = await r2Keys();
     expect(keys.find((k) => k.startsWith('pending/'))).toBe(`pending/${body.code}/GE4169_summary_${SLUG}.pdf`);
     const [pr] = fetch.find('POST', '/pulls');
-    expect(JSON.parse(pr.body).title).toBe(`Tài liệu mới: GE4169 ${TITLE}`);
+    expect(JSON.parse(pr.body).title).toBe(`Bài gửi ${body.code}: GE4169`);
   });
 
   it('sách tham khảo: không có file, vẫn mở PR, kho chỉ có mã xem bài', async () => {
     const { res, body, fetch } = await run(post(form({ type: 'book-ref', 'book-title': 'Giải tích', 'book-authors': 'A, B' }, null)));
     expect(res.status).toBe(201);
     expect(await r2Keys()).toEqual([`token/${body.code}`]);
-    expect(JSON.parse(fetch.find('POST', '/pulls')[0].body).body).not.toContain('xem-duyet');
+    const prText = JSON.parse(fetch.find('POST', '/pulls')[0].body).body;
+    expect(prText).toContain(`Xem bài (người duyệt): https://up.example/xem-duyet/${body.code}`);
+    for (const userText of ['Giải tích', 'A, B']) expect(prText).not.toContain(userText);
     const [put] = fetch.find('PUT', '/contents/');
     const item = JSON.parse(new TextDecoder().decode(Uint8Array.from(atob(JSON.parse(put.body).content), (c) => c.charCodeAt(0))));
     expect(item.book).toEqual({ title: 'Giải tích', authors: ['A', 'B'] });

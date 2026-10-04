@@ -12,7 +12,7 @@
 <h2>Bài đi qua những bước nào</h2>
 <ol>
   <li><strong>Gửi</strong>: qua trang Gửi tài liệu (bot mở một Pull Request cho bài), qua form Thêm link (issue có nhãn <code>cần duyệt</code>, người duyệt tự tạo Pull Request từ issue), hoặc bạn tự mở Pull Request.</li>
-  <li><strong>Kiểm tự động</strong>: với file gửi qua trang web, workflow <code>kiem-file</code> quét virus, xóa siêu dữ liệu PDF, cảnh báo MSSV, email, số điện thoại, rồi ghi link Release vào Pull Request. CI <code>validate</code> kiểm định dạng, loại file, dung lượng và file trùng.</li>
+  <li><strong>Kiểm tự động</strong>: với file gửi qua trang web, workflow <code>kiem-file</code> quét virus, xóa siêu dữ liệu (PDF, ảnh, file Office), cảnh báo MSSV, email, số điện thoại, JavaScript trong PDF, macro trong Office, rồi ghi link Release vào Pull Request. CI <code>validate</code> kiểm định dạng, loại file, dung lượng và file trùng.</li>
   <li><strong>Người duyệt đọc</strong>: theo danh sách bên dưới, hỏi lại người gửi trong Pull Request hoặc issue nếu cần.</li>
   <li><strong>Merge</strong>: người duyệt merge Pull Request. Workflow <code>phat-hanh-file</code> đưa file lên GitHub Release <code>files-HKxxx</code> (pre-release). Pull Request bị đóng thì <code>don-kho</code> dọn file chờ duyệt.</li>
   <li><strong>Đóng issue</strong> (với link) kèm link tới trang môn.</li>
@@ -25,7 +25,9 @@
   <li>Thông tin cá nhân: xem cảnh báo của máy trong PR rồi quyết. Máy chỉ cảnh báo, không chặn.</li>
   <li>Giấy phép: tự soạn thì CC BY-SA 4.0 (hoặc CC BY 4.0, CC0); link thì ghi đúng giấy phép của nguồn.</li>
   <li>Nội dung đúng môn, đúng loại, tiêu đề rõ, không quảng cáo.</li>
-  <li>File .zip: mở ra xem, không có file chạy được.</li>
+  <li>File .zip (chỉ có ở gói quiz): mở ra xem, không có file chạy được.</li>
+  <li>PR có nhãn <code>can-xem-tay</code>: máy không kết luận được, đọc lý do trong comment rồi mở file trên máy có phần mềm diệt virus.</li>
+  <li>Chữ người gửi đã công khai trong file mục của PR ngay khi gửi: có chữ xúc phạm, quảng cáo hay link lạ thì đóng PR ngay.</li>
 </ul>
 <p>Chi tiết: <a href="{{repo}}/blob/main/CONTRIBUTING.md" rel="noopener">CONTRIBUTING.md</a>.</p>
 </div>

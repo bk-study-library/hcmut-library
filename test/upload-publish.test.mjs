@@ -4,7 +4,7 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import crypto from 'node:crypto';
-import { parseReleaseUrl, planPublish, planRemovals, branchCode, pendingSha, verifyFile, isLightPr } from '../scripts/upload/publish.mjs';
+import { parseReleaseUrl, planPublish, planRemovals, deletedWithRelease, branchCode, pendingSha, verifyFile, isLightPr } from '../scripts/upload/publish.mjs';
 import { releaseAssetUrl } from '../scripts/upload/term.mjs';
 
 const REPO = 'bk-study-library/hcmut-library';
@@ -73,11 +73,11 @@ test('planRemovals: chỉ mục vừa chuyển sang removed, file trên Release 
   assert.deepEqual(planRemovals(before, after, REPO), [{ tag: 'files-HK251', name: NAME }]);
 });
 
-test('planRemovals: bỏ qua link ngoài, mục mới thêm đã removed, mục bị xóa khỏi repo', () => {
+test('planRemovals: bỏ qua link ngoài, mục mới thêm đã removed', () => {
   const ext = { url: 'https://example.com/a.pdf' };
   assert.deepEqual(planRemovals([item({}, ext)], [item({ removed: true }, ext)], REPO), []);
   assert.deepEqual(planRemovals([], [item({ removed: true })], REPO), []);
-  assert.deepEqual(planRemovals([item()], [], REPO), []);
+  assert.deepEqual(planRemovals([item({}, ext)], [], REPO), []);
   const other = { url: releaseAssetUrl('evil/repo', 'files-HK251', NAME) };
   assert.deepEqual(planRemovals([item({}, other)], [item({ removed: true }, other)], REPO), []);
 });
@@ -86,6 +86,21 @@ test('planRemovals: mục chuyển sang removed khớp theo môn và id', () => 
   const before = [item({ course: 'MT1005', id: 'a' }), item({ course: 'CO1005', id: 'a' }, { name: 'b.pdf', url: releaseAssetUrl(REPO, 'files-HK251', 'b.pdf') })];
   const after = [item({ course: 'MT1005', id: 'a' }), item({ course: 'CO1005', id: 'a', removed: true }, { name: 'b.pdf', url: releaseAssetUrl(REPO, 'files-HK251', 'b.pdf') })];
   assert.deepEqual(planRemovals(before, after, REPO), [{ tag: 'files-HK251', name: 'b.pdf' }]);
+});
+
+test('planRemovals: file mục bị xóa khỏi repo thì xóa cả file trên Release, trừ khi mục khác còn dùng', () => {
+  assert.deepEqual(planRemovals([item()], [], REPO), [{ tag: 'files-HK251', name: NAME }]);
+  // Mục đã gỡ từ trước thì file đã được xóa lúc gỡ.
+  assert.deepEqual(planRemovals([item({ removed: true })], [], REPO), []);
+  // Mục chuyển chỗ (môn khác, id khác) vẫn trỏ cùng file: giữ lại.
+  const moved = item({ course: 'CO1005', id: 'tom-tat-moi' });
+  assert.deepEqual(planRemovals([item()], [moved], REPO, [moved]), []);
+});
+
+test('deletedWithRelease: chỉ mục chưa gỡ, bị xóa, có file trên Release của repo', () => {
+  const ext = item({ id: 'link-ngoai' }, { url: 'https://example.com/a.pdf' });
+  const gone = deletedWithRelease([item(), ext, item({ id: 'da-go', removed: true }), item({ id: 'con' })], [item({ id: 'con' })], REPO);
+  assert.deepEqual(gone, [{ course: 'MT1005', id: 'tom-tat', assets: [{ tag: 'files-HK251', name: NAME }] }]);
 });
 
 test('branchCode: chỉ nhận upload/<mã 10 ký tự>', () => {

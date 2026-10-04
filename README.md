@@ -14,7 +14,7 @@ Bản khung (0.1.0). Danh mục có 737 môn và 195 chương trình đào tạo
 |---|---|
 | Mọi tài liệu học tập bạn muốn chia sẻ: tóm tắt, ghi chú, lời giải, slide, đề thi, đáp án, báo cáo, gói quiz Study Pack v1 | File sách có bản quyền (sách thương mại, sách của nhà xuất bản). Muốn giới thiệu sách thì ghi tên, loại "Sách tham khảo" |
 | Link tới tài liệu công khai khác | File chạy được |
-| Đuôi file: .pdf, .md, .docx, .pptx, .xlsx, .zip, .png, .jpg, .json | File lớn hơn 20 MB |
+| Đuôi file: .pdf, .md, .docx, .pptx, .xlsx, .png, .jpg, .json; riêng gói quiz nhận thêm .zip | File lớn hơn 20 MB, file .zip cho loại khác gói quiz |
 
 Máy chỉ cảnh báo khi thấy MSSV, email, số điện thoại trong file, người duyệt quyết định. Riêng các ô chữ của form và file `.md` trong git thì bị từ chối nếu có thông tin cá nhân, vì phần này hiện công khai. Quy định đầy đủ: [CONTRIBUTING.md](CONTRIBUTING.md).
 
@@ -32,7 +32,7 @@ Không gửi file qua issue: file đính kèm trên repo công khai thành công
 
 Người duyệt là sinh viên đã học qua môn, làm tình nguyện; danh sách ở [.github/CODEOWNERS](.github/CODEOWNERS). Với bài gửi qua trang web:
 
-1. Workflow `kiem-file` quét virus, xóa siêu dữ liệu PDF, cảnh báo thông tin cá nhân, rồi ghi link Release vào Pull Request.
+1. Workflow `kiem-file` quét virus, xóa siêu dữ liệu (PDF, ảnh, file Office), cảnh báo thông tin cá nhân, JavaScript trong PDF, macro trong Office, rồi ghi link Release vào Pull Request. Máy không kết luận được thì gắn nhãn `can-xem-tay`.
 2. Người duyệt đọc theo danh sách kiểm và merge.
 3. Workflow `phat-hanh-file` đưa file lên GitHub pre-release `files-HKxxx`.
 4. Pull Request bị đóng thì `don-kho` dọn file chờ duyệt.

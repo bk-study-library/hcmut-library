@@ -1,24 +1,26 @@
 // Danh mục cho Worker: policy.json và index.json đọc qua GitHub, giữ trong Cache API.
 
 // Gọn index.json còn những gì Worker cần: môn, mã môn hiện tại, id đã dùng, sha256 tài liệu đang có
-// (cả bản đã làm sạch lẫn file gốc người gửi tải lên).
+// (cả bản đã làm sạch lẫn file gốc người gửi tải lên), và sha256 tài liệu đã gỡ (blocked): mục gỡ vẫn
+// nằm trong index.json, nên file bị gỡ theo yêu cầu không gửi lại được qua form.
 export function summarize(policy, index) {
   const courses = [];
   const shas = [];
+  const blocked = [];
   for (const faculty of index.faculties ?? []) {
     for (const c of faculty.courses ?? []) {
       const items = c.items ?? [];
       courses.push({ id: c.id, code: c.code, status: c.status, ids: items.map((i) => i.id) });
       for (const it of items) {
-        if (it.removed) continue;
+        const into = it.removed ? blocked : shas;
         for (const f of it.files ?? []) {
-          if (f.sha256) shas.push(f.sha256);
-          if (f.uploadSha256) shas.push(f.uploadSha256);
+          if (f.sha256) into.push(f.sha256);
+          if (f.uploadSha256) into.push(f.uploadSha256);
         }
       }
     }
   }
-  return { policy, courses, shas };
+  return { policy, courses, shas, blocked };
 }
 
 function hydrate(data) {
@@ -26,6 +28,8 @@ function hydrate(data) {
     policy: data.policy,
     courses: new Map(data.courses.map((c) => [c.id, { ...c, ids: new Set(c.ids) }])),
     shas: new Set(data.shas),
+    // Bản cũ trong cache (trước khi có blocked) thì coi như rỗng.
+    blocked: new Set(data.blocked ?? []),
   };
 }
 

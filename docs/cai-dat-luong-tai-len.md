@@ -118,6 +118,9 @@ Mở `worker/wrangler.jsonc`, mục `vars`, kiểm lại:
 | `REVIEW_BASE` | `https://upload.xerozsoft.com`: gốc của link xem file (bước 8). Để trống thì Worker không tạo link xem bài |
 | `ACCESS_TEAM_DOMAIN` | tên miền team Cloudflare Access, dạng `<team>.cloudflareaccess.com` (bước 8). Để trống thì trang xem file của người duyệt trả 503 |
 | `ACCESS_AUD` | Application Audience (AUD) của ứng dụng Access (bước 8). Để trống thì trang xem file của người duyệt trả 503 |
+| `SUBMIT_DAILY_CAP` | `"200"`: trần số bài nhận mỗi ngày (UTC) cho mọi người gửi, đếm ở R2 `dem/<ngày>` (luật vòng đời 30 ngày cũng xóa các khóa này). Đủ trần thì form báo gửi lại vào ngày mai. Để trống thì không có trần |
+
+Giới hạn theo người gửi nằm ở mục `ratelimits` (`SUBMIT_LIMIT`, 5 lần mỗi 60 giây). Khóa là địa chỉ IPv4, hoặc dải /64 với IPv6, nên đổi địa chỉ trong cùng dải /64 không vượt được giới hạn. Worker không ghi IP vào đâu.
 
 Đưa Worker lên:
 
@@ -125,11 +128,13 @@ Mở `worker/wrangler.jsonc`, mục `vars`, kiểm lại:
 npx wrangler deploy
 ```
 
-Lệnh in ra địa chỉ Worker, dạng `https://bk-study-library-upload.<tên-bạn>.workers.dev`. Lần đầu, wrangler có thể hỏi đặt tên miền con `workers.dev` cho tài khoản. Ghi địa chỉ này vào ô `uploadEndpoint` của `catalog/site.json`, kèm đuôi `/submit` vì Worker chỉ trả lời ở đường dẫn đó. Giữ nguyên `turnstileSiteKey`:
+Worker chỉ chạy ở tên miền riêng `upload.xerozsoft.com` (bước 8): `worker/wrangler.jsonc` đặt `"workers_dev": false` và `"preview_urls": false`, nên không còn địa chỉ `workers.dev` (lối vào thứ hai không qua Access, lại lộ tên tài khoản). Ô `uploadEndpoint` của `catalog/site.json` là địa chỉ đó kèm đuôi `/submit` vì Worker chỉ nhận bài ở đường dẫn này. Giữ nguyên `turnstileSiteKey`:
 
 ```json
-"uploadEndpoint": "https://bk-study-library-upload.<tên-bạn>.workers.dev/submit"
+"uploadEndpoint": "https://upload.xerozsoft.com/submit"
 ```
+
+Dựng lần đầu khi chưa có tên miền riêng: tạm đặt `"workers_dev": true`, dùng địa chỉ `https://bk-study-library-upload.<tên-bạn>.workers.dev/submit`, và tắt lại ngay khi bước 8 xong.
 
 Sau đó commit `catalog/site.json`, chạy `npm run build`, rồi dựng lại web để form có địa chỉ mới.
 
@@ -168,13 +173,28 @@ gh label create tai-lieu-moi --repo bk-study-library/hcmut-library --description
 
 Hoặc trên web: **Issues** > **Labels** > **New label**.
 
+Tạo thêm nhãn `can-xem-tay`. `kiem-file` gắn nhãn này khi máy không kết luận được (ClamAV không quét hết vì file mã hóa hay vượt giới hạn, PDF có JavaScript, file Office có macro hay liên kết ngoài, .zip có mục lạ). PR không bị đóng, người duyệt xem tay rồi quyết định:
+
+```bash
+gh label create can-xem-tay --repo bk-study-library/hcmut-library --description "Máy không kết luận được, người duyệt xem tay" --color D93F0B
+```
+
 ## Bước 7. Bảo vệ nhánh `main`
 
-Ruleset bắt buộc PR và một lượt duyệt chỉ bật được sau khi repo public (gói Free). Trong lúc repo còn private, điều duy nhất ngăn bot tự đưa bài lên `main` là khóa App chỉ nằm trong Worker secrets. Khi repo public, vào **Settings** > **Rules** > **Rulesets** và tạo ruleset cho `main`: yêu cầu Pull request và một lượt duyệt, không ai được bỏ qua, kể cả bot. Cùng lúc đó đổi `PUBLIC_PR_LINKS` thành `"true"` rồi `npx wrangler deploy` lại.
+Ruleset bắt buộc PR và một lượt duyệt chỉ bật được sau khi repo public (gói Free). Trong lúc repo còn private, điều duy nhất ngăn bot tự đưa bài lên `main` là khóa App chỉ nằm trong Worker secrets. Khi repo public, vào **Settings** > **Rules** > **Rulesets** và tạo ruleset cho `main`. Cùng lúc đó đổi `PUBLIC_PR_LINKS` thành `"true"` rồi `npx wrangler deploy` lại.
+
+Ruleset đang chạy cho `main`:
+
+- Cấm xóa nhánh và đẩy ép (force push).
+- Mọi thay đổi đi qua Pull request, cần một lượt duyệt của code owner (`.github/CODEOWNERS`); lượt duyệt cũ mất hiệu lực khi có commit mới.
+- Check bắt buộc: `validate` và `worker` (workflow `validate`). `kiem-file` không phải check bắt buộc; nếu bài được gộp trước khi quét xong, `phat-hanh-file` dừng vì mục chưa có bản sạch, file không lên Release.
+- **Có một ngoại lệ:** vai trò Admin của repo được bỏ qua ruleset khi gộp Pull request (bypass mode `pull_request`). Người duy trì là admin nên gộp được PR mà không cần lượt duyệt của người khác. Ngoại lệ này cần khi chỉ có một người duyệt. Nó cũng có nghĩa: phiên đăng nhập hay token của tài khoản admin bị lộ thì gộp được bất kỳ PR nào. Bật xác thực hai lớp, và gỡ ngoại lệ khi có người duyệt thứ hai.
+- Bot (GitHub App) không có trong danh sách bỏ qua, nên không tự gộp được bài.
+- Nhánh `upload/*` không có ruleset riêng.
 
 ## Bước 8. Xem file chờ duyệt: tên miền riêng và Cloudflare Access
 
-Người duyệt mở file của một PR qua link `https://upload.xerozsoft.com/xem-duyet/<mã bài>` (có trong nội dung PR và comment của `kiem-file`), đăng nhập bằng GitHub, không cần tài khoản Cloudflare. Người gửi nhận link riêng `https://upload.xerozsoft.com/xem/<mã bài>?k=<mã bí mật>` ngay sau khi gửi.
+Người duyệt mở bài của một PR qua link `https://upload.xerozsoft.com/xem-duyet/<mã bài>` (có trong nội dung PR và comment của `kiem-file`), đăng nhập bằng GitHub, không cần tài khoản Cloudflare. Trang này hiện mọi ô người gửi nhập (đọc từ file mục trên nhánh `upload/<mã bài>`, đã thoát HTML), rồi nút **Xem file** (`/xem-duyet/<mã bài>/file`) và **Tải file**. Tiêu đề và nội dung PR không chứa chữ người gửi. Người gửi nhận link riêng `https://upload.xerozsoft.com/xem/<mã bài>?k=<mã bí mật>` ngay sau khi gửi.
 
 Cloudflare Access chỉ bảo vệ theo đường dẫn khi Worker chạy trên tên miền thuộc tài khoản. Bật Access trên `workers.dev` sẽ khóa cả `/submit` và làm hỏng form công khai, vì vậy Worker có thêm tên miền `upload.xerozsoft.com`:
 
@@ -184,7 +204,7 @@ Cloudflare Access chỉ bảo vệ theo đường dẫn khi Worker chạy trên 
 | `/xem-duyet/*` | Chỉ thành viên org `bk-study-library`, qua Cloudflare Access |
 | `/xem/*` | Ai có link kèm mã bí mật đúng |
 
-Worker vẫn tự kiểm JWT của Access (chữ ký, `aud`, `iss`, thời hạn) trong header `Cf-Access-Jwt-Assertion`. Địa chỉ `workers.dev` vẫn bật trong lúc chuyển: ở đó `/xem-duyet/*` không đi qua Access nên luôn bị Worker chặn (403).
+Worker vẫn tự kiểm JWT của Access (chữ ký, `aud`, `iss`, thời hạn) trong header `Cf-Access-Jwt-Assertion`. Địa chỉ `workers.dev` đã tắt (`"workers_dev": false`), nên `upload.xerozsoft.com` là lối vào duy nhất.
 
 ### 8.1. Tên miền cho Worker
 
@@ -226,12 +246,12 @@ Mở `worker/wrangler.jsonc`, mục `vars`, điền:
 Hai giá trị này không phải khóa bí mật. Commit rồi `npx wrangler deploy`. Khi còn trống một trong hai, `/xem-duyet/*` trả 503 cho mọi người.
 
 Thử:
-- Mở `https://upload.xerozsoft.com/xem-duyet/<mã bài>` của một PR đang mở: Access chuyển sang đăng nhập GitHub, sau đó trình duyệt mở file (hoặc trang cảnh báo nếu máy chưa quét virus xong).
+- Mở `https://upload.xerozsoft.com/xem-duyet/<mã bài>` của một PR đang mở: Access chuyển sang đăng nhập GitHub, sau đó trang hiện chữ người gửi và nút xem file (hoặc cảnh báo nếu máy chưa quét virus xong).
 - Mở cùng link bằng tài khoản GitHub không thuộc org: Access chặn.
-- Mở `https://bk-study-library-upload.<tên-bạn>.workers.dev/xem-duyet/<mã bài>`: Worker trả 403.
+- Mở `https://bk-study-library-upload.<tên-bạn>.workers.dev/submit`: không còn trả lời (workers.dev đã tắt).
 - Gửi một bài thử: trang Gửi tài liệu hiện link xem bài. Đổi một ký tự của `k` trong link: trang báo không tìm thấy.
 
-Sau khi `upload.xerozsoft.com` chạy ổn, có thể đổi `uploadEndpoint` trong `catalog/site.json` sang `https://upload.xerozsoft.com/submit` để địa chỉ `workers.dev` không còn lộ tên tài khoản.
+`uploadEndpoint` trong `catalog/site.json` đã là `https://upload.xerozsoft.com/submit`.
 
 ## Chạy thử (repo private)
 
@@ -264,7 +284,7 @@ Kết quả mong đợi:
 
 ### Bài 2. File EICAR
 
-EICAR là file thử chuẩn của phần mềm diệt virus, vô hại. Tải từ trang chính thức https://www.eicar.org (mục file thử). Phần mềm diệt virus trên máy bạn có thể chặn hoặc xóa file này: tạm thời đặt nó vào thư mục được loại trừ. Form chỉ nhận các đuôi trong `catalog/policy.json`, nên nén file EICAR thành `.zip` rồi gửi.
+EICAR là file thử chuẩn của phần mềm diệt virus, vô hại. Tải từ trang chính thức https://www.eicar.org (mục file thử). Phần mềm diệt virus trên máy bạn có thể chặn hoặc xóa file này: tạm thời đặt nó vào thư mục được loại trừ. Form chỉ nhận các đuôi trong `catalog/policy.json`, nên nén file EICAR thành `.zip` rồi gửi với loại **Gói quiz** (`.zip` chỉ nhận cho loại này).
 
 Kết quả mong đợi:
 - Có PR mới, rồi `kiem-file` comment báo phát hiện virus.

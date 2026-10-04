@@ -11,11 +11,12 @@
     "logs": { "enabled": true, "invocation_logs": false }
   },
   // Tên miền riêng: Cloudflare Access chỉ bảo vệ được /xem-duyet/* trên tên miền thuộc tài khoản.
-  // workers.dev vẫn bật trong lúc chuyển; ở đó /xem-duyet/* không qua Access nhưng Worker vẫn tự kiểm JWT.
+  // Tắt workers.dev và địa chỉ xem trước: chỉ còn một lối vào, đi qua Access, không lộ tên tài khoản.
   "routes": [
     { "pattern": "upload.xerozsoft.com", "custom_domain": true }
   ],
-  "workers_dev": true,
+  "workers_dev": false,
+  "preview_urls": false,
   // Giá trị có thể đổi khi chuyển repo hay tên miền. Khóa bí mật nhập bằng wrangler secret put:
   // TURNSTILE_SECRET, GH_APP_ID, GH_APP_PRIVATE_KEY, GH_INSTALLATION_ID.
   "vars": {
@@ -33,13 +34,16 @@
     // Cloudflare Access cho /xem-duyet/*: tên miền team (dạng <team>.cloudflareaccess.com) và
     // Application Audience (AUD). Để trống thì /xem-duyet/* trả 503.
     "ACCESS_TEAM_DOMAIN": "tktq40.cloudflareaccess.com",
-    "ACCESS_AUD": "d9150868f1e48b3f2e36ffcf80e20b05fb1fb83bdc067f95ef75829ad1c021ee"
+    "ACCESS_AUD": "d9150868f1e48b3f2e36ffcf80e20b05fb1fb83bdc067f95ef75829ad1c021ee",
+    // Trần số bài nhận mỗi ngày (UTC) cho mọi người gửi, đếm ở R2 (dem/<ngày>). Đủ thì trả 429.
+    // Để trống thì không có trần.
+    "SUBMIT_DAILY_CAP": "200"
   },
   // Kho cách ly: file chờ duyệt, riêng tư.
   "r2_buckets": [
     { "binding": "QUARANTINE", "bucket_name": "bk-lib-quarantine" }
   ],
-  // Giới hạn số lần gửi theo IP: 5 lần mỗi 60 giây.
+  // Giới hạn số lần gửi: 5 lần mỗi 60 giây cho mỗi địa chỉ IPv4, hoặc mỗi dải /64 với IPv6.
   "ratelimits": [
     { "name": "SUBMIT_LIMIT", "namespace_id": "1001", "simple": { "limit": 5, "period": 60 } }
   ]

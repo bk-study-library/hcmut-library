@@ -4,25 +4,58 @@
 //   node scripts/validate.mjs            kiểm, và báo lỗi nếu file sinh ra đã cũ (dùng trong CI)
 //   node scripts/validate.mjs --write    kiểm, rồi ghi lại index và README
 //   node scripts/validate.mjs --root DIR kiểm một thư mục khác (dùng trong test)
+//   node scripts/validate.mjs --base REF so với commit REF (git): báo lỗi khi file mục có file trên
+//                                        Release bị xóa thay vì đặt removed: true (dùng trong CI)
 
 import fs from 'node:fs';
 import path from 'node:path';
+import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import { loadRepo, buildIndex, serializeIndex, TOOL_ROOT } from './lib/repo.mjs';
 import { syncReadmes } from './lib/readme.mjs';
 import { buildV1, serializeV1 } from './lib/v1.mjs';
+import { REPO } from './lib/labels.mjs';
+import { deletedWithRelease } from './upload/publish.mjs';
+
+const ITEM_PATH = /^courses\/[A-Za-z0-9_-]+\/items\/[A-Za-z0-9_-]+\.json$/;
+
+// Mục có ở commit base nhưng file mục đã bị xóa, mà có file trên Release: lỗi ITEM_DELETED.
+export function deletedItemErrors(root, base, repoItems) {
+  const git = (argv) => spawnSync('git', argv, { cwd: root, encoding: 'utf8', maxBuffer: 64 * 1024 * 1024 });
+  const diff = git(['diff', '--name-only', '-z', '--no-renames', '--diff-filter=D', base, '--', 'courses']);
+  if (diff.status !== 0) {
+    return [{ code: 'GIT', file: base, msg: `không so được với ${base}: ${String(diff.stderr).trim()}` }];
+  }
+  const before = [];
+  for (const p of diff.stdout.split('\0').filter((x) => ITEM_PATH.test(x))) {
+    const shown = git(['show', `${base}:${p}`]);
+    if (shown.status !== 0) continue;
+    try {
+      before.push({ ...JSON.parse(shown.stdout), _file: p });
+    } catch {
+      // Bản cũ không đọc được thì không có link để kiểm.
+    }
+  }
+  return deletedWithRelease(before, repoItems, REPO).map((x) => ({
+    code: 'ITEM_DELETED',
+    file: `courses/${x.course}/items/${x.id}.json`,
+    msg: 'file mục có file trên Release bị xóa; đặt "removed": true và "removedReason" thay vì xóa, để workflow gỡ file trên Release',
+  }));
+}
 
 export function run(argv) {
-  const args = { root: TOOL_ROOT, write: false, quiet: false };
+  const args = { root: TOOL_ROOT, write: false, quiet: false, base: null };
   for (let i = 0; i < argv.length; i++) {
     if (argv[i] === '--root') args.root = path.resolve(argv[++i]);
     else if (argv[i] === '--write') args.write = true;
     else if (argv[i] === '--quiet') args.quiet = true;
     // Commit đầu của bot trên nhánh upload/: file sinh ra chưa dựng lại (kiem-file sẽ dựng), chỉ cảnh báo.
     else if (argv[i] === '--allow-stale') args.allowStale = true;
+    else if (argv[i] === '--base') args.base = argv[++i];
     else throw new Error(`tham số lạ: ${argv[i]}`);
   }
   const repo = loadRepo(args.root);
+  if (args.base) repo.errors.push(...deletedItemErrors(args.root, args.base, repo.items));
   const index = buildIndex(repo);
   const { full, min } = serializeIndex(index);
   const stale = [];

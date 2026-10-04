@@ -2,6 +2,7 @@
 import { slugify } from '../../scripts/upload/naming.mjs';
 import { formatSize } from '../../scripts/lib/labels.mjs';
 import { scanText } from '../../scripts/lib/pii.mjs';
+import { extensionsFor } from '../../scripts/lib/extensions.mjs';
 
 const MESSAGES = {
   course: 'Không tìm thấy môn này. Chọn môn trong danh sách.',
@@ -18,6 +19,7 @@ const MESSAGES = {
   fileSize: (max) => `File quá lớn. Chọn file nhỏ hơn ${max}.`,
   fileMagic: (ext) => `Nội dung file không khớp đuôi ${ext}.`,
   quizExt: (list) => `Không nhận file này cho gói quiz. Dùng một trong: ${list}.`,
+  fileExtType: (list) => `Không nhận đuôi file này cho loại tài liệu đã chọn. Dùng một trong: ${list}.`,
   pii: (where, label) => `Không nhận thông tin cá nhân trong ${where} (có thể là ${label}). Bỏ phần đó rồi gửi lại.`,
   lang: 'Mã ngôn ngữ không hợp lệ. Dùng dạng vi hoặc en.',
   description: (max) => `Mô tả quá dài. Rút xuống tối đa ${max} ký tự.`,
@@ -75,14 +77,18 @@ function toHex(bytes) {
   return Array.from(bytes, (b) => b.toString(16).padStart(2, '0')).join('');
 }
 
-function checkFile(file, policy, errors) {
+// Đuôi phải có trong policy và được nhận cho loại tài liệu (extensions[].types, quizExtensions).
+function checkFile(file, policy, errors, type) {
   const ext = extOf(file.name);
   const rule = policy.extensions[ext];
   if (!rule) {
     errors.file = MESSAGES.fileExt(Object.keys(policy.extensions).join(', '));
     return null;
   }
-  if (file.size <= 0) {
+  const allowed = extensionsFor(policy, type);
+  if (!allowed.includes(ext)) {
+    errors.file = type === 'quiz-pack' ? MESSAGES.quizExt(allowed.join(', ')) : MESSAGES.fileExtType(allowed.join(', '));
+  } else if (file.size <= 0) {
     errors.file = MESSAGES.fileEmpty;
   } else if (file.size > policy.maxFileBytes) {
     errors.file = MESSAGES.fileSize(formatSize(policy.maxFileBytes));
@@ -176,15 +182,11 @@ export function validateSubmission(fields, file, ctx) {
   if (file && type === 'book-ref') {
     errors.file = MESSAGES.bookFile;
   } else if (file) {
-    ext = checkFile(file, policy, errors) ?? undefined;
+    ext = checkFile(file, policy, errors, type) ?? undefined;
   } else if (type === 'book-ref') {
     book = parseBook(fields, errors, lim);
   } else {
     errors.file = MESSAGES.fileMissing;
-  }
-
-  if (type === 'quiz-pack' && ext && !errors.file && !policy.quizExtensions.includes(ext)) {
-    errors.file = MESSAGES.quizExt(policy.quizExtensions.join(', '));
   }
 
   // Thông tin cá nhân: chỉ xét ô chưa có lỗi khác. Tiêu đề xét cả slug vì slug thành id và tên file.
