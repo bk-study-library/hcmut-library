@@ -34,6 +34,7 @@ env:
 
 jobs:
   don-kho:
+    timeout-minutes: 10
     if: >-
       github.event.pull_request.merged == false &&
       github.event.pull_request.head.repo.full_name == github.repository &&

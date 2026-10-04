@@ -10,6 +10,7 @@ permissions: {}
 
 jobs:
   validate:
+    timeout-minutes: 10
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -56,6 +57,7 @@ jobs:
         run: npm run site -- --out "$RUNNER_TEMP/site"
 
   worker:
+    timeout-minutes: 10
     runs-on: ubuntu-latest
     permissions:
       contents: read
