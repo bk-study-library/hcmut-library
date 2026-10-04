@@ -305,7 +305,8 @@ describe('GET /xem-duyet/<mã>', () => {
     expect(html).toContain('Thầy &quot;A&quot; &amp; cô B');
     expect(html).toContain('Dòng 1\nXem https://lua-dao.example');
     expect(html).not.toContain('href="https://lua-dao');
-    expect(html).toContain('<dt>Loại</dt><dd>Tóm tắt</dd>');
+    // Loại, giảng viên ở dòng dưới tiêu đề; ô khác trong Thông tin khác.
+    expect(html).toContain('<p class="muted">Tóm tắt, Thầy &quot;A&quot; &amp; cô B</p>');
     expect(html).toContain('<dt>Tên hiển thị</dt><dd>Nguyen Van An</dd>');
     // Chữ đứng trước nút file.
     expect(html.indexOf('Tóm tắt &lt;script')).toBeLessThan(html.indexOf(`href="/xem-duyet/${CODE}/file"`));

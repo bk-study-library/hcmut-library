@@ -1,15 +1,15 @@
 #!/usr/bin/env bash
-# Commit mục tài liệu và file sinh ra của môn đó vào nhánh PR, push bằng token của GitHub App
+# Commit item và generated file của môn đó vào branch PR, push bằng token của GitHub App
 # (workflow kiem-file). Chạy trong thư mục checkout của PR; script lấy từ bản main.
 #
 # Commit bằng token của App để workflow validate chạy lại trên PR; commit bằng GITHUB_TOKEN
-# thì GitHub không chạy workflow khác. Chỉ commit mục tài liệu và file sinh ra của môn đó.
+# thì GitHub không chạy workflow khác. Chỉ commit item và generated file của môn đó.
 #
 # Biến môi trường: GH_TOKEN (đọc id của bot), APP_TOKEN, APP_SLUG, CODE, ITEMS, COURSE,
 # BRANCH, REPO, GITHUB_SERVER_URL.
 set -euo pipefail
 
-# ITEMS: các mục của đợt gửi, mỗi dòng một đường dẫn courses/<môn>/items/<id>.json (đã qua kiểm ở job gate).
+# ITEMS: các item của bài, mỗi dòng một đường dẫn courses/<môn>/items/<id>.json (đã qua kiểm ở job gate).
 while IFS= read -r item; do
   [ -n "$item" ] || continue
   case "$item" in
@@ -37,7 +37,7 @@ if [ -n "$(git status --porcelain)" ]; then
   echo "::warning::Có file khác thay đổi nhưng không được commit: $(git status --porcelain | tr '\n' ' ')"
 fi
 # Token đi qua header trong biến môi trường của git, không nằm trong URL.
-# Push thường (không ép), nên nhánh đã có commit mới hơn thì push bị từ chối.
+# Push thường (không force), nên branch đã có commit mới hơn thì push bị từ chối.
 auth=$(printf 'x-access-token:%s' "$APP_TOKEN" | base64 -w0)
 echo "::add-mask::$auth"
 GIT_CONFIG_COUNT=1 \

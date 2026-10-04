@@ -542,9 +542,9 @@ async function handleDecision(req, env, deps, code, who, github) {
   }
   // Bỏ file không duyệt khỏi branch và khỏi kho; workflow kiem-file dựng lại dữ liệu, rồi tu-gop gọi /duyet-tiep.
   const branch = `upload/${code}`;
-  for (const d of drop) {
-    const doc = docs.find((x) => x.id === d.id);
-    await gh.deleteFile(doc.path, branch, `review: bỏ ${d.id} khỏi bài ${code}`);
+  const dropped = drop.map((d) => docs.find((x) => x.id === d.id));
+  await gh.deleteFiles(dropped.map((doc) => doc.path), branch, `review: bỏ ${drop.length} file khỏi bài ${code}`, state.sha);
+  for (const doc of dropped) {
     const f = doc.item?.files?.[0];
     const keys = [];
     if (f?.name) keys.push(`pending/${code}/${f.name}`, `clean/${code}/${f.name}`);

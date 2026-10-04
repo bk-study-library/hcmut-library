@@ -1,7 +1,8 @@
 // Đợt gửi nhiều file: một PR có nhiều item cùng môn, cùng mã bài.
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { pickItemFile, pickItemFiles, batchManifest, batchReport } from '../scripts/upload/check.mjs';
+import { pickItemFile, pickItemFiles, batchManifest, batchReport, clamFor, alreadyScanned } from '../scripts/upload/check.mjs';
+import path from 'node:path';
 import { REPORT_MARKER } from '../scripts/upload/report.mjs';
 
 const f = (filename, status = 'added') => ({ filename, status });
@@ -31,11 +32,29 @@ test('batchManifest: cùng mã bài theo branch; sách không file không gửi 
   assert.throws(() => batchManifest(['courses/MT1003/items/a.json', 'courses/MT1003/items/s.json'], (rel) => (rel.endsWith('s.json') ? book : items[rel]), 'upload/Abcde12345'), /gửi riêng/);
 });
 
-test('batchReport: một file giữ báo cáo cũ; nhiều file thì một comment, mỗi file một mục', () => {
-  const r = (code, line) => `${REPORT_MARKER}\n## Kết quả kiểm file ${code}\n\n${line}\n`;
-  assert.equal(batchReport('X', [{ name: 'a.pdf', report: r('X', 'Không phát hiện virus.') }]), r('X', 'Không phát hiện virus.'));
-  const out = batchReport('X', [{ name: 'a.pdf', report: r('X', 'Không phát hiện virus.') }, { name: 'b.pdf', report: r('X', 'Cảnh báo: Y') }]);
-  assert.ok(out.startsWith(`${REPORT_MARKER}\n## Kết quả kiểm đợt gửi X (2 tài liệu)`));
+test('batchReport: một comment cho cả bài, một bảng, một link duyệt', () => {
+  const out = batchReport('Abcde12345', [{ file: { name: 'a.pdf', size: 2048, pii: [], warnings: [] } }, { file: { name: 'b.pdf', size: 4096, pii: [], warnings: ['pdf-embedded'] } }]);
+  assert.ok(out.startsWith(`${REPORT_MARKER}\n## Kiểm file bài Abcde12345: 2 file, không có virus`));
   assert.equal(out.split(REPORT_MARKER).length, 2);
-  assert.match(out, /### 1\. a\.pdf\n\nKhông phát hiện virus\.\n\n### 2\. b\.pdf\n\nCảnh báo: Y\n$/);
+  assert.equal(out.split('/xem-duyet/Abcde12345').length, 2);
+  assert.ok(out.includes('| 2 | b.pdf, 4 KB | PDF có file đính kèm |'));
+});
+
+test('clamFor: tách kết quả clamscan của cả bài theo từng file', () => {
+  const a = path.resolve('/r/in/0/file/a.pdf');
+  const b = path.resolve('/r/in/1/file/b.pdf');
+  const all = { status: 1, stdout: `${b}: Win.Test.EICAR_HDB-1 FOUND\n${a}.bak: X FOUND\n` };
+  assert.deepEqual(clamFor(all, a), { status: 0, stdout: '' });
+  assert.deepEqual(clamFor(all, b), { status: 1, stdout: `${b}: Win.Test.EICAR_HDB-1 FOUND` });
+  assert.deepEqual(clamFor({ status: 0, stdout: '' }, a), { status: 0, stdout: '' });
+  assert.equal(clamFor({ status: 2, stdout: '' }, a).status, 2);
+});
+
+test('alreadyScanned: chỉ khi file ở clean/ và đã có link Release của repo', () => {
+  const f = { name: 'a.pdf', sha256: 'a'.repeat(64), quarantine: 'clean/Abcde12345/a.pdf', url: 'https://github.com/o/r/releases/download/files-HK261/a.pdf' };
+  assert.equal(alreadyScanned({ files: [f] }, 'o/r'), true);
+  assert.equal(alreadyScanned({ files: [{ ...f, quarantine: 'pending/Abcde12345/a.pdf' }] }, 'o/r'), false);
+  assert.equal(alreadyScanned({ files: [{ ...f, url: undefined }] }, 'o/r'), false);
+  assert.equal(alreadyScanned({ files: [f] }, 'khac/repo'), false);
+  assert.equal(alreadyScanned({ files: [f] }, ''), false);
 });

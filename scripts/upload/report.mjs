@@ -44,60 +44,70 @@ export function needsManualReview({ unscannable, warnings = [] }) {
   return Boolean(unscannable) || warnings.some((w) => WARNINGS[w]?.manual);
 }
 
-// Số tên metadata đã xóa hiện trong comment; phần còn lại chỉ ghi số lượng.
-const METADATA_SHOWN = 40;
+// Ghi chú ngắn cho từng mã cảnh báo, dùng trong bảng kết quả (câu dài ở WARNINGS[].text).
+const SHORT = {
+  'pdf-javascript': 'PDF có JavaScript',
+  'pdf-launch': 'PDF có lệnh Launch',
+  'pdf-openaction': 'PDF có OpenAction',
+  'pdf-embedded': 'PDF có file đính kèm',
+  'office-macro': 'Office có macro',
+  'office-comments': 'Còn nội dung comment',
+  'office-external': 'Office trỏ ra ngoài',
+  'zip-encrypted': '.zip có mật khẩu',
+  'zip-unsafe-path': '.zip có đường dẫn lạ',
+  'zip-symlink': '.zip có symlink',
+  'zip-nested': '.zip lồng .zip',
+  'zip-other-type': '.zip có loại file lạ',
+  'zip-large': '.zip quá lớn khi giải nén',
+  'zip-images': 'Ảnh trong .zip còn metadata',
+};
 
-// Giữ 2 ký tự đầu và 1 ký tự cuối, che phần giữa; chuỗi ngắn che hết.
-function mask(s) {
-  const t = String(s);
-  if (t.length <= 4) return '*'.repeat(t.length);
-  return t.slice(0, 2) + '*'.repeat(t.length - 3) + t.slice(-1);
+// Ô trong bảng markdown: bỏ ký tự có thể phá bảng hay chèn HTML, link, gọi tên người.
+const cell = (s) => String(s).replace(/[|<>`[\]@#\r\n]/g, ' ').replace(/\s+/g, ' ').trim();
+
+function formatBytes(n) {
+  if (!Number.isFinite(n)) return '';
+  if (n < 1024 * 1024) return `${Math.max(1, Math.round(n / 1024))} KB`;
+  return `${(n / 1024 / 1024).toFixed(1)} MB`;
 }
 
-// piiChecked false: loại file này không đọc được chữ nên chưa tìm thông tin cá nhân.
-// reviewUrl: link xem file cho người duyệt (sau Cloudflare Access); không có thì bỏ dòng này.
-// textPages, totalPages: số trang PDF đã đọc chữ và tổng số trang (đọc có giới hạn).
-export function renderReport({
-  code, virus, metadataRemoved = [], hasText, pii = [], url, piiChecked = true, reviewUrl,
-  unscannable = null, warnings = [], textPages = null, totalPages = null,
-}) {
-  const out = [REPORT_MARKER, `## Kết quả kiểm file ${code}`, ''];
+// Các ghi chú của một file; rỗng là không có gì cần xem.
+function fileNotes(f) {
+  if (f.virus) return [`Có virus: ${cell(f.virus)}`];
+  const notes = [];
+  if (f.unscannable) notes.push(`ClamAV không quét hết (${cell(f.unscannable)})`);
+  for (const w of f.warnings || []) if (SHORT[w]) notes.push(SHORT[w]);
+  if (f.hasText === false) notes.push('PDF không có lớp chữ');
+  if (Number.isInteger(f.textPages) && Number.isInteger(f.totalPages) && f.textPages < f.totalPages) notes.push(`Chỉ đọc chữ ${f.textPages}/${f.totalPages} trang`);
+  if (f.piiChecked === false) notes.push('Chưa kiểm thông tin cá nhân');
+  const byLabel = new Map();
+  for (const p of f.pii || []) {
+    if (!byLabel.has(p.label)) byLabel.set(p.label, new Set());
+    byLabel.get(p.label).add(p.page);
+  }
+  for (const [label, pages] of byLabel) notes.push(`Có thể có ${cell(label)} (trang ${[...pages].sort((a, b) => a - b).join(', ')})`);
+  return notes;
+}
 
-  if (virus) {
-    out.push(`Có virus: ${virus}. Bài nộp này sẽ bị đóng và file không được dùng. Bạn hãy quét máy, rồi nộp lại bằng file sạch.`);
-    return out.join('\n') + '\n';
-  }
-
-  if (unscannable) {
-    out.push(`Không quét hết được file: ClamAV báo ${unscannable} (file mã hóa hoặc vượt giới hạn quét). Người duyệt mở xem tay trước khi merge.`);
-  } else {
-    out.push('Không phát hiện virus.');
-  }
-  if (needsManualReview({ unscannable, warnings })) {
-    out.push(`Đã gắn label \`${MANUAL_LABEL}\`: máy không kết luận được, người duyệt cần xem tay trước khi merge.`);
-  }
-  if (metadataRemoved.length) {
-    const shown = metadataRemoved.slice(0, METADATA_SHOWN);
-    const more = metadataRemoved.length - shown.length;
-    out.push(`Đã xóa metadata: ${shown.join(', ')}${more > 0 ? ` và ${more} mục khác` : ''}.`);
-  }
-  for (const w of warnings) if (WARNINGS[w]) out.push(`Cảnh báo: ${WARNINGS[w].text}`);
-  if (hasText === false) {
-    out.push('Cảnh báo: file PDF không có lớp chữ nên không tìm kiếm được. Người duyệt sẽ xem xét.');
-  }
-  if (Number.isInteger(textPages) && Number.isInteger(totalPages) && textPages < totalPages) {
-    out.push(`Chỉ đọc chữ ${textPages} trang đầu trên tổng ${totalPages} trang để tìm thông tin cá nhân. Người duyệt xem các trang còn lại.`);
-  }
-  if (!piiChecked) {
-    out.push('Chưa kiểm thông tin cá nhân và lớp chữ với loại file này. Người duyệt sẽ xem trực tiếp.');
-  }
-  if (pii.length) {
-    out.push('', 'Cảnh báo: có thể có thông tin cá nhân. Người duyệt sẽ kiểm tra lại, chưa có gì bị chặn.', '');
-    for (const p of pii) out.push(`- ${p.label}, trang ${p.page}: ${mask(p.match)}`);
-  }
-  if (reviewUrl) out.push('', `Xem file (người duyệt): ${reviewUrl}`);
-  out.push('', 'Sau khi người duyệt merge bài, file được đăng tại:', url);
-  return out.join('\n') + '\n';
+// Comment kết quả kiểm của một bài (một hay nhiều file): một bảng, một link duyệt.
+// files: [{ name, size, virus, unscannable, warnings, hasText, pii, piiChecked, textPages, totalPages }].
+// reviewUrl: trang duyệt (sau Cloudflare Access); không có thì bỏ dòng này.
+export function renderReport({ code, reviewUrl = '', files }) {
+  const virus = files.some((f) => f.virus);
+  const manual = !virus && files.some((f) => needsManualReview(f));
+  const out = [REPORT_MARKER, `## Kiểm file bài ${cell(code)}: ${files.length} file, ${virus ? 'CÓ VIRUS' : 'không có virus'}`, ''];
+  if (virus) out.push('Bài bị đóng, file không được dùng. Hãy quét máy rồi gửi lại bằng file sạch.', '');
+  else if (reviewUrl) out.push(`Duyệt: ${reviewUrl}`, '');
+  out.push('| # | File | Cần xem |', '|---|---|---|');
+  files.forEach((f, i) => {
+    const notes = fileNotes(f);
+    const size = formatBytes(f.size);
+    out.push(`| ${i + 1} | ${cell(f.name)}${size ? `, ${size}` : ''} | ${notes.length ? notes.join('; ') : 'Không'} |`);
+  });
+  out.push('');
+  if (manual) out.push(`Đã gắn label \`${MANUAL_LABEL}\`: máy không kết luận được, mở file xem tay trước khi duyệt.`);
+  if (!virus) out.push('Metadata đã được xóa. Thông tin cá nhân chỉ là cảnh báo, không bị chặn. File lên Release khi merge.');
+  return `${out.join('\n')}\n`;
 }
 
 // Khối code markdown chứa chữ chưa tin (stderr của công cụ, nội dung artifact): rào bằng số dấu `

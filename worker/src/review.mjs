@@ -11,7 +11,7 @@ const REASON_MAX = 500;
 
 export const REVIEW_MESSAGES = {
   missing: 'Chưa chọn Duyệt hay Không duyệt cho mọi file.',
-  reason: 'File không duyệt cần ghi lý do (ít nhất 5 ký tự) để báo người gửi.',
+  reason: 'File không duyệt cần chọn lý do, hoặc ghi lý do (ít nhất 5 ký tự) khi chọn Lý do khác.',
   long: `Lý do quá dài. Rút xuống tối đa ${REASON_MAX} ký tự.`,
   checks: 'Bài chưa qua bước kiểm file trên GitHub (đang chạy hoặc lỗi). Đợi bước kiểm xong rồi duyệt lại.',
   closed: 'PR của bài đã đóng hoặc đã merge.',
@@ -32,17 +32,31 @@ export function cleanReason(s) {
   return String(s ?? '').replace(/[\u0000-\u0008\u000b-\u001f\u007f]/g, ' ').replace(/[ \t]+/g, ' ').trim();
 }
 
-// fields: các ô của form duyệt (d-<id> = keep | drop, r-<id> = lý do). ids: mục đang có trên branch.
+// Lý do hay gặp, chọn nhanh trên trang duyệt (p-<id>); ô r-<id> ghi thêm. "khac" thì bắt buộc ghi.
+export const REVIEW_REASONS = [
+  ['trung', 'Trùng tài liệu đã có trong thư viện'],
+  ['sai-mon', 'Sai môn hoặc sai loại tài liệu'],
+  ['chat-luong', 'File mờ, thiếu trang hoặc khó đọc'],
+  ['ca-nhan', 'Có thông tin cá nhân chưa xóa'],
+  ['ban-quyen', 'Không rõ quyền chia sẻ (sách, tài liệu có bản quyền)'],
+  ['khac', 'Lý do khác'],
+];
+
+// fields: các ô của form duyệt (d-<id> = keep | drop, p-<id> = lý do chọn sẵn, r-<id> = ghi thêm).
+// all=keep: nút Duyệt tất cả. ids: mục đang có trên branch.
 // Trả { ok, keep: [id], drop: [{ id, reason }] } hoặc { ok: false, error }.
 export function parseDecisions(fields, ids) {
+  if (fields.all === 'keep') return { ok: true, keep: [...ids], drop: [] };
   const keep = [];
   const drop = [];
   for (const id of ids) {
     const d = fields[`d-${id}`];
     if (d === 'keep') keep.push(id);
     else if (d === 'drop') {
-      const reason = cleanReason(fields[`r-${id}`]);
-      if (reason.length < 5) return { ok: false, error: REVIEW_MESSAGES.reason };
+      const preset = REVIEW_REASONS.find(([k]) => k === fields[`p-${id}`] && k !== 'khac');
+      const extra = cleanReason(fields[`r-${id}`]);
+      if (!preset && extra.length < 5) return { ok: false, error: REVIEW_MESSAGES.reason };
+      const reason = preset ? (extra ? `${preset[1]}. ${extra}` : preset[1]) : extra;
       if (reason.length > REASON_MAX) return { ok: false, error: REVIEW_MESSAGES.long };
       drop.push({ id, reason });
     } else return { ok: false, error: REVIEW_MESSAGES.missing };
