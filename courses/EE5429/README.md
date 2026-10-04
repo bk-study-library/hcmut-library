@@ -14,7 +14,9 @@
 
 ## Tài liệu
 
-Chưa có tài liệu.
+### Lời giải bài tập
+
+- **Giải bài tập đồ thị Smith** (vi, CC-BY-SA-4.0): [EE5429_exercise-solution_giai-bai-tap-do-thi-smith.pdf, 259 KB](https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261/EE5429_exercise-solution_giai-bai-tap-do-thi-smith.pdf)
 
 ## Link
 

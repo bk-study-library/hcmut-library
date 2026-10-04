@@ -3,5 +3,27 @@
   "id": "EE5429",
   "code": "EE5429",
   "name": "Kỹ thuật và hệ thống siêu cao tần",
-  "items": []
+  "items": [
+    {
+      "id": "giai-bai-tap-do-thi-smith",
+      "type": "exercise-solution",
+      "title": "Giải bài tập đồ thị Smith",
+      "lang": "vi",
+      "license": "CC-BY-SA-4.0",
+      "origin": "self-made",
+      "added": "2026-10-04",
+      "updated": "2026-10-04",
+      "files": [
+        {
+          "name": "EE5429_exercise-solution_giai-bai-tap-do-thi-smith.pdf",
+          "mime": "application/pdf",
+          "size": 265472,
+          "sha256": "2ce0c5d8b0ef762f24c80dc3ea0b3b96a47f327e39df19c82872cd49f5d0cba4",
+          "urls": [
+            "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261/EE5429_exercise-solution_giai-bai-tap-do-thi-smith.pdf"
+          ]
+        }
+      ]
+    }
+  ]
 }
