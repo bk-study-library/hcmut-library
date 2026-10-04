@@ -6,7 +6,7 @@
     "faculties": 15,
     "courses": 737,
     "programs": 195,
-    "items": 9
+    "items": 10
   },
   "faculties": [
     {
@@ -23624,6 +23624,28 @@
               "example": true,
               "added": "2026-10-03",
               "removed": false
+            },
+            {
+              "id": "test",
+              "course": "MT1005",
+              "type": "notes",
+              "title": "test",
+              "lang": "vi",
+              "license": "CC-BY-SA-4.0",
+              "origin": "self-made",
+              "added": "2026-10-04",
+              "removed": false,
+              "files": [
+                {
+                  "name": "MT1005_notes_test.json",
+                  "size": 29,
+                  "sha256": "7d859d13f9aa54f1e751a17a76adcdb0100de10ab5660afc568c557039ab2f3e",
+                  "mime": "application/json",
+                  "quarantine": "clean/SZC3Y6hyP0/MT1005_notes_test.json",
+                  "uploadSha256": "7d859d13f9aa54f1e751a17a76adcdb0100de10ab5660afc568c557039ab2f3e",
+                  "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261/MT1005_notes_test.json"
+                }
+              ]
             },
             {
               "id": "vi-du-openstax-calculus-volume-3",

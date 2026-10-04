@@ -14,6 +14,10 @@
 
 ## Tài liệu
 
+### Ghi chú
+
+- **test** (vi, CC-BY-SA-4.0): [MT1005_notes_test.json, 29 B](https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261/MT1005_notes_test.json)
+
 ### Bảng công thức
 
 - **Bảng công thức Giải tích 2** (ví dụ minh họa) (vi, CC-BY-SA-4.0, BK Study Library): [bang-cong-thuc-giai-tich-2.md, 3 KB](files/bang-cong-thuc-giai-tich-2.md)

@@ -15,8 +15,9 @@
       "size": 29,
       "sha256": "7d859d13f9aa54f1e751a17a76adcdb0100de10ab5660afc568c557039ab2f3e",
       "mime": "application/json",
-      "quarantine": "pending/SZC3Y6hyP0/MT1005_notes_test.json",
-      "uploadSha256": "7d859d13f9aa54f1e751a17a76adcdb0100de10ab5660afc568c557039ab2f3e"
+      "quarantine": "clean/SZC3Y6hyP0/MT1005_notes_test.json",
+      "uploadSha256": "7d859d13f9aa54f1e751a17a76adcdb0100de10ab5660afc568c557039ab2f3e",
+      "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261/MT1005_notes_test.json"
     }
   ]
 }
