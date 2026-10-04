@@ -12,11 +12,12 @@
   "files": [
     {
       "name": "MT1005_exercise-solution_thu-nghiem-4-bai-lam-co-thong-tin-ca-nhan-trong-file.pdf",
-      "size": 662,
-      "sha256": "ca969b992768e0f5c7d846d4d27f5f629b0c50439e2649edc92ccde90987d82c",
+      "size": 1267,
+      "sha256": "a9438e9d3b7efc6ce9f8dec619e73d744f42207bbb5242b4b00b7741d1b933e1",
       "mime": "application/pdf",
-      "quarantine": "pending/K96ByroyMC/MT1005_exercise-solution_thu-nghiem-4-bai-lam-co-thong-tin-ca-nhan-trong-file.pdf",
-      "uploadSha256": "ca969b992768e0f5c7d846d4d27f5f629b0c50439e2649edc92ccde90987d82c"
+      "quarantine": "clean/K96ByroyMC/MT1005_exercise-solution_thu-nghiem-4-bai-lam-co-thong-tin-ca-nhan-trong-file.pdf",
+      "uploadSha256": "ca969b992768e0f5c7d846d4d27f5f629b0c50439e2649edc92ccde90987d82c",
+      "url": "https://github.com/bk-study-library/bk-study-library/releases/download/files-HK261/MT1005_exercise-solution_thu-nghiem-4-bai-lam-co-thong-tin-ca-nhan-trong-file.pdf"
     }
   ]
 }

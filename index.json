@@ -1,12 +1,12 @@
 {
   "version": 1,
   "repo": "bk-study-library/bk-study-library",
-  "generated": "2026-10-03",
+  "generated": "2026-10-04",
   "counts": {
     "faculties": 15,
     "courses": 8,
     "programs": 0,
-    "items": 9
+    "items": 10
   },
   "faculties": [
     {
@@ -228,6 +228,28 @@
               "example": true,
               "added": "2026-10-03",
               "removed": false
+            },
+            {
+              "id": "thu-nghiem-4-bai-lam-co-thong-tin-ca-nhan-trong-file",
+              "course": "MT1005",
+              "type": "exercise-solution",
+              "title": "Thu nghiem 4: bai lam co thong tin ca nhan trong file",
+              "lang": "vi",
+              "license": "CC-BY-SA-4.0",
+              "origin": "self-made",
+              "added": "2026-10-04",
+              "removed": false,
+              "files": [
+                {
+                  "name": "MT1005_exercise-solution_thu-nghiem-4-bai-lam-co-thong-tin-ca-nhan-trong-file.pdf",
+                  "size": 1267,
+                  "sha256": "a9438e9d3b7efc6ce9f8dec619e73d744f42207bbb5242b4b00b7741d1b933e1",
+                  "mime": "application/pdf",
+                  "quarantine": "clean/K96ByroyMC/MT1005_exercise-solution_thu-nghiem-4-bai-lam-co-thong-tin-ca-nhan-trong-file.pdf",
+                  "uploadSha256": "ca969b992768e0f5c7d846d4d27f5f629b0c50439e2649edc92ccde90987d82c",
+                  "url": "https://github.com/bk-study-library/bk-study-library/releases/download/files-HK261/MT1005_exercise-solution_thu-nghiem-4-bai-lam-co-thong-tin-ca-nhan-trong-file.pdf"
+                }
+              ]
             },
             {
               "id": "vi-du-openstax-calculus-volume-3",

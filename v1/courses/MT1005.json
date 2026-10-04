@@ -32,6 +32,27 @@
       ]
     },
     {
+      "id": "thu-nghiem-4-bai-lam-co-thong-tin-ca-nhan-trong-file",
+      "type": "exercise-solution",
+      "title": "Thu nghiem 4: bai lam co thong tin ca nhan trong file",
+      "lang": "vi",
+      "license": "CC-BY-SA-4.0",
+      "origin": "self-made",
+      "added": "2026-10-04",
+      "updated": "2026-10-04",
+      "files": [
+        {
+          "name": "MT1005_exercise-solution_thu-nghiem-4-bai-lam-co-thong-tin-ca-nhan-trong-file.pdf",
+          "mime": "application/pdf",
+          "size": 1267,
+          "sha256": "a9438e9d3b7efc6ce9f8dec619e73d744f42207bbb5242b4b00b7741d1b933e1",
+          "urls": [
+            "https://github.com/bk-study-library/bk-study-library/releases/download/files-HK261/MT1005_exercise-solution_thu-nghiem-4-bai-lam-co-thong-tin-ca-nhan-trong-file.pdf"
+          ]
+        }
+      ]
+    },
+    {
       "id": "vi-du-openstax-calculus-volume-3",
       "type": "link",
       "title": "[Ví dụ] OpenStax Calculus Volume 3",

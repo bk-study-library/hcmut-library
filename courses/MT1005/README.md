@@ -18,6 +18,10 @@
 
 - **[Mẫu] Bảng công thức Giải tích 2** (ví dụ minh họa) (vi, CC-BY-SA-4.0, BK Study Library): [bang-cong-thuc-giai-tich-2.md, 3 KB](files/bang-cong-thuc-giai-tich-2.md)
 
+### Lời giải bài tập tự làm
+
+- **Thu nghiem 4: bai lam co thong tin ca nhan trong file** (vi, CC-BY-SA-4.0): [MT1005_exercise-solution_thu-nghiem-4-bai-lam-co-thong-tin-ca-nhan-trong-file.pdf, 1 KB](https://github.com/bk-study-library/bk-study-library/releases/download/files-HK261/MT1005_exercise-solution_thu-nghiem-4-bai-lam-co-thong-tin-ca-nhan-trong-file.pdf)
+
 ## Link
 
 - [[Ví dụ] OpenStax Calculus Volume 3](https://openstax.org/details/books/calculus-volume-3) (ví dụ minh họa): OpenStax, en, CC-BY-NC-SA-4.0
