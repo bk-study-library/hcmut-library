@@ -305,19 +305,19 @@ describe('POST /submit', () => {
   });
 
   it('chữ người gửi (link, @, mô tả, giảng viên) không vào tiêu đề hay nội dung PR', async () => {
-    const over = { title: 'Xem https://hcmut-login.example/a @an', description: 'www.lua-dao.example noi xau', teacher: 'Thay Nguyen' };
+    const over = { title: 'Xem https://hcmut-login.example/a @an', description: 'www.lua-dao.example noi xau', teacher: 'Nguyen Van Teo' };
     const { res, body, fetch } = await run(post(form(over)));
     expect(res.status).toBe(201);
     const pr = JSON.parse(fetch.find('POST', '/pulls')[0].body);
     expect(pr.title).toBe(`Bài gửi ${body.code}: MT1005`);
     for (const text of [pr.title, pr.body]) {
-      for (const bad of ['https://hcmut', 'www.', '@an', 'noi xau', 'Thay Nguyen']) expect(text).not.toContain(bad);
+      for (const bad of ['https://hcmut', 'www.', '@an', 'noi xau', 'Nguyen Van Teo']) expect(text).not.toContain(bad);
     }
     // Mục tài liệu (file trong PR) vẫn giữ đủ chữ để đăng sau khi duyệt.
     const put = JSON.parse(fetch.find('PUT', '/contents/')[0].body);
     const item = JSON.parse(new TextDecoder().decode(Uint8Array.from(atob(put.content), (c) => c.charCodeAt(0))));
     expect(item).toMatchObject({ title: over.title, description: over.description, teacher: over.teacher });
-    expect(put.message).not.toMatch(/https|www|Thay/);
+    expect(put.message).not.toMatch(/https|www|Teo/);
   });
 
   it('cell(): thoát bảng, HTML, nhắc tên, tham chiếu và tự tạo link', () => {

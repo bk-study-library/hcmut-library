@@ -4,6 +4,8 @@
 //
 //   var idx = BkSearch.prepare(v1Index);
 //   BkSearch.search(idx, 'gt2', { limit: 30 })  ->  [{ id, score }, ...] (score nhỏ là khớp hơn)
+//   BkSearch.search(idx, 'nguyen van a', { faculty: 'fas' })  ->  chỉ môn của khoa fas; khớp tên giảng viên thì có thêm teacher
+//   BkSearch.list(idx, { faculty: 'fas' })  ->  mọi môn của khoa, môn nhiều tài liệu trước
 (function (root) {
   'use strict';
 
@@ -78,9 +80,13 @@
       var codes = [c.code, c.id].concat(c.aliases || []).map(compactCode);
       var all = [];
       for (var m = 0; m < nameWords.length; m++) all = all.concat(nameWords[m]);
+      var teachers = [];
+      for (var t = 0; t < (c.teachers || []).length; t++) teachers.push({ name: c.teachers[t], words: words(c.teachers[t]) });
       list.push({
         id: c.id,
         code: c.code,
+        faculty: c.faculty,
+        teachers: teachers,
         retired: c.status === 'retired',
         items: c.items || 0,
         codes: codes,
@@ -128,6 +134,29 @@
     return c.retired ? s + 0.5 : s;
   }
 
+  // Tên giảng viên: mọi từ gõ phải là đầu một từ trong tên (2 chữ trở lên, trừ từ cuối gõ dở).
+  // Chỉ dùng khi tên môn không khớp, điểm 4 để đứng sau mọi kết quả theo tên môn.
+  function teacherMatch(c, tokens) {
+    for (var i = 0; i < c.teachers.length; i++) {
+      var tw = c.teachers[i].words;
+      var ok = true;
+      for (var k = 0; k < tokens.length && ok; k++) {
+        if (tokens[k].length < 2 && k < tokens.length - 1) ok = false;
+        else ok = tw.some(function (w) { return w.indexOf(tokens[k]) === 0; });
+      }
+      if (ok) return c.teachers[i].name;
+    }
+    return null;
+  }
+
+  function byRank(a, b) {
+    return a.score - b.score || b.items - a.items || (a.code < b.code ? -1 : a.code > b.code ? 1 : a.id < b.id ? -1 : 1);
+  }
+
+  function inFaculty(c, opts) {
+    return !(opts && opts.faculty) || c.faculty === opts.faculty;
+  }
+
   function search(idx, query, opts) {
     var limit = (opts && opts.limit) || 30;
     var tokens = words(query);
@@ -136,16 +165,35 @@
     var hits = [];
     for (var i = 0; i < idx.courses.length; i++) {
       var c = idx.courses[i];
+      if (!inFaculty(c, opts)) continue;
       var s = scoreCourse(c, tokens, compact);
       if (s >= 0) hits.push({ id: c.id, score: s, code: c.code, items: c.items });
+      else if (compact.length >= 3) {
+        var teacher = teacherMatch(c, tokens);
+        if (teacher) hits.push({ id: c.id, score: 4, code: c.code, items: c.items, teacher: teacher });
+      }
+    }
+    hits.sort(byRank);
+    return hits.slice(0, limit).map(function (h) {
+      return h.teacher ? { id: h.id, score: h.score, teacher: h.teacher } : { id: h.id, score: h.score };
+    });
+  }
+
+  // Liệt kê môn (thường là của một khoa) khi chưa gõ gì.
+  function list(idx, opts) {
+    var limit = (opts && opts.limit) || 30;
+    var hits = [];
+    for (var i = 0; i < idx.courses.length; i++) {
+      var c = idx.courses[i];
+      if (inFaculty(c, opts)) hits.push({ id: c.id, score: c.retired ? 1 : 0, code: c.code, items: c.items });
     }
     hits.sort(function (a, b) {
-      return a.score - b.score || b.items - a.items || (a.code < b.code ? -1 : a.code > b.code ? 1 : a.id < b.id ? -1 : 1);
+      return b.items - a.items || byRank(a, b);
     });
     return hits.slice(0, limit).map(function (h) {
       return { id: h.id, score: h.score };
     });
   }
 
-  root.BkSearch = { fold: fold, prepare: prepare, search: search, version: 1 };
+  root.BkSearch = { fold: fold, prepare: prepare, search: search, list: list, version: 1 };
 })(typeof globalThis !== 'undefined' ? globalThis : this);
