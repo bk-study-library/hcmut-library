@@ -1,6 +1,6 @@
 // Xem trước file đã đăng: danh sách link được phép, dùng chung cho web (có nút Xem trước hay không)
 // và Worker (route /xem-truoc). Chỉ hai dạng:
-//   https://github.com/<repo>/releases/download/files-HK<3 số>/<tên an toàn>
+//   https://github.com/<repo>/releases/download/files-HK<3 số>[chữ thường]/<tên an toàn>
 //   <site>files/<ID môn>/<tên an toàn>.md
 // So khớp trên chuỗi gốc, không giải mã: link có %, .., ? hay # đều bị loại.
 
@@ -13,7 +13,9 @@ export const PREVIEW_TYPES = {
 };
 
 export const SAFE_NAME = /^[A-Za-z0-9][A-Za-z0-9._-]*\.(pdf|png|jpg|md)$/;
-const RELEASE_TAG = /^files-HK[0-9]{3}$/;
+// Tag theo học kỳ, có thể thêm một chữ thường khi tag cũ không dùng lại được
+// (releaseTagOverrides của catalog/policy.json, ví dụ files-HK261b).
+const RELEASE_TAG = /^files-HK[0-9]{3}[a-z]?$/;
 const COURSE_ID = /^[A-Z0-9_]{3,12}(-[0-9]{4})?$/;
 
 // Trả { url, name, ext, kind } khi link nằm trong danh sách được phép, không thì null.

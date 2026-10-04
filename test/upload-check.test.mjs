@@ -26,7 +26,7 @@ const item = {
   removed: false,
   files: [{ name: NAME, size: 2000, sha256: OLD_SHA, mime: 'application/pdf', quarantine: `pending/abcdEF1234/${NAME}` }],
 };
-const opts = { cleanName: NAME, size: 1500, sha256: SHA, mime: 'application/pdf', term: 'HK251', repo: REPO, existingAssets: new Map() };
+const opts = { cleanName: NAME, size: 1500, sha256: SHA, mime: 'application/pdf', tag: 'files-HK251', repo: REPO, existingAssets: new Map() };
 
 test('applyCheck ghi url Release, sha256, size, mime và quarantine clean/', () => {
   const out = applyCheck(item, opts);
@@ -48,6 +48,12 @@ test('applyCheck thêm 6 ký tự sha256 khi Release có file cùng tên khác n
   assert.equal(out.files[0].name, want);
   assert.equal(out.files[0].url, releaseAssetUrl(REPO, 'files-HK251', want));
   assert.equal(out.files[0].quarantine, `clean/abcdEF1234/${want}`);
+  assert.deepEqual(validate(itemSchema, out), []);
+});
+
+test('applyCheck ghi url theo tag thay thế của học kỳ', () => {
+  const out = applyCheck(item, { ...opts, tag: 'files-HK261b' });
+  assert.equal(out.files[0].url, releaseAssetUrl(REPO, 'files-HK261b', NAME));
   assert.deepEqual(validate(itemSchema, out), []);
 });
 

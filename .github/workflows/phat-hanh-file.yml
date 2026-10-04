@@ -8,6 +8,9 @@ name: phat-hanh-file
 #              chưa có), rồi xóa pending/, clean/, mã xem bài token/ và khóa sha/ trong kho.
 #              Sách tham khảo không file (locate ghi light=true) thì không có gì để phát hành
 #              hay dọn: các bước sau đều bỏ qua.
+#              Chạy tay (workflow_dispatch, ô item = courses/<MÃ>/items/<id>.json trên main): cùng các
+#              bước trên cho một mục đã merge mà lần phát hành trước lỗi, đọc mục ở HEAD của main.
+#              Release đích là immutable release thì dừng ngay ở bước lập kế hoạch và chỉ cách sửa.
 #   go-file    (push vào main, đổi courses/**/items/*.json)  mục vừa chuyển sang removed, hoặc file
 #              mục bị xóa hẳn, thì xóa file tương ứng trên Release của repo (trừ khi mục còn hiệu lực
 #              khác vẫn dùng); link ngoài bỏ qua. validate.yml cũng báo lỗi ITEM_DELETED khi xóa file mục.
@@ -17,6 +20,10 @@ name: phat-hanh-file
 # và do bot mở. Mục tài liệu đọc từ main sau khi merge. File tải từ R2 chỉ bị tính hash và
 # đưa lên Release, không bị chạy. Khóa R2 chỉ nằm trong env của bước cần chúng; mọi giá trị
 # chưa tin được (tên nhánh, tên file) đi qua env, không đặt trong lệnh run.
+# Chạy tay: GitHub chỉ cho người có quyền ghi repo bấm workflow_dispatch, và job chỉ chạy khi
+# chọn nhánh main (workflow và script là bản trên main). Ô item vẫn coi là chưa tin được: đi
+# qua env, publish.mjs dispatch-locate kiểm bằng regex, file phải là file thường có trên main,
+# đúng course và id, chưa gỡ, do bot tải lên (có khóa clean/<mã bài>/<tên> trong kho cách ly).
 #
 # Chạy lại an toàn: file đã có trên Release cùng sha256 thì bỏ qua; cùng tên khác sha256 thì
 # dừng và báo lỗi. Dọn kho xóa cả khi file đã mất.
@@ -31,12 +38,19 @@ on:
     branches: [main]
     paths:
       - 'courses/**/items/*.json'
+  workflow_dispatch:
+    inputs:
+      item:
+        description: 'Mục tài liệu cần phát hành lại, đường dẫn trên main dạng courses/<MÃ>/items/<id>.json'
+        required: true
+        type: string
 
 permissions: {}
 
 concurrency:
   # Mỗi lần push một nhóm riêng để không bị hủy giữa chừng; unpublish chạy lại được nên chạy song song cũng an toàn.
-  group: phat-hanh-file-${{ github.event.pull_request.number || github.sha }}
+  # Chạy tay có nhóm riêng theo commit của main, không lẫn với lần push cùng commit.
+  group: phat-hanh-file-${{ github.event_name }}-${{ github.event.pull_request.number || github.sha }}
   cancel-in-progress: false
 
 env:
@@ -48,12 +62,13 @@ jobs:
   phat-hanh:
     timeout-minutes: 10
     if: >-
-      github.event_name == 'pull_request_target' &&
+      (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main') ||
+      (github.event_name == 'pull_request_target' &&
       github.event.pull_request.merged == true &&
       github.event.pull_request.head.repo.full_name == github.repository &&
       startsWith(github.event.pull_request.head.ref, 'upload/') &&
       vars.BOT_LOGIN != '' &&
-      github.event.pull_request.user.login == vars.BOT_LOGIN
+      github.event.pull_request.user.login == vars.BOT_LOGIN)
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -64,7 +79,7 @@ jobs:
       AWS_REQUEST_CHECKSUM_CALCULATION: when_required
       AWS_RESPONSE_CHECKSUM_VALIDATION: when_required
     steps:
-      # Bản main sau khi merge: script và mục tài liệu đều đọc từ đây.
+      # Bản main sau khi merge (chạy tay: HEAD hiện tại của main): script và mục tài liệu đều đọc từ đây.
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           ref: main
@@ -72,21 +87,30 @@ jobs:
       - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
         with:
           node-version: 24
-      - name: Tìm mục tài liệu của PR
+      # Ghi item, code, light và branch (upload/<mã bài>) cho các bước sau, theo PR hoặc theo ô item khi chạy tay.
+      - name: Tìm mục tài liệu
         id: locate
         env:
           GH_TOKEN: ${{ github.token }}
+          EVENT: ${{ github.event_name }}
+          ITEM_INPUT: ${{ inputs.item }}
         run: |
-          gh api --paginate "repos/$REPO/pulls/$PR/files" \
-            --jq '.[] | {filename, status, previous_filename} | @json' > "$RUNNER_TEMP/files.jsonl"
-          node scripts/upload/publish.mjs locate --files "$RUNNER_TEMP/files.jsonl" --root . \
-            --branch "$BRANCH" --output-file "$GITHUB_OUTPUT"
+          if [ "$EVENT" = "workflow_dispatch" ]; then
+            node scripts/upload/publish.mjs dispatch-locate --item "$ITEM_INPUT" --root . --output-file "$GITHUB_OUTPUT"
+          else
+            gh api --paginate "repos/$REPO/pulls/$PR/files" \
+              --jq '.[] | {filename, status, previous_filename} | @json' > "$RUNNER_TEMP/files.jsonl"
+            node scripts/upload/publish.mjs locate --files "$RUNNER_TEMP/files.jsonl" --root . \
+              --branch "$BRANCH" --output-file "$GITHUB_OUTPUT"
+          fi
+      # Cũng kiểm sớm Release đích: immutable release thì dừng ở đây, trước khi tải gì từ kho cách ly.
       - name: Lập kế hoạch phát hành
         id: plan
         if: steps.locate.outputs.light == 'false'
         env:
           GH_TOKEN: ${{ github.token }}
           ITEM: ${{ steps.locate.outputs.item }}
+          BRANCH: ${{ steps.locate.outputs.branch }}
         run: node scripts/upload/publish.mjs plan --item "$ITEM" --branch "$BRANCH" --repo "$REPO" --output-file "$GITHUB_OUTPUT"
 
       - name: Tải bản đã làm sạch từ kho cách ly
@@ -160,7 +184,7 @@ jobs:
       - name: Hướng dẫn khi phát hành lỗi
         if: failure()
         run: |
-          msg="Phát hành file lỗi. Xem bước lỗi ở trên. Nếu file trùng tên khác nội dung hoặc Release không có digest: đổi tên file trong mục tài liệu trên main (sửa name, url, quarantine cho khớp) rồi chạy lại workflow này. File trong pending/ và clean/ của kho cách ly được giữ 30 ngày."
+          msg="Phát hành file lỗi. Xem bước lỗi ở trên. Nếu file trùng tên khác nội dung hoặc Release không có digest: đổi tên file trong mục tài liệu trên main (sửa name, url, quarantine cho khớp) rồi chạy lại workflow này. Nếu Release là immutable release hoặc GitHub báo tag đã thuộc một immutable release: tắt Immutable releases trong Settings của repo, đặt tag mới trong releaseTagOverrides của catalog/policy.json, sửa url của mục, chạy npm run build, merge vào main, rồi chạy tay workflow này với ô item (xem docs/cai-dat-luong-tai-len.md, mục Release). File trong pending/ và clean/ của kho cách ly được giữ 30 ngày."
           echo "::error::$msg"
           echo "$msg" >> "$GITHUB_STEP_SUMMARY"
 

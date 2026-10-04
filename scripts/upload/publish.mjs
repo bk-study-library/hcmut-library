@@ -3,10 +3,13 @@
 // Mọi lệnh chạy từ bản main (tin được); file tải từ R2 chỉ được tính hash, không chạy gì.
 //
 //   node scripts/upload/publish.mjs locate --files <pr-files.jsonl> --root <repo> --branch <nhánh> --output-file <f>
-//     tìm mục tài liệu duy nhất của PR đã merge, đọc ở <repo> (bản main); ghi item, code, light
+//     tìm mục tài liệu duy nhất của PR đã merge, đọc ở <repo> (bản main); ghi item, code, light, branch
 //     (light=true: sách tham khảo không file, không có gì để phát hành hay dọn trong kho)
 //   node scripts/upload/publish.mjs kind --files <pr-files.jsonl> --root <thư mục PR> --branch <nhánh> --output-file <f>
 //     ghi light=true khi chắc chắn PR là sách tham khảo không file; mọi trường hợp khác light=false, không lỗi
+//   node scripts/upload/publish.mjs dispatch-locate --item <courses/<MÃ>/items/<id>.json> --root <repo> --output-file <f>
+//     chạy tay (workflow_dispatch): kiểm đường dẫn người bảo trì nhập, mục phải do bot tải lên và
+//     còn bản đã làm sạch trong kho cách ly; ghi item, code, light=false, branch=upload/<mã bài>
 //   node scripts/upload/publish.mjs plan --item <path> --branch <nhánh> --repo <owner/name> --output-file <f>
 //     kế hoạch phát hành (cần GH_TOKEN): publish=true thì có tag, name, quarantine, sha256, size để tải và đưa lên
 //   node scripts/upload/publish.mjs verify --file <path> --sha256 <hex> --size <byte>
@@ -26,7 +29,7 @@ import crypto from 'node:crypto';
 import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import { loadRepo } from '../lib/repo.mjs';
-import { quarantineInfo, locateInfo, pickItemFile, githubOutput, releaseAssets, branchCode, readPrFiles } from './check.mjs';
+import { quarantineInfo, locateInfo, pickItemFile, githubOutput, releaseAssets, releaseInfo, branchCode, readPrFiles } from './check.mjs';
 
 export { branchCode };
 
@@ -72,6 +75,46 @@ export function planPublish(itemsChanged, existingAssets, repo) {
     plan.push({ tag: target.tag, name: target.name, quarantine: info.key, sha256: info.sha256, size: file.size, code: info.code });
   }
   return plan;
+}
+
+// Phát hành lại bằng workflow_dispatch. rel là chuỗi người bảo trì nhập (chưa tin được), readItem(rel)
+// đọc mục ở bản main (ném lỗi khi không có file). Mục phải do bot tải lên: có đúng một file với
+// khóa clean/<mã bài>/<tên> trong kho cách ly, chưa gỡ, và nằm đúng chỗ theo course và id.
+export function dispatchTarget(rel, readItem) {
+  if (typeof rel !== 'string' || !ITEM_PATH.test(rel)) {
+    throw new Error('Đường dẫn mục tài liệu không hợp lệ. Cần dạng courses/<MÃ>/items/<id>.json.');
+  }
+  let item;
+  try {
+    item = readItem(rel);
+  } catch {
+    throw new Error(`Không đọc được ${rel} trên main.`);
+  }
+  if (!item || typeof item !== 'object') throw new Error(`${rel} không phải mục tài liệu.`);
+  if (rel !== `courses/${item.course}/items/${item.id}.json`) throw new Error(`${rel} không khớp course và id ghi trong mục.`);
+  if (item.removed) throw new Error(`${rel} đã gỡ (removed: true), không phát hành lại.`);
+  const info = quarantineInfo(item);
+  if (!info.key.startsWith('clean/')) throw new Error('Mục tài liệu chưa có bản đã làm sạch trong kho cách ly.');
+  return { item: rel, code: info.code, light: 'false', branch: `upload/${info.code}` };
+}
+
+// Thông báo khi Release đích là immutable release: GitHub không cho đưa thêm file, kể cả sau khi
+// tắt tính năng (chỉ Release tạo sau đó mới sửa được), và tag của nó không dùng lại được.
+export function immutableReleaseMessage(tag) {
+  return [
+    `Release ${tag} là immutable release nên không đưa thêm file lên được.`,
+    'Người bảo trì làm như sau:',
+    '(1) tắt Immutable releases trong Settings của repo (trang General);',
+    `(2) đặt tag mới cho học kỳ trong releaseTagOverrides của catalog/policy.json, ví dụ "HK261": "files-HK261b" (tag ${tag} không dùng lại được);`,
+    '(3) sửa url của mục tài liệu sang tag mới, chạy npm run build, merge vào main;',
+    '(4) chạy lại workflow phat-hanh-file bằng workflow_dispatch với ô item là đường dẫn mục tài liệu.',
+    'Xem docs/cai-dat-luong-tai-len.md, mục Release.',
+  ].join(' ');
+}
+
+// Release đích có thể nhận file không: lỗi khi đang có file cần đưa lên mà Release là immutable.
+export function assertReleaseWritable(todo, release, tag) {
+  if (todo && release.immutable) throw new Error(immutableReleaseMessage(tag));
 }
 
 const itemKey = (i) => `${i.course}/${i.id}`;
@@ -174,7 +217,18 @@ function run(cmd, argv) {
 function locate(a) {
   const rel = pickItemFile(readPrFiles(a.files));
   const info = locateInfo(readJson(path.join(a.root, rel)), a.branch);
-  writeOutputs(a['output-file'], { item: rel, code: info.code, light: info.light });
+  // locateInfo đã kiểm nhánh khớp mã bài; branch ghi ra để bước sau dùng chung với dispatch-locate.
+  writeOutputs(a['output-file'], { item: rel, code: info.code, light: info.light, branch: a.branch });
+}
+
+function dispatchLocate(a) {
+  const readItem = (rel) => {
+    const p = path.join(a.root, rel);
+    // Chỉ file thường trong repo, không theo symlink.
+    if (!fs.lstatSync(p).isFile()) throw new Error('không phải file');
+    return readJson(p);
+  };
+  writeOutputs(a['output-file'], dispatchTarget(a.item, readItem));
 }
 
 function kind(a) {
@@ -194,8 +248,10 @@ function plan(a) {
   const info = quarantineInfo(item, a.branch);
   const target = parseReleaseUrl(item.files[0].url, a.repo);
   if (!target) throw new Error('Link của file không trỏ Release của repo.');
-  const existing = new Map([[target.tag, releaseAssets(a.repo, target.tag)]]);
-  const [todo] = planPublish([item], existing, a.repo);
+  const release = releaseInfo(a.repo, target.tag);
+  const [todo] = planPublish([item], new Map([[target.tag, release.assets]]), a.repo);
+  // Kiểm sớm, trước khi tải file từ kho cách ly: immutable release thì gh release upload chắc chắn lỗi 422.
+  assertReleaseWritable(todo, release, target.tag);
   writeOutputs(a['output-file'], todo ? { publish: 'true', ...todo } : { publish: 'false', code: info.code });
 }
 
@@ -239,6 +295,7 @@ function main(argv) {
   const cmd = argv.shift();
   const a = args(argv);
   if (cmd === 'locate') locate(a);
+  else if (cmd === 'dispatch-locate') dispatchLocate(a);
   else if (cmd === 'kind') kind(a);
   else if (cmd === 'plan') plan(a);
   else if (cmd === 'verify') verifyFile(a.file, a.sha256, a.size);

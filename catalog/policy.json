@@ -1,6 +1,6 @@
 {
   "openTypes": ["lecture-slides", "summary", "notes", "cheatsheet", "quiz-pack", "tips", "link", "exercise-solution", "exam-solution", "exam-past", "prelab-template", "prelab-reference", "lab-report-reference", "project-reference", "book-ref"],
-  "note": "Cấu hình chung: loại tài liệu nhận, giới hạn file, đuôi file (types: chỉ nhận cho các loại này), giới hạn khi quét file (scan) và học kỳ.",
+  "note": "Cấu hình chung: loại tài liệu nhận, giới hạn file, đuôi file (types: chỉ nhận cho các loại này), giới hạn khi quét file (scan) và học kỳ. releaseTagOverrides: tag Release thay cho files-<học kỳ> khi tag cũ không dùng lại được (ví dụ từng là immutable release), giá trị là files-<học kỳ> thêm một chữ thường; xem docs/cai-dat-luong-tai-len.md, mục Release.",
   "maxFileBytes": 20971520,
   "maxMdInGitBytes": 1048576,
   "extensions": {
@@ -18,5 +18,6 @@
   "quizExtensions": [".json", ".md", ".zip"],
   "scan": { "pdfTextMaxPages": 200, "toolTimeoutSeconds": 300, "zipMaxUncompressedBytes": 209715200, "zipAllowedInside": [".json", ".md", ".png", ".jpg", ".jpeg"] },
   "selfMadeLicenses": ["CC-BY-SA-4.0", "CC-BY-4.0", "CC0-1.0"],
-  "terms": { "HK1": [9, 10, 11, 12, 1], "HK2": [2, 3, 4, 5, 6], "HK3": [7, 8] }
+  "terms": { "HK1": [9, 10, 11, 12, 1], "HK2": [2, 3, 4, 5, 6], "HK3": [7, 8] },
+  "releaseTagOverrides": { "HK261": "files-HK261b" }
 }
