@@ -16,7 +16,7 @@
 
 ### Tóm tắt
 
-- **Thu nghiem 1: tom tat gioi han** (HK261, vi, CC-BY-SA-4.0): [MT1005_summary_thu-nghiem-1-tom-tat-gioi-han_HK261.pdf, 1 KB](https://github.com/bk-study-library/bk-study-library/releases/download/files-HK261/MT1005_summary_thu-nghiem-1-tom-tat-gioi-han_HK261.pdf)
+- ~~Thu nghiem 1: tom tat gioi han~~ (đã gỡ: Bài gửi thử luồng tải lên, gỡ sau khi thử xong.)
 
 ### Bảng công thức
 
