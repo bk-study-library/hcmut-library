@@ -12,7 +12,7 @@ export const S = {
     nav: { home: 'Trang chủ', contribute: 'Đóng góp', review: 'Duyệt bài', takedown: 'Gỡ tài liệu', github: 'GitHub' },
     homeTitle: 'Thư viện tài liệu theo môn',
     homeIntro:
-      'Tóm tắt, ghi chú, mẫu prelab, gói quiz do sinh viên tự soạn, cùng link tới tài liệu mở trên mạng. Mọi thứ xếp theo mã môn, đọc được ngay trên trình duyệt, không cần cài app.',
+      'Tài liệu học tập do sinh viên chia sẻ: tóm tắt, ghi chú, đề, lời giải, gói quiz, cùng link tới tài liệu mở. Xếp theo mã môn, đọc ngay trên trình duyệt, không cần cài app.',
     homeRules:
       'Thư viện nhận mọi tài liệu học tập sinh viên muốn chia sẻ. Chỉ không đăng file sách có bản quyền; sách thì ghi tên.',
     searchLabel: 'Tìm môn theo mã hoặc tên',
@@ -27,8 +27,8 @@ export const S = {
     coursesCount: (n) => `${n} môn`,
     itemsCount: (n) => `${n} tài liệu`,
     stats: (c, i) => `${c} môn, ${i} tài liệu`,
-    contributeCta: 'Bạn có tóm tắt, ghi chú hay mẫu prelab tự soạn? Gửi qua form, không cần biết Git.',
-    contributeBtn: 'Đóng góp tài liệu',
+    contributeCta: 'Bạn có tài liệu muốn chia sẻ? Gửi qua form, không cần tài khoản GitHub.',
+    contributeBtn: 'Gửi tài liệu',
     reviewCta: 'Muốn duyệt tài liệu cho môn bạn giỏi?',
     reviewBtn: 'Xem cách duyệt',
     faculty: 'Khoa',
@@ -115,7 +115,7 @@ export const S = {
     nav: { home: 'Home', contribute: 'Contribute', review: 'Review', takedown: 'Takedown', github: 'GitHub' },
     homeTitle: 'Study materials by course',
     homeIntro:
-      'Summaries, notes, prelab templates and quiz packs written by students, plus links to open resources on the web. Everything is sorted by course code and works in the browser, with no app to install.',
+      'Study material shared by students: summaries, notes, exams, solutions, quiz packs, plus links to open resources. Sorted by course code, works in the browser, no app to install.',
     homeRules:
       'The library accepts any study material students want to share. Only copyrighted book files are not posted; books are listed by title.',
     searchLabel: 'Search courses by code or name',
@@ -130,8 +130,8 @@ export const S = {
     coursesCount: (n) => `${n} ${n === 1 ? 'course' : 'courses'}`,
     itemsCount: (n) => `${n} ${n === 1 ? 'item' : 'items'}`,
     stats: (c, i) => `${c} courses, ${i} items`,
-    contributeCta: 'Have a summary, notes or a prelab template you wrote? Send it with a form; no Git needed.',
-    contributeBtn: 'Contribute material',
+    contributeCta: 'Have study material to share? Send it with a form (in Vietnamese); no GitHub account needed.',
+    contributeBtn: 'Send material',
     reviewCta: 'Want to review material for a course you know well?',
     reviewBtn: 'How reviewing works',
     faculty: 'Faculty',

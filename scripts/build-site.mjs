@@ -281,7 +281,7 @@ export function buildSite({ root = TOOL_ROOT, out = path.join(TOOL_ROOT, 'site')
   ${progList}
 </section>
 <section class="cta-row">
-  <div class="panel"><p>${esc(t.contributeCta)}</p><p><a class="btn primary" href="${root}${P('contribute/')}">${esc(t.contributeBtn)}</a></p></div>
+  <div class="panel"><p>${esc(t.contributeCta)}</p><p><a class="btn primary" href="${root}gui-tai-lieu/">${esc(t.contributeBtn)}</a></p></div>
   <div class="panel"><p>${esc(t.reviewCta)}</p><p><a class="btn" href="${root}${P('review/')}">${esc(t.reviewBtn)}</a></p></div>
 </section>
 <script type="application/json" id="search-strings">${JSON.stringify({ results: [t.results(0), t.results(1), t.results(2)], lang })}</script>
