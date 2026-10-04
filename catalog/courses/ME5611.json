@@ -1,0 +1,32 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "ME5611",
+  "code": "ME5611",
+  "name": "Phương pháp định lượng trong phân tích logistics và chuỗi cung ứng",
+  "nameEn": "Quantitative Methods for Logistics and Supply Chain Analysis",
+  "credits": 3,
+  "faculty": "fme",
+  "levels": [
+    "thac-si"
+  ],
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "SIM_THAC_SI_LOGISTICS_VA_QUAN_LY_CHUOI_CUNG_UNG_2026_NC",
+      "block": "K03",
+      "required": true
+    },
+    {
+      "program": "SIM_THAC_SI_LOGISTICS_VA_QUAN_LY_CHUOI_CUNG_UNG_2026_UD",
+      "block": "K05",
+      "required": true
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "note": "Nhập từ CTĐT sau đại học chính thức (PDF của trường, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

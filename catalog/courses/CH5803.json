@@ -1,0 +1,37 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "CH5803",
+  "code": "CH5803",
+  "name": "Công nghệ chế biến khí thiên nhiên thành các sản phẩm",
+  "nameEn": "Natural gas processing and conversion into products",
+  "credits": 3,
+  "faculty": "che",
+  "levels": [
+    "thac-si"
+  ],
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "CHE_THAC_SI_KY_THUAT_HOA_DAU_VA_LOC_DAU_2025_NC",
+      "block": "K03",
+      "required": true
+    },
+    {
+      "program": "CHE_THAC_SI_KY_THUAT_HOA_DAU_VA_LOC_DAU_2025_NC",
+      "block": "K04",
+      "required": true
+    },
+    {
+      "program": "CHE_THAC_SI_KY_THUAT_HOA_DAU_VA_LOC_DAU_2025_UD",
+      "block": "K05",
+      "required": true
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "note": "Nhập từ CTĐT sau đại học chính thức (PDF của trường, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

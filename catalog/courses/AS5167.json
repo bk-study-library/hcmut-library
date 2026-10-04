@@ -1,0 +1,38 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "AS5167",
+  "code": "AS5167",
+  "name": "Y học hạt nhân và kỹ thuật xạ trị",
+  "nameEn": "Nuclear Medicine and Radiotherapy",
+  "credits": 3,
+  "faculty": "fas",
+  "levels": [
+    "thac-si",
+    "tien-si"
+  ],
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "FAS_THAC_SI_VAT_LY_KY_THUAT_2025_NC",
+      "block": "K05",
+      "required": false
+    },
+    {
+      "program": "FAS_THAC_SI_VAT_LY_KY_THUAT_2025_UD",
+      "block": "K06",
+      "required": false
+    },
+    {
+      "program": "FAS_TIEN_SI_VAT_LY_KY_THUAT_2025_PT2",
+      "block": "K02",
+      "required": false
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "note": "Nhập từ CTĐT sau đại học chính thức (PDF của trường, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

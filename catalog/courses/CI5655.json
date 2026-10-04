@@ -1,0 +1,33 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "CI5655",
+  "code": "CI5655",
+  "name": "Tính toán công trình ngầm",
+  "nameEn": "Underground Structures Design",
+  "credits": 3,
+  "faculty": "fce",
+  "levels": [
+    "thac-si",
+    "tien-si"
+  ],
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "FCE_THAC_SI_DIA_KY_THUAT_XAY_DUNG_2025_UD",
+      "block": "K06",
+      "required": false
+    },
+    {
+      "program": "FCE_TIEN_SI_DIA_KY_THUAT_XAY_DUNG_2025_PT2",
+      "block": "K03",
+      "required": false
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "note": "Nhập từ CTĐT sau đại học chính thức (PDF của trường, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

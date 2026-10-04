@@ -1,0 +1,26 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "IM5138",
+  "code": "IM5138",
+  "name": "Quản trị hệ thống thông tin kinh doanh",
+  "credits": 3,
+  "faculty": "sim",
+  "levels": [
+    "thac-si"
+  ],
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "SIM_THAC_SI_QUAN_TRI_KINH_DOANH_2022",
+      "block": "K03",
+      "required": false
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "note": "Nhập từ CTĐT sau đại học chính thức (Sổ tay HCMUT, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

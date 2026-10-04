@@ -1,0 +1,163 @@
+{
+  "$schema": "../../schema/program.schema.json",
+  "code": "SIM_THAC_SI_LOGISTICS_VA_QUAN_LY_CHUOI_CUNG_UNG_2026_UD",
+  "name": "Logistics và Quản lý Chuỗi cung ứng",
+  "nameEn": "Logistics and Supply chain management",
+  "faculty": "sim",
+  "year": "2026",
+  "major": "8510605",
+  "type": "UD",
+  "level": "thac-si",
+  "orientation": "ung-dung",
+  "degree": "thac-si",
+  "totalCredits": 60,
+  "variant": "Thạc sĩ định hướng ứng dụng",
+  "source": "https://drive.google.com/file/d/1M2DXyRPFrOPa6yYTw6lZw9DTTglnNXpw/view",
+  "ctdtUrl": "https://drive.google.com/file/d/1M2DXyRPFrOPa6yYTw6lZw9DTTglnNXpw/view",
+  "planUrl": "https://drive.google.com/file/d/1bIkdsQKhf41GBSwpBND3ul6NZOZ6M6Ot/view",
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/postgraduate/8510605?program=UD",
+  "groups": [
+    {
+      "name": "A. Đa ngành Tổng quát (General Interdisciplinary Knowledge)",
+      "creditsNeed": 9
+    },
+    {
+      "name": "A.2. Tự chọn Đa ngành, tổng quát (Elective General Multidisciplinary Courses)",
+      "creditsNeed": 6
+    },
+    {
+      "name": "C. Ngành/Chuyên ngành (Major/Speciality)",
+      "creditsNeed": 24
+    },
+    {
+      "name": "C.2. Ngành/Chuyên ngành tự chọn (Elective Major/Speciality Courses)",
+      "creditsNeed": 12
+    }
+  ],
+  "blocks": [
+    {
+      "id": "K01",
+      "name": "A.1. Bắt buộc Đa ngành, tổng quát (Compulsory General Multidisciplinary Courses)",
+      "group": "A. Đa ngành Tổng quát (General Interdisciplinary Knowledge)",
+      "kind": "chung",
+      "required": true,
+      "creditsNeed": 3,
+      "courses": [
+        "AS5113"
+      ]
+    },
+    {
+      "id": "K02",
+      "name": "A.2.1. Tự chọn Đa ngành, tổng quát nhóm A (Elective General Multidisciplinary Courses group A)",
+      "group": "A.2. Tự chọn Đa ngành, tổng quát (Elective General Multidisciplinary Courses)",
+      "kind": "chung",
+      "required": false,
+      "creditsNeed": 3,
+      "courses": [
+        "GK5023",
+        "GK5021"
+      ]
+    },
+    {
+      "id": "K03",
+      "name": "A.2.2. Tự chọn Đa ngành, tổng quát nhóm B (Elective General Multidisciplinary Courses group B)",
+      "group": "A.2. Tự chọn Đa ngành, tổng quát (Elective General Multidisciplinary Courses)",
+      "kind": "chung",
+      "required": false,
+      "creditsNeed": 3,
+      "courses": [
+        "GK5033",
+        "GK5025"
+      ]
+    },
+    {
+      "id": "K04",
+      "name": "A.3. Ngoại ngữ (Foreign Languages)",
+      "group": "A. Đa ngành Tổng quát (General Interdisciplinary Knowledge)",
+      "kind": "ngoai-ngu",
+      "required": true,
+      "creditsNeed": 0,
+      "courses": [
+        "GK5047",
+        "GK5049"
+      ]
+    },
+    {
+      "id": "K05",
+      "name": "B. Cơ sở ngành (Core courses)",
+      "kind": "co-so-nganh",
+      "required": true,
+      "creditsNeed": 12,
+      "courses": [
+        "ME5613",
+        "ME5611",
+        "IM5067",
+        "IM5109"
+      ]
+    },
+    {
+      "id": "K06",
+      "name": "C.1. Ngành/Chuyên ngành bắt buộc (Compulsory Major/Speciality Courses)",
+      "group": "C. Ngành/Chuyên ngành (Major/Speciality)",
+      "kind": "chuyen-nganh",
+      "required": true,
+      "creditsNeed": 12,
+      "courses": [
+        "ME5617",
+        "ME5615",
+        "IM5223",
+        "IM5221"
+      ]
+    },
+    {
+      "id": "K07",
+      "name": "C.2.1. Ngành/Chuyên ngành tự chọn nhóm A (Elective Major/Speciality Courses group A)",
+      "group": "C.2. Ngành/Chuyên ngành tự chọn (Elective Major/Speciality Courses)",
+      "kind": "chuyen-nganh",
+      "required": false,
+      "creditsNeed": 9,
+      "courses": [
+        "ME5623",
+        "ME5621",
+        "ME5619",
+        "IM5229",
+        "IM5227",
+        "IM5225"
+      ]
+    },
+    {
+      "id": "K08",
+      "name": "C.2.2. Ngành/Chuyên ngành tự chọn nhóm B (Elective Major/Speciality Courses group B)",
+      "group": "C.2. Ngành/Chuyên ngành tự chọn (Elective Major/Speciality Courses)",
+      "kind": "chuyen-nganh",
+      "required": false,
+      "creditsNeed": 3,
+      "courses": [
+        "ME5625",
+        "IM5231"
+      ]
+    },
+    {
+      "id": "K09",
+      "name": "D. Học phần tốt nghiệp (Graduation Module)",
+      "kind": "luan-van",
+      "required": true,
+      "creditsNeed": 15,
+      "courses": [
+        "IM5233",
+        "ME5627",
+        "IM6011"
+      ]
+    },
+    {
+      "id": "K10",
+      "name": "E. Điều kiện tốt nghiệp (Graduation Condition)",
+      "kind": "dieu-kien-tot-nghiep",
+      "required": true,
+      "courses": [
+        "ENG_B2"
+      ]
+    }
+  ],
+  "updated": "2026-10-04"
+}

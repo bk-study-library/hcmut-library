@@ -1,0 +1,32 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "CO6041",
+  "code": "CO6041",
+  "name": "Luận văn thạc sĩ nghiên cứu chuyên sâu - phần 1",
+  "nameEn": "Research Intensive Master's Thesis - part 1",
+  "credits": 9,
+  "faculty": "cse",
+  "levels": [
+    "thac-si"
+  ],
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "CSE_THAC_SI_KHOA_HOC_MAY_TINH_2025_CSAU",
+      "block": "K03",
+      "required": true
+    },
+    {
+      "program": "CSE_THAC_SI_KHOA_HOC_MAY_TINH_2026_CSAU",
+      "block": "K03",
+      "required": true
+    }
+  ],
+  "parts": [
+    "project"
+  ],
+  "related": [],
+  "note": "Nhập từ CTĐT sau đại học chính thức (PDF của trường, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

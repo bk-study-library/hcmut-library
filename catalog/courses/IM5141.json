@@ -1,0 +1,32 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "IM5141",
+  "code": "IM5141",
+  "name": "Truyền thông giáo dục sức khỏe trong bệnh viện",
+  "nameEn": "Healthcare communications in hospitals",
+  "credits": 3,
+  "faculty": "sim",
+  "levels": [
+    "thac-si"
+  ],
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "SIM_THAC_SI_QUAN_TRI_BENH_VIEN_2025_NC",
+      "block": "K04",
+      "required": false
+    },
+    {
+      "program": "SIM_THAC_SI_QUAN_TRI_BENH_VIEN_2025_UD",
+      "block": "K06",
+      "required": false
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "note": "Nhập từ CTĐT sau đại học chính thức (PDF của trường, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

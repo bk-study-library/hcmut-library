@@ -1,0 +1,107 @@
+{
+  "$schema": "../../schema/program.schema.json",
+  "code": "DEE_THAC_SI_QUAN_LY_NANG_LUONG_2025_NC",
+  "name": "Quản lý năng lượng",
+  "nameEn": "Power Management",
+  "faculty": "dee",
+  "year": "2025",
+  "major": "8510602",
+  "type": "NC",
+  "level": "thac-si",
+  "orientation": "nghien-cuu",
+  "degree": "thac-si",
+  "totalCredits": 60,
+  "variant": "Thạc sĩ định hướng nghiên cứu",
+  "source": "https://drive.google.com/file/d/1osjGn5PHMgnpf7linDbxKZX_c_soFGY1/view",
+  "ctdtUrl": "https://drive.google.com/file/d/1osjGn5PHMgnpf7linDbxKZX_c_soFGY1/view",
+  "planUrl": "https://drive.google.com/file/d/1NDO-oUJrTtBrbV76BGwLV-0E70yMgzLv/view",
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/postgraduate/8510602?program=NC",
+  "groups": [
+    {
+      "name": "A. Đa ngành Tổng quát (General Interdisciplinary Knowledge)",
+      "creditsNeed": 6
+    }
+  ],
+  "blocks": [
+    {
+      "id": "K01",
+      "name": "A.1. Bắt buộc Đa ngành, tổng quát (Compulsory General Multidisciplinary Courses)",
+      "group": "A. Đa ngành Tổng quát (General Interdisciplinary Knowledge)",
+      "kind": "chung",
+      "required": true,
+      "creditsNeed": 6,
+      "courses": [
+        "AS5113",
+        "GK5033"
+      ]
+    },
+    {
+      "id": "K02",
+      "name": "A.2. Ngoại ngữ (Foreign Languages)",
+      "group": "A. Đa ngành Tổng quát (General Interdisciplinary Knowledge)",
+      "kind": "ngoai-ngu",
+      "required": true,
+      "creditsNeed": 0,
+      "courses": [
+        "GK5047",
+        "GK5049"
+      ]
+    },
+    {
+      "id": "K03",
+      "name": "B. Cơ sở ngành (Core courses)",
+      "kind": "co-so-nganh",
+      "required": true,
+      "creditsNeed": 12,
+      "courses": [
+        "IM5041",
+        "IM5107",
+        "EE5139",
+        "ME5179"
+      ]
+    },
+    {
+      "id": "K04",
+      "name": "C. Ngành/Chuyên ngành (Major/Speciality)",
+      "kind": "chuyen-nganh",
+      "required": false,
+      "creditsNeed": 12,
+      "courses": [
+        "IM5081",
+        "IM5093",
+        "EE5399",
+        "EE5391",
+        "EE5411",
+        "EE5423",
+        "EE5439",
+        "EE5437",
+        "ME5133",
+        "EE5119",
+        "EE5111",
+        "EE5109",
+        "IM5027"
+      ]
+    },
+    {
+      "id": "K05",
+      "name": "D. Học phần tốt nghiệp (Graduation Module)",
+      "kind": "luan-van",
+      "required": true,
+      "creditsNeed": 30,
+      "courses": [
+        "EE6053",
+        "EE6055"
+      ]
+    },
+    {
+      "id": "K06",
+      "name": "E. Điều kiện tốt nghiệp (Graduation Condition)",
+      "kind": "dieu-kien-tot-nghiep",
+      "required": true,
+      "courses": [
+        "ENG_B2"
+      ]
+    }
+  ],
+  "updated": "2026-10-04"
+}

@@ -1,0 +1,67 @@
+{
+  "$schema": "../../schema/program.schema.json",
+  "code": "DEE_TIEN_SI_THIET_KE_VI_MACH_2026_PT1",
+  "name": "Thiết kế Vi mạch",
+  "nameEn": "Integrated Circuit Design",
+  "faculty": "dee",
+  "year": "2026",
+  "major": "9520202",
+  "type": "PT1",
+  "level": "tien-si",
+  "degree": "tien-si",
+  "totalCredits": 90,
+  "variant": "Tiến sĩ phương thức 1",
+  "source": "https://drive.google.com/file/d/1cN8QG7mlZbdvlIXdezTsbOcVHGIfsACG/view",
+  "ctdtUrl": "https://drive.google.com/file/d/1cN8QG7mlZbdvlIXdezTsbOcVHGIfsACG/view",
+  "planUrl": "https://drive.google.com/file/d/1UOEax5TLG9ul1ytpe12DBXjqMXJwz_3y/view",
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/postgraduate/9520202?program=PT1_1",
+  "blocks": [
+    {
+      "id": "K01",
+      "name": "A. Đa Ngành Tổng Quát (General Interdisciplinary Knowledge)",
+      "kind": "chung",
+      "required": true,
+      "creditsNeed": 3,
+      "courses": [
+        "GK5007"
+      ]
+    },
+    {
+      "id": "K02",
+      "name": "B. Tiểu luận tổng quan và Chuyên đề tiến sĩ (Doctoral Literature Review Essay and Doctoral Seminars)",
+      "kind": "tieu-luan-chuyen-de",
+      "required": true,
+      "creditsNeed": 0,
+      "courses": [
+        "EE7173",
+        "EE7175",
+        "EE7177"
+      ]
+    },
+    {
+      "id": "K03",
+      "name": "C. Học phần tốt nghiệp (Graduation Module)",
+      "kind": "luan-an",
+      "required": true,
+      "creditsNeed": 87,
+      "courses": [
+        "EE7179",
+        "EE7181",
+        "EE7183",
+        "EE7185",
+        "EE7187",
+        "EE7189"
+      ]
+    },
+    {
+      "id": "K04",
+      "name": "D. Điều kiện tốt nghiệp (Other Graduation Requirements)",
+      "kind": "dieu-kien-tot-nghiep",
+      "required": true,
+      "courses": [
+        "ENG_B2"
+      ]
+    }
+  ],
+  "updated": "2026-10-04"
+}

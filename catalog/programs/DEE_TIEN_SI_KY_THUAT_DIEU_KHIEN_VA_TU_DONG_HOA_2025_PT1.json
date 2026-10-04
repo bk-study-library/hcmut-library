@@ -1,0 +1,66 @@
+{
+  "$schema": "../../schema/program.schema.json",
+  "code": "DEE_TIEN_SI_KY_THUAT_DIEU_KHIEN_VA_TU_DONG_HOA_2025_PT1",
+  "name": "Kỹ thuật Điều khiển và Tự động hóa",
+  "nameEn": "Control Engineering and Automation",
+  "faculty": "dee",
+  "year": "2025",
+  "major": "9520216",
+  "type": "PT1",
+  "level": "tien-si",
+  "degree": "tien-si",
+  "totalCredits": 90,
+  "variant": "Tiến sĩ phương thức 1",
+  "source": "https://drive.google.com/file/d/1xIUXREAvnZF4lLOBVjCFF9i2wODrhTGp/view",
+  "ctdtUrl": "https://drive.google.com/file/d/1xIUXREAvnZF4lLOBVjCFF9i2wODrhTGp/view",
+  "planUrl": "https://drive.google.com/file/d/1sa7C_h4tO06A5DDkmIMYbfACsZ6NJtMb/view",
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/postgraduate/9520216?program=PT1_1",
+  "blocks": [
+    {
+      "id": "K01",
+      "name": "A. Đa Ngành Tổng Quát (General Interdisciplinary Knowledge)",
+      "kind": "chung",
+      "required": true,
+      "creditsNeed": 3,
+      "courses": [
+        "GK5007"
+      ]
+    },
+    {
+      "id": "K02",
+      "name": "B. Tiểu luận tổng quan và Chuyên đề tiến sĩ (Doctoral Literature Review Essay and Doctoral Seminars)",
+      "kind": "tieu-luan-chuyen-de",
+      "required": true,
+      "courses": [
+        "EE7157",
+        "EE7159",
+        "EE7155"
+      ]
+    },
+    {
+      "id": "K03",
+      "name": "C. Học phần tốt nghiệp (Graduation Module)",
+      "kind": "luan-an",
+      "required": true,
+      "creditsNeed": 87,
+      "courses": [
+        "EE7161",
+        "EE7163",
+        "EE7165",
+        "EE7167",
+        "EE7169",
+        "EE7171"
+      ]
+    },
+    {
+      "id": "K04",
+      "name": "D. Điều kiện tốt nghiệp (Other Graduation Requirements)",
+      "kind": "dieu-kien-tot-nghiep",
+      "required": true,
+      "courses": [
+        "ENG_B2"
+      ]
+    }
+  ],
+  "updated": "2026-10-04"
+}

@@ -1,0 +1,43 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "EN5213",
+  "code": "EN5213",
+  "name": "Phân tích chính sách môi trường và tài nguyên",
+  "nameEn": "Environmental and Natural Resources Policy Analysis",
+  "credits": 3,
+  "faculty": "fenr",
+  "levels": [
+    "thac-si",
+    "tien-si"
+  ],
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "FENR_THAC_SI_CHINH_SACH_CONG_2025_UD",
+      "block": "K05",
+      "required": true
+    },
+    {
+      "program": "FENR_THAC_SI_QUAN_LY_TAI_NGUYEN_VA_MOI_TRUONG_2025_NC",
+      "block": "K03",
+      "required": true
+    },
+    {
+      "program": "FENR_THAC_SI_QUAN_LY_TAI_NGUYEN_VA_MOI_TRUONG_2025_UD",
+      "block": "K04",
+      "required": true
+    },
+    {
+      "program": "FENR_TIEN_SI_QUAN_LY_TAI_NGUYEN_VA_MOI_TRUONG_2025_PT2",
+      "block": "K02",
+      "required": false
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "note": "Nhập từ CTĐT sau đại học chính thức (PDF của trường, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

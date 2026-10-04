@@ -1,0 +1,27 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "CO6021",
+  "code": "CO6021",
+  "name": "Đề án tốt nghiệp",
+  "nameEn": "Master's Capstone Project",
+  "credits": 9,
+  "faculty": "cse",
+  "levels": [
+    "thac-si"
+  ],
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "CSE_THAC_SI_HE_THONG_THONG_TIN_QUAN_LY_2026_UD",
+      "block": "K07",
+      "required": true
+    }
+  ],
+  "parts": [
+    "project"
+  ],
+  "related": [],
+  "note": "Nhập từ CTĐT sau đại học chính thức (PDF của trường, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

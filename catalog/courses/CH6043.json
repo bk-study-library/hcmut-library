@@ -1,0 +1,32 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "CH6043",
+  "code": "CH6043",
+  "name": "Chuyên đề nghiên cứu trước luận văn",
+  "nameEn": "Pre - Thesis Research Project",
+  "credits": 15,
+  "faculty": "che",
+  "levels": [
+    "thac-si"
+  ],
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "CHE_THAC_SI_CONG_NGHE_SINH_HOC_2025_NC",
+      "block": "K05",
+      "required": true
+    },
+    {
+      "program": "CHE_THAC_SI_CONG_NGHE_SINH_HOC_2026_STEM",
+      "block": "K05",
+      "required": true
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "note": "Nhập từ CTĐT sau đại học chính thức (PDF của trường, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

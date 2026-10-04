@@ -164,20 +164,28 @@ test('nhập research hai lần: không đổi file nào', () => {
   assert.deepEqual(snap(dir), before);
 });
 
-test('danh mục thật: 2414 môn, 547 chương trình, 62 ngành, không lỗi, không cảnh báo', () => {
+test('danh mục thật: 3796 môn, 838 chương trình, 140 ngành, không lỗi, không cảnh báo', () => {
   const repo = loadRepo(TOOL_ROOT);
   assert.deepEqual(repo.errors, []);
   assert.deepEqual(repo.warnings, []);
-  assert.equal(repo.courses.size, 2414);
-  assert.equal(repo.programs.size, 547);
-  assert.equal(repo.majors.size, 62);
-  // Chương trình rỗng chỉ còn mục tuyển sinh 2026 chưa khớp ngành nào; chương trình gắn ngành đều có môn.
+  assert.equal(repo.courses.size, 3796);
+  assert.equal(repo.programs.size, 838);
+  assert.equal(repo.majors.size, 140);
+  const pg = (x) => x.level === 'thac-si' || x.level === 'tien-si';
+  // Đại học: 2414 môn, 547 chương trình, 62 ngành. Sau đại học: 1382 môn, 291 chương trình, 78 ngành.
+  assert.equal([...repo.courses.values()].filter((c) => !c.levels).length, 2414);
+  assert.equal([...repo.programs.values()].filter((p) => !pg(p)).length, 547);
+  assert.equal([...repo.majors.values()].filter((m) => !pg(m)).length, 62);
+  // Chương trình đại học rỗng chỉ còn mục tuyển sinh 2026 chưa khớp ngành nào; chương trình gắn ngành đều có môn.
   const empty = [...repo.programs.values()].filter((p) => !p.blocks.some((b) => b.courses.length));
-  assert.equal(empty.length, 45);
-  assert.ok(empty.every((p) => !p.major && p.code.includes('_TS_')));
-  // Mọi khoa có ngành; không môn nào còn ở khoa Chưa xác định.
+  assert.equal(empty.filter((p) => !pg(p)).length, 45);
+  assert.ok(empty.filter((p) => !pg(p)).every((p) => !p.major && p.code.includes('_TS_')));
+  // Sau đại học rỗng là CTĐT trước khóa 2025 không ghi mã môn: có ngành và link PDF.
+  assert.equal(empty.filter(pg).length, 73);
+  assert.ok(empty.filter(pg).every((p) => p.major && p.ctdtUrl && p.year <= '2024' && p.type === 'CQ'));
+  // Mọi khoa có ngành; chỉ còn hai mã sau đại học kiểu cũ (bản THCQ 2022) ở khoa Chưa xác định.
   assert.equal(new Set([...repo.majors.values()].map((m) => m.faculty)).size, 11);
-  assert.equal([...repo.courses.values()].filter((c) => c.faculty === 'unknown').length, 0);
+  assert.deepEqual([...repo.courses.values()].filter((c) => c.faculty === 'unknown').map((c) => c.id), ['TH5929', 'TH5930']);
   for (const p of repo.programs.values()) assert.match(p.code, /^[A-Z0-9_]+$/);
   assert.ok(repo.courses.get('GE4169-2024').programs.every((x) => repo.programs.get(x.program).year >= '2024'));
 });

@@ -1,0 +1,96 @@
+{
+  "$schema": "../../schema/program.schema.json",
+  "code": "FENR_TIEN_SI_KY_THUAT_MOI_TRUONG_2025_PT2",
+  "name": "Kỹ thuật Môi trường",
+  "nameEn": "Environmental Engineering",
+  "faculty": "fenr",
+  "year": "2025",
+  "major": "9520320",
+  "type": "PT2",
+  "level": "tien-si",
+  "degree": "tien-si",
+  "totalCredits": 90,
+  "variant": "Tiến sĩ phương thức 2",
+  "source": "https://drive.google.com/file/d/1WfrfEKmiV31bLXBFpMMzsK6E9LTREp0I/view",
+  "ctdtUrl": "https://drive.google.com/file/d/1WfrfEKmiV31bLXBFpMMzsK6E9LTREp0I/view",
+  "planUrl": "https://drive.google.com/file/d/1IxwXEHWQL5VCDJFvABBZQoiaEwVomJjJ/view",
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/postgraduate/9520320?program=PT2_1",
+  "blocks": [
+    {
+      "id": "K01",
+      "name": "A. Đa Ngành Tổng Quát (General Interdisciplinary Knowledge)",
+      "kind": "chung",
+      "required": true,
+      "creditsNeed": 3,
+      "courses": [
+        "GK5007"
+      ]
+    },
+    {
+      "id": "K02",
+      "name": "B. Học phần trình độ tiến sĩ (Supplementary Courses for Doctoral Students)",
+      "kind": "hoc-phan-tien-si",
+      "required": false,
+      "creditsNeed": 12,
+      "courses": [
+        "EN5261",
+        "EN5107",
+        "EN5105",
+        "EN5101",
+        "EN5103",
+        "EN5135",
+        "EN5053",
+        "EN5055",
+        "EN5095",
+        "EN5093",
+        "EN5091",
+        "EN5089",
+        "EN5087",
+        "EN5033",
+        "EN5257",
+        "EN5097",
+        "EN5099",
+        "EN5255",
+        "EN5253",
+        "EN5025",
+        "EN5251"
+      ]
+    },
+    {
+      "id": "K03",
+      "name": "C. Tiểu luận tổng quan và Chuyên đề tiến sĩ (Doctoral Literature Review Essay and Doctoral Seminars)",
+      "kind": "tieu-luan-chuyen-de",
+      "required": true,
+      "creditsNeed": 0,
+      "courses": [
+        "EN7237",
+        "EN7239",
+        "EN7241"
+      ]
+    },
+    {
+      "id": "K04",
+      "name": "D. Học phần tốt nghiệp (Graduation Module)",
+      "kind": "luan-an",
+      "required": true,
+      "creditsNeed": 75,
+      "courses": [
+        "EN7245",
+        "EN7247",
+        "EN7249",
+        "EN7251",
+        "EN7253"
+      ]
+    },
+    {
+      "id": "K05",
+      "name": "E. Điều kiện tốt nghiệp (Other Graduation Requirements)",
+      "kind": "dieu-kien-tot-nghiep",
+      "required": true,
+      "courses": [
+        "ENG_B2"
+      ]
+    }
+  ],
+  "updated": "2026-10-04"
+}

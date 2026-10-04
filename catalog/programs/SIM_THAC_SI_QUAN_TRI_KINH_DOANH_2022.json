@@ -1,0 +1,150 @@
+{
+  "$schema": "../../schema/program.schema.json",
+  "code": "SIM_THAC_SI_QUAN_TRI_KINH_DOANH_2022",
+  "name": "Quản trị kinh doanh",
+  "nameEn": "Business Administration",
+  "faculty": "sim",
+  "year": "2022",
+  "major": "8340101",
+  "type": "CQ",
+  "level": "thac-si",
+  "degree": "thac-si",
+  "totalCredits": 60,
+  "note": "Sổ tay không ghi tên tiếng Anh của môn. Gộp hai bản nguồn của cùng ngành, loại, khóa: danh sách môn theo bản có mã môn, link PDF theo bản còn lại.",
+  "source": "https://hcmut.edu.vn/study/handbook/course/postgraduate/8340101?program=THCQ",
+  "ctdtUrl": "https://drive.google.com/file/d/1T7a5P0HEk5YnWJpR58WDS3ECCizGpURU/view",
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/postgraduate/8340101?program=THCQ",
+  "groups": [
+    {
+      "name": "1. 1. KHỐI KIẾN THỨC CHUNG",
+      "creditsNeed": 0
+    }
+  ],
+  "blocks": [
+    {
+      "id": "K01",
+      "name": "2. KHỐI KIẾN THỨC CƠ SỞ NGÀNH/CHUYÊN NGÀNH (THẠC SĨ ỨNG DỤNG; THẠC SĨ NGHIÊN CỨU)",
+      "kind": "co-so-nganh",
+      "required": false,
+      "creditsNeed": 0,
+      "courses": [
+        "IM5038",
+        "IM5009",
+        "IM5067",
+        "IM5109"
+      ]
+    },
+    {
+      "id": "K02",
+      "name": "3 - 3.1. KHỐI KIẾN THỨC BẮT BUỘC (THẠC SĨ ỨNG DỤNG)",
+      "kind": "khac",
+      "required": true,
+      "creditsNeed": 0,
+      "courses": [
+        "IM5154",
+        "IM5144",
+        "IM5065",
+        "IM5091"
+      ]
+    },
+    {
+      "id": "K03",
+      "name": "4. KHỐI KIẾN THỨC TỰ CHỌN ( THẠC SĨ ỨNG DỤNG CHỌN 9 TÍN CHỈ Ở HK2 VÀ CHỌN 3 TÍN CHỈ Ở HK3)",
+      "kind": "khac",
+      "required": false,
+      "creditsNeed": 0,
+      "courses": [
+        "IM5138",
+        "IM5140",
+        "IM5058",
+        "IM5148",
+        "IM5142",
+        "IM5051",
+        "IM5156",
+        "IM5043",
+        "IM5120",
+        "IM5079",
+        "IM5136",
+        "IM5083",
+        "IM5132",
+        "IM5133",
+        "IM5071",
+        "IM5134",
+        "IM5075",
+        "IM5062",
+        "IM5013",
+        "IM5025"
+      ]
+    },
+    {
+      "id": "K04",
+      "name": "3 - 3.2. KHỐI KIẾN THỨC CHUYÊN MÔN (THẠC SĨ NGHIÊN CỨU: CHỌN 15 TC KHỐI KIẾN THỨC BẮT BUỘC VÀ TỰ CHỌN THEO CHƯƠNG TRÌNH ĐÀO TẠO THẠC SĨ ỨNG DỤNG) - HK2 CHỌN 9 TÍN CHỈ, HK3 CHỌN 6 TÍN CHỈ",
+      "kind": "chuyen-nganh",
+      "required": true,
+      "creditsNeed": 0,
+      "courses": []
+    },
+    {
+      "id": "K05",
+      "name": "5 - 5.1. KHỐI KIẾN THỨC TỐT NGHIỆP (THẠC SĨ ỨNG DỤNG)",
+      "kind": "luan-van",
+      "required": false,
+      "creditsNeed": 0,
+      "courses": [
+        "IM5162",
+        "IM5163",
+        "TH5929"
+      ]
+    },
+    {
+      "id": "K06",
+      "name": "5 - 5.2. KHỐI KIẾN THỨC TỐT NGHIỆP (THẠC SĨ NGHIÊN CỨU: 18 TÍN CHỈ)",
+      "kind": "luan-van",
+      "required": false,
+      "creditsNeed": 0,
+      "courses": [
+        "GK5933",
+        "TH5930"
+      ]
+    },
+    {
+      "id": "K07",
+      "name": "5 - 5.2.1. CÁC CHUYÊN ĐỀ NGHIÊN CỨU KHÁC (KHỐI KIẾN THỨC TỐT NGHIỆP THẠC SĨ NGHIÊN CỨU) - 9 TÍN CHỈ",
+      "kind": "luan-van",
+      "required": true,
+      "creditsNeed": 0,
+      "courses": []
+    },
+    {
+      "id": "K08",
+      "name": "1.1. KHỐI KIẾN THỨC CHUNG BẮT BUỘC",
+      "group": "1. 1. KHỐI KIẾN THỨC CHUNG",
+      "kind": "chung",
+      "required": true,
+      "creditsNeed": 0,
+      "courses": [
+        "AS5113",
+        "AS5900"
+      ]
+    },
+    {
+      "id": "K09",
+      "name": "1.2. KHỐI KIẾN THỨC CHUNG TỰ CHỌN (THẠC SĨ ỨNG DỤNG CHỌN 6 TÍN CHỈ; THẠC SĨ NGHIÊN CỨU CHỌN 3 TÍN CHỈ)",
+      "group": "1. 1. KHỐI KIẾN THỨC CHUNG",
+      "kind": "chung",
+      "required": false,
+      "creditsNeed": 0,
+      "courses": [
+        "GK5910",
+        "GK5909",
+        "GK5922",
+        "GK5934",
+        "GK5935",
+        "GK5936",
+        "GK5047",
+        "GK5049"
+      ]
+    }
+  ],
+  "updated": "2026-10-04"
+}

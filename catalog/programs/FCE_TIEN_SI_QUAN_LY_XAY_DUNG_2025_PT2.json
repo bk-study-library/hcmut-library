@@ -1,0 +1,79 @@
+{
+  "$schema": "../../schema/program.schema.json",
+  "code": "FCE_TIEN_SI_QUAN_LY_XAY_DUNG_2025_PT2",
+  "name": "Quản lý Xây dựng",
+  "nameEn": "Construction Management",
+  "faculty": "fce",
+  "year": "2025",
+  "major": "9580302",
+  "type": "PT2",
+  "level": "tien-si",
+  "degree": "tien-si",
+  "totalCredits": 90,
+  "variant": "Tiến sĩ phương thức 2",
+  "source": "https://drive.google.com/file/d/1OVm4bR_1m0J17SOcbbbkyJvib0WcaVYd/view",
+  "ctdtUrl": "https://drive.google.com/file/d/1OVm4bR_1m0J17SOcbbbkyJvib0WcaVYd/view",
+  "planUrl": "https://drive.google.com/file/d/14-WiDRkJlL3A3B1p3HvVZLreDjOKFa_V/view",
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/postgraduate/9580302?program=PT2_1",
+  "blocks": [
+    {
+      "id": "K01",
+      "name": "A. Đa Ngành Tổng Quát (General Interdisciplinary Knowledge)",
+      "kind": "chung",
+      "required": true,
+      "creditsNeed": 3,
+      "courses": [
+        "GK5007"
+      ]
+    },
+    {
+      "id": "K02",
+      "name": "B. Học phần trình độ tiến sĩ (Supplementary Courses for Doctoral Students)",
+      "kind": "hoc-phan-tien-si",
+      "required": true,
+      "creditsNeed": 12,
+      "courses": [
+        "CI5147",
+        "CI5241",
+        "CI5149",
+        "CI5115"
+      ]
+    },
+    {
+      "id": "K03",
+      "name": "C. Tiểu luận tổng quan và Chuyên đề tiến sĩ (Doctoral Literature Review Essay and Doctoral Seminars)",
+      "kind": "tieu-luan-chuyen-de",
+      "required": true,
+      "creditsNeed": 0,
+      "courses": [
+        "CI7571",
+        "CI7573",
+        "CI7575"
+      ]
+    },
+    {
+      "id": "K04",
+      "name": "D. Học phần tốt nghiệp (Graduation Module)",
+      "kind": "luan-an",
+      "required": true,
+      "creditsNeed": 75,
+      "courses": [
+        "CI7579",
+        "CI7581",
+        "CI7583",
+        "CI7585",
+        "CI7587"
+      ]
+    },
+    {
+      "id": "K05",
+      "name": "E. Điều kiện tốt nghiệp (Other Graduation Requirements)",
+      "kind": "dieu-kien-tot-nghiep",
+      "required": true,
+      "courses": [
+        "ENG_B2"
+      ]
+    }
+  ],
+  "updated": "2026-10-04"
+}

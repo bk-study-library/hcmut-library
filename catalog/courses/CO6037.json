@@ -1,0 +1,27 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "CO6037",
+  "code": "CO6037",
+  "name": "Chuyên đề nghiên cứu trước luận văn",
+  "nameEn": "Pre - Thesis Research Project",
+  "credits": 15,
+  "faculty": "cse",
+  "levels": [
+    "thac-si"
+  ],
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "CSE_THAC_SI_KHOA_HOC_MAY_TINH_2026_NC",
+      "block": "K05",
+      "required": true
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "note": "Nhập từ CTĐT sau đại học chính thức (PDF của trường, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

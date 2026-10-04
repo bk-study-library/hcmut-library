@@ -1,0 +1,106 @@
+{
+  "$schema": "../../schema/program.schema.json",
+  "code": "FCE_TIEN_SI_DIA_KY_THUAT_XAY_DUNG_2025_PT2",
+  "name": "Địa kỹ thuật xây dựng",
+  "nameEn": "Geotechnical Engineering",
+  "faculty": "fce",
+  "year": "2025",
+  "major": "9580211",
+  "type": "PT2",
+  "level": "tien-si",
+  "degree": "tien-si",
+  "totalCredits": 90,
+  "variant": "Tiến sĩ phương thức 2",
+  "source": "https://drive.google.com/file/d/1QHfTdKu2nQQmetwbpNekIBlFx3YEHdZj/view",
+  "ctdtUrl": "https://drive.google.com/file/d/1QHfTdKu2nQQmetwbpNekIBlFx3YEHdZj/view",
+  "planUrl": "https://drive.google.com/file/d/1wjyjKGpA4_I0U37Rh3JRKJDTVTijT1Tr/view",
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/postgraduate/9580211?program=PT2_1",
+  "groups": [
+    {
+      "name": "B. Học phần trình độ tiến sĩ (Supplementary Courses for Doctoral Students)",
+      "creditsNeed": 12
+    }
+  ],
+  "blocks": [
+    {
+      "id": "K01",
+      "name": "A. Đa Ngành Tổng Quát (General Interdisciplinary Knowledge)",
+      "kind": "chung",
+      "required": true,
+      "creditsNeed": 3,
+      "courses": [
+        "GK5007"
+      ]
+    },
+    {
+      "id": "K02",
+      "name": "B.1. Học phần trình độ tiến sĩ bắt buộc (Compulsory Supplementary Courses for Doctoral Students)",
+      "group": "B. Học phần trình độ tiến sĩ (Supplementary Courses for Doctoral Students)",
+      "kind": "hoc-phan-tien-si",
+      "required": true,
+      "creditsNeed": 6,
+      "courses": [
+        "CI5663",
+        "CI5129"
+      ]
+    },
+    {
+      "id": "K03",
+      "name": "B.2. Học phần trình độ tiến sĩ tự chọn (Elective Supplementary Courses for Doctoral Students)",
+      "group": "B. Học phần trình độ tiến sĩ (Supplementary Courses for Doctoral Students)",
+      "kind": "hoc-phan-tien-si",
+      "required": false,
+      "creditsNeed": 6,
+      "courses": [
+        "CI5919",
+        "CI5661",
+        "CI5659",
+        "CI5655",
+        "CI5653",
+        "CI5651",
+        "CI5649",
+        "CI5071",
+        "CI5645",
+        "CI5643",
+        "CI5657",
+        "CI5069"
+      ]
+    },
+    {
+      "id": "K04",
+      "name": "C. Tiểu luận tổng quan và Chuyên đề tiến sĩ (Doctoral Literature Review Essay and Doctoral Seminars)",
+      "kind": "tieu-luan-chuyen-de",
+      "required": true,
+      "creditsNeed": 0,
+      "courses": [
+        "CI7653",
+        "CI7655",
+        "CI7657"
+      ]
+    },
+    {
+      "id": "K05",
+      "name": "D. Học phần tốt nghiệp (Graduation Module)",
+      "kind": "luan-an",
+      "required": true,
+      "creditsNeed": 75,
+      "courses": [
+        "CI7661",
+        "CI7663",
+        "CI7665",
+        "CI7667",
+        "CI7669"
+      ]
+    },
+    {
+      "id": "K06",
+      "name": "E. Điều kiện tốt nghiệp (Other Graduation Requirements)",
+      "kind": "dieu-kien-tot-nghiep",
+      "required": true,
+      "courses": [
+        "ENG_B2"
+      ]
+    }
+  ],
+  "updated": "2026-10-04"
+}

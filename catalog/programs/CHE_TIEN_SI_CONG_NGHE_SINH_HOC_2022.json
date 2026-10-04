@@ -1,0 +1,18 @@
+{
+  "$schema": "../../schema/program.schema.json",
+  "code": "CHE_TIEN_SI_CONG_NGHE_SINH_HOC_2022",
+  "name": "Công nghệ Sinh học",
+  "nameEn": "Biotechnology",
+  "faculty": "che",
+  "year": "2022",
+  "major": "9420201",
+  "type": "CQ",
+  "level": "tien-si",
+  "degree": "tien-si",
+  "totalCredits": 90,
+  "note": "Bản CTĐT 2022 dạng văn bản mô tả, liệt kê tên môn nhưng không ghi mã môn, nên chưa tách khối và mã. Tổng tín chỉ lấy theo quy định chung (60 thạc sĩ, 90 tiến sĩ).",
+  "source": "https://drive.google.com/file/d/1wZqYA3PKy3suaA0ZFmcShE7iYUOqxrtN/view",
+  "ctdtUrl": "https://drive.google.com/file/d/1wZqYA3PKy3suaA0ZFmcShE7iYUOqxrtN/view",
+  "blocks": [],
+  "updated": "2026-10-04"
+}

@@ -1,0 +1,18 @@
+{
+  "$schema": "../../schema/program.schema.json",
+  "code": "CHE_THAC_SI_CONG_NGHE_THUC_PHAM_2022",
+  "name": "Công nghệ thực phẩm",
+  "nameEn": "Food Technology",
+  "faculty": "che",
+  "year": "2022",
+  "major": "8540101",
+  "type": "CQ",
+  "level": "thac-si",
+  "degree": "thac-si",
+  "totalCredits": 60,
+  "note": "Bản CTĐT 2022 dạng văn bản mô tả, liệt kê tên môn nhưng không ghi mã môn, nên chưa tách khối và mã. Tổng tín chỉ lấy theo quy định chung (60 thạc sĩ, 90 tiến sĩ).",
+  "source": "https://drive.google.com/file/d/1nKTxyZ4j6yA41MTzvJ_arj1PUd3pseq7/view",
+  "ctdtUrl": "https://drive.google.com/file/d/1nKTxyZ4j6yA41MTzvJ_arj1PUd3pseq7/view",
+  "blocks": [],
+  "updated": "2026-10-04"
+}

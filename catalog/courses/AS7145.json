@@ -1,0 +1,37 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "AS7145",
+  "code": "AS7145",
+  "name": "Luận án tiến sĩ - phần 5",
+  "nameEn": "PhD Dissertation - part 5",
+  "credits": 15,
+  "faculty": "fas",
+  "levels": [
+    "tien-si"
+  ],
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "FAS_TIEN_SI_TOAN_UNG_DUNG_2025_PT1",
+      "block": "K03",
+      "required": true
+    },
+    {
+      "program": "FAS_TIEN_SI_TOAN_UNG_DUNG_2025_PT2",
+      "block": "K04",
+      "required": true
+    },
+    {
+      "program": "FAS_TIEN_SI_TOAN_UNG_DUNG_2025_TAPT1",
+      "block": "K03",
+      "required": true
+    }
+  ],
+  "parts": [
+    "project"
+  ],
+  "related": [],
+  "note": "Nhập từ CTĐT sau đại học chính thức (PDF của trường, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

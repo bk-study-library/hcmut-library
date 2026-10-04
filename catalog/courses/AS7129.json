@@ -1,0 +1,35 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "AS7129",
+  "code": "AS7129",
+  "name": "Tiểu luận tổng quan",
+  "nameEn": "Doctoral Literature Review Essay",
+  "credits": 0,
+  "faculty": "fas",
+  "levels": [
+    "tien-si"
+  ],
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "FAS_TIEN_SI_TOAN_UNG_DUNG_2025_PT1",
+      "block": "K02",
+      "required": true
+    },
+    {
+      "program": "FAS_TIEN_SI_TOAN_UNG_DUNG_2025_PT2",
+      "block": "K03",
+      "required": true
+    },
+    {
+      "program": "FAS_TIEN_SI_TOAN_UNG_DUNG_2025_TAPT1",
+      "block": "K02",
+      "required": true
+    }
+  ],
+  "parts": [],
+  "related": [],
+  "note": "Nhập từ CTĐT sau đại học chính thức (PDF của trường, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

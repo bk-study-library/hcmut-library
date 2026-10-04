@@ -1,0 +1,18 @@
+{
+  "$schema": "../../schema/program.schema.json",
+  "code": "FENR_TIEN_SI_KY_THUAT_MOI_TRUONG_2022",
+  "name": "Kỹ thuật Môi trường",
+  "nameEn": "Environmental Engineering",
+  "faculty": "fenr",
+  "year": "2022",
+  "major": "9520320",
+  "type": "CQ",
+  "level": "tien-si",
+  "degree": "tien-si",
+  "totalCredits": 90,
+  "note": "Bản CTĐT 2022 dạng văn bản mô tả, liệt kê tên môn nhưng không ghi mã môn, nên chưa tách khối và mã. Tổng tín chỉ lấy theo quy định chung (60 thạc sĩ, 90 tiến sĩ).",
+  "source": "https://drive.google.com/file/d/1W2AiBqLQHgaBcC3qr5PuU5uAhLgPBe7u/view",
+  "ctdtUrl": "https://drive.google.com/file/d/1W2AiBqLQHgaBcC3qr5PuU5uAhLgPBe7u/view",
+  "blocks": [],
+  "updated": "2026-10-04"
+}

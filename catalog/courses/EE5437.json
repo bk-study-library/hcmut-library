@@ -1,0 +1,32 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "EE5437",
+  "code": "EE5437",
+  "name": "Tối ưu hóa trong hệ thống năng lượng",
+  "nameEn": "Optimization in Energy systems",
+  "credits": 3,
+  "faculty": "dee",
+  "levels": [
+    "thac-si"
+  ],
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "DEE_THAC_SI_QUAN_LY_NANG_LUONG_2025_NC",
+      "block": "K04",
+      "required": false
+    },
+    {
+      "program": "DEE_THAC_SI_QUAN_LY_NANG_LUONG_2025_UD",
+      "block": "K06",
+      "required": false
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "note": "Nhập từ CTĐT sau đại học chính thức (PDF của trường, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

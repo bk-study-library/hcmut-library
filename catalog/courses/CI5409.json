@@ -1,0 +1,37 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "CI5409",
+  "code": "CI5409",
+  "name": "Nguyên lý kinh tế và Luật xây dựng",
+  "nameEn": "Principles of Construction Economics and Laws",
+  "credits": 3,
+  "faculty": "fce",
+  "levels": [
+    "thac-si"
+  ],
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "FCE_THAC_SI_QUAN_LY_XAY_DUNG_2025_NC",
+      "block": "K03",
+      "required": true
+    },
+    {
+      "program": "FCE_THAC_SI_QUAN_LY_XAY_DUNG_2025_TAUD",
+      "block": "K04",
+      "required": true
+    },
+    {
+      "program": "FCE_THAC_SI_QUAN_LY_XAY_DUNG_2025_UD",
+      "block": "K04",
+      "required": true
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "note": "Nhập từ CTĐT sau đại học chính thức (PDF của trường, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

@@ -1,0 +1,26 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "EN6073",
+  "code": "EN6073",
+  "name": "Thực tập",
+  "credits": 6,
+  "faculty": "fenr",
+  "levels": [
+    "thac-si"
+  ],
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "FENR_THAC_SI_CHINH_SACH_CONG_2025_UD",
+      "block": "K07",
+      "required": true
+    }
+  ],
+  "parts": [
+    "lab"
+  ],
+  "related": [],
+  "note": "Nhập từ CTĐT sau đại học chính thức (Sổ tay HCMUT, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

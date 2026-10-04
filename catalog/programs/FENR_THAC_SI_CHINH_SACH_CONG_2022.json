@@ -1,0 +1,17 @@
+{
+  "$schema": "../../schema/program.schema.json",
+  "code": "FENR_THAC_SI_CHINH_SACH_CONG_2022",
+  "name": "Chính sách công",
+  "faculty": "fenr",
+  "year": "2022",
+  "major": "8340402",
+  "type": "CQ",
+  "level": "thac-si",
+  "degree": "thac-si",
+  "totalCredits": 60,
+  "note": "Bản CTĐT 2022 dạng văn bản mô tả, liệt kê tên môn nhưng không ghi mã môn, nên chưa tách khối và mã. Tổng tín chỉ lấy theo quy định chung (60 thạc sĩ, 90 tiến sĩ).",
+  "source": "https://drive.google.com/file/d/1v3t293Mw-MLoZW1gJHxQBK0kzLFdlFz5/view",
+  "ctdtUrl": "https://drive.google.com/file/d/1v3t293Mw-MLoZW1gJHxQBK0kzLFdlFz5/view",
+  "blocks": [],
+  "updated": "2026-10-04"
+}

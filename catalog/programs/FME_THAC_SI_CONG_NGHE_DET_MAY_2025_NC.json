@@ -1,0 +1,104 @@
+{
+  "$schema": "../../schema/program.schema.json",
+  "code": "FME_THAC_SI_CONG_NGHE_DET_MAY_2025_NC",
+  "name": "Công nghệ dệt, may",
+  "nameEn": "Textile, Garment Technology",
+  "faculty": "fme",
+  "year": "2025",
+  "major": "8540204",
+  "type": "NC",
+  "level": "thac-si",
+  "orientation": "nghien-cuu",
+  "degree": "thac-si",
+  "totalCredits": 60,
+  "variant": "Thạc sĩ định hướng nghiên cứu",
+  "source": "https://drive.google.com/file/d/1VpZv2Mptsph_QmAj6pBhKaqId2hpLTR0/view",
+  "ctdtUrl": "https://drive.google.com/file/d/1VpZv2Mptsph_QmAj6pBhKaqId2hpLTR0/view",
+  "planUrl": "https://drive.google.com/file/d/14jVSL2CUTo7sZEu29xYwDkQz3kU92HMV/view",
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/postgraduate/8540204?program=NC",
+  "groups": [
+    {
+      "name": "A. Đa ngành Tổng quát (General Interdisciplinary Knowledge)",
+      "creditsNeed": 6
+    }
+  ],
+  "blocks": [
+    {
+      "id": "K01",
+      "name": "A.1. Bắt buộc Đa ngành, tổng quát (Compulsory General Multidisciplinary Courses)",
+      "group": "A. Đa ngành Tổng quát (General Interdisciplinary Knowledge)",
+      "kind": "chung",
+      "required": true,
+      "creditsNeed": 6,
+      "courses": [
+        "AS5113",
+        "GK5033"
+      ]
+    },
+    {
+      "id": "K02",
+      "name": "A.2. Ngoại ngữ (Foreign Languages)",
+      "group": "A. Đa ngành Tổng quát (General Interdisciplinary Knowledge)",
+      "kind": "ngoai-ngu",
+      "required": true,
+      "creditsNeed": 0,
+      "courses": [
+        "GK5047",
+        "GK5049"
+      ]
+    },
+    {
+      "id": "K03",
+      "name": "B. Cơ sở ngành (Core courses)",
+      "kind": "co-so-nganh",
+      "required": true,
+      "creditsNeed": 12,
+      "courses": [
+        "ME5333",
+        "ME5275",
+        "ME5249",
+        "ME5331"
+      ]
+    },
+    {
+      "id": "K04",
+      "name": "C. Ngành/Chuyên ngành (Major/Speciality)",
+      "kind": "chuyen-nganh",
+      "required": false,
+      "creditsNeed": 12,
+      "courses": [
+        "ME5311",
+        "ME5633",
+        "ME5159",
+        "ME5365",
+        "ME5175",
+        "ME5155",
+        "ME5153",
+        "ME5149",
+        "ME5147",
+        "ME5151"
+      ]
+    },
+    {
+      "id": "K05",
+      "name": "D. Học phần tốt nghiệp (Graduation Module)",
+      "kind": "luan-van",
+      "required": true,
+      "creditsNeed": 30,
+      "courses": [
+        "ME6127",
+        "ME6129"
+      ]
+    },
+    {
+      "id": "K06",
+      "name": "E. Điều kiện tốt nghiệp (Graduation Condition)",
+      "kind": "dieu-kien-tot-nghiep",
+      "required": true,
+      "courses": [
+        "ENG_B2"
+      ]
+    }
+  ],
+  "updated": "2026-10-04"
+}

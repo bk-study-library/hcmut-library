@@ -1,0 +1,26 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "EN5221",
+  "code": "EN5221",
+  "name": "Chính sách và Nguyên tắc sử dụng đất đai",
+  "credits": 3,
+  "faculty": "fenr",
+  "levels": [
+    "thac-si"
+  ],
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "FENR_THAC_SI_CHINH_SACH_CONG_2025_UD",
+      "block": "K05",
+      "required": true
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "note": "Nhập từ CTĐT sau đại học chính thức (Sổ tay HCMUT, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

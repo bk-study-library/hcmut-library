@@ -1,0 +1,37 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "CI5403",
+  "code": "CI5403",
+  "name": "Kỹ thuật và Công nghệ thi công xây dựng",
+  "nameEn": "Construction Engineering and Technology",
+  "credits": 3,
+  "faculty": "fce",
+  "levels": [
+    "thac-si"
+  ],
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "FCE_THAC_SI_QUAN_LY_XAY_DUNG_2025_NC",
+      "block": "K03",
+      "required": true
+    },
+    {
+      "program": "FCE_THAC_SI_QUAN_LY_XAY_DUNG_2025_TAUD",
+      "block": "K04",
+      "required": true
+    },
+    {
+      "program": "FCE_THAC_SI_QUAN_LY_XAY_DUNG_2025_UD",
+      "block": "K04",
+      "required": true
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "note": "Nhập từ CTĐT sau đại học chính thức (PDF của trường, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

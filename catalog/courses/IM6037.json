@@ -1,0 +1,27 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "IM6037",
+  "code": "IM6037",
+  "name": "Luận văn thạc sĩ nghiên cứu chuyên sâu - phần 3",
+  "nameEn": "Research Intensive Master's Thesis - part 3",
+  "credits": 15,
+  "faculty": "sim",
+  "levels": [
+    "thac-si"
+  ],
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "SIM_THAC_SI_QUAN_TRI_KINH_DOANH_2025_CSAU",
+      "block": "K03",
+      "required": true
+    }
+  ],
+  "parts": [
+    "project"
+  ],
+  "related": [],
+  "note": "Nhập từ CTĐT sau đại học chính thức (PDF của trường, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

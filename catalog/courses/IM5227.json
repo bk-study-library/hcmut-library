@@ -1,0 +1,27 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "IM5227",
+  "code": "IM5227",
+  "name": "Quản lý rủi ro chuỗi cung ứng toàn cầu",
+  "nameEn": "Global supply chain risk management",
+  "credits": 3,
+  "faculty": "sim",
+  "levels": [
+    "thac-si"
+  ],
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "SIM_THAC_SI_LOGISTICS_VA_QUAN_LY_CHUOI_CUNG_UNG_2026_UD",
+      "block": "K07",
+      "required": false
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "note": "Nhập từ CTĐT sau đại học chính thức (PDF của trường, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

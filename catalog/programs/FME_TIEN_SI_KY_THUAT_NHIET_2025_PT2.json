@@ -1,0 +1,88 @@
+{
+  "$schema": "../../schema/program.schema.json",
+  "code": "FME_TIEN_SI_KY_THUAT_NHIET_2025_PT2",
+  "name": "Kỹ thuật Nhiệt",
+  "nameEn": "Thermal Engineering",
+  "faculty": "fme",
+  "year": "2025",
+  "major": "9520115",
+  "type": "PT2",
+  "level": "tien-si",
+  "degree": "tien-si",
+  "totalCredits": 90,
+  "variant": "Tiến sĩ phương thức 2",
+  "source": "https://drive.google.com/file/d/1uWp0UIp-Lt3ErGttGoX0w8wgv3MVyxur/view",
+  "ctdtUrl": "https://drive.google.com/file/d/1uWp0UIp-Lt3ErGttGoX0w8wgv3MVyxur/view",
+  "planUrl": "https://drive.google.com/file/d/1WmW8OE9Xs8j7pkwBbXwFLIHfkgcRWyHQ/view",
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/postgraduate/9520115?program=PT2_1",
+  "blocks": [
+    {
+      "id": "K01",
+      "name": "A. Đa Ngành Tổng Quát (General Interdisciplinary Knowledge)",
+      "kind": "chung",
+      "required": true,
+      "creditsNeed": 3,
+      "courses": [
+        "GK5007"
+      ]
+    },
+    {
+      "id": "K02",
+      "name": "B. Học phần trình độ tiến sĩ (Supplementary Courses for Doctoral Students)",
+      "kind": "hoc-phan-tien-si",
+      "required": false,
+      "creditsNeed": 12,
+      "courses": [
+        "ME5027",
+        "ME5071",
+        "ME5225",
+        "ME5137",
+        "ME5223",
+        "ME5021",
+        "ME5135",
+        "ME5221",
+        "ME5219",
+        "ME5217",
+        "ME5369",
+        "ME5215",
+        "ME5211"
+      ]
+    },
+    {
+      "id": "K03",
+      "name": "C. Tiểu luận tổng quan và Chuyên đề tiến sĩ (Doctoral Literature Review Essay and Doctoral Seminars)",
+      "kind": "tieu-luan-chuyen-de",
+      "required": true,
+      "creditsNeed": 0,
+      "courses": [
+        "ME7315",
+        "ME7317",
+        "ME7319"
+      ]
+    },
+    {
+      "id": "K04",
+      "name": "D. Học phần tốt nghiệp (Graduation Module)",
+      "kind": "luan-an",
+      "required": true,
+      "creditsNeed": 75,
+      "courses": [
+        "ME7323",
+        "ME7325",
+        "ME7327",
+        "ME7329",
+        "ME7331"
+      ]
+    },
+    {
+      "id": "K05",
+      "name": "E. Điều kiện tốt nghiệp (Other Graduation Requirements)",
+      "kind": "dieu-kien-tot-nghiep",
+      "required": true,
+      "courses": [
+        "ENG_B2"
+      ]
+    }
+  ],
+  "updated": "2026-10-04"
+}

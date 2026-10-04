@@ -1,0 +1,43 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "ME5117",
+  "code": "ME5117",
+  "name": "Điều khiển thông minh",
+  "nameEn": "Intelligent Control",
+  "credits": 3,
+  "faculty": "fme",
+  "levels": [
+    "thac-si",
+    "tien-si"
+  ],
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "FME_THAC_SI_KY_THUAT_CO_DIEN_TU_2025_NC",
+      "block": "K04",
+      "required": false
+    },
+    {
+      "program": "FME_THAC_SI_KY_THUAT_CO_DIEN_TU_2025_UD",
+      "block": "K06",
+      "required": false
+    },
+    {
+      "program": "FME_THAC_SI_KY_THUAT_CO_DIEN_TU_2026_TAUD",
+      "block": "K06",
+      "required": false
+    },
+    {
+      "program": "FME_TIEN_SI_KY_THUAT_CO_DIEN_TU_2026_PT2",
+      "block": "K02",
+      "required": false
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "note": "Nhập từ CTĐT sau đại học chính thức (PDF của trường, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

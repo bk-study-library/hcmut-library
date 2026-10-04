@@ -1,0 +1,27 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "CI5763",
+  "code": "CI5763",
+  "name": "Công trình trên đất yếu",
+  "nameEn": "Soft Soil Engineering",
+  "credits": 3,
+  "faculty": "fce",
+  "levels": [
+    "thac-si"
+  ],
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "FCE_THAC_SI_DIA_KY_THUAT_XAY_DUNG_2025_UD",
+      "block": "K04",
+      "required": true
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "note": "Nhập từ CTĐT sau đại học chính thức (PDF của trường, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

@@ -1,0 +1,18 @@
+{
+  "$schema": "../../schema/program.schema.json",
+  "code": "DEE_THAC_SI_THIET_KE_VI_MACH_2024",
+  "name": "Thiết kế vi mạch",
+  "nameEn": "Integrated Circuit Design",
+  "faculty": "dee",
+  "year": "2024",
+  "major": "8520202",
+  "type": "CQ",
+  "level": "thac-si",
+  "degree": "thac-si",
+  "totalCredits": 60,
+  "note": "Bản CTĐT 2022 dạng văn bản mô tả, liệt kê tên môn nhưng không ghi mã môn, nên chưa tách khối và mã. Tổng tín chỉ lấy theo quy định chung (60 thạc sĩ, 90 tiến sĩ). Nguồn ghi mã ngành 85202a1; thư viện dùng mã 8520202. Chờ xác nhận.",
+  "source": "https://drive.google.com/file/d/1FKNwgpnKJlVM-6ELBIp2oJa4KzbPP7Zj/view",
+  "ctdtUrl": "https://drive.google.com/file/d/1FKNwgpnKJlVM-6ELBIp2oJa4KzbPP7Zj/view",
+  "blocks": [],
+  "updated": "2026-10-04"
+}

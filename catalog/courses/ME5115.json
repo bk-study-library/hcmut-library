@@ -1,0 +1,27 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "ME5115",
+  "code": "ME5115",
+  "name": "Hệ thống điều khiển phi tuyến",
+  "nameEn": "Nonlinear Control Systems",
+  "credits": 3,
+  "faculty": "fme",
+  "levels": [
+    "tien-si"
+  ],
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "FME_TIEN_SI_KY_THUAT_CO_DIEN_TU_2026_PT2",
+      "block": "K02",
+      "required": false
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "note": "Nhập từ CTĐT sau đại học chính thức (PDF của trường, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

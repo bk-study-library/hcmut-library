@@ -1,0 +1,27 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "AS6049",
+  "code": "AS6049",
+  "name": "Luận văn thạc sĩ nghiên cứu chuyên sâu - phần 2",
+  "nameEn": "Research Intensive Master's Thesis - part 2",
+  "credits": 15,
+  "faculty": "fas",
+  "levels": [
+    "thac-si"
+  ],
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "FAS_THAC_SI_TOAN_UNG_DUNG_2025_CSAU",
+      "block": "K03",
+      "required": true
+    }
+  ],
+  "parts": [
+    "project"
+  ],
+  "related": [],
+  "note": "Nhập từ CTĐT sau đại học chính thức (PDF của trường, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

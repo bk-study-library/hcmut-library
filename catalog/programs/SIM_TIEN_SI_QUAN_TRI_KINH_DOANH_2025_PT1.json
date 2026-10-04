@@ -1,0 +1,67 @@
+{
+  "$schema": "../../schema/program.schema.json",
+  "code": "SIM_TIEN_SI_QUAN_TRI_KINH_DOANH_2025_PT1",
+  "name": "Quản trị Kinh doanh",
+  "nameEn": "Business Administration",
+  "faculty": "sim",
+  "year": "2025",
+  "major": "9340101",
+  "type": "PT1",
+  "level": "tien-si",
+  "degree": "tien-si",
+  "totalCredits": 90,
+  "variant": "Tiến sĩ phương thức 1",
+  "source": "https://drive.google.com/file/d/1n6edUlVh9JXixXxuPNY2PHe0LYPgZk14/view",
+  "ctdtUrl": "https://drive.google.com/file/d/1n6edUlVh9JXixXxuPNY2PHe0LYPgZk14/view",
+  "planUrl": "https://drive.google.com/file/d/1yE5VU12kekTpOfPF6MJE0VL0Kekcqtgx/view",
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/postgraduate/9340101?program=PT1_1",
+  "blocks": [
+    {
+      "id": "K01",
+      "name": "A. Đa Ngành Tổng Quát (General Interdisciplinary Knowledge)",
+      "kind": "chung",
+      "required": true,
+      "creditsNeed": 3,
+      "courses": [
+        "IM5011"
+      ]
+    },
+    {
+      "id": "K02",
+      "name": "B. Tiểu luận tổng quan và Chuyên đề tiến sĩ (Doctoral Literature Review Essay and Doctoral Seminars)",
+      "kind": "tieu-luan-chuyen-de",
+      "required": true,
+      "creditsNeed": 0,
+      "courses": [
+        "IM7931",
+        "IM7933",
+        "IM7929"
+      ]
+    },
+    {
+      "id": "K03",
+      "name": "C. Học phần tốt nghiệp (Graduation Module)",
+      "kind": "luan-an",
+      "required": true,
+      "creditsNeed": 87,
+      "courses": [
+        "IM7935",
+        "IM7937",
+        "IM7939",
+        "IM7941",
+        "IM7943",
+        "IM7945"
+      ]
+    },
+    {
+      "id": "K04",
+      "name": "D. Điều kiện tốt nghiệp (Other Graduation Requirements)",
+      "kind": "dieu-kien-tot-nghiep",
+      "required": true,
+      "courses": [
+        "ENG_B2"
+      ]
+    }
+  ],
+  "updated": "2026-10-04"
+}

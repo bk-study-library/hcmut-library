@@ -1,0 +1,90 @@
+{
+  "$schema": "../../schema/program.schema.json",
+  "code": "CHE_TIEN_SI_KY_THUAT_HOA_HOC_2025_PT2",
+  "name": "Kỹ thuật Hóa học",
+  "nameEn": "Chemical Engineering",
+  "faculty": "che",
+  "year": "2025",
+  "major": "9520301",
+  "type": "PT2",
+  "level": "tien-si",
+  "degree": "tien-si",
+  "totalCredits": 90,
+  "variant": "Tiến sĩ phương thức 2",
+  "source": "https://drive.google.com/file/d/1ySXOo323q5O0096mWEKANZAYHO8E0vvR/view",
+  "ctdtUrl": "https://drive.google.com/file/d/1ySXOo323q5O0096mWEKANZAYHO8E0vvR/view",
+  "planUrl": "https://drive.google.com/file/d/1i0HNxQMDytrtpThsA6LialD1IZn6OmQb/view",
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/postgraduate/9520301?program=PT2_1",
+  "blocks": [
+    {
+      "id": "K01",
+      "name": "A. Đa Ngành Tổng Quát (General Interdisciplinary Knowledge)",
+      "kind": "chung",
+      "required": true,
+      "creditsNeed": 3,
+      "courses": [
+        "GK5007"
+      ]
+    },
+    {
+      "id": "K02",
+      "name": "B. Học phần trình độ tiến sĩ (Supplementary Courses for Doctoral Students)",
+      "kind": "hoc-phan-tien-si",
+      "required": false,
+      "creditsNeed": 12,
+      "courses": [
+        "CH5657",
+        "CH5659",
+        "CH5613",
+        "CH5633",
+        "CH5635",
+        "CH5643",
+        "CH5645",
+        "CH5647",
+        "CH5653",
+        "CH5615",
+        "CH5609",
+        "CH5625",
+        "CH5373",
+        "CH5623",
+        "CH5427"
+      ]
+    },
+    {
+      "id": "K03",
+      "name": "C. Tiểu luận tổng quan và Chuyên đề tiến sĩ (Doctoral Literature Review Essay and Doctoral Seminars)",
+      "kind": "tieu-luan-chuyen-de",
+      "required": true,
+      "creditsNeed": 0,
+      "courses": [
+        "CH7581",
+        "CH7583",
+        "CH7585"
+      ]
+    },
+    {
+      "id": "K04",
+      "name": "D. Học phần tốt nghiệp (Graduation Module)",
+      "kind": "luan-an",
+      "required": true,
+      "creditsNeed": 75,
+      "courses": [
+        "CH7589",
+        "CH7591",
+        "CH7593",
+        "CH7595",
+        "CH7597"
+      ]
+    },
+    {
+      "id": "K05",
+      "name": "E. Điều kiện tốt nghiệp (Other Graduation Requirements)",
+      "kind": "dieu-kien-tot-nghiep",
+      "required": true,
+      "courses": [
+        "ENG_B2"
+      ]
+    }
+  ],
+  "updated": "2026-10-04"
+}

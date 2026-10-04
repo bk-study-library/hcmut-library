@@ -1,0 +1,32 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "IM7935",
+  "code": "IM7935",
+  "name": "Luận án tiến sĩ - chuẩn bị",
+  "nameEn": "PhD Dissertation Preparation",
+  "credits": 12,
+  "faculty": "sim",
+  "levels": [
+    "tien-si"
+  ],
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "SIM_TIEN_SI_QUAN_TRI_KINH_DOANH_2025_PT1",
+      "block": "K03",
+      "required": true
+    },
+    {
+      "program": "SIM_TIEN_SI_QUAN_TRI_KINH_DOANH_2025_TAPT1",
+      "block": "K03",
+      "required": true
+    }
+  ],
+  "parts": [
+    "project"
+  ],
+  "related": [],
+  "note": "Nhập từ CTĐT sau đại học chính thức (PDF của trường, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

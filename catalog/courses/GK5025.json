@@ -1,0 +1,242 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "GK5025",
+  "code": "GK5025",
+  "name": "Quản lý dự án",
+  "nameEn": "Project Management",
+  "credits": 3,
+  "faculty": "chung",
+  "levels": [
+    "thac-si"
+  ],
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "CHE_THAC_SI_CONG_NGHE_SINH_HOC_2025_UD",
+      "block": "K02",
+      "required": false
+    },
+    {
+      "program": "CHE_THAC_SI_CONG_NGHE_THUC_PHAM_2025_UD",
+      "block": "K02",
+      "required": false
+    },
+    {
+      "program": "CHE_THAC_SI_KY_THUAT_HOA_DAU_VA_LOC_DAU_2025_UD",
+      "block": "K02",
+      "required": false
+    },
+    {
+      "program": "CHE_THAC_SI_KY_THUAT_HOA_HOC_2025_UD",
+      "block": "K02",
+      "required": false
+    },
+    {
+      "program": "CHE_THAC_SI_KY_THUAT_HOA_HOC_2026_TAUD",
+      "block": "K02",
+      "required": false
+    },
+    {
+      "program": "CSE_THAC_SI_HE_THONG_THONG_TIN_QUAN_LY_2025_NC",
+      "block": "K06",
+      "required": false
+    },
+    {
+      "program": "CSE_THAC_SI_HE_THONG_THONG_TIN_QUAN_LY_2025_UD",
+      "block": "K02",
+      "required": false
+    },
+    {
+      "program": "CSE_THAC_SI_HE_THONG_THONG_TIN_QUAN_LY_2026_UD",
+      "block": "K02",
+      "required": false
+    },
+    {
+      "program": "CSE_THAC_SI_KHOA_HOC_MAY_TINH_2025_NC",
+      "block": "K06",
+      "required": false
+    },
+    {
+      "program": "CSE_THAC_SI_KHOA_HOC_MAY_TINH_2025_UD",
+      "block": "K02",
+      "required": false
+    },
+    {
+      "program": "CSE_THAC_SI_KHOA_HOC_MAY_TINH_2026_TAUD",
+      "block": "K02",
+      "required": false
+    },
+    {
+      "program": "CSE_THAC_SI_KHOA_HOC_MAY_TINH_2026_UD",
+      "block": "K02",
+      "required": false
+    },
+    {
+      "program": "DEE_THAC_SI_KY_THUAT_DIEN_2025_UD",
+      "block": "K02",
+      "required": false
+    },
+    {
+      "program": "DEE_THAC_SI_KY_THUAT_DIEN_TU_2025_UD",
+      "block": "K02",
+      "required": false
+    },
+    {
+      "program": "DEE_THAC_SI_KY_THUAT_DIEU_KHIEN_VA_TU_DONG_HOA_2025_UD",
+      "block": "K02",
+      "required": false
+    },
+    {
+      "program": "DEE_THAC_SI_KY_THUAT_VIEN_THONG_2025_UD",
+      "block": "K02",
+      "required": false
+    },
+    {
+      "program": "DEE_THAC_SI_QUAN_LY_NANG_LUONG_2025_UD",
+      "block": "K02",
+      "required": false
+    },
+    {
+      "program": "DEE_THAC_SI_THIET_KE_VI_MACH_2025_UD",
+      "block": "K02",
+      "required": false
+    },
+    {
+      "program": "DEE_THAC_SI_THIET_KE_VI_MACH_2026_TAUD",
+      "block": "K02",
+      "required": false
+    },
+    {
+      "program": "FAS_THAC_SI_CO_KY_THUAT_2025_UD",
+      "block": "K02",
+      "required": false
+    },
+    {
+      "program": "FAS_THAC_SI_KHOA_HOC_TINH_TOAN_2025_UD",
+      "block": "K02",
+      "required": false
+    },
+    {
+      "program": "FAS_THAC_SI_TOAN_UNG_DUNG_2025_UD",
+      "block": "K02",
+      "required": false
+    },
+    {
+      "program": "FAS_THAC_SI_VAT_LY_KY_THUAT_2025_UD",
+      "block": "K02",
+      "required": false
+    },
+    {
+      "program": "FCE_THAC_SI_DIA_KY_THUAT_XAY_DUNG_2025_UD",
+      "block": "K02",
+      "required": false
+    },
+    {
+      "program": "FCE_THAC_SI_KY_THUAT_XAY_DUNG_2025_UD",
+      "block": "K02",
+      "required": false
+    },
+    {
+      "program": "FCE_THAC_SI_KY_THUAT_XAY_DUNG_CONG_TRINH_GIAO_THONG_2025_UD",
+      "block": "K02",
+      "required": false
+    },
+    {
+      "program": "FCE_THAC_SI_QUAN_LY_XAY_DUNG_2025_TAUD",
+      "block": "K02",
+      "required": false
+    },
+    {
+      "program": "FCE_THAC_SI_QUAN_LY_XAY_DUNG_2025_UD",
+      "block": "K02",
+      "required": false
+    },
+    {
+      "program": "FENR_THAC_SI_CHINH_SACH_CONG_2025_UD",
+      "block": "K02",
+      "required": false
+    },
+    {
+      "program": "FENR_THAC_SI_KY_THUAT_MOI_TRUONG_2025_UD",
+      "block": "K02",
+      "required": false
+    },
+    {
+      "program": "FENR_THAC_SI_QUAN_LY_TAI_NGUYEN_VA_MOI_TRUONG_2025_UD",
+      "block": "K02",
+      "required": false
+    },
+    {
+      "program": "FME_THAC_SI_CONG_NGHE_DET_MAY_2025_UD",
+      "block": "K02",
+      "required": false
+    },
+    {
+      "program": "FME_THAC_SI_KY_THUAT_CO_DIEN_TU_2025_UD",
+      "block": "K02",
+      "required": false
+    },
+    {
+      "program": "FME_THAC_SI_KY_THUAT_CO_DIEN_TU_2026_TAUD",
+      "block": "K02",
+      "required": false
+    },
+    {
+      "program": "FME_THAC_SI_KY_THUAT_CO_KHI_2025_UD",
+      "block": "K02",
+      "required": false
+    },
+    {
+      "program": "FME_THAC_SI_KY_THUAT_NHIET_2025_UD",
+      "block": "K02",
+      "required": false
+    },
+    {
+      "program": "FMT_THAC_SI_KY_THUAT_VAT_LIEU_2025_UD",
+      "block": "K02",
+      "required": false
+    },
+    {
+      "program": "FTE_THAC_SI_KY_THUAT_CO_KHI_DONG_LUC_2025_UD",
+      "block": "K02",
+      "required": false
+    },
+    {
+      "program": "FTE_THAC_SI_KY_THUAT_HANG_KHONG_2025_UD",
+      "block": "K02",
+      "required": false
+    },
+    {
+      "program": "GEOPET_THAC_SI_KY_THUAT_DAU_KHI_2025_UD",
+      "block": "K02",
+      "required": false
+    },
+    {
+      "program": "GEOPET_THAC_SI_KY_THUAT_DIA_CHAT_2025_UD",
+      "block": "K02",
+      "required": false
+    },
+    {
+      "program": "SIM_THAC_SI_KY_THUAT_CONG_NGHIEP_2025_UD",
+      "block": "K02",
+      "required": false
+    },
+    {
+      "program": "SIM_THAC_SI_LOGISTICS_VA_QUAN_LY_CHUOI_CUNG_UNG_2026_UD",
+      "block": "K03",
+      "required": false
+    },
+    {
+      "program": "SIM_THAC_SI_QUAN_TRI_BENH_VIEN_2025_UD",
+      "block": "K02",
+      "required": false
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "note": "Nhập từ CTĐT sau đại học chính thức (PDF của trường, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

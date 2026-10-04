@@ -1,0 +1,116 @@
+{
+  "$schema": "../../schema/program.schema.json",
+  "code": "FENR_THAC_SI_QUAN_LY_TAI_NGUYEN_VA_MOI_TRUONG_2025_NC",
+  "name": "Quản lý tài nguyên và môi trường",
+  "nameEn": "Natural Resources and Environmental Management",
+  "faculty": "fenr",
+  "year": "2025",
+  "major": "8850101",
+  "type": "NC",
+  "level": "thac-si",
+  "orientation": "nghien-cuu",
+  "degree": "thac-si",
+  "totalCredits": 60,
+  "variant": "Thạc sĩ định hướng nghiên cứu",
+  "source": "https://drive.google.com/file/d/1hEMJdOpoB5FhEymt2dFcUf0w8dRzzcb2/view",
+  "ctdtUrl": "https://drive.google.com/file/d/1hEMJdOpoB5FhEymt2dFcUf0w8dRzzcb2/view",
+  "planUrl": "https://drive.google.com/file/d/1ElxKHUeYvtPncgev5zAj73Z2hHHK-D_N/view",
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/postgraduate/8850101?program=NC",
+  "groups": [
+    {
+      "name": "A. Đa ngành Tổng quát (General Interdisciplinary Knowledge)",
+      "creditsNeed": 6
+    }
+  ],
+  "blocks": [
+    {
+      "id": "K01",
+      "name": "A.1. Bắt buộc Đa ngành, tổng quát (Compulsory General Multidisciplinary Courses)",
+      "group": "A. Đa ngành Tổng quát (General Interdisciplinary Knowledge)",
+      "kind": "chung",
+      "required": true,
+      "creditsNeed": 6,
+      "courses": [
+        "AS5113",
+        "GK5033"
+      ]
+    },
+    {
+      "id": "K02",
+      "name": "A.2. Ngoại ngữ (Foreign Languages)",
+      "group": "A. Đa ngành Tổng quát (General Interdisciplinary Knowledge)",
+      "kind": "ngoai-ngu",
+      "required": true,
+      "creditsNeed": 0,
+      "courses": [
+        "GK5047",
+        "GK5049"
+      ]
+    },
+    {
+      "id": "K03",
+      "name": "B. Cơ sở ngành (Core courses)",
+      "kind": "co-so-nganh",
+      "required": true,
+      "creditsNeed": 12,
+      "courses": [
+        "EN5149",
+        "EN5213",
+        "EN5313",
+        "EN5263"
+      ]
+    },
+    {
+      "id": "K04",
+      "name": "C. Ngành/Chuyên ngành (Major/Speciality)",
+      "kind": "chuyen-nganh",
+      "required": false,
+      "creditsNeed": 12,
+      "courses": [
+        "EN5219",
+        "EN5135",
+        "EN5077",
+        "EN5311",
+        "EN5241",
+        "EN5171",
+        "EN5111",
+        "EN5201",
+        "EN5131",
+        "EN5063",
+        "EN5119",
+        "EN5121",
+        "EN5129",
+        "EN5117",
+        "EN5115",
+        "EN5113",
+        "EN5085",
+        "EN5081",
+        "EN5065",
+        "EN5061",
+        "EN5053",
+        "EN5055"
+      ]
+    },
+    {
+      "id": "K05",
+      "name": "D. Học phần tốt nghiệp (Graduation Module)",
+      "kind": "luan-van",
+      "required": true,
+      "creditsNeed": 30,
+      "courses": [
+        "EN6061",
+        "EN6063"
+      ]
+    },
+    {
+      "id": "K06",
+      "name": "E. Điều kiện tốt nghiệp (Graduation Condition)",
+      "kind": "dieu-kien-tot-nghiep",
+      "required": true,
+      "courses": [
+        "ENG_B2"
+      ]
+    }
+  ],
+  "updated": "2026-10-04"
+}

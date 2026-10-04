@@ -785,6 +785,1130 @@
       ],
       "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/undergraduate/7850102?program=CQ",
       "url": "https://bk-study-library.github.io/hcmut-library/major/7850102/"
+    },
+    {
+      "code": "8340101",
+      "name": "Quản trị kinh doanh",
+      "nameEn": "Business Administration",
+      "faculty": "sim",
+      "level": "thac-si",
+      "programTypes": [
+        "CQ",
+        "UD",
+        "NC",
+        "CSAU",
+        "TAUD"
+      ],
+      "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/postgraduate/8340101",
+      "url": "https://bk-study-library.github.io/hcmut-library/major/8340101/"
+    },
+    {
+      "code": "8340130",
+      "name": "Quản trị bệnh viện",
+      "nameEn": "Hospital Administration",
+      "faculty": "sim",
+      "level": "thac-si",
+      "programTypes": [
+        "CQ",
+        "UD",
+        "NC",
+        "CSAU"
+      ],
+      "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/postgraduate/8340130",
+      "url": "https://bk-study-library.github.io/hcmut-library/major/8340130/"
+    },
+    {
+      "code": "8340402",
+      "name": "Chính sách công",
+      "faculty": "fenr",
+      "level": "thac-si",
+      "programTypes": [
+        "CQ",
+        "UD",
+        "CSAU"
+      ],
+      "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/postgraduate/8340402",
+      "url": "https://bk-study-library.github.io/hcmut-library/major/8340402/"
+    },
+    {
+      "code": "8340405",
+      "name": "Hệ thống thông tin quản lý",
+      "nameEn": "Management Information Systems",
+      "faculty": "cse",
+      "level": "thac-si",
+      "programTypes": [
+        "CQ",
+        "UD",
+        "NC",
+        "CSAU"
+      ],
+      "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/postgraduate/8340405",
+      "url": "https://bk-study-library.github.io/hcmut-library/major/8340405/"
+    },
+    {
+      "code": "8420201",
+      "name": "Công nghệ sinh học",
+      "nameEn": "Biotechnology",
+      "faculty": "che",
+      "level": "thac-si",
+      "programTypes": [
+        "CQ",
+        "UD",
+        "NC",
+        "CSAU",
+        "STEM"
+      ],
+      "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/postgraduate/8420201",
+      "url": "https://bk-study-library.github.io/hcmut-library/major/8420201/"
+    },
+    {
+      "code": "8440214",
+      "name": "Bản đồ viễn thám",
+      "faculty": "fce",
+      "level": "thac-si",
+      "programTypes": [
+        "CQ"
+      ],
+      "url": "https://bk-study-library.github.io/hcmut-library/major/8440214/"
+    },
+    {
+      "code": "8460107",
+      "name": "Khoa học tính toán",
+      "nameEn": "Computational Science",
+      "faculty": "fas",
+      "level": "thac-si",
+      "programTypes": [
+        "CQ",
+        "UD",
+        "NC",
+        "CSAU"
+      ],
+      "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/postgraduate/8460107",
+      "url": "https://bk-study-library.github.io/hcmut-library/major/8460107/"
+    },
+    {
+      "code": "8460112",
+      "name": "Toán ứng dụng",
+      "nameEn": "Applied Mathematics",
+      "faculty": "fas",
+      "level": "thac-si",
+      "programTypes": [
+        "CQ",
+        "UD",
+        "NC",
+        "CSAU"
+      ],
+      "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/postgraduate/8460112",
+      "url": "https://bk-study-library.github.io/hcmut-library/major/8460112/"
+    },
+    {
+      "code": "8480101",
+      "name": "Khoa học máy tính",
+      "nameEn": "Computer Science",
+      "faculty": "cse",
+      "level": "thac-si",
+      "programTypes": [
+        "CQ",
+        "UD",
+        "NC",
+        "CSAU",
+        "TAUD"
+      ],
+      "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/postgraduate/8480101",
+      "url": "https://bk-study-library.github.io/hcmut-library/major/8480101/"
+    },
+    {
+      "code": "8480201",
+      "name": "Công nghệ thông tin",
+      "faculty": "cse",
+      "level": "thac-si",
+      "programTypes": [
+        "CQ"
+      ],
+      "url": "https://bk-study-library.github.io/hcmut-library/major/8480201/"
+    },
+    {
+      "code": "8510602",
+      "name": "Quản lý năng lượng",
+      "nameEn": "Power Management",
+      "faculty": "dee",
+      "level": "thac-si",
+      "programTypes": [
+        "CQ",
+        "UD",
+        "NC",
+        "CSAU"
+      ],
+      "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/postgraduate/8510602",
+      "url": "https://bk-study-library.github.io/hcmut-library/major/8510602/"
+    },
+    {
+      "code": "8510605",
+      "name": "Logistics và Quản lý Chuỗi cung ứng",
+      "nameEn": "Logistics and Supply chain management",
+      "faculty": "sim",
+      "level": "thac-si",
+      "programTypes": [
+        "UD",
+        "NC",
+        "CSAU"
+      ],
+      "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/postgraduate/8510605",
+      "url": "https://bk-study-library.github.io/hcmut-library/major/8510605/"
+    },
+    {
+      "code": "8520101",
+      "name": "Cơ kỹ thuật",
+      "nameEn": "Engineering Mechanics",
+      "faculty": "fas",
+      "level": "thac-si",
+      "programTypes": [
+        "CQ",
+        "UD",
+        "NC",
+        "CSAU"
+      ],
+      "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/postgraduate/8520101",
+      "url": "https://bk-study-library.github.io/hcmut-library/major/8520101/"
+    },
+    {
+      "code": "8520103",
+      "name": "Kỹ thuật cơ khí",
+      "nameEn": "Mechanical Engineering",
+      "faculty": "fme",
+      "level": "thac-si",
+      "programTypes": [
+        "CQ",
+        "UD",
+        "NC",
+        "CSAU"
+      ],
+      "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/postgraduate/8520103",
+      "url": "https://bk-study-library.github.io/hcmut-library/major/8520103/"
+    },
+    {
+      "code": "8520114",
+      "name": "Kỹ thuật cơ điện tử",
+      "nameEn": "Mechatronics Engineering",
+      "faculty": "fme",
+      "level": "thac-si",
+      "programTypes": [
+        "CQ",
+        "UD",
+        "NC",
+        "CSAU",
+        "TAUD"
+      ],
+      "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/postgraduate/8520114",
+      "url": "https://bk-study-library.github.io/hcmut-library/major/8520114/"
+    },
+    {
+      "code": "8520115",
+      "name": "Kỹ thuật nhiệt",
+      "nameEn": "Thermal Engineering",
+      "faculty": "fme",
+      "level": "thac-si",
+      "programTypes": [
+        "CQ",
+        "UD",
+        "NC",
+        "CSAU"
+      ],
+      "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/postgraduate/8520115",
+      "url": "https://bk-study-library.github.io/hcmut-library/major/8520115/"
+    },
+    {
+      "code": "8520116",
+      "name": "Kỹ thuật cơ khí động lực",
+      "nameEn": "Vehicle Engineering",
+      "faculty": "fte",
+      "level": "thac-si",
+      "programTypes": [
+        "CQ",
+        "UD",
+        "NC",
+        "CSAU",
+        "STEM"
+      ],
+      "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/postgraduate/8520116",
+      "url": "https://bk-study-library.github.io/hcmut-library/major/8520116/"
+    },
+    {
+      "code": "8520117",
+      "name": "Kỹ thuật công nghiệp",
+      "nameEn": "Industrial Engineering",
+      "faculty": "sim",
+      "level": "thac-si",
+      "programTypes": [
+        "CQ",
+        "UD",
+        "NC",
+        "CSAU"
+      ],
+      "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/postgraduate/8520117",
+      "url": "https://bk-study-library.github.io/hcmut-library/major/8520117/"
+    },
+    {
+      "code": "8520120",
+      "name": "Kỹ thuật hàng không",
+      "nameEn": "Aerospace Engineering",
+      "faculty": "fte",
+      "level": "thac-si",
+      "programTypes": [
+        "CQ",
+        "UD",
+        "NC",
+        "CSAU"
+      ],
+      "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/postgraduate/8520120",
+      "url": "https://bk-study-library.github.io/hcmut-library/major/8520120/"
+    },
+    {
+      "code": "8520201",
+      "name": "Kỹ thuật điện",
+      "nameEn": "Electrical Engineering",
+      "faculty": "dee",
+      "level": "thac-si",
+      "programTypes": [
+        "CQ",
+        "UD",
+        "NC",
+        "CSAU"
+      ],
+      "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/postgraduate/8520201",
+      "url": "https://bk-study-library.github.io/hcmut-library/major/8520201/"
+    },
+    {
+      "code": "8520202",
+      "name": "Thiết kế vi mạch",
+      "nameEn": "Integrated Circuit Design",
+      "faculty": "dee",
+      "level": "thac-si",
+      "programTypes": [
+        "CQ",
+        "UD",
+        "NC",
+        "CSAU",
+        "TAUD"
+      ],
+      "aliases": [
+        "85202a1"
+      ],
+      "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/postgraduate/8520202",
+      "url": "https://bk-study-library.github.io/hcmut-library/major/8520202/"
+    },
+    {
+      "code": "8520203",
+      "name": "Kỹ thuật điện tử",
+      "nameEn": "Electronics Engineering",
+      "faculty": "dee",
+      "level": "thac-si",
+      "programTypes": [
+        "CQ",
+        "UD",
+        "NC",
+        "CSAU"
+      ],
+      "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/postgraduate/8520203",
+      "url": "https://bk-study-library.github.io/hcmut-library/major/8520203/"
+    },
+    {
+      "code": "8520208",
+      "name": "Kỹ thuật viễn thông",
+      "nameEn": "Telecommunications Engineering",
+      "faculty": "dee",
+      "level": "thac-si",
+      "programTypes": [
+        "CQ",
+        "UD",
+        "NC",
+        "CSAU",
+        "STEM"
+      ],
+      "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/postgraduate/8520208",
+      "url": "https://bk-study-library.github.io/hcmut-library/major/8520208/"
+    },
+    {
+      "code": "8520216",
+      "name": "Kỹ thuật điều khiển và tự động hóa",
+      "nameEn": "Control Engineering and Automation",
+      "faculty": "dee",
+      "level": "thac-si",
+      "programTypes": [
+        "CQ",
+        "UD",
+        "NC",
+        "CSAU"
+      ],
+      "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/postgraduate/8520216",
+      "url": "https://bk-study-library.github.io/hcmut-library/major/8520216/"
+    },
+    {
+      "code": "8520301",
+      "name": "Kỹ thuật hóa học",
+      "nameEn": "Chemical Engineering",
+      "faculty": "che",
+      "level": "thac-si",
+      "programTypes": [
+        "CQ",
+        "UD",
+        "NC",
+        "CSAU",
+        "TAUD",
+        "STEM"
+      ],
+      "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/postgraduate/8520301",
+      "url": "https://bk-study-library.github.io/hcmut-library/major/8520301/"
+    },
+    {
+      "code": "8520305",
+      "name": "Kỹ Thuật hóa dầu và lọc dầu",
+      "nameEn": "Refinery and Petrochemical Engineering",
+      "faculty": "che",
+      "level": "thac-si",
+      "programTypes": [
+        "CQ",
+        "UD",
+        "NC",
+        "CSAU"
+      ],
+      "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/postgraduate/8520305",
+      "url": "https://bk-study-library.github.io/hcmut-library/major/8520305/"
+    },
+    {
+      "code": "8520309",
+      "name": "Kỹ thuật vật liệu",
+      "nameEn": "Materials Engineering",
+      "faculty": "fmt",
+      "level": "thac-si",
+      "programTypes": [
+        "CQ",
+        "UD",
+        "NC",
+        "CSAU"
+      ],
+      "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/postgraduate/8520309",
+      "url": "https://bk-study-library.github.io/hcmut-library/major/8520309/"
+    },
+    {
+      "code": "8520320",
+      "name": "Kỹ thuật môi trường",
+      "nameEn": "Environmental Engineering",
+      "faculty": "fenr",
+      "level": "thac-si",
+      "programTypes": [
+        "CQ",
+        "UD",
+        "NC",
+        "CSAU"
+      ],
+      "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/postgraduate/8520320",
+      "url": "https://bk-study-library.github.io/hcmut-library/major/8520320/"
+    },
+    {
+      "code": "8520401",
+      "name": "Vật lý kỹ thuật",
+      "nameEn": "Engineering Physics",
+      "faculty": "fas",
+      "level": "thac-si",
+      "programTypes": [
+        "CQ",
+        "UD",
+        "NC",
+        "CSAU"
+      ],
+      "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/postgraduate/8520401",
+      "url": "https://bk-study-library.github.io/hcmut-library/major/8520401/"
+    },
+    {
+      "code": "8520501",
+      "name": "Kỹ thuật địa chất",
+      "nameEn": "Geological Engineering",
+      "faculty": "geopet",
+      "level": "thac-si",
+      "programTypes": [
+        "CQ",
+        "UD",
+        "NC",
+        "CSAU"
+      ],
+      "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/postgraduate/8520501",
+      "url": "https://bk-study-library.github.io/hcmut-library/major/8520501/"
+    },
+    {
+      "code": "8520503",
+      "name": "Kỹ thuật trắc địa bản đồ",
+      "faculty": "fce",
+      "level": "thac-si",
+      "programTypes": [
+        "CQ"
+      ],
+      "url": "https://bk-study-library.github.io/hcmut-library/major/8520503/"
+    },
+    {
+      "code": "8520604",
+      "name": "Kỹ thuật dầu khí",
+      "nameEn": "Petroleum Engineering",
+      "faculty": "geopet",
+      "level": "thac-si",
+      "programTypes": [
+        "CQ",
+        "UD",
+        "NC",
+        "CSAU"
+      ],
+      "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/postgraduate/8520604",
+      "url": "https://bk-study-library.github.io/hcmut-library/major/8520604/"
+    },
+    {
+      "code": "8540101",
+      "name": "Công nghệ thực phẩm",
+      "nameEn": "Food Technology",
+      "faculty": "che",
+      "level": "thac-si",
+      "programTypes": [
+        "CQ",
+        "UD",
+        "NC",
+        "CSAU",
+        "STEM"
+      ],
+      "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/postgraduate/8540101",
+      "url": "https://bk-study-library.github.io/hcmut-library/major/8540101/"
+    },
+    {
+      "code": "8540204",
+      "name": "Công nghệ dệt, may",
+      "nameEn": "Textile, Garment Technology",
+      "faculty": "fme",
+      "level": "thac-si",
+      "programTypes": [
+        "CQ",
+        "UD",
+        "NC",
+        "CSAU"
+      ],
+      "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/postgraduate/8540204",
+      "url": "https://bk-study-library.github.io/hcmut-library/major/8540204/"
+    },
+    {
+      "code": "8580201",
+      "name": "Kỹ Thuật xây dựng",
+      "nameEn": "Civil Engineering",
+      "faculty": "fce",
+      "level": "thac-si",
+      "programTypes": [
+        "CQ",
+        "UD",
+        "NC",
+        "CSAU"
+      ],
+      "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/postgraduate/8580201",
+      "url": "https://bk-study-library.github.io/hcmut-library/major/8580201/"
+    },
+    {
+      "code": "8580202",
+      "name": "Kỹ thuật xây dựng công trình thủy",
+      "faculty": "fce",
+      "level": "thac-si",
+      "programTypes": [
+        "CQ"
+      ],
+      "url": "https://bk-study-library.github.io/hcmut-library/major/8580202/"
+    },
+    {
+      "code": "8580203",
+      "name": "Kỹ thuật công trình biển",
+      "faculty": "fce",
+      "level": "thac-si",
+      "programTypes": [
+        "CQ"
+      ],
+      "url": "https://bk-study-library.github.io/hcmut-library/major/8580203/"
+    },
+    {
+      "code": "8580204",
+      "name": "Kỹ thuật xây dựng công trình ngầm",
+      "faculty": "fce",
+      "level": "thac-si",
+      "programTypes": [
+        "CQ"
+      ],
+      "url": "https://bk-study-library.github.io/hcmut-library/major/8580204/"
+    },
+    {
+      "code": "8580205",
+      "name": "Kỹ thuật xây dựng công trình giao thông",
+      "nameEn": "Transportation Engineering",
+      "faculty": "fce",
+      "level": "thac-si",
+      "programTypes": [
+        "CQ",
+        "UD",
+        "NC",
+        "CSAU"
+      ],
+      "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/postgraduate/8580205",
+      "url": "https://bk-study-library.github.io/hcmut-library/major/8580205/"
+    },
+    {
+      "code": "8580211",
+      "name": "Địa kỹ thuật xây dựng",
+      "nameEn": "Geotechnical Engineering",
+      "faculty": "fce",
+      "level": "thac-si",
+      "programTypes": [
+        "CQ",
+        "UD",
+        "NC",
+        "CSAU"
+      ],
+      "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/postgraduate/8580211",
+      "url": "https://bk-study-library.github.io/hcmut-library/major/8580211/"
+    },
+    {
+      "code": "8580212",
+      "name": "Kỹ thuật tài nguyên nước",
+      "faculty": "fce",
+      "level": "thac-si",
+      "programTypes": [
+        "CQ"
+      ],
+      "url": "https://bk-study-library.github.io/hcmut-library/major/8580212/"
+    },
+    {
+      "code": "8580302",
+      "name": "Quản lý xây dựng",
+      "nameEn": "Construction Management",
+      "faculty": "fce",
+      "level": "thac-si",
+      "programTypes": [
+        "CQ",
+        "UD",
+        "NC",
+        "CSAU",
+        "TAUD"
+      ],
+      "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/postgraduate/8580302",
+      "url": "https://bk-study-library.github.io/hcmut-library/major/8580302/"
+    },
+    {
+      "code": "8850101",
+      "name": "Quản lý tài nguyên và môi trường",
+      "nameEn": "Natural Resources and Environmental Management",
+      "faculty": "fenr",
+      "level": "thac-si",
+      "programTypes": [
+        "CQ",
+        "UD",
+        "NC",
+        "CSAU"
+      ],
+      "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/postgraduate/8850101",
+      "url": "https://bk-study-library.github.io/hcmut-library/major/8850101/"
+    },
+    {
+      "code": "9340101",
+      "name": "Quản trị Kinh doanh",
+      "nameEn": "Business Administration",
+      "faculty": "sim",
+      "level": "tien-si",
+      "programTypes": [
+        "CQ",
+        "PT1",
+        "PT2",
+        "TAPT1"
+      ],
+      "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/postgraduate/9340101",
+      "url": "https://bk-study-library.github.io/hcmut-library/major/9340101/"
+    },
+    {
+      "code": "9420201",
+      "name": "Công nghệ Sinh học",
+      "nameEn": "Biotechnology",
+      "faculty": "che",
+      "level": "tien-si",
+      "programTypes": [
+        "CQ",
+        "PT1",
+        "PT2",
+        "TAPT1"
+      ],
+      "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/postgraduate/9420201",
+      "url": "https://bk-study-library.github.io/hcmut-library/major/9420201/"
+    },
+    {
+      "code": "9440201",
+      "name": "Địa chất học",
+      "faculty": "geopet",
+      "level": "tien-si",
+      "programTypes": [
+        "CQ"
+      ],
+      "url": "https://bk-study-library.github.io/hcmut-library/major/9440201/"
+    },
+    {
+      "code": "9440214",
+      "name": "Bản đồ, viễn thám và hệ thông tin địa lý",
+      "faculty": "fce",
+      "level": "tien-si",
+      "programTypes": [
+        "CQ"
+      ],
+      "url": "https://bk-study-library.github.io/hcmut-library/major/9440214/"
+    },
+    {
+      "code": "9460112",
+      "name": "Toán ứng dụng",
+      "nameEn": "Applied Mathematics",
+      "faculty": "fas",
+      "level": "tien-si",
+      "programTypes": [
+        "CQ",
+        "PT1",
+        "PT2",
+        "TAPT1"
+      ],
+      "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/postgraduate/9460112",
+      "url": "https://bk-study-library.github.io/hcmut-library/major/9460112/"
+    },
+    {
+      "code": "9480101",
+      "name": "Khoa học Máy tính",
+      "nameEn": "Computer Science",
+      "faculty": "cse",
+      "level": "tien-si",
+      "programTypes": [
+        "CQ",
+        "PT1",
+        "PT2",
+        "TAPT1"
+      ],
+      "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/postgraduate/9480101",
+      "url": "https://bk-study-library.github.io/hcmut-library/major/9480101/"
+    },
+    {
+      "code": "9520101",
+      "name": "Cơ kỹ thuật",
+      "nameEn": "Engineering Mechanics",
+      "faculty": "fas",
+      "level": "tien-si",
+      "programTypes": [
+        "CQ",
+        "PT1",
+        "PT2",
+        "TAPT1"
+      ],
+      "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/postgraduate/9520101",
+      "url": "https://bk-study-library.github.io/hcmut-library/major/9520101/"
+    },
+    {
+      "code": "9520103",
+      "name": "Kỹ thuật Cơ khí",
+      "nameEn": "Mechanical Engineering",
+      "faculty": "fme",
+      "level": "tien-si",
+      "programTypes": [
+        "CQ",
+        "PT1",
+        "PT2",
+        "TAPT1"
+      ],
+      "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/postgraduate/9520103",
+      "url": "https://bk-study-library.github.io/hcmut-library/major/9520103/"
+    },
+    {
+      "code": "9520114",
+      "name": "Kỹ thuật Cơ điện tử",
+      "nameEn": "Mechatronic Engineering",
+      "faculty": "fme",
+      "level": "tien-si",
+      "programTypes": [
+        "PT1",
+        "PT2",
+        "TAPT1"
+      ],
+      "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/postgraduate/9520114",
+      "url": "https://bk-study-library.github.io/hcmut-library/major/9520114/"
+    },
+    {
+      "code": "9520115",
+      "name": "Kỹ thuật Nhiệt",
+      "nameEn": "Thermal Engineering",
+      "faculty": "fme",
+      "level": "tien-si",
+      "programTypes": [
+        "CQ",
+        "PT1",
+        "PT2",
+        "TAPT1"
+      ],
+      "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/postgraduate/9520115",
+      "url": "https://bk-study-library.github.io/hcmut-library/major/9520115/"
+    },
+    {
+      "code": "9520116",
+      "name": "Kỹ thuật Cơ khí động lực",
+      "nameEn": "Vehicle Engineering",
+      "faculty": "fte",
+      "level": "tien-si",
+      "programTypes": [
+        "CQ",
+        "PT1",
+        "PT2",
+        "TAPT1"
+      ],
+      "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/postgraduate/9520116",
+      "url": "https://bk-study-library.github.io/hcmut-library/major/9520116/"
+    },
+    {
+      "code": "9520118",
+      "name": "Kỹ thuật Hệ thống công nghiệp",
+      "nameEn": "Industrial and Systems Engineering",
+      "faculty": "sim",
+      "level": "tien-si",
+      "programTypes": [
+        "PT1",
+        "PT2",
+        "TAPT1"
+      ],
+      "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/postgraduate/9520118",
+      "url": "https://bk-study-library.github.io/hcmut-library/major/9520118/"
+    },
+    {
+      "code": "9520201",
+      "name": "Kỹ thuật Điện",
+      "nameEn": "Electrical Engineering",
+      "faculty": "dee",
+      "level": "tien-si",
+      "programTypes": [
+        "CQ",
+        "PT1",
+        "PT2",
+        "TAPT1"
+      ],
+      "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/postgraduate/9520201",
+      "url": "https://bk-study-library.github.io/hcmut-library/major/9520201/"
+    },
+    {
+      "code": "9520202",
+      "name": "Thiết kế Vi mạch",
+      "nameEn": "Integrated Circuit Design",
+      "faculty": "dee",
+      "level": "tien-si",
+      "programTypes": [
+        "PT1",
+        "PT2"
+      ],
+      "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/postgraduate/9520202",
+      "url": "https://bk-study-library.github.io/hcmut-library/major/9520202/"
+    },
+    {
+      "code": "9520203",
+      "name": "Kỹ thuật Điện tử",
+      "nameEn": "Electronics Engineering",
+      "faculty": "dee",
+      "level": "tien-si",
+      "programTypes": [
+        "CQ",
+        "PT1",
+        "PT2",
+        "TAPT1"
+      ],
+      "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/postgraduate/9520203",
+      "url": "https://bk-study-library.github.io/hcmut-library/major/9520203/"
+    },
+    {
+      "code": "9520208",
+      "name": "Kỹ thuật Viễn thông",
+      "nameEn": "Telecommunications Engineering",
+      "faculty": "dee",
+      "level": "tien-si",
+      "programTypes": [
+        "CQ",
+        "PT1",
+        "PT2",
+        "TAPT1"
+      ],
+      "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/postgraduate/9520208",
+      "url": "https://bk-study-library.github.io/hcmut-library/major/9520208/"
+    },
+    {
+      "code": "9520216",
+      "name": "Kỹ thuật Điều khiển và Tự động hóa",
+      "nameEn": "Control Engineering and Automation",
+      "faculty": "dee",
+      "level": "tien-si",
+      "programTypes": [
+        "CQ",
+        "PT1",
+        "PT2",
+        "TAPT1"
+      ],
+      "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/postgraduate/9520216",
+      "url": "https://bk-study-library.github.io/hcmut-library/major/9520216/"
+    },
+    {
+      "code": "9520301",
+      "name": "Kỹ thuật Hóa học",
+      "nameEn": "Chemical Engineering",
+      "faculty": "che",
+      "level": "tien-si",
+      "programTypes": [
+        "CQ",
+        "PT1",
+        "PT2",
+        "TAPT1"
+      ],
+      "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/postgraduate/9520301",
+      "url": "https://bk-study-library.github.io/hcmut-library/major/9520301/"
+    },
+    {
+      "code": "9520305",
+      "name": "Kỹ thuật Hóa dầu và Lọc dầu",
+      "nameEn": "Refinery and Petrochemical Engineering",
+      "faculty": "che",
+      "level": "tien-si",
+      "programTypes": [
+        "CQ",
+        "PT1",
+        "PT2"
+      ],
+      "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/postgraduate/9520305",
+      "url": "https://bk-study-library.github.io/hcmut-library/major/9520305/"
+    },
+    {
+      "code": "9520309",
+      "name": "Kỹ thuật Vật liệu",
+      "nameEn": "Materials Engineering",
+      "faculty": "fmt",
+      "level": "tien-si",
+      "programTypes": [
+        "CQ",
+        "PT1",
+        "PT2",
+        "TAPT1"
+      ],
+      "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/postgraduate/9520309",
+      "url": "https://bk-study-library.github.io/hcmut-library/major/9520309/"
+    },
+    {
+      "code": "9520320",
+      "name": "Kỹ thuật Môi trường",
+      "nameEn": "Environmental Engineering",
+      "faculty": "fenr",
+      "level": "tien-si",
+      "programTypes": [
+        "CQ",
+        "PT1",
+        "PT2",
+        "TAPT1"
+      ],
+      "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/postgraduate/9520320",
+      "url": "https://bk-study-library.github.io/hcmut-library/major/9520320/"
+    },
+    {
+      "code": "9520401",
+      "name": "Vật lý Kỹ thuật",
+      "nameEn": "Engineering Physics",
+      "faculty": "fas",
+      "level": "tien-si",
+      "programTypes": [
+        "CQ",
+        "PT1",
+        "PT2",
+        "TAPT1"
+      ],
+      "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/postgraduate/9520401",
+      "url": "https://bk-study-library.github.io/hcmut-library/major/9520401/"
+    },
+    {
+      "code": "9520501",
+      "name": "Kỹ thuật Địa chất",
+      "nameEn": "Geological Engineering",
+      "faculty": "geopet",
+      "level": "tien-si",
+      "programTypes": [
+        "CQ",
+        "PT1",
+        "PT2",
+        "TAPT1"
+      ],
+      "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/postgraduate/9520501",
+      "url": "https://bk-study-library.github.io/hcmut-library/major/9520501/"
+    },
+    {
+      "code": "9520503",
+      "name": "Kỹ thuật Trắc địa - Bản đồ",
+      "nameEn": "Surveying and Mapping Engineering",
+      "faculty": "fce",
+      "level": "tien-si",
+      "programTypes": [
+        "CQ",
+        "PT1",
+        "PT2",
+        "TAPT1"
+      ],
+      "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/postgraduate/9520503",
+      "url": "https://bk-study-library.github.io/hcmut-library/major/9520503/"
+    },
+    {
+      "code": "9520604",
+      "name": "Kỹ thuật Dầu khí",
+      "nameEn": "Petroleum Engineering",
+      "faculty": "geopet",
+      "level": "tien-si",
+      "programTypes": [
+        "CQ",
+        "PT1",
+        "PT2",
+        "TAPT1"
+      ],
+      "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/postgraduate/9520604",
+      "url": "https://bk-study-library.github.io/hcmut-library/major/9520604/"
+    },
+    {
+      "code": "9540101",
+      "name": "Công nghệ Thực phẩm",
+      "nameEn": "Food Technology",
+      "faculty": "che",
+      "level": "tien-si",
+      "programTypes": [
+        "CQ",
+        "PT1",
+        "PT2",
+        "TAPT1"
+      ],
+      "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/postgraduate/9540101",
+      "url": "https://bk-study-library.github.io/hcmut-library/major/9540101/"
+    },
+    {
+      "code": "9540204",
+      "name": "Công nghệ dệt, may",
+      "nameEn": "Textile, Garment Technology",
+      "faculty": "fme",
+      "level": "tien-si",
+      "programTypes": [
+        "CQ",
+        "PT1",
+        "PT2",
+        "TAPT1"
+      ],
+      "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/postgraduate/9540204",
+      "url": "https://bk-study-library.github.io/hcmut-library/major/9540204/"
+    },
+    {
+      "code": "9580201",
+      "name": "Kỹ thuật Xây dựng",
+      "nameEn": "Civil Engineering",
+      "faculty": "fce",
+      "level": "tien-si",
+      "programTypes": [
+        "CQ",
+        "PT1",
+        "PT2",
+        "TAPT1"
+      ],
+      "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/postgraduate/9580201",
+      "url": "https://bk-study-library.github.io/hcmut-library/major/9580201/"
+    },
+    {
+      "code": "9580202",
+      "name": "Kỹ thuật xây dựng công trình thủy",
+      "faculty": "fce",
+      "level": "tien-si",
+      "programTypes": [
+        "CQ"
+      ],
+      "url": "https://bk-study-library.github.io/hcmut-library/major/9580202/"
+    },
+    {
+      "code": "9580204",
+      "name": "Kỹ thuật xây dựng công trình ngầm",
+      "faculty": "fce",
+      "level": "tien-si",
+      "programTypes": [
+        "CQ"
+      ],
+      "url": "https://bk-study-library.github.io/hcmut-library/major/9580204/"
+    },
+    {
+      "code": "9580205",
+      "name": "Kỹ thuật Xây dựng Công trình Giao thông",
+      "nameEn": "Transportation Engineering",
+      "faculty": "fce",
+      "level": "tien-si",
+      "programTypes": [
+        "CQ",
+        "PT1",
+        "PT2",
+        "TAPT1"
+      ],
+      "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/postgraduate/9580205",
+      "url": "https://bk-study-library.github.io/hcmut-library/major/9580205/"
+    },
+    {
+      "code": "9580211",
+      "name": "Địa kỹ thuật xây dựng",
+      "nameEn": "Geotechnical Engineering",
+      "faculty": "fce",
+      "level": "tien-si",
+      "programTypes": [
+        "CQ",
+        "PT1",
+        "PT2",
+        "TAPT1"
+      ],
+      "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/postgraduate/9580211",
+      "url": "https://bk-study-library.github.io/hcmut-library/major/9580211/"
+    },
+    {
+      "code": "9580212",
+      "name": "Kỹ thuật Tài nguyên Nước",
+      "nameEn": "Water Resources Engineering",
+      "faculty": "fce",
+      "level": "tien-si",
+      "programTypes": [
+        "CQ",
+        "PT1",
+        "PT2",
+        "TAPT1"
+      ],
+      "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/postgraduate/9580212",
+      "url": "https://bk-study-library.github.io/hcmut-library/major/9580212/"
+    },
+    {
+      "code": "9580302",
+      "name": "Quản lý Xây dựng",
+      "nameEn": "Construction Management",
+      "faculty": "fce",
+      "level": "tien-si",
+      "programTypes": [
+        "CQ",
+        "PT1",
+        "PT2",
+        "TAPT1"
+      ],
+      "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/postgraduate/9580302",
+      "url": "https://bk-study-library.github.io/hcmut-library/major/9580302/"
+    },
+    {
+      "code": "9850101",
+      "name": "Quản lý tài nguyên và Môi trường",
+      "nameEn": "Natural Resources and Environmental Management",
+      "faculty": "fenr",
+      "level": "tien-si",
+      "programTypes": [
+        "CQ",
+        "PT1",
+        "PT2",
+        "TAPT1"
+      ],
+      "aliases": [
+        "9580101"
+      ],
+      "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/postgraduate/9850101",
+      "url": "https://bk-study-library.github.io/hcmut-library/major/9850101/"
     }
   ]
 }

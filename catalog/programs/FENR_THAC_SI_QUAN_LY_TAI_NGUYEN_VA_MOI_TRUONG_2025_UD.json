@@ -1,0 +1,154 @@
+{
+  "$schema": "../../schema/program.schema.json",
+  "code": "FENR_THAC_SI_QUAN_LY_TAI_NGUYEN_VA_MOI_TRUONG_2025_UD",
+  "name": "Quản lý tài nguyên và môi trường",
+  "nameEn": "Natural Resources and Environmental Management",
+  "faculty": "fenr",
+  "year": "2025",
+  "major": "8850101",
+  "type": "UD",
+  "level": "thac-si",
+  "orientation": "ung-dung",
+  "degree": "thac-si",
+  "totalCredits": 60,
+  "variant": "Thạc sĩ định hướng ứng dụng",
+  "source": "https://drive.google.com/file/d/14ZR2P7qRlWxOGruvA8zQ8R4AiT328rHb/view",
+  "ctdtUrl": "https://drive.google.com/file/d/14ZR2P7qRlWxOGruvA8zQ8R4AiT328rHb/view",
+  "planUrl": "https://drive.google.com/file/d/1UGE35IDfa1tmNSoIYs6m1q-MqcWhti8P/view",
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/postgraduate/8850101?program=UD",
+  "groups": [
+    {
+      "name": "A. Đa ngành Tổng quát (General Interdisciplinary Knowledge)",
+      "creditsNeed": 9
+    },
+    {
+      "name": "C. Ngành/Chuyên ngành (Major/Speciality)",
+      "creditsNeed": 24
+    }
+  ],
+  "blocks": [
+    {
+      "id": "K01",
+      "name": "A.1. Bắt buộc Đa ngành, tổng quát (Compulsory General Multidisciplinary Courses)",
+      "group": "A. Đa ngành Tổng quát (General Interdisciplinary Knowledge)",
+      "kind": "chung",
+      "required": true,
+      "creditsNeed": 3,
+      "courses": [
+        "AS5113"
+      ]
+    },
+    {
+      "id": "K02",
+      "name": "A.2. Tự chọn Đa ngành, tổng quát (Elective General Multidisciplinary Courses)",
+      "group": "A. Đa ngành Tổng quát (General Interdisciplinary Knowledge)",
+      "kind": "chung",
+      "required": false,
+      "creditsNeed": 6,
+      "courses": [
+        "GK5045",
+        "GK5037",
+        "GK5041",
+        "GK5039",
+        "GK5035",
+        "GK5043",
+        "GK5025",
+        "GK5023",
+        "GK5021",
+        "GK5009",
+        "GK5011",
+        "GK5033"
+      ]
+    },
+    {
+      "id": "K03",
+      "name": "A.3. Ngoại ngữ (Foreign Languages)",
+      "group": "A. Đa ngành Tổng quát (General Interdisciplinary Knowledge)",
+      "kind": "ngoai-ngu",
+      "required": true,
+      "creditsNeed": 0,
+      "courses": [
+        "GK5047",
+        "GK5049"
+      ]
+    },
+    {
+      "id": "K04",
+      "name": "B. Cơ sở ngành (Core courses)",
+      "kind": "co-so-nganh",
+      "required": true,
+      "creditsNeed": 12,
+      "courses": [
+        "EN5149",
+        "EN5213",
+        "EN5313",
+        "EN5263"
+      ]
+    },
+    {
+      "id": "K05",
+      "name": "C.1. Ngành/Chuyên ngành bắt buộc (Compulsory Major/Speciality Courses)",
+      "group": "C. Ngành/Chuyên ngành (Major/Speciality)",
+      "kind": "chuyen-nganh",
+      "required": true,
+      "creditsNeed": 12,
+      "courses": [
+        "EN5077",
+        "EN5219",
+        "EN5135",
+        "EN5311"
+      ]
+    },
+    {
+      "id": "K06",
+      "name": "C.2. Ngành/Chuyên ngành tự chọn (Elective Major/Speciality Courses)",
+      "group": "C. Ngành/Chuyên ngành (Major/Speciality)",
+      "kind": "chuyen-nganh",
+      "required": false,
+      "creditsNeed": 12,
+      "courses": [
+        "EN5241",
+        "EN5171",
+        "EN5111",
+        "EN5201",
+        "EN5131",
+        "EN5063",
+        "EN5119",
+        "EN5121",
+        "EN5129",
+        "EN5117",
+        "EN5115",
+        "EN5113",
+        "EN5085",
+        "EN5081",
+        "EN5065",
+        "EN5061",
+        "EN5053",
+        "EN5055",
+        "EN5161"
+      ]
+    },
+    {
+      "id": "K07",
+      "name": "D. Học phần tốt nghiệp (Graduation Module)",
+      "kind": "luan-van",
+      "required": true,
+      "creditsNeed": 15,
+      "courses": [
+        "EN6077",
+        "EN6059"
+      ]
+    },
+    {
+      "id": "K08",
+      "name": "E. Điều kiện tốt nghiệp (Graduation Condition)",
+      "kind": "dieu-kien-tot-nghiep",
+      "required": true,
+      "creditsNeed": 0,
+      "courses": [
+        "ENG_B2"
+      ]
+    }
+  ],
+  "updated": "2026-10-04"
+}

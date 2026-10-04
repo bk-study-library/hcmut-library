@@ -1,0 +1,32 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "CO6011",
+  "code": "CO6011",
+  "name": "Đồ án tốt nghiệp",
+  "nameEn": "Thesis",
+  "credits": 9,
+  "faculty": "cse",
+  "levels": [
+    "thac-si"
+  ],
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "CSE_THAC_SI_HE_THONG_THONG_TIN_QUAN_LY_2025_UD",
+      "block": "K07",
+      "required": true
+    },
+    {
+      "program": "CSE_THAC_SI_KHOA_HOC_MAY_TINH_2025_UD",
+      "block": "K06",
+      "required": true
+    }
+  ],
+  "parts": [
+    "project"
+  ],
+  "related": [],
+  "note": "Nhập từ CTĐT sau đại học chính thức (PDF của trường, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

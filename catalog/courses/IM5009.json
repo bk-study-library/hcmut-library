@@ -1,0 +1,42 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "IM5009",
+  "code": "IM5009",
+  "name": "Quản lý tiếp thị",
+  "nameEn": "Marketing Management",
+  "credits": 3,
+  "faculty": "sim",
+  "levels": [
+    "thac-si"
+  ],
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "SIM_THAC_SI_QUAN_TRI_KINH_DOANH_2022",
+      "block": "K01",
+      "required": false
+    },
+    {
+      "program": "SIM_THAC_SI_QUAN_TRI_KINH_DOANH_2025_NC",
+      "block": "K03",
+      "required": true
+    },
+    {
+      "program": "SIM_THAC_SI_QUAN_TRI_KINH_DOANH_2025_TAUD",
+      "block": "K04",
+      "required": true
+    },
+    {
+      "program": "SIM_THAC_SI_QUAN_TRI_KINH_DOANH_2025_UD",
+      "block": "K04",
+      "required": true
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "note": "Nhập từ CTĐT sau đại học chính thức (PDF của trường, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

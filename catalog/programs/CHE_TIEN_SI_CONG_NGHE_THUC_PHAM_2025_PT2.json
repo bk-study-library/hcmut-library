@@ -1,0 +1,98 @@
+{
+  "$schema": "../../schema/program.schema.json",
+  "code": "CHE_TIEN_SI_CONG_NGHE_THUC_PHAM_2025_PT2",
+  "name": "Công nghệ Thực phẩm",
+  "nameEn": "Food Technology",
+  "faculty": "che",
+  "year": "2025",
+  "major": "9540101",
+  "type": "PT2",
+  "level": "tien-si",
+  "degree": "tien-si",
+  "totalCredits": 90,
+  "variant": "Tiến sĩ phương thức 2",
+  "source": "https://drive.google.com/file/d/19imasfkEC_XrWklUvsW5LbgdojHTSgJb/view",
+  "ctdtUrl": "https://drive.google.com/file/d/19imasfkEC_XrWklUvsW5LbgdojHTSgJb/view",
+  "planUrl": "https://drive.google.com/file/d/18KH60tHqrm7vu75tONhjHweT0QSppO8x/view",
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/postgraduate/9540101?program=PT2_1",
+  "blocks": [
+    {
+      "id": "K01",
+      "name": "A. Đa Ngành Tổng Quát (General Interdisciplinary Knowledge)",
+      "kind": "chung",
+      "required": true,
+      "creditsNeed": 3,
+      "courses": [
+        "GK5007"
+      ]
+    },
+    {
+      "id": "K02",
+      "name": "B. Học phần trình độ tiến sĩ (Supplementary Courses for Doctoral Students)",
+      "kind": "hoc-phan-tien-si",
+      "required": false,
+      "creditsNeed": 12,
+      "courses": [
+        "CH5369",
+        "CH5367",
+        "CH5479",
+        "CH5765",
+        "CH5761",
+        "CH5755",
+        "CH5759",
+        "CH5757",
+        "CH5763",
+        "CH5753",
+        "CH5749",
+        "CH5595",
+        "CH5485",
+        "CH5477",
+        "CH5365",
+        "CH5509",
+        "CH5409",
+        "CH5505",
+        "CH5407",
+        "CH5747",
+        "CH5767",
+        "CH5745",
+        "CH5435"
+      ]
+    },
+    {
+      "id": "K03",
+      "name": "C. Tiểu luận tổng quan và Chuyên đề tiến sĩ (Doctoral Literature Review Essay and Doctoral Seminars)",
+      "kind": "tieu-luan-chuyen-de",
+      "required": true,
+      "creditsNeed": 0,
+      "courses": [
+        "CH7617",
+        "CH7619",
+        "CH7621"
+      ]
+    },
+    {
+      "id": "K04",
+      "name": "D. Học phần tốt nghiệp (Graduation Module)",
+      "kind": "luan-an",
+      "required": true,
+      "creditsNeed": 75,
+      "courses": [
+        "CH7625",
+        "CH7627",
+        "CH7629",
+        "CH7631",
+        "CH7633"
+      ]
+    },
+    {
+      "id": "K05",
+      "name": "E. Điều kiện tốt nghiệp (Other Graduation Requirements)",
+      "kind": "dieu-kien-tot-nghiep",
+      "required": true,
+      "courses": [
+        "ENG_B2"
+      ]
+    }
+  ],
+  "updated": "2026-10-04"
+}

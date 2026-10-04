@@ -1,0 +1,32 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "ME5179",
+  "code": "ME5179",
+  "name": "Nhiệt động lực học và truyền nhiệt",
+  "nameEn": "Thermodynamics and Heat Transfer",
+  "credits": 3,
+  "faculty": "fme",
+  "levels": [
+    "thac-si"
+  ],
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "DEE_THAC_SI_QUAN_LY_NANG_LUONG_2025_NC",
+      "block": "K03",
+      "required": true
+    },
+    {
+      "program": "DEE_THAC_SI_QUAN_LY_NANG_LUONG_2025_UD",
+      "block": "K04",
+      "required": true
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "note": "Nhập từ CTĐT sau đại học chính thức (PDF của trường, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

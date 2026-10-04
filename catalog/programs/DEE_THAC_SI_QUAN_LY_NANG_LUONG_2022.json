@@ -1,0 +1,18 @@
+{
+  "$schema": "../../schema/program.schema.json",
+  "code": "DEE_THAC_SI_QUAN_LY_NANG_LUONG_2022",
+  "name": "Quản lý năng lượng",
+  "nameEn": "Power Management",
+  "faculty": "dee",
+  "year": "2022",
+  "major": "8510602",
+  "type": "CQ",
+  "level": "thac-si",
+  "degree": "thac-si",
+  "totalCredits": 60,
+  "note": "Bản CTĐT 2022 dạng văn bản mô tả, liệt kê tên môn nhưng không ghi mã môn, nên chưa tách khối và mã. Tổng tín chỉ lấy theo quy định chung (60 thạc sĩ, 90 tiến sĩ).",
+  "source": "https://drive.google.com/file/d/1jWCbv64tYpWYr6TZ2gYSQQjuYt1E1Owc/view",
+  "ctdtUrl": "https://drive.google.com/file/d/1jWCbv64tYpWYr6TZ2gYSQQjuYt1E1Owc/view",
+  "blocks": [],
+  "updated": "2026-10-04"
+}

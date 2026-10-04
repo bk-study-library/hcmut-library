@@ -1,0 +1,81 @@
+{
+  "$schema": "../../schema/program.schema.json",
+  "code": "FCE_TIEN_SI_KY_THUAT_TRAC_DIA_BAN_DO_2025_PT2",
+  "name": "Kỹ thuật Trắc địa - Bản đồ",
+  "nameEn": "Surveying and Mapping Engineering",
+  "faculty": "fce",
+  "year": "2025",
+  "major": "9520503",
+  "type": "PT2",
+  "level": "tien-si",
+  "degree": "tien-si",
+  "totalCredits": 90,
+  "variant": "Tiến sĩ phương thức 2",
+  "source": "https://drive.google.com/file/d/1d74HOwghlrVXD6DH_TiLIq-C_a3trNhs/view",
+  "ctdtUrl": "https://drive.google.com/file/d/1d74HOwghlrVXD6DH_TiLIq-C_a3trNhs/view",
+  "planUrl": "https://drive.google.com/file/d/1kE-BzcW24jdJR8-Qtrh0R_m6yYwIr7im/view",
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/postgraduate/9520503?program=PT2_1",
+  "blocks": [
+    {
+      "id": "K01",
+      "name": "A. Đa Ngành Tổng Quát (General Interdisciplinary Knowledge)",
+      "kind": "chung",
+      "required": true,
+      "creditsNeed": 3,
+      "courses": [
+        "GK5007"
+      ]
+    },
+    {
+      "id": "K02",
+      "name": "B. Học phần trình độ tiến sĩ (Supplementary Courses for Doctoral Students)",
+      "kind": "hoc-phan-tien-si",
+      "required": false,
+      "creditsNeed": 12,
+      "courses": [
+        "CI5053",
+        "CI5223",
+        "CI5045",
+        "CI5695",
+        "CI5693",
+        "CI5691"
+      ]
+    },
+    {
+      "id": "K03",
+      "name": "C. Tiểu luận tổng quan và Chuyên đề tiến sĩ (Doctoral Literature Review Essay and Doctoral Seminars)",
+      "kind": "tieu-luan-chuyen-de",
+      "required": true,
+      "creditsNeed": 0,
+      "courses": [
+        "CI7635",
+        "CI7637",
+        "CI7639"
+      ]
+    },
+    {
+      "id": "K04",
+      "name": "D. Học phần tốt nghiệp (Graduation Module)",
+      "kind": "luan-an",
+      "required": true,
+      "creditsNeed": 75,
+      "courses": [
+        "CI7643",
+        "CI7645",
+        "CI7647",
+        "CI7649",
+        "CI7651"
+      ]
+    },
+    {
+      "id": "K05",
+      "name": "E. Điều kiện tốt nghiệp (Other Graduation Requirements)",
+      "kind": "dieu-kien-tot-nghiep",
+      "required": true,
+      "courses": [
+        "ENG_B2"
+      ]
+    }
+  ],
+  "updated": "2026-10-04"
+}

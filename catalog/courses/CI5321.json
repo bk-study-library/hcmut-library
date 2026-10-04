@@ -1,0 +1,27 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "CI5321",
+  "code": "CI5321",
+  "name": "Thiết kế công trình hạ tầng xanh",
+  "nameEn": "Green infrastructures design",
+  "credits": 3,
+  "faculty": "fce",
+  "levels": [
+    "tien-si"
+  ],
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "FCE_TIEN_SI_KY_THUAT_TAI_NGUYEN_NUOC_2025_PT2",
+      "block": "K02",
+      "required": false
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "note": "Nhập từ CTĐT sau đại học chính thức (PDF của trường, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

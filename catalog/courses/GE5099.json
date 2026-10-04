@@ -1,0 +1,38 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "GE5099",
+  "code": "GE5099",
+  "name": "Hệ thống khai thác dầu khí tích hợp",
+  "nameEn": "Integrated Petroleum Production System",
+  "credits": 3,
+  "faculty": "geopet",
+  "levels": [
+    "thac-si",
+    "tien-si"
+  ],
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "GEOPET_THAC_SI_KY_THUAT_DAU_KHI_2025_NC",
+      "block": "K05",
+      "required": false
+    },
+    {
+      "program": "GEOPET_THAC_SI_KY_THUAT_DAU_KHI_2025_UD",
+      "block": "K05",
+      "required": true
+    },
+    {
+      "program": "GEOPET_TIEN_SI_KY_THUAT_DAU_KHI_2025_PT2",
+      "block": "K02",
+      "required": false
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "note": "Nhập từ CTĐT sau đại học chính thức (PDF của trường, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

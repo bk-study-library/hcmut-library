@@ -1,0 +1,17 @@
+{
+  "$schema": "../../schema/program.schema.json",
+  "code": "FCE_THAC_SI_BAN_DO_VIEN_THAM_2022",
+  "name": "Bản đồ viễn thám",
+  "faculty": "fce",
+  "year": "2022",
+  "major": "8440214",
+  "type": "CQ",
+  "level": "thac-si",
+  "degree": "thac-si",
+  "totalCredits": 60,
+  "note": "Bản CTĐT 2022 dạng văn bản mô tả, liệt kê tên môn nhưng không ghi mã môn, nên chưa tách khối và mã. Tổng tín chỉ lấy theo quy định chung (60 thạc sĩ, 90 tiến sĩ).",
+  "source": "https://drive.google.com/file/d/1ov6WaiqMu8z8bZwjLx3UBYl3T5cV42CU/view",
+  "ctdtUrl": "https://drive.google.com/file/d/1ov6WaiqMu8z8bZwjLx3UBYl3T5cV42CU/view",
+  "blocks": [],
+  "updated": "2026-10-04"
+}

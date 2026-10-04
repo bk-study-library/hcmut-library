@@ -1,0 +1,67 @@
+{
+  "$schema": "../../schema/program.schema.json",
+  "code": "CHE_TIEN_SI_KY_THUAT_HOA_DAU_VA_LOC_DAU_2025_PT1",
+  "name": "Kỹ thuật Hóa dầu và Lọc dầu",
+  "nameEn": "Refinery and Petrochemical Engineering",
+  "faculty": "che",
+  "year": "2025",
+  "major": "9520305",
+  "type": "PT1",
+  "level": "tien-si",
+  "degree": "tien-si",
+  "totalCredits": 90,
+  "variant": "Tiến sĩ phương thức 1",
+  "source": "https://drive.google.com/file/d/10QTgtRCghXHCD7h6Yvjl0JEb0RAil7xg/view",
+  "ctdtUrl": "https://drive.google.com/file/d/10QTgtRCghXHCD7h6Yvjl0JEb0RAil7xg/view",
+  "planUrl": "https://drive.google.com/file/d/1GaegG089iDcgGDbxF1M5FGmArk9UcMDS/view",
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/postgraduate/9520305?program=PT1_1",
+  "blocks": [
+    {
+      "id": "K01",
+      "name": "A. Đa Ngành Tổng Quát (General Interdisciplinary Knowledge)",
+      "kind": "chung",
+      "required": true,
+      "creditsNeed": 3,
+      "courses": [
+        "GK5007"
+      ]
+    },
+    {
+      "id": "K02",
+      "name": "B. Tiểu luận tổng quan và Chuyên đề tiến sĩ (Doctoral Literature Review Essay and Doctoral Seminars)",
+      "kind": "tieu-luan-chuyen-de",
+      "required": true,
+      "creditsNeed": 0,
+      "courses": [
+        "CH7599",
+        "CH7601",
+        "CH7603"
+      ]
+    },
+    {
+      "id": "K03",
+      "name": "C. Học phần tốt nghiệp (Graduation Module)",
+      "kind": "luan-an",
+      "required": true,
+      "creditsNeed": 87,
+      "courses": [
+        "CH7605",
+        "CH7607",
+        "CH7609",
+        "CH7611",
+        "CH7613",
+        "CH7615"
+      ]
+    },
+    {
+      "id": "K04",
+      "name": "D. Điều kiện tốt nghiệp (Other Graduation Requirements)",
+      "kind": "dieu-kien-tot-nghiep",
+      "required": true,
+      "courses": [
+        "ENG_B2"
+      ]
+    }
+  ],
+  "updated": "2026-10-04"
+}

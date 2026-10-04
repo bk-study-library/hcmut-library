@@ -1,0 +1,32 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "GE5033",
+  "code": "GE5033",
+  "name": "Địa thống kê",
+  "nameEn": "Geostatistics",
+  "credits": 3,
+  "faculty": "geopet",
+  "levels": [
+    "thac-si"
+  ],
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "GEOPET_THAC_SI_KY_THUAT_DIA_CHAT_2025_NC",
+      "block": "K05",
+      "required": false
+    },
+    {
+      "program": "GEOPET_THAC_SI_KY_THUAT_DIA_CHAT_2025_UD",
+      "block": "K06",
+      "required": false
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "note": "Nhập từ CTĐT sau đại học chính thức (PDF của trường, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

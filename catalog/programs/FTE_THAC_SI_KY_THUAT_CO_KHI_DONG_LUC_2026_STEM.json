@@ -1,0 +1,102 @@
+{
+  "$schema": "../../schema/program.schema.json",
+  "code": "FTE_THAC_SI_KY_THUAT_CO_KHI_DONG_LUC_2026_STEM",
+  "name": "Kỹ thuật cơ khí động lực",
+  "nameEn": "Vehicle Engineering",
+  "faculty": "fte",
+  "year": "2026",
+  "major": "8520116",
+  "type": "STEM",
+  "level": "thac-si",
+  "degree": "thac-si",
+  "totalCredits": 60,
+  "variant": "Thạc sĩ tài năng STEM",
+  "note": "Chỉ có trên Sổ tay HCMUT, không có PDF CTĐT trên trang Đào tạo. Sổ tay không ghi tên tiếng Anh của môn.",
+  "source": "https://hcmut.edu.vn/study/handbook/course/postgraduate/8520116?program=THTN_STEM",
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/postgraduate/8520116?program=THTN_STEM",
+  "groups": [
+    {
+      "name": "A. ĐA NGÀNH TỔNG QUÁT",
+      "creditsNeed": 6
+    },
+    {
+      "name": "C. NGÀNH/CHUYÊN NGÀNH",
+      "creditsNeed": 12
+    }
+  ],
+  "blocks": [
+    {
+      "id": "K01",
+      "name": "A.1. BẮT BUỘC ĐA NGÀNH, TỔNG QUÁT",
+      "group": "A. ĐA NGÀNH TỔNG QUÁT",
+      "kind": "chung",
+      "required": true,
+      "creditsNeed": 6,
+      "courses": [
+        "AS5113",
+        "GK5033"
+      ]
+    },
+    {
+      "id": "K02",
+      "name": "A.2. NGOẠI NGỮ",
+      "group": "A. ĐA NGÀNH TỔNG QUÁT",
+      "kind": "ngoai-ngu",
+      "required": true,
+      "creditsNeed": 0,
+      "courses": [
+        "GK5047",
+        "GK5049"
+      ]
+    },
+    {
+      "id": "K03",
+      "name": "B. CƠ SỞ NGÀNH",
+      "kind": "co-so-nganh",
+      "required": true,
+      "creditsNeed": 12,
+      "courses": [
+        "TR5089",
+        "TR5091",
+        "TR5093",
+        "TR5095"
+      ]
+    },
+    {
+      "id": "K04",
+      "name": "C.1. NGÀNH/CHUYÊN NGÀNH BẮT BUỘC",
+      "group": "C. NGÀNH/CHUYÊN NGÀNH",
+      "kind": "chuyen-nganh",
+      "required": true,
+      "creditsNeed": 12,
+      "courses": [
+        "TR5023",
+        "TR5109",
+        "TR5119",
+        "TR5121"
+      ]
+    },
+    {
+      "id": "K05",
+      "name": "D. HỌC PHẦN TỐT NGHIỆP",
+      "kind": "luan-van",
+      "required": true,
+      "creditsNeed": 30,
+      "courses": [
+        "TR6099",
+        "TR6101"
+      ]
+    },
+    {
+      "id": "K06",
+      "name": "E. ĐIỀU KIỆN TỐT NGHIỆP",
+      "kind": "dieu-kien-tot-nghiep",
+      "required": true,
+      "creditsNeed": 0,
+      "courses": [
+        "ENG_B2"
+      ]
+    }
+  ],
+  "updated": "2026-10-04"
+}

@@ -1,0 +1,145 @@
+{
+  "$schema": "../../schema/program.schema.json",
+  "code": "SIM_THAC_SI_QUAN_TRI_KINH_DOANH_2025_TAUD",
+  "name": "Quản trị kinh doanh",
+  "nameEn": "Business Administration",
+  "faculty": "sim",
+  "year": "2025",
+  "major": "8340101",
+  "type": "TAUD",
+  "level": "thac-si",
+  "orientation": "ung-dung",
+  "degree": "thac-si",
+  "totalCredits": 60,
+  "variant": "Thạc sĩ ứng dụng dạy bằng tiếng Anh",
+  "note": "Chỉ có trên Sổ tay HCMUT, không có PDF CTĐT trên trang Đào tạo. Sổ tay không ghi tên tiếng Anh của môn.",
+  "source": "https://hcmut.edu.vn/study/handbook/course/postgraduate/8340101?program=CTTAUD",
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/postgraduate/8340101?program=CTTAUD",
+  "groups": [
+    {
+      "name": "A. ĐA NGÀNH TỔNG QUÁT",
+      "creditsNeed": 9
+    },
+    {
+      "name": "C. NGÀNH/CHUYÊN NGÀNH",
+      "creditsNeed": 24
+    }
+  ],
+  "blocks": [
+    {
+      "id": "K01",
+      "name": "A.1. BẮT BUỘC ĐA NGÀNH, TỔNG QUÁT",
+      "group": "A. ĐA NGÀNH TỔNG QUÁT",
+      "kind": "chung",
+      "required": true,
+      "creditsNeed": 3,
+      "courses": [
+        "AS5113"
+      ]
+    },
+    {
+      "id": "K02",
+      "name": "A.2. TỰ CHỌN ĐA NGÀNH, TỔNG QUÁT",
+      "group": "A. ĐA NGÀNH TỔNG QUÁT",
+      "kind": "chung",
+      "required": false,
+      "creditsNeed": 6,
+      "courses": [
+        "GK5011",
+        "GK5021",
+        "GK5035",
+        "GK5037"
+      ]
+    },
+    {
+      "id": "K03",
+      "name": "A.3. NGOẠI NGỮ",
+      "group": "A. ĐA NGÀNH TỔNG QUÁT",
+      "kind": "ngoai-ngu",
+      "required": true,
+      "creditsNeed": 0,
+      "courses": [
+        "GK5047",
+        "GK5049"
+      ]
+    },
+    {
+      "id": "K04",
+      "name": "B. CƠ SỞ NGÀNH",
+      "kind": "co-so-nganh",
+      "required": true,
+      "creditsNeed": 12,
+      "courses": [
+        "IM5001",
+        "IM5009",
+        "IM5067",
+        "IM5109"
+      ]
+    },
+    {
+      "id": "K05",
+      "name": "C.1. NGÀNH/CHUYÊN NGÀNH BẮT BUỘC",
+      "group": "C. NGÀNH/CHUYÊN NGÀNH",
+      "kind": "chuyen-nganh",
+      "required": true,
+      "creditsNeed": 12,
+      "courses": [
+        "IM5111",
+        "IM5133",
+        "IM5065",
+        "IM5091"
+      ]
+    },
+    {
+      "id": "K06",
+      "name": "C.2. NGÀNH/CHUYÊN NGÀNH TỰ CHỌN",
+      "group": "C. NGÀNH/CHUYÊN NGÀNH",
+      "kind": "chuyen-nganh",
+      "required": false,
+      "creditsNeed": 12,
+      "courses": [
+        "IM5081",
+        "IM5085",
+        "IM5007",
+        "IM5101",
+        "IM5093",
+        "IM5089",
+        "IM5051",
+        "IM5113",
+        "IM5025",
+        "IM5013",
+        "IM5043",
+        "IM5049",
+        "IM5079",
+        "IM5077",
+        "IM5083",
+        "IM5069",
+        "IM5243",
+        "IM5073",
+        "IM5075"
+      ]
+    },
+    {
+      "id": "K07",
+      "name": "D. HỌC PHẦN TỐT NGHIỆP",
+      "kind": "luan-van",
+      "required": true,
+      "creditsNeed": 15,
+      "courses": [
+        "IM6055",
+        "IM6027"
+      ]
+    },
+    {
+      "id": "K08",
+      "name": "E. ĐIỀU KIỆN TỐT NGHIỆP",
+      "kind": "dieu-kien-tot-nghiep",
+      "required": true,
+      "creditsNeed": 0,
+      "courses": [
+        "ENG_B2"
+      ]
+    }
+  ],
+  "updated": "2026-10-04"
+}

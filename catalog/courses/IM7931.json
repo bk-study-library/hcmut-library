@@ -1,0 +1,35 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "IM7931",
+  "code": "IM7931",
+  "name": "Chuyên đề tiến sĩ - phần 1",
+  "nameEn": "Doctoral Seminar - part 1",
+  "credits": 0,
+  "faculty": "sim",
+  "levels": [
+    "tien-si"
+  ],
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "SIM_TIEN_SI_QUAN_TRI_KINH_DOANH_2025_PT1",
+      "block": "K02",
+      "required": true
+    },
+    {
+      "program": "SIM_TIEN_SI_QUAN_TRI_KINH_DOANH_2025_PT2",
+      "block": "K03",
+      "required": true
+    },
+    {
+      "program": "SIM_TIEN_SI_QUAN_TRI_KINH_DOANH_2025_TAPT1",
+      "block": "K02",
+      "required": true
+    }
+  ],
+  "parts": [],
+  "related": [],
+  "note": "Nhập từ CTĐT sau đại học chính thức (PDF của trường, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

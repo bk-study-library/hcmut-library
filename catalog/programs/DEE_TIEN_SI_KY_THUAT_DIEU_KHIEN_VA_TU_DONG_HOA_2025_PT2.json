@@ -1,0 +1,92 @@
+{
+  "$schema": "../../schema/program.schema.json",
+  "code": "DEE_TIEN_SI_KY_THUAT_DIEU_KHIEN_VA_TU_DONG_HOA_2025_PT2",
+  "name": "Kỹ thuật Điều khiển và Tự động hóa",
+  "nameEn": "Control Engineering and Automation",
+  "faculty": "dee",
+  "year": "2025",
+  "major": "9520216",
+  "type": "PT2",
+  "level": "tien-si",
+  "degree": "tien-si",
+  "totalCredits": 90,
+  "variant": "Tiến sĩ phương thức 2",
+  "source": "https://drive.google.com/file/d/16bDETQBwn1fQhcnjo4McG7ns6Zf6fDfV/view",
+  "ctdtUrl": "https://drive.google.com/file/d/16bDETQBwn1fQhcnjo4McG7ns6Zf6fDfV/view",
+  "planUrl": "https://drive.google.com/file/d/1U0zEZc9xcGshMiPYvF2Nn0ZxGCWUJ6NZ/view",
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/postgraduate/9520216?program=PT2_1",
+  "blocks": [
+    {
+      "id": "K01",
+      "name": "A. Đa Ngành Tổng Quát (General Interdisciplinary Knowledge)",
+      "kind": "chung",
+      "required": true,
+      "creditsNeed": 3,
+      "courses": [
+        "GK5007"
+      ]
+    },
+    {
+      "id": "K02",
+      "name": "B. Học phần trình độ tiến sĩ (Supplementary Courses for Doctoral Students)",
+      "kind": "hoc-phan-tien-si",
+      "required": false,
+      "creditsNeed": 12,
+      "courses": [
+        "EE5425",
+        "EE5105",
+        "EE5323",
+        "EE5389",
+        "EE5335",
+        "EE5333",
+        "EE5387",
+        "EE5329",
+        "EE5327",
+        "EE5339",
+        "EE5325",
+        "EE5321",
+        "EE5385",
+        "EE5363",
+        "EE5203",
+        "EE5361",
+        "EE5199"
+      ]
+    },
+    {
+      "id": "K03",
+      "name": "C. Tiểu luận tổng quan và Chuyên đề tiến sĩ (Doctoral Literature Review Essay and Doctoral Seminars)",
+      "kind": "tieu-luan-chuyen-de",
+      "required": true,
+      "creditsNeed": 0,
+      "courses": [
+        "EE7155",
+        "EE7157",
+        "EE7159"
+      ]
+    },
+    {
+      "id": "K04",
+      "name": "D. Học phần tốt nghiệp (Graduation Module)",
+      "kind": "luan-an",
+      "required": true,
+      "creditsNeed": 75,
+      "courses": [
+        "EE7163",
+        "EE7165",
+        "EE7167",
+        "EE7169",
+        "EE7171"
+      ]
+    },
+    {
+      "id": "K05",
+      "name": "E. Điều kiện tốt nghiệp (Other Graduation Requirements)",
+      "kind": "dieu-kien-tot-nghiep",
+      "required": true,
+      "courses": [
+        "ENG_B2"
+      ]
+    }
+  ],
+  "updated": "2026-10-04"
+}

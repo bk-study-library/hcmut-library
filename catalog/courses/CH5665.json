@@ -1,0 +1,43 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "CH5665",
+  "code": "CH5665",
+  "name": "Thiết kế thí nghiệm và xử lý số liệu trong sinh học",
+  "nameEn": "Experimental Design and Data Analysis for Biologists",
+  "credits": 3,
+  "faculty": "che",
+  "levels": [
+    "thac-si",
+    "tien-si"
+  ],
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "CHE_THAC_SI_CONG_NGHE_SINH_HOC_2025_NC",
+      "block": "K03",
+      "required": true
+    },
+    {
+      "program": "CHE_THAC_SI_CONG_NGHE_SINH_HOC_2025_UD",
+      "block": "K04",
+      "required": true
+    },
+    {
+      "program": "CHE_THAC_SI_CONG_NGHE_SINH_HOC_2026_STEM",
+      "block": "K03",
+      "required": true
+    },
+    {
+      "program": "CHE_TIEN_SI_CONG_NGHE_SINH_HOC_2025_PT2",
+      "block": "K02",
+      "required": false
+    }
+  ],
+  "parts": [
+    "lab"
+  ],
+  "related": [],
+  "note": "Nhập từ CTĐT sau đại học chính thức (PDF của trường, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

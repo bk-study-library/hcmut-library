@@ -1,0 +1,35 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "ME7395",
+  "code": "ME7395",
+  "name": "Chuyên đề tiến sĩ - phần 2",
+  "nameEn": "Doctoral Seminar - part 2",
+  "credits": 0,
+  "faculty": "fme",
+  "levels": [
+    "tien-si"
+  ],
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "FME_TIEN_SI_KY_THUAT_CO_DIEN_TU_2026_PT1",
+      "block": "K02",
+      "required": true
+    },
+    {
+      "program": "FME_TIEN_SI_KY_THUAT_CO_DIEN_TU_2026_PT2",
+      "block": "K03",
+      "required": true
+    },
+    {
+      "program": "FME_TIEN_SI_KY_THUAT_CO_DIEN_TU_2026_TAPT1",
+      "block": "K02",
+      "required": true
+    }
+  ],
+  "parts": [],
+  "related": [],
+  "note": "Nhập từ CTĐT sau đại học chính thức (PDF của trường, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

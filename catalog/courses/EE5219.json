@@ -1,0 +1,78 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "EE5219",
+  "code": "EE5219",
+  "name": "Số học máy tính",
+  "nameEn": "Computer Arithmetic",
+  "credits": 3,
+  "faculty": "dee",
+  "levels": [
+    "thac-si",
+    "tien-si"
+  ],
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "DEE_THAC_SI_KY_THUAT_DIEN_TU_2025_NC",
+      "block": "K04",
+      "required": false
+    },
+    {
+      "program": "DEE_THAC_SI_KY_THUAT_DIEN_TU_2025_UD",
+      "block": "K06",
+      "required": false
+    },
+    {
+      "program": "DEE_THAC_SI_KY_THUAT_VIEN_THONG_2025_NC",
+      "block": "K04",
+      "required": false
+    },
+    {
+      "program": "DEE_THAC_SI_KY_THUAT_VIEN_THONG_2025_UD",
+      "block": "K06",
+      "required": false
+    },
+    {
+      "program": "DEE_THAC_SI_KY_THUAT_VIEN_THONG_2026_STEM",
+      "block": "K05",
+      "required": false
+    },
+    {
+      "program": "DEE_THAC_SI_THIET_KE_VI_MACH_2025_NC",
+      "block": "K04",
+      "required": false
+    },
+    {
+      "program": "DEE_THAC_SI_THIET_KE_VI_MACH_2025_UD",
+      "block": "K06",
+      "required": false
+    },
+    {
+      "program": "DEE_THAC_SI_THIET_KE_VI_MACH_2026_TAUD",
+      "block": "K06",
+      "required": false
+    },
+    {
+      "program": "DEE_TIEN_SI_KY_THUAT_DIEN_TU_2025_PT2",
+      "block": "K02",
+      "required": false
+    },
+    {
+      "program": "DEE_TIEN_SI_KY_THUAT_VIEN_THONG_2025_PT2",
+      "block": "K02",
+      "required": false
+    },
+    {
+      "program": "DEE_TIEN_SI_THIET_KE_VI_MACH_2026_PT2",
+      "block": "K02",
+      "required": false
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "note": "Nhập từ CTĐT sau đại học chính thức (PDF của trường, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

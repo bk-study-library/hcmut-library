@@ -1,0 +1,88 @@
+{
+  "$schema": "../../schema/program.schema.json",
+  "code": "GEOPET_TIEN_SI_KY_THUAT_DIA_CHAT_2025_PT2",
+  "name": "Kỹ thuật Địa chất",
+  "nameEn": "Geological Engineering",
+  "faculty": "geopet",
+  "year": "2025",
+  "major": "9520501",
+  "type": "PT2",
+  "level": "tien-si",
+  "degree": "tien-si",
+  "totalCredits": 90,
+  "variant": "Tiến sĩ phương thức 2",
+  "source": "https://drive.google.com/file/d/1PrDw4gTkzWBGx9KKnPBJaVyUVcev8UFp/view",
+  "ctdtUrl": "https://drive.google.com/file/d/1PrDw4gTkzWBGx9KKnPBJaVyUVcev8UFp/view",
+  "planUrl": "https://drive.google.com/file/d/1PUnJPB1Q3r_wKO9YEshbh-GCYOWc-9Ac/view",
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/postgraduate/9520501?program=PT2_1",
+  "blocks": [
+    {
+      "id": "K01",
+      "name": "A. Đa Ngành Tổng Quát (General Interdisciplinary Knowledge)",
+      "kind": "chung",
+      "required": true,
+      "creditsNeed": 3,
+      "courses": [
+        "GK5007"
+      ]
+    },
+    {
+      "id": "K02",
+      "name": "B. Học phần trình độ tiến sĩ (Supplementary Courses for Doctoral Students)",
+      "kind": "hoc-phan-tien-si",
+      "required": false,
+      "creditsNeed": 12,
+      "courses": [
+        "GE5555",
+        "GE5553",
+        "GE5053",
+        "GE5049",
+        "GE5037",
+        "GE5039",
+        "GE5045",
+        "GE5047",
+        "GE5059",
+        "GE5065",
+        "GE5067",
+        "GE5069",
+        "GE5071"
+      ]
+    },
+    {
+      "id": "K03",
+      "name": "C. Tiểu luận tổng quan và Chuyên đề tiến sĩ (Doctoral Literature Review Essay and Doctoral Seminars)",
+      "kind": "tieu-luan-chuyen-de",
+      "required": true,
+      "creditsNeed": 0,
+      "courses": [
+        "GE7165",
+        "GE7167",
+        "GE7169"
+      ]
+    },
+    {
+      "id": "K04",
+      "name": "D. Học phần tốt nghiệp (Graduation Module)",
+      "kind": "luan-an",
+      "required": true,
+      "creditsNeed": 75,
+      "courses": [
+        "GE7173",
+        "GE7175",
+        "GE7177",
+        "GE7179",
+        "GE7181"
+      ]
+    },
+    {
+      "id": "K05",
+      "name": "E. Điều kiện tốt nghiệp (Other Graduation Requirements)",
+      "kind": "dieu-kien-tot-nghiep",
+      "required": true,
+      "courses": [
+        "ENG_B2"
+      ]
+    }
+  ],
+  "updated": "2026-10-04"
+}

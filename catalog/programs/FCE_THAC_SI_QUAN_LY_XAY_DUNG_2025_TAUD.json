@@ -1,0 +1,160 @@
+{
+  "$schema": "../../schema/program.schema.json",
+  "code": "FCE_THAC_SI_QUAN_LY_XAY_DUNG_2025_TAUD",
+  "name": "Quản lý xây dựng",
+  "nameEn": "Construction Management",
+  "faculty": "fce",
+  "year": "2025",
+  "major": "8580302",
+  "type": "TAUD",
+  "level": "thac-si",
+  "orientation": "ung-dung",
+  "degree": "thac-si",
+  "totalCredits": 60,
+  "variant": "Thạc sĩ ứng dụng dạy bằng tiếng Anh",
+  "note": "Chỉ có trên Sổ tay HCMUT, không có PDF CTĐT trên trang Đào tạo. Sổ tay không ghi tên tiếng Anh của môn.",
+  "source": "https://hcmut.edu.vn/study/handbook/course/postgraduate/8580302?program=CTTAUD",
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/postgraduate/8580302?program=CTTAUD",
+  "groups": [
+    {
+      "name": "A. ĐA NGÀNH TỔNG QUÁT",
+      "creditsNeed": 9
+    },
+    {
+      "name": "B. CƠ SỞ NGÀNH",
+      "creditsNeed": 12
+    },
+    {
+      "name": "C. NGÀNH/CHUYÊN NGÀNH",
+      "creditsNeed": 24
+    }
+  ],
+  "blocks": [
+    {
+      "id": "K01",
+      "name": "A.1. BẮT BUỘC ĐA NGÀNH, TỔNG QUÁT",
+      "group": "A. ĐA NGÀNH TỔNG QUÁT",
+      "kind": "chung",
+      "required": true,
+      "creditsNeed": 3,
+      "courses": [
+        "AS5113"
+      ]
+    },
+    {
+      "id": "K02",
+      "name": "A.2. TỰ CHỌN ĐA NGÀNH, TỔNG QUÁT",
+      "group": "A. ĐA NGÀNH TỔNG QUÁT",
+      "kind": "chung",
+      "required": false,
+      "creditsNeed": 6,
+      "courses": [
+        "GK5033",
+        "GK5011",
+        "GK5009",
+        "GK5021",
+        "GK5023",
+        "GK5025",
+        "GK5035",
+        "GK5037",
+        "GK5039",
+        "GK5041",
+        "GK5043"
+      ]
+    },
+    {
+      "id": "K03",
+      "name": "A.3. NGOẠI NGỮ",
+      "group": "A. ĐA NGÀNH TỔNG QUÁT",
+      "kind": "ngoai-ngu",
+      "required": true,
+      "creditsNeed": 0,
+      "courses": [
+        "GK5047",
+        "GK5049"
+      ]
+    },
+    {
+      "id": "K04",
+      "name": "B.1. BẮT BUỘC CƠ SỞ NGÀNH",
+      "group": "B. CƠ SỞ NGÀNH",
+      "kind": "co-so-nganh",
+      "required": true,
+      "creditsNeed": 12,
+      "courses": [
+        "CI5403",
+        "CI5405",
+        "CI5407",
+        "CI5409"
+      ]
+    },
+    {
+      "id": "K05",
+      "name": "B.2. TỰ CHỌN CƠ SỞ NGÀNH",
+      "group": "B. CƠ SỞ NGÀNH",
+      "kind": "co-so-nganh",
+      "required": false,
+      "creditsNeed": 0,
+      "courses": []
+    },
+    {
+      "id": "K06",
+      "name": "C.1. NGÀNH/CHUYÊN NGÀNH BẮT BUỘC",
+      "group": "C. NGÀNH/CHUYÊN NGÀNH",
+      "kind": "chuyen-nganh",
+      "required": true,
+      "creditsNeed": 12,
+      "courses": [
+        "CI5137",
+        "CI5139",
+        "CI5141",
+        "CI5451"
+      ]
+    },
+    {
+      "id": "K07",
+      "name": "C.2. NGÀNH/CHUYÊN NGÀNH TỰ CHỌN",
+      "group": "C. NGÀNH/CHUYÊN NGÀNH",
+      "kind": "chuyen-nganh",
+      "required": false,
+      "creditsNeed": 12,
+      "courses": [
+        "CI5115",
+        "CI5147",
+        "CI5149",
+        "CI5669",
+        "CI5143",
+        "CI5241",
+        "CI5671",
+        "CI5673",
+        "CI5675",
+        "CI5677",
+        "CI5679",
+        "CI5681",
+        "CI5239"
+      ]
+    },
+    {
+      "id": "K08",
+      "name": "D. HỌC PHẦN TỐT NGHIỆP",
+      "kind": "luan-van",
+      "required": true,
+      "creditsNeed": 15,
+      "courses": [
+        "CI6143",
+        "CI6122"
+      ]
+    },
+    {
+      "id": "K09",
+      "name": "E. ĐIỀU KIỆN TỐT NGHIỆP",
+      "kind": "dieu-kien-tot-nghiep",
+      "required": true,
+      "creditsNeed": 0,
+      "courses": [
+        "ENG_B2"
+      ]
+    }
+  ],
+  "updated": "2026-10-04"
+}

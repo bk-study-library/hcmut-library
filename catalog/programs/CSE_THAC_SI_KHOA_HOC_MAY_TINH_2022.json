@@ -1,0 +1,18 @@
+{
+  "$schema": "../../schema/program.schema.json",
+  "code": "CSE_THAC_SI_KHOA_HOC_MAY_TINH_2022",
+  "name": "Khoa học máy tính",
+  "nameEn": "Computer Science",
+  "faculty": "cse",
+  "year": "2022",
+  "major": "8480101",
+  "type": "CQ",
+  "level": "thac-si",
+  "degree": "thac-si",
+  "totalCredits": 60,
+  "note": "Bản CTĐT 2022 dạng văn bản mô tả, liệt kê tên môn nhưng không ghi mã môn, nên chưa tách khối và mã. Tổng tín chỉ lấy theo quy định chung (60 thạc sĩ, 90 tiến sĩ).",
+  "source": "https://drive.google.com/file/d/12RgQLA5eO4etIOouVRg-_3ZfSRxPttaB/view",
+  "ctdtUrl": "https://drive.google.com/file/d/12RgQLA5eO4etIOouVRg-_3ZfSRxPttaB/view",
+  "blocks": [],
+  "updated": "2026-10-04"
+}

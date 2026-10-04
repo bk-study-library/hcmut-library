@@ -1,0 +1,32 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "ME5705",
+  "code": "ME5705",
+  "name": "Tối ưu hóa tuyến tính ứng dụng",
+  "nameEn": "Applied Linear Optimization",
+  "credits": 3,
+  "faculty": "fme",
+  "levels": [
+    "thac-si"
+  ],
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "SIM_THAC_SI_KY_THUAT_CONG_NGHIEP_2025_NC",
+      "block": "K04",
+      "required": false
+    },
+    {
+      "program": "SIM_THAC_SI_KY_THUAT_CONG_NGHIEP_2025_UD",
+      "block": "K05",
+      "required": false
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "note": "Nhập từ CTĐT sau đại học chính thức (PDF của trường, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

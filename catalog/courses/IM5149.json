@@ -1,0 +1,37 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "IM5149",
+  "code": "IM5149",
+  "name": "Phương pháp nghiên cứu trong dịch vụ chăm sóc sức khỏe",
+  "nameEn": "Research methods in healthcare services",
+  "credits": 3,
+  "faculty": "sim",
+  "levels": [
+    "thac-si"
+  ],
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "SIM_THAC_SI_QUAN_TRI_BENH_VIEN_2025_CSAU",
+      "block": "K01",
+      "required": true
+    },
+    {
+      "program": "SIM_THAC_SI_QUAN_TRI_BENH_VIEN_2025_NC",
+      "block": "K01",
+      "required": true
+    },
+    {
+      "program": "SIM_THAC_SI_QUAN_TRI_BENH_VIEN_2025_UD",
+      "block": "K06",
+      "required": false
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "note": "Nhập từ CTĐT sau đại học chính thức (PDF của trường, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

@@ -1,0 +1,52 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "IM5025",
+  "code": "IM5025",
+  "name": "Quản lý dự án hệ thống thông tin",
+  "nameEn": "Information Systems Project Management",
+  "credits": 3,
+  "faculty": "sim",
+  "levels": [
+    "thac-si"
+  ],
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "CSE_THAC_SI_HE_THONG_THONG_TIN_QUAN_LY_2025_NC",
+      "block": "K04",
+      "required": false
+    },
+    {
+      "program": "CSE_THAC_SI_HE_THONG_THONG_TIN_QUAN_LY_2025_UD",
+      "block": "K06",
+      "required": false
+    },
+    {
+      "program": "CSE_THAC_SI_HE_THONG_THONG_TIN_QUAN_LY_2026_UD",
+      "block": "K06",
+      "required": false
+    },
+    {
+      "program": "SIM_THAC_SI_QUAN_TRI_KINH_DOANH_2022",
+      "block": "K03",
+      "required": false
+    },
+    {
+      "program": "SIM_THAC_SI_QUAN_TRI_KINH_DOANH_2025_TAUD",
+      "block": "K06",
+      "required": false
+    },
+    {
+      "program": "SIM_THAC_SI_QUAN_TRI_KINH_DOANH_2025_UD",
+      "block": "K06",
+      "required": false
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "note": "Nhập từ CTĐT sau đại học chính thức (PDF của trường, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

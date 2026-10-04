@@ -1,0 +1,106 @@
+{
+  "$schema": "../../schema/program.schema.json",
+  "code": "SIM_THAC_SI_QUAN_TRI_BENH_VIEN_2025_NC",
+  "name": "Quản trị bệnh viện",
+  "nameEn": "Hospital Administration",
+  "faculty": "sim",
+  "year": "2025",
+  "major": "8340130",
+  "type": "NC",
+  "level": "thac-si",
+  "orientation": "nghien-cuu",
+  "degree": "thac-si",
+  "totalCredits": 60,
+  "variant": "Thạc sĩ định hướng nghiên cứu",
+  "source": "https://drive.google.com/file/d/1BqB42Y_Jmf0Usnif1_byzP1U0-g8due5/view",
+  "ctdtUrl": "https://drive.google.com/file/d/1BqB42Y_Jmf0Usnif1_byzP1U0-g8due5/view",
+  "planUrl": "https://drive.google.com/file/d/1jG6UwmvHUsM4ZQPV3ujQuPW_Wc5fJQ7t/view",
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/postgraduate/8340130?program=NC",
+  "groups": [
+    {
+      "name": "A. Đa ngành Tổng quát (General Interdisciplinary Knowledge)",
+      "creditsNeed": 6
+    }
+  ],
+  "blocks": [
+    {
+      "id": "K01",
+      "name": "A.1. Bắt buộc Đa ngành, tổng quát (Compulsory General Multidisciplinary Courses)",
+      "group": "A. Đa ngành Tổng quát (General Interdisciplinary Knowledge)",
+      "kind": "chung",
+      "required": true,
+      "creditsNeed": 6,
+      "courses": [
+        "AS5113",
+        "IM5149"
+      ]
+    },
+    {
+      "id": "K02",
+      "name": "A.2. Ngoại ngữ (Foreign Languages)",
+      "group": "A. Đa ngành Tổng quát (General Interdisciplinary Knowledge)",
+      "kind": "ngoai-ngu",
+      "required": true,
+      "creditsNeed": 0,
+      "courses": [
+        "GK5047",
+        "GK5049"
+      ]
+    },
+    {
+      "id": "K03",
+      "name": "B. Cơ sở ngành (Core courses)",
+      "kind": "co-so-nganh",
+      "required": true,
+      "creditsNeed": 12,
+      "courses": [
+        "IM5125",
+        "IM5123",
+        "IM5157",
+        "IM5155"
+      ]
+    },
+    {
+      "id": "K04",
+      "name": "C. Ngành/Chuyên ngành (Major/Speciality)",
+      "kind": "chuyen-nganh",
+      "required": false,
+      "creditsNeed": 12,
+      "courses": [
+        "IM5141",
+        "IM5159",
+        "IM5147",
+        "IM5143",
+        "IM5139",
+        "IM5137",
+        "IM5145",
+        "IM5135",
+        "IM5133",
+        "IM5131",
+        "IM5129",
+        "IM5127"
+      ]
+    },
+    {
+      "id": "K05",
+      "name": "D. Học phần tốt nghiệp (Graduation Module)",
+      "kind": "luan-van",
+      "required": true,
+      "creditsNeed": 30,
+      "courses": [
+        "IM6043",
+        "IM6045"
+      ]
+    },
+    {
+      "id": "K06",
+      "name": "E. Điều kiện tốt nghiệp (Graduation Condition)",
+      "kind": "dieu-kien-tot-nghiep",
+      "required": true,
+      "courses": [
+        "ENG_B2"
+      ]
+    }
+  ],
+  "updated": "2026-10-04"
+}

@@ -1,0 +1,32 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "IM5127",
+  "code": "IM5127",
+  "name": "Quản trị chất lượng dịch vụ khám chữa bệnh",
+  "nameEn": "Healthcare quality management",
+  "credits": 3,
+  "faculty": "sim",
+  "levels": [
+    "thac-si"
+  ],
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "SIM_THAC_SI_QUAN_TRI_BENH_VIEN_2025_NC",
+      "block": "K04",
+      "required": false
+    },
+    {
+      "program": "SIM_THAC_SI_QUAN_TRI_BENH_VIEN_2025_UD",
+      "block": "K05",
+      "required": true
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "note": "Nhập từ CTĐT sau đại học chính thức (PDF của trường, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

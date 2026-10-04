@@ -1,0 +1,42 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "ME5133",
+  "code": "ME5133",
+  "name": "Thu hồi nhiệt thải",
+  "nameEn": "Heat Recovery",
+  "credits": 3,
+  "faculty": "fme",
+  "levels": [
+    "thac-si"
+  ],
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "DEE_THAC_SI_QUAN_LY_NANG_LUONG_2025_NC",
+      "block": "K04",
+      "required": false
+    },
+    {
+      "program": "DEE_THAC_SI_QUAN_LY_NANG_LUONG_2025_UD",
+      "block": "K06",
+      "required": false
+    },
+    {
+      "program": "FME_THAC_SI_KY_THUAT_NHIET_2025_NC",
+      "block": "K03",
+      "required": true
+    },
+    {
+      "program": "FME_THAC_SI_KY_THUAT_NHIET_2025_UD",
+      "block": "K04",
+      "required": true
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "note": "Nhập từ CTĐT sau đại học chính thức (PDF của trường, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

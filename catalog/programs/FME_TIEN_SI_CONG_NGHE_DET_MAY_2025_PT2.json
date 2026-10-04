@@ -1,0 +1,85 @@
+{
+  "$schema": "../../schema/program.schema.json",
+  "code": "FME_TIEN_SI_CONG_NGHE_DET_MAY_2025_PT2",
+  "name": "Công nghệ dệt, may",
+  "nameEn": "Textile, Garment Technology",
+  "faculty": "fme",
+  "year": "2025",
+  "major": "9540204",
+  "type": "PT2",
+  "level": "tien-si",
+  "degree": "tien-si",
+  "totalCredits": 90,
+  "variant": "Tiến sĩ phương thức 2",
+  "source": "https://drive.google.com/file/d/1vvE2E4du9qvwj4FSyvzoEPMFQi1y6dqo/view",
+  "ctdtUrl": "https://drive.google.com/file/d/1vvE2E4du9qvwj4FSyvzoEPMFQi1y6dqo/view",
+  "planUrl": "https://drive.google.com/file/d/1jNaqZLYgZE5R575OaaRPn49fcfG0BXc7/view",
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/postgraduate/9540204?program=PT2_1",
+  "blocks": [
+    {
+      "id": "K01",
+      "name": "A. Đa Ngành Tổng Quát (General Interdisciplinary Knowledge)",
+      "kind": "chung",
+      "required": true,
+      "creditsNeed": 3,
+      "courses": [
+        "GK5007"
+      ]
+    },
+    {
+      "id": "K02",
+      "name": "B. Học phần trình độ tiến sĩ (Supplementary Courses for Doctoral Students)",
+      "kind": "hoc-phan-tien-si",
+      "required": false,
+      "creditsNeed": 12,
+      "courses": [
+        "ME5311",
+        "ME5633",
+        "ME5159",
+        "ME5365",
+        "ME5175",
+        "ME5155",
+        "ME5153",
+        "ME5149",
+        "ME5147",
+        "ME5151"
+      ]
+    },
+    {
+      "id": "K03",
+      "name": "C. Tiểu luận tổng quan và Chuyên đề tiến sĩ (Doctoral Literature Review Essay and Doctoral Seminars)",
+      "kind": "tieu-luan-chuyen-de",
+      "required": true,
+      "creditsNeed": 0,
+      "courses": [
+        "ME7351",
+        "ME7353",
+        "ME7355"
+      ]
+    },
+    {
+      "id": "K04",
+      "name": "D. Học phần tốt nghiệp (Graduation Module)",
+      "kind": "luan-an",
+      "required": true,
+      "creditsNeed": 75,
+      "courses": [
+        "ME7359",
+        "ME7361",
+        "ME7363",
+        "ME7365",
+        "ME7367"
+      ]
+    },
+    {
+      "id": "K05",
+      "name": "E. Điều kiện tốt nghiệp (Other Graduation Requirements)",
+      "kind": "dieu-kien-tot-nghiep",
+      "required": true,
+      "courses": [
+        "ENG_B2"
+      ]
+    }
+  ],
+  "updated": "2026-10-04"
+}

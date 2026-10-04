@@ -1,0 +1,66 @@
+{
+  "$schema": "../../schema/program.schema.json",
+  "code": "FENR_TIEN_SI_QUAN_LY_TAI_NGUYEN_VA_MOI_TRUONG_2025_PT1",
+  "name": "Quản lý tài nguyên và Môi trường",
+  "nameEn": "Natural Resources and Environmental Management",
+  "faculty": "fenr",
+  "year": "2025",
+  "major": "9850101",
+  "type": "PT1",
+  "level": "tien-si",
+  "degree": "tien-si",
+  "totalCredits": 90,
+  "variant": "Tiến sĩ phương thức 1",
+  "source": "https://drive.google.com/file/d/1STXgBwaO6lbLTZkodrxm_jF6C9nNmRGx/view",
+  "ctdtUrl": "https://drive.google.com/file/d/1STXgBwaO6lbLTZkodrxm_jF6C9nNmRGx/view",
+  "planUrl": "https://drive.google.com/file/d/1cV2Quc0CGaL3s5S_-Rri5TGJdHlBd_5C/view",
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/postgraduate/9850101?program=PT1_1",
+  "blocks": [
+    {
+      "id": "K01",
+      "name": "A. Đa Ngành Tổng Quát (General Interdisciplinary Knowledge)",
+      "kind": "chung",
+      "required": true,
+      "creditsNeed": 3,
+      "courses": [
+        "GK5007"
+      ]
+    },
+    {
+      "id": "K02",
+      "name": "B. Tiểu luận tổng quan và Chuyên đề tiến sĩ (Doctoral Literature Review Essay and Doctoral Seminars)",
+      "kind": "tieu-luan-chuyen-de",
+      "required": true,
+      "courses": [
+        "EN7255",
+        "EN7257",
+        "EN7259"
+      ]
+    },
+    {
+      "id": "K03",
+      "name": "C. Học phần tốt nghiệp (Graduation Module)",
+      "kind": "luan-an",
+      "required": true,
+      "creditsNeed": 87,
+      "courses": [
+        "EN7261",
+        "EN7263",
+        "EN7265",
+        "EN7267",
+        "EN7269",
+        "EN7271"
+      ]
+    },
+    {
+      "id": "K04",
+      "name": "D. Điều kiện tốt nghiệp (Other Graduation Requirements)",
+      "kind": "dieu-kien-tot-nghiep",
+      "required": true,
+      "courses": [
+        "ENG_B2"
+      ]
+    }
+  ],
+  "updated": "2026-10-04"
+}

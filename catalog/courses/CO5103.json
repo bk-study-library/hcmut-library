@@ -1,0 +1,32 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "CO5103",
+  "code": "CO5103",
+  "name": "Đồ án hệ thống thông tin quản lý",
+  "nameEn": "Management Information System Project",
+  "credits": 3,
+  "faculty": "cse",
+  "levels": [
+    "thac-si"
+  ],
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "CSE_THAC_SI_HE_THONG_THONG_TIN_QUAN_LY_2025_NC",
+      "block": "K04",
+      "required": false
+    },
+    {
+      "program": "CSE_THAC_SI_HE_THONG_THONG_TIN_QUAN_LY_2025_UD",
+      "block": "K05",
+      "required": true
+    }
+  ],
+  "parts": [
+    "project"
+  ],
+  "related": [],
+  "note": "Nhập từ CTĐT sau đại học chính thức (PDF của trường, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

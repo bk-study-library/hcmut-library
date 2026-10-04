@@ -1,0 +1,32 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "CH7609",
+  "code": "CH7609",
+  "name": "Luận án tiến sĩ - phần 2",
+  "nameEn": "PhD Dissertation - part 2",
+  "credits": 15,
+  "faculty": "che",
+  "levels": [
+    "tien-si"
+  ],
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "CHE_TIEN_SI_KY_THUAT_HOA_DAU_VA_LOC_DAU_2025_PT1",
+      "block": "K03",
+      "required": true
+    },
+    {
+      "program": "CHE_TIEN_SI_KY_THUAT_HOA_DAU_VA_LOC_DAU_2025_PT2",
+      "block": "K04",
+      "required": true
+    }
+  ],
+  "parts": [
+    "project"
+  ],
+  "related": [],
+  "note": "Nhập từ CTĐT sau đại học chính thức (PDF của trường, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

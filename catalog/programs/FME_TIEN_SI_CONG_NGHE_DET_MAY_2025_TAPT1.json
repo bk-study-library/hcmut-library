@@ -1,0 +1,67 @@
+{
+  "$schema": "../../schema/program.schema.json",
+  "code": "FME_TIEN_SI_CONG_NGHE_DET_MAY_2025_TAPT1",
+  "name": "Công nghệ dệt, may",
+  "nameEn": "Textile, Garment Technology",
+  "faculty": "fme",
+  "year": "2025",
+  "major": "9540204",
+  "type": "TAPT1",
+  "level": "tien-si",
+  "degree": "tien-si",
+  "totalCredits": 90,
+  "variant": "Tiến sĩ phương thức 1 dạy bằng tiếng Anh",
+  "note": "Chỉ có trên Sổ tay HCMUT, không có PDF CTĐT trên trang Đào tạo. Sổ tay không ghi tên tiếng Anh của môn.",
+  "source": "https://hcmut.edu.vn/study/handbook/course/postgraduate/9540204?program=CTTATS1_1",
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/postgraduate/9540204?program=CTTATS1_1",
+  "blocks": [
+    {
+      "id": "K01",
+      "name": "A. ĐA NGÀNH TỔNG QUÁT",
+      "kind": "chung",
+      "required": true,
+      "creditsNeed": 3,
+      "courses": [
+        "GK5007"
+      ]
+    },
+    {
+      "id": "K02",
+      "name": "B. TIỂU LUẬN TỔNG QUAN VÀ CHUYÊN ĐỀ TIẾN SĨ",
+      "kind": "tieu-luan-chuyen-de",
+      "required": true,
+      "creditsNeed": 0,
+      "courses": [
+        "ME7351",
+        "ME7353",
+        "ME7355"
+      ]
+    },
+    {
+      "id": "K03",
+      "name": "C. HỌC PHẦN TỐT NGHIỆP",
+      "kind": "luan-an",
+      "required": true,
+      "creditsNeed": 87,
+      "courses": [
+        "ME7357",
+        "ME7359",
+        "ME7361",
+        "ME7363",
+        "ME7365",
+        "ME7367"
+      ]
+    },
+    {
+      "id": "K04",
+      "name": "D. ĐIỀU KIỆN TỐT NGHIỆP",
+      "kind": "dieu-kien-tot-nghiep",
+      "required": true,
+      "creditsNeed": 0,
+      "courses": [
+        "ENG_B2"
+      ]
+    }
+  ],
+  "updated": "2026-10-04"
+}

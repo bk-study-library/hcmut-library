@@ -1,0 +1,158 @@
+{
+  "$schema": "../../schema/program.schema.json",
+  "code": "SIM_THAC_SI_KY_THUAT_CONG_NGHIEP_2025_UD",
+  "name": "Kỹ thuật công nghiệp",
+  "nameEn": "Industrial Engineering",
+  "faculty": "sim",
+  "year": "2025",
+  "major": "8520117",
+  "type": "UD",
+  "level": "thac-si",
+  "orientation": "ung-dung",
+  "degree": "thac-si",
+  "totalCredits": 60,
+  "variant": "Thạc sĩ định hướng ứng dụng",
+  "source": "https://drive.google.com/file/d/128fRUwr1JRzwWUAjjwL-Rh1XL3H-9wkc/view",
+  "ctdtUrl": "https://drive.google.com/file/d/128fRUwr1JRzwWUAjjwL-Rh1XL3H-9wkc/view",
+  "planUrl": "https://drive.google.com/file/d/1xnbOCuQPNDU9wu4ZvyocrSSZdDFUEgW7/view",
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/postgraduate/8520117?program=UD",
+  "groups": [
+    {
+      "name": "A. Đa ngành Tổng quát (General Interdisciplinary Knowledge)",
+      "creditsNeed": 9
+    },
+    {
+      "name": "B. Cơ sở ngành (Core courses)",
+      "creditsNeed": 12
+    },
+    {
+      "name": "C. Ngành/Chuyên ngành (Major/Speciality)",
+      "creditsNeed": 24
+    }
+  ],
+  "blocks": [
+    {
+      "id": "K01",
+      "name": "A.1. Bắt buộc Đa ngành, tổng quát (Compulsory General Multidisciplinary Courses)",
+      "group": "A. Đa ngành Tổng quát (General Interdisciplinary Knowledge)",
+      "kind": "chung",
+      "required": true,
+      "creditsNeed": 3,
+      "courses": [
+        "AS5113"
+      ]
+    },
+    {
+      "id": "K02",
+      "name": "A.2. Tự chọn Đa ngành, tổng quát (Elective General Multidisciplinary Courses)",
+      "group": "A. Đa ngành Tổng quát (General Interdisciplinary Knowledge)",
+      "kind": "chung",
+      "required": false,
+      "creditsNeed": 6,
+      "courses": [
+        "GK5045",
+        "GK5043",
+        "GK5041",
+        "GK5039",
+        "GK5037",
+        "GK5035",
+        "GK5025",
+        "GK5023",
+        "GK5021",
+        "GK5009",
+        "GK5011",
+        "GK5033"
+      ]
+    },
+    {
+      "id": "K03",
+      "name": "A.3. Ngoại ngữ (Foreign Languages)",
+      "group": "A. Đa ngành Tổng quát (General Interdisciplinary Knowledge)",
+      "kind": "ngoai-ngu",
+      "required": true,
+      "creditsNeed": 0,
+      "courses": [
+        "GK5047",
+        "GK5049"
+      ]
+    },
+    {
+      "id": "K04",
+      "name": "B.1. Bắt buộc cơ sở ngành (Compulsory Foundation Courses)",
+      "group": "B. Cơ sở ngành (Core courses)",
+      "kind": "co-so-nganh",
+      "required": true,
+      "creditsNeed": 9,
+      "courses": [
+        "ME5267",
+        "ME5703",
+        "ME5731"
+      ]
+    },
+    {
+      "id": "K05",
+      "name": "B.2. Tự chọn cơ sở ngành (Elective Foundation Courses)",
+      "group": "B. Cơ sở ngành (Core courses)",
+      "kind": "co-so-nganh",
+      "required": false,
+      "creditsNeed": 3,
+      "courses": [
+        "ME5709",
+        "ME5705"
+      ]
+    },
+    {
+      "id": "K06",
+      "name": "C.1. Ngành/Chuyên ngành bắt buộc (Compulsory Major/Speciality Courses)",
+      "group": "C. Ngành/Chuyên ngành (Major/Speciality)",
+      "kind": "chuyen-nganh",
+      "required": true,
+      "creditsNeed": 12,
+      "courses": [
+        "ME5347",
+        "ME5733",
+        "ME5711",
+        "ME5715"
+      ]
+    },
+    {
+      "id": "K07",
+      "name": "C.2. Ngành/Chuyên ngành tự chọn (Elective Major/Speciality Courses)",
+      "group": "C. Ngành/Chuyên ngành (Major/Speciality)",
+      "kind": "chuyen-nganh",
+      "required": false,
+      "creditsNeed": 12,
+      "courses": [
+        "ME5725",
+        "ME5729",
+        "ME5081",
+        "ME5723",
+        "ME5721",
+        "ME5719",
+        "ME5713",
+        "ME5717"
+      ]
+    },
+    {
+      "id": "K08",
+      "name": "D. Học phần tốt nghiệp (Graduation Module)",
+      "kind": "luan-van",
+      "required": true,
+      "creditsNeed": 15,
+      "courses": [
+        "ME6147",
+        "ME6111"
+      ]
+    },
+    {
+      "id": "K09",
+      "name": "E. Điều kiện tốt nghiệp (Graduation Condition)",
+      "kind": "dieu-kien-tot-nghiep",
+      "required": true,
+      "courses": [
+        "ENG_B2"
+      ]
+    }
+  ],
+  "updated": "2026-10-04"
+}

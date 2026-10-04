@@ -1,0 +1,57 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "IM5111",
+  "code": "IM5111",
+  "name": "Quản lý chiến lược trong thời đại số",
+  "nameEn": "Strategy Management in The Digital Age",
+  "credits": 3,
+  "faculty": "sim",
+  "levels": [
+    "thac-si"
+  ],
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "CSE_THAC_SI_HE_THONG_THONG_TIN_QUAN_LY_2025_NC",
+      "block": "K04",
+      "required": false
+    },
+    {
+      "program": "CSE_THAC_SI_HE_THONG_THONG_TIN_QUAN_LY_2025_UD",
+      "block": "K05",
+      "required": true
+    },
+    {
+      "program": "CSE_THAC_SI_HE_THONG_THONG_TIN_QUAN_LY_2026_NC",
+      "block": "K04",
+      "required": true
+    },
+    {
+      "program": "CSE_THAC_SI_HE_THONG_THONG_TIN_QUAN_LY_2026_UD",
+      "block": "K05",
+      "required": true
+    },
+    {
+      "program": "SIM_THAC_SI_QUAN_TRI_KINH_DOANH_2025_NC",
+      "block": "K04",
+      "required": true
+    },
+    {
+      "program": "SIM_THAC_SI_QUAN_TRI_KINH_DOANH_2025_TAUD",
+      "block": "K05",
+      "required": true
+    },
+    {
+      "program": "SIM_THAC_SI_QUAN_TRI_KINH_DOANH_2025_UD",
+      "block": "K05",
+      "required": true
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "note": "Nhập từ CTĐT sau đại học chính thức (PDF của trường, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

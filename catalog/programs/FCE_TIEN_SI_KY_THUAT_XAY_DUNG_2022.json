@@ -1,0 +1,18 @@
+{
+  "$schema": "../../schema/program.schema.json",
+  "code": "FCE_TIEN_SI_KY_THUAT_XAY_DUNG_2022",
+  "name": "Kỹ thuật Xây dựng",
+  "nameEn": "Civil Engineering",
+  "faculty": "fce",
+  "year": "2022",
+  "major": "9580201",
+  "type": "CQ",
+  "level": "tien-si",
+  "degree": "tien-si",
+  "totalCredits": 90,
+  "note": "Bản CTĐT 2022 dạng văn bản mô tả, liệt kê tên môn nhưng không ghi mã môn, nên chưa tách khối và mã. Tổng tín chỉ lấy theo quy định chung (60 thạc sĩ, 90 tiến sĩ).",
+  "source": "https://drive.google.com/file/d/1w6w7OBSgCDfG2fje8WU_DxCHWIkR7E4c/view",
+  "ctdtUrl": "https://drive.google.com/file/d/1w6w7OBSgCDfG2fje8WU_DxCHWIkR7E4c/view",
+  "blocks": [],
+  "updated": "2026-10-04"
+}

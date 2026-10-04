@@ -1,0 +1,79 @@
+{
+  "$schema": "../../schema/program.schema.json",
+  "code": "FAS_TIEN_SI_TOAN_UNG_DUNG_2025_PT2",
+  "name": "Toán ứng dụng",
+  "nameEn": "Applied Mathematics",
+  "faculty": "fas",
+  "year": "2025",
+  "major": "9460112",
+  "type": "PT2",
+  "level": "tien-si",
+  "degree": "tien-si",
+  "totalCredits": 90,
+  "variant": "Tiến sĩ phương thức 2",
+  "source": "https://drive.google.com/file/d/1yLZHAEZAPwwqamvemDgBZupzz_UKoFYX/view",
+  "ctdtUrl": "https://drive.google.com/file/d/1yLZHAEZAPwwqamvemDgBZupzz_UKoFYX/view",
+  "planUrl": "https://drive.google.com/file/d/16PXiwETS-lQqWYeXNZmaQ-7Uk09JxBTr/view",
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/postgraduate/9460112?program=PT2_1",
+  "blocks": [
+    {
+      "id": "K01",
+      "name": "A. Đa Ngành Tổng Quát (General Interdisciplinary Knowledge)",
+      "kind": "chung",
+      "required": true,
+      "creditsNeed": 3,
+      "courses": [
+        "GK5007"
+      ]
+    },
+    {
+      "id": "K02",
+      "name": "B. Học phần trình độ tiến sĩ (Supplementary Courses for Doctoral Students)",
+      "kind": "hoc-phan-tien-si",
+      "required": true,
+      "creditsNeed": 12,
+      "courses": [
+        "AS5125",
+        "AS5565",
+        "AS5023",
+        "AS5019"
+      ]
+    },
+    {
+      "id": "K03",
+      "name": "C. Tiểu luận tổng quan và Chuyên đề tiến sĩ (Doctoral Literature Review Essay and Doctoral Seminars)",
+      "kind": "tieu-luan-chuyen-de",
+      "required": true,
+      "creditsNeed": 0,
+      "courses": [
+        "AS7129",
+        "AS7131",
+        "AS7133"
+      ]
+    },
+    {
+      "id": "K04",
+      "name": "D. Học phần tốt nghiệp (Graduation Module)",
+      "kind": "luan-an",
+      "required": true,
+      "creditsNeed": 75,
+      "courses": [
+        "AS7137",
+        "AS7139",
+        "AS7141",
+        "AS7143",
+        "AS7145"
+      ]
+    },
+    {
+      "id": "K05",
+      "name": "E. Điều kiện tốt nghiệp (Other Graduation Requirements)",
+      "kind": "dieu-kien-tot-nghiep",
+      "required": true,
+      "courses": [
+        "ENG_B2"
+      ]
+    }
+  ],
+  "updated": "2026-10-04"
+}

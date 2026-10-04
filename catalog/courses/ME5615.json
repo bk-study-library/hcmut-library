@@ -1,0 +1,32 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "ME5615",
+  "code": "ME5615",
+  "name": "Quản lý tồn kho, nhà kho và logistics sản xuất",
+  "nameEn": "Inventory, Warehousing and Production Logistics",
+  "credits": 3,
+  "faculty": "fme",
+  "levels": [
+    "thac-si"
+  ],
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "SIM_THAC_SI_LOGISTICS_VA_QUAN_LY_CHUOI_CUNG_UNG_2026_NC",
+      "block": "K04",
+      "required": false
+    },
+    {
+      "program": "SIM_THAC_SI_LOGISTICS_VA_QUAN_LY_CHUOI_CUNG_UNG_2026_UD",
+      "block": "K06",
+      "required": true
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "note": "Nhập từ CTĐT sau đại học chính thức (PDF của trường, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}
