@@ -133,3 +133,34 @@ export function formatSize(bytes) {
 export function formatBook(b) {
   return [b.title, b.authors.join(', '), b.year, b.publisher, b.isbn].filter((x) => x !== undefined && x !== '').join(', ');
 }
+
+// Định dạng file hiện trên thẻ tài liệu, theo đuôi file. Đuôi không có ở đây thì ghi đuôi viết hoa.
+export const FILE_FORMATS = {
+  '.pdf': 'PDF',
+  '.doc': 'DOC',
+  '.docx': 'DOCX',
+  '.ppt': 'PPT',
+  '.pptx': 'PPTX',
+  '.xls': 'XLS',
+  '.xlsx': 'XLSX',
+  '.zip': 'ZIP',
+  '.png': 'PNG',
+  '.jpg': 'JPG',
+  '.jpeg': 'JPG',
+  '.md': 'MD',
+  '.txt': 'TXT',
+  '.json': 'JSON',
+};
+
+export function fileFormat(name) {
+  const m = /(\.[A-Za-z0-9]+)$/.exec(String(name || ''));
+  if (!m) return '';
+  const ext = m[1].toLowerCase();
+  return FILE_FORMATS[ext] || ext.slice(1).toUpperCase();
+}
+
+// Ngôn ngữ của tài liệu (trường lang), theo ngôn ngữ trang.
+export const DOC_LANGS = {
+  vi: { vi: 'Tiếng Việt', en: 'Vietnamese' },
+  en: { vi: 'Tiếng Anh', en: 'English' },
+};

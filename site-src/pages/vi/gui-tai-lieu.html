@@ -13,6 +13,10 @@
   <p id="course-hint" class="muted">Nên tìm theo tên môn, vì mã có thể đổi qua các khóa.</p>
   <ul id="course-results" class="pick"></ul>
   <p class="err" data-err="course" role="alert"></p>
+  <div id="code-box" class="code-pick" hidden>
+    <label for="course-code">Mã môn (nếu bạn biết)</label>
+    <select id="course-code"></select>
+  </div>
   <p id="new-course-offer" class="new-offer" hidden>Môn chưa có trong thư viện? <button class="btn subtle" type="button" id="new-course-open" aria-controls="new-course-box" aria-expanded="false">Thêm môn mới</button></p>
 </div>
 
@@ -77,11 +81,16 @@
   <p class="err" data-err="license" role="alert"></p>
 </div>
 
-<div class="field">
-  <label for="teacher">Giảng viên (không bắt buộc)</label>
-  <input id="teacher" name="teacher" type="text" list="teacher-list" autocomplete="off" maxlength="{{upload:teacherMax}}" aria-describedby="teacher-hint">
-  <datalist id="teacher-list"></datalist>
-  <p id="teacher-hint" class="muted">Ghi họ tên như trên thời khóa biểu, bỏ Thầy, Cô và học hàm. Có gợi ý thì chọn trong gợi ý để tên không bị viết nhiều kiểu.</p>
+<div class="field" id="teacher-field">
+  <div id="teacher-pick-box" hidden>
+    <label for="teacher-pick">Giảng viên (không bắt buộc)</label>
+    <select id="teacher-pick"></select>
+  </div>
+  <div id="teacher-text-box">
+    <label for="teacher" id="teacher-label">Giảng viên (không bắt buộc)</label>
+    <input id="teacher" name="teacher" type="text" autocomplete="off" maxlength="{{upload:teacherMax}}" placeholder="{{upload:teacherPlaceholder}}" aria-describedby="teacher-hint">
+    <p id="teacher-hint" class="muted">Ghi đủ họ tên, bỏ Thầy, Cô và học hàm. Có gợi ý thì chọn trong gợi ý.</p>
+  </div>
   <p class="err" data-err="teacher" role="alert"></p>
 </div>
 

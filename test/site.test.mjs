@@ -24,7 +24,7 @@ function allHtml(dir = out, acc = []) {
 
 test('sinh đủ các trang, cả tiếng Việt và tiếng Anh', () => {
   for (const lang of ['', 'en/']) {
-    for (const p of ['index.html', 'faculty/EE/index.html', 'faculty/unknown/index.html', 'program/TEST_2019/index.html', 'course/EE1009/index.html', 'course/400111/index.html', 'contribute/index.html', 'review/index.html', 'takedown/index.html']) {
+    for (const p of ['index.html', 'faculty/EE/index.html', 'faculty/unknown/index.html', 'program/TEST_2019/index.html', 'course/EE1009/index.html', 'course/400111/index.html', 'mon/ky-thuat-so/index.html', 'contribute/index.html', 'review/index.html', 'takedown/index.html']) {
       assert.ok(fs.existsSync(path.join(out, lang, p)), lang + p);
     }
   }
@@ -32,37 +32,68 @@ test('sinh đủ các trang, cả tiếng Việt và tiếng Anh', () => {
   assert.ok(result.pages >= 19);
 });
 
-test('trang môn: thông tin, mã cũ, tài liệu theo loại, nút đóng góp điền sẵn mã môn', () => {
-  const html = read('course/EE1009/index.html');
+// Fixture: EE1009 "Kỹ thuật số" và EE1010 "Kỹ thuật số (Thí nghiệm)" cùng tên (bỏ phần ngoặc cuối) nên là một
+// môn theo tên mon/ky-thuat-so/; 400111 là môn một mã, giữ trang course/400111/.
+test('trang môn theo tên: tên, dòng mã, mọi tài liệu của mọi mã theo loại, nút đóng góp điền sẵn mã chính', () => {
+  const html = read('mon/ky-thuat-so/index.html');
   assert.match(html, /<html lang="vi"/);
-  assert.match(html, /402030 Kỹ thuật số \(mã cũ\)/);
+  assert.match(html, /<h1>Kỹ thuật số<\/h1>\n<p class="codes"><span class="sr">Mã môn: <\/span><span class="code">EE1009<\/span> <span class="code">EE1010<\/span><\/p>/);
+  // Không còn ngữ cảnh, số mã hay bảng thông tin trên trang môn theo tên.
+  assert.doesNotMatch(html, /class="facts"|class="subtitle"|twins|theo ngành hoặc khóa/);
   assert.match(html, /Tóm tắt chương 1/);
+  assert.match(html, /Ghi chú đã gỡ/);
+  assert.match(html, /Link từ đối tác/);
   assert.match(html, /Prelab tham khảo/);
   assert.match(html, /Chỉ để tham khảo sau khi đã hết hạn chấm/);
-  assert.match(html, /href="\.\.\/\.\.\/gui-tai-lieu\/\?course=EE1009"/);
+  // EE1009 thuộc một chương trình, EE1010 không: form gửi điền sẵn EE1009.
+  assert.match(html, /<a class="btn primary" href="\.\.\/\.\.\/gui-tai-lieu\/\?course=EE1009">Gửi tài liệu cho môn này<\/a>/);
   assert.doesNotMatch(html, /template=dong-gop-tai-lieu/);
   assert.doesNotMatch(html, /issue-to-pr/);
   assert.match(html, /issues\/new\?template=them-link\.yml&amp;course=EE1009/);
-  assert.match(html, /href="\.\.\/\.\.\/en\/course\/EE1009\/"/);
+  assert.match(html, /href="\.\.\/\.\.\/en\/mon\/ky-thuat-so\/"/);
   assert.match(html, /href="\.\.\/\.\.\/assets\/site\.css"/);
+  // Trong nhóm: mới trước.
+  assert.match(read('en/mon/ky-thuat-so/index.html'), /<h1>Kỹ thuật số<\/h1>|<h1>Digital/);
+});
+
+test('mã thuộc môn nhiều mã: trang course/<ID>/ chuyển hướng tới trang môn theo tên, giữ #id bằng redirect.js', () => {
+  for (const id of ['EE1009', 'EE1010']) {
+    const html = read(`course/${id}/index.html`);
+    assert.match(html, /<meta http-equiv="refresh" content="0; url=\.\.\/\.\.\/mon\/ky-thuat-so\/">/, id);
+    assert.match(html, /<link rel="canonical" href="https:\/\/bk-study-library\.github\.io\/hcmut-library\/mon\/ky-thuat-so\/">/, id);
+    assert.match(html, /<script src="\.\.\/\.\.\/assets\/redirect\.js"><\/script>/, id);
+  }
+  assert.match(read('en/course/EE1009/index.html'), /url=\.\.\/\.\.\/\.\.\/en\/mon\/ky-thuat-so\/"/);
+  assert.match(read('assets/redirect.js'), /location\.replace\(url \+ location\.hash\)/);
+});
+
+test('trang môn một mã: tên kèm mã, tín chỉ và khoa, mã cũ; không có ngữ cảnh hay danh sách dài', () => {
+  const html = read('course/400111/index.html');
+  assert.match(html, /<h1><span class="code">400111<\/span> Môn cũ đã ngừng<\/h1>/);
+  assert.match(html, /<dt>Tín chỉ<\/dt><dd>3<\/dd>/);
+  assert.match(html, /<dt>Khoa<\/dt>/);
+  assert.doesNotMatch(html, /class="subtitle"|twins|<dt>Trạng thái<\/dt>|<dt>Phần<\/dt>/);
+  // Chưa có tài liệu: một câu và một nút chính.
+  assert.match(html, /<div class="note" role="note"><p>Chưa có tài liệu cho môn này\.<\/p><\/div>\n<p class="actions"><a class="btn primary" href="\.\.\/\.\.\/gui-tai-lieu\/\?course=400111">Gửi tài liệu cho môn này<\/a><\/p>/);
 });
 
 test('môn đã ngừng: có thông báo và link tới môn thay thế', () => {
   const html = read('course/400111/index.html');
   assert.match(html, /Môn này đã ngừng dạy/);
-  assert.match(html, /href="\.\.\/\.\.\/course\/EE1009\/"/);
+  // Môn thay thế thuộc môn nhiều mã: link thẳng tới trang môn theo tên.
+  assert.match(html, /href="\.\.\/\.\.\/mon\/ky-thuat-so\/"/);
   assert.match(read('en/course/400111/index.html'), /This course is no longer taught/);
 });
 
 test('tài liệu đã gỡ: còn mục, không còn link tải', () => {
-  const html = read('course/EE1010/index.html');
+  const html = read('mon/ky-thuat-so/index.html');
   assert.match(html, /Ghi chú đã gỡ/);
   assert.match(html, /Người gửi rút lại/);
 });
 
-test('mã cũ chuyển hướng tới ID cố định', () => {
+test('mã cũ chuyển hướng thẳng tới trang của môn (môn theo tên nếu có)', () => {
   const html = read('course/402030/index.html');
-  assert.match(html, /http-equiv="refresh" content="0; url=\.\.\/EE1009\/"/);
+  assert.match(html, /http-equiv="refresh" content="0; url=\.\.\/\.\.\/mon\/ky-thuat-so\/"/);
 });
 
 test('404 dùng đường dẫn tuyệt đối theo base', () => {
@@ -91,7 +122,7 @@ test('chữ có ký tự đặc biệt được escape', () => {
   editJson(dir, 'catalog/courses/EE1010.json', (c) => { c.name = 'Thí nghiệm <script>alert(1)</script> & "q"'; });
   const out2 = fs.mkdtempSync(path.join(os.tmpdir(), 'bk-lib-site-esc-'));
   buildSite({ root: dir, out: out2 });
-  for (const p of ['course/EE1010/index.html', 'course/EE1009/index.html', 'faculty/EE/index.html']) {
+  for (const p of ['course/EE1010/index.html', 'faculty/EE/index.html']) {
     const html = fs.readFileSync(path.join(out2, p), 'utf8');
     assert.doesNotMatch(html, /<script>alert/, p);
     assert.match(html, /&lt;script&gt;alert\(1\)&lt;\/script&gt; &amp; &quot;q&quot;/, p);
@@ -175,7 +206,7 @@ test('trang Gửi tài liệu: thêm môn mới lấy mẫu mã từ schema, gi�
   assert.equal(cfg0.newCourse.nearSpan, 0);
 });
 
-test('trang Gửi tài liệu: ô môn mời tìm theo tên, gộp môn cùng tên theo site.json', () => {
+test('trang Gửi tài liệu: ô môn mời tìm theo tên, môn nhiều mã có ô Mã môn, giảng viên chọn hoặc thêm, nạp subject-core.js', () => {
   const html = buildWithSite({ uploadEndpoint: '', turnstileSiteKey: 'K', sameNameGroupMin: 2, sameNameChipsMax: 4 });
   assert.match(html, /<label for="course-q">Môn học \(gõ tên môn, ví dụ Giải tích 2\)<\/label>/);
   const ph = html.match(/id="course-q"[^>]*placeholder="([^"]+)"/)[1];
@@ -183,10 +214,20 @@ test('trang Gửi tài liệu: ô môn mời tìm theo tên, gộp môn cùng t�
   assert.match(html, /Nên tìm theo tên môn, vì mã có thể đổi qua các khóa\./);
   const cfg = JSON.parse(html.match(/id="upload-config">([^<]*)</)[1]);
   assert.deepEqual(cfg.sameName, { groupMin: 2, chipsMax: 4 });
-  assert.equal(cfg.msg.sameNameCount, 'mã, theo ngành hoặc khóa');
-  // Thiếu cấu hình thì dùng mặc định như ô tìm trang chủ.
+  assert.equal(cfg.msg.sameNameCount, undefined);
+  // Ô mã môn: ẩn sẵn, chỉ hiện khi môn có từ 2 mã.
+  assert.match(html, /<div id="code-box" class="code-pick" hidden>\s*<label for="course-code">Mã môn \(nếu bạn biết\)<\/label>\s*<select id="course-code"><\/select>/);
+  // Giảng viên: danh sách tên (ẩn sẵn), ô gõ tên gửi đi là name="teacher", chữ gợi ý lấy từ strings.mjs.
+  assert.match(html, /<div id="teacher-pick-box" hidden>\s*<label for="teacher-pick">Giảng viên \(không bắt buộc\)<\/label>\s*<select id="teacher-pick"><\/select>/);
+  assert.match(html, /<input id="teacher" name="teacher" type="text" autocomplete="off" maxlength="\d+" placeholder="Ví dụ: Nguyễn Văn A"/);
+  assert.match(html, /Ghi đủ họ tên, bỏ Thầy, Cô và học hàm\. Có gợi ý thì chọn trong gợi ý\./);
+  assert.doesNotMatch(html, /datalist/);
+  assert.equal(cfg.msg.teacherAdd, 'Thêm tên giảng viên khác');
+  assert.equal(cfg.msg.teacherNone, 'Không ghi');
+  assert.ok(html.indexOf('assets/search-core.js') < html.indexOf('assets/subject-core.js') && html.indexOf('assets/subject-core.js') < html.indexOf('assets/upload.js'));
+  // Thiếu cấu hình thì dùng mặc định: từ 2 mã cùng tên là một môn.
   const cfg0 = JSON.parse(buildWithSite({ uploadEndpoint: '', turnstileSiteKey: 'K' }).match(/id="upload-config">([^<]*)</)[1]);
-  assert.deepEqual(cfg0.sameName, { groupMin: 3, chipsMax: 4 });
+  assert.deepEqual(cfg0.sameName, { groupMin: 2, chipsMax: 4 });
 });
 
 test('catalog/site.json thật: gộp từ 2 môn cùng tên, hiện tối đa 4 mã', () => {
@@ -196,7 +237,8 @@ test('catalog/site.json thật: gộp từ 2 môn cùng tên, hiện tối đa 4
 });
 
 test('trang môn tiếng Anh trỏ tới form tiếng Việt', () => {
-  assert.match(read('en/course/EE1009/index.html'), /href="\.\.\/\.\.\/\.\.\/gui-tai-lieu\/\?course=EE1009"/);
+  assert.match(read('en/mon/ky-thuat-so/index.html'), /href="\.\.\/\.\.\/\.\.\/gui-tai-lieu\/\?course=EE1009"/);
+  assert.match(read('en/course/400111/index.html'), /href="\.\.\/\.\.\/\.\.\/gui-tai-lieu\/\?course=400111"/);
 });
 
 test('hướng dẫn đóng góp: chỉ cấm sách có bản quyền, không còn luật cũ', () => {
@@ -255,7 +297,9 @@ test('trang khoa: chương trình theo khóa mới nhất trước, có số mô
   assert.ok(html.indexOf('Khóa 2026') > empty);
   assert.match(html, /Ngành tuyển sinh thử<\/a> <a class="tag" href="\.\.\/\.\.\/\?q=D%E1%BA%A1y%20v%C3%A0%20h%E1%BB%8Dc%20b%E1%BA%B1ng%20ti%E1%BA%BFng%20Anh">Dạy và học bằng tiếng Anh<\/a> <span class="muted small">chưa có danh sách môn<\/span>/);
   assert.match(html, /issues\/new\?template=them-chuong-trinh\.yml&amp;khoa=Khoa\+%C4%90i%E1%BB%87n\+-\+%C4%90i%E1%BB%87n\+t%E1%BB%AD"[^>]*>Thêm chương trình đào tạo</);
-  assert.match(html, /<th scope="row"><a href="\.\.\/\.\.\/course\/EE1009\/">EE1009<\/a>/);
+  // Bảng môn của khoa: mã thuộc môn nhiều mã trỏ tới trang môn theo tên; không còn dòng ngữ cảnh.
+  assert.match(html, /<th scope="row"><a href="\.\.\/\.\.\/mon\/ky-thuat-so\/">EE1009<\/a>/);
+  assert.doesNotMatch(html, /class="sub"/);
   assert.match(read3('en/faculty/EE/index.html'), /Cohort 2026/);
 });
 
@@ -321,9 +365,11 @@ test('trang môn: mục sách tham khảo có nút tra sách', () => {
   }));
   const outDir = fs.mkdtempSync(path.join(os.tmpdir(), 'bk-lib-site-book-'));
   buildSite({ root: dir, out: outDir });
-  const html = fs.readFileSync(path.join(outDir, 'course', 'EE1009', 'index.html'), 'utf8');
+  const html = fs.readFileSync(path.join(outDir, 'mon', 'ky-thuat-so', 'index.html'), 'utf8');
   assert.match(html, /href="https:\/\/openlibrary\.org\/isbn\/9780134549897"/);
   assert.match(html, /Tra trên Open Library/);
+  assert.match(html, /<dt>Định dạng<\/dt><dd>Sách, chỉ ghi tên<\/dd>/);
+  assert.match(html, /<dt>Ngôn ngữ<\/dt><dd>Tiếng Anh<\/dd>/);
 });
 
 test('trang môn: nhóm nhiều tài liệu chỉ hiện số mục theo itemsPerGroup, còn lại gập', () => {
@@ -337,8 +383,9 @@ test('trang môn: nhóm nhiều tài liệu chỉ hiện số mục theo itemsPe
   }
   const outDir = fs.mkdtempSync(path.join(os.tmpdir(), 'bk-lib-site-more-'));
   buildSite({ root: dir, out: outDir });
-  const html = fs.readFileSync(path.join(outDir, 'course', 'EE1009', 'index.html'), 'utf8');
-  assert.match(html, /<details class="more-items"><summary>Xem thêm 2 tài liệu<\/summary>/);
+  // Nhóm Link của môn theo tên: 4 link mới và 1 link sẵn có của EE1010.
+  const html = fs.readFileSync(path.join(outDir, 'mon', 'ky-thuat-so', 'index.html'), 'utf8');
+  assert.match(html, /<details class="more-items"><summary>Xem thêm 3 tài liệu<\/summary>/);
 });
 
 test('trang chủ: ô tìm không bị khóa, danh sách môn chỉ tải khi dùng', () => {
@@ -367,48 +414,52 @@ const out4 = (() => {
 })();
 const read4 = (p) => fs.readFileSync(path.join(out4, p), 'utf8');
 const itemHtml = (html, id) => {
-  const m = html.match(new RegExp(`<li class="item[^"]*" id="${id}">[\\s\\S]*?</li>`));
+  // Thẻ có thể chứa danh sách file (li lồng): lấy tới thẻ tài liệu kế tiếp hoặc hết nhóm.
+  const m = html.match(new RegExp(`<li class="item[^"]*" id="${id}">[\\s\\S]*?</li>(?=<li class="item|</ul></section>|</ul><details|</ul></details>)`));
   assert.ok(m, id);
   return m[0];
 };
 const buttons = (li) => [...li.matchAll(/<a class="([^"]+)" href="([^"]+)"[^>]*>([^<]+)<\/a>/g)].map((m) => ({ cls: m[1], href: m[2].replace(/&amp;/g, '&'), label: m[3] }));
 
 test('mục có file PDF: Xem trước, Tải xuống (cỡ), Yêu cầu gỡ theo đúng thứ tự', () => {
-  const li = itemHtml(read4('course/EE1009/index.html'), 'co-pdf');
+  const li = itemHtml(read4('mon/ky-thuat-so/index.html'), 'co-pdf');
   const b = buttons(li);
   assert.deepEqual(b.map((x) => [x.cls, x.label]), [['btn', 'Xem trước'], ['btn', 'Tải xuống (2.0 MB)'], ['btn subtle', 'Yêu cầu gỡ']]);
   const url = 'https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261/EE1009_summary_co-pdf.pdf';
   assert.equal(b[0].href, `https://up.example/xem-truoc?u=${encodeURIComponent(url)}`);
   assert.match(li, /target="_blank" rel="noopener">Xem trước/);
   assert.equal(b[1].href, url);
-  // Nút xếp sau mô tả và dòng meta; không còn danh sách link trần.
-  assert.ok(li.indexOf('class="meta"') < li.indexOf('class="actions"'));
+  // Nút xếp sau khối chi tiết; không còn danh sách link trần.
+  assert.ok(li.indexOf('class="item-facts"') < li.indexOf('class="actions"'));
   assert.doesNotMatch(li, /class="files"/);
+  assert.match(li, /<dt>Định dạng<\/dt><dd>PDF<\/dd>/);
+  assert.match(li, /<dt>Dung lượng<\/dt><dd>2\.0 MB<\/dd>/);
+  assert.match(li, /<dt>Ngày tải lên<\/dt><dd><time datetime="2026-10-04">04\/10\/2026<\/time><\/dd>/);
 });
 
 test('Yêu cầu gỡ: mở form yeu-cau-go.yml điền sẵn link mục (ô item) và id mục', () => {
-  const take = new URL(buttons(itemHtml(read4('course/EE1009/index.html'), 'co-pdf')).at(-1).href);
+  const take = new URL(buttons(itemHtml(read4('mon/ky-thuat-so/index.html'), 'co-pdf')).at(-1).href);
   assert.equal(take.origin + take.pathname, 'https://github.com/bk-study-library/hcmut-library/issues/new');
   assert.equal(take.searchParams.get('template'), 'yeu-cau-go.yml');
-  assert.equal(take.searchParams.get('item'), 'https://bk-study-library.github.io/hcmut-library/course/EE1009/#co-pdf');
+  assert.equal(take.searchParams.get('item'), 'https://bk-study-library.github.io/hcmut-library/mon/ky-thuat-so/#co-pdf');
   assert.match(take.searchParams.get('title'), /co-pdf/);
   // Ô item có thật trong form.
   const form = fs.readFileSync(path.join(path.dirname(fileURLToPath(import.meta.url)), '..', '.github', 'ISSUE_TEMPLATE', 'yeu-cau-go.yml'), 'utf8');
   assert.match(form, /^\s+id: item$/m);
   // Bản tiếng Anh trỏ về trang môn tiếng Anh.
-  const en = new URL(buttons(itemHtml(read4('en/course/EE1009/index.html'), 'co-pdf')).at(-1).href);
-  assert.equal(en.searchParams.get('item'), 'https://bk-study-library.github.io/hcmut-library/en/course/EE1009/#co-pdf');
+  const en = new URL(buttons(itemHtml(read4('en/mon/ky-thuat-so/index.html'), 'co-pdf')).at(-1).href);
+  assert.equal(en.searchParams.get('item'), 'https://bk-study-library.github.io/hcmut-library/en/mon/ky-thuat-so/#co-pdf');
 });
 
 test('mục docx, zip: không có nút Xem trước', () => {
-  const html = read4('course/EE1009/index.html');
+  const html = read4('mon/ky-thuat-so/index.html');
   for (const id of ['co-docx', 'co-zip']) {
     assert.deepEqual(buttons(itemHtml(html, id)).map((x) => x.label), ['Tải xuống (2.0 MB)', 'Yêu cầu gỡ'], id);
   }
 });
 
 test('mục Markdown trong git: xem trước qua link files/ của site, tải từ files/ cùng site', () => {
-  const li = itemHtml(read4('course/EE1009/index.html'), 'tom-tat-c1');
+  const li = itemHtml(read4('mon/ky-thuat-so/index.html'), 'tom-tat-c1');
   const b = buttons(li);
   assert.deepEqual(b.map((x) => x.label), ['Xem trước', 'Tải xuống (82 B)', 'Yêu cầu gỡ']);
   assert.equal(b[0].href, `https://up.example/xem-truoc?u=${encodeURIComponent('https://bk-study-library.github.io/hcmut-library/files/EE1009/tom-tat-c1.md')}`);
@@ -417,12 +468,12 @@ test('mục Markdown trong git: xem trước qua link files/ của site, tải t
 });
 
 test('file Release không theo dạng files-HK<xxx>: không có nút Xem trước', () => {
-  const li = itemHtml(read('course/EE1009/index.html'), 'prelab-2-tham-khao');
+  const li = itemHtml(read('mon/ky-thuat-so/index.html'), 'prelab-2-tham-khao');
   assert.deepEqual(buttons(li).map((x) => x.label), ['Tải xuống (117 KB)', 'Yêu cầu gỡ']);
 });
 
 test('mục link: Mở link rồi Yêu cầu gỡ; mục đã gỡ: không có nút', () => {
-  const html = read('course/EE1010/index.html');
+  const html = read('mon/ky-thuat-so/index.html');
   assert.deepEqual(buttons(itemHtml(html, 'link-doi-tac')).map((x) => [x.cls, x.label]), [['btn', 'Mở link'], ['btn subtle', 'Yêu cầu gỡ']]);
   const gone = itemHtml(html, 'go-bo');
   assert.deepEqual(buttons(gone), []);
@@ -435,7 +486,7 @@ test('site.json không có reviewBase thì không có nút Xem trước', () => 
   fs.writeFileSync(path.join(dir, 'catalog', 'site.json'), JSON.stringify({ uploadEndpoint: '', turnstileSiteKey: 'K' }));
   const o = fs.mkdtempSync(path.join(os.tmpdir(), 'bk-lib-site-nopv-'));
   buildSite({ root: dir, out: o });
-  assert.doesNotMatch(itemHtml(fs.readFileSync(path.join(o, 'course', 'EE1009', 'index.html'), 'utf8'), 'tom-tat-c1'), /xem-truoc/);
+  assert.doesNotMatch(itemHtml(fs.readFileSync(path.join(o, 'mon', 'ky-thuat-so', 'index.html'), 'utf8'), 'tom-tat-c1'), /xem-truoc/);
 });
 
 test('danh sách xem trước: chỉ Release files-HK<xxx> và .md của site, tên an toàn', async () => {
@@ -524,6 +575,10 @@ const outPdf = (() => {
   editJson(dir, 'catalog/courses/EE1009.json', (c) => {
     c.programs.push({ program: 'TEST_2019_NHAP', block: 'B1', required: false });
   });
+  // Đổi tên EE1010 để EE1009 là môn một mã, có trang course/EE1009/ đầy đủ.
+  editJson(dir, 'catalog/courses/EE1010.json', (c) => {
+    c.name = 'Thí nghiệm kỹ thuật số';
+  });
   const o = fs.mkdtempSync(path.join(os.tmpdir(), 'bk-lib-site-pdf-'));
   buildSite({ root: dir, out: o });
   return o;
@@ -563,8 +618,9 @@ test('chương trình listed: false: không vào danh sách trang chủ, trang k
   assert.match(draft, /Đây là bản nháp, không hiện trong danh sách\./);
   assert.match(draft, /Xem bản chính: <a href="\.\.\/\.\.\/program\/TEST_2019\/">Chương trình thử \(2019\)<\/a>/);
   assert.doesNotMatch(readPdf('program/TEST_2019/index.html'), /name="robots"/);
-  // Trang môn vẫn link tới bản nháp (không hỏng link), có nhãn bản nháp nguồn.
+  // Trang môn một mã vẫn link tới bản nháp (không hỏng link), có nhãn bản nháp nguồn, trong khối gập.
   const course = readPdf('course/EE1009/index.html');
+  assert.match(course, /<details class="course-progs"><summary>Có trong 2 chương trình<\/summary>/);
   assert.match(course, /<a href="\.\.\/\.\.\/program\/TEST_2019_NHAP\/">Chương trình thử \(2019\)<\/a> <span class="tag">bản nháp<\/span>/);
   assert.match(readPdf('en/course/EE1009/index.html'), /<span class="tag">draft<\/span>/);
 });
@@ -581,11 +637,11 @@ test('trang khoa Môn chung toàn trường có ghi chú riêng', () => {
 });
 
 test('nhãn bấm được: khối trên trang môn trỏ tới đúng khối trên trang chương trình', () => {
-  const course = read('course/EE1009/index.html');
+  const course = readPdf('course/EE1009/index.html');
   const m = course.match(/href="([^"]*program\/TEST_2019\/)#(khoi-[a-z0-9-]+)"/);
   assert.ok(m, 'trang môn có link tới khối');
-  assert.match(read('program/TEST_2019/index.html'), new RegExp(`<section class="block" id="${m[2]}"`));
-  assert.match(course, /<section class="group" id="loai-[a-z-]+"/);
+  assert.match(readPdf('program/TEST_2019/index.html'), new RegExp(`<section class="block" id="${m[2]}"`));
+  assert.match(read('mon/ky-thuat-so/index.html'), /<section class="group" id="loai-[a-z-]+"/);
 });
 
 test('ô tìm trang chủ: có danh sách chương trình, chỉ gồm chương trình được liệt kê', () => {
@@ -609,7 +665,7 @@ test('tên giảng viên trên tài liệu mở ô tìm ở trang chủ', () => 
   });
   const o = fs.mkdtempSync(path.join(os.tmpdir(), 'bk-lib-site-gv-'));
   buildSite({ root: dir, out: o });
-  const html = fs.readFileSync(path.join(o, 'course/EE1009/index.html'), 'utf8');
+  const html = fs.readFileSync(path.join(o, 'mon/ky-thuat-so/index.html'), 'utf8');
   if (html.includes('Nguyễn Văn Thử')) assert.match(html, /href="\.\.\/\.\.\/\?q=Nguy%E1%BB%85n%20V%C4%83n%20Th%E1%BB%AD">Nguyễn Văn Thử<\/a>/);
 });
 
@@ -618,11 +674,13 @@ const SITE = 'https://bk-study-library.github.io/hcmut-library/';
 test('ô tìm trang chủ: items.json chỉ có mục chưa gỡ, mới thêm trước, link tới mục trên trang môn', () => {
   const docs = JSON.parse(read('assets/items.json'));
   assert.deepEqual(docs.map((d) => d.id), ['tom-tat-c1', 'link-doi-tac', 'prelab-2-tham-khao']);
-  const allowed = ['id', 'course', 'code', 'courseName', 'courseNameEn', 'faculty', 'title', 'description', 'type', 'term', 'examKind', 'chapter', 'teacher', 'lang', 'added', 'url'];
+  const allowed = ['id', 'course', 'code', 'courseName', 'courseNameEn', 'faculty', 'title', 'description', 'type', 'term', 'examKind', 'chapter', 'teacher', 'added', 'url'];
   for (const d of docs) assert.deepEqual(Object.keys(d).filter((k) => !allowed.includes(k)), [], d.id);
+  // Link tới trang môn theo tên; tên môn là tên của môn theo tên.
   assert.deepEqual(docs[0], {
-    id: 'tom-tat-c1', course: 'EE1009', code: 'EE1009', courseName: 'Kỹ thuật số', faculty: 'EE', title: 'Tóm tắt chương 1', type: 'summary', term: 'HK251', lang: 'vi', added: '2026-10-01', url: 'course/EE1009/#tom-tat-c1',
+    id: 'tom-tat-c1', course: 'EE1009', code: 'EE1009', courseName: 'Kỹ thuật số', faculty: 'EE', title: 'Tóm tắt chương 1', type: 'summary', term: 'HK251', added: '2026-10-01', url: 'mon/ky-thuat-so/#tom-tat-c1',
   });
+  assert.equal(docs.find((d) => d.id === 'link-doi-tac').url, 'mon/ky-thuat-so/#link-doi-tac');
   // Link trỏ tới đúng mục có trên trang môn.
   for (const d of docs) assert.match(read(d.url.replace(/#.*/, 'index.html')), new RegExp(`<li class="item[^"]*" id="${d.id}">`));
   // Không đưa file chỉ web dùng vào v1/.
@@ -704,20 +762,21 @@ test('mọi trang có canonical tuyệt đối, Open Graph và Twitter card; 404
   assert.equal(metaOf(read('index.html'), 'property', 'og:image:height'), '640');
 });
 
-test('trang môn: og:title, description ghi mã, tên môn và số tài liệu', () => {
-  const html = read('course/EE1009/index.html');
-  assert.equal(metaOf(html, 'property', 'og:title'), 'EE1009 Kỹ thuật số');
+test('trang môn: og:title, description ghi tên môn và số tài liệu', () => {
+  const html = read('mon/ky-thuat-so/index.html');
+  assert.equal(metaOf(html, 'property', 'og:title'), 'Kỹ thuật số');
   const desc = metaOf(html, 'name', 'description');
-  assert.match(desc, /^EE1009 Kỹ thuật số: 2 tài liệu/);
+  assert.match(desc, /^Kỹ thuật số: 3 tài liệu/);
   assert.equal(metaOf(html, 'property', 'og:description'), desc);
-  assert.match(metaOf(read('en/course/EE1009/index.html'), 'name', 'description'), /^EE1009 .+: 2 items/);
+  assert.match(metaOf(read('en/mon/ky-thuat-so/index.html'), 'name', 'description'), /: 3 items/);
+  assert.equal(metaOf(read('course/400111/index.html'), 'property', 'og:title'), '400111 Môn cũ đã ngừng');
   assert.match(metaOf(read('course/400111/index.html'), 'name', 'description'), /chưa có tài liệu/);
 });
 
 test('hreflang vi, en, x-default tuyệt đối khi trang có cả hai bản; trang Gửi tài liệu chỉ có tiếng Việt thì không', () => {
   for (const [p, vi, en] of [
-    ['course/EE1009/index.html', 'course/EE1009/', 'en/course/EE1009/'],
-    ['en/course/EE1009/index.html', 'course/EE1009/', 'en/course/EE1009/'],
+    ['mon/ky-thuat-so/index.html', 'mon/ky-thuat-so/', 'en/mon/ky-thuat-so/'],
+    ['en/course/400111/index.html', 'course/400111/', 'en/course/400111/'],
     ['index.html', '', 'en/'],
     ['en/takedown/index.html', 'takedown/', 'en/takedown/'],
   ]) {
@@ -730,9 +789,9 @@ test('hreflang vi, en, x-default tuyệt đối khi trang có cả hai bản; tr
   assert.doesNotMatch(read('404.html'), /<link rel="alternate"/);
 });
 
-test('trang chuyển hướng: canonical tuyệt đối tới ID cố định', () => {
-  assert.match(read('course/402030/index.html'), new RegExp(`<link rel="canonical" href="${SITE}course/EE1009/">`));
-  assert.match(read('en/course/402030/index.html'), new RegExp(`<link rel="canonical" href="${SITE}en/course/EE1009/">`));
+test('trang chuyển hướng: canonical tuyệt đối tới trang của môn', () => {
+  assert.match(read('course/402030/index.html'), new RegExp(`<link rel="canonical" href="${SITE}mon/ky-thuat-so/">`));
+  assert.match(read('en/course/402030/index.html'), new RegExp(`<link rel="canonical" href="${SITE}en/mon/ky-thuat-so/">`));
 });
 
 test('robots.txt cho phép mọi trang, trỏ tới sitemap.xml', () => {
@@ -743,14 +802,15 @@ test('sitemap.xml: mọi trang thật, địa chỉ tuyệt đối, lastmod theo
   const xml = read('sitemap.xml');
   assert.match(xml, /^<\?xml version="1\.0" encoding="UTF-8"\?>\n<urlset xmlns="http:\/\/www\.sitemaps\.org\/schemas\/sitemap\/0\.9">/);
   const locs = [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]);
-  for (const p of ['', 'en/', 'course/EE1009/', 'en/course/EE1009/', 'faculty/EE/', 'program/TEST_2019/', 'contribute/', 'gui-tai-lieu/']) assert.ok(locs.includes(SITE + p), p);
+  for (const p of ['', 'en/', 'mon/ky-thuat-so/', 'en/mon/ky-thuat-so/', 'course/400111/', 'faculty/EE/', 'program/TEST_2019/', 'contribute/', 'gui-tai-lieu/']) assert.ok(locs.includes(SITE + p), p);
   for (const l of locs) assert.ok(l.startsWith(SITE), l);
-  assert.ok(!locs.some((l) => /404|course\/402030\//.test(l)));
+  // Trang chuyển hướng (mã cũ, mã thuộc môn nhiều mã) không vào sitemap.
+  assert.ok(!locs.some((l) => /404|course\/402030\/|course\/EE1009\/|course\/EE1010\//.test(l)));
   assert.deepEqual(locs, [...locs].sort());
   // Mọi trang HTML có trong sitemap, trừ 404 và trang chuyển hướng.
   const pages = allHtml().map((f) => path.relative(out, f).split(path.sep).join('/')).filter((p) => p !== '404.html' && !read(p).includes('http-equiv="refresh"'));
   assert.equal(locs.length, pages.length);
-  assert.match(xml, new RegExp(`<url><loc>${SITE}course/EE1009/</loc><lastmod>2026-10-01</lastmod></url>`));
+  assert.match(xml, new RegExp(`<url><loc>${SITE}mon/ky-thuat-so/</loc><lastmod>2026-10-01</lastmod></url>`));
   // Chương trình listed: false không vào sitemap.
   const draft = fs.readFileSync(path.join(outPdf, 'sitemap.xml'), 'utf8');
   assert.doesNotMatch(draft, /TEST_2019_NHAP/);
@@ -859,8 +919,9 @@ test('trang khoa: ngành trước, rồi Môn của khoa và Môn chung khoa dù
   assert.doesNotMatch(readM('index.html'), /faculty\/flc\/|Trung tâm Ngoại ngữ/);
 });
 
-test('trang môn: link Sổ tay, chương trình gom theo ngành với link tới khối', () => {
+test('trang môn: link Sổ tay, chương trình gom theo ngành với link tới khối (gập lại)', () => {
   const html = mainOf(readM('course/MT1003/index.html'));
+  assert.match(html, /<details class="course-progs"><summary>Có trong \d+ chương trình<\/summary>/);
   assert.match(html, /<dt>Sổ tay HCMUT<\/dt><dd><a href="https:\/\/hcmut\.edu\.vn\/study\/handbook\/subject\/MT1003" rel="noopener">Trang môn trên Sổ tay HCMUT<\/a><\/dd>/);
   assert.match(
     html,
@@ -891,4 +952,100 @@ test('nhãn loại chương trình là link mở ô tìm trang chủ (?q=<loại
   const rows = JSON.parse(readM('assets/programs.json'));
   assert.equal(rows.find((r) => r.code === 'FME_KY_THUAT_CO_KHI_2025_CTTA').type, 'CTTA');
   assert.ok(fs.readFileSync(path.join(outM, 'assets', 'search.js'), 'utf8').includes('p.type'));
+});
+
+test('thẻ tài liệu: khối chi tiết đủ thông tin; nhiều file thì mỗi file có định dạng, cỡ và nút riêng', () => {
+  const dir = copyFixture();
+  fs.writeFileSync(path.join(dir, 'catalog', 'site.json'), JSON.stringify({ uploadEndpoint: '', turnstileSiteKey: 'K', reviewBase: 'https://up.example' }));
+  const rel = (name) => `https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261/${name}`;
+  fs.writeFileSync(path.join(dir, 'courses', 'EE1009', 'items', 'de-thi.json'), JSON.stringify({
+    id: 'de-thi', course: 'EE1009', type: 'exam-past', title: 'Đề cuối kỳ', lang: 'vi', term: 'HK241', examKind: 'ck', chapter: '3', teacher: 'Nguyễn Văn Thử',
+    authors: ['Bạn A'], license: 'CC-BY-SA-4.0', origin: 'self-made', source: 'Tự soạn',
+    files: [
+      { name: 'de.pdf', size: 265216, sha256: '5'.repeat(64), url: rel('de.pdf') },
+      { name: 'dap-an.docx', size: 2048, sha256: '6'.repeat(64), url: rel('dap-an.docx') },
+    ],
+    added: '2026-09-01', updated: '2026-10-02', removed: false,
+  }));
+  const o = fs.mkdtempSync(path.join(os.tmpdir(), 'bk-lib-site-facts-'));
+  buildSite({ root: dir, out: o });
+  const li = itemHtml(fs.readFileSync(path.join(o, 'mon', 'ky-thuat-so', 'index.html'), 'utf8'), 'de-thi');
+  const facts = Object.fromEntries([...li.matchAll(/<dt>([^<]+)<\/dt><dd>(.*?)<\/dd>/g)].map((m) => [m[1], m[2].replace(/<[^>]+>/g, '')]));
+  assert.deepEqual(facts, {
+    'Định dạng': 'PDF, DOCX',
+    'Dung lượng': '261 KB',
+    'Ngày tải lên': '01/09/2026',
+    'Ngày cập nhật': '02/10/2026',
+    'Loại tài liệu': 'Đề cũ',
+    'Học kỳ': 'HK241',
+    'Loại kiểm tra': 'Cuối kỳ',
+    'Chương': '3',
+    'Giảng viên': 'Nguyễn Văn Thử',
+    'Người gửi': 'Bạn A',
+    'Ngôn ngữ': 'Tiếng Việt',
+    'Giấy phép': 'CC-BY-SA-4.0',
+    'Nguồn': 'Tự soạn',
+  });
+  // Mỗi file một dòng: tên, định dạng và cỡ, nút riêng; hàng nút cuối chỉ còn Yêu cầu gỡ.
+  assert.match(li, /<ul class="files"><li><span class="file-name">de\.pdf<\/span> <span class="muted">PDF, 259 KB<\/span><p class="actions"><a class="btn" href="https:\/\/up\.example\/xem-truoc[^"]*"[^>]*>Xem trước de\.pdf<\/a><a class="btn" href="[^"]*de\.pdf" rel="noopener">Tải xuống de\.pdf \(259 KB\)<\/a><\/p><\/li>/);
+  assert.match(li, /<span class="file-name">dap-an\.docx<\/span> <span class="muted">DOCX, 2 KB<\/span><p class="actions"><a class="btn" href="[^"]*dap-an\.docx" rel="noopener">Tải xuống dap-an\.docx \(2 KB\)<\/a><\/p>/);
+  assert.deepEqual(buttons(li.slice(li.indexOf('</ul>'))).map((x) => x.label), ['Yêu cầu gỡ']);
+  // Bản tiếng Anh: nhãn tiếng Anh.
+  const en = itemHtml(fs.readFileSync(path.join(o, 'en', 'mon', 'ky-thuat-so', 'index.html'), 'utf8'), 'de-thi');
+  assert.match(en, /<dt>Format<\/dt><dd>PDF, DOCX<\/dd>/);
+  assert.match(en, /<dt>Language<\/dt><dd>Vietnamese<\/dd>/);
+  // Tài liệu mới ở trang chủ: định dạng cạnh cỡ.
+  assert.match(fs.readFileSync(path.join(o, 'index.html'), 'utf8'), /<span class="muted recent-meta">Đề cũ, PDF, DOCX, 261 KB<\/span>/);
+});
+
+test('định dạng file theo đuôi: bảng FILE_FORMATS, đuôi lạ ghi chữ hoa', async () => {
+  const { fileFormat } = await import('../scripts/lib/labels.mjs');
+  assert.equal(fileFormat('a.PDF'), 'PDF');
+  assert.equal(fileFormat('b.jpeg'), 'JPG');
+  assert.equal(fileFormat('c.md'), 'MD');
+  assert.equal(fileFormat('d.tex'), 'TEX');
+  assert.equal(fileFormat('khong-duoi'), '');
+});
+
+test('bảng môn: môn có tài liệu trước; bảng dài gập môn chưa có tài liệu; tập môn không đổi', () => {
+  const build = (site) => {
+    const dir = copyFixture();
+    fs.writeFileSync(path.join(dir, 'catalog', 'site.json'), JSON.stringify({ uploadEndpoint: '', turnstileSiteKey: 'K', ...site }));
+    const course = (id, name) => ({ id, code: id, name, credits: 3, faculty: 'EE', aliases: [], status: 'active', programs: [], parts: [], related: [], updated: '2026-10-01' });
+    fs.writeFileSync(path.join(dir, 'catalog', 'courses', 'EE0001.json'), JSON.stringify(course('EE0001', 'Môn A chưa có')));
+    fs.writeFileSync(path.join(dir, 'catalog', 'courses', 'EE0003.json'), JSON.stringify(course('EE0003', 'Môn B chưa có')));
+    const o = fs.mkdtempSync(path.join(os.tmpdir(), 'bk-lib-site-docs-first-'));
+    buildSite({ root: dir, out: o });
+    return fs.readFileSync(path.join(o, 'faculty', 'EE', 'index.html'), 'utf8');
+  };
+  const codes = (html) => [...html.matchAll(/<th scope="row"><a href="[^"]+">([^<]+)<\/a>/g)].map((m) => m[1]);
+  // Không cấu hình: một bảng, môn có tài liệu (EE1009, EE1010) trước môn chưa có (EE0001, EE0003).
+  const flat = build({});
+  assert.deepEqual(codes(flat), ['EE1009', 'EE1010', 'EE0001', 'EE0003']);
+  assert.doesNotMatch(flat, /class="no-docs"/);
+  // Từ 3 môn: môn chưa có tài liệu gập lại; cùng tập môn, cùng thứ tự.
+  const folded = build({ noDocsCollapseMin: 3 });
+  assert.deepEqual(codes(folded), codes(flat));
+  assert.match(folded, /<details class="no-docs"><summary>Môn chưa có tài liệu \(2\)<\/summary><div class="table-wrap">/);
+  const before = folded.slice(0, folded.indexOf('class="no-docs"'));
+  assert.deepEqual(codes(before), ['EE1009', 'EE1010']);
+  assert.equal(JSON.parse(fs.readFileSync(path.join(TOOL_ROOT, 'catalog', 'site.json'), 'utf8')).noDocsCollapseMin, 20);
+});
+
+test('items.json: tài liệu của môn sau đại học ghi levels cho ô Bậc; môn đại học thì không', async () => {
+  const { docIndex } = await import('../scripts/build-site.mjs');
+  const courses = new Map([
+    ['A1', { id: 'A1', code: 'A1', name: 'Môn', faculty: 'f' }],
+    ['B1', { id: 'B1', code: 'B1', name: 'Môn sau đại học', faculty: 'f', levels: ['thac-si'] }],
+    ['C1', { id: 'C1', code: 'C1', name: 'Môn chung', faculty: 'f', levels: ['dai-hoc'] }],
+  ]);
+  const items = ['A1', 'B1', 'C1'].map((course) => ({ id: `x-${course.toLowerCase()}`, course, type: 'notes', title: course, lang: 'vi', added: '2026-01-01', removed: false }));
+  const rows = Object.fromEntries(docIndex(items, courses).map((r) => [r.course, r]));
+  assert.equal(rows.A1.levels, undefined);
+  assert.deepEqual(rows.B1.levels, ['thac-si']);
+  assert.equal(rows.C1.levels, undefined);
+});
+
+test('trang chủ: không có môn, chương trình sau đại học thì không có ô Bậc', () => {
+  assert.doesNotMatch(read('index.html'), /id="q-level"/);
 });

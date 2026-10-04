@@ -1,4 +1,5 @@
-// Phần thuần của form Gửi tài liệu khi chưa tìm thấy môn: gợi ý môn gần mã, môn trùng tên, kiểm
+// Phần thuần của form Gửi tài liệu: chọn môn theo tên (mã mặc định, các mã để đổi, giảng viên của môn), gợi ý
+// môn gần mã, môn trùng tên, kiểm
 // môn mới. Không DOM, không mạng; chạy được trong trình duyệt và Node (test/upload-core.test.mjs).
 // Mẫu mã môn, khoảng lệch mã và giới hạn tên do upload.js truyền vào (lấy từ #upload-config).
 (function (root) {
@@ -80,44 +81,83 @@
     return { code: code, name: name, errors: errors, existing: existing };
   }
 
-  // Khóa so tên: cùng cách với search.js và scripts/lib/course-context.mjs (chữ hoa, khoảng trắng).
-  function nameKey(s) {
-    return String(s || '')
-      .normalize('NFC')
-      .toLowerCase()
-      .replace(/\s+/g, ' ')
-      .trim();
+  // Môn theo tên cho form: id mã -> slug và slug -> { slug, ids, name }, gộp bằng BkSubject.groups (cùng quy tắc
+  // với trang mon/<slug>/ và ô tìm trang chủ).
+  function subjectIndex(subject, courses, min) {
+    var byId = Object.create(null);
+    courses.forEach(function (c) {
+      byId[c.id] = c;
+    });
+    var of = Object.create(null);
+    var all = Object.create(null);
+    subject.groups(courses, min).forEach(function (g) {
+      all[g.slug] = {
+        slug: g.slug,
+        ids: g.ids,
+        name: subject.title(
+          g.ids.map(function (id) {
+            return byId[id].name;
+          }),
+        ),
+      };
+      g.ids.forEach(function (id) {
+        of[id] = g.slug;
+      });
+    });
+    return { of: of, all: all };
   }
 
-  // Gộp kết quả tìm môn cùng tên (một tên, nhiều mã theo ngành hoặc khóa) như ô tìm trang chủ: tên có từ
-  // min môn trong kết quả thành một dòng { group }, đặt ở chỗ môn xếp đầu của nhóm. Môn khớp đúng mã hay
-  // mã cũ (điểm dưới 1) luôn đứng riêng { hit }.
-  function groupHits(hits, byId, min) {
-    var single = function (h) {
-      return h.score < 1;
-    };
-    var count = {};
-    hits.forEach(function (h) {
-      if (!single(h)) {
-        var k = nameKey(byId[h.id].name);
-        count[k] = (count[k] || 0) + 1;
-      }
-    });
+  // Kết quả tìm thành mỗi môn một dòng { slug, id }: mã cùng tên về một dòng, đặt ở chỗ mã xếp đầu. Gõ đúng mã
+  // thì mã đó xếp đầu nên môn chứa nó cũng đứng đầu, id là chính mã đó và exact là true (điểm dưới 1).
+  function subjectRows(hits, subjects) {
     var rows = [];
-    var at = {};
+    var seen = Object.create(null);
     hits.forEach(function (h) {
-      var k = nameKey(byId[h.id].name);
-      if (single(h) || count[k] < min) {
-        rows.push({ hit: h });
-        return;
-      }
-      if (!(k in at)) {
-        at[k] = rows.length;
-        rows.push({ group: [] });
-      }
-      rows[at[k]].group.push(h);
+      if (h.teacher) return;
+      var slug = subjects.of[h.id] || '';
+      var k = slug ? 's:' + slug : 'c:' + h.id;
+      if (seen[k]) return;
+      seen[k] = true;
+      rows.push({ slug: slug, id: h.id, exact: h.score < 1 });
     });
     return rows;
+  }
+
+  // Chọn môn: mã nào gửi đi và các mã để đổi. Có preferId (gõ đúng mã, link ?course=) thì dùng mã đó; không
+  // thì mã thuộc nhiều chương trình nhất (BkSubject.pickCode). codes xếp theo mã.
+  function subjectChoice(subject, subjects, byId, id, preferId) {
+    var slug = subjects.of[id];
+    if (!slug) return { slug: '', id: id, name: byId[id].name, codes: [] };
+    var list = subjects.all[slug].ids.map(function (x) {
+      return byId[x];
+    });
+    var pick = preferId && subjects.of[preferId] === slug ? byId[preferId] : subject.pickCode(list);
+    var codes = list
+      .slice()
+      .sort(function (a, b) {
+        return a.code < b.code ? -1 : a.code > b.code ? 1 : a.id < b.id ? -1 : 1;
+      })
+      .map(function (c) {
+        return { id: c.id, code: c.code };
+      });
+    return { slug: slug, id: pick.id, name: subjects.all[slug].name, codes: codes };
+  }
+
+  // Tên giảng viên đã có trên tài liệu của mọi mã trong môn, bỏ trùng, xếp theo chữ.
+  function subjectTeachers(courses) {
+    var seen = Object.create(null);
+    var out = [];
+    courses.forEach(function (c) {
+      (c.teachers || []).forEach(function (n) {
+        if (!seen[n]) {
+          seen[n] = true;
+          out.push(n);
+        }
+      });
+    });
+    return out.sort(function (a, b) {
+      return a.localeCompare(b, 'vi');
+    });
   }
 
   // Môn khớp đúng mã hay mã cũ (điểm 0 của search-core) khi chỉ có một môn như vậy; không có thì null.
@@ -139,8 +179,10 @@
   }
 
   root.BkUpload = {
-    nameKey: nameKey,
-    groupHits: groupHits,
+    subjectIndex: subjectIndex,
+    subjectRows: subjectRows,
+    subjectChoice: subjectChoice,
+    subjectTeachers: subjectTeachers,
     exactCode: exactCode,
     codeChips: codeChips,
     normCode: normCode,

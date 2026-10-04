@@ -58,7 +58,8 @@ test('trang khoa: bảng môn của khoa chỉ gồm đại học; sau đại h�
   const chungOwn = chung.slice(chung.indexOf('<h2>Danh sách môn</h2>'), chung.indexOf('<h2 id="h-sdh">'));
   assert.match(chungOwn, /course\/MT1003\//);
   assert.doesNotMatch(chungOwn, /GK5047|ENG_B2/);
-  assert.match(chung.slice(chung.indexOf('<h2 id="h-sdh">')), /course\/GK5047\/[\s\S]*course\/MT1003-2025\//);
+  // GK5047 "Anh văn 1" cùng tên với mã đại học: link tới trang môn theo tên.
+  assert.match(chung.slice(chung.indexOf('<h2 id="h-sdh">')), /mon\/anh-van-1\/[\s\S]*course\/MT1003-2025\//);
 });
 
 test('trang ngành sau đại học: tên kèm bậc, bộ chọn loại và khóa, khối kiến thức có khối cha (không có học kỳ)', () => {
@@ -94,10 +95,12 @@ test('trang môn sau đại học: dòng Bậc, ngành sau đại học ghi kèm
   assert.match(me, /<div><dt>Bậc<\/dt><dd>Thạc sĩ<\/dd><\/div>/);
   const ph = mainOf(read('course/PH1003/index.html'));
   assert.match(ph, /<dt>Bậc<\/dt><dd>Đại học, Thạc sĩ<\/dd>/);
-  assert.match(ph, /<a href="\.\.\/\.\.\/major\/7520103\/">Kỹ thuật Cơ khí<\/a>: <a href="\.\.\/\.\.\/program\/FME_KY_THUAT_CO_KHI_2024\/#khoi-k01">2024<\/a><br><a href="\.\.\/\.\.\/major\/8520103\/">Thạc sĩ Kỹ thuật cơ khí<\/a>: <a href="\.\.\/\.\.\/program\/FME_THAC_SI_KY_THUAT_CO_KHI_2025_UD\/#khoi-k04">2025 Ứng dụng<\/a>/);
-  // Môn chỉ có ở đại học: không có dòng Bậc.
-  assert.doesNotMatch(mainOf(read('course/MT1003/index.html')), /<dt>Bậc<\/dt>/);
-  assert.match(mainOf(read('course/MT1003-2025/index.html')), /MT1003 <span class="muted">\(ID MT1003-2025\)<\/span>/);
+  assert.match(ph, /<li><a href="\.\.\/\.\.\/major\/7520103\/">Kỹ thuật Cơ khí<\/a>: <a href="\.\.\/\.\.\/program\/FME_KY_THUAT_CO_KHI_2024\/#khoi-k01">2024<\/a><\/li><li><a href="\.\.\/\.\.\/major\/8520103\/">Thạc sĩ Kỹ thuật cơ khí<\/a>: <a href="\.\.\/\.\.\/program\/FME_THAC_SI_KY_THUAT_CO_KHI_2025_UD\/#khoi-k04">2025 Ứng dụng<\/a>/);
+  // Môn chỉ có ở đại học: không có dòng Bậc. Mã dùng lại (MT1003-2025) cùng tên: trang môn theo tên.
+  assert.doesNotMatch(mainOf(read('course/PH1003/index.html')).replace(/<dt>Bậc<\/dt><dd>Đại học, Thạc sĩ/, ''), /<dt>Bậc<\/dt>/);
+  // Không ghi ID kèm năm: chỉ mã và tên.
+  assert.match(mainOf(read('course/MT1003-2025/index.html')), /<h1><span class="code">MT1003<\/span> Toán cao cấp cho kỹ sư<\/h1>/);
+  assert.doesNotMatch(mainOf(read('course/MT1003-2025/index.html')), /ID MT1003-2025/);
 });
 
 test('ô tìm: programs.json ghi bậc cho ngành, chương trình sau đại học; v1 ghi levels cho môn có ở sau đại học', () => {
@@ -115,4 +118,10 @@ test('ô tìm: programs.json ghi bậc cho ngành, chương trình sau đại h�
   assert.deepEqual(majors.find((m) => m.code === '8520202').aliases, ['85202a1']);
   assert.equal(majors.find((m) => m.code === '8520202').level, 'thac-si');
   assert.equal(majors.find((m) => m.code === '7520103').aliases, undefined);
+});
+
+test('trang chủ: ô Bậc đứng đầu bộ lọc, mặc định Đại học, có Thạc sĩ, Tiến sĩ, Tất cả', () => {
+  const html = read('index.html');
+  assert.match(html, /<div class="search-filters"><div class="filter"><label for="q-level">Bậc<\/label><select id="q-level"><option value="dai-hoc" selected>Đại học<\/option><option value="thac-si">Thạc sĩ<\/option><option value="tien-si">Tiến sĩ<\/option><option value="tat-ca">Tất cả<\/option><\/select><\/div>/);
+  assert.match(read('en/index.html'), /<label for="q-level">Level<\/label><select id="q-level"><option value="dai-hoc" selected>Undergraduate<\/option>[\s\S]*?<option value="tat-ca">All<\/option>/);
 });
