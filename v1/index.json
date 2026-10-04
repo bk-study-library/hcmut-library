@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "generated": "2026-10-04",
+  "generated": "2026-10-05",
   "site": "https://bk-study-library.github.io/hcmut-library/",
   "counts": {
     "courses": 3796,
-    "items": 10
+    "items": 14
   },
   "faculties": [
     {
@@ -52910,7 +52910,7 @@
       "aliases": [],
       "oldNames": [],
       "status": "active",
-      "items": 2,
+      "items": 6,
       "url": "https://bk-study-library.github.io/hcmut-library/course/MT1005/",
       "detail": "courses/MT1005.json"
     },

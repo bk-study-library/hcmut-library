@@ -19,6 +19,13 @@
 
 - **Bảng công thức Giải tích 2** (ví dụ minh họa) (vi, CC-BY-SA-4.0, BK Study Library): [bang-cong-thuc-giai-tich-2.md, 3 KB](files/bang-cong-thuc-giai-tich-2.md)
 
+### Đề cũ
+
+- **Đề giữa kì hk232 - Mã đề 3331** (HK232, vi, CC-BY-SA-4.0): [MT1005_exam-past_de-giua-ki-hk232-ma-de-3331_HK232.pdf, 319 KB](https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/MT1005_exam-past_de-giua-ki-hk232-ma-de-3331_HK232.pdf)
+- **Đề giữa kì hk232 - Mã đề 3332** (HK232, vi, CC-BY-SA-4.0): [MT1005_exam-past_de-giua-ki-hk232-ma-de-3332_HK232.pdf, 319 KB](https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/MT1005_exam-past_de-giua-ki-hk232-ma-de-3332_HK232.pdf)
+- **Đề giữa kì hk232 - Mã đề 3333** (HK232, vi, CC-BY-SA-4.0): [MT1005_exam-past_de-giua-ki-hk232-ma-de-3333_HK232.pdf, 319 KB](https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/MT1005_exam-past_de-giua-ki-hk232-ma-de-3333_HK232.pdf)
+- **Đề giữa kì hk232 - Mã đề 3334** (HK232, vi, CC-BY-SA-4.0): [MT1005_exam-past_de-giua-ki-hk232-ma-de-3334_HK232.pdf, 319 KB](https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/MT1005_exam-past_de-giua-ki-hk232-ma-de-3334_HK232.pdf)
+
 ## Link
 
 - [OpenStax Calculus Volume 3](https://openstax.org/details/books/calculus-volume-3) (ví dụ minh họa): OpenStax, en, CC-BY-NC-SA-4.0

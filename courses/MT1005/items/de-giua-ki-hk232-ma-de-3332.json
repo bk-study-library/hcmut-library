@@ -15,11 +15,12 @@
   "files": [
     {
       "name": "MT1005_exam-past_de-giua-ki-hk232-ma-de-3332_HK232.pdf",
-      "size": 332426,
-      "sha256": "f139ae1fa8f766063a63651f703a4012d542b6d06a786e4ae47c40fba89029a8",
+      "size": 326798,
+      "sha256": "a0482428dccd64de8ff3f3fac5d09774d2b6b16c330ba3e51ba44ff461cdeb96",
       "mime": "application/pdf",
-      "quarantine": "pending/1MSUo4YBK3/MT1005_exam-past_de-giua-ki-hk232-ma-de-3332_HK232.pdf",
-      "uploadSha256": "f139ae1fa8f766063a63651f703a4012d542b6d06a786e4ae47c40fba89029a8"
+      "quarantine": "clean/1MSUo4YBK3/MT1005_exam-past_de-giua-ki-hk232-ma-de-3332_HK232.pdf",
+      "uploadSha256": "f139ae1fa8f766063a63651f703a4012d542b6d06a786e4ae47c40fba89029a8",
+      "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/MT1005_exam-past_de-giua-ki-hk232-ma-de-3332_HK232.pdf"
     }
   ]
 }
