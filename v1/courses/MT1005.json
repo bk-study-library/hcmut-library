@@ -32,6 +32,27 @@
       ]
     },
     {
+      "id": "thu-nghiem-3-ghi-chu-dao-ham-co-metadata",
+      "type": "notes",
+      "title": "Thu nghiem 3: ghi chu dao ham co metadata",
+      "lang": "vi",
+      "license": "CC-BY-SA-4.0",
+      "origin": "self-made",
+      "added": "2026-10-04",
+      "updated": "2026-10-04",
+      "files": [
+        {
+          "name": "MT1005_notes_thu-nghiem-3-ghi-chu-dao-ham-co-metadata.pdf",
+          "mime": "application/pdf",
+          "size": 1282,
+          "sha256": "5eb2aadd3531e706537810333ff054457314f0001b6988357f1f6393c5667e87",
+          "urls": [
+            "https://github.com/bk-study-library/bk-study-library/releases/download/files-HK261/MT1005_notes_thu-nghiem-3-ghi-chu-dao-ham-co-metadata.pdf"
+          ]
+        }
+      ]
+    },
+    {
       "id": "vi-du-openstax-calculus-volume-3",
       "type": "link",
       "title": "[Ví dụ] OpenStax Calculus Volume 3",

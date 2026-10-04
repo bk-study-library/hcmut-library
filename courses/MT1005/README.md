@@ -14,6 +14,10 @@
 
 ## Tài liệu
 
+### Ghi chú
+
+- **Thu nghiem 3: ghi chu dao ham co metadata** (vi, CC-BY-SA-4.0): [MT1005_notes_thu-nghiem-3-ghi-chu-dao-ham-co-metadata.pdf, 1 KB](https://github.com/bk-study-library/bk-study-library/releases/download/files-HK261/MT1005_notes_thu-nghiem-3-ghi-chu-dao-ham-co-metadata.pdf)
+
 ### Bảng công thức
 
 - **[Mẫu] Bảng công thức Giải tích 2** (ví dụ minh họa) (vi, CC-BY-SA-4.0, BK Study Library): [bang-cong-thuc-giai-tich-2.md, 3 KB](files/bang-cong-thuc-giai-tich-2.md)

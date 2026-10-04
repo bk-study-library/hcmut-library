@@ -1,12 +1,12 @@
 {
   "version": 1,
   "repo": "bk-study-library/bk-study-library",
-  "generated": "2026-10-03",
+  "generated": "2026-10-04",
   "counts": {
     "faculties": 15,
     "courses": 8,
     "programs": 0,
-    "items": 9
+    "items": 10
   },
   "faculties": [
     {
@@ -228,6 +228,28 @@
               "example": true,
               "added": "2026-10-03",
               "removed": false
+            },
+            {
+              "id": "thu-nghiem-3-ghi-chu-dao-ham-co-metadata",
+              "course": "MT1005",
+              "type": "notes",
+              "title": "Thu nghiem 3: ghi chu dao ham co metadata",
+              "lang": "vi",
+              "license": "CC-BY-SA-4.0",
+              "origin": "self-made",
+              "added": "2026-10-04",
+              "removed": false,
+              "files": [
+                {
+                  "name": "MT1005_notes_thu-nghiem-3-ghi-chu-dao-ham-co-metadata.pdf",
+                  "size": 1282,
+                  "sha256": "5eb2aadd3531e706537810333ff054457314f0001b6988357f1f6393c5667e87",
+                  "mime": "application/pdf",
+                  "quarantine": "clean/5M6SWap8p3/MT1005_notes_thu-nghiem-3-ghi-chu-dao-ham-co-metadata.pdf",
+                  "uploadSha256": "61f03a0e55df5b399dd8c10d565a19d11e17c8f5b31f7f707a8f9cf400ca3cef",
+                  "url": "https://github.com/bk-study-library/bk-study-library/releases/download/files-HK261/MT1005_notes_thu-nghiem-3-ghi-chu-dao-ham-co-metadata.pdf"
+                }
+              ]
             },
             {
               "id": "vi-du-openstax-calculus-volume-3",

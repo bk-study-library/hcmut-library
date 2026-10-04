@@ -12,11 +12,12 @@
   "files": [
     {
       "name": "MT1005_notes_thu-nghiem-3-ghi-chu-dao-ham-co-metadata.pdf",
-      "size": 812,
-      "sha256": "61f03a0e55df5b399dd8c10d565a19d11e17c8f5b31f7f707a8f9cf400ca3cef",
+      "size": 1282,
+      "sha256": "5eb2aadd3531e706537810333ff054457314f0001b6988357f1f6393c5667e87",
       "mime": "application/pdf",
-      "quarantine": "pending/5M6SWap8p3/MT1005_notes_thu-nghiem-3-ghi-chu-dao-ham-co-metadata.pdf",
-      "uploadSha256": "61f03a0e55df5b399dd8c10d565a19d11e17c8f5b31f7f707a8f9cf400ca3cef"
+      "quarantine": "clean/5M6SWap8p3/MT1005_notes_thu-nghiem-3-ghi-chu-dao-ham-co-metadata.pdf",
+      "uploadSha256": "61f03a0e55df5b399dd8c10d565a19d11e17c8f5b31f7f707a8f9cf400ca3cef",
+      "url": "https://github.com/bk-study-library/bk-study-library/releases/download/files-HK261/MT1005_notes_thu-nghiem-3-ghi-chu-dao-ham-co-metadata.pdf"
     }
   ]
 }
