@@ -4,7 +4,7 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import crypto from 'node:crypto';
-import { parseReleaseUrl, planPublish, planRemovals, deletedWithRelease, branchCode, pendingSha, verifyFile, isLightPr } from '../scripts/upload/publish.mjs';
+import { parseReleaseUrl, planPublish, planRemovals, deletedWithRelease, branchCode, pendingSha, verifyFile, isLightPr, dispatchTarget, assertReleaseWritable } from '../scripts/upload/publish.mjs';
 import { releaseAssetUrl } from '../scripts/upload/term.mjs';
 
 const REPO = 'bk-study-library/hcmut-library';
@@ -153,4 +153,79 @@ test('isLightPr: chỉ PR có một mục sách tham khảo không file mới b�
   assert.equal(isLightPr([...files, { filename: 'scripts/x.mjs', status: 'added' }], read(book), `upload/${CODE}`), false);
   assert.equal(isLightPr(files, read(book), 'main'), false);
   assert.equal(isLightPr(files, () => { throw new Error('mất file'); }, `upload/${CODE}`), false);
+});
+
+const ITEM_REL = 'courses/MT1005/items/tom-tat.json';
+
+test('dispatchTarget: mục do bot tải lên, còn bản sạch trong kho thì ra mã bài và nhánh', () => {
+  const seen = [];
+  const read = (rel) => {
+    seen.push(rel);
+    return item();
+  };
+  assert.deepEqual(dispatchTarget(ITEM_REL, read), { item: ITEM_REL, code: CODE, light: 'false', branch: `upload/${CODE}` });
+  assert.deepEqual(seen, [ITEM_REL]);
+});
+
+test('dispatchTarget: đường dẫn sai dạng thì không đọc file', () => {
+  const read = () => {
+    throw new Error('không được đọc');
+  };
+  for (const bad of [
+    undefined,
+    '',
+    'courses/MT1005/items/tom-tat',
+    'courses/MT1005/items/tom-tat.json ',
+    ' courses/MT1005/items/tom-tat.json',
+    'courses/MT1005/items/../items/tom-tat.json',
+    'courses/../catalog/items/x.json',
+    '/courses/MT1005/items/tom-tat.json',
+    './courses/MT1005/items/tom-tat.json',
+    'courses/MT1005/items/sub/tom-tat.json',
+    'courses\\MT1005\\items\\tom-tat.json',
+    'courses/MT1005/items/tom-tat.json\nx',
+    'courses/MT1005/items/$(id).json',
+    'courses/MT1005/items/tom tat.json',
+    'catalog/policy.json',
+    'courses/MT1005/README.md',
+  ]) {
+    assert.throws(() => dispatchTarget(bad, read), /Đường dẫn mục tài liệu không hợp lệ/, JSON.stringify(bad));
+  }
+});
+
+test('dispatchTarget: file không có, sai chỗ, đã gỡ hay không do bot tải lên thì lỗi', () => {
+  assert.throws(() => dispatchTarget(ITEM_REL, () => { throw new Error('ENOENT'); }), /Không đọc được/);
+  assert.throws(() => dispatchTarget(ITEM_REL, () => null), /không phải mục tài liệu/);
+  assert.throws(() => dispatchTarget(ITEM_REL, () => item({ id: 'khac' })), /không khớp course và id/);
+  assert.throws(() => dispatchTarget(ITEM_REL, () => item({ course: 'CO1005' })), /không khớp course và id/);
+  assert.throws(() => dispatchTarget(ITEM_REL, () => item({ removed: true })), /đã gỡ/);
+  // Mục do người bảo trì thêm tay: không có khóa trong kho cách ly.
+  assert.throws(() => dispatchTarget(ITEM_REL, () => item({}, { quarantine: undefined })), /cách ly/);
+  assert.throws(() => dispatchTarget(ITEM_REL, () => item({}, { quarantine: `pending/${CODE}/${NAME}` })), /bản đã làm sạch/);
+  assert.throws(() => dispatchTarget(ITEM_REL, () => item({ files: [] })), /đúng một file/);
+  const book = { id: 'tom-tat', course: 'MT1005', type: 'book-ref', title: 'Sách', removed: false };
+  assert.throws(() => dispatchTarget(ITEM_REL, () => book), /đúng một file/);
+});
+
+test('dispatchTarget và planPublish: mục EE5429 trên repo phát hành lên tag thay thế', () => {
+  const rel = 'courses/EE5429/items/giai-bai-tap-do-thi-smith.json';
+  const read = (p) => JSON.parse(fs.readFileSync(new URL(`../${p}`, import.meta.url), 'utf8'));
+  const target = dispatchTarget(rel, read);
+  assert.equal(target.code, 'unEqefr6Qt');
+  const [todo] = planPublish([read(rel)], new Map(), REPO);
+  assert.equal(todo.tag, 'files-HK261b');
+  assert.equal(todo.quarantine, 'clean/unEqefr6Qt/EE5429_exercise-solution_giai-bai-tap-do-thi-smith.pdf');
+});
+
+test('assertReleaseWritable: immutable release mà còn file cần đưa lên thì báo cách sửa', () => {
+  const todo = planPublish([item()], new Map(), REPO)[0];
+  assert.doesNotThrow(() => assertReleaseWritable(todo, { exists: true, immutable: false }, 'files-HK251'));
+  assert.doesNotThrow(() => assertReleaseWritable(undefined, { exists: true, immutable: true }, 'files-HK251'));
+  assert.doesNotThrow(() => assertReleaseWritable(todo, { exists: false, immutable: false }, 'files-HK251'));
+  assert.throws(() => assertReleaseWritable(todo, { exists: true, immutable: true }, 'files-HK251'), (e) => {
+    assert.match(e.message, /files-HK251 là immutable release/);
+    assert.match(e.message, /releaseTagOverrides/);
+    assert.match(e.message, /workflow_dispatch/);
+    return true;
+  });
 });

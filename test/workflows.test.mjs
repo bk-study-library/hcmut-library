@@ -75,6 +75,21 @@ test('kiem-file: có virus thì đóng PR bằng token App và xóa cả mã xem
   assert.match(close, /token\/\$CODE/);
 });
 
+test('phat-hanh-file: chạy tay chỉ trên main, ô item đi qua env và được kiểm bằng dispatch-locate', () => {
+  const text = read('phat-hanh-file.yml');
+  assert.match(text, /\n {2}workflow_dispatch:\n {4}inputs:\n {6}item:\n[\s\S]*?required: true\n {8}type: string\n/);
+  const job = jobs(text)['phat-hanh'];
+  assert.match(job, /\(github\.event_name == 'workflow_dispatch' && github\.ref == 'refs\/heads\/main'\) \|\|/);
+  // inputs chỉ được dùng ở một chỗ: env ITEM_INPUT của bước locate.
+  assert.deepEqual([...text.matchAll(/inputs\.item/g)].length, 1);
+  assert.match(job, /ITEM_INPUT: \$\{\{ inputs\.item \}\}/);
+  assert.match(job, /publish\.mjs dispatch-locate --item "\$ITEM_INPUT" --root \./);
+  // Bước plan lấy nhánh từ locate (PR: nhánh upload/*, chạy tay: upload/<mã bài> của mục).
+  assert.match(job, /id: plan[\s\S]*?BRANCH: \$\{\{ steps\.locate\.outputs\.branch \}\}/);
+  // go-file không chạy khi chạy tay.
+  assert.match(jobs(text)['go-file'], /if: github\.event_name == 'push'\n/);
+});
+
 test('kiem-file: gắn nhãn can-xem-tay khi apply báo manual', () => {
   const text = read('kiem-file.yml');
   assert.match(text, /if: always\(\) && steps\.apply\.outputs\.manual == 'true'[\s\S]*?labels\[\]=can-xem-tay/);

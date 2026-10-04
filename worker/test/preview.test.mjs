@@ -67,6 +67,14 @@ describe('/xem-truoc: link được phép', () => {
     }
   });
 
+  it('tag thay thế files-HK<3 số><chữ thường> (releaseTagOverrides) cũng xem trước được', async () => {
+    const u = `https://github.com/${REPO}/releases/download/files-HK261b/MT1005_summary_tom-tat.pdf`;
+    const fetch = fakeFetch({ [u]: redirect(CDN), [CDN]: new Response(pdf) });
+    const { res } = await get(u, { fetch });
+    expect(res.status).toBe(200);
+    expect(res.headers.get('content-type')).toBe('application/pdf');
+  });
+
   it('Markdown trên site: trả chữ thường', async () => {
     const fetch = fakeFetch({ [MD]: new Response('# Bảng\n<script>x</script>', { headers: { 'Content-Type': 'text/html' } }) });
     const { res } = await get(MD, { fetch });
@@ -91,6 +99,9 @@ describe('/xem-truoc: link bị từ chối', () => {
     ['http', `http://github.com/${REPO}/releases/download/files-HK261/a.pdf`],
     ['tag sai', `https://github.com/${REPO}/releases/download/v1.0/a.pdf`],
     ['tag files-<môn>', `https://github.com/${REPO}/releases/download/files-EE1009/a.pdf`],
+    ['tag thêm hai chữ', `https://github.com/${REPO}/releases/download/files-HK261bb/a.pdf`],
+    ['tag thêm chữ hoa', `https://github.com/${REPO}/releases/download/files-HK261B/a.pdf`],
+    ['tag thêm gạch ngang', `https://github.com/${REPO}/releases/download/files-HK261-b/a.pdf`],
     ['đuôi không xem được', `https://github.com/${REPO}/releases/download/files-HK261/a.docx`],
     ['đuôi html', `https://github.com/${REPO}/releases/download/files-HK261/a.html`],
     ['zip', `https://github.com/${REPO}/releases/download/files-HK261/a.zip`],

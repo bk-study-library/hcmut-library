@@ -1,7 +1,10 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { slugify, fileName, uniqueId } from '../scripts/upload/naming.mjs';
-import { termFor, releaseTag, releaseAssetUrl } from '../scripts/upload/term.mjs';
+import { readFileSync } from 'node:fs';
+import { termFor, releaseTag, releaseAssetUrl, releaseTagOverrideErrors } from '../scripts/upload/term.mjs';
+import { parseReleaseUrl } from '../scripts/upload/publish.mjs';
+import { previewTarget } from '../scripts/lib/preview.mjs';
 
 const terms = { HK1: [9, 10, 11, 12, 1], HK2: [2, 3, 4, 5, 6], HK3: [7, 8] };
 
@@ -42,8 +45,52 @@ test('termFor theo năm học', () => {
 
 test('releaseTag và releaseAssetUrl', () => {
   assert.equal(releaseTag('HK251'), 'files-HK251');
+  assert.equal(releaseTag('HK251', { terms }), 'files-HK251');
   assert.equal(
     releaseAssetUrl('o/r', 'files-HK251', 'a b.pdf'),
     'https://github.com/o/r/releases/download/files-HK251/a%20b.pdf',
   );
+});
+
+test('releaseTag dùng tag thay thế trong releaseTagOverrides', () => {
+  const policy = { terms, releaseTagOverrides: { HK261: 'files-HK261b' } };
+  assert.equal(releaseTag('HK261', policy), 'files-HK261b');
+  assert.equal(releaseTag('HK262', policy), 'files-HK262');
+  // Khóa của Object.prototype không bị coi là học kỳ có tag thay thế.
+  assert.equal(releaseTag('toString', policy), 'files-toString');
+});
+
+test('releaseTagOverrides sai dạng thì báo lỗi', () => {
+  assert.deepEqual(releaseTagOverrideErrors({}), []);
+  assert.deepEqual(releaseTagOverrideErrors({ releaseTagOverrides: {} }), []);
+  for (const bad of [
+    [],
+    null,
+    'files-HK261b',
+    { HK261: 'files-HK261' },
+    { HK261: 'files-HK262b' },
+    { HK261: 'files-HK261-b' },
+    { HK261: 'files-HK261B' },
+    { HK261: 'files-HK261bb' },
+    { HK261: 'files-HK261b/x' },
+    { HK261: 7 },
+    { HK26: 'files-HK26b' },
+    { hk261: 'files-hk261b' },
+  ]) {
+    const policy = { releaseTagOverrides: bad };
+    assert.ok(releaseTagOverrideErrors(policy).length > 0, JSON.stringify(bad));
+    assert.throws(() => releaseTag('HK261', policy), /catalog\/policy\.json/);
+  }
+});
+
+test('tag thay thế trong catalog/policy.json hợp lệ, phát hành và xem trước được', () => {
+  const policy = JSON.parse(readFileSync(new URL('../catalog/policy.json', import.meta.url), 'utf8'));
+  assert.deepEqual(releaseTagOverrideErrors(policy), []);
+  const repo = 'bk-study-library/hcmut-library';
+  for (const term of Object.keys(policy.releaseTagOverrides || {})) {
+    const tag = releaseTag(term, policy);
+    const url = releaseAssetUrl(repo, tag, 'MT1005_summary_a.pdf');
+    assert.deepEqual(parseReleaseUrl(url, repo), { tag, name: 'MT1005_summary_a.pdf' });
+    assert.ok(previewTarget(url, { repo, site: 'https://example.org/' }), tag);
+  }
 });
