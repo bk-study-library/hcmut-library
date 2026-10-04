@@ -16,7 +16,7 @@ const SKIP_DIRS = new Set(['.git', 'node_modules', 'site']);
 
 function loadSchemas() {
   const s = (n) => JSON.parse(fs.readFileSync(path.join(TOOL_ROOT, 'schema', `${n}.schema.json`), 'utf8'));
-  return { course: s('course'), faculty: s('faculty'), program: s('program'), item: s('item') };
+  return { course: s('course'), faculty: s('faculty'), program: s('program'), item: s('item'), major: s('major') };
 }
 
 function rel(root, p) {
@@ -69,8 +69,8 @@ export function officialPdfUrl(url, hosts) {
   return u.protocol === 'https:' && !u.username && !u.password && !u.port && hostAllowed(u.hostname, hosts);
 }
 
-// programPdfHosts của catalog/site.json trong root; repo không có file thì dùng của công cụ.
-function readPdfHosts(root, err) {
+// Danh sách host (programPdfHosts, handbookHosts) trong catalog/site.json của root; repo không có file thì dùng của công cụ.
+function readHosts(root, err, key = 'programPdfHosts') {
   const own = path.join(root, 'catalog', 'site.json');
   const p = fs.existsSync(own) ? own : path.join(TOOL_ROOT, 'catalog', 'site.json');
   let cfg;
@@ -80,10 +80,10 @@ function readPdfHosts(root, err) {
     err('JSON', rel(root, p), `không đọc được JSON: ${e.message}`);
     return [];
   }
-  const hosts = cfg.programPdfHosts;
+  const hosts = cfg[key];
   if (hosts === undefined) return [];
   if (!Array.isArray(hosts) || !hosts.every((h) => typeof h === 'string' && /^(\*\.)?[a-z0-9.-]+$/.test(h))) {
-    err('SCHEMA', 'catalog/site.json', 'programPdfHosts cần là mảng tên miền, ví dụ "drive.google.com" hoặc "*.hcmut.edu.vn"');
+    err('SCHEMA', 'catalog/site.json', `${key} cần là mảng tên miền, ví dụ "drive.google.com" hoặc "*.hcmut.edu.vn"`);
     return [];
   }
   return hosts;
@@ -199,12 +199,47 @@ export function loadRepo(root) {
     programs.set(pr.code, { ...pr, _file: rel(root, p) });
   }
 
+  // Ngành (file không bắt buộc): mã không trùng, khoa có trong faculties.json.
+  const majorsPath = path.join(root, 'catalog', 'majors.json');
+  const majors = new Map();
+  let majorsUpdated = null;
+  if (fs.existsSync(majorsPath)) {
+    const m = readJson(majorsPath);
+    if (m) {
+      check(schemas.major, m, majorsPath);
+      majorsUpdated = m.updated || null;
+      for (const x of Array.isArray(m.majors) ? m.majors : []) {
+        if (majors.has(x.code)) err('DUP_ID', 'catalog/majors.json', `trùng mã ngành ${x.code}`);
+        majors.set(x.code, x);
+        if (!facultyKeys.has(x.faculty)) err('FACULTY_MISSING', 'catalog/majors.json', `ngành ${x.code}: khoa "${x.faculty}" không có trong faculties.json`);
+      }
+    }
+  }
+
   // Link PDF chính thức của chương trình: chỉ https, chỉ host trong catalog/site.json (programPdfHosts).
-  const pdfHosts = readPdfHosts(root, err);
+  // Link Sổ tay (handbookUrl) của môn, chương trình, ngành: chỉ host trong handbookHosts.
+  const pdfHosts = readHosts(root, err);
+  const handbookHosts = readHosts(root, err, 'handbookHosts');
+  const checkHandbook = (url, file, what) => {
+    if (url != null && !officialPdfUrl(url, handbookHosts)) {
+      err('HANDBOOK_URL', file, `${what}handbookUrl cần là link https tới host trong catalog/site.json (handbookHosts: ${handbookHosts.join(', ') || 'trống'}), gặp ${url}`);
+    }
+  };
+  for (const m of majors.values()) checkHandbook(m.handbookUrl, 'catalog/majors.json', `ngành ${m.code}: `);
+  for (const c of courses.values()) checkHandbook(c.handbookUrl, c._file, '');
   for (const pr of programs.values()) {
     for (const k of ['ctdtUrl', 'planUrl']) {
       if (pr[k] != null && !officialPdfUrl(pr[k], pdfHosts)) {
         err('PROGRAM_URL', pr._file, `${k} cần là link https tới host trong catalog/site.json (programPdfHosts: ${pdfHosts.join(', ') || 'trống'}), gặp ${pr[k]}`);
+      }
+    }
+    checkHandbook(pr.handbookUrl, pr._file, '');
+    // Chương trình gắn ngành thì ngành phải có trong catalog/majors.json.
+    if (pr.major && !majors.has(pr.major)) err('MAJOR_MISSING', pr._file, `ngành ${pr.major} không có trong catalog/majors.json`);
+    for (const b of pr.blocks || []) {
+      if (b.requiredUnknown && b.required) err('BLOCK_REQUIRED', pr._file, `khối ${b.id}: có requiredUnknown thì required là false`);
+      for (const id of Object.keys(b.semesters || {})) {
+        if (!(b.courses || []).includes(id)) err('SEMESTER_REF', pr._file, `khối ${b.id}: semesters có ${id} nhưng courses không có`);
       }
     }
   }
@@ -360,7 +395,7 @@ export function loadRepo(root) {
     for (const s of jsonStrings(c, '', [])) for (const h of scanText(s)) err(h.code, c._file, `có thể là ${h.label}: "${h.match}"`);
   }
 
-  return { root, policy, faculties, partners, courses, programs, items, errors, warnings };
+  return { root, policy, faculties, partners, majors, majorsUpdated, courses, programs, items, errors, warnings };
 }
 
 function scanDisk(root, dir, err, LIMITS) {
@@ -442,12 +477,14 @@ export function buildIndex(repo, { repoSlug = 'bk-study-library/hcmut-library' }
   const programs = [...repo.programs.values()]
     .sort((a, b) => a.code.localeCompare(b.code))
     .map((p) => cleanCourse(p));
+  const majors = [...(repo.majors || new Map()).values()].sort((a, b) => a.code.localeCompare(b.code));
   return {
     version: 1,
     repo: repoSlug,
     generated,
-    counts: { faculties: faculties.length, courses: repo.courses.size, programs: programs.length, items: repo.items.length },
+    counts: { faculties: faculties.length, courses: repo.courses.size, programs: programs.length, majors: majors.length, items: repo.items.length },
     faculties,
+    majors,
     programs,
     partners: repo.partners,
   };

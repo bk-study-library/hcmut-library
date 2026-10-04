@@ -1,0 +1,100 @@
+[
+  {
+    "key": "7520103_CQ_2024",
+    "major": "7520103",
+    "type": "CQ",
+    "year": 2024,
+    "name": "Kỹ thuật Cơ khí",
+    "nameEn": "Mechanical Engineering",
+    "faculty": "fme",
+    "degree": "cu-nhan",
+    "totalCredits": 132,
+    "ctdtUrl": "https://drive.google.com/file/d/ctdt-ck-2024/view",
+    "planUrl": "https://drive.google.com/file/d/khgd-ck-2024/view",
+    "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/undergraduate/7520103?program=CQ",
+    "source": "handbook",
+    "semesterSource": { "how": "from-cohort-onward", "urls": ["https://drive.google.com/file/d/khgd-ck-2024/view"] },
+    "blocks": [
+      { "name": "A.1. TOÁN", "path": ["A. TOÁN & KHOA HỌC TỰ NHIÊN"], "kind": "toan-khtn", "required": true, "creditsNeed": 15, "courses": [{ "code": "MT1003", "semester": 1 }, { "code": "PH1003", "semester": 1 }] },
+      { "name": "B.5. NGOẠI NGỮ", "path": ["B. GIÁO DỤC CHUNG"], "kind": "ngoai-ngu", "required": true, "creditsNeed": 8, "courses": [{ "code": "LA1003", "semester": 2 }] },
+      { "name": "C.1. BẮT BUỘC CƠ SỞ NGÀNH", "path": ["C. CƠ SỞ NGÀNH"], "kind": "co-so-nganh", "required": true, "creditsNeed": null, "courses": [{ "code": "ME2045", "semester": 3 }, { "code": "ME2007", "semester": 4, "semesters": [4, 6] }, { "code": "ME3239", "semester": null }] },
+      { "name": "H.1. GIÁO DỤC THỂ CHẤT HỌC PHẦN 1", "path": ["H. GIÁO DỤC THỂ CHẤT"], "kind": "the-chat", "required": false, "creditsNeed": null, "coursesNeed": 1, "courses": [{ "code": "PE1009", "semester": null }] },
+      { "name": "G. TỰ CHỌN TỰ DO", "path": [], "kind": "tu-chon-tu-do", "required": null, "creditsNeed": 9, "courses": [] }
+    ],
+    "planDiff": { "inPlanNotHandbook": [], "inHandbookNotPlan": [] }
+  },
+  {
+    "key": "7520103_CTTA_2025",
+    "major": "7520103",
+    "type": "CTTA",
+    "year": 2025,
+    "name": "Kỹ thuật Cơ khí",
+    "faculty": "fme",
+    "degree": "cu-nhan",
+    "totalCredits": 132,
+    "ctdtUrl": null,
+    "planUrl": null,
+    "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/undergraduate/7520103?program=CTTA",
+    "source": "handbook",
+    "semesterSource": { "how": "cq-plan-of-same-major-from-cohort-onward", "urls": [] },
+    "qualityFlags": ["Lệch nhiều so với Kế hoạch giảng dạy: 3 mã có trong KHGD nhưng không có trên Sổ tay."],
+    "blocks": [
+      { "name": "A.1. TOÁN", "path": [], "kind": "toan-khtn", "required": true, "creditsNeed": 15, "courses": [{ "code": "MT1003", "semester": 1 }] }
+    ]
+  },
+  {
+    "key": "7520103_CQ_2019",
+    "major": "7520103",
+    "type": "CQ",
+    "year": 2019,
+    "name": "Cử nhân Kỹ thuật Cơ khí",
+    "tableName": "Kỹ thuật Cơ khí",
+    "faculty": "fme",
+    "degree": null,
+    "totalCredits": 128,
+    "ctdtUrl": "https://drive.google.com/file/d/ctdt-ck-2019/view",
+    "planUrl": "https://drive.google.com/file/d/khgd-ck-2019/view",
+    "handbookUrl": null,
+    "source": "khgd-only",
+    "note": "Sổ tay không có năm này cho ngành và loại chương trình này. Danh sách môn lấy từ Kế hoạch giảng dạy (PDF).",
+    "semesterSource": { "how": "exact", "urls": ["https://drive.google.com/file/d/khgd-ck-2019/view"] },
+    "blocks": [
+      { "name": "Học kỳ 1", "path": [], "kind": "khac", "required": null, "creditsNeed": null, "courses": [{ "code": "MT1003", "semester": 1 }, { "code": "EE4105", "semester": 1 }] },
+      { "name": "Học kỳ 2", "path": [], "kind": "khac", "required": null, "creditsNeed": null, "courses": [{ "code": "GE3079", "semester": 2 }, { "code": "GE1023", "semester": 2 }, { "code": "CH4093", "semester": 2 }] }
+    ]
+  },
+  {
+    "key": "7580211_CQ_2024",
+    "major": "7580211",
+    "type": "CQ",
+    "year": 2024,
+    "name": "Địa kỹ thuật xây dựng",
+    "faculty": "geopet",
+    "degree": "cu-nhan",
+    "totalCredits": 130,
+    "ctdtUrl": "https://example.com/khong-nhan.pdf",
+    "planUrl": null,
+    "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/undergraduate/7580211?program=CQ",
+    "source": "handbook",
+    "semesterSource": { "how": "exact", "urls": [] },
+    "blocks": [
+      { "name": "D. NGÀNH", "path": [], "kind": "nganh", "required": true, "creditsNeed": 12, "courses": [{ "code": "GE4169", "semester": 5 }, { "code": "XX9999", "semester": 5 }] }
+    ]
+  },
+  {
+    "key": "7520201+7520207_SN_2024",
+    "major": "7520201+7520207",
+    "type": "SN",
+    "year": 2024,
+    "name": "Song ngành: Kỹ thuật Điện - Kỹ thuật Điện tử - Viễn thông",
+    "faculty": "dee",
+    "degree": null,
+    "totalCredits": null,
+    "ctdtUrl": null,
+    "planUrl": null,
+    "handbookUrl": null,
+    "source": "khgd-only",
+    "semesterSource": null,
+    "blocks": []
+  }
+]

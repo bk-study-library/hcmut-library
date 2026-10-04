@@ -1,13 +1,13 @@
 // Bộ kiểm JSON Schema tối giản, không cần thư viện ngoài.
 // Chỉ hỗ trợ các từ khóa mà schema/ đang dùng: type, enum, const, pattern,
 // minLength, maxLength, minimum, maximum, required, properties,
-// additionalProperties (false), items. Gặp từ khóa lạ thì báo lỗi để
-// không âm thầm bỏ qua quy tắc.
+// additionalProperties (false hoặc một schema cho mọi trường còn lại), propertyNames
+// (schema cho tên trường), items. Gặp từ khóa lạ thì báo lỗi để không âm thầm bỏ qua quy tắc.
 
 const KNOWN = new Set([
   '$schema', '$id', 'title', 'description', 'type', 'enum', 'const', 'pattern',
   'minLength', 'maxLength', 'minimum', 'maximum', 'required', 'properties',
-  'additionalProperties', 'items',
+  'additionalProperties', 'propertyNames', 'items',
 ]);
 
 function typeOf(v) {
@@ -62,8 +62,10 @@ function walk(s, v, path, errors) {
     }
     const props = s.properties || {};
     for (const [k, val] of Object.entries(v)) {
+      if (s.propertyNames) walk(s.propertyNames, k, `${path} (tên trường "${k}")`, errors);
       if (props[k]) walk(props[k], val, `${path}.${k}`, errors);
       else if (s.additionalProperties === false) errors.push(`${path}: trường lạ "${k}"`);
+      else if (s.additionalProperties && typeof s.additionalProperties === 'object') walk(s.additionalProperties, val, `${path}.${k}`, errors);
     }
   }
   if (Array.isArray(v) && s.items) {

@@ -13,12 +13,20 @@
     "nameEn": { "type": "string", "minLength": 1 },
     "faculty": { "type": "string", "pattern": "^[A-Za-z0-9_-]+$" },
     "year": { "type": "string", "pattern": "^[0-9]{4}$", "description": "Khóa (năm vào trường). Bỏ trống khi nguồn không ghi khóa." },
-    "variant": { "type": "string", "minLength": 1, "description": "Loại chương trình, ví dụ Dạy và học bằng tiếng Anh. Loại thường thì bỏ trống." },
+    "major": { "type": "string", "pattern": "^[0-9][0-9A-Za-z+]{3,31}$", "description": "Mã ngành, khóa trong catalog/majors.json. Vắng với chương trình chưa gắn ngành." },
+    "type": { "enum": ["CQ", "CTTA", "CNTN", "PFIEV", "SN", "CTTT", "DHNB", "VLVH", "CTQT"], "description": "Loại chương trình: CQ tiêu chuẩn, CTTA dạy bằng tiếng Anh, CNTN tài năng, PFIEV, SN song ngành, CTTT tiên tiến, DHNB định hướng Nhật Bản, VLVH vừa làm vừa học, CTQT chuyển tiếp quốc tế." },
+    "track": { "type": "string", "minLength": 1, "description": "Chuyên ngành, khi ngành có CTĐT riêng cho từng chuyên ngành." },
+    "level": { "enum": ["dai-hoc", "thac-si", "tien-si"], "description": "Bậc đào tạo. Vắng nghĩa là dai-hoc." },
+    "degree": { "enum": ["cu-nhan", "ky-su", "ky-su-chuyen-sau", "thac-si", "tien-si"], "description": "Văn bằng theo nguồn. Vắng khi nguồn không ghi." },
+    "totalCredits": { "type": "integer", "minimum": 0, "maximum": 400, "description": "Tổng số tín chỉ của chương trình theo nguồn." },
+    "variant": { "type": "string", "minLength": 1, "description": "Nhãn loại chương trình để hiển thị, ví dụ Dạy và học bằng tiếng Anh. Loại thường thì bỏ trống." },
     "listed": { "type": "boolean", "description": "false: không hiện trong danh sách chương trình ở trang chủ và trang khoa (ví dụ bản nháp chép từ MyBK). Vắng nghĩa là true. Trang riêng vẫn được dựng để link từ trang môn không hỏng." },
     "note": { "type": "string" },
+    "reviewNote": { "type": "string", "minLength": 1, "description": "Ghi chú của người duyệt. Script nhập giữ nguyên trường này, còn note do script nhập ghi lại mỗi lần." },
     "source": { "type": "string" },
     "ctdtUrl": { "type": "string", "pattern": "^https://", "description": "Link PDF CTĐT chính thức của đúng ngành và khóa. Chỉ nhận host trong catalog/site.json (programPdfHosts)." },
     "planUrl": { "type": "string", "pattern": "^https://", "description": "Link PDF kế hoạch giảng dạy chính thức của đúng ngành và khóa. Chỉ nhận host trong catalog/site.json (programPdfHosts)." },
+    "handbookUrl": { "type": "string", "pattern": "^https://", "description": "Trang chương trình trên Sổ tay HCMUT. Chỉ nhận host trong catalog/site.json (handbookHosts)." },
     "blocks": {
       "type": "array",
       "description": "Có thể rỗng khi chưa có danh sách môn.",
@@ -30,9 +38,21 @@
           "id": { "type": "string", "minLength": 1 },
           "name": { "type": "string", "minLength": 1 },
           "group": { "type": "string" },
+          "kind": {
+            "enum": ["toan-khtn", "ly-luan-chinh-tri", "giao-duc-chung", "ngoai-ngu", "co-so-nganh", "nganh", "tu-chon-nganh", "chuyen-nganh", "tu-chon-tu-do", "tot-nghiep", "quoc-phong", "the-chat", "dieu-kien-tot-nghiep", "khac"],
+            "description": "Vai trò của khối, chuẩn hóa từ tên khối (chữ cái của khối đổi theo khóa, vai trò thì không)."
+          },
           "required": { "type": "boolean" },
+          "requiredUnknown": { "const": true, "description": "Nguồn không ghi khối bắt buộc hay tự chọn. Khi đó required là false và web không ghi nhãn bắt buộc, tự chọn." },
           "creditsNeed": { "type": "integer", "minimum": 0 },
-          "courses": { "type": "array", "items": { "type": "string", "pattern": "^[A-Z0-9_]{3,12}(-[0-9]{4})?$" } }
+          "coursesNeed": { "type": "integer", "minimum": 0, "description": "Số môn cần chọn trong khối, khi nguồn ghi theo số môn." },
+          "courses": { "type": "array", "items": { "type": "string", "pattern": "^[A-Z0-9_]{3,12}(-[0-9]{4})?$" } },
+          "semesters": {
+            "type": "object",
+            "description": "Học kỳ đề xuất theo kế hoạch giảng dạy: { ID môn: số học kỳ }. Khóa phải có trong courses. Môn không có ở đây thì chưa có học kỳ đề xuất.",
+            "propertyNames": { "type": "string", "pattern": "^[A-Z0-9_]{3,12}(-[0-9]{4})?$" },
+            "additionalProperties": { "type": "integer", "minimum": 1, "maximum": 12 }
+          }
         }
       }
     },

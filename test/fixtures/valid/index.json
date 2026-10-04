@@ -6,6 +6,7 @@
     "faculties": 2,
     "courses": 3,
     "programs": 1,
+    "majors": 0,
     "items": 4
   },
   "faculties": [
@@ -169,6 +170,7 @@
       ]
     }
   ],
+  "majors": [],
   "programs": [
     {
       "code": "TEST_2019",
