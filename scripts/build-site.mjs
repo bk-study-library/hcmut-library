@@ -32,7 +32,23 @@ function readSiteConfig(root) {
   const own = path.join(root, 'catalog', 'site.json');
   const p = fs.existsSync(own) ? own : path.join(TOOL_ROOT, 'catalog', 'site.json');
   const cfg = JSON.parse(fs.readFileSync(p, 'utf8'));
-  return { uploadEndpoint: String(cfg.uploadEndpoint || ''), turnstileSiteKey: String(cfg.turnstileSiteKey || '') };
+  return {
+    uploadEndpoint: String(cfg.uploadEndpoint || ''),
+    turnstileSiteKey: String(cfg.turnstileSiteKey || ''),
+    bookSources: Array.isArray(cfg.bookSources) ? cfg.bookSources : [],
+  };
+}
+
+// Link tìm sách ở nguồn hợp pháp, theo catalog/site.json (bookSources). Có ISBN và nguồn có mẫu {isbn} thì
+// tra theo ISBN; không thì tìm theo tên sách và tác giả đầu tiên ({q}); không có mẫu nào thì dùng url.
+export function bookLinks(book, sources, lang) {
+  const q = encodeURIComponent([book.title, (book.authors || [])[0]].filter(Boolean).join(' '));
+  return sources.map((s) => {
+    let href = s.url || '';
+    if (book.isbn && s.isbn) href = s.isbn.replace('{isbn}', encodeURIComponent(book.isbn));
+    else if (s.search) href = s.search.replace('{q}', q);
+    return { label: (lang === 'en' && s.labelEn) || s.label, href };
+  }).filter((l) => l.label && /^https:\/\//.test(l.href));
 }
 
 const jsonInScript = (o) => JSON.stringify(o).replace(/</g, '\\u003c');
@@ -213,7 +229,7 @@ function programsByYear(t, progs, hrefOf) {
     .join('');
 }
 
-function renderItem(t, it) {
+function renderItem(t, it, site) {
   const meta = [];
   if (it.term) meta.push(`${t.term} ${it.term}`);
   if (it.lab != null) meta.push(t.labNo(it.lab));
@@ -224,7 +240,10 @@ function renderItem(t, it) {
   const badges = [it.example ? `<span class="tag accent">${esc(t.example)}</span>` : '', it.removed ? `<span class="tag warn">${esc(t.removed)}</span>` : ''].join('');
   let actions = '';
   if (it.removed) actions = `<p class="muted">${esc(it.removedReason || '')}</p>`;
-  else if (it.type === 'book-ref') actions = `<p>${esc(formatBook(it.book))}</p>`;
+  else if (it.type === 'book-ref') {
+    const links = bookLinks(it.book, site.bookSources, t.lang);
+    actions = `<p>${esc(formatBook(it.book))}</p>${links.length ? `<p class="actions">${links.map((l) => `<a class="btn" href="${esc(l.href)}" rel="noopener">${esc(l.label)}</a>`).join('')}</p>` : ''}`;
+  }
   else if (it.type === 'link') actions = `<p><a class="btn" href="${esc(it.url)}" rel="noopener">${esc(t.openLink)}</a></p>`;
   else {
     actions = `<ul class="files">${(it.files || [])
@@ -240,6 +259,7 @@ function renderItem(t, it) {
 }
 
 export function buildSite({ root = TOOL_ROOT, out = path.join(TOOL_ROOT, 'site'), base = '/hcmut-library/' } = {}) {
+  const siteCfg = readSiteConfig(root);
   const repo = loadRepo(root);
   if (repo.errors.length) {
     throw new Error(`Danh mục còn ${repo.errors.length} lỗi; chạy "npm run validate" trước.`);
@@ -440,7 +460,7 @@ ${courseTable(t, f.courses, root, t.facultyCourses)}`;
       const groups = TYPE_ORDER.map((type) => {
         const list = c.items.filter((i) => i.type === type).sort((a, b) => Number(!!a.removed) - Number(!!b.removed) || a.title.localeCompare(b.title));
         if (!list.length) return '';
-        return `<section class="group"><h3>${esc(TYPES[type][lang])}</h3><ul class="items">${list.map((i) => renderItem(t, i)).join('')}</ul></section>`;
+        return `<section class="group"><h3>${esc(TYPES[type][lang])}</h3><ul class="items">${list.map((i) => renderItem(t, i, siteCfg)).join('')}</ul></section>`;
       }).join('');
       const name = t.lang === 'en' && c.nameEn ? c.nameEn : c.name;
       const retired =
