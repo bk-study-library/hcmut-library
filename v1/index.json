@@ -4,7 +4,7 @@
   "site": "https://bk-study-library.github.io/bk-study-library/",
   "counts": {
     "courses": 8,
-    "items": 9
+    "items": 8
   },
   "faculties": [
     {
@@ -212,7 +212,7 @@
       "aliases": [],
       "oldNames": [],
       "status": "active",
-      "items": 3,
+      "items": 2,
       "url": "https://bk-study-library.github.io/bk-study-library/course/MT1005/",
       "detail": "courses/MT1005.json"
     },

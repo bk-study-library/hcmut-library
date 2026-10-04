@@ -238,7 +238,7 @@
               "license": "CC-BY-SA-4.0",
               "origin": "self-made",
               "added": "2026-10-04",
-              "removed": false,
+              "removed": true,
               "description": "Bai gui thu nghiem luong tai len.",
               "term": "HK261",
               "files": [
@@ -251,7 +251,8 @@
                   "uploadSha256": "3b225e4508c7226a9dfb0a1495fb63f505b40cc1d1b2eae2e1a65162cc76c785",
                   "url": "https://github.com/bk-study-library/bk-study-library/releases/download/files-HK261/MT1005_summary_thu-nghiem-1-tom-tat-gioi-han_HK261.pdf"
                 }
-              ]
+              ],
+              "removedReason": "Bài gửi thử luồng tải lên, gỡ sau khi thử xong."
             },
             {
               "id": "vi-du-openstax-calculus-volume-3",
