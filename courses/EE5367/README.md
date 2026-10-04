@@ -14,7 +14,9 @@
 
 ## Tài liệu
 
-Chưa có tài liệu.
+### Slide bài giảng
+
+- **Slide chapter 5** (vi, CC-BY-SA-4.0): [EE5367_lecture-slides_slide-chapter-5.pdf, 2.8 MB](https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261/EE5367_lecture-slides_slide-chapter-5.pdf)
 
 ## Link
 
