@@ -47,6 +47,8 @@ function readSiteConfig(root) {
     officialProgramsPage: /^https:\/\//.test(cfg.officialProgramsPage || '') ? String(cfg.officialProgramsPage) : '',
     // Ô tìm trang chủ: số tài liệu hiện tối đa, độ dài mô tả giữ trong assets/items.json.
     docResultsMax: Number.isInteger(cfg.docResultsMax) && cfg.docResultsMax > 0 ? cfg.docResultsMax : 10,
+    // Số tài liệu mới hiện ngay dưới ô tìm ở trang chủ. 0 thì không hiện mục này.
+    recentItemsMax: Number.isInteger(cfg.recentItemsMax) && cfg.recentItemsMax >= 0 ? cfg.recentItemsMax : 8,
     docDescriptionMax: Number.isInteger(cfg.docDescriptionMax) && cfg.docDescriptionMax > 0 ? cfg.docDescriptionMax : 200,
     // Ảnh xem trước khi chia sẻ link (og:image), đường dẫn tính từ gốc site, nằm trong site-src/assets/.
     socialImage: /^assets\/[A-Za-z0-9._-]+\.png$/.test(cfg.socialImage || '') ? String(cfg.socialImage) : '',
@@ -665,6 +667,39 @@ function renderItem(t, it, site, root) {
   return `<li class="item${it.removed ? ' is-removed' : ''}" id="${esc(it.id)}"><h4>${esc(it.title)} ${badges}</h4>${it.description ? `<p>${esc(it.description)}</p>` : ''}<p class="meta">${meta.map((m) => (typeof m === 'string' ? esc(m) : m.html)).join(', ')}. ${esc(authors)}</p>${note}${extra}${actions}</li>`;
 }
 
+// Ngày dạng YYYY-MM-DD thành 04/10/2026 (tiếng Việt) hoặc 4 Oct 2026 (tiếng Anh).
+function formatDate(t, d) {
+  const [y, m, day] = d.split('-').map(Number);
+  if (t.lang === 'en') return `${day} ${['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'][m - 1]} ${y}`;
+  return `${String(day).padStart(2, '0')}/${String(m).padStart(2, '0')}/${y}`;
+}
+
+// Tài liệu mới nhất (chưa gỡ), xếp theo ngày cập nhật rồi ngày thêm.
+export function recentItems(items, max) {
+  return items
+    .filter((it) => !it.removed)
+    .map((it) => ({ it, date: it.updated || it.added }))
+    .sort((a, b) => b.date.localeCompare(a.date) || a.it.course.localeCompare(b.it.course) || a.it.id.localeCompare(b.it.id))
+    .slice(0, max);
+}
+
+// Mục "Tài liệu mới" ở trang chủ: tên, môn, loại, dung lượng (hoặc Link, Sách), ngày cập nhật.
+function recentSection(t, rows, courses, root, P) {
+  if (!rows.length) return '';
+  const li = rows
+    .map(({ it, date }) => {
+      const c = courses.get(it.course);
+      const cname = c ? (t.lang === 'en' && c.nameEn ? c.nameEn : c.name) : '';
+      const size = (it.files || []).reduce((n, f) => n + (f.size || 0), 0);
+      const kind = it.type === 'link' || it.type === 'book-ref' ? '' : size ? formatSize(size) : '';
+      const href = `${root}${P(`course/${encodeURIComponent(it.course)}/`)}#${encodeURIComponent(it.id)}`;
+      const meta = [TYPES[it.type] ? TYPES[it.type][t.lang] : it.type, kind].filter(Boolean).join(', ');
+      return `<li><a href="${href}"><span class="recent-title">${esc(it.title)}</span><span class="recent-course"><span class="code">${esc(c ? c.code : it.course)}</span> ${esc(cname)}</span><span class="muted recent-meta">${esc(meta)}</span><time class="muted recent-date" datetime="${esc(date)}">${esc(formatDate(t, date))}</time></a></li>`;
+    })
+    .join('');
+  return `<section class="recent" aria-labelledby="h-recent"><h2 id="h-recent">${esc(t.recentTitle)}</h2><ul class="recent-list">${li}</ul></section>`;
+}
+
 export function buildSite({ root = TOOL_ROOT, out = path.join(TOOL_ROOT, 'site'), base = '/hcmut-library/' } = {}) {
   const siteCfg = readSiteConfig(root);
   const repo = loadRepo(root);
@@ -900,6 +935,7 @@ export function buildSite({ root = TOOL_ROOT, out = path.join(TOOL_ROOT, 'site')
   <ul id="q-results" class="results"></ul>
   </div>
 </section>
+${recentSection(t, recentItems(repo.items, siteCfg.recentItemsMax), allCourses, root, P)}
 <section aria-labelledby="h-fac">
   <h2 id="h-fac">${esc(t.browseFaculty)}</h2>
   <ul class="grid">${facList}</ul>

@@ -442,3 +442,21 @@ td .sub { display: block; font-size: 13px; color: var(--muted); }
 .same-name-title { margin-right: 12px; }
 .results .same-name .results { margin: 0 0 8px 16px; border-left: 2px solid var(--border); }
 .results .same-name .results li:last-child { border-bottom: 0; }
+
+/* Tài liệu mới ở trang chủ */
+.recent { margin: 28px 0; }
+.recent-list { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--border); }
+.recent-list li { border-bottom: 1px solid var(--border); }
+.recent-list a { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 2px 16px; padding: 10px 4px; text-decoration: none; color: var(--text); }
+.recent-list a:hover { background: var(--surface-2); }
+.recent-list a:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+.recent-title { font-weight: 600; color: var(--accent); grid-column: 1; }
+.recent-course { grid-column: 1; font-size: 14px; color: var(--text); }
+.recent-course .code { margin-right: 6px; }
+.recent-meta { grid-column: 2; grid-row: 1; text-align: right; font-size: 13px; white-space: nowrap; }
+.recent-date { grid-column: 2; grid-row: 2; text-align: right; font-size: 13px; white-space: nowrap; }
+@media (max-width: 560px) {
+  .recent-title, .recent-course { grid-column: 1 / -1; }
+  .recent-meta { grid-column: 1; grid-row: 3; text-align: left; white-space: normal; }
+  .recent-date { grid-column: 2; grid-row: 3; }
+}
