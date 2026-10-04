@@ -320,7 +320,8 @@
         docs = window.BkDocs && docBox && Array.isArray(res[2]) ? window.BkDocs.prepare(res[2], { types: ds.types, examKinds: ds.examKinds }) : null;
         programs = (Array.isArray(res[1]) ? res[1] : []).map(function (p) {
           // Chương trình gắn ngành tìm được theo tên ngành (majorName) và mã ngành (major).
-          var text = [p.name, p.nameEn, p.majorName, p.major, p.variant, p.year, p.code.replace(/[_+]/g, ' ')].filter(Boolean).join(' ');
+          // Mã loại (type, types của ngành) để nhãn loại bấm được (?q=PFIEV, ?q=CTTA) ra đúng chương trình.
+          var text = [p.name, p.nameEn, p.majorName, p.major, p.variant, p.type, (p.types || []).join(' '), p.year, p.code.replace(/[_+]/g, ' ')].filter(Boolean).join(' ');
           return { kind: p.kind, key: p.key, code: p.code, name: p.name, nameEn: p.nameEn, year: p.year, variant: p.variant, faculty: p.faculty, courses: p.courses, programs: p.programs, words: window.BkSearch.fold(text).split(' '), folded: window.BkSearch.fold(en && p.nameEn ? p.nameEn : p.name) };
         });
         load(res[0]);

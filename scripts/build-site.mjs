@@ -365,11 +365,25 @@ function addProgramUrl(f, p) {
   return issueUrl('them-chuong-trinh.yml', fields);
 }
 
+// Nhãn loại chương trình là link mở ô tìm trang chủ với ?q=<mã loại> (hoặc nhãn variant khi chương trình
+// chưa có type), để xem mọi chương trình cùng loại. root: gốc site tính từ trang hiện tại.
+export function typeTagLink(t, root, q, label) {
+  return `<a class="tag" href="${root}${t.lang === 'en' ? 'en/' : ''}?q=${encodeURIComponent(q)}">${esc(label)}</a>`;
+}
+
+// Nhãn loại của một chương trình: theo type (trừ CQ), không có type thì theo variant.
+function programTypeTag(t, p, root) {
+  if (p.type && p.type !== 'CQ' && PROGRAM_TYPES[p.type]) return typeTagLink(t, root, p.type, PROGRAM_TYPES[p.type][t.lang]);
+  if (!p.type && p.variant) return typeTagLink(t, root, p.variant, p.variant);
+  return '';
+}
+
 // Một dòng chương trình: tên, loại, số môn (hoặc chưa có danh sách môn).
-function programLi(t, p, href, { withYear = false } = {}) {
+function programLi(t, p, href, { withYear = false, root = './' } = {}) {
   const n = programCourseCount(p);
   const label = withYear && p.year ? `${programName(t, p)} (${p.year})` : programName(t, p);
-  return `<li><a href="${href}">${esc(label)}</a>${p.variant ? ` <span class="tag">${esc(p.variant)}</span>` : ''} <span class="muted small">${esc(n ? t.coursesCount(n) : t.programNoCoursesShort)}</span></li>`;
+  const tag = programTypeTag(t, p, root);
+  return `<li><a href="${href}">${esc(label)}</a>${tag ? ` ${tag}` : ''} <span class="muted small">${esc(n ? t.coursesCount(n) : t.programNoCoursesShort)}</span></li>`;
 }
 
 // Chương trình xếp theo khóa, mới nhất trước; chương trình không ghi khóa ở cuối.
@@ -377,7 +391,7 @@ function byYearDesc(a, b) {
   return (b.year || '0000').localeCompare(a.year || '0000') || a.name.localeCompare(b.name, 'vi') || a.code.localeCompare(b.code);
 }
 
-function programsByYear(t, progs, hrefOf) {
+function programsByYear(t, progs, hrefOf, root) {
   const groups = new Map();
   for (const p of progs.slice().sort(byYearDesc)) {
     const k = p.year || '';
@@ -385,7 +399,7 @@ function programsByYear(t, progs, hrefOf) {
     groups.get(k).push(p);
   }
   return [...groups]
-    .map(([y, list]) => `<h3>${esc(y ? t.cohort(y) : t.cohortUnknown)}</h3><ul class="list">${list.map((p) => programLi(t, p, hrefOf(p))).join('')}</ul>`)
+    .map(([y, list]) => `<h3>${esc(y ? t.cohort(y) : t.cohortUnknown)}</h3><ul class="list">${list.map((p) => programLi(t, p, hrefOf(p), { root })).join('')}</ul>`)
     .join('');
 }
 
@@ -510,7 +524,7 @@ function majorRow(t, m, progs, root, P, order) {
     const p = mainProgram(filled.filter((x) => x.year === y), order);
     return `<a href="${root}${P(`program/${p.code}/`)}">${esc(y)}</a>`;
   });
-  const tags = types.map((x) => `<span class="tag">${esc(typeLabel(t, x))}</span>`).join('');
+  const tags = types.map((x) => typeTagLink(t, root, x, typeLabel(t, x))).join('');
   return `<li class="major-row"><span class="major-head"><a class="major-name" href="${href}">${esc(majorDisplayName(t, m))}</a>${tags}</span><span class="muted small">${links.length ? `${esc(t.cohortsLabel)}: ${links.join(', ')}` : esc(t.majorNoCourses)}</span></li>`;
 }
 
@@ -666,6 +680,7 @@ export function buildSite({ root = TOOL_ROOT, out = path.join(TOOL_ROOT, 'site')
           const row = { kind: 'major', code: m.code, key: majorKey(m.code), name: m.name };
           if (m.nameEn) row.nameEn = m.nameEn;
           row.faculty = m.faculty;
+          row.types = [...new Set(progsOfMajor(m.code).map((p) => p.type).filter(Boolean))].sort((a, b) => typeRank(typeOrder, a) - typeRank(typeOrder, b));
           row.programs = progsOfMajor(m.code).length;
           return row;
         }),
@@ -674,6 +689,7 @@ export function buildSite({ root = TOOL_ROOT, out = path.join(TOOL_ROOT, 'site')
         if (p.nameEn) row.nameEn = p.nameEn;
         if (p.year) row.year = p.year;
         if (p.variant) row.variant = p.variant;
+        if (p.type) row.type = p.type;
         if (p.major && majorByCode.has(p.major)) {
           row.major = p.major;
           if (majorByCode.get(p.major).name !== p.name) row.majorName = majorByCode.get(p.major).name;
@@ -716,7 +732,7 @@ export function buildSite({ root = TOOL_ROOT, out = path.join(TOOL_ROOT, 'site')
         .map((f) => {
           const ms = majorsOfFaculty(f.key);
           const { filled, empty } = loosePrograms(f.key);
-          const li = (p) => programLi(t, p, `${root}${P(`program/${p.code}/`)}`, { withYear: true });
+          const li = (p) => programLi(t, p, `${root}${P(`program/${p.code}/`)}`, { withYear: true, root });
           const parts = [];
           if (ms.length) parts.push(majorList(t, ms, progsOfMajor, root, P, typeOrder));
           if (filled.length) parts.push(`${ms.length ? `<h3>${esc(t.otherPrograms)}</h3>` : ''}<ul class="list">${filled.map(li).join('')}</ul>`);
@@ -819,7 +835,7 @@ export function buildSite({ root = TOOL_ROOT, out = path.join(TOOL_ROOT, 'site')
       const otherBlock = looseCount || !ms.length
         ? `<h2>${esc(ms.length ? t.otherPrograms : t.facultyPrograms)}</h2>
 <p class="muted">${esc(t.programsCount(looseCount))}</p>
-${loose.filled.length ? programsByYear(t, loose.filled, hrefOf) : ''}${loose.empty.length ? `<details class="prog-empty"><summary>${esc(t.emptyPrograms(loose.empty.length))}</summary>${programsByYear(t, loose.empty, hrefOf)}</details>` : ''}${looseCount ? '' : `<p class="muted">${esc(t.facultyNoPrograms)}</p>`}`
+${loose.filled.length ? programsByYear(t, loose.filled, hrefOf, root) : ''}${loose.empty.length ? `<details class="prog-empty"><summary>${esc(t.emptyPrograms(loose.empty.length))}</summary>${programsByYear(t, loose.empty, hrefOf, root)}</details>` : ''}${looseCount ? '' : `<p class="muted">${esc(t.facultyNoPrograms)}</p>`}`
         : '';
       const body = `
 <h1>${esc(facultyName(t, f))}</h1>
@@ -888,12 +904,11 @@ ${sharedUsed.length ? `<h2>${esc(t.facultySharedCourses)}</h2>\n<p class="muted"
         ? ''
         : `<div class="note" role="note"><p>${esc(t.programDraft)}${mains.length ? ` ${esc(t.programDraftSee)}: ${mains.map((x) => `<a href="${root}${P(`program/${x.code}/`)}">${esc(x.year ? `${programName(t, x)} (${x.year})` : programName(t, x))}</a>`).join(', ')}.` : ''}</p></div>`;
       const n = programCourseCount(p);
-      const variant = p.type && p.type !== 'CQ' ? typeLabel(t, p.type, true) : p.variant;
       const meta = [
         esc(t.programCode(p.code)),
         fac ? `<a href="${root}${P(`faculty/${fac.key}/`)}">${esc(facultyName(t, fac))}</a>` : null,
         pMajor ? `${esc(t.majorLink)} <a href="${root}${P(`major/${majorKey(pMajor.code)}/`)}">${esc(majorDisplayName(t, pMajor))}</a>` : null,
-        variant ? esc(variant) : null,
+        programTypeTag(t, p, root) || null,
         p.level && p.level !== DEFAULT_LEVEL && LEVELS[p.level] ? esc(LEVELS[p.level][lang]) : null,
         p.degree && DEGREES[p.degree] ? esc(DEGREES[p.degree][lang]) : null,
         p.totalCredits ? esc(t.totalCredits(p.totalCredits)) : null,
@@ -947,7 +962,7 @@ ${sharedUsed.length ? `<h2>${esc(t.facultySharedCourses)}</h2>\n<p class="muted"
       ]
         .filter(Boolean)
         .join(', ');
-      const tags = types.map((x) => `<span class="tag">${esc(typeLabel(t, x, true))}</span>`).join('');
+      const tags = types.map((x) => typeTagLink(t, root, x, typeLabel(t, x, true))).join('');
       const buttons = [];
       let hosted = '';
       if (main) {

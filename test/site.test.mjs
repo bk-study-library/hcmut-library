@@ -211,7 +211,7 @@ test('trang khoa: chương trình theo khóa mới nhất trước, có số mô
   const empty = html.indexOf('<details class="prog-empty"><summary>1 chương trình chưa có danh sách môn</summary>');
   assert.ok(empty > html.indexOf('Khóa 2019'));
   assert.ok(html.indexOf('Khóa 2026') > empty);
-  assert.match(html, /Ngành tuyển sinh thử<\/a> <span class="tag">Dạy và học bằng tiếng Anh<\/span> <span class="muted small">chưa có danh sách môn<\/span>/);
+  assert.match(html, /Ngành tuyển sinh thử<\/a> <a class="tag" href="\.\.\/\.\.\/\?q=D%E1%BA%A1y%20v%C3%A0%20h%E1%BB%8Dc%20b%E1%BA%B1ng%20ti%E1%BA%BFng%20Anh">Dạy và học bằng tiếng Anh<\/a> <span class="muted small">chưa có danh sách môn<\/span>/);
   assert.match(html, /issues\/new\?template=them-chuong-trinh\.yml&amp;khoa=Khoa\+%C4%90i%E1%BB%87n\+-\+%C4%90i%E1%BB%87n\+t%E1%BB%AD"[^>]*>Thêm chương trình đào tạo</);
   assert.match(html, /<th scope="row"><a href="\.\.\/\.\.\/course\/EE1009\/">EE1009<\/a>/);
   assert.match(read3('en/faculty/EE/index.html'), /Cohort 2026/);
@@ -237,7 +237,7 @@ test('trang chương trình chưa có danh sách môn: thông báo, nút gửi C
     /<\/div><p class="actions"><a class="btn primary" href="[^"]+" rel="noopener">Thêm chương trình đào tạo<\/a><a class="btn" href="https:\/\/example\.test\/ctdt" rel="noopener">Xem CTĐT chính thức<\/a><a class="btn subtle" href="https:\/\/hcmut\.edu\.vn\/bai-viet\/chuong-trinh-dao-tao-tu-khoa-2019" rel="noopener">Bảng CTĐT của trường<\/a><\/p>/,
   );
   // Dòng meta đọc tự nhiên: "Mã ..., khoa, ..., chưa có danh sách môn", không ghi "0 môn".
-  assert.match(html, /<p class="muted">Mã EE_TS_108_2026, <a href="\.\.\/\.\.\/faculty\/EE\/">Khoa Điện - Điện tử<\/a>, Dạy và học bằng tiếng Anh, chưa có danh sách môn<\/p>/);
+  assert.match(html, /<p class="muted">Mã EE_TS_108_2026, <a href="\.\.\/\.\.\/faculty\/EE\/">Khoa Điện - Điện tử<\/a>, <a class="tag" href="\.\.\/\.\.\/\?q=D%E1%BA%A1y%20v%C3%A0%20h%E1%BB%8Dc%20b%E1%BA%B1ng%20ti%E1%BA%BFng%20Anh">Dạy và học bằng tiếng Anh<\/a>, chưa có danh sách môn<\/p>/);
   assert.doesNotMatch(html, /0 môn/);
   assert.doesNotMatch(html, /<table/);
   assert.match(read3('en/program/EE_TS_108_2026/index.html'), /No course list yet/);
@@ -548,7 +548,7 @@ test('ô tìm trang chủ: có danh sách chương trình, chỉ gồm chương 
   const progs = JSON.parse(read('assets/programs.json'));
   assert.ok(progs.some((p) => p.code === 'TEST_2019'));
   for (const p of progs) {
-    assert.deepEqual(Object.keys(p).filter((k) => !['code', 'name', 'nameEn', 'year', 'variant', 'major', 'majorName', 'faculty', 'courses'].includes(k)), []);
+    assert.deepEqual(Object.keys(p).filter((k) => !['code', 'name', 'nameEn', 'year', 'variant', 'type', 'major', 'majorName', 'faculty', 'courses'].includes(k)), []);
     assert.equal(typeof p.courses, 'number');
   }
   const home = read('index.html');
@@ -789,10 +789,10 @@ test('trang chủ: khoa rồi ngành, mỗi ngành một dòng có nhãn loại 
   assert.match(html, /<summary><span class="prog-fac-name">Khoa Cơ khí<\/span> <span class="muted small">1 ngành, 3 chương trình<\/span><\/summary>/);
   assert.match(
     html,
-    /<li class="major-row"><span class="major-head"><a class="major-name" href="\.\/major\/7520103\/">Kỹ thuật Cơ khí<\/a><span class="tag">Tiêu chuẩn<\/span><span class="tag">Tiếng Anh<\/span><\/span><span class="muted small">Khóa: <a href="\.\/program\/FME_KY_THUAT_CO_KHI_2025_CTTA\/">2025<\/a>, <a href="\.\/program\/FME_KY_THUAT_CO_KHI_2024\/">2024<\/a>, <a href="\.\/program\/FME_KY_THUAT_CO_KHI_2019\/">2019<\/a><\/span><\/li>/,
+    /<li class="major-row"><span class="major-head"><a class="major-name" href="\.\/major\/7520103\/">Kỹ thuật Cơ khí<\/a><a class="tag" href="\.\/\?q=CQ">Tiêu chuẩn<\/a><a class="tag" href="\.\/\?q=CTTA">Tiếng Anh<\/a><\/span><span class="muted small">Khóa: <a href="\.\/program\/FME_KY_THUAT_CO_KHI_2025_CTTA\/">2025<\/a>, <a href="\.\/program\/FME_KY_THUAT_CO_KHI_2024\/">2024<\/a>, <a href="\.\/program\/FME_KY_THUAT_CO_KHI_2019\/">2019<\/a><\/span><\/li>/,
   );
   assert.match(html, /<details class="prog-empty"><summary>1 chương trình chưa có danh sách môn<\/summary><ul class="list"><li><a href="\.\/program\/CSE_TS_106_2026\/">/);
-  assert.match(html, /major-name" href="\.\/major\/7520201-7520207\/">[^<]+<\/a><span class="tag">Song ngành<\/span><\/span><span class="muted small">chưa có danh sách môn<\/span>/);
+  assert.match(html, /major-name" href="\.\/major\/7520201-7520207\/">[^<]+<\/a><a class="tag" href="\.\/\?q=SN">Song ngành<\/a><\/span><span class="muted small">chưa có danh sách môn<\/span>/);
 });
 
 test('trang khoa: ngành trước, rồi Môn của khoa và Môn chung khoa dùng; trang Môn chung toàn trường liệt kê môn chung', () => {
@@ -826,7 +826,24 @@ test('trang môn: link Sổ tay, chương trình gom theo ngành với link tớ
 test('ô tìm trang chủ: programs.json có dòng ngành (kind major) và chương trình ghi mã ngành', () => {
   const rows = JSON.parse(readM('assets/programs.json'));
   const major = rows.find((r) => r.kind === 'major' && r.code === '7520103');
-  assert.deepEqual(major, { kind: 'major', code: '7520103', key: '7520103', name: 'Kỹ thuật Cơ khí', nameEn: 'Mechanical Engineering', faculty: 'fme', programs: 3 });
+  assert.deepEqual(major, { kind: 'major', code: '7520103', key: '7520103', name: 'Kỹ thuật Cơ khí', nameEn: 'Mechanical Engineering', faculty: 'fme', types: ['CQ', 'CTTA'], programs: 3 });
   assert.equal(rows.find((r) => r.code === 'FME_KY_THUAT_CO_KHI_2024').major, '7520103');
   assert.ok(rows.findIndex((r) => r.kind === 'major') < rows.findIndex((r) => !r.kind));
+});
+
+test('nhãn loại chương trình là link mở ô tìm trang chủ (?q=<loại>) ở mọi trang có nhãn', () => {
+  const pages = ['index.html', 'faculty/fme/index.html', 'major/7520103/index.html', 'program/FME_KY_THUAT_CO_KHI_2025_CTTA/index.html', 'en/index.html', 'en/major/7520103/index.html'];
+  const labels = /(Tiêu chuẩn|Tiếng Anh|Song ngành|Chương trình tiêu chuẩn|Dạy và học bằng tiếng Anh|Standard|In English|Taught in English|Standard program)/;
+  for (const p of pages) {
+    const html = mainOf(readM(p));
+    assert.doesNotMatch(html, new RegExp('<span class="tag">' + labels.source + '<'), p);
+  }
+  assert.match(mainOf(readM('major/7520103/index.html')), /<a class="tag" href="\.\.\/\.\.\/\?q=CTTA">Dạy và học bằng tiếng Anh<\/a>/);
+  assert.match(mainOf(readM('program/FME_KY_THUAT_CO_KHI_2025_CTTA/index.html')), /<a class="tag" href="\.\.\/\.\.\/\?q=CTTA">Dạy và học bằng tiếng Anh<\/a>/);
+  assert.match(mainOf(readM('en/major/7520103/index.html')), /<a class="tag" href="\.\.\/\.\.\/\.\.\/en\/\?q=CTTA">Taught in English<\/a>/);
+  assert.match(mainOf(readM('faculty/fme/index.html')), /<a class="tag" href="\.\.\/\.\.\/\?q=CQ">Tiêu chuẩn<\/a>/);
+  // Ô tìm khớp mã loại: chương trình có type, ngành có types.
+  const rows = JSON.parse(readM('assets/programs.json'));
+  assert.equal(rows.find((r) => r.code === 'FME_KY_THUAT_CO_KHI_2025_CTTA').type, 'CTTA');
+  assert.ok(fs.readFileSync(path.join(outM, 'assets', 'search.js'), 'utf8').includes('p.type'));
 });

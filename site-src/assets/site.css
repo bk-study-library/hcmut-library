@@ -430,3 +430,8 @@ main h1, main h2, main p, main li { overflow-wrap: break-word; }
 .sem-rest { margin-top: 8px; }
 .sem-rest > summary { cursor: pointer; font-weight: 600; padding: 4px 0; min-height: 24px; }
 .sem-rest > .table-wrap { margin-top: 8px; }
+
+/* Nhãn loại chương trình là link mở ô tìm trang chủ (?q=<loại>): giữ dáng .tag, vùng bấm 24 px, có focus. */
+a.tag { display: inline-flex; align-items: center; min-height: 24px; padding: 0 8px; text-decoration: none; vertical-align: baseline; }
+a.tag:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-soft); }
+a.tag:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
