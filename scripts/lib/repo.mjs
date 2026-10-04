@@ -8,6 +8,7 @@ import { fileURLToPath } from 'node:url';
 import { validate } from './schema.mjs';
 import { loadPolicy, missingKeys } from './policy.mjs';
 import { PII_PATTERNS, scanText } from './pii.mjs';
+import { extensionsFor } from './extensions.mjs';
 
 export const TOOL_ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '..');
 
@@ -278,6 +279,9 @@ export function loadRepo(root) {
           const ext = path.extname(file.name || '').toLowerCase();
           if (!LIMITS.allowedExt.includes(ext)) err('FILE_TYPE', f, `files[${i}] ${file.name}: không nhận đuôi ${ext || '(trống)'}`);
           if (it.type === 'quiz-pack' && !LIMITS.quizExt.includes(ext)) err('FILE_TYPE', f, `gói quiz dùng Study Pack v1 (${LIMITS.quizExt.join(' ')})`);
+          else if (LIMITS.allowedExt.includes(ext) && !extensionsFor(policy, it.type).includes(ext)) {
+            err('FILE_TYPE', f, `files[${i}] ${file.name}: đuôi ${ext} không nhận cho loại ${it.type} (catalog/policy.json, extensions["${ext}"].types)`);
+          }
           if (file.size > LIMITS.maxFileBytes) err('FILE_SIZE', f, `files[${i}] ${file.name}: ${file.size} byte, quá ${fmtSize(LIMITS.maxFileBytes)}`);
           if (file.path) {
             const abs = path.join(cdir, file.path);

@@ -4,7 +4,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 
-const REQUIRED = ['openTypes', 'maxFileBytes', 'maxMdInGitBytes', 'extensions', 'quizExtensions', 'selfMadeLicenses', 'terms', 'fields'];
+const REQUIRED = ['openTypes', 'maxFileBytes', 'maxMdInGitBytes', 'extensions', 'quizExtensions', 'selfMadeLicenses', 'terms', 'fields', 'scan'];
 
 // Trả về danh sách khóa còn thiếu (rỗng nếu đủ).
 export function missingKeys(pol) {

@@ -16,6 +16,7 @@ import { previewTarget } from './lib/preview.mjs';
 import { S } from './lib/strings.mjs';
 import { buildV1, serializeV1 } from './lib/v1.mjs';
 import { loadPolicy } from './lib/policy.mjs';
+import { extensionsFor, restrictedExtensions } from './lib/extensions.mjs';
 
 const SRC = path.join(TOOL_ROOT, 'site-src');
 let GENERATED = null;
@@ -64,9 +65,12 @@ function uploadPage({ policy, site, root, raw, t }) {
   const exts = Object.keys(policy.extensions);
   const open = Boolean(site.uploadEndpoint);
   const msg = t.uploadMsg;
+  const formTypes = policy.openTypes.filter((x) => x !== 'link');
   const config = {
     maxBytes: policy.maxFileBytes,
     extensions: exts,
+    // Đuôi nhận theo từng loại (extensions[].types, quizExtensions): form lọc ô chọn file theo loại.
+    byType: Object.fromEntries(formTypes.map((x) => [x, extensionsFor(policy, x)])),
     msg: { ...msg, fileExt: msg.fileExt(exts.join(', ')), fileSize: msg.fileSize(formatSize(policy.maxFileBytes)) },
   };
   // api.js của Cloudflare Turnstile là script ngoài duy nhất của site: chống bot gửi tự động vào form,
@@ -85,12 +89,15 @@ function uploadPage({ policy, site, root, raw, t }) {
     endpoint: esc(site.uploadEndpoint),
     sitekey: esc(site.turnstileSiteKey),
     // Loại "link" đi theo form Issue "Thêm link", không qua form này.
-    types: policy.openTypes.filter((x) => x !== 'link').map((x) => opt(x, TYPES[x].vi)).join('\n'),
+    types: formTypes.map((x) => opt(x, TYPES[x].vi)).join('\n'),
     examKinds: policy.fields.examKinds.map((x) => opt(x, EXAM_KINDS[x] || x)).join('\n'),
     ...Object.fromEntries(['titleMax', 'descriptionMax', 'chapterMax', 'teacherMax', 'displayNameMax', 'bookTitleMax', 'bookPublisherMax'].map((k) => [k, String(policy.fields[k])])),
     licenses: policy.selfMadeLicenses.map((x) => opt(x, x)).join('\n'),
     accept: esc(exts.join(',')),
     exts: esc(exts.join(', ')),
+    extNote: Object.entries(restrictedExtensions(policy))
+      .map(([ext, types]) => ` ${esc(t.uploadExtOnly(ext, types.map((x) => TYPES[x]?.vi ?? x).join(', ')))}`)
+      .join(''),
     maxSize: esc(formatSize(policy.maxFileBytes)),
     scripts,
   };
@@ -102,6 +109,30 @@ function uploadPage({ policy, site, root, raw, t }) {
     .replace(/\{\{root\}\}/g, root);
 }
 
+const TURNSTILE_ORIGIN = 'https://challenges.cloudflare.com';
+
+// Content-Security-Policy của trang (thẻ meta, vì GitHub Pages không cho đặt header). Mọi trang chỉ
+// chạy script, CSS, ảnh của site. Riêng trang Gửi tài liệu khi form mở (upload: địa chỉ Worker từ
+// site.json): thêm script và khung Turnstile, và cho gửi tới gốc địa chỉ Worker.
+// Script JSON (type="application/json") không chạy nên CSP không chặn.
+export function cspFor({ upload = '' } = {}) {
+  const origin = upload && URL.canParse(upload) ? new URL(upload).origin : '';
+  const extra = (s) => (origin ? `${s} ${origin}` : s);
+  return [
+    "default-src 'self'",
+    `script-src 'self'${origin ? ` ${TURNSTILE_ORIGIN}` : ''}`,
+    "style-src 'self'",
+    "img-src 'self' data:",
+    extra("connect-src 'self'"),
+    ...(origin ? [`frame-src ${TURNSTILE_ORIGIN}`] : []),
+    "object-src 'none'",
+    "base-uri 'none'",
+    extra("form-action 'self'"),
+  ].join('; ');
+}
+
+const cspMeta = (opts) => `<meta http-equiv="Content-Security-Policy" content="${esc(cspFor(opts))}">`;
+
 // Đường dẫn trang, tính từ gốc site, không có "/" đầu. Bản tiếng Anh nằm dưới en/.
 const pagePath = (lang, p) => (lang === 'en' ? `en/${p}` : p);
 
@@ -110,7 +141,7 @@ function relPrefix(fromPath) {
   return depth ? '../'.repeat(depth) : './';
 }
 
-function layout({ t, path: here, title, description, body, crumbs = [], alt, base }) {
+function layout({ t, path: here, title, description, body, crumbs = [], alt, base, upload = '' }) {
   // base: dùng cho 404.html (đường dẫn tuyệt đối); còn lại dùng đường dẫn tương đối.
   const root = base || relPrefix(here);
   const href = (lang, p) => root + pagePath(lang, p).replace(/index\.html$/, '');
@@ -133,6 +164,7 @@ function layout({ t, path: here, title, description, body, crumbs = [], alt, bas
 <html lang="${t.lang}" data-root="${esc(root)}" data-lang-prefix="${t.lang === 'en' ? 'en/' : ''}">
 <head>
 <meta charset="utf-8">
+${cspMeta({ upload })}
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="light dark">
 <meta name="referrer" content="strict-origin-when-cross-origin">
@@ -537,7 +569,7 @@ ${groups || `<p class="muted">${esc(t.noItems)}</p>`}
         const target = `../${c.id}/`;
         write(
           here,
-          `<!doctype html><html lang="${lang}"><head><meta charset="utf-8"><meta http-equiv="refresh" content="0; url=${target}"><link rel="canonical" href="${target}"><title>${esc(c.code)}</title></head><body><p>${esc(t.redirecting)} <a href="${target}">${esc(c.code)} ${esc(c.name)}</a>.</p></body></html>\n`,
+          `<!doctype html><html lang="${lang}"><head><meta charset="utf-8">${cspMeta()}<meta http-equiv="refresh" content="0; url=${target}"><link rel="canonical" href="${target}"><title>${esc(c.code)}</title></head><body><p>${esc(t.redirecting)} <a href="${target}">${esc(c.code)} ${esc(c.name)}</a>.</p></body></html>\n`,
         );
       }
     }
@@ -566,8 +598,9 @@ ${groups || `<p class="muted">${esc(t.noItems)}</p>`}
     const here = 'gui-tai-lieu/index.html';
     const policyRoot = fs.existsSync(path.join(root, 'catalog', 'policy.json')) ? root : TOOL_ROOT;
     const raw = fs.readFileSync(path.join(SRC, 'pages', 'vi', 'gui-tai-lieu.html'), 'utf8');
-    const body = uploadPage({ policy: loadPolicy(policyRoot), site: readSiteConfig(root), root: relPrefix(here), raw, t });
-    write(here, layout({ t, path: here, title: t.uploadTitle, body, crumbs: [['', t.nav.home], ['', t.uploadTitle]], alt: 'contribute/index.html' }));
+    const site = readSiteConfig(root);
+    const body = uploadPage({ policy: loadPolicy(policyRoot), site, root: relPrefix(here), raw, t });
+    write(here, layout({ t, path: here, title: t.uploadTitle, body, crumbs: [['', t.nav.home], ['', t.uploadTitle]], alt: 'contribute/index.html', upload: site.uploadEndpoint }));
   }
 
   // 404: một trang hai thứ tiếng, link tuyệt đối theo --base.

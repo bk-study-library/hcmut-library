@@ -142,6 +142,16 @@ test('trang Gửi tài liệu: có địa chỉ Worker thì form mở và nạp 
   assert.match(html, /<script src="https:\/\/challenges\.cloudflare\.com\/turnstile\/v0\/api\.js"/);
 });
 
+test('trang Gửi tài liệu: đuôi file theo loại lấy từ policy (.zip chỉ cho gói quiz)', () => {
+  const html = buildWithSite({ uploadEndpoint: '', turnstileSiteKey: 'K' });
+  const cfg = JSON.parse(html.match(/<script type="application\/json" id="upload-config">([^<]*)<\/script>/)[1]);
+  assert.ok(cfg.byType['quiz-pack'].includes('.zip'));
+  assert.ok(!cfg.byType.summary.includes('.zip'));
+  assert.ok(cfg.byType.summary.includes('.pdf'));
+  assert.match(html, /File \.zip chỉ dùng cho Gói quiz \(Study Pack\)\./);
+  assert.doesNotMatch(html, /Nhiều file thì nén thành \.zip/);
+});
+
 test('trang môn tiếng Anh trỏ tới form tiếng Việt', () => {
   assert.match(read('en/course/EE1009/index.html'), /href="\.\.\/\.\.\/\.\.\/gui-tai-lieu\/\?course=EE1009"/);
 });
@@ -291,11 +301,12 @@ const out4 = (() => {
   const dir = copyFixture();
   fs.writeFileSync(path.join(dir, 'catalog', 'site.json'), JSON.stringify({ uploadEndpoint: '', turnstileSiteKey: 'K', reviewBase: 'https://up.example/' }));
   const rel = (name) => `https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261/${name}`;
+  // .zip chỉ nhận cho gói quiz (policy.json).
   const item = (id, name, size, sha) => ({
-    id, course: 'EE1009', type: 'summary', title: `Mục ${id}`, lang: 'vi', license: 'CC-BY-SA-4.0', origin: 'self-made',
+    id, course: 'EE1009', type: name.endsWith('.zip') ? 'quiz-pack' : 'summary', title: `Mục ${id}`, lang: 'vi', license: 'CC-BY-SA-4.0', origin: 'self-made',
     files: [{ name, size, sha256: sha.repeat(64), url: rel(name) }], added: '2026-10-04', removed: false,
   });
-  for (const [id, name, sha] of [['co-pdf', 'EE1009_summary_co-pdf.pdf', '2'], ['co-docx', 'EE1009_summary_co-docx.docx', '3'], ['co-zip', 'EE1009_summary_co-zip.zip', '4']]) {
+  for (const [id, name, sha] of [['co-pdf', 'EE1009_summary_co-pdf.pdf', '2'], ['co-docx', 'EE1009_summary_co-docx.docx', '3'], ['co-zip', 'EE1009_quiz-pack_co-zip.zip', '4']]) {
     fs.writeFileSync(path.join(dir, 'courses', 'EE1009', 'items', `${id}.json`), JSON.stringify(item(id, name, 2 * 1024 * 1024, sha)));
   }
   const o = fs.mkdtempSync(path.join(os.tmpdir(), 'bk-lib-site-btn-'));
@@ -390,4 +401,55 @@ test('danh sách xem trước: chỉ Release files-HK<xxx> và .md của site, t
     'https://s.example/lib/files/MT1005/%2e%2e/x.md',
     'javascript:alert(1)//x.pdf',
   ]) assert.equal(previewTarget(bad, o), null, bad);
+});
+
+// CSP trong thẻ meta: { chỉ thị: [nguồn] }.
+function cspOf(html) {
+  const m = html.match(/<meta http-equiv="Content-Security-Policy" content="([^"]+)">/);
+  assert.ok(m, 'thiếu CSP');
+  return Object.fromEntries(m[1].replace(/&#39;/g, "'").split(';').map((d) => d.trim().split(/\s+/)).map(([k, ...v]) => [k, v]));
+}
+
+test('CSP: mọi trang (kể cả 404 và trang chuyển hướng) có CSP chặt, đặt trước mọi script và CSS', () => {
+  for (const f of allHtml()) {
+    const html = fs.readFileSync(f, 'utf8');
+    const csp = cspOf(html);
+    assert.deepEqual(csp['default-src'], ["'self'"], f);
+    assert.deepEqual(csp['style-src'], ["'self'"], f);
+    assert.deepEqual(csp['img-src'], ["'self'", 'data:'], f);
+    assert.deepEqual(csp['base-uri'], ["'none'"], f);
+    assert.deepEqual(csp['object-src'], ["'none'"], f);
+    assert.ok(!html.includes("'unsafe-inline'") && !html.includes('unsafe-eval'), f);
+    const at = html.indexOf('http-equiv="Content-Security-Policy"');
+    for (const tag of ['<script', '<link rel="stylesheet"']) {
+      const i = html.indexOf(tag);
+      if (i >= 0) assert.ok(at < i, `${f}: CSP phải đứng trước ${tag}`);
+    }
+    // Không có script chạy được viết thẳng trong trang (chỉ script JSON, không chạy).
+    for (const s of html.matchAll(/<script(?![^>]*\bsrc=)([^>]*)>/g)) assert.match(s[1], /type="application\/json"/, f);
+    assert.doesNotMatch(html, /\son[a-z]+="/i, f);
+    assert.doesNotMatch(html, /\sstyle="/i, f);
+  }
+});
+
+test('CSP: trang thường chỉ có self; không có Turnstile, không có địa chỉ Worker', () => {
+  for (const p of ['index.html', 'en/index.html', 'faculty/EE/index.html', 'program/TEST_2019/index.html', 'course/EE1009/index.html', 'contribute/index.html', '404.html', 'course/402030/index.html']) {
+    const csp = cspOf(read(p));
+    assert.deepEqual(csp['script-src'], ["'self'"], p);
+    assert.deepEqual(csp['connect-src'], ["'self'"], p);
+    assert.deepEqual(csp['form-action'], ["'self'"], p);
+    assert.equal(csp['frame-src'], undefined, p);
+  }
+});
+
+test('CSP: trang Gửi tài liệu khi form mở cho Turnstile và gốc địa chỉ Worker, khi đóng thì không', () => {
+  const open = cspOf(buildWithSite({ uploadEndpoint: 'https://up.example.test/submit', turnstileSiteKey: 'K' }));
+  assert.deepEqual(open['script-src'], ["'self'", 'https://challenges.cloudflare.com']);
+  assert.deepEqual(open['frame-src'], ['https://challenges.cloudflare.com']);
+  assert.deepEqual(open['connect-src'], ["'self'", 'https://up.example.test']);
+  assert.deepEqual(open['form-action'], ["'self'", 'https://up.example.test']);
+  const closed = cspOf(buildWithSite({ uploadEndpoint: '', turnstileSiteKey: 'K' }));
+  assert.deepEqual(closed['script-src'], ["'self'"]);
+  assert.equal(closed['frame-src'], undefined);
+  assert.deepEqual(closed['connect-src'], ["'self'"]);
 });

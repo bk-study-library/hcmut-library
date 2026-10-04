@@ -10,13 +10,16 @@ permissions: {}
 
 jobs:
   validate:
+    timeout-minutes: 10
     runs-on: ubuntu-latest
     permissions:
       contents: read
     steps:
+      # Cần commit cha (HEAD^1: main trước khi gộp, hoặc commit trước trên main) để so file mục bị xóa.
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
+          fetch-depth: 2
       - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
         with:
           node-version: 24
@@ -51,11 +54,13 @@ jobs:
         env:
           ALLOW_STALE: ${{ steps.bot.outputs.allow }}
         run: |
-          if [ "$ALLOW_STALE" = "true" ]; then npm run validate -- --allow-stale; else npm run validate; fi
+          # --base: xóa file mục có file trên Release (thay vì đặt removed: true) thì báo ITEM_DELETED.
+          if [ "$ALLOW_STALE" = "true" ]; then npm run validate -- --base HEAD^1 --allow-stale; else npm run validate -- --base HEAD^1; fi
       - name: Build the site (smoke test)
         run: npm run site -- --out "$RUNNER_TEMP/site"
 
   worker:
+    timeout-minutes: 10
     runs-on: ubuntu-latest
     permissions:
       contents: read

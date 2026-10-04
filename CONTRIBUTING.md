@@ -8,7 +8,7 @@ Trang này nói thư viện nhận gì, bạn gửi bài bằng cách nào, và 
 |---|---|
 | Mọi tài liệu học tập bạn muốn chia sẻ: tóm tắt, ghi chú, bảng công thức, lời giải, slide, đề thi, đáp án, mẫu và bài tham khảo cho prelab, báo cáo, bài tập lớn, gói quiz Study Pack v1 | File sách có bản quyền (sách thương mại, sách của nhà xuất bản) |
 | Link tới tài liệu công khai khác | File chạy được (exe, bat, sh, apk, jar...) |
-| Đuôi file: .pdf, .md, .docx, .pptx, .xlsx, .zip, .png, .jpg, .json | File lớn hơn 20 MB |
+| Đuôi file: .pdf, .md, .docx, .pptx, .xlsx, .png, .jpg, .json; riêng gói quiz nhận thêm .zip | File lớn hơn 20 MB, file .zip cho loại khác gói quiz |
 
 Một số điều cần nhớ:
 
@@ -26,15 +26,15 @@ Một số điều cần nhớ:
 ### 1. Gửi file qua trang web (khuyên dùng, không cần tài khoản GitHub)
 
 1. Mở [Gửi tài liệu](https://bk-study-library.github.io/hcmut-library/gui-tai-lieu/), hoặc bấm **Gửi tài liệu** trên trang môn để form chọn sẵn môn.
-2. Chọn môn, loại tài liệu, nhập tiêu đề, chọn file. Nhiều file thì nén thành một file .zip.
+2. Chọn môn, loại tài liệu, nhập tiêu đề, chọn file. File .zip chỉ nhận cho loại Gói quiz; loại khác thì gửi từng file, hoặc gộp thành một file PDF.
 3. Chọn giấy phép, đánh dấu ba ô cam kết, qua bước xác minh Turnstile của Cloudflare.
 4. Bấm **Gửi tài liệu**. Trang hiện mã bài. Hãy lưu mã này để hỏi về bài của bạn.
 
 Điều gì xảy ra tiếp theo:
 
 1. Worker của thư viện kiểm lại form (môn, loại, đuôi file, dung lượng, nội dung file khớp đuôi, thông tin cá nhân trong các ô chữ), rồi cất file vào kho riêng, không công khai.
-2. Một bot mở Pull Request mang nhãn `tai-lieu-moi`, nhánh `upload/<mã bài>`. Người mở PR là bot, không phải bạn.
-3. Workflow `kiem-file` quét virus, xóa siêu dữ liệu của PDF, cảnh báo thông tin cá nhân, rồi ghi link Release vào PR. Có virus thì PR bị đóng.
+2. Một bot mở Pull Request mang nhãn `tai-lieu-moi`, nhánh `upload/<mã bài>`. Người mở PR là bot, không phải bạn. Tiêu đề PR chỉ có mã bài và mã môn; chữ bạn nhập nằm trong file mục tài liệu của PR, **công khai ngay** với ai mở PR, kể cả trước khi duyệt (xem [PRIVACY.md](PRIVACY.md)).
+3. Workflow `kiem-file` quét virus, xóa siêu dữ liệu (PDF, ảnh, file Office), cảnh báo thông tin cá nhân, JavaScript trong PDF, macro trong Office, rồi ghi link Release vào PR. Có virus thì PR bị đóng. Máy không kết luận được thì PR có nhãn `can-xem-tay`.
 4. Người duyệt đọc và merge.
 5. Workflow `phat-hanh-file` đưa file lên GitHub Release `files-HKxxx` (pre-release) và xóa file trong kho riêng. PR bị đóng mà không merge thì `don-kho` xóa file và nhánh.
 
@@ -78,15 +78,17 @@ Người duyệt là sinh viên đã học qua môn, làm tình nguyện. Danh s
 
 1. Bài tới qua một trong ba cách ở trên.
 2. CI `validate` kiểm schema, tham chiếu, loại file, dung lượng, file trùng, thông tin cá nhân trong ô chữ và file `.md`. CI không qua thì sửa trước.
-3. Với bài gửi qua trang web, đợi `kiem-file` comment kết quả vào PR.
-4. Người duyệt đọc theo danh sách kiểm bên dưới. Cần hỏi người gửi thì hỏi trong PR (hoặc issue).
+3. Với bài gửi qua trang web, đợi `kiem-file` comment kết quả vào PR. Mở link **Xem file (người duyệt)** trong PR: trang đó hiện mọi ô người gửi nhập (tiêu đề, mô tả, giảng viên, tên hiển thị, thông tin sách) rồi tới nút xem và tải file.
+4. Người duyệt đọc theo danh sách kiểm bên dưới. Chữ người gửi đã công khai trong file mục của PR từ lúc gửi: PR có chữ xúc phạm, nói xấu người khác, quảng cáo hay link lạ thì đóng ngay, không cần đợi `kiem-file`. Cần hỏi người gửi thì hỏi trong PR (hoặc issue).
 5. Đạt thì merge. Không đạt thì comment lý do rồi đóng PR; file chờ duyệt sẽ được dọn tự động.
 6. Mục tiêu: trả lời bài trong 7 ngày. Yêu cầu gỡ được ưu tiên, xem [TAKEDOWN.md](TAKEDOWN.md).
 
 ### Danh sách kiểm của người duyệt
 
 - [ ] Không phải file sách có bản quyền. Nếu là sách, đổi sang loại Sách tham khảo và chỉ giữ tên sách.
-- [ ] Không có file chạy được. Với file .zip, mở ra xem. Đuôi file đã bị giới hạn, nhưng .zip có thể chứa file khác bên trong.
+- [ ] Không có file chạy được. File .zip chỉ có ở gói quiz: mở ra xem. Máy đã báo mục có mật khẩu, đường dẫn lạ, file nén lồng hay loại lạ.
+- [ ] PR có nhãn `can-xem-tay`: đọc lý do trong comment của `kiem-file` (ClamAV không quét hết, PDF có JavaScript, Office có macro hay liên kết ngoài, .zip lạ) và mở file trên máy có phần mềm diệt virus trước khi quyết định.
+- [ ] Đọc chữ người gửi trên trang xem bài của người duyệt: không xúc phạm, không nêu tên để chê bai ai, không quảng cáo, không link lạ.
 - [ ] Đọc cảnh báo thông tin cá nhân của máy trong PR (loại thông tin, số trang) và quyết định: bỏ qua, hoặc yêu cầu người gửi xóa rồi gửi lại. Máy chỉ cảnh báo, không chặn.
 - [ ] Báo cáo của `kiem-file`: không có virus, PDF có lớp chữ khi cần, siêu dữ liệu đã được xóa.
 - [ ] Giấy phép đúng: tự soạn là CC BY-SA 4.0 (hoặc CC BY 4.0, CC0); link ghi giấy phép của nguồn.

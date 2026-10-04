@@ -63,9 +63,29 @@ const result = {
 const info = { code: 'abcdEF1234', key: `pending/abcdEF1234/${NAME}`, name: NAME, sha256: OLD_SHA };
 
 test('validateResult nhận kết quả quét đúng dạng và chỉ giữ trường đã biết', () => {
-  assert.deepEqual(validateResult({ ...result, extra: 'x' }, info), result);
+  const defaults = { unscannable: null, warnings: [], textPages: null, totalPages: null };
+  assert.deepEqual(validateResult({ ...result, extra: 'x' }, info), { ...result, ...defaults });
   const virus = { code: 'abcdEF1234', name: NAME, virus: 'Eicar-Signature' };
   assert.deepEqual(validateResult(virus, info), { code: 'abcdEF1234', name: NAME, virus: 'Eicar-Signature' });
+  const full = {
+    ...result, unscannable: 'Heuristics.Encrypted.Zip', warnings: ['pdf-javascript', 'pdf-javascript', 'office-macro'],
+    textPages: 200, totalPages: 350, metadataRemoved: ['docProps/core.xml:creator', 'GPSLatitude'],
+  };
+  assert.deepEqual(validateResult(full, info), { ...full, warnings: ['pdf-javascript', 'office-macro'] });
+});
+
+test('validateResult từ chối cảnh báo lạ, chữ ký lạ, số trang sai', () => {
+  for (const r of [
+    { ...result, warnings: ['khong-co'] },
+    { ...result, warnings: ['<b>'] },
+    { ...result, warnings: 'pdf-javascript' },
+    { ...result, warnings: ['__proto__'] },
+    { ...result, unscannable: '<img src=x>' },
+    { ...result, textPages: -1 },
+    { ...result, totalPages: 1.5 },
+    { ...result, metadataRemoved: Array(501).fill('Author') },
+    { ...result, metadataRemoved: ['a b'] },
+  ]) assert.throws(() => validateResult(r, info), /kết quả quét/, JSON.stringify(r).slice(0, 120));
 });
 
 test('validateResult từ chối kết quả quét sai dạng', () => {
@@ -177,6 +197,22 @@ test('failureReport bắt đầu bằng marker và có link nhật ký', () => {
   assert.match(out, /Không tải được file\./);
   assert.match(out, /actions\/runs\/1/);
   assert.ok(failureReport({ reason: '', runUrl: 'https://a' }).startsWith(REPORT_MARKER));
+});
+
+test('failureReport: lý do chưa tin nằm trong khối code có rào dài hơn mọi đoạn backtick, có giới hạn', () => {
+  const evil = 'qpdf lỗi: ```\n[bấm](https://evil.example) @maintainer #1\n````` thoát';
+  const out = failureReport({ reason: evil, runUrl: 'https://github.com/x/y/actions/runs/1' });
+  const fence = out.match(/^(`{3,})text$/m)[1];
+  assert.equal(fence.length, 6);
+  const start = out.indexOf(`${fence}text\n`);
+  const end = out.indexOf(`\n${fence}\n`, start + 1);
+  assert.ok(start > 0 && end > start);
+  // Mọi chữ chưa tin nằm giữa hai rào.
+  assert.ok(out.indexOf('https://evil') > start && out.indexOf('https://evil') < end);
+  assert.ok(out.indexOf('@maintainer') > start && out.indexOf('@maintainer') < end);
+  const long = failureReport({ reason: 'x'.repeat(10000), runUrl: 'https://a' });
+  assert.ok(long.length < 2300, String(long.length));
+  assert.match(long, /còn nữa, xem nhật ký/);
 });
 
 const book = {

@@ -157,6 +157,14 @@ export class GitHub {
     return { state: list[0].state, merged: Boolean(list[0].merged_at) };
   }
 
+  // File đổi giữa base và head (compare API): [{ filename, status }]. Nhánh không còn thì null.
+  async changedFiles(base, head) {
+    const res = await this.#call('GET', `/compare/${encodePath(base)}...${encodePath(head)}`, undefined, [404]);
+    if (res.status === 404) return null;
+    const data = await res.json();
+    return (Array.isArray(data.files) ? data.files : []).map((f) => ({ filename: String(f.filename), status: String(f.status) }));
+  }
+
   async addLabels(number, labels) {
     await this.#call('POST', `/issues/${encodeURIComponent(String(number))}/labels`, { labels });
   }

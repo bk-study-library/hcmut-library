@@ -202,8 +202,8 @@ h4 { font-size: 15px; margin: 0 0 4px; font-weight: 600; }
 .list li { margin: 4px 0; }
 
 .cta-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; margin-top: 28px; }
-.cta-row p { margin: 0 0 10px; }
-.cta-row p:last-child { margin: 0; }
+.cta-row p { margin: 0; }
+.cta-row p + p { margin-top: 12px; }
 
 /* Nút */
 .btn {
@@ -225,6 +225,8 @@ h4 { font-size: 15px; margin: 0 0 4px; font-weight: 600; }
 .actions { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0 0; }
 /* Khối ngay sau ghi chú luôn cách 12 px. */
 .note + * { margin-top: 12px; }
+/* Khối chữ hay danh sách ngay trên hàng nút không thêm lề dưới: hàng nút luôn cách 12 px. */
+:is(p, ul, ol):has(+ .actions) { margin-bottom: 0; }
 
 /* Bảng */
 .table-wrap { overflow-x: auto; border: 1px solid var(--border); border-radius: 8px; background: var(--surface); }
