@@ -172,7 +172,7 @@ h4 { font-size: 15px; margin: 0 0 4px; font-weight: 600; }
 h1 .code { font-size: 0.62em; vertical-align: 0.28em; margin-right: 6px; }
 
 /* Ô nhập và ô chọn: một kiểu cho cả trang, viền đều bốn cạnh, bấm vào thì có vòng sáng màu nhấn */
-.search input, .search select, .upload input[type="text"], .upload input[type="search"], .upload select, .upload textarea {
+.search input, .search select, .upload input[type="text"], .upload input[type="email"], .upload input[type="search"], .upload select, .upload textarea {
   width: 100%;
   min-height: var(--control-h);
   font: inherit;
@@ -185,7 +185,7 @@ h1 .code { font-size: 0.62em; vertical-align: 0.28em; margin-right: 6px; }
   transition: border-color 0.12s, box-shadow 0.12s;
 }
 .upload textarea { min-height: 96px; }
-.search input:hover, .search select:hover, .upload input[type="text"]:hover, .upload input[type="search"]:hover, .upload select:hover, .upload textarea:hover { border-color: var(--muted); }
+.search input:hover, .search select:hover, .upload input[type="text"]:hover, .upload input[type="email"]:hover, .upload input[type="search"]:hover, .upload select:hover, .upload textarea:hover { border-color: var(--muted); }
 .search input:focus, .search select:focus, .upload input:focus, .upload select:focus, .upload textarea:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--ring); }
 .search input:disabled, .search select:disabled, .upload input:disabled, .upload select:disabled { opacity: 0.6; }
 ::placeholder { color: var(--muted); opacity: 0.8; }

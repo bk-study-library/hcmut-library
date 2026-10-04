@@ -427,3 +427,21 @@ test('--base: xóa file mục có file trên Release thì báo ITEM_DELETED; đ�
   // Ref không có thì báo lỗi, không bỏ qua.
   assert.equal(deletedItemErrors(dir, 'khong-co-ref', [])[0].code, 'GIT');
 });
+
+test('bản cập nhật: replaces ẩn tài liệu cũ như đã gỡ; trỏ sai thì REPLACES_REF', () => {
+  const dir = copyFixture();
+  const item = JSON.parse(fs.readFileSync(path.join(dir, 'courses/EE1009/items/tom-tat-c1.json'), 'utf8'));
+  const next = { ...item, id: 'tom-tat-c1-ban-moi', title: `${item.title} (bản mới)`, replaces: 'EE1009/tom-tat-c1' };
+  delete next.files;
+  next.type = 'book-ref';
+  next.book = { title: 'Sách mẫu', authors: ['Tác giả'] };
+  fs.writeFileSync(path.join(dir, 'courses/EE1009/items/tom-tat-c1-ban-moi.json'), JSON.stringify(next, null, 2) + '\n');
+  const repo = loadRepo(dir);
+  assert.deepEqual(repo.errors.filter((e) => e.code === 'REPLACES_REF'), []);
+  const old = repo.items.find((x) => x.id === 'tom-tat-c1');
+  assert.equal(old.removed, true);
+  assert.equal(old.removedReason, 'Đã có bản cập nhật: EE1009/tom-tat-c1-ban-moi');
+  next.replaces = 'EE1009/khong-co';
+  fs.writeFileSync(path.join(dir, 'courses/EE1009/items/tom-tat-c1-ban-moi.json'), JSON.stringify(next, null, 2) + '\n');
+  assert.ok(loadRepo(dir).errors.some((e) => e.code === 'REPLACES_REF'));
+});

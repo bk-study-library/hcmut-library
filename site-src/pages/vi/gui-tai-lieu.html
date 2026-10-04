@@ -48,6 +48,21 @@
   <label for="title">Tiêu đề</label>
   <input id="title" name="title" type="text" maxlength="{{upload:titleMax}}" autocomplete="off">
   <p class="err" data-err="title" role="alert"></p>
+  <div class="note warn" id="dup-warn" role="status" hidden>
+    <p>Môn này đã có tài liệu tên gần giống:</p>
+    <ul id="dup-list"></ul>
+    <p>Nếu bài của bạn là bản rõ hơn hay mới hơn, đánh dấu ô "Đây là bản cập nhật" bên dưới. Nếu trùng hẳn thì không cần gửi.</p>
+  </div>
+</div>
+
+<div class="field" id="update-field" hidden>
+  <label class="check"><input type="checkbox" id="is-update"> Đây là bản cập nhật của một tài liệu đã có (rõ hơn, đầy đủ hơn hay mới hơn)</label>
+  <div id="update-box" hidden>
+    <label for="replaces">Tài liệu được thay</label>
+    <select id="replaces" name="replaces" disabled></select>
+    <p class="muted">Người duyệt so hai bản. Bài được duyệt thì bản cũ được ẩn khỏi thư viện.</p>
+  </div>
+  <p class="err" data-err="replaces" role="alert"></p>
 </div>
 
 <div class="field" id="file-box">
@@ -99,6 +114,13 @@
   <input id="displayName" name="displayName" type="text" maxlength="{{upload:displayNameMax}}" aria-describedby="name-hint">
   <p id="name-hint" class="muted">Để trống thì bài ghi Ẩn danh.</p>
   <p class="err" data-err="displayName" role="alert"></p>
+</div>
+
+<div class="field">
+  <label for="notifyEmail">Email nhận kết quả duyệt (không bắt buộc)</label>
+  <input id="notifyEmail" name="notifyEmail" type="email" autocomplete="email" maxlength="254" aria-describedby="email-hint">
+  <p id="email-hint" class="muted">Chỉ dùng để báo bài được duyệt hay chưa, kèm lý do. Email không hiện trên GitHub hay trên thư viện, và bị xóa ngay sau khi gửi.</p>
+  <p class="err" data-err="notifyEmail" role="alert"></p>
 </div>
 
 <details class="field more">

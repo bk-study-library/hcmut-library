@@ -178,7 +178,59 @@
     };
   }
 
+  // Tài liệu đã có của các mã trong môn (items.json), mới nhất trước.
+  function subjectDocs(items, courseIds) {
+    var ids = Object.create(null);
+    courseIds.forEach(function (x) {
+      ids[x] = true;
+    });
+    return items
+      .filter(function (d) {
+        return ids[d.course];
+      })
+      .sort(function (a, b) {
+        return (b.added || '').localeCompare(a.added || '');
+      });
+  }
+
+  // Tài liệu có tiêu đề gần giống: trùng hẳn sau khi bỏ dấu, chứa nhau, hoặc chung từ 60% số từ trở lên
+  // (so với tiêu đề ngắn hơn). fold: hàm bỏ dấu của search-core (BkSearch.fold).
+  function similarDocs(title, docs, fold, max) {
+    var words = function (s) {
+      return fold(s).split(' ').filter(function (w) {
+        return w.length > 1;
+      });
+    };
+    var t = fold(title);
+    var tw = words(title);
+    if (tw.length < 2) return [];
+    var out = [];
+    docs.forEach(function (d) {
+      var dt = fold(d.title);
+      var dw = words(d.title);
+      if (!dw.length) return;
+      var same = 0;
+      var set = Object.create(null);
+      dw.forEach(function (w) {
+        set[w] = true;
+      });
+      tw.forEach(function (w) {
+        if (set[w]) same += 1;
+      });
+      var ratio = same / Math.min(tw.length, dw.length);
+      if (dt === t || dt.indexOf(t) >= 0 || t.indexOf(dt) >= 0 || ratio >= 0.6) out.push({ doc: d, score: dt === t ? 2 : ratio });
+    });
+    out.sort(function (a, b) {
+      return b.score - a.score;
+    });
+    return out.slice(0, max || 3).map(function (x) {
+      return x.doc;
+    });
+  }
+
   root.BkUpload = {
+    subjectDocs: subjectDocs,
+    similarDocs: similarDocs,
     subjectIndex: subjectIndex,
     subjectRows: subjectRows,
     subjectChoice: subjectChoice,

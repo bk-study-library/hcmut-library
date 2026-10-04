@@ -12,6 +12,7 @@ import { formatSize, TYPES } from '../../scripts/lib/labels.mjs';
 import { rateKey, dailyCap, dailyCapReached, countSubmission } from './limits.mjs';
 import { accessConfigured, verifyAccessJwt } from './access.mjs';
 import { handlePreview } from './preview.mjs';
+import { notifyKey, notifyMessage, plainReason, sendEmail } from './notify.mjs';
 import {
   CODE,
   checkToken,
@@ -154,7 +155,8 @@ export const prTitle = (code, courseCode) => `Bài gửi ${code}: ${courseCode}`
 
 // newCourse: { code, handbookUrl } khi bài đề xuất môn chưa có. Mã đã qua mẫu mã môn nên được ghi;
 // tên môn là chữ người gửi nên chỉ nằm trong file môn của PR, không ghi ở đây.
-export function prBody({ code, courseCode, type, file, viewBase, newCourse = null }) {
+// replaces: <ID môn>/<id> của tài liệu được thay (đã qua mẫu nên ghi được); siteBase: gốc web để dẫn tới bản đang có.
+export function prBody({ code, courseCode, type, file, viewBase, newCourse = null, replaces = null, siteBase = '' }) {
   const rows = [
     ['Mã bài', code],
     ['Môn', courseCode],
@@ -168,6 +170,12 @@ export function prBody({ code, courseCode, type, file, viewBase, newCourse = nul
       'Người duyệt kiểm mã, tên và khoa của môn với Sổ tay HCMUT trước khi gộp; sai thì sửa file môn trong PR, trùng môn đã có thì đóng PR.',
     );
     if (newCourse.handbookUrl) lines.push(`Trang môn trên Sổ tay: ${newCourse.handbookUrl}`);
+    lines.push('');
+  }
+  if (replaces) {
+    const [rc, rid] = replaces.split('/');
+    lines.push(`**Bản cập nhật** cho tài liệu \`${replaces}\`. Duyệt bài này thì bản cũ được ẩn như đã gỡ.`);
+    if (siteBase) lines.push(`So sánh: bản đang có trong thư viện ${siteBase}course/${rc}/#${rid}${viewBase ? `, bản mới ${viewBase}/xem-duyet/${code}` : ''}`);
     lines.push('');
   }
   lines.push('| Trường | Giá trị |', '|---|---|', ...rows.map(([k, v]) => `| ${k} | ${cell(v)} |`), '');
@@ -299,6 +307,8 @@ async function handleSubmit(req, env, deps, cors) {
     file: stored,
     viewBase: base,
     newCourse: newCourse ? { code: newCourse.code, handbookUrl: handbookUrlFor(newCourse.code, site.handbookSubjectUrl) } : null,
+    replaces: form.replaces ?? null,
+    siteBase: String(env.SITE_BASE ?? ''),
   });
   // Mã bí mật cho link xem bài của người gửi; R2 chỉ giữ sha256 của mã.
   const view = base ? await newToken(deps.random) : null;
@@ -320,6 +330,11 @@ async function handleSubmit(req, env, deps, cors) {
     if (view) {
       await env.QUARANTINE.put(tokenKey(code), view.hash, { customMetadata: { course: course.id } });
       keys.push(tokenKey(code));
+    }
+    // Email báo kết quả: chỉ nằm trong kho cách ly, xóa khi đã gửi (POST /bao-ket-qua) hay khi dọn kho.
+    if (form.notifyEmail) {
+      await env.QUARANTINE.put(notifyKey(code), JSON.stringify({ email: form.notifyEmail, course: course.id }));
+      keys.push(notifyKey(code));
     }
   } catch (err) {
     await cleanup();
@@ -437,6 +452,37 @@ async function handleOwner(req, env, deps, code, wantFile) {
   return statusPage({ code, status, course: owner.course, fileHref: file ? `/xem/${code}/file?${kq}` : null });
 }
 
+// POST /bao-ket-qua { code }: gửi email kết quả nếu người gửi có để lại email và PR đã đóng.
+// Không cần khóa: Worker tự hỏi GitHub trạng thái PR; gọi thừa không gửi gì, gọi lại sau khi gửi cũng vậy.
+async function handleNotify(req, env, deps) {
+  if (req.method !== 'POST') return reply(405, { ok: false, error: MESSAGES.method }, {}, { Allow: 'POST' });
+  let code = '';
+  try {
+    code = String((await req.json()).code ?? '');
+  } catch {
+    return reply(400, { ok: false }, {});
+  }
+  if (!CODE.test(code)) return reply(400, { ok: false }, {});
+  const obj = await env.QUARANTINE.get(notifyKey(code));
+  if (!obj) return reply(200, { ok: true, sent: false }, {});
+  if (!env.RESEND_API_KEY || !env.NOTIFY_FROM) return reply(503, { ok: false }, {});
+  try {
+    const { email, course } = JSON.parse(await obj.text());
+    const gh = await githubFactory(env, deps)();
+    const pr = await gh.findPr(`upload/${code}`);
+    if (!pr || pr.state === 'open') return reply(200, { ok: true, sent: false }, {});
+    const reason = pr.merged ? '' : plainReason(await gh.lastComment(pr.number));
+    const site = String(env.SITE_BASE ?? '');
+    const msg = notifyMessage({ code, merged: pr.merged, reason, siteUrl: course ? `${site}course/${course}/` : site, statusUrl: null });
+    await sendEmail({ apiKey: env.RESEND_API_KEY, from: env.NOTIFY_FROM, to: email, ...msg, fetch: deps.fetch });
+    await env.QUARANTINE.delete(notifyKey(code));
+    return reply(200, { ok: true, sent: true }, {});
+  } catch (err) {
+    logFailure('notify', err);
+    return reply(502, { ok: false }, {});
+  }
+}
+
 const REVIEW_PATH = /^\/xem-duyet\/([^/]+)(\/file)?$/;
 const OWNER_PATH = /^\/xem\/([^/]+)(\/file)?$/;
 const PREVIEW_PATH = '/xem-truoc';
@@ -468,6 +514,7 @@ export function createHandler(deps = {}) {
       const url = new URL(req.url);
       const cors = corsHeaders(req, env);
       if (url.pathname === PREVIEW_PATH) return handlePreview(req, env, d);
+      if (url.pathname === '/bao-ket-qua') return handleNotify(req, env, d);
       if (REVIEW_PATH.test(url.pathname) || OWNER_PATH.test(url.pathname)) return handleView(req, env, d, url.pathname);
       if (url.pathname !== '/submit') return reply(404, { ok: false, error: MESSAGES.notFound }, cors);
       if (req.method === 'OPTIONS') {

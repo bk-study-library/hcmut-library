@@ -162,3 +162,20 @@ test('checkNewCourse: mã theo mẫu, chưa có trong thư viện, tên có gi�
   assert.equal(dup.existing.id, 'EE5429');
   assert.deepEqual({ ...dup.errors }, {});
 });
+
+test('cảnh báo trùng tên: trùng hẳn, chứa nhau, chung đa số từ; tiêu đề quá ngắn thì bỏ qua', () => {
+  const fold = BkSearch.fold;
+  const docs = [
+    { id: 'a', course: 'MT1003', code: 'MT1003', title: 'Tóm tắt giới hạn và đạo hàm', added: '2026-10-01' },
+    { id: 'b', course: 'MT1003', code: 'MT1003', title: 'Đề thi cuối kỳ HK241', added: '2026-10-02' },
+    { id: 'c', course: 'MT1011', code: 'MT1011', title: 'Bảng công thức tích phân', added: '2026-10-03' },
+  ];
+  assert.deepEqual(ids(BkUpload.similarDocs('tom tat gioi han va dao ham', docs, fold)), ['a']);
+  assert.deepEqual(ids(BkUpload.similarDocs('Tóm tắt giới hạn, đạo hàm (bản mới)', docs, fold)), ['a']);
+  assert.deepEqual(ids(BkUpload.similarDocs('De thi cuoi ky HK241 ca 2', docs, fold)), ['b']);
+  assert.deepEqual(ids(BkUpload.similarDocs('Slide chương 5', docs, fold)), []);
+  assert.deepEqual(ids(BkUpload.similarDocs('Đề', docs, fold)), []);
+  // Tài liệu của môn: chỉ các mã trong môn, mới nhất trước.
+  assert.deepEqual(ids(BkUpload.subjectDocs(docs, ['MT1003', 'MT1011'])), ['c', 'b', 'a']);
+  assert.deepEqual(ids(BkUpload.subjectDocs(docs, ['MT1003'])), ['b', 'a']);
+});

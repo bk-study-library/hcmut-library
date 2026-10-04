@@ -42,6 +42,17 @@
   var NEW_TEACHER = '__new';
   var nc = cfg.newCourse || {};
   var core = window.BkUpload;
+  // Tài liệu đã có (assets/items.json) để cảnh báo trùng tên và chọn tài liệu được thay.
+  var titleInput = document.getElementById('title');
+  var dupWarn = document.getElementById('dup-warn');
+  var dupList = document.getElementById('dup-list');
+  var updateField = document.getElementById('update-field');
+  var isUpdate = document.getElementById('is-update');
+  var updateBox = document.getElementById('update-box');
+  var replacesSel = document.getElementById('replaces');
+  var allDocs = [];
+  var subjectIds = [];
+  var docs = [];
   var sn = cfg.sameName || {};
   var MAX_SHOWN = 8;
   var SEARCH_LIMIT = 500;
@@ -182,9 +193,57 @@
         })
       : [c];
     fillTeachers(core.subjectTeachers(group));
+    subjectIds = group.map(function (x) {
+      return x.id;
+    });
+    refreshDocs();
+  }
+
+  // Tài liệu của môn đang chọn: điền ô "Tài liệu được thay", rồi kiểm trùng tên.
+  function refreshDocs() {
+    docs = updateField ? core.subjectDocs(allDocs, subjectIds) : [];
+    if (!updateField) return;
+    replacesSel.textContent = '';
+    docs.forEach(function (d) {
+      var o = document.createElement('option');
+      o.value = d.course + '/' + d.id;
+      o.textContent = d.title + ' (' + d.code + ')';
+      replacesSel.appendChild(o);
+    });
+    updateField.hidden = !docs.length;
+    if (!docs.length) setUpdate(false);
+    checkDup();
+  }
+
+  function setUpdate(on) {
+    if (!updateField) return;
+    isUpdate.checked = on;
+    updateBox.hidden = !on;
+    replacesSel.disabled = !on;
+  }
+
+  function checkDup() {
+    if (!dupWarn) return;
+    var sims = titleInput.value.trim() && docs.length ? core.similarDocs(titleInput.value, docs, window.BkSearch.fold, 3) : [];
+    dupList.textContent = '';
+    sims.forEach(function (d) {
+      var li = document.createElement('li');
+      var a = document.createElement('a');
+      a.href = root + d.url;
+      a.target = '_blank';
+      a.rel = 'noopener';
+      a.textContent = d.title + ' (' + d.code + ')';
+      li.appendChild(a);
+      dupList.appendChild(li);
+    });
+    dupWarn.hidden = !sims.length;
+    // Đã chọn bản cập nhật mà chưa đổi tài liệu được thay: gợi ý sẵn tài liệu giống nhất.
+    if (sims.length && isUpdate && !isUpdate.checked) replacesSel.value = sims[0].course + '/' + sims[0].id;
   }
 
   function clearCourse() {
+    subjectIds = [];
+    refreshDocs();
     courseId.value = '';
     codeBox.hidden = true;
     codeSel.textContent = '';
@@ -454,6 +513,28 @@
       });
   }
 
+  if (titleInput) {
+    var dupTimer = null;
+    titleInput.addEventListener('input', function () {
+      clearTimeout(dupTimer);
+      dupTimer = setTimeout(checkDup, 200);
+    });
+  }
+  if (isUpdate) {
+    isUpdate.addEventListener('change', function () {
+      setUpdate(isUpdate.checked);
+    });
+  }
+  // Danh sách tài liệu chỉ để cảnh báo trùng và chọn bản được thay: tải lỗi thì form vẫn gửi được.
+  if (updateField) {
+    getJson(root + 'assets/items.json')
+      .then(function (d) {
+        allDocs = Array.isArray(d) ? d : d.items || [];
+        refreshDocs();
+      })
+      .catch(function () {});
+  }
+
   // Gửi
   function setBusy(busy) {
     submit.disabled = busy;
@@ -462,6 +543,8 @@
 
   function resetForm() {
     form.reset();
+    setUpdate(false);
+    if (dupWarn) dupWarn.hidden = true;
     setNew(false);
     clearCourse();
     list.textContent = '';

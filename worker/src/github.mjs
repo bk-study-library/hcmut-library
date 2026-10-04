@@ -154,7 +154,18 @@ export class GitHub {
     const res = await this.#call('GET', `/pulls?${q}`);
     const list = await res.json();
     if (!Array.isArray(list) || !list.length) return null;
-    return { state: list[0].state, merged: Boolean(list[0].merged_at) };
+    return { number: list[0].number, state: list[0].state, merged: Boolean(list[0].merged_at) };
+  }
+
+  // Bình luận mới nhất của PR (issue comments), hoặc null. Dùng làm lý do khi bài bị đóng không gộp.
+  async lastComment(number) {
+    const n = encodeURIComponent(String(number));
+    const first = await this.#call('GET', `/issues/${n}/comments?per_page=1`);
+    const link = first.headers.get('link') || '';
+    const last = /<[^>]*[?&]page=([0-9]+)[^>]*>;\s*rel="last"/.exec(link);
+    const res = last ? await this.#call('GET', `/issues/${n}/comments?per_page=1&page=${last[1]}`) : first;
+    const list = await res.json();
+    return Array.isArray(list) && list.length ? String(list[0].body ?? '') : null;
   }
 
   // File đổi giữa base và head (compare API): [{ filename, status }]. Nhánh không còn thì null.

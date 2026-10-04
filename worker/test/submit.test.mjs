@@ -761,3 +761,102 @@ describe('nhật ký', () => {
     }
   });
 });
+
+describe('email báo kết quả và bản cập nhật', () => {
+  it('email người gửi chỉ nằm trong kho cách ly, không vào mục tài liệu hay PR', async () => {
+    const { res, body, fetch } = await run(post(form({ notifyEmail: 'an@example.com' })));
+    expect(res.status).toBe(201);
+    const stored = await env.QUARANTINE.get(`notify/${body.code}`);
+    expect(JSON.parse(await stored.text())).toEqual({ email: 'an@example.com', course: 'MT1005' });
+    for (const c of [...fetch.find('PUT', '/contents/'), ...fetch.find('POST', '/pulls')]) {
+      const text = c.body.includes('"content"') ? atob(JSON.parse(c.body).content ?? '') : c.body;
+      expect(text).not.toContain('an@example.com');
+      expect(text).not.toContain('notifyEmail');
+    }
+  });
+
+  it('email sai dạng thì báo lỗi ô email', async () => {
+    const { res, body } = await run(post(form({ notifyEmail: 'khong-phai-email' })));
+    expect(res.status).toBe(400);
+    expect(body.errors).toHaveProperty('notifyEmail');
+  });
+
+  it('bản cập nhật: mục mới ghi replaces, PR có link so bản đang có và bản mới', async () => {
+    const { res, body, fetch } = await run(post(form({ replaces: 'MT1005/bang-cong-thuc' }, pdfBytes(1200, 3))), { envOver: { SITE_BASE: 'https://lib.example/' } });
+    expect(res.status).toBe(201);
+    const [put] = fetch.find('PUT', '/contents/courses/');
+    const item = JSON.parse(new TextDecoder().decode(Uint8Array.from(atob(JSON.parse(put.body).content), (c) => c.charCodeAt(0))));
+    expect(item.replaces).toBe('MT1005/bang-cong-thuc');
+    const pr = JSON.parse(fetch.find('POST', '/pulls')[0].body);
+    expect(pr.body).toContain('**Bản cập nhật** cho tài liệu `MT1005/bang-cong-thuc`');
+    expect(pr.body).toContain('https://lib.example/course/MT1005/#bang-cong-thuc');
+    expect(pr.body).toContain(`https://up.example/xem-duyet/${body.code}`);
+  });
+
+  it('bản cập nhật trỏ tới tài liệu không có thì báo lỗi', async () => {
+    for (const replaces of ['MT1005/khong-co', 'XX9999/bang-cong-thuc', 'linh-tinh']) {
+      const { res, body } = await run(post(form({ replaces }, pdfBytes(1300, 5))));
+      expect(res.status).toBe(400);
+      expect(body.errors).toHaveProperty('replaces');
+    }
+  });
+});
+
+describe('POST /bao-ket-qua', () => {
+  const CODE = 'Abcde12345';
+  function notifyFetch({ state = 'closed', merged = false, comment = 'Trùng tài liệu đã có, xem **bảng công thức**.' } = {}) {
+    const base = fakeFetch();
+    const sent = [];
+    const fn = async (url, init = {}) => {
+      const u = new URL(String(url));
+      if (u.host === 'api.resend.com') {
+        sent.push({ headers: init.headers, body: JSON.parse(init.body) });
+        return json({ id: 'e1' });
+      }
+      if (u.pathname === `/repos/${REPO}/pulls`) return json([{ number: 7, state, merged_at: merged ? '2026-10-04T00:00:00Z' : null }]);
+      if (u.pathname === `/repos/${REPO}/issues/7/comments`) return json([{ body: comment }]);
+      return base(url, init);
+    };
+    fn.sent = sent;
+    return fn;
+  }
+  const call = (code = CODE) => new Request('https://worker.example/bao-ket-qua', { method: 'POST', body: JSON.stringify({ code }) });
+  const envMail = { RESEND_API_KEY: 're_test', NOTIFY_FROM: 'Lib <a@mail.example>', SITE_BASE: 'https://lib.example/' };
+
+  it('PR bị đóng: gửi một email kèm lý do rồi xóa email khỏi kho', async () => {
+    await env.QUARANTINE.put(`notify/${CODE}`, JSON.stringify({ email: 'an@example.com', course: 'MT1005' }));
+    const fetch = notifyFetch();
+    const { res, body } = await run(call(), { fetch, envOver: envMail });
+    expect(res.status).toBe(200);
+    expect(body).toEqual({ ok: true, sent: true });
+    expect(fetch.sent).toHaveLength(1);
+    expect(fetch.sent[0].headers.Authorization).toBe('Bearer re_test');
+    expect(fetch.sent[0].body.to).toEqual(['an@example.com']);
+    expect(fetch.sent[0].body.subject).toBe(`Bài ${CODE} chưa được duyệt`);
+    expect(fetch.sent[0].body.text).toContain('Trùng tài liệu đã có, xem bảng công thức.');
+    expect(await env.QUARANTINE.get(`notify/${CODE}`)).toBeNull();
+    // Gọi lại: không còn email, không gửi nữa.
+    const again = await run(call(), { fetch, envOver: envMail });
+    expect(again.body).toEqual({ ok: true, sent: false });
+    expect(fetch.sent).toHaveLength(1);
+  });
+
+  it('PR được gộp: email báo đã duyệt, link trang môn', async () => {
+    await env.QUARANTINE.put(`notify/${CODE}`, JSON.stringify({ email: 'an@example.com', course: 'MT1005' }));
+    const fetch = notifyFetch({ merged: true });
+    await run(call(), { fetch, envOver: envMail });
+    expect(fetch.sent[0].body.subject).toBe(`Bài ${CODE} đã được duyệt`);
+    expect(fetch.sent[0].body.text).toContain('https://lib.example/course/MT1005/');
+  });
+
+  it('PR còn mở hay mã sai: không gửi, giữ email', async () => {
+    await env.QUARANTINE.put(`notify/${CODE}`, JSON.stringify({ email: 'an@example.com', course: 'MT1005' }));
+    const fetch = notifyFetch({ state: 'open' });
+    const { body } = await run(call(), { fetch, envOver: envMail });
+    expect(body).toEqual({ ok: true, sent: false });
+    expect(fetch.sent).toHaveLength(0);
+    expect(await env.QUARANTINE.get(`notify/${CODE}`)).not.toBeNull();
+    const bad = await run(call('../x'), { fetch, envOver: envMail });
+    expect(bad.res.status).toBe(400);
+  });
+});
