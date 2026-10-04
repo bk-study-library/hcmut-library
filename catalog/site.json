@@ -23,5 +23,6 @@
   "officialProgramsPage": "https://hcmut.edu.vn/bai-viet/chuong-trinh-dao-tao-tu-khoa-2019",
   "docResultsMax": 10,
   "docDescriptionMax": 200,
+  "sameNameGroupMin": 3,
   "socialImage": "assets/social-preview.png"
 }

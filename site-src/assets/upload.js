@@ -122,7 +122,7 @@
   function select(id) {
     var c = byId[id];
     courseId.value = id;
-    q.value = c.code + ' ' + c.name;
+    q.value = c.code + ' ' + c.name + (c.ctx ? ' (' + c.ctx + ')' : '');
     list.textContent = '';
     errBox('course').textContent = '';
     fillTeachers(c.teachers || []);
@@ -163,6 +163,13 @@
       name.textContent = c.name;
       b.appendChild(code);
       b.appendChild(name);
+      // Môn trùng tên (Đồ án tốt nghiệp...): ghi ngành để chọn đúng mã.
+      if (c.ctx) {
+        var ctx = document.createElement('span');
+        ctx.className = 'muted';
+        ctx.textContent = c.ctx;
+        b.appendChild(ctx);
+      }
       b.addEventListener('click', function () {
         select(c.id);
         typeSel.focus();
@@ -190,11 +197,17 @@
     if (pre && byId[pre]) select(pre);
   }
 
+  // Danh sách môn: bản gọn của web (assets/courses.json, có ngữ cảnh môn trùng tên); thiếu thì dùng v1.
+  function getJson(url) {
+    return fetch(url).then(function (r) {
+      if (!r.ok) throw new Error(r.status);
+      return r.json();
+    });
+  }
   if (window.BkSearch) {
-    fetch(root + 'v1/index.json')
-      .then(function (r) {
-        if (!r.ok) throw new Error(r.status);
-        return r.json();
+    getJson(root + 'assets/courses.json')
+      .catch(function () {
+        return getJson(root + 'v1/index.json');
       })
       .then(loadCourses)
       .catch(function () {

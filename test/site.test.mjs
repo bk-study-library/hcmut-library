@@ -219,22 +219,22 @@ test('trang khoa: chương trình theo khóa mới nhất trước, có số mô
 
 test('trang khoa chưa có dữ liệu: có thông báo, vẫn có nút thêm chương trình', () => {
   const html = read3('faculty/fx/index.html');
-  assert.match(html, /Khoa này chưa có môn và chương trình nào trong thư viện\./);
-  assert.match(html, /Khoa này chưa có chương trình nào\. Bạn có thể gửi CTĐT của khóa mình\./);
-  assert.match(html, /Chưa có môn nào\./);
+  // Khoa trống: một ghi chú và một nút chính, không lặp "0 chương trình", "0 môn" hay bảng rỗng.
+  assert.match(html, /<div class="note" role="note"><p>Khoa này chưa có môn hay chương trình nào\.<\/p><\/div><p class="actions"><a class="btn primary" href="[^"]*them-chuong-trinh\.yml/);
+  assert.doesNotMatch(html, /0 chương trình|0 môn|Chưa có môn nào|<table/);
   assert.match(html, /template=them-chuong-trinh\.yml&amp;khoa=Khoa\+Th%E1%BB%AD\+R%E1%BB%97ng/);
-  assert.match(read3('index.html'), /<strong>Khoa Thử Rỗng<\/strong><span class="muted">Chưa có dữ liệu<\/span>/);
+  assert.match(read3('index.html'), /<strong>Khoa Thử Rỗng<\/strong><span class="muted">Chưa có môn<\/span>/);
 });
 
 test('trang chương trình chưa có danh sách môn: thông báo, nút gửi CTĐT điền sẵn khoa, ngành, khóa', () => {
   const html = read3('program/EE_TS_108_2026/index.html');
   assert.match(html, /<h1>Ngành tuyển sinh thử \(2026\)<\/h1>/);
-  assert.match(html, /Chưa có danh sách môn\. Bạn có thể gửi CTĐT của khóa mình\./);
+  assert.match(html, /Chưa có danh sách môn\. Gửi chương trình đào tạo của khóa bạn để thêm vào\./);
   assert.match(html, /template=them-chuong-trinh\.yml&amp;khoa=[^"]+&amp;nganh=Ng%C3%A0nh\+tuy%E1%BB%83n\+sinh\+th%E1%BB%AD&amp;khoa-hoc=2026"/);
   // Ghi chú, rồi một hàng nút: gửi CTĐT (nút chính), link nguồn dạng nút, bảng CTĐT của trường (nút nhẹ).
   assert.match(
     html,
-    /<\/div><p class="actions"><a class="btn primary" href="[^"]+" rel="noopener">Thêm chương trình đào tạo<\/a><a class="btn" href="https:\/\/example\.test\/ctdt" rel="noopener">Xem CTĐT chính thức<\/a><a class="btn subtle" href="https:\/\/hcmut\.edu\.vn\/bai-viet\/chuong-trinh-dao-tao-tu-khoa-2019" rel="noopener">Bảng CTĐT của trường<\/a><\/p>/,
+    /<\/div><p class="actions"><a class="btn primary" href="[^"]+" rel="noopener">Thêm chương trình đào tạo<\/a><a class="btn" href="https:\/\/example\.test\/ctdt" rel="noopener">Nguồn chính thức<\/a><a class="btn subtle" href="https:\/\/hcmut\.edu\.vn\/bai-viet\/chuong-trinh-dao-tao-tu-khoa-2019" rel="noopener">Danh sách chương trình của trường<\/a><\/p>/,
   );
   // Dòng meta đọc tự nhiên: "Mã ..., khoa, ..., chưa có danh sách môn", không ghi "0 môn".
   assert.match(html, /<p class="muted">Mã EE_TS_108_2026, <a href="\.\.\/\.\.\/faculty\/EE\/">Khoa Điện - Điện tử<\/a>, <a class="tag" href="\.\.\/\.\.\/\?q=D%E1%BA%A1y%20v%C3%A0%20h%E1%BB%8Dc%20b%E1%BA%B1ng%20ti%E1%BA%BFng%20Anh">Dạy và học bằng tiếng Anh<\/a>, chưa có danh sách môn<\/p>/);
@@ -245,7 +245,9 @@ test('trang chương trình chưa có danh sách môn: thông báo, nút gửi C
 
 test('trang chủ: chương trình gộp theo khoa trong khối đóng mở, có nút thêm chương trình', () => {
   const html = read3('index.html');
-  assert.equal((html.match(/<details class="prog-fac">/g) || []).length, 3);
+  assert.equal((html.match(/<details class="prog-fac">/g) || []).length, 1);
+  // Khoa chưa có chương trình nào không có dòng ở danh sách chương trình.
+  assert.doesNotMatch(html, /prog-fac-name">Khoa Thử Rỗng/);
   assert.match(html, /<summary><span class="prog-fac-name">Khoa Điện - Điện tử<\/span> <span class="muted small">2 chương trình<\/span><\/summary>/);
   assert.match(html, /Chương trình thử \(2019\)<\/a>/);
   assert.match(html, /template=them-chuong-trinh\.yml"/);
@@ -490,21 +492,21 @@ test('trang chương trình: nút CTĐT gốc và kế hoạch giảng dạy m�
   const html = readPdf('program/TEST_2019/index.html');
   assert.match(
     html,
-    /<p class="actions"><a class="btn" href="https:\/\/drive\.google\.com\/file\/d\/ctdt\/view" target="_blank" rel="noopener">Xem CTĐT gốc \(PDF của trường\)<\/a><a class="btn" href="https:\/\/dee\.hcmut\.edu\.vn\/khgd\.pdf" target="_blank" rel="noopener">Kế hoạch giảng dạy \(PDF\)<\/a><\/p><p class="muted small">File PDF do trường lưu trữ/,
+    /<p class="actions"><a class="btn" href="https:\/\/drive\.google\.com\/file\/d\/ctdt\/view" target="_blank" rel="noopener">PDF chương trình đào tạo<\/a><a class="btn" href="https:\/\/dee\.hcmut\.edu\.vn\/khgd\.pdf" target="_blank" rel="noopener">PDF kế hoạch giảng dạy<\/a><\/p><p class="muted small">PDF nằm trên trang của trường/,
   );
   // Đã có PDF của trường thì không cần link bảng CTĐT.
   assert.doesNotMatch(html, /hcmut\.edu\.vn\/bang-ctdt/);
   const en = readPdf('en/program/TEST_2019/index.html');
-  assert.match(en, />View the original curriculum \(university PDF\)<\/a>/);
-  assert.match(en, />Teaching plan \(PDF\)<\/a>/);
-  assert.match(en, /The PDF files are hosted by the university/);
+  assert.match(en, />Curriculum PDF<\/a>/);
+  assert.match(en, />Teaching plan PDF<\/a>/);
+  assert.match(en, /The PDFs are on the university site/);
 });
 
 test('trang chương trình không có link PDF: nút nhẹ tới bảng CTĐT của trường theo site.json', () => {
   const html = readPdf('program/TEST_2019_NHAP/index.html');
-  assert.match(html, /<p class="actions"><a class="btn subtle" href="https:\/\/hcmut\.edu\.vn\/bang-ctdt" rel="noopener">Bảng CTĐT của trường<\/a><\/p>/);
-  assert.doesNotMatch(html, /File PDF do trường lưu trữ/);
-  assert.match(readPdf('en/program/TEST_2019_NHAP/index.html'), />University curriculum table<\/a>/);
+  assert.match(html, /<p class="actions"><a class="btn subtle" href="https:\/\/hcmut\.edu\.vn\/bang-ctdt" rel="noopener">Danh sách chương trình của trường<\/a><\/p>/);
+  assert.doesNotMatch(html, /PDF nằm trên trang của trường/);
+  assert.match(readPdf('en/program/TEST_2019_NHAP/index.html'), />University program list<\/a>/);
 });
 
 test('chương trình listed: false: không vào danh sách trang chủ, trang khoa; trang riêng ghi bản nháp, không lập chỉ mục', () => {
@@ -516,13 +518,13 @@ test('chương trình listed: false: không vào danh sách trang chủ, trang k
   assert.match(readPdf('faculty/EE/index.html'), /<p class="muted">1 chương trình<\/p>/);
   const draft = readPdf('program/TEST_2019_NHAP/index.html');
   assert.match(draft, /<meta name="robots" content="noindex">/);
-  assert.match(draft, /Đây là bản nháp nguồn, không hiện trong danh sách chương trình\./);
+  assert.match(draft, /Đây là bản nháp, không hiện trong danh sách\./);
   assert.match(draft, /Xem bản chính: <a href="\.\.\/\.\.\/program\/TEST_2019\/">Chương trình thử \(2019\)<\/a>/);
   assert.doesNotMatch(readPdf('program/TEST_2019/index.html'), /name="robots"/);
   // Trang môn vẫn link tới bản nháp (không hỏng link), có nhãn bản nháp nguồn.
   const course = readPdf('course/EE1009/index.html');
-  assert.match(course, /<a href="\.\.\/\.\.\/program\/TEST_2019_NHAP\/">Chương trình thử \(2019\)<\/a> <span class="tag">bản nháp nguồn<\/span>/);
-  assert.match(readPdf('en/course/EE1009/index.html'), /<span class="tag">draft source<\/span>/);
+  assert.match(course, /<a href="\.\.\/\.\.\/program\/TEST_2019_NHAP\/">Chương trình thử \(2019\)<\/a> <span class="tag">bản nháp<\/span>/);
+  assert.match(readPdf('en/course/EE1009/index.html'), /<span class="tag">draft<\/span>/);
 });
 
 test('trang khoa Môn chung toàn trường có ghi chú riêng', () => {
@@ -532,7 +534,7 @@ test('trang khoa Môn chung toàn trường có ghi chú riêng', () => {
   });
   const o = fs.mkdtempSync(path.join(os.tmpdir(), 'bk-lib-site-chung-'));
   buildSite({ root: dir, out: o });
-  assert.match(fs.readFileSync(path.join(o, 'faculty/chung/index.html'), 'utf8'), /<p class="note">Môn và điều kiện tốt nghiệp áp dụng cho mọi ngành/);
+  assert.match(fs.readFileSync(path.join(o, 'faculty/chung/index.html'), 'utf8'), /<div class="note" role="note"><p>Môn và điều kiện tốt nghiệp chung cho mọi ngành/);
   assert.doesNotMatch(fs.readFileSync(path.join(o, 'faculty/EE/index.html'), 'utf8'), /áp dụng cho mọi ngành/);
 });
 
@@ -664,7 +666,7 @@ test('trang môn: og:title, description ghi mã, tên môn và số tài liệu'
   const html = read('course/EE1009/index.html');
   assert.equal(metaOf(html, 'property', 'og:title'), 'EE1009 Kỹ thuật số');
   const desc = metaOf(html, 'name', 'description');
-  assert.match(desc, /^Môn EE1009 Kỹ thuật số: 2 tài liệu/);
+  assert.match(desc, /^EE1009 Kỹ thuật số: 2 tài liệu/);
   assert.equal(metaOf(html, 'property', 'og:description'), desc);
   assert.match(metaOf(read('en/course/EE1009/index.html'), 'name', 'description'), /^EE1009 .+: 2 items/);
   assert.match(metaOf(read('course/400111/index.html'), 'name', 'description'), /chưa có tài liệu/);
@@ -739,8 +741,8 @@ test('trang ngành: mã ngành, nút PDF và Sổ tay, bộ chọn loại và kh
   const html = mainOf(readM('major/7520103/index.html'));
   assert.match(html, /<h1>Kỹ thuật Cơ khí<\/h1><p class="muted">Mã ngành 7520103, <a href="\.\.\/\.\.\/faculty\/fme\/">Khoa Cơ khí<\/a>, 3 chương trình<\/p>/);
   // Nút theo chương trình chính (khóa mới nhất có học kỳ đề xuất, loại tiêu chuẩn), rồi Sổ tay.
-  assert.match(html, /href="https:\/\/drive\.google\.com\/file\/d\/ghi-tay\/view" target="_blank" rel="noopener">Xem CTĐT gốc/);
-  assert.match(html, /href="https:\/\/drive\.google\.com\/file\/d\/khgd-ck-2024\/view" target="_blank" rel="noopener">Kế hoạch giảng dạy \(PDF\)/);
+  assert.match(html, /href="https:\/\/drive\.google\.com\/file\/d\/ghi-tay\/view" target="_blank" rel="noopener">PDF chương trình đào tạo/);
+  assert.match(html, /href="https:\/\/drive\.google\.com\/file\/d\/khgd-ck-2024\/view" target="_blank" rel="noopener">PDF kế hoạch giảng dạy/);
   assert.match(html, /<a class="btn subtle" href="https:\/\/hcmut\.edu\.vn\/study\/handbook\/course\/undergraduate\/7520103\?program=CQ" rel="noopener">Xem ngành trên Sổ tay HCMUT<\/a>/);
   assert.match(html, /<a class="chip" href="\.\.\/\.\.\/program\/FME_KY_THUAT_CO_KHI_2024\/" aria-current="true">Tiêu chuẩn<\/a><a class="chip" href="\.\.\/\.\.\/program\/FME_KY_THUAT_CO_KHI_2025_CTTA\/">Tiếng Anh<\/a>/);
   assert.match(html, /<a class="chip" href="\.\.\/\.\.\/program\/FME_KY_THUAT_CO_KHI_2024\/" aria-current="true">2024<\/a><a class="chip" href="\.\.\/\.\.\/program\/FME_KY_THUAT_CO_KHI_2019\/">2019<\/a>/);
@@ -763,7 +765,7 @@ test('trang ngành: mã ngành, nút PDF và Sổ tay, bộ chọn loại và kh
 
 test('trang ngành chưa có danh sách môn: thông báo, nút gửi CTĐT; mã song ngành có dấu + thành dấu gạch ngang', () => {
   const html = mainOf(readM('major/7520201-7520207/index.html'));
-  assert.match(html, /Chưa có danh sách môn\. Bạn có thể gửi CTĐT của khóa mình\./);
+  assert.match(html, /Chưa có danh sách môn\. Gửi chương trình đào tạo của khóa bạn để thêm vào\./);
   assert.match(html, /<a class="btn primary" href="[^"]*them-chuong-trinh\.yml[^"]*" rel="noopener">Thêm chương trình đào tạo<\/a>/);
   assert.match(readM('sitemap.xml'), /major\/7520103\/<\/loc>/);
 });
@@ -804,14 +806,15 @@ test('trang khoa: ngành trước, rồi Môn của khoa và Môn chung khoa dù
   const shared = html.slice(at('<h2>Môn chung khoa dùng</h2>'));
   assert.match(own, /course\/ME2045\//);
   assert.doesNotMatch(own, /course\/MT1003\//);
-  assert.match(shared, /<p class="muted">4 môn\. Môn chung toàn trường có trong chương trình của khoa\. Danh sách đủ ở trang <a href="\.\.\/\.\.\/faculty\/chung\/">Môn chung toàn trường<\/a>\.<\/p>/);
+  assert.match(shared, /<p class="muted">4 môn\. Danh sách đủ ở trang <a href="\.\.\/\.\.\/faculty\/chung\/">Môn chung toàn trường<\/a>\.<\/p>/);
   for (const id of ['MT1003', 'PH1003', 'LA1003', 'PE1009']) assert.match(shared, new RegExp(`course/${id}/`), id);
   const chung = mainOf(readM('faculty/chung/index.html'));
-  assert.match(chung, /<p class="note">Môn và điều kiện tốt nghiệp áp dụng cho mọi ngành/);
+  assert.match(chung, /<div class="note" role="note"><p>Môn và điều kiện tốt nghiệp chung cho mọi ngành/);
   assert.match(chung, /course\/MT1003\//);
   assert.doesNotMatch(chung, /Môn chung khoa dùng/);
-  // Khoa chưa có gì: chỉ tới trang Môn chung toàn trường.
-  assert.match(mainOf(readM('faculty/flc/index.html')), /nằm ở trang <a href="\.\.\/\.\.\/faculty\/chung\/">Môn chung toàn trường<\/a>\./);
+  // Khóa cũ (flc, movedTo: chung): trang ngắn chuyển tới Môn chung toàn trường, không có trong trang chủ.
+  assert.match(readM('faculty/flc/index.html'), /<meta http-equiv="refresh" content="0; url=\.\.\/chung\/">[\s\S]*Đang chuyển tới <a href="\.\.\/chung\/">Môn chung toàn trường<\/a>\./);
+  assert.doesNotMatch(readM('index.html'), /faculty\/flc\/|Trung tâm Ngoại ngữ/);
 });
 
 test('trang môn: link Sổ tay, chương trình gom theo ngành với link tới khối', () => {
