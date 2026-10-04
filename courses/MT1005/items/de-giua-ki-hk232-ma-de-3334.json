@@ -1,0 +1,25 @@
+{
+  "$schema": "../../../schema/item.schema.json",
+  "id": "de-giua-ki-hk232-ma-de-3334",
+  "course": "MT1005",
+  "type": "exam-past",
+  "title": "Đề giữa kì hk232 - Mã đề 3334",
+  "lang": "vi",
+  "license": "CC-BY-SA-4.0",
+  "origin": "self-made",
+  "added": "2026-10-05",
+  "removed": false,
+  "description": "Có đáp án",
+  "term": "HK232",
+  "examKind": "gk",
+  "files": [
+    {
+      "name": "MT1005_exam-past_de-giua-ki-hk232-ma-de-3334_HK232.pdf",
+      "size": 332328,
+      "sha256": "17bdf9c6f70afbdcc863f92cb82ee5da9637986aa8257dc39002c7a037e1fe9a",
+      "mime": "application/pdf",
+      "quarantine": "pending/1MSUo4YBK3/MT1005_exam-past_de-giua-ki-hk232-ma-de-3334_HK232.pdf",
+      "uploadSha256": "17bdf9c6f70afbdcc863f92cb82ee5da9637986aa8257dc39002c7a037e1fe9a"
+    }
+  ]
+}
