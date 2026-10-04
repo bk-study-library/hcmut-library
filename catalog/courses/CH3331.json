@@ -1,0 +1,45 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "CH3331",
+  "code": "CH3331",
+  "name": "Cơ sở vật liệu và bảo vệ ăn mòn",
+  "nameEn": "Fundamentals of Material and Corrosion",
+  "credits": 3,
+  "faculty": "che",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "CHE_KY_THUAT_HOA_HOC_2019",
+      "block": "K05",
+      "required": false
+    },
+    {
+      "program": "CHE_KY_THUAT_HOA_HOC_2020",
+      "block": "K05",
+      "required": false
+    },
+    {
+      "program": "CHE_KY_THUAT_HOA_HOC_2021",
+      "block": "K05",
+      "required": false
+    },
+    {
+      "program": "CHE_KY_THUAT_HOA_HOC_2022",
+      "block": "K05",
+      "required": false
+    },
+    {
+      "program": "CHE_KY_THUAT_HOA_HOC_2023",
+      "block": "K05",
+      "required": false
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/CH3331",
+  "note": "Nhập từ Kế hoạch giảng dạy (PDF của trường, truy cập 04/10/2026). Tên lấy từ PDF. Chờ người duyệt xác nhận.",
+  "updated": "2026-10-04"
+}

@@ -1,0 +1,38 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "MA3395",
+  "code": "MA3395",
+  "name": "Thực tập Ngoài trường",
+  "nameEn": "Internship",
+  "credits": 2,
+  "faculty": "fmt",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "FMT_VAT_LIEU_POLYMER_VA_COMPOSITE_PFIEV_2022_PFIEV",
+      "block": "K06",
+      "required": false
+    },
+    {
+      "program": "FMT_VAT_LIEU_POLYMER_VA_COMPOSITE_PFIEV_2023_PFIEV",
+      "block": "K06",
+      "required": false
+    },
+    {
+      "program": "FMT_VAT_LIEU_POLYMER_VA_COMPOSITE_PFIEV_2024_PFIEV",
+      "block": "K15",
+      "required": true
+    },
+    {
+      "program": "FMT_VAT_LIEU_POLYMER_VA_COMPOSITE_PFIEV_2026_PFIEV",
+      "block": "K16",
+      "required": true
+    }
+  ],
+  "parts": [],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/MA3395",
+  "note": "Nhập từ CTĐT chính thức (Sổ tay HCMUT, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

@@ -1,0 +1,22 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "CH345A",
+  "code": "CH345A",
+  "name": "Thực phẩm từ thực vật (mở rộng)",
+  "credits": 0,
+  "faculty": "che",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "CHE_CONG_NGHE_THUC_PHAM_2026_CNTN",
+      "block": "K14",
+      "required": false
+    }
+  ],
+  "parts": [],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/CH345A",
+  "note": "Nhập từ CTĐT chính thức (Sổ tay HCMUT, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

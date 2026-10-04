@@ -10,6 +10,7 @@
 | Khoa | Khoa Kỹ thuật Xây dựng |
 | Phần | Lý thuyết |
 | Trạng thái | Đang dạy |
+| Sổ tay HCMUT | [Trang môn trên Sổ tay HCMUT](https://hcmut.edu.vn/study/handbook/subject/CI2003) |
 
 ## Tài liệu
 

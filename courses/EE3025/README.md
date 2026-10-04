@@ -1,15 +1,16 @@
-# EE3025 Kỹ thuật Siêu cao tầnx
+# EE3025 Kỹ thuật Siêu cao tần
 
 <!-- File này do "npm run build" sinh từ catalog/courses/EE3025.json và items/. Chỉ sửa phần Mẹo học, giữa hai dòng meo-hoc. -->
 
 | Mục | Thông tin |
 |---|---|
 | Mã môn | EE3025 |
-| Tên | Kỹ thuật Siêu cao tầnx / Microwave Engineering |
+| Tên | Kỹ thuật Siêu cao tần / Microwave Engineering |
 | Tín chỉ | 3 |
 | Khoa | Khoa Điện - Điện tử |
 | Phần | Lý thuyết |
 | Trạng thái | Đang dạy |
+| Sổ tay HCMUT | [Trang môn trên Sổ tay HCMUT](https://hcmut.edu.vn/study/handbook/subject/EE3025) |
 
 ## Tài liệu
 

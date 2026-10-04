@@ -1,0 +1,90 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "CI2107",
+  "code": "CI2107",
+  "name": "Thiết kế Kiến trúc 1 - Công trình Công cộng",
+  "nameEn": "Architectural Design I - Public Buildings",
+  "credits": 3,
+  "faculty": "fce",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "FCE_KIEN_TRUC_2019",
+      "block": "K04",
+      "required": false
+    },
+    {
+      "program": "FCE_KIEN_TRUC_2020",
+      "block": "K04",
+      "required": false
+    },
+    {
+      "program": "FCE_KIEN_TRUC_2021",
+      "block": "K04",
+      "required": false
+    },
+    {
+      "program": "FCE_KIEN_TRUC_2022",
+      "block": "K04",
+      "required": false
+    },
+    {
+      "program": "FCE_KIEN_TRUC_2024",
+      "block": "K08",
+      "required": true
+    },
+    {
+      "program": "FCE_KIEN_TRUC_2024_CTTA",
+      "block": "K09",
+      "required": true
+    },
+    {
+      "program": "FCE_KIEN_TRUC_2025_CTTA",
+      "block": "K09",
+      "required": true
+    },
+    {
+      "program": "FCE_KIEN_TRUC_2026",
+      "block": "K11",
+      "required": true
+    },
+    {
+      "program": "FCE_KIEN_TRUC_2026_CTTA",
+      "block": "K11",
+      "required": true
+    },
+    {
+      "program": "FCE_KIEN_TRUC_7580101X_2021",
+      "block": "K04",
+      "required": false
+    },
+    {
+      "program": "FCE_KIEN_TRUC_7580101X_2021",
+      "block": "K12",
+      "required": false
+    },
+    {
+      "program": "FCE_KIEN_TRUC_7580101X_2024",
+      "block": "K05",
+      "required": true
+    },
+    {
+      "program": "FCE_KIEN_TRUC_7580101X_2024",
+      "block": "K07",
+      "required": false
+    },
+    {
+      "program": "FCE_KIEN_TRUC_7580101X_2024",
+      "block": "K08",
+      "required": false
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/CI2107",
+  "note": "Nhập từ CTĐT chính thức (Sổ tay HCMUT, truy cập 04/10/2026). Tên trong Kế hoạch giảng dạy: Thiết kế I - công trình công cộng.",
+  "updated": "2026-10-04"
+}

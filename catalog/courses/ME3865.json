@@ -1,0 +1,24 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "ME3865",
+  "code": "ME3865",
+  "name": "Thực tập Kỹ thuật Dệt",
+  "credits": 3,
+  "faculty": "fme",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "FME_KY_THUAT_DET_2026",
+      "block": "K11",
+      "required": true
+    }
+  ],
+  "parts": [
+    "lab"
+  ],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/ME3865",
+  "note": "Nhập từ CTĐT chính thức (Sổ tay HCMUT, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

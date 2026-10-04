@@ -1,0 +1,75 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "CO3091",
+  "code": "CO3091",
+  "name": "Đồ án môn học Thiết kế Luận lý",
+  "nameEn": "Logic Design Project",
+  "credits": 2,
+  "faculty": "cse",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "CSE_KY_THUAT_MAY_TINH_2019",
+      "block": "K05",
+      "required": false
+    },
+    {
+      "program": "CSE_KY_THUAT_MAY_TINH_2020",
+      "block": "K10",
+      "required": true
+    },
+    {
+      "program": "CSE_KY_THUAT_MAY_TINH_2020",
+      "block": "K15",
+      "required": true
+    },
+    {
+      "program": "CSE_KY_THUAT_MAY_TINH_2020",
+      "block": "K20",
+      "required": true
+    },
+    {
+      "program": "CSE_KY_THUAT_MAY_TINH_2021",
+      "block": "K10",
+      "required": true
+    },
+    {
+      "program": "CSE_KY_THUAT_MAY_TINH_2021",
+      "block": "K15",
+      "required": true
+    },
+    {
+      "program": "CSE_KY_THUAT_MAY_TINH_2021",
+      "block": "K20",
+      "required": true
+    },
+    {
+      "program": "CSE_KY_THUAT_MAY_TINH_2022",
+      "block": "K05",
+      "required": false
+    },
+    {
+      "program": "CSE_KY_THUAT_MAY_TINH_2023",
+      "block": "K10",
+      "required": true
+    },
+    {
+      "program": "CSE_KY_THUAT_MAY_TINH_2023",
+      "block": "K15",
+      "required": true
+    },
+    {
+      "program": "CSE_KY_THUAT_MAY_TINH_2023",
+      "block": "K20",
+      "required": true
+    }
+  ],
+  "parts": [
+    "project"
+  ],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/CO3091",
+  "note": "Nhập từ CTĐT chính thức (Sổ tay HCMUT, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

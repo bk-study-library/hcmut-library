@@ -1,0 +1,35 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "CH3407",
+  "code": "CH3407",
+  "name": "Kỹ thuật nuôi cấy tế bào thực vật",
+  "nameEn": "Plant Cell Culture Technique",
+  "credits": 3,
+  "faculty": "che",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "CHE_CONG_NGHE_SINH_HOC_2024",
+      "block": "K11",
+      "required": false
+    },
+    {
+      "program": "CHE_CONG_NGHE_SINH_HOC_2024_CTTA",
+      "block": "K12",
+      "required": false
+    },
+    {
+      "program": "CHE_CONG_NGHE_SINH_HOC_2026",
+      "block": "K12",
+      "required": false
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/CH3407",
+  "note": "Nhập từ CTĐT chính thức (Sổ tay HCMUT, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

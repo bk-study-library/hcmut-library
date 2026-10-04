@@ -1,0 +1,25 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "MA3213",
+  "code": "MA3213",
+  "name": "Tuyển trọng lực, tuyển từ và tuyển điện",
+  "nameEn": "Gravity, Magnetic and Electrical Separation",
+  "credits": 3,
+  "faculty": "fmt",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "FMT_KY_THUAT_CHE_BIEN_KHOANG_SAN_2027",
+      "block": "K11",
+      "required": true
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/MA3213",
+  "note": "Nhập từ CTĐT chính thức (Sổ tay HCMUT, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

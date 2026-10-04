@@ -1,0 +1,327 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "ENG_GT_700",
+  "code": "ENG_GT_700",
+  "name": "Đ/kiện tiếng Anh tốt nghiệp ĐH CTTN, PFIEV, tiêu chuẩn, VLVH",
+  "credits": 0,
+  "faculty": "chung",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "CHE_CONG_NGHE_THUC_PHAM_2024_CNTN",
+      "block": "K19",
+      "required": true
+    },
+    {
+      "program": "CHE_CONG_NGHE_THUC_PHAM_2025_CNTN",
+      "block": "K19",
+      "required": true
+    },
+    {
+      "program": "CHE_CONG_NGHE_THUC_PHAM_2026_CNTN",
+      "block": "K20",
+      "required": true
+    },
+    {
+      "program": "CHE_KY_THUAT_HOA_HOC_2025_CNTN",
+      "block": "K20",
+      "required": true
+    },
+    {
+      "program": "CHE_KY_THUAT_HOA_HOC_2026_CNTN",
+      "block": "K25",
+      "required": true
+    },
+    {
+      "program": "CSE_KHOA_HOC_MAY_TINH_2024_CNTN",
+      "block": "K29",
+      "required": true
+    },
+    {
+      "program": "CSE_KHOA_HOC_MAY_TINH_2025_CNTN",
+      "block": "K29",
+      "required": true
+    },
+    {
+      "program": "CSE_KHOA_HOC_MAY_TINH_2026_CNTN",
+      "block": "K30",
+      "required": true
+    },
+    {
+      "program": "CSE_KY_THUAT_MAY_TINH_2024_CNTN",
+      "block": "K26",
+      "required": true
+    },
+    {
+      "program": "CSE_KY_THUAT_MAY_TINH_2025_CNTN",
+      "block": "K26",
+      "required": true
+    },
+    {
+      "program": "CSE_KY_THUAT_MAY_TINH_2026_CNTN",
+      "block": "K27",
+      "required": true
+    },
+    {
+      "program": "DEE_KY_THUAT_DIEN_2024_CNTN",
+      "block": "K19",
+      "required": true
+    },
+    {
+      "program": "DEE_KY_THUAT_DIEN_2024_PFIEV",
+      "block": "K19",
+      "required": true
+    },
+    {
+      "program": "DEE_KY_THUAT_DIEN_2025_CNTN",
+      "block": "K19",
+      "required": true
+    },
+    {
+      "program": "DEE_KY_THUAT_DIEN_2026_CNTN",
+      "block": "K20",
+      "required": true
+    },
+    {
+      "program": "DEE_KY_THUAT_DIEN_2026_PFIEV",
+      "block": "K20",
+      "required": true
+    },
+    {
+      "program": "DEE_KY_THUAT_DIEN_TU_VIEN_THONG_2024_CNTN",
+      "block": "K19",
+      "required": true
+    },
+    {
+      "program": "DEE_KY_THUAT_DIEN_TU_VIEN_THONG_2024_PFIEV",
+      "block": "K19",
+      "required": true
+    },
+    {
+      "program": "DEE_KY_THUAT_DIEN_TU_VIEN_THONG_2025_CNTN",
+      "block": "K19",
+      "required": true
+    },
+    {
+      "program": "DEE_KY_THUAT_DIEN_TU_VIEN_THONG_2026_CNTN",
+      "block": "K20",
+      "required": true
+    },
+    {
+      "program": "DEE_KY_THUAT_DIEN_TU_VIEN_THONG_2026_PFIEV",
+      "block": "K20",
+      "required": true
+    },
+    {
+      "program": "DEE_KY_THUAT_DIEU_KHIEN_VA_TU_DONG_HOA_2024_CNTN",
+      "block": "K19",
+      "required": true
+    },
+    {
+      "program": "DEE_KY_THUAT_DIEU_KHIEN_VA_TU_DONG_HOA_2025_CNTN",
+      "block": "K19",
+      "required": true
+    },
+    {
+      "program": "DEE_KY_THUAT_DIEU_KHIEN_VA_TU_DONG_HOA_2026_CNTN",
+      "block": "K20",
+      "required": true
+    },
+    {
+      "program": "DEE_THIET_KE_VI_MACH_2024_CNTN",
+      "block": "K19",
+      "required": true
+    },
+    {
+      "program": "DEE_THIET_KE_VI_MACH_2025_CNTN",
+      "block": "K19",
+      "required": true
+    },
+    {
+      "program": "DEE_THIET_KE_VI_MACH_2026_CNTN",
+      "block": "K20",
+      "required": true
+    },
+    {
+      "program": "FAS_CO_KY_THUAT_2024_CNTN",
+      "block": "K19",
+      "required": true
+    },
+    {
+      "program": "FAS_CO_KY_THUAT_2025_CNTN",
+      "block": "K19",
+      "required": true
+    },
+    {
+      "program": "FAS_CO_KY_THUAT_2026_CNTN",
+      "block": "K22",
+      "required": true
+    },
+    {
+      "program": "FCE_KY_THUAT_VA_QUAN_LY_NUOC_DO_THI_PFIEV_2024_PFIEV",
+      "block": "K21",
+      "required": true
+    },
+    {
+      "program": "FCE_KY_THUAT_VA_QUAN_LY_NUOC_DO_THI_PFIEV_2026_PFIEV",
+      "block": "K22",
+      "required": true
+    },
+    {
+      "program": "FCE_KY_THUAT_XAY_DUNG_2020_PFIEV",
+      "block": "K21",
+      "required": true
+    },
+    {
+      "program": "FCE_KY_THUAT_XAY_DUNG_2024_CNTN",
+      "block": "K19",
+      "required": true
+    },
+    {
+      "program": "FCE_KY_THUAT_XAY_DUNG_2024_PFIEV",
+      "block": "K22",
+      "required": true
+    },
+    {
+      "program": "FCE_KY_THUAT_XAY_DUNG_2025_CNTN",
+      "block": "K19",
+      "required": true
+    },
+    {
+      "program": "FCE_KY_THUAT_XAY_DUNG_2026_CNTN",
+      "block": "K20",
+      "required": true
+    },
+    {
+      "program": "FCE_KY_THUAT_XAY_DUNG_2026_PFIEV",
+      "block": "K22",
+      "required": true
+    },
+    {
+      "program": "FCE_KY_THUAT_XAY_DUNG_CONG_TRINH_GIAO_THONG_2024_CNTN",
+      "block": "K19",
+      "required": true
+    },
+    {
+      "program": "FCE_KY_THUAT_XAY_DUNG_CONG_TRINH_GIAO_THONG_2025_CNTN",
+      "block": "K19",
+      "required": true
+    },
+    {
+      "program": "FCE_KY_THUAT_XAY_DUNG_CONG_TRINH_GIAO_THONG_2026_CNTN",
+      "block": "K23",
+      "required": true
+    },
+    {
+      "program": "FENR_KY_THUAT_MOI_TRUONG_2024_CNTN",
+      "block": "K19",
+      "required": true
+    },
+    {
+      "program": "FENR_KY_THUAT_MOI_TRUONG_2025_CNTN",
+      "block": "K19",
+      "required": true
+    },
+    {
+      "program": "FENR_KY_THUAT_MOI_TRUONG_2026_CNTN",
+      "block": "K20",
+      "required": true
+    },
+    {
+      "program": "FME_KY_THUAT_CO_DIEN_TU_2024_CNTN",
+      "block": "K22",
+      "required": true
+    },
+    {
+      "program": "FME_KY_THUAT_CO_DIEN_TU_2024_PFIEV",
+      "block": "K20",
+      "required": true
+    },
+    {
+      "program": "FME_KY_THUAT_CO_DIEN_TU_2025_CNTN",
+      "block": "K22",
+      "required": true
+    },
+    {
+      "program": "FME_KY_THUAT_CO_DIEN_TU_2026_CNTN",
+      "block": "K23",
+      "required": true
+    },
+    {
+      "program": "FME_KY_THUAT_CO_DIEN_TU_2026_PFIEV",
+      "block": "K21",
+      "required": true
+    },
+    {
+      "program": "FME_KY_THUAT_CO_KHI_2024_CNTN",
+      "block": "K19",
+      "required": true
+    },
+    {
+      "program": "FME_KY_THUAT_CO_KHI_2025_CNTN",
+      "block": "K19",
+      "required": true
+    },
+    {
+      "program": "FME_KY_THUAT_CO_KHI_2026_CNTN",
+      "block": "K20",
+      "required": true
+    },
+    {
+      "program": "FMT_KY_THUAT_CO_KHI_2024_PFIEV",
+      "block": "K21",
+      "required": true
+    },
+    {
+      "program": "FMT_VAT_LIEU_POLYMER_VA_COMPOSITE_PFIEV_2024_PFIEV",
+      "block": "K19",
+      "required": true
+    },
+    {
+      "program": "FMT_VAT_LIEU_POLYMER_VA_COMPOSITE_PFIEV_2026_PFIEV",
+      "block": "K20",
+      "required": true
+    },
+    {
+      "program": "FMT_VAT_LIEU_VA_NANG_LUONG_PFIEV_2024_PFIEV",
+      "block": "K20",
+      "required": true
+    },
+    {
+      "program": "FMT_VAT_LIEU_VA_NANG_LUONG_PFIEV_2026_PFIEV",
+      "block": "K21",
+      "required": true
+    },
+    {
+      "program": "FTE_KY_THUAT_HANG_KHONG_2024_PFIEV",
+      "block": "K19",
+      "required": true
+    },
+    {
+      "program": "FTE_KY_THUAT_HANG_KHONG_2026_PFIEV",
+      "block": "K19",
+      "required": true
+    },
+    {
+      "program": "SIM_KY_THUAT_HE_THONG_CONG_NGHIEP_2024_CNTN",
+      "block": "K19",
+      "required": true
+    },
+    {
+      "program": "SIM_KY_THUAT_HE_THONG_CONG_NGHIEP_2025_CNTN",
+      "block": "K19",
+      "required": true
+    },
+    {
+      "program": "SIM_KY_THUAT_HE_THONG_CONG_NGHIEP_2026_CNTN",
+      "block": "K19",
+      "required": true
+    }
+  ],
+  "parts": [],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/ENG_GT_700",
+  "note": "Nhập từ CTĐT chính thức (Sổ tay HCMUT, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

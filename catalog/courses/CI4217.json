@@ -1,0 +1,30 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "CI4217",
+  "code": "CI4217",
+  "name": "Hợp đồng trong xây dựng",
+  "nameEn": "Construction Contract Preparation and Administration",
+  "credits": 3,
+  "faculty": "fce",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "FCE_KINH_TE_XAY_DUNG_2024",
+      "block": "K10",
+      "required": true
+    },
+    {
+      "program": "FCE_TS_148_2026",
+      "block": "K11",
+      "required": true
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/CI4217",
+  "note": "Nhập từ CTĐT chính thức (Sổ tay HCMUT, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

@@ -1,0 +1,75 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "CI4145",
+  "code": "CI4145",
+  "name": "Cơ sở Thi công và Khai thác Cầu đường",
+  "nameEn": "Fundamentals of Bridge and Highway Construction",
+  "credits": 3,
+  "faculty": "fce",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "FCE_KY_THUAT_XAY_DUNG_CONG_TRINH_GIAO_THONG_2019",
+      "block": "K07",
+      "required": false
+    },
+    {
+      "program": "FCE_KY_THUAT_XAY_DUNG_CONG_TRINH_GIAO_THONG_2020",
+      "block": "K07",
+      "required": false
+    },
+    {
+      "program": "FCE_KY_THUAT_XAY_DUNG_CONG_TRINH_GIAO_THONG_2021",
+      "block": "K07",
+      "required": false
+    },
+    {
+      "program": "FCE_KY_THUAT_XAY_DUNG_CONG_TRINH_GIAO_THONG_2022",
+      "block": "K07",
+      "required": false
+    },
+    {
+      "program": "FCE_KY_THUAT_XAY_DUNG_CONG_TRINH_GIAO_THONG_2023",
+      "block": "K07",
+      "required": false
+    },
+    {
+      "program": "FCE_KY_THUAT_XAY_DUNG_CONG_TRINH_GIAO_THONG_2024",
+      "block": "K10",
+      "required": true
+    },
+    {
+      "program": "FCE_KY_THUAT_XAY_DUNG_CONG_TRINH_GIAO_THONG_2024_CNTN",
+      "block": "K10",
+      "required": true
+    },
+    {
+      "program": "FCE_KY_THUAT_XAY_DUNG_CONG_TRINH_GIAO_THONG_2024_CTTA",
+      "block": "K11",
+      "required": true
+    },
+    {
+      "program": "FCE_KY_THUAT_XAY_DUNG_CONG_TRINH_GIAO_THONG_2025_CNTN",
+      "block": "K10",
+      "required": true
+    },
+    {
+      "program": "FCE_KY_THUAT_XAY_DUNG_CONG_TRINH_GIAO_THONG_2026",
+      "block": "K13",
+      "required": true
+    },
+    {
+      "program": "FCE_KY_THUAT_XAY_DUNG_CONG_TRINH_GIAO_THONG_2026_CTTA",
+      "block": "K13",
+      "required": true
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/CI4145",
+  "note": "Nhập từ CTĐT chính thức (Sổ tay HCMUT, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

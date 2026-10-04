@@ -1,0 +1,32 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "ME328A",
+  "code": "ME328A",
+  "name": "Vật liệu học và xử lý(mr",
+  "credits": 0,
+  "faculty": "fme",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "FME_KY_THUAT_CO_KHI_2024_CNTN",
+      "block": "K13",
+      "required": false
+    },
+    {
+      "program": "FME_KY_THUAT_CO_KHI_2025_CNTN",
+      "block": "K13",
+      "required": false
+    },
+    {
+      "program": "FME_KY_THUAT_CO_KHI_2026_CNTN",
+      "block": "K14",
+      "required": false
+    }
+  ],
+  "parts": [],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/ME328A",
+  "note": "Nhập từ CTĐT chính thức (Sổ tay HCMUT, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

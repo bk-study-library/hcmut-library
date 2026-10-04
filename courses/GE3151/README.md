@@ -10,6 +10,7 @@
 | Khoa | Khoa Kỹ thuật Địa chất và Dầu khí |
 | Phần | Lý thuyết |
 | Trạng thái | Đang dạy |
+| Sổ tay HCMUT | [Trang môn trên Sổ tay HCMUT](https://hcmut.edu.vn/study/handbook/subject/GE3151) |
 | Mã, tên cũ | GE4025 An toàn và bảo vệ môi trường trong công nghiệp dầu khí |
 | Thay cho | [GE4025](../GE4025/README.md) |
 

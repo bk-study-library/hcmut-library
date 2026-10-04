@@ -5,11 +5,12 @@
 | Mục | Thông tin |
 |---|---|
 | Mã môn | EE4345 |
-| Tên | Đồ án 2 (Thiết kế vi mạch) |
+| Tên | Đồ án 2 (Thiết kế vi mạch) / Project 2 |
 | Tín chỉ | 2 |
 | Khoa | Khoa Điện - Điện tử |
 | Phần | Đồ án |
 | Trạng thái | Đang dạy |
+| Sổ tay HCMUT | [Trang môn trên Sổ tay HCMUT](https://hcmut.edu.vn/study/handbook/subject/EE4345) |
 
 ## Tài liệu
 

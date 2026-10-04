@@ -1,0 +1,255 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "CO3111",
+  "code": "CO3111",
+  "name": "Thực tập Đồ án môn học Đa ngành - hướng Hệ thống Thông tin",
+  "nameEn": "Multidisciplinary Project",
+  "credits": 1,
+  "faculty": "cse",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "CSE_KHOA_HOC_MAY_TINH_2019",
+      "block": "K06",
+      "required": false
+    },
+    {
+      "program": "CSE_KHOA_HOC_MAY_TINH_2020",
+      "block": "K10",
+      "required": false
+    },
+    {
+      "program": "CSE_KHOA_HOC_MAY_TINH_2020",
+      "block": "K16",
+      "required": false
+    },
+    {
+      "program": "CSE_KHOA_HOC_MAY_TINH_2020",
+      "block": "K22",
+      "required": false
+    },
+    {
+      "program": "CSE_KHOA_HOC_MAY_TINH_2020",
+      "block": "K28",
+      "required": false
+    },
+    {
+      "program": "CSE_KHOA_HOC_MAY_TINH_2020",
+      "block": "K33",
+      "required": false
+    },
+    {
+      "program": "CSE_KHOA_HOC_MAY_TINH_2020",
+      "block": "K39",
+      "required": false
+    },
+    {
+      "program": "CSE_KHOA_HOC_MAY_TINH_2021",
+      "block": "K10",
+      "required": false
+    },
+    {
+      "program": "CSE_KHOA_HOC_MAY_TINH_2021",
+      "block": "K16",
+      "required": false
+    },
+    {
+      "program": "CSE_KHOA_HOC_MAY_TINH_2021",
+      "block": "K22",
+      "required": false
+    },
+    {
+      "program": "CSE_KHOA_HOC_MAY_TINH_2021",
+      "block": "K28",
+      "required": false
+    },
+    {
+      "program": "CSE_KHOA_HOC_MAY_TINH_2021",
+      "block": "K33",
+      "required": false
+    },
+    {
+      "program": "CSE_KHOA_HOC_MAY_TINH_2021",
+      "block": "K39",
+      "required": false
+    },
+    {
+      "program": "CSE_KHOA_HOC_MAY_TINH_2022",
+      "block": "K06",
+      "required": false
+    },
+    {
+      "program": "CSE_KHOA_HOC_MAY_TINH_2023",
+      "block": "K10",
+      "required": false
+    },
+    {
+      "program": "CSE_KHOA_HOC_MAY_TINH_2023",
+      "block": "K16",
+      "required": false
+    },
+    {
+      "program": "CSE_KHOA_HOC_MAY_TINH_2023",
+      "block": "K22",
+      "required": false
+    },
+    {
+      "program": "CSE_KHOA_HOC_MAY_TINH_2023",
+      "block": "K28",
+      "required": false
+    },
+    {
+      "program": "CSE_KHOA_HOC_MAY_TINH_2023",
+      "block": "K33",
+      "required": false
+    },
+    {
+      "program": "CSE_KHOA_HOC_MAY_TINH_2023",
+      "block": "K39",
+      "required": false
+    },
+    {
+      "program": "CSE_KHOA_HOC_MAY_TINH_2024",
+      "block": "K12",
+      "required": false
+    },
+    {
+      "program": "CSE_KHOA_HOC_MAY_TINH_2024_CNTN",
+      "block": "K12",
+      "required": false
+    },
+    {
+      "program": "CSE_KHOA_HOC_MAY_TINH_2024_CTTA",
+      "block": "K13",
+      "required": false
+    },
+    {
+      "program": "CSE_KHOA_HOC_MAY_TINH_2024_DHNB",
+      "block": "K15",
+      "required": false
+    },
+    {
+      "program": "CSE_KHOA_HOC_MAY_TINH_2025_CNTN",
+      "block": "K12",
+      "required": false
+    },
+    {
+      "program": "CSE_KHOA_HOC_MAY_TINH_2025_CTTA",
+      "block": "K13",
+      "required": false
+    },
+    {
+      "program": "CSE_KHOA_HOC_MAY_TINH_2025_DHNB",
+      "block": "K15",
+      "required": false
+    },
+    {
+      "program": "CSE_KHOA_HOC_MAY_TINH_2026",
+      "block": "K13",
+      "required": false
+    },
+    {
+      "program": "CSE_KHOA_HOC_MAY_TINH_2026_CNTN",
+      "block": "K13",
+      "required": false
+    },
+    {
+      "program": "CSE_KHOA_HOC_MAY_TINH_2026_CTTA",
+      "block": "K13",
+      "required": false
+    },
+    {
+      "program": "CSE_KHOA_HOC_MAY_TINH_2026_DHNB",
+      "block": "K15",
+      "required": false
+    },
+    {
+      "program": "CSE_KY_THUAT_MAY_TINH_2019",
+      "block": "K06",
+      "required": false
+    },
+    {
+      "program": "CSE_KY_THUAT_MAY_TINH_2020",
+      "block": "K11",
+      "required": false
+    },
+    {
+      "program": "CSE_KY_THUAT_MAY_TINH_2020",
+      "block": "K16",
+      "required": false
+    },
+    {
+      "program": "CSE_KY_THUAT_MAY_TINH_2020",
+      "block": "K21",
+      "required": false
+    },
+    {
+      "program": "CSE_KY_THUAT_MAY_TINH_2021",
+      "block": "K11",
+      "required": false
+    },
+    {
+      "program": "CSE_KY_THUAT_MAY_TINH_2021",
+      "block": "K16",
+      "required": false
+    },
+    {
+      "program": "CSE_KY_THUAT_MAY_TINH_2021",
+      "block": "K21",
+      "required": false
+    },
+    {
+      "program": "CSE_KY_THUAT_MAY_TINH_2022",
+      "block": "K06",
+      "required": false
+    },
+    {
+      "program": "CSE_KY_THUAT_MAY_TINH_2023",
+      "block": "K11",
+      "required": false
+    },
+    {
+      "program": "CSE_KY_THUAT_MAY_TINH_2023",
+      "block": "K16",
+      "required": false
+    },
+    {
+      "program": "CSE_KY_THUAT_MAY_TINH_2023",
+      "block": "K21",
+      "required": false
+    },
+    {
+      "program": "CSE_KY_THUAT_MAY_TINH_2024",
+      "block": "K11",
+      "required": false
+    },
+    {
+      "program": "CSE_KY_THUAT_MAY_TINH_2024_CNTN",
+      "block": "K11",
+      "required": false
+    },
+    {
+      "program": "CSE_KY_THUAT_MAY_TINH_2025_CNTN",
+      "block": "K11",
+      "required": false
+    },
+    {
+      "program": "CSE_KY_THUAT_MAY_TINH_2026",
+      "block": "K12",
+      "required": false
+    },
+    {
+      "program": "CSE_KY_THUAT_MAY_TINH_2026_CNTN",
+      "block": "K12",
+      "required": false
+    }
+  ],
+  "parts": [
+    "lab"
+  ],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/CO3111",
+  "note": "Nhập từ CTĐT chính thức (Sổ tay HCMUT, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

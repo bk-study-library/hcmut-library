@@ -1,15 +1,16 @@
-# GE1015 Health, Safety and Environment in the Oil and Gas
+# GE1015 Sức khỏe, an toàn và môi trường trong ngành dầu khí
 
 <!-- File này do "npm run build" sinh từ catalog/courses/GE1015.json và items/. Chỉ sửa phần Mẹo học, giữa hai dòng meo-hoc. -->
 
 | Mục | Thông tin |
 |---|---|
 | Mã môn | GE1015 |
-| Tên | Health, Safety and Environment in the Oil and Gas / Industry |
+| Tên | Sức khỏe, an toàn và môi trường trong ngành dầu khí / Health, Safety and Environment in the Oil and Gas Industry |
 | Tín chỉ | 3 |
 | Khoa | Khoa Kỹ thuật Địa chất và Dầu khí |
 | Phần | Lý thuyết |
 | Trạng thái | Đang dạy |
+| Sổ tay HCMUT | [Trang môn trên Sổ tay HCMUT](https://hcmut.edu.vn/study/handbook/subject/GE1015) |
 
 ## Tài liệu
 

@@ -5,11 +5,12 @@
 | Mục | Thông tin |
 |---|---|
 | Mã môn | MT2007 |
-| Tên | Giải tích 3 / Calculus3 |
+| Tên | Giải tích 3 / Calculus 3 |
 | Tín chỉ | 3 |
-| Khoa | Khoa Khoa học Ứng dụng |
+| Khoa | Môn chung toàn trường |
 | Phần | Lý thuyết |
 | Trạng thái | Đang dạy |
+| Sổ tay HCMUT | [Trang môn trên Sổ tay HCMUT](https://hcmut.edu.vn/study/handbook/subject/MT2007) |
 
 ## Tài liệu
 

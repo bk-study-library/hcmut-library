@@ -1,0 +1,60 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "CH3361",
+  "code": "CH3361",
+  "name": "Sinh học Phân tử và Di truyền",
+  "nameEn": "Molecular Biology And Genetics",
+  "credits": 4,
+  "faculty": "che",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "CHE_CONG_NGHE_SINH_HOC_2019",
+      "block": "K06",
+      "required": false
+    },
+    {
+      "program": "CHE_CONG_NGHE_SINH_HOC_2020",
+      "block": "K06",
+      "required": false
+    },
+    {
+      "program": "CHE_CONG_NGHE_SINH_HOC_2021",
+      "block": "K06",
+      "required": false
+    },
+    {
+      "program": "CHE_CONG_NGHE_SINH_HOC_2022",
+      "block": "K06",
+      "required": false
+    },
+    {
+      "program": "CHE_CONG_NGHE_SINH_HOC_2023",
+      "block": "K06",
+      "required": false
+    },
+    {
+      "program": "CSE_TS_146_2026",
+      "block": "K12",
+      "required": false
+    },
+    {
+      "program": "CSE_TS_251_2026_TA",
+      "block": "K12",
+      "required": false
+    },
+    {
+      "program": "FAS_KHOA_HOC_DU_LIEU_2024",
+      "block": "K11",
+      "required": false
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/CH3361",
+  "note": "Nhập từ CTĐT chính thức (Sổ tay HCMUT, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

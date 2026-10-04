@@ -1,0 +1,29 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "IM3355",
+  "code": "IM3355",
+  "name": "Đồ án thiết kế chuyên ngành 1",
+  "credits": 2,
+  "faculty": "sim",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "FME_TS_228_2026_TA",
+      "block": "K11",
+      "required": true
+    },
+    {
+      "program": "SIM_LOGISTICS_VA_QUAN_LY_CHUOI_CUNG_UNG_2026",
+      "block": "K11",
+      "required": true
+    }
+  ],
+  "parts": [
+    "project"
+  ],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/IM3355",
+  "note": "Nhập từ CTĐT chính thức (Sổ tay HCMUT, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

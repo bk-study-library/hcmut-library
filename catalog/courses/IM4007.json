@@ -1,0 +1,65 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "IM4007",
+  "code": "IM4007",
+  "name": "Kế hoạch Kinh doanh",
+  "nameEn": "Business Plan",
+  "credits": 3,
+  "faculty": "sim",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "SIM_QUAN_LY_CONG_NGHIEP_2019",
+      "block": "K07",
+      "required": false
+    },
+    {
+      "program": "SIM_QUAN_LY_CONG_NGHIEP_2020",
+      "block": "K07",
+      "required": false
+    },
+    {
+      "program": "SIM_QUAN_LY_CONG_NGHIEP_2021",
+      "block": "K07",
+      "required": false
+    },
+    {
+      "program": "SIM_QUAN_LY_CONG_NGHIEP_2022",
+      "block": "K07",
+      "required": false
+    },
+    {
+      "program": "SIM_QUAN_LY_CONG_NGHIEP_2023",
+      "block": "K07",
+      "required": false
+    },
+    {
+      "program": "SIM_QUAN_TRI_KINH_DOANH_2026_CTTA",
+      "block": "K14",
+      "required": false
+    },
+    {
+      "program": "SIM_QUAN_TRI_KINH_DOANH_2026_CTTA",
+      "block": "K16",
+      "required": false
+    },
+    {
+      "program": "SIM_TS_153_2026",
+      "block": "K14",
+      "required": false
+    },
+    {
+      "program": "SIM_TS_153_2026",
+      "block": "K16",
+      "required": false
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/IM4007",
+  "note": "Nhập từ CTĐT chính thức (Sổ tay HCMUT, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

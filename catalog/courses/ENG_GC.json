@@ -1,0 +1,57 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "ENG_GC",
+  "code": "ENG_GC",
+  "name": "Đ/kiện tiếng Anh tốt nghiệp ĐH tiêu chuẩn, VLVH",
+  "credits": 0,
+  "faculty": "chung",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "CSE_KHOA_HOC_MAY_TINH_2020",
+      "block": "K44",
+      "required": true
+    },
+    {
+      "program": "CSE_KHOA_HOC_MAY_TINH_2021",
+      "block": "K43",
+      "required": true
+    },
+    {
+      "program": "CSE_KHOA_HOC_MAY_TINH_2023",
+      "block": "K43",
+      "required": true
+    },
+    {
+      "program": "CSE_KY_THUAT_MAY_TINH_2020",
+      "block": "K25",
+      "required": true
+    },
+    {
+      "program": "CSE_KY_THUAT_MAY_TINH_2021",
+      "block": "K25",
+      "required": true
+    },
+    {
+      "program": "CSE_KY_THUAT_MAY_TINH_2023",
+      "block": "K25",
+      "required": true
+    },
+    {
+      "program": "DEE_THIET_KE_VI_MACH_2023",
+      "block": "K09",
+      "required": true
+    },
+    {
+      "program": "FCE_KIEN_TRUC_7580101X_2024",
+      "block": "K32",
+      "required": true
+    }
+  ],
+  "parts": [],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/ENG_GC",
+  "note": "Nhập từ CTĐT chính thức (Sổ tay HCMUT, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

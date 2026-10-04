@@ -10,6 +10,7 @@
 | Khoa | Khoa Kỹ thuật Địa chất và Dầu khí |
 | Phần | Lý thuyết |
 | Trạng thái | Đang dạy |
+| Sổ tay HCMUT | [Trang môn trên Sổ tay HCMUT](https://hcmut.edu.vn/study/handbook/subject/GE3169) |
 | Mã, tên cũ | GE3003 Địa chất biển |
 | Thay cho | [GE3003](../GE3003/README.md) |
 

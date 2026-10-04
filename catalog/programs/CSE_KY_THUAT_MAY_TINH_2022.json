@@ -1,0 +1,234 @@
+{
+  "$schema": "../../schema/program.schema.json",
+  "code": "CSE_KY_THUAT_MAY_TINH_2022",
+  "name": "Kỹ thuật Máy tính",
+  "nameEn": "Computer Engineering",
+  "faculty": "cse",
+  "year": "2022",
+  "major": "7480106",
+  "type": "CQ",
+  "level": "dai-hoc",
+  "note": "Sổ tay không có năm này cho ngành và loại chương trình này. Danh sách môn lấy từ Kế hoạch giảng dạy (PDF), khối là học kỳ chứ không phải khối kiến thức; tên khối kiến thức, bắt buộc hay tự chọn chưa có.",
+  "source": "https://drive.google.com/file/d/1BrNmcf84mjhB1rt47NyUjRKMVlqKlBdj/view",
+  "ctdtUrl": "https://drive.google.com/file/d/1_HH8t160FYrmdgF83JOQM2KpXZaZKqK_/view",
+  "planUrl": "https://drive.google.com/file/d/1BrNmcf84mjhB1rt47NyUjRKMVlqKlBdj/view",
+  "blocks": [
+    {
+      "id": "K01",
+      "name": "Học kỳ 1",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "LA1003",
+        "PE1003",
+        "MT1003",
+        "PH1003",
+        "CO1005",
+        "CO1023"
+      ],
+      "semesters": {
+        "LA1003": 1,
+        "PE1003": 1,
+        "MT1003": 1,
+        "PH1003": 1,
+        "CO1005": 1,
+        "CO1023": 1
+      }
+    },
+    {
+      "id": "K02",
+      "name": "Học kỳ 2",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "LA1005",
+        "PE1005",
+        "MT1005",
+        "MT1007",
+        "CO1025",
+        "CO1027",
+        "PH1007",
+        "MI1003"
+      ],
+      "semesters": {
+        "LA1005": 2,
+        "PE1005": 2,
+        "MT1005": 2,
+        "MT1007": 2,
+        "CO1025": 2,
+        "CO1027": 2,
+        "PH1007": 2,
+        "MI1003": 2
+      }
+    },
+    {
+      "id": "K03",
+      "name": "Học kỳ 3",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "LA1007",
+        "SP1031",
+        "CO2037",
+        "CH1003",
+        "CO1007"
+      ],
+      "semesters": {
+        "LA1007": 3,
+        "SP1031": 3,
+        "CO2037": 3,
+        "CH1003": 3,
+        "CO1007": 3
+      }
+    },
+    {
+      "id": "K04",
+      "name": "Học kỳ 4",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "LA1009",
+        "MT2013",
+        "SP1033",
+        "CO2007",
+        "CO2003"
+      ],
+      "semesters": {
+        "LA1009": 4,
+        "MT2013": 4,
+        "SP1033": 4,
+        "CO2007": 4,
+        "CO2003": 4
+      }
+    },
+    {
+      "id": "K05",
+      "name": "Học kỳ 5",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "SP1035",
+        "CO3091",
+        "CO2011",
+        "CO2017",
+        "CO3009",
+        "CO3049",
+        "CO3069",
+        "CO3071",
+        "CO3117",
+        "CO3143",
+        "CO3145",
+        "CO3147",
+        "CO3149",
+        "CO3021",
+        "CO3141",
+        "CO3067",
+        "CO3051",
+        "CO2035",
+        "CO3035",
+        "CO3037"
+      ],
+      "semesters": {
+        "SP1035": 5,
+        "CO3091": 5,
+        "CO2011": 5,
+        "CO2017": 5,
+        "CO3009": 5,
+        "CO3049": 5,
+        "CO3069": 5,
+        "CO3071": 5,
+        "CO3117": 5,
+        "CO3143": 5,
+        "CO3145": 5,
+        "CO3147": 5,
+        "CO3149": 5,
+        "CO3021": 5,
+        "CO3141": 5,
+        "CO3067": 5,
+        "CO3051": 5,
+        "CO2035": 5,
+        "CO3035": 5,
+        "CO3037": 5
+      }
+    },
+    {
+      "id": "K06",
+      "name": "Học kỳ 6",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "CO3093",
+        "CO3001",
+        "CO2001",
+        "SP1039",
+        "CO3097",
+        "CO3345",
+        "CO3107",
+        "CO3109",
+        "CO3111"
+      ],
+      "semesters": {
+        "CO3093": 6,
+        "CO3001": 6,
+        "CO2001": 6,
+        "SP1039": 6,
+        "CO3097": 6,
+        "CO3345": 6,
+        "CO3107": 6,
+        "CO3109": 6,
+        "CO3111": 6
+      }
+    },
+    {
+      "id": "K07",
+      "name": "Học kỳ 7",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "CO4041",
+        "CO3007",
+        "SP1037",
+        "CO3053"
+      ],
+      "semesters": {
+        "CO4041": 7,
+        "CO3007": 7,
+        "SP1037": 7,
+        "CO3053": 7
+      }
+    },
+    {
+      "id": "K08",
+      "name": "Học kỳ 8",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "CO4347",
+        "SP1007",
+        "IM1013",
+        "IM3001",
+        "IM1023",
+        "IM1025",
+        "IM1027"
+      ],
+      "semesters": {
+        "CO4347": 8,
+        "SP1007": 8,
+        "IM1013": 8,
+        "IM3001": 8,
+        "IM1023": 8,
+        "IM1025": 8,
+        "IM1027": 8
+      }
+    }
+  ],
+  "updated": "2026-10-04"
+}

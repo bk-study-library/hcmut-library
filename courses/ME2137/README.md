@@ -5,11 +5,12 @@
 | Mục | Thông tin |
 |---|---|
 | Mã môn | ME2137 |
-| Tên | Thực hành tự động hóa thiết kế (CAD) / Labs of |
+| Tên | Thực hành tự động hóa thiết kế (CAD) / Labs of CAD |
 | Tín chỉ | 1 |
 | Khoa | Khoa Cơ khí |
 | Phần | Lý thuyết |
 | Trạng thái | Đang dạy |
+| Sổ tay HCMUT | [Trang môn trên Sổ tay HCMUT](https://hcmut.edu.vn/study/handbook/subject/ME2137) |
 
 ## Tài liệu
 

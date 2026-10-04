@@ -5,11 +5,12 @@
 | Mục | Thông tin |
 |---|---|
 | Mã môn | ME3175 |
-| Tên | Thiết bị may / may Sewing Equipment |
+| Tên | Thiết bị may / Sewing Equipment |
 | Tín chỉ | 3 |
 | Khoa | Khoa Cơ khí |
 | Phần | Lý thuyết |
 | Trạng thái | Đang dạy |
+| Sổ tay HCMUT | [Trang môn trên Sổ tay HCMUT](https://hcmut.edu.vn/study/handbook/subject/ME3175) |
 
 ## Tài liệu
 

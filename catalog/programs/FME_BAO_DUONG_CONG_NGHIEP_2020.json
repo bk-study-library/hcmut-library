@@ -5,74 +5,198 @@
   "nameEn": "Industrial Maintenance",
   "faculty": "fme",
   "year": "2020",
-  "source": "https://drive.google.com/file/d/1sMOTOWtJ9l8x_kUY5bnCMYwj04sra7u2/view",
+  "major": "7510211",
+  "type": "CQ",
+  "level": "dai-hoc",
+  "totalCredits": 132,
+  "note": "Sổ tay không có năm này cho ngành và loại chương trình này. Danh sách môn lấy từ Kế hoạch giảng dạy (PDF), khối là học kỳ chứ không phải khối kiến thức; tên khối kiến thức, bắt buộc hay tự chọn chưa có.",
+  "source": "https://drive.google.com/file/d/1nVWQSPbL5D2MKVY2-MnF-d1FQjsJIuBL/view",
+  "ctdtUrl": "https://drive.google.com/file/d/1sMOTOWtJ9l8x_kUY5bnCMYwj04sra7u2/view",
+  "planUrl": "https://drive.google.com/file/d/1nVWQSPbL5D2MKVY2-MnF-d1FQjsJIuBL/view",
   "blocks": [
     {
       "id": "K01",
-      "name": "I. Các môn bắt buộc (Compulsary Courses ) 90",
-      "required": true,
+      "name": "Học kỳ 1",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
       "courses": [
-        "MT1003",
-        "MT1005",
-        "MT1007",
-        "MT2013",
-        "CH1003",
-        "PH1003",
-        "PH1007",
-        "IU2023",
-        "PH1005",
-        "SP1007",
-        "SP1031",
-        "SP1033",
-        "SP1035",
-        "SP1037",
-        "SP1039",
-        "IU1001",
-        "IU4019",
         "LA1003",
-        "LA1005",
-        "LA1007",
-        "LA1009",
-        "CI2003",
-        "IU1003",
-        "IU1005",
-        "IU2001",
-        "IU2003",
-        "IU2011",
-        "IU2021",
-        "IU3017",
-        "IU3057",
-        "IU3061",
-        "ME2013"
-      ]
+        "MT1003",
+        "MI1003",
+        "IU1001",
+        "PH1003",
+        "CH1003",
+        "PE1003"
+      ],
+      "semesters": {
+        "LA1003": 1,
+        "MT1003": 1,
+        "MI1003": 1,
+        "IU1001": 1,
+        "PH1003": 1,
+        "CH1003": 1,
+        "PE1003": 1
+      }
     },
     {
       "id": "K02",
-      "name": "thiểu 3 TC)",
-      "group": "II. Các môn bắt buộc và tự chọn của chuyên ngành",
+      "name": "Học kỳ 2",
+      "kind": "khac",
       "required": false,
+      "requiredUnknown": true,
       "courses": [
-        "IU3011",
-        "IU3059",
-        "IU3063",
-        "IU3065",
-        "IU4015",
-        "IU3067",
-        "IU4021",
-        "IU3325",
-        "IU4013",
-        "IU4327"
-      ]
+        "LA1005",
+        "MT1005",
+        "PH1007",
+        "PH1005",
+        "IU1003",
+        "MT1007",
+        "PE1005"
+      ],
+      "semesters": {
+        "LA1005": 2,
+        "MT1005": 2,
+        "PH1007": 2,
+        "PH1005": 2,
+        "IU1003": 2,
+        "MT1007": 2,
+        "PE1005": 2
+      }
     },
     {
       "id": "K03",
-      "name": "Các môn tự chọn nhóm (Elective Courses - Group) A",
-      "group": "II. Các môn bắt buộc và tự chọn của chuyên ngành",
+      "name": "Học kỳ 3",
+      "kind": "khac",
       "required": false,
+      "requiredUnknown": true,
       "courses": [
+        "LA1007",
+        "CI2003",
+        "IU1005",
+        "ME2013",
+        "IU2021",
+        "SP1031",
+        "PE1007"
+      ],
+      "semesters": {
+        "LA1007": 3,
+        "CI2003": 3,
+        "IU1005": 3,
+        "ME2013": 3,
+        "IU2021": 3,
+        "SP1031": 3,
+        "PE1007": 3
+      }
+    },
+    {
+      "id": "K04",
+      "name": "Học kỳ 4",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "LA1009",
+        "MT2013",
+        "IU2001",
+        "IU2003",
+        "IU2023",
+        "SP1033"
+      ],
+      "semesters": {
+        "LA1009": 4,
+        "MT2013": 4,
+        "IU2001": 4,
+        "IU2003": 4,
+        "IU2023": 4,
+        "SP1033": 4
+      }
+    },
+    {
+      "id": "K05",
+      "name": "Học kỳ 5",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "IU2011",
+        "IU3057",
+        "IU3059",
+        "IU3061",
+        "SP1035"
+      ],
+      "semesters": {
+        "IU2011": 5,
+        "IU3057": 5,
+        "IU3059": 5,
+        "IU3061": 5,
+        "SP1035": 5
+      }
+    },
+    {
+      "id": "K06",
+      "name": "Học kỳ 6",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "IU3063",
+        "SP1039",
+        "IU3017",
+        "IU3065",
+        "IU3325"
+      ],
+      "semesters": {
+        "IU3063": 6,
+        "SP1039": 6,
+        "IU3017": 6,
+        "IU3065": 6,
+        "IU3325": 6
+      }
+    },
+    {
+      "id": "K07",
+      "name": "Học kỳ 7",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "SP1037",
+        "IU4013",
+        "IU4015",
+        "IU3067",
+        "IU3011"
+      ],
+      "semesters": {
+        "SP1037": 7,
+        "IU4013": 7,
+        "IU4015": 7,
+        "IU3067": 7,
+        "IU3011": 7
+      }
+    },
+    {
+      "id": "K08",
+      "name": "Học kỳ 8",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "SP1007",
+        "IU4019",
+        "IU4021",
+        "IU4327",
         "IU4023",
         "IU4025"
-      ]
+      ],
+      "semesters": {
+        "SP1007": 8,
+        "IU4019": 8,
+        "IU4021": 8,
+        "IU4327": 8,
+        "IU4023": 8,
+        "IU4025": 8
+      }
     }
   ],
   "updated": "2026-10-04"

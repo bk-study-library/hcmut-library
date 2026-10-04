@@ -1,0 +1,45 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "IM1011",
+  "code": "IM1011",
+  "name": "Máy tính trong kinh doanh",
+  "nameEn": "Computer in Business",
+  "credits": 3,
+  "faculty": "sim",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "SIM_QUAN_LY_CONG_NGHIEP_2019",
+      "block": "K03",
+      "required": false
+    },
+    {
+      "program": "SIM_QUAN_LY_CONG_NGHIEP_2020",
+      "block": "K03",
+      "required": false
+    },
+    {
+      "program": "SIM_QUAN_LY_CONG_NGHIEP_2021",
+      "block": "K03",
+      "required": false
+    },
+    {
+      "program": "SIM_QUAN_LY_CONG_NGHIEP_2022",
+      "block": "K03",
+      "required": false
+    },
+    {
+      "program": "SIM_QUAN_LY_CONG_NGHIEP_2023",
+      "block": "K03",
+      "required": false
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/IM1011",
+  "note": "Nhập từ Kế hoạch giảng dạy (PDF của trường, truy cập 04/10/2026). Tên lấy từ PDF. Chờ người duyệt xác nhận.",
+  "updated": "2026-10-04"
+}

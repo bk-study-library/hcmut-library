@@ -6,6 +6,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { buildSite } from '../scripts/build-site.mjs';
 import { FIXTURES, copyFixture, editJson } from './helpers.mjs';
+import { freshRoot, importFixture } from './ctdt-helpers.mjs';
 
 const out = fs.mkdtempSync(path.join(os.tmpdir(), 'bk-lib-site-'));
 const result = buildSite({ root: path.join(FIXTURES, 'valid'), out, base: '/hcmut-library/' });
@@ -202,11 +203,15 @@ const out3 = (() => {
 })();
 const read3 = (p) => fs.readFileSync(path.join(out3, p), 'utf8');
 
-test('trang khoa: chương trình theo khóa mới nhất trước, có số môn, nút thêm chương trình điền sẵn khoa', () => {
+test('trang khoa: chương trình theo khóa mới nhất trước, có số môn, chương trình chưa có danh sách môn gập lại, nút thêm chương trình điền sẵn khoa', () => {
   const html = read3('faculty/EE/index.html');
-  assert.ok(html.indexOf('Khóa 2026') < html.indexOf('Khóa 2019'));
-  assert.match(html, /Chương trình thử<\/a> <span class="muted small">1 môn<\/span>/);
-  assert.match(html, /Ngành tuyển sinh thử<\/a> <span class="tag">Dạy và học bằng tiếng Anh<\/span> <span class="muted small">chưa có danh sách môn<\/span>/);
+  assert.match(html, /<p class="muted">2 chương trình<\/p>/);
+  assert.match(html, /<h3>Khóa 2019<\/h3><ul class="list"><li><a href="[^"]+">Chương trình thử<\/a> <span class="muted small">1 môn<\/span>/);
+  // Chương trình chưa có danh sách môn nằm trong khối gập, sau chương trình đã có môn.
+  const empty = html.indexOf('<details class="prog-empty"><summary>1 chương trình chưa có danh sách môn</summary>');
+  assert.ok(empty > html.indexOf('Khóa 2019'));
+  assert.ok(html.indexOf('Khóa 2026') > empty);
+  assert.match(html, /Ngành tuyển sinh thử<\/a> <a class="tag" href="\.\.\/\.\.\/\?q=D%E1%BA%A1y%20v%C3%A0%20h%E1%BB%8Dc%20b%E1%BA%B1ng%20ti%E1%BA%BFng%20Anh">Dạy và học bằng tiếng Anh<\/a> <span class="muted small">chưa có danh sách môn<\/span>/);
   assert.match(html, /issues\/new\?template=them-chuong-trinh\.yml&amp;khoa=Khoa\+%C4%90i%E1%BB%87n\+-\+%C4%90i%E1%BB%87n\+t%E1%BB%AD"[^>]*>Thêm chương trình đào tạo</);
   assert.match(html, /<th scope="row"><a href="\.\.\/\.\.\/course\/EE1009\/">EE1009<\/a>/);
   assert.match(read3('en/faculty/EE/index.html'), /Cohort 2026/);
@@ -232,7 +237,7 @@ test('trang chương trình chưa có danh sách môn: thông báo, nút gửi C
     /<\/div><p class="actions"><a class="btn primary" href="[^"]+" rel="noopener">Thêm chương trình đào tạo<\/a><a class="btn" href="https:\/\/example\.test\/ctdt" rel="noopener">Xem CTĐT chính thức<\/a><a class="btn subtle" href="https:\/\/hcmut\.edu\.vn\/bai-viet\/chuong-trinh-dao-tao-tu-khoa-2019" rel="noopener">Bảng CTĐT của trường<\/a><\/p>/,
   );
   // Dòng meta đọc tự nhiên: "Mã ..., khoa, ..., chưa có danh sách môn", không ghi "0 môn".
-  assert.match(html, /<p class="muted">Mã EE_TS_108_2026, <a href="\.\.\/\.\.\/faculty\/EE\/">Khoa Điện - Điện tử<\/a>, Dạy và học bằng tiếng Anh, chưa có danh sách môn<\/p>/);
+  assert.match(html, /<p class="muted">Mã EE_TS_108_2026, <a href="\.\.\/\.\.\/faculty\/EE\/">Khoa Điện - Điện tử<\/a>, <a class="tag" href="\.\.\/\.\.\/\?q=D%E1%BA%A1y%20v%C3%A0%20h%E1%BB%8Dc%20b%E1%BA%B1ng%20ti%E1%BA%BFng%20Anh">Dạy và học bằng tiếng Anh<\/a>, chưa có danh sách môn<\/p>/);
   assert.doesNotMatch(html, /0 môn/);
   assert.doesNotMatch(html, /<table/);
   assert.match(read3('en/program/EE_TS_108_2026/index.html'), /No course list yet/);
@@ -543,7 +548,7 @@ test('ô tìm trang chủ: có danh sách chương trình, chỉ gồm chương 
   const progs = JSON.parse(read('assets/programs.json'));
   assert.ok(progs.some((p) => p.code === 'TEST_2019'));
   for (const p of progs) {
-    assert.deepEqual(Object.keys(p).filter((k) => !['code', 'name', 'nameEn', 'year', 'variant', 'faculty', 'courses'].includes(k)), []);
+    assert.deepEqual(Object.keys(p).filter((k) => !['code', 'name', 'nameEn', 'year', 'variant', 'type', 'major', 'majorName', 'faculty', 'courses'].includes(k)), []);
     assert.equal(typeof p.courses, 'number');
   }
   const home = read('index.html');
@@ -717,4 +722,128 @@ test('site.json không có socialImage thì không ghi og:image, Twitter card d�
   assert.doesNotMatch(html, /og:image/);
   assert.equal(metaOf(html, 'name', 'twitter:card'), 'summary');
   assert.ok(metaOf(html, 'property', 'og:title'));
+});
+
+// ---------- Ngành, lộ trình theo học kỳ: dựng web từ dữ liệu CTĐT đã nhập (test/fixtures/ctdt) ----------
+const outM = (() => {
+  const dir = freshRoot();
+  importFixture(dir);
+  const o = fs.mkdtempSync(path.join(os.tmpdir(), 'bk-lib-site-major-'));
+  buildSite({ root: dir, out: o });
+  return o;
+})();
+const readM = (p) => fs.readFileSync(path.join(outM, p), 'utf8');
+const mainOf = (html) => html.slice(html.indexOf('<main'), html.indexOf('</main>'));
+
+test('trang ngành: mã ngành, nút PDF và Sổ tay, bộ chọn loại và khóa, lộ trình theo học kỳ', () => {
+  const html = mainOf(readM('major/7520103/index.html'));
+  assert.match(html, /<h1>Kỹ thuật Cơ khí<\/h1><p class="muted">Mã ngành 7520103, <a href="\.\.\/\.\.\/faculty\/fme\/">Khoa Cơ khí<\/a>, 3 chương trình<\/p>/);
+  // Nút theo chương trình chính (khóa mới nhất có học kỳ đề xuất, loại tiêu chuẩn), rồi Sổ tay.
+  assert.match(html, /href="https:\/\/drive\.google\.com\/file\/d\/ghi-tay\/view" target="_blank" rel="noopener">Xem CTĐT gốc/);
+  assert.match(html, /href="https:\/\/drive\.google\.com\/file\/d\/khgd-ck-2024\/view" target="_blank" rel="noopener">Kế hoạch giảng dạy \(PDF\)/);
+  assert.match(html, /<a class="btn subtle" href="https:\/\/hcmut\.edu\.vn\/study\/handbook\/course\/undergraduate\/7520103\?program=CQ" rel="noopener">Xem ngành trên Sổ tay HCMUT<\/a>/);
+  assert.match(html, /<a class="chip" href="\.\.\/\.\.\/program\/FME_KY_THUAT_CO_KHI_2024\/" aria-current="true">Tiêu chuẩn<\/a><a class="chip" href="\.\.\/\.\.\/program\/FME_KY_THUAT_CO_KHI_2025_CTTA\/">Tiếng Anh<\/a>/);
+  assert.match(html, /<a class="chip" href="\.\.\/\.\.\/program\/FME_KY_THUAT_CO_KHI_2024\/" aria-current="true">2024<\/a><a class="chip" href="\.\.\/\.\.\/program\/FME_KY_THUAT_CO_KHI_2019\/">2019<\/a>/);
+  assert.match(html, /Theo chương trình Khóa 2024, Tiêu chuẩn\./);
+  // Học kỳ 1 đến N theo thứ tự, mỗi kỳ một bảng; môn chưa có học kỳ gập theo vai trò khối.
+  const at = (s) => html.indexOf(s);
+  assert.ok(at('id="hoc-ky-1"') > 0 && at('id="hoc-ky-1"') < at('id="hoc-ky-2"') && at('id="hoc-ky-2"') < at('id="hoc-ky-3"') && at('id="hoc-ky-3"') < at('id="hoc-ky-4"'));
+  const hk1 = html.slice(at('id="hoc-ky-1"'), at('id="hoc-ky-2"'));
+  assert.match(hk1, /<h3>Học kỳ 1 <span class="muted small">2 môn<\/span><\/h3>/);
+  assert.match(hk1, /course\/MT1003\//);
+  assert.match(hk1, /course\/PH1003\//);
+  const rest = html.slice(at('<h3>Chưa có học kỳ đề xuất</h3>'));
+  assert.ok(rest.indexOf('<summary>Cơ sở ngành <span class="muted small">1 môn</span></summary>') < rest.indexOf('<summary>Giáo dục thể chất'));
+  assert.match(rest, /course\/ME3239\//);
+  assert.match(rest, /course\/PE1009\//);
+  assert.match(html, /<a class="btn" href="\.\.\/\.\.\/program\/FME_KY_THUAT_CO_KHI_2024\/">Xem đủ khối kiến thức<\/a>/);
+  assert.match(readM('en/major/7520103/index.html'), /<h1>Mechanical Engineering<\/h1>/);
+  assert.match(readM('en/major/7520103/index.html'), /<h3>Semester 1 <span class="muted small">2 courses<\/span><\/h3>/);
+});
+
+test('trang ngành chưa có danh sách môn: thông báo, nút gửi CTĐT; mã song ngành có dấu + thành dấu gạch ngang', () => {
+  const html = mainOf(readM('major/7520201-7520207/index.html'));
+  assert.match(html, /Chưa có danh sách môn\. Bạn có thể gửi CTĐT của khóa mình\./);
+  assert.match(html, /<a class="btn primary" href="[^"]*them-chuong-trinh\.yml[^"]*" rel="noopener">Thêm chương trình đào tạo<\/a>/);
+  assert.match(readM('sitemap.xml'), /major\/7520103\/<\/loc>/);
+});
+
+test('trang chương trình gắn ngành: bộ chọn khóa, ngành trong meta và đường dẫn, lộ trình rồi khối kiến thức', () => {
+  const html = mainOf(readM('program/FME_KY_THUAT_CO_KHI_2024/index.html'));
+  assert.match(html, /<li><a href="\.\.\/\.\.\/major\/7520103\/">Kỹ thuật Cơ khí<\/a><\/li><li aria-current="page">Khóa 2024, Tiêu chuẩn<\/li>/);
+  assert.match(html, /Ngành <a href="\.\.\/\.\.\/major\/7520103\/">Kỹ thuật Cơ khí<\/a>, Cử nhân, 132 tín chỉ, 7 môn<\/p>/);
+  assert.match(html, /<p class="small" lang="vi">Đã đối chiếu PDF\.<\/p>/);
+  assert.match(html, /<a class="chip" href="\.\.\/\.\.\/program\/FME_KY_THUAT_CO_KHI_2024\/" aria-current="page">2024<\/a>/);
+  assert.ok(html.indexOf('<h2 id="h-road">Lộ trình theo học kỳ</h2>') < html.indexOf('<h2 id="h-blocks">Khối kiến thức</h2>'));
+  assert.match(html, /<section class="block" id="khoi-k01"><h3>A\.1\. TOÁN <span class="muted small">bắt buộc, cần 15 tín chỉ<\/span><\/h3>/);
+  assert.match(html, /<h3>H\.1\. GIÁO DỤC THỂ CHẤT HỌC PHẦN 1 <span class="muted small">tự chọn, chọn 1 môn<\/span><\/h3>/);
+  // Khối đã là từng học kỳ (chỉ có kế hoạch giảng dạy): không thêm lộ trình riêng, khối không ghi bắt buộc hay tự chọn.
+  const k19 = mainOf(readM('program/FME_KY_THUAT_CO_KHI_2019/index.html'));
+  assert.doesNotMatch(k19, /id="h-road"/);
+  assert.match(k19, /<h2 id="h-blocks">Lộ trình theo học kỳ<\/h2><section class="block" id="khoi-k01"><h3>Học kỳ 1<\/h3>/);
+  assert.match(mainOf(readM('en/program/FME_KY_THUAT_CO_KHI_2025_CTTA/index.html')), /Taught in English/);
+});
+
+test('trang chủ: khoa rồi ngành, mỗi ngành một dòng có nhãn loại và các khóa; chương trình chưa có môn gập lại', () => {
+  const html = readM('index.html');
+  assert.match(html, /<summary><span class="prog-fac-name">Khoa Cơ khí<\/span> <span class="muted small">1 ngành, 3 chương trình<\/span><\/summary>/);
+  assert.match(
+    html,
+    /<li class="major-row"><span class="major-head"><a class="major-name" href="\.\/major\/7520103\/">Kỹ thuật Cơ khí<\/a><a class="tag" href="\.\/\?q=CQ">Tiêu chuẩn<\/a><a class="tag" href="\.\/\?q=CTTA">Tiếng Anh<\/a><\/span><span class="muted small">Khóa: <a href="\.\/program\/FME_KY_THUAT_CO_KHI_2025_CTTA\/">2025<\/a>, <a href="\.\/program\/FME_KY_THUAT_CO_KHI_2024\/">2024<\/a>, <a href="\.\/program\/FME_KY_THUAT_CO_KHI_2019\/">2019<\/a><\/span><\/li>/,
+  );
+  assert.match(html, /<details class="prog-empty"><summary>1 chương trình chưa có danh sách môn<\/summary><ul class="list"><li><a href="\.\/program\/CSE_TS_106_2026\/">/);
+  assert.match(html, /major-name" href="\.\/major\/7520201-7520207\/">[^<]+<\/a><a class="tag" href="\.\/\?q=SN">Song ngành<\/a><\/span><span class="muted small">chưa có danh sách môn<\/span>/);
+});
+
+test('trang khoa: ngành trước, rồi Môn của khoa và Môn chung khoa dùng; trang Môn chung toàn trường liệt kê môn chung', () => {
+  const html = mainOf(readM('faculty/fme/index.html'));
+  const at = (s) => html.indexOf(s);
+  assert.ok(at('<h2>Ngành của khoa</h2>') > 0 && at('<h2>Ngành của khoa</h2>') < at('<h2>Môn của khoa</h2>'));
+  assert.ok(at('<h2>Môn của khoa</h2>') < at('<h2>Môn chung khoa dùng</h2>'));
+  const own = html.slice(at('<h2>Môn của khoa</h2>'), at('<h2>Môn chung khoa dùng</h2>'));
+  const shared = html.slice(at('<h2>Môn chung khoa dùng</h2>'));
+  assert.match(own, /course\/ME2045\//);
+  assert.doesNotMatch(own, /course\/MT1003\//);
+  assert.match(shared, /<p class="muted">4 môn\. Môn chung toàn trường có trong chương trình của khoa\. Danh sách đủ ở trang <a href="\.\.\/\.\.\/faculty\/chung\/">Môn chung toàn trường<\/a>\.<\/p>/);
+  for (const id of ['MT1003', 'PH1003', 'LA1003', 'PE1009']) assert.match(shared, new RegExp(`course/${id}/`), id);
+  const chung = mainOf(readM('faculty/chung/index.html'));
+  assert.match(chung, /<p class="note">Môn và điều kiện tốt nghiệp áp dụng cho mọi ngành/);
+  assert.match(chung, /course\/MT1003\//);
+  assert.doesNotMatch(chung, /Môn chung khoa dùng/);
+  // Khoa chưa có gì: chỉ tới trang Môn chung toàn trường.
+  assert.match(mainOf(readM('faculty/flc/index.html')), /nằm ở trang <a href="\.\.\/\.\.\/faculty\/chung\/">Môn chung toàn trường<\/a>\./);
+});
+
+test('trang môn: link Sổ tay, chương trình gom theo ngành với link tới khối', () => {
+  const html = mainOf(readM('course/MT1003/index.html'));
+  assert.match(html, /<dt>Sổ tay HCMUT<\/dt><dd><a href="https:\/\/hcmut\.edu\.vn\/study\/handbook\/subject\/MT1003" rel="noopener">Trang môn trên Sổ tay HCMUT<\/a><\/dd>/);
+  assert.match(
+    html,
+    /<a href="\.\.\/\.\.\/major\/7520103\/">Kỹ thuật Cơ khí<\/a>: <a href="\.\.\/\.\.\/program\/FME_KY_THUAT_CO_KHI_2025_CTTA\/#khoi-k01">2025 Tiếng Anh<\/a>, <a href="\.\.\/\.\.\/program\/FME_KY_THUAT_CO_KHI_2024\/#khoi-k01">2024<\/a>, <a href="\.\.\/\.\.\/program\/FME_KY_THUAT_CO_KHI_2019\/#khoi-k01">2019<\/a>/,
+  );
+});
+
+test('ô tìm trang chủ: programs.json có dòng ngành (kind major) và chương trình ghi mã ngành', () => {
+  const rows = JSON.parse(readM('assets/programs.json'));
+  const major = rows.find((r) => r.kind === 'major' && r.code === '7520103');
+  assert.deepEqual(major, { kind: 'major', code: '7520103', key: '7520103', name: 'Kỹ thuật Cơ khí', nameEn: 'Mechanical Engineering', faculty: 'fme', types: ['CQ', 'CTTA'], programs: 3 });
+  assert.equal(rows.find((r) => r.code === 'FME_KY_THUAT_CO_KHI_2024').major, '7520103');
+  assert.ok(rows.findIndex((r) => r.kind === 'major') < rows.findIndex((r) => !r.kind));
+});
+
+test('nhãn loại chương trình là link mở ô tìm trang chủ (?q=<loại>) ở mọi trang có nhãn', () => {
+  const pages = ['index.html', 'faculty/fme/index.html', 'major/7520103/index.html', 'program/FME_KY_THUAT_CO_KHI_2025_CTTA/index.html', 'en/index.html', 'en/major/7520103/index.html'];
+  const labels = /(Tiêu chuẩn|Tiếng Anh|Song ngành|Chương trình tiêu chuẩn|Dạy và học bằng tiếng Anh|Standard|In English|Taught in English|Standard program)/;
+  for (const p of pages) {
+    const html = mainOf(readM(p));
+    assert.doesNotMatch(html, new RegExp('<span class="tag">' + labels.source + '<'), p);
+  }
+  assert.match(mainOf(readM('major/7520103/index.html')), /<a class="tag" href="\.\.\/\.\.\/\?q=CTTA">Dạy và học bằng tiếng Anh<\/a>/);
+  assert.match(mainOf(readM('program/FME_KY_THUAT_CO_KHI_2025_CTTA/index.html')), /<a class="tag" href="\.\.\/\.\.\/\?q=CTTA">Dạy và học bằng tiếng Anh<\/a>/);
+  assert.match(mainOf(readM('en/major/7520103/index.html')), /<a class="tag" href="\.\.\/\.\.\/\.\.\/en\/\?q=CTTA">Taught in English<\/a>/);
+  assert.match(mainOf(readM('faculty/fme/index.html')), /<a class="tag" href="\.\.\/\.\.\/\?q=CQ">Tiêu chuẩn<\/a>/);
+  // Ô tìm khớp mã loại: chương trình có type, ngành có types.
+  const rows = JSON.parse(readM('assets/programs.json'));
+  assert.equal(rows.find((r) => r.code === 'FME_KY_THUAT_CO_KHI_2025_CTTA').type, 'CTTA');
+  assert.ok(fs.readFileSync(path.join(outM, 'assets', 'search.js'), 'utf8').includes('p.type'));
 });

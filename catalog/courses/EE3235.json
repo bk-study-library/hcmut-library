@@ -1,0 +1,34 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "EE3235",
+  "code": "EE3235",
+  "name": "Thực tập kỹ thuật (Thiết kế vi mạch)",
+  "credits": 4,
+  "faculty": "dee",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "DEE_THIET_KE_VI_MACH_2026",
+      "block": "K15",
+      "required": true
+    },
+    {
+      "program": "DEE_THIET_KE_VI_MACH_2026_CNTN",
+      "block": "K16",
+      "required": true
+    },
+    {
+      "program": "DEE_TS_258_2026_TA",
+      "block": "K15",
+      "required": true
+    }
+  ],
+  "parts": [
+    "lab"
+  ],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/EE3235",
+  "note": "Nhập từ CTĐT chính thức (Sổ tay HCMUT, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

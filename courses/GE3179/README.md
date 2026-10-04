@@ -10,6 +10,7 @@
 | Khoa | Khoa Kỹ thuật Địa chất và Dầu khí |
 | Phần | Lý thuyết |
 | Trạng thái | Đang dạy |
+| Sổ tay HCMUT | [Trang môn trên Sổ tay HCMUT](https://hcmut.edu.vn/study/handbook/subject/GE3179) |
 | Mã, tên cũ | GE4021 Thu gom và vận chuyển dầu khí |
 | Thay cho | [GE4021](../GE4021/README.md) |
 | Môn liên quan | [CH2089](../CH2089/README.md) Quá trình và thiết bị công nghệ 1, [GE2053](../GE2053/README.md) Nhiệt động học vỉa và tính chất chất lưu |

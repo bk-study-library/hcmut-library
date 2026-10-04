@@ -1,0 +1,79 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "EE2111",
+  "code": "EE2111",
+  "name": "Thực tập Điện",
+  "credits": 1,
+  "faculty": "dee",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "DEE_KY_THUAT_DIEN_2026",
+      "block": "K09",
+      "required": true
+    },
+    {
+      "program": "DEE_KY_THUAT_DIEN_2026_CNTN",
+      "block": "K09",
+      "required": true
+    },
+    {
+      "program": "DEE_KY_THUAT_DIEN_2026_CTQT",
+      "block": "K11",
+      "required": true
+    },
+    {
+      "program": "DEE_KY_THUAT_DIEN_2026_CTTA",
+      "block": "K09",
+      "required": true
+    },
+    {
+      "program": "DEE_KY_THUAT_DIEN_TU_VIEN_THONG_2026",
+      "block": "K09",
+      "required": true
+    },
+    {
+      "program": "DEE_KY_THUAT_DIEN_TU_VIEN_THONG_2026_CNTN",
+      "block": "K09",
+      "required": true
+    },
+    {
+      "program": "DEE_KY_THUAT_DIEU_KHIEN_VA_TU_DONG_HOA_2026",
+      "block": "K09",
+      "required": true
+    },
+    {
+      "program": "DEE_KY_THUAT_DIEU_KHIEN_VA_TU_DONG_HOA_2026_CNTN",
+      "block": "K09",
+      "required": true
+    },
+    {
+      "program": "DEE_KY_THUAT_DIEU_KHIEN_VA_TU_DONG_HOA_2026_CTTA",
+      "block": "K09",
+      "required": true
+    },
+    {
+      "program": "DEE_THIET_KE_VI_MACH_2026",
+      "block": "K09",
+      "required": true
+    },
+    {
+      "program": "DEE_THIET_KE_VI_MACH_2026_CNTN",
+      "block": "K09",
+      "required": true
+    },
+    {
+      "program": "DEE_TS_258_2026_TA",
+      "block": "K09",
+      "required": true
+    }
+  ],
+  "parts": [
+    "lab"
+  ],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/EE2111",
+  "note": "Nhập từ CTĐT chính thức (Sổ tay HCMUT, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

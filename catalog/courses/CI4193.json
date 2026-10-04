@@ -1,0 +1,60 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "CI4193",
+  "code": "CI4193",
+  "name": "ứng dụng thống kê trong quản lý và công nghệ nước",
+  "nameEn": "Statistics Application in Water Engineering and Managemen",
+  "credits": 3,
+  "faculty": "fce",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "FCE_KY_THUAT_VA_QUAN_LY_NUOC_DO_THI_PFIEV_2020_PFIEV",
+      "block": "K08",
+      "required": false
+    },
+    {
+      "program": "FCE_KY_THUAT_VA_QUAN_LY_NUOC_DO_THI_PFIEV_2021_PFIEV",
+      "block": "K10",
+      "required": false
+    },
+    {
+      "program": "FCE_KY_THUAT_VA_QUAN_LY_NUOC_DO_THI_PFIEV_2022_PFIEV",
+      "block": "K10",
+      "required": false
+    },
+    {
+      "program": "FCE_KY_THUAT_VA_QUAN_LY_NUOC_DO_THI_PFIEV_2023_PFIEV",
+      "block": "K10",
+      "required": false
+    },
+    {
+      "program": "FCE_KY_THUAT_VA_QUAN_LY_NUOC_DO_THI_PFIEV_2024_PFIEV",
+      "block": "K14",
+      "required": false
+    },
+    {
+      "program": "FCE_KY_THUAT_VA_QUAN_LY_NUOC_DO_THI_PFIEV_2026_PFIEV",
+      "block": "K15",
+      "required": false
+    },
+    {
+      "program": "FCE_KY_THUAT_XAY_DUNG_2020",
+      "block": "K13",
+      "required": false
+    },
+    {
+      "program": "FCE_KY_THUAT_XAY_DUNG_2020_PFIEV",
+      "block": "K13",
+      "required": false
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/CI4193",
+  "note": "Nhập từ CTĐT chính thức (Sổ tay HCMUT, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

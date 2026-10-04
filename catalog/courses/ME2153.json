@@ -2,28 +2,29 @@
   "$schema": "../../schema/course.schema.json",
   "id": "ME2153",
   "code": "ME2153",
-  "name": "Thực hành",
-  "nameEn": "Pro ject",
+  "name": "Thực hành quản lý dự án",
+  "nameEn": "Project Management Practice",
   "credits": 2,
   "faculty": "fme",
   "aliases": [],
   "status": "active",
   "programs": [
     {
-      "program": "FME_LOGISTICS_VA_QUAN_LY_CHUOI_CUNG_UNG_2023",
-      "block": "K10",
-      "required": true
+      "program": "FME_LOGISTICS_VA_QUAN_LY_CHUOI_CUNG_UNG_2022",
+      "block": "K06",
+      "required": false
     },
     {
-      "program": "FME_LOGISTICS_VA_QUAN_LY_CHUOI_CUNG_UNG_2022",
-      "block": "K10",
-      "required": true
+      "program": "FME_LOGISTICS_VA_QUAN_LY_CHUOI_CUNG_UNG_2023",
+      "block": "K06",
+      "required": false
     }
   ],
   "parts": [
     "theory"
   ],
   "related": [],
-  "note": "Nhập từ nguồn công khai (truy cập 03/10/2026).",
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/ME2153",
+  "note": "Nhập từ nguồn công khai (truy cập 03/10/2026). Tên lấy từ Kế hoạch giảng dạy (PDF của trường). Chờ người duyệt xác nhận.",
   "updated": "2026-10-04"
 }

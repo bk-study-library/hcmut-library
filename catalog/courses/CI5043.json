@@ -1,0 +1,40 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "CI5043",
+  "code": "CI5043",
+  "name": "Chuyển tải bùn cát",
+  "nameEn": "Sediment transport",
+  "credits": 3,
+  "faculty": "fce",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "FCE_KY_THUAT_VA_QUAN_LY_NUOC_DO_THI_PFIEV_2022_PFIEV",
+      "block": "K10",
+      "required": false
+    },
+    {
+      "program": "FCE_KY_THUAT_VA_QUAN_LY_NUOC_DO_THI_PFIEV_2023_PFIEV",
+      "block": "K10",
+      "required": false
+    },
+    {
+      "program": "FCE_KY_THUAT_VA_QUAN_LY_NUOC_DO_THI_PFIEV_2024_PFIEV",
+      "block": "K14",
+      "required": false
+    },
+    {
+      "program": "FCE_KY_THUAT_VA_QUAN_LY_NUOC_DO_THI_PFIEV_2026_PFIEV",
+      "block": "K15",
+      "required": false
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/CI5043",
+  "note": "Nhập từ CTĐT chính thức (Sổ tay HCMUT, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

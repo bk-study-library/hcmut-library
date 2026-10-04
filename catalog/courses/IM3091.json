@@ -1,0 +1,35 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "IM3091",
+  "code": "IM3091",
+  "name": "Phân tích và Thiết kế Chuỗi cung ứng",
+  "nameEn": "Supply Chain Design and Analysis",
+  "credits": 3,
+  "faculty": "sim",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "SIM_QUAN_LY_CONG_NGHIEP_2021",
+      "block": "K06",
+      "required": false
+    },
+    {
+      "program": "SIM_QUAN_LY_CONG_NGHIEP_2022",
+      "block": "K06",
+      "required": false
+    },
+    {
+      "program": "SIM_QUAN_LY_CONG_NGHIEP_2023",
+      "block": "K06",
+      "required": false
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/IM3091",
+  "note": "Nhập từ Kế hoạch giảng dạy (PDF của trường, truy cập 04/10/2026). Tên lấy từ PDF. Chờ người duyệt xác nhận.",
+  "updated": "2026-10-04"
+}

@@ -1,0 +1,24 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "CI5501",
+  "code": "CI5501",
+  "name": "Học kỳ thực tập doanh nghiệp",
+  "credits": 11,
+  "faculty": "fce",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "FCE_KY_THUAT_XAY_DUNG_2026_PFIEV",
+      "block": "K18",
+      "required": true
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/CI5501",
+  "note": "Nhập từ CTĐT chính thức (Sổ tay HCMUT, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

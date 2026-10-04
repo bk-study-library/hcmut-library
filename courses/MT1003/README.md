@@ -7,9 +7,10 @@
 | Mã môn | MT1003 |
 | Tên | Giải tích 1 / Calculus 1 |
 | Tín chỉ | 4 |
-| Khoa | Khoa Khoa học Ứng dụng |
+| Khoa | Môn chung toàn trường |
 | Phần | Lý thuyết |
 | Trạng thái | Đang dạy |
+| Sổ tay HCMUT | [Trang môn trên Sổ tay HCMUT](https://hcmut.edu.vn/study/handbook/subject/MT1003) |
 | Môn liên quan | [MT1005](../MT1005/README.md) Giải tích 2 |
 
 ## Tài liệu

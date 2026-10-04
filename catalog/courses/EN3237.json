@@ -1,0 +1,40 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "EN3237",
+  "code": "EN3237",
+  "name": "Sản xuất và tiêu thụ bền vững",
+  "nameEn": "Sustainable Production and Consumption",
+  "credits": 3,
+  "faculty": "fenr",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "FENR_KINH_TE_TAI_NGUYEN_THIEN_NHIEN_2025",
+      "block": "K16",
+      "required": false
+    },
+    {
+      "program": "FENR_KINH_TE_TAI_NGUYEN_THIEN_NHIEN_2025_CTTA",
+      "block": "K16",
+      "required": false
+    },
+    {
+      "program": "FENR_KINH_TE_TAI_NGUYEN_THIEN_NHIEN_2026",
+      "block": "K16",
+      "required": false
+    },
+    {
+      "program": "FENR_KINH_TE_TAI_NGUYEN_THIEN_NHIEN_2026_CTTA",
+      "block": "K16",
+      "required": false
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/EN3237",
+  "note": "Nhập từ CTĐT chính thức (Sổ tay HCMUT, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

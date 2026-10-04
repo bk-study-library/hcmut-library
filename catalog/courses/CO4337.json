@@ -1,0 +1,100 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "CO4337",
+  "code": "CO4337",
+  "name": "Đồ án Tốt nghiệp (Khoa học Máy tính)",
+  "nameEn": "Capstone Project",
+  "credits": 4,
+  "faculty": "cse",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "CSE_KHOA_HOC_MAY_TINH_2019",
+      "block": "K08",
+      "required": false
+    },
+    {
+      "program": "CSE_KHOA_HOC_MAY_TINH_2020",
+      "block": "K50",
+      "required": false
+    },
+    {
+      "program": "CSE_KHOA_HOC_MAY_TINH_2021",
+      "block": "K48",
+      "required": false
+    },
+    {
+      "program": "CSE_KHOA_HOC_MAY_TINH_2022",
+      "block": "K08",
+      "required": false
+    },
+    {
+      "program": "CSE_KHOA_HOC_MAY_TINH_2023",
+      "block": "K48",
+      "required": false
+    },
+    {
+      "program": "CSE_KHOA_HOC_MAY_TINH_2024",
+      "block": "K24",
+      "required": true
+    },
+    {
+      "program": "CSE_KHOA_HOC_MAY_TINH_2024_CNTN",
+      "block": "K25",
+      "required": true
+    },
+    {
+      "program": "CSE_KHOA_HOC_MAY_TINH_2024_CTTA",
+      "block": "K25",
+      "required": true
+    },
+    {
+      "program": "CSE_KHOA_HOC_MAY_TINH_2024_DHNB",
+      "block": "K27",
+      "required": true
+    },
+    {
+      "program": "CSE_KHOA_HOC_MAY_TINH_2025_CNTN",
+      "block": "K25",
+      "required": true
+    },
+    {
+      "program": "CSE_KHOA_HOC_MAY_TINH_2025_CTTA",
+      "block": "K25",
+      "required": true
+    },
+    {
+      "program": "CSE_KHOA_HOC_MAY_TINH_2025_DHNB",
+      "block": "K27",
+      "required": true
+    },
+    {
+      "program": "CSE_KHOA_HOC_MAY_TINH_2026",
+      "block": "K25",
+      "required": true
+    },
+    {
+      "program": "CSE_KHOA_HOC_MAY_TINH_2026_CNTN",
+      "block": "K26",
+      "required": true
+    },
+    {
+      "program": "CSE_KHOA_HOC_MAY_TINH_2026_CTTA",
+      "block": "K25",
+      "required": true
+    },
+    {
+      "program": "CSE_KHOA_HOC_MAY_TINH_2026_DHNB",
+      "block": "K27",
+      "required": true
+    }
+  ],
+  "parts": [
+    "project"
+  ],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/CO4337",
+  "note": "Nhập từ CTĐT chính thức (Sổ tay HCMUT, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

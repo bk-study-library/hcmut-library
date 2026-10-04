@@ -1,0 +1,40 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "CO1033",
+  "code": "CO1033",
+  "name": "Nhập môn hệ thống số",
+  "nameEn": "Introduction to Digital Systems",
+  "credits": 3,
+  "faculty": "cse",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "CSE_CONG_NGHE_THONG_TIN_VUA_LAM_VUA_HOC_2020_VLVH",
+      "block": "K01",
+      "required": false
+    },
+    {
+      "program": "CSE_CONG_NGHE_THONG_TIN_VUA_LAM_VUA_HOC_2021_VLVH",
+      "block": "K01",
+      "required": false
+    },
+    {
+      "program": "CSE_CONG_NGHE_THONG_TIN_VUA_LAM_VUA_HOC_2022_VLVH",
+      "block": "K01",
+      "required": false
+    },
+    {
+      "program": "CSE_CONG_NGHE_THONG_TIN_VUA_LAM_VUA_HOC_2023_VLVH",
+      "block": "K01",
+      "required": false
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/CO1033",
+  "note": "Nhập từ Kế hoạch giảng dạy (PDF của trường, truy cập 04/10/2026). Tên lấy từ PDF. Chờ người duyệt xác nhận.",
+  "updated": "2026-10-04"
+}

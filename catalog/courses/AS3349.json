@@ -1,0 +1,39 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "AS3349",
+  "code": "AS3349",
+  "name": "Cơ sở thiết kế và ứng dụng thiết bị y tế",
+  "credits": 3,
+  "faculty": "fas",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "FAS_VAT_LY_KY_THUAT_2026",
+      "block": "K14",
+      "required": false
+    },
+    {
+      "program": "FAS_VAT_LY_KY_THUAT_2026",
+      "block": "K16",
+      "required": false
+    },
+    {
+      "program": "FAS_VAT_LY_KY_THUAT_2026",
+      "block": "K18",
+      "required": false
+    },
+    {
+      "program": "FAS_VAT_LY_KY_THUAT_2026_CTTA",
+      "block": "K14",
+      "required": false
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/AS3349",
+  "note": "Nhập từ CTĐT chính thức (Sổ tay HCMUT, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

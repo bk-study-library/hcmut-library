@@ -10,24 +10,34 @@
   "status": "active",
   "programs": [
     {
+      "program": "FME_CONG_NGHE_DET_MAY_2022",
+      "block": "K08",
+      "required": false
+    },
+    {
+      "program": "FME_CONG_NGHE_DET_MAY_2023",
+      "block": "K08",
+      "required": false
+    },
+    {
       "program": "FME_CONG_NGHE_DET_MAY_2024",
       "block": "K06",
       "required": true
     },
     {
-      "program": "FME_CONG_NGHE_DET_MAY_2022",
-      "block": "K07",
-      "required": false
+      "program": "FME_CONG_NGHE_DET_MAY_2026",
+      "block": "K06",
+      "required": true
     },
     {
       "program": "FME_KY_THUAT_DET_2022",
-      "block": "K07",
+      "block": "K08",
       "required": false
     },
     {
-      "program": "FME_CONG_NGHE_DET_MAY_2023",
-      "block": "K07",
-      "required": true
+      "program": "FME_KY_THUAT_DET_2023",
+      "block": "K08",
+      "required": false
     },
     {
       "program": "FME_KY_THUAT_DET_2024",
@@ -35,15 +45,16 @@
       "required": true
     },
     {
-      "program": "FME_KY_THUAT_DET_2023",
-      "block": "K07",
-      "required": false
+      "program": "FME_KY_THUAT_DET_2026",
+      "block": "K06",
+      "required": true
     }
   ],
   "parts": [
     "theory"
   ],
   "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/ME1017",
   "note": "Nhập từ nguồn công khai (truy cập 03/10/2026).",
   "updated": "2026-10-04"
 }

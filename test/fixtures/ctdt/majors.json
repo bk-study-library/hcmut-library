@@ -1,0 +1,30 @@
+[
+  {
+    "code": "7520103",
+    "name": "Kỹ thuật Cơ khí",
+    "nameEn": "Mechanical Engineering",
+    "faculty": "fme",
+    "facultiesByType": { "CQ": ["fme"], "CTTA": ["fme"] },
+    "programTypes": ["CQ", "CTTA"],
+    "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/undergraduate/7520103?program=CQ",
+    "tableNames": ["Kỹ thuật Cơ khí"]
+  },
+  {
+    "code": "7580211",
+    "name": "Địa kỹ thuật xây dựng",
+    "nameEn": "Geotechnical Engineering",
+    "faculty": "geopet",
+    "facultiesByType": { "CQ": ["geopet"] },
+    "programTypes": ["CQ"],
+    "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/undergraduate/7580211?program=CQ",
+    "tableNames": ["Địa kỹ thuật xây dựng"]
+  },
+  {
+    "code": "7520201+7520207",
+    "name": "Song ngành: Kỹ thuật Điện - Kỹ thuật Điện tử - Viễn thông",
+    "nameEn": null,
+    "faculty": "dee",
+    "programTypes": ["SN"],
+    "handbookUrl": null
+  }
+]

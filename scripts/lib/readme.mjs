@@ -44,6 +44,7 @@ export function renderCourseReadme(course, items, faculties, courses, existing) 
     ['Phần', course.parts.length ? course.parts.map((p) => PARTS[p].vi).join(', ') : 'chưa ghi'],
     ['Trạng thái', STATUS[course.status].vi],
   ];
+  if (course.handbookUrl) rows.push(['Sổ tay HCMUT', `[Trang môn trên Sổ tay HCMUT](${course.handbookUrl})`]);
   if (course.aliases.length) rows.push(['Mã, tên cũ', course.aliases.map((a) => `${a.code} ${a.name}`).join('; ')]);
   if (course.replacedBy) rows.push(['Thay bằng', `[${course.replacedBy}](../${course.replacedBy}/README.md)`]);
   if (course.replaces && course.replaces.length) rows.push(['Thay cho', course.replaces.map((r) => `[${r}](../${r}/README.md)`).join(', ')]);

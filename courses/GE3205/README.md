@@ -10,6 +10,7 @@
 | Khoa | Khoa Kỹ thuật Địa chất và Dầu khí |
 | Phần | Lý thuyết |
 | Trạng thái | Đang dạy |
+| Sổ tay HCMUT | [Trang môn trên Sổ tay HCMUT](https://hcmut.edu.vn/study/handbook/subject/GE3205) |
 | Mã, tên cũ | GE2009 Cơ học Đá |
 | Thay cho | [GE2009](../GE2009/README.md) |
 

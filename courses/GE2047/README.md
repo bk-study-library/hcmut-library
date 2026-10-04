@@ -5,11 +5,12 @@
 | Mục | Thông tin |
 |---|---|
 | Mã môn | GE2047 |
-| Tên | Thiết bị khai thác trên bề mặt và hệ thống điều khiển tự động / Surf ace Production Equipment and Automatic Control |
+| Tên | Thiết bị khai thác trên bề mặt và hệ thống điều khiển tự động / Surface Production Equipment and Automatic Control System |
 | Tín chỉ | 3 |
 | Khoa | Khoa Kỹ thuật Địa chất và Dầu khí |
 | Phần | Lý thuyết |
 | Trạng thái | Đang dạy |
+| Sổ tay HCMUT | [Trang môn trên Sổ tay HCMUT](https://hcmut.edu.vn/study/handbook/subject/GE2047) |
 | Thay cho | [GE3091](../GE3091/README.md) |
 | Môn liên quan | [GE3091](../GE3091/README.md) Dung dịch khoan và xi măng |
 

@@ -1,0 +1,24 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "ME3819",
+  "code": "ME3819",
+  "name": "Kỹ thuật sấy",
+  "credits": 3,
+  "faculty": "fme",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "FME_KY_THUAT_NHIET_2026",
+      "block": "K12",
+      "required": false
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/ME3819",
+  "note": "Nhập từ CTĐT chính thức (Sổ tay HCMUT, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

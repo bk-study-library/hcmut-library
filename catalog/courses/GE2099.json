@@ -10,23 +10,18 @@
   "status": "active",
   "programs": [
     {
+      "program": "GEOPET_DIA_KY_THUAT_XAY_DUNG_2024",
+      "block": "K05",
+      "required": false
+    },
+    {
       "program": "GEOPET_KY_THUAT_DIA_CHAT_2024",
-      "block": "K06",
+      "block": "K05",
       "required": false
     },
     {
-      "program": "GEOPET_KY_THUAT_DIA_CHAT_2023",
-      "block": "K09",
-      "required": true
-    },
-    {
-      "program": "GEOPET_DIA_KY_THUAT_XAY_DUNG_2024",
-      "block": "K06",
-      "required": false
-    },
-    {
-      "program": "GEOPET_DIA_KY_THUAT_XAY_DUNG_2024",
-      "block": "K11",
+      "program": "GEOPET_TS_151_2026",
+      "block": "K05",
       "required": false
     }
   ],
@@ -34,6 +29,7 @@
     "theory"
   ],
   "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/GE2099",
   "note": "Nhập từ nguồn công khai (truy cập 03/10/2026).",
   "updated": "2026-10-04"
 }

@@ -1,0 +1,29 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "GE4389",
+  "code": "GE4389",
+  "name": "Sức khỏe, an toàn và môi trường trong ngành dầu khí",
+  "credits": 3,
+  "faculty": "geopet",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "GEOPET_TS_150_2026",
+      "block": "K06",
+      "required": true
+    },
+    {
+      "program": "GEOPET_TS_220_2026_TA",
+      "block": "K06",
+      "required": true
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/GE4389",
+  "note": "Nhập từ CTĐT chính thức (Sổ tay HCMUT, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

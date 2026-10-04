@@ -1,0 +1,150 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "CH2027",
+  "code": "CH2027",
+  "name": "Sinh học Đại cương",
+  "nameEn": "General Biology",
+  "credits": 3,
+  "faculty": "che",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "CHE_CONG_NGHE_SINH_HOC_2019",
+      "block": "K03",
+      "required": false
+    },
+    {
+      "program": "CHE_CONG_NGHE_SINH_HOC_2020",
+      "block": "K03",
+      "required": false
+    },
+    {
+      "program": "CHE_CONG_NGHE_SINH_HOC_2021",
+      "block": "K03",
+      "required": false
+    },
+    {
+      "program": "CHE_CONG_NGHE_SINH_HOC_2022",
+      "block": "K03",
+      "required": false
+    },
+    {
+      "program": "CHE_CONG_NGHE_SINH_HOC_2023",
+      "block": "K03",
+      "required": false
+    },
+    {
+      "program": "CHE_CONG_NGHE_SINH_HOC_2024",
+      "block": "K08",
+      "required": true
+    },
+    {
+      "program": "CHE_CONG_NGHE_SINH_HOC_2024_CTTA",
+      "block": "K09",
+      "required": true
+    },
+    {
+      "program": "CHE_CONG_NGHE_SINH_HOC_2025_CTTA",
+      "block": "K09",
+      "required": true
+    },
+    {
+      "program": "CHE_CONG_NGHE_THUC_PHAM_2019",
+      "block": "K03",
+      "required": false
+    },
+    {
+      "program": "CHE_CONG_NGHE_THUC_PHAM_2020",
+      "block": "K03",
+      "required": false
+    },
+    {
+      "program": "CHE_CONG_NGHE_THUC_PHAM_2021",
+      "block": "K03",
+      "required": false
+    },
+    {
+      "program": "CHE_CONG_NGHE_THUC_PHAM_2022",
+      "block": "K03",
+      "required": false
+    },
+    {
+      "program": "CHE_CONG_NGHE_THUC_PHAM_2023",
+      "block": "K03",
+      "required": false
+    },
+    {
+      "program": "CSE_TS_146_2026",
+      "block": "K02",
+      "required": true
+    },
+    {
+      "program": "CSE_TS_251_2026_TA",
+      "block": "K02",
+      "required": true
+    },
+    {
+      "program": "FAS_KHOA_HOC_DU_LIEU_2024",
+      "block": "K02",
+      "required": true
+    },
+    {
+      "program": "FAS_VAT_LY_KY_THUAT_2019",
+      "block": "K03",
+      "required": false
+    },
+    {
+      "program": "FAS_VAT_LY_KY_THUAT_2020",
+      "block": "K03",
+      "required": false
+    },
+    {
+      "program": "FAS_VAT_LY_KY_THUAT_2021",
+      "block": "K03",
+      "required": false
+    },
+    {
+      "program": "FAS_VAT_LY_KY_THUAT_2022",
+      "block": "K03",
+      "required": false
+    },
+    {
+      "program": "FAS_VAT_LY_KY_THUAT_2023",
+      "block": "K03",
+      "required": false
+    },
+    {
+      "program": "FAS_VAT_LY_KY_THUAT_2024",
+      "block": "K08",
+      "required": true
+    },
+    {
+      "program": "FAS_VAT_LY_KY_THUAT_2024_CTTA",
+      "block": "K09",
+      "required": true
+    },
+    {
+      "program": "FAS_VAT_LY_KY_THUAT_2025_CTTA",
+      "block": "K09",
+      "required": true
+    },
+    {
+      "program": "FAS_VAT_LY_KY_THUAT_2026",
+      "block": "K09",
+      "required": true
+    },
+    {
+      "program": "FAS_VAT_LY_KY_THUAT_2026_CTTA",
+      "block": "K09",
+      "required": true
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/CH2027",
+  "note": "Nhập từ CTĐT chính thức (Sổ tay HCMUT, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

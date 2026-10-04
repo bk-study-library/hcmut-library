@@ -1,0 +1,60 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "CI3411",
+  "code": "CI3411",
+  "name": "Lãnh đạo và quản lý năng lượng",
+  "nameEn": "Leadership and Energy Management",
+  "credits": 3,
+  "faculty": "fce",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "FCE_KY_THUAT_VA_QUAN_LY_NUOC_DO_THI_PFIEV_2022_PFIEV",
+      "block": "K05",
+      "required": false
+    },
+    {
+      "program": "FCE_KY_THUAT_VA_QUAN_LY_NUOC_DO_THI_PFIEV_2023_PFIEV",
+      "block": "K05",
+      "required": false
+    },
+    {
+      "program": "FCE_KY_THUAT_VA_QUAN_LY_NUOC_DO_THI_PFIEV_2024_PFIEV",
+      "block": "K05",
+      "required": false
+    },
+    {
+      "program": "FCE_KY_THUAT_VA_QUAN_LY_NUOC_DO_THI_PFIEV_2026_PFIEV",
+      "block": "K05",
+      "required": false
+    },
+    {
+      "program": "FCE_KY_THUAT_XAY_DUNG_2022_PFIEV",
+      "block": "K05",
+      "required": false
+    },
+    {
+      "program": "FCE_KY_THUAT_XAY_DUNG_2023_PFIEV",
+      "block": "K05",
+      "required": false
+    },
+    {
+      "program": "FCE_KY_THUAT_XAY_DUNG_2024_PFIEV",
+      "block": "K05",
+      "required": false
+    },
+    {
+      "program": "FCE_KY_THUAT_XAY_DUNG_2026_PFIEV",
+      "block": "K05",
+      "required": false
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/CI3411",
+  "note": "Nhập từ CTĐT chính thức (Sổ tay HCMUT, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

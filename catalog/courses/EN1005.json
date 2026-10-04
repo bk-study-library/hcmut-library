@@ -1,0 +1,135 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "EN1005",
+  "code": "EN1005",
+  "name": "Sinh thái học",
+  "nameEn": "Ecology",
+  "credits": 3,
+  "faculty": "fenr",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "FENR_KY_THUAT_MOI_TRUONG_2019",
+      "block": "K03",
+      "required": false
+    },
+    {
+      "program": "FENR_KY_THUAT_MOI_TRUONG_2020",
+      "block": "K03",
+      "required": false
+    },
+    {
+      "program": "FENR_KY_THUAT_MOI_TRUONG_2021",
+      "block": "K03",
+      "required": false
+    },
+    {
+      "program": "FENR_KY_THUAT_MOI_TRUONG_2022",
+      "block": "K03",
+      "required": false
+    },
+    {
+      "program": "FENR_KY_THUAT_MOI_TRUONG_2023",
+      "block": "K03",
+      "required": false
+    },
+    {
+      "program": "FENR_KY_THUAT_MOI_TRUONG_2024",
+      "block": "K08",
+      "required": true
+    },
+    {
+      "program": "FENR_KY_THUAT_MOI_TRUONG_2024_CNTN",
+      "block": "K08",
+      "required": true
+    },
+    {
+      "program": "FENR_KY_THUAT_MOI_TRUONG_2024_CTTA",
+      "block": "K09",
+      "required": true
+    },
+    {
+      "program": "FENR_KY_THUAT_MOI_TRUONG_2025_CNTN",
+      "block": "K08",
+      "required": true
+    },
+    {
+      "program": "FENR_KY_THUAT_MOI_TRUONG_2025_CTTA",
+      "block": "K09",
+      "required": true
+    },
+    {
+      "program": "FENR_KY_THUAT_MOI_TRUONG_2026",
+      "block": "K09",
+      "required": true
+    },
+    {
+      "program": "FENR_KY_THUAT_MOI_TRUONG_2026_CNTN",
+      "block": "K09",
+      "required": true
+    },
+    {
+      "program": "FENR_KY_THUAT_MOI_TRUONG_2026_CTTA",
+      "block": "K09",
+      "required": true
+    },
+    {
+      "program": "FENR_QUAN_LY_TAI_NGUYEN_VA_MOI_TRUONG_2019",
+      "block": "K03",
+      "required": false
+    },
+    {
+      "program": "FENR_QUAN_LY_TAI_NGUYEN_VA_MOI_TRUONG_2020",
+      "block": "K03",
+      "required": false
+    },
+    {
+      "program": "FENR_QUAN_LY_TAI_NGUYEN_VA_MOI_TRUONG_2021",
+      "block": "K03",
+      "required": false
+    },
+    {
+      "program": "FENR_QUAN_LY_TAI_NGUYEN_VA_MOI_TRUONG_2022",
+      "block": "K03",
+      "required": false
+    },
+    {
+      "program": "FENR_QUAN_LY_TAI_NGUYEN_VA_MOI_TRUONG_2023",
+      "block": "K03",
+      "required": false
+    },
+    {
+      "program": "FENR_QUAN_LY_TAI_NGUYEN_VA_MOI_TRUONG_2024",
+      "block": "K08",
+      "required": true
+    },
+    {
+      "program": "FENR_QUAN_LY_TAI_NGUYEN_VA_MOI_TRUONG_2024_CTTA",
+      "block": "K09",
+      "required": true
+    },
+    {
+      "program": "FENR_QUAN_LY_TAI_NGUYEN_VA_MOI_TRUONG_2025_CTTA",
+      "block": "K09",
+      "required": true
+    },
+    {
+      "program": "FENR_QUAN_LY_TAI_NGUYEN_VA_MOI_TRUONG_2026",
+      "block": "K09",
+      "required": true
+    },
+    {
+      "program": "FENR_QUAN_LY_TAI_NGUYEN_VA_MOI_TRUONG_2026_CTTA",
+      "block": "K09",
+      "required": true
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/EN1005",
+  "note": "Nhập từ CTĐT chính thức (Sổ tay HCMUT, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

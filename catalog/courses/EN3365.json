@@ -1,0 +1,27 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "EN3365",
+  "code": "EN3365",
+  "name": "Thực tập Ngoài trường (KTTH)",
+  "credits": 5,
+  "faculty": "fenr",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "FENR_KINH_TE_TAI_NGUYEN_THIEN_NHIEN_2026",
+      "block": "K18",
+      "required": true
+    },
+    {
+      "program": "FENR_KINH_TE_TAI_NGUYEN_THIEN_NHIEN_2026_CTTA",
+      "block": "K18",
+      "required": true
+    }
+  ],
+  "parts": [],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/EN3365",
+  "note": "Nhập từ CTĐT chính thức (Sổ tay HCMUT, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

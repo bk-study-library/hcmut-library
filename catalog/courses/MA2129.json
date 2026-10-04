@@ -1,0 +1,25 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "MA2129",
+  "code": "MA2129",
+  "name": "Các phương pháp phân riêng khoáng vật",
+  "nameEn": "Mineral Separation Methods",
+  "credits": 3,
+  "faculty": "fmt",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "FMT_KY_THUAT_CHE_BIEN_KHOANG_SAN_2027",
+      "block": "K09",
+      "required": true
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/MA2129",
+  "note": "Nhập từ CTĐT chính thức (Sổ tay HCMUT, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

@@ -1,0 +1,105 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "TR4067",
+  "code": "TR4067",
+  "name": "Nhận dạng hệ thống máy bay",
+  "nameEn": "Aircraft System Identification",
+  "credits": 3,
+  "faculty": "fte",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "FMT_VAT_LIEU_POLYMER_VA_COMPOSITE_PFIEV_2021_PFIEV",
+      "block": "K08",
+      "required": false
+    },
+    {
+      "program": "FTE_KY_THUAT_HANG_KHONG_2019",
+      "block": "K07",
+      "required": false
+    },
+    {
+      "program": "FTE_KY_THUAT_HANG_KHONG_2020",
+      "block": "K07",
+      "required": false
+    },
+    {
+      "program": "FTE_KY_THUAT_HANG_KHONG_2020_PFIEV",
+      "block": "K08",
+      "required": false
+    },
+    {
+      "program": "FTE_KY_THUAT_HANG_KHONG_2021",
+      "block": "K07",
+      "required": false
+    },
+    {
+      "program": "FTE_KY_THUAT_HANG_KHONG_2021_PFIEV",
+      "block": "K08",
+      "required": false
+    },
+    {
+      "program": "FTE_KY_THUAT_HANG_KHONG_2022",
+      "block": "K07",
+      "required": false
+    },
+    {
+      "program": "FTE_KY_THUAT_HANG_KHONG_2022_PFIEV",
+      "block": "K08",
+      "required": false
+    },
+    {
+      "program": "FTE_KY_THUAT_HANG_KHONG_2023",
+      "block": "K07",
+      "required": false
+    },
+    {
+      "program": "FTE_KY_THUAT_HANG_KHONG_2023_PFIEV",
+      "block": "K08",
+      "required": false
+    },
+    {
+      "program": "FTE_KY_THUAT_HANG_KHONG_2024",
+      "block": "K11",
+      "required": false
+    },
+    {
+      "program": "FTE_KY_THUAT_HANG_KHONG_2024_CTTA",
+      "block": "K12",
+      "required": false
+    },
+    {
+      "program": "FTE_KY_THUAT_HANG_KHONG_2024_PFIEV",
+      "block": "K12",
+      "required": false
+    },
+    {
+      "program": "FTE_KY_THUAT_HANG_KHONG_2025_CTTA",
+      "block": "K12",
+      "required": false
+    },
+    {
+      "program": "FTE_KY_THUAT_TAU_THUY_HANG_KHONG_SN_2019_SN",
+      "block": "K09",
+      "required": false
+    },
+    {
+      "program": "FTE_KY_THUAT_TAU_THUY_HANG_KHONG_SN_2023_SN",
+      "block": "K09",
+      "required": false
+    },
+    {
+      "program": "FTE_KY_THUAT_TAU_THUY_HANG_KHONG_SN_2024_SN",
+      "block": "K12",
+      "required": false
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/TR4067",
+  "note": "Nhập từ CTĐT chính thức (Sổ tay HCMUT, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

@@ -10,28 +10,28 @@
   "status": "active",
   "programs": [
     {
-      "program": "FME_KY_THUAT_CO_KHI_2023",
-      "block": "K11",
-      "required": true
+      "program": "FME_KY_THUAT_CO_KHI_2019",
+      "block": "K06",
+      "required": false
     },
     {
       "program": "FME_KY_THUAT_CO_KHI_2020",
-      "block": "K03",
+      "block": "K06",
+      "required": false
+    },
+    {
+      "program": "FME_KY_THUAT_CO_KHI_2021",
+      "block": "K06",
       "required": false
     },
     {
       "program": "FME_KY_THUAT_CO_KHI_2022",
-      "block": "K11",
-      "required": true
+      "block": "K06",
+      "required": false
     },
     {
-      "program": "FME_KY_THUAT_CO_KHI_2021",
-      "block": "K11",
-      "required": true
-    },
-    {
-      "program": "FME_KY_THUAT_CO_KHI_2019",
-      "block": "K03",
+      "program": "FME_KY_THUAT_CO_KHI_2023",
+      "block": "K06",
       "required": false
     }
   ],
@@ -39,6 +39,7 @@
     "lab"
   ],
   "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/ME3143",
   "note": "Nhập từ nguồn công khai (truy cập 03/10/2026).",
   "updated": "2026-10-04"
 }

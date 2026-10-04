@@ -325,10 +325,10 @@ Khi repo còn private, file trên Release chỉ thành viên đã đăng nhập 
 
 ## Duyệt nhiều bài cùng lúc
 
-Mỗi PR gửi bài đều sửa các file sinh ra: `index.json`, `index.min.json`, `v1/` và README của môn. Sau khi merge một PR, các PR khác đang mở sẽ xung đột ở các file này. Với từng PR còn lại:
+Mỗi PR gửi bài đều sửa các file sinh ra: `index.json`, `index.min.json`, `worker-catalog.json`, `v1/` và README của môn. Sau khi merge một PR, các PR khác đang mở sẽ xung đột ở các file này. Với từng PR còn lại:
 
 1. Bấm **Update branch** trên trang PR. Nếu GitHub báo xung đột, bấm **Resolve conflicts**.
-2. Với `index.json`, `index.min.json`, các file trong `v1/` và README, giữ bên nào cũng được.
+2. Với `index.json`, `index.min.json`, `worker-catalog.json`, các file trong `v1/` và README, giữ bên nào cũng được.
 3. Commit. Lần push này làm `kiem-file` chạy lại và dựng lại đúng các file sinh ra trong nhánh PR.
 4. Đợi `kiem-file` và `validate` xanh rồi mới merge.
 

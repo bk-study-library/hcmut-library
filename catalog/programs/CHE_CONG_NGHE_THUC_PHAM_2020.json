@@ -1,0 +1,223 @@
+{
+  "$schema": "../../schema/program.schema.json",
+  "code": "CHE_CONG_NGHE_THUC_PHAM_2020",
+  "name": "Công nghệ Thực phẩm",
+  "nameEn": "Food Technology",
+  "faculty": "che",
+  "year": "2020",
+  "major": "7540101",
+  "type": "CQ",
+  "level": "dai-hoc",
+  "totalCredits": 132,
+  "note": "Sổ tay không có năm này cho ngành và loại chương trình này. Danh sách môn lấy từ Kế hoạch giảng dạy (PDF), khối là học kỳ chứ không phải khối kiến thức; tên khối kiến thức, bắt buộc hay tự chọn chưa có.",
+  "source": "https://drive.google.com/file/d/1RmEQD-Cfl3NnL455oMIPTaTZ0yQN2Rte/view",
+  "ctdtUrl": "https://drive.google.com/file/d/1dSi1-47LEoEKiOkcJFLS3AZadblEHHTT/view",
+  "planUrl": "https://drive.google.com/file/d/1RmEQD-Cfl3NnL455oMIPTaTZ0yQN2Rte/view",
+  "blocks": [
+    {
+      "id": "K01",
+      "name": "Học kỳ 1",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "LA1003",
+        "CH1001",
+        "MT1003",
+        "PH1003",
+        "CH1003",
+        "MI1003",
+        "PE1003"
+      ],
+      "semesters": {
+        "LA1003": 1,
+        "CH1001": 1,
+        "MT1003": 1,
+        "PH1003": 1,
+        "CH1003": 1,
+        "MI1003": 1,
+        "PE1003": 1
+      }
+    },
+    {
+      "id": "K02",
+      "name": "Học kỳ 2",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "LA1005",
+        "MT1005",
+        "MT1007",
+        "PH1007",
+        "CI1003",
+        "PE1005",
+        "IM1013",
+        "IM1027",
+        "IM1021",
+        "IM1025",
+        "IM1023"
+      ],
+      "semesters": {
+        "LA1005": 2,
+        "MT1005": 2,
+        "MT1007": 2,
+        "PH1007": 2,
+        "CI1003": 2,
+        "PE1005": 2,
+        "IM1013": 2,
+        "IM1027": 2,
+        "IM1021": 2,
+        "IM1025": 2,
+        "IM1023": 2
+      }
+    },
+    {
+      "id": "K03",
+      "name": "Học kỳ 3",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "LA1007",
+        "SP1031",
+        "CH2027",
+        "CH2021",
+        "CH2111",
+        "CH2007",
+        "PE1007"
+      ],
+      "semesters": {
+        "LA1007": 3,
+        "SP1031": 3,
+        "CH2027": 3,
+        "CH2021": 3,
+        "CH2111": 3,
+        "CH2007": 3,
+        "PE1007": 3
+      }
+    },
+    {
+      "id": "K04",
+      "name": "Học kỳ 4",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "LA1009",
+        "SP1033",
+        "CH2017",
+        "CH1005",
+        "CH2049",
+        "MT2013"
+      ],
+      "semesters": {
+        "LA1009": 4,
+        "SP1033": 4,
+        "CH2017": 4,
+        "CH1005": 4,
+        "CH2049": 4,
+        "MT2013": 4
+      }
+    },
+    {
+      "id": "K05",
+      "name": "Học kỳ 5",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "SP1035",
+        "CH2045",
+        "CH3369",
+        "CH2035",
+        "CH3371"
+      ],
+      "semesters": {
+        "SP1035": 5,
+        "CH2045": 5,
+        "CH3369": 5,
+        "CH2035": 5,
+        "CH3371": 5
+      }
+    },
+    {
+      "id": "K06",
+      "name": "Học kỳ 6",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "SP1039",
+        "CH3001",
+        "CH3017",
+        "CH3053",
+        "CH2039",
+        "CH3365",
+        "CH3379",
+        "CH3381"
+      ],
+      "semesters": {
+        "SP1039": 6,
+        "CH3001": 6,
+        "CH3017": 6,
+        "CH3053": 6,
+        "CH2039": 6,
+        "CH3365": 6,
+        "CH3379": 6,
+        "CH3381": 6
+      }
+    },
+    {
+      "id": "K07",
+      "name": "Học kỳ 7",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "SP1037",
+        "CH4099",
+        "CH3015",
+        "CH3049",
+        "CH4101",
+        "CH4103"
+      ],
+      "semesters": {
+        "SP1037": 7,
+        "CH4099": 7,
+        "CH3015": 7,
+        "CH3049": 7,
+        "CH4101": 7,
+        "CH4103": 7
+      }
+    },
+    {
+      "id": "K08",
+      "name": "Học kỳ 8",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "SP1007",
+        "CH4001",
+        "CH4097",
+        "CH4367",
+        "CH4107",
+        "CH4111",
+        "CH4113",
+        "CH4115"
+      ],
+      "semesters": {
+        "SP1007": 8,
+        "CH4001": 8,
+        "CH4097": 8,
+        "CH4367": 8,
+        "CH4107": 8,
+        "CH4111": 8,
+        "CH4113": 8,
+        "CH4115": 8
+      }
+    }
+  ],
+  "updated": "2026-10-04"
+}

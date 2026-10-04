@@ -1,0 +1,90 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "IM1017",
+  "code": "IM1017",
+  "name": "Thống kê trong Kinh doanh",
+  "nameEn": "Statistics for Business",
+  "credits": 3,
+  "faculty": "sim",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "SIM_QUAN_LY_CONG_NGHIEP_2019",
+      "block": "K02",
+      "required": false
+    },
+    {
+      "program": "SIM_QUAN_LY_CONG_NGHIEP_2020",
+      "block": "K02",
+      "required": false
+    },
+    {
+      "program": "SIM_QUAN_LY_CONG_NGHIEP_2021",
+      "block": "K02",
+      "required": false
+    },
+    {
+      "program": "SIM_QUAN_LY_CONG_NGHIEP_2022",
+      "block": "K02",
+      "required": false
+    },
+    {
+      "program": "SIM_QUAN_LY_CONG_NGHIEP_2023",
+      "block": "K02",
+      "required": false
+    },
+    {
+      "program": "SIM_QUAN_LY_CONG_NGHIEP_2024",
+      "block": "K01",
+      "required": true
+    },
+    {
+      "program": "SIM_QUAN_LY_CONG_NGHIEP_2024_CTTA",
+      "block": "K01",
+      "required": true
+    },
+    {
+      "program": "SIM_QUAN_LY_CONG_NGHIEP_2025_CTTA",
+      "block": "K01",
+      "required": true
+    },
+    {
+      "program": "SIM_QUAN_LY_CONG_NGHIEP_2026",
+      "block": "K01",
+      "required": true
+    },
+    {
+      "program": "SIM_QUAN_LY_CONG_NGHIEP_2026_CTTA",
+      "block": "K01",
+      "required": true
+    },
+    {
+      "program": "SIM_QUAN_TRI_KINH_DOANH_2025",
+      "block": "K01",
+      "required": true
+    },
+    {
+      "program": "SIM_QUAN_TRI_KINH_DOANH_2025_CTTA",
+      "block": "K01",
+      "required": true
+    },
+    {
+      "program": "SIM_QUAN_TRI_KINH_DOANH_2026_CTTA",
+      "block": "K01",
+      "required": true
+    },
+    {
+      "program": "SIM_TS_153_2026",
+      "block": "K01",
+      "required": true
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/IM1017",
+  "note": "Nhập từ CTĐT chính thức (Sổ tay HCMUT, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

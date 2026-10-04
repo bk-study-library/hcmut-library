@@ -1,0 +1,413 @@
+{
+  "$schema": "../../schema/program.schema.json",
+  "code": "SIM_QUAN_LY_CONG_NGHIEP_2026_CTTA",
+  "name": "Quản lý Công nghiệp",
+  "nameEn": "Industrial Management",
+  "faculty": "sim",
+  "year": "2026",
+  "major": "7510601",
+  "type": "CTTA",
+  "level": "dai-hoc",
+  "degree": "cu-nhan",
+  "totalCredits": 131,
+  "variant": "Dạy và học bằng tiếng Anh",
+  "note": "Bảng CTĐT của trường không có cột riêng cho loại chương trình này; ctdtUrl và planUrl để trống. Lệch nhiều so với Kế hoạch giảng dạy: 33 mã có trong KHGD nhưng không có trên Sổ tay. Học kỳ đề xuất mượn kế hoạch giảng dạy của chương trình tiêu chuẩn cùng ngành nên chỉ gần đúng.",
+  "source": "https://hcmut.edu.vn/study/handbook/course/undergraduate/7510601?program=CTTA",
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/undergraduate/7510601?program=CTTA",
+  "blocks": [
+    {
+      "id": "K01",
+      "name": "A.1. TOÁN",
+      "group": "A. TOÁN & KHOA HỌC TỰ NHIÊN",
+      "kind": "toan-khtn",
+      "required": true,
+      "creditsNeed": 9,
+      "courses": [
+        "MT1017",
+        "MT1007",
+        "IM1017"
+      ],
+      "semesters": {
+        "MT1017": 1,
+        "MT1007": 1,
+        "IM1017": 2
+      }
+    },
+    {
+      "id": "K02",
+      "name": "A.2. KHOA HỌC TỰ NHIÊN",
+      "group": "A. TOÁN & KHOA HỌC TỰ NHIÊN",
+      "kind": "toan-khtn",
+      "required": false,
+      "creditsNeed": 3,
+      "courses": [
+        "CH1003",
+        "PH1003",
+        "MT1009",
+        "CH1017",
+        "EN1015",
+        "GE1013",
+        "GE1011"
+      ],
+      "semesters": {
+        "CH1003": 2,
+        "PH1003": 2,
+        "MT1009": 2,
+        "CH1017": 2,
+        "EN1015": 2,
+        "GE1013": 2,
+        "GE1011": 2
+      }
+    },
+    {
+      "id": "K03",
+      "name": "B.1. KINH TẾ - CHÍNH TRỊ - XÃ HỘI - LUẬT",
+      "group": "B. GIÁO DỤC CHUNG",
+      "kind": "ly-luan-chinh-tri",
+      "required": true,
+      "creditsNeed": 14,
+      "courses": [
+        "SP1031",
+        "SP1033",
+        "SP1035",
+        "SP1039",
+        "SP1037",
+        "SP1073"
+      ],
+      "semesters": {
+        "SP1031": 3,
+        "SP1033": 4,
+        "SP1035": 5,
+        "SP1039": 6,
+        "SP1037": 7
+      }
+    },
+    {
+      "id": "K04",
+      "name": "B.2. NHẬP MÔN",
+      "group": "B. GIÁO DỤC CHUNG",
+      "kind": "giao-duc-chung",
+      "required": true,
+      "creditsNeed": 3,
+      "courses": [
+        "IM1001"
+      ],
+      "semesters": {
+        "IM1001": 1
+      }
+    },
+    {
+      "id": "K05",
+      "name": "B.3. KỸ THUẬT NGOÀI NGÀNH",
+      "group": "B. GIÁO DỤC CHUNG",
+      "kind": "nganh",
+      "required": false,
+      "creditsNeed": 3,
+      "courses": [
+        "EN3087",
+        "CH4079",
+        "ME2103",
+        "CO2013",
+        "CI2099"
+      ]
+    },
+    {
+      "id": "K06",
+      "name": "B.4. KIẾN THỨC VỀ CON NGƯỜI VÀ MÔI TRƯỜNG/KỸ NĂNG NGHỀ NGHIỆP CHUYÊN NGHIỆP",
+      "group": "B. GIÁO DỤC CHUNG",
+      "kind": "giao-duc-chung",
+      "required": true,
+      "creditsNeed": 3,
+      "courses": [
+        "IM3051"
+      ],
+      "semesters": {
+        "IM3051": 8
+      }
+    },
+    {
+      "id": "K07",
+      "name": "B.5. NGOẠI NGỮ",
+      "group": "B. GIÁO DỤC CHUNG",
+      "kind": "ngoai-ngu",
+      "required": true,
+      "creditsNeed": 8,
+      "courses": [
+        "LA1003",
+        "LA1005",
+        "LA1007",
+        "LA1009"
+      ],
+      "semesters": {
+        "LA1003": 1,
+        "LA1005": 2,
+        "LA1007": 3,
+        "LA1009": 4
+      }
+    },
+    {
+      "id": "K08",
+      "name": "B.6.1. KỸ NĂNG BỔ TRỢ",
+      "group": "B. GIÁO DỤC CHUNG > B.6. KIẾN THỨC VÀ KỸ NĂNG BỔ TRỢ",
+      "kind": "giao-duc-chung",
+      "required": false,
+      "requiredUnknown": true,
+      "coursesNeed": 4,
+      "courses": [
+        "SK1001",
+        "SK1003",
+        "SK2001",
+        "SK2003",
+        "SK3001",
+        "SK3003",
+        "SK4001",
+        "SK4003"
+      ]
+    },
+    {
+      "id": "K09",
+      "name": "C.1. BẮT BUỘC CƠ SỞ NGÀNH",
+      "group": "C. CƠ SỞ NGÀNH",
+      "kind": "co-so-nganh",
+      "required": true,
+      "creditsNeed": 32,
+      "courses": [
+        "IM1003",
+        "IM1007",
+        "IM1009",
+        "IM1015",
+        "IM1019",
+        "IM1029",
+        "IM1033",
+        "IM2033",
+        "IM2031",
+        "IM2035",
+        "IM2029"
+      ],
+      "semesters": {
+        "IM1003": 1,
+        "IM1007": 1,
+        "IM1009": 2,
+        "IM1015": 2,
+        "IM1019": 2,
+        "IM1029": 3,
+        "IM1033": 3,
+        "IM2033": 4,
+        "IM2031": 4,
+        "IM2035": 4,
+        "IM2029": 4
+      }
+    },
+    {
+      "id": "K10",
+      "name": "C.2. TỰ CHỌN CƠ SỞ NGÀNH",
+      "group": "C. CƠ SỞ NGÀNH",
+      "kind": "co-so-nganh",
+      "required": false,
+      "creditsNeed": 0,
+      "courses": []
+    },
+    {
+      "id": "K11",
+      "name": "D.1.1. BẮT BUỘC NGÀNH",
+      "group": "D. NGÀNH/CHUYÊN NGÀNH > D.1. NGÀNH",
+      "kind": "nganh",
+      "required": true,
+      "creditsNeed": 25,
+      "courses": [
+        "IM3077",
+        "IM3063",
+        "IM3105",
+        "IM3107",
+        "IM4003",
+        "IM3341",
+        "IM3343",
+        "IM2019",
+        "IM2043"
+      ],
+      "semesters": {
+        "IM3077": 5,
+        "IM3063": 5,
+        "IM3105": 5,
+        "IM3107": 7,
+        "IM4003": 7,
+        "IM2019": 3
+      }
+    },
+    {
+      "id": "K12",
+      "name": "D.1.2. TỰ CHỌN NGÀNH",
+      "group": "D. NGÀNH/CHUYÊN NGÀNH > D.1. NGÀNH",
+      "kind": "tu-chon-nganh",
+      "required": false,
+      "creditsNeed": 0,
+      "courses": []
+    },
+    {
+      "id": "K13",
+      "name": "D.2.1.1. BẮT BUỘC CHUYÊN NGÀNH",
+      "group": "D. NGÀNH/CHUYÊN NGÀNH > D.2. CHUYÊN NGÀNH > D.2.1. CHUYÊN NGÀNH (Chuyên ngành: Quản lý Công nghiệp - 2026)",
+      "kind": "chuyen-nganh",
+      "required": true,
+      "creditsNeed": 0,
+      "courses": []
+    },
+    {
+      "id": "K14",
+      "name": "D.2.1.2. TỰ CHỌN CHUYÊN NGÀNH",
+      "group": "D. NGÀNH/CHUYÊN NGÀNH > D.2. CHUYÊN NGÀNH > D.2.1. CHUYÊN NGÀNH (Chuyên ngành: Quản lý Công nghiệp - 2026)",
+      "kind": "chuyen-nganh",
+      "required": false,
+      "creditsNeed": 15,
+      "courses": []
+    },
+    {
+      "id": "K15",
+      "name": "D.2.2.1. BẮT BUỘC CHUYÊN NGÀNH",
+      "group": "D. NGÀNH/CHUYÊN NGÀNH > D.2. CHUYÊN NGÀNH > D.2.2. CHUYÊN NGÀNH (Chuyên ngành: Quản lý chuỗi cung ứng và vận hành - 2026)",
+      "kind": "chuyen-nganh",
+      "required": true,
+      "creditsNeed": 9,
+      "courses": []
+    },
+    {
+      "id": "K16",
+      "name": "D.2.2.2. TỰ CHỌN CHUYÊN NGÀNH",
+      "group": "D. NGÀNH/CHUYÊN NGÀNH > D.2. CHUYÊN NGÀNH > D.2.2. CHUYÊN NGÀNH (Chuyên ngành: Quản lý chuỗi cung ứng và vận hành - 2026)",
+      "kind": "chuyen-nganh",
+      "required": false,
+      "creditsNeed": 6,
+      "courses": []
+    },
+    {
+      "id": "K17",
+      "name": "E. TỰ CHỌN (KHÁC)/TỰ DO",
+      "kind": "tu-chon-tu-do",
+      "required": false,
+      "creditsNeed": 6,
+      "courses": []
+    },
+    {
+      "id": "K18",
+      "name": "F. HỌC PHẦN TỐT NGHIỆP",
+      "kind": "tot-nghiep",
+      "required": true,
+      "creditsNeed": 10,
+      "courses": [
+        "IM3339",
+        "IM4033",
+        "IM4327"
+      ],
+      "semesters": {
+        "IM4033": 7,
+        "IM4327": 8
+      }
+    },
+    {
+      "id": "K19",
+      "name": "G. GIÁO DỤC QUỐC PHÒNG",
+      "kind": "quoc-phong",
+      "required": true,
+      "creditsNeed": 0,
+      "courses": [
+        "MI1003"
+      ],
+      "semesters": {
+        "MI1003": 2
+      }
+    },
+    {
+      "id": "K20",
+      "name": "H.1. GIÁO DỤC THỂ CHẤT HỌC PHẦN 1",
+      "group": "H. GIÁO DỤC THỂ CHẤT",
+      "kind": "the-chat",
+      "required": false,
+      "coursesNeed": 1,
+      "courses": [
+        "PE1009",
+        "PE1011",
+        "PE1013",
+        "PE1015",
+        "PE1017",
+        "PE1019",
+        "PE1021",
+        "PE1023",
+        "PE1025",
+        "PE1027",
+        "PE1053",
+        "PE1057",
+        "PE1061",
+        "PE1001"
+      ],
+      "semesters": {
+        "PE1009": 1,
+        "PE1011": 1,
+        "PE1013": 1,
+        "PE1015": 1,
+        "PE1017": 1,
+        "PE1019": 1,
+        "PE1021": 1,
+        "PE1023": 1,
+        "PE1025": 1,
+        "PE1027": 1,
+        "PE1053": 1,
+        "PE1057": 1,
+        "PE1061": 1
+      }
+    },
+    {
+      "id": "K21",
+      "name": "H.2. GIÁO DỤC THỂ CHẤT HỌC PHẦN 2",
+      "group": "H. GIÁO DỤC THỂ CHẤT",
+      "kind": "the-chat",
+      "required": false,
+      "coursesNeed": 1,
+      "courses": [
+        "PE1033",
+        "PE1035",
+        "PE1037",
+        "PE1039",
+        "PE1041",
+        "PE1043",
+        "PE1045",
+        "PE1047",
+        "PE1049",
+        "PE1051",
+        "PE1055",
+        "PE1059",
+        "PE1063",
+        "PE1002"
+      ],
+      "semesters": {
+        "PE1033": 2,
+        "PE1035": 2,
+        "PE1037": 2,
+        "PE1039": 2,
+        "PE1041": 2,
+        "PE1043": 2,
+        "PE1045": 2,
+        "PE1047": 2,
+        "PE1049": 2,
+        "PE1051": 2,
+        "PE1055": 2,
+        "PE1059": 2,
+        "PE1063": 2
+      }
+    },
+    {
+      "id": "K22",
+      "name": "I. ĐIỀU KIỆN TỐT NGHIỆP",
+      "kind": "dieu-kien-tot-nghiep",
+      "required": true,
+      "coursesNeed": 0,
+      "courses": [
+        "SA4001",
+        "ENG_GE_2"
+      ],
+      "semesters": {
+        "SA4001": 8
+      }
+    }
+  ],
+  "updated": "2026-10-04"
+}

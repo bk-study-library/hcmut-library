@@ -10,6 +10,7 @@
 | Khoa | Khoa Kỹ thuật Địa chất và Dầu khí |
 | Phần | Lý thuyết |
 | Trạng thái | Đang dạy |
+| Sổ tay HCMUT | [Trang môn trên Sổ tay HCMUT](https://hcmut.edu.vn/study/handbook/subject/GE2041) |
 | Mã, tên cũ | GE3001 Địa vật lý giếng khoan |
 | Thay cho | [GE3001](../GE3001/README.md) |
 | Môn liên quan | [GE2055](../GE2055/README.md) Địa vật lý dầu khí và đánh giá thành hệ |

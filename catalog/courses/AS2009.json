@@ -1,0 +1,95 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "AS2009",
+  "code": "AS2009",
+  "name": "Cơ sở Cơ học Lượng tử - Vật lý chất rắn",
+  "nameEn": "Fundamentals of Quantum Mechanics and Solid States Physics",
+  "credits": 3,
+  "faculty": "fas",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "CSE_TS_146_2026",
+      "block": "K12",
+      "required": false
+    },
+    {
+      "program": "CSE_TS_251_2026_TA",
+      "block": "K12",
+      "required": false
+    },
+    {
+      "program": "FAS_KHOA_HOC_DU_LIEU_2024",
+      "block": "K11",
+      "required": false
+    },
+    {
+      "program": "FAS_VAT_LY_KY_THUAT_2019",
+      "block": "K03",
+      "required": false
+    },
+    {
+      "program": "FAS_VAT_LY_KY_THUAT_2020",
+      "block": "K03",
+      "required": false
+    },
+    {
+      "program": "FAS_VAT_LY_KY_THUAT_2021",
+      "block": "K03",
+      "required": false
+    },
+    {
+      "program": "FAS_VAT_LY_KY_THUAT_2022",
+      "block": "K03",
+      "required": false
+    },
+    {
+      "program": "FAS_VAT_LY_KY_THUAT_2023",
+      "block": "K03",
+      "required": false
+    },
+    {
+      "program": "FAS_VAT_LY_KY_THUAT_2024",
+      "block": "K08",
+      "required": true
+    },
+    {
+      "program": "FAS_VAT_LY_KY_THUAT_2024_CTTA",
+      "block": "K09",
+      "required": true
+    },
+    {
+      "program": "FAS_VAT_LY_KY_THUAT_2025_CTTA",
+      "block": "K09",
+      "required": true
+    },
+    {
+      "program": "FAS_VAT_LY_KY_THUAT_2026",
+      "block": "K09",
+      "required": true
+    },
+    {
+      "program": "FAS_VAT_LY_KY_THUAT_2026_CTTA",
+      "block": "K09",
+      "required": true
+    },
+    {
+      "program": "UNKNOWN_TS_159_2026",
+      "block": "K09",
+      "required": true
+    },
+    {
+      "program": "UNKNOWN_TS_259_2026_TA",
+      "block": "K09",
+      "required": true
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/AS2009",
+  "note": "Nhập từ CTĐT chính thức (Sổ tay HCMUT, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

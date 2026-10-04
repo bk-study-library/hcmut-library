@@ -1,15 +1,16 @@
-# EE3071 SCADA Thiết bị và hệ thống tự động thủy khí
+# EE3071 SCADA
 
 <!-- File này do "npm run build" sinh từ catalog/courses/EE3071.json và items/. Chỉ sửa phần Mẹo học, giữa hai dòng meo-hoc. -->
 
 | Mục | Thông tin |
 |---|---|
 | Mã môn | EE3071 |
-| Tên | SCADA Thiết bị và hệ thống tự động thủy khí / SCADA |
+| Tên | SCADA / SCADA |
 | Tín chỉ | 3 |
 | Khoa | Khoa Điện - Điện tử |
 | Phần | Lý thuyết |
 | Trạng thái | Đang dạy |
+| Sổ tay HCMUT | [Trang môn trên Sổ tay HCMUT](https://hcmut.edu.vn/study/handbook/subject/EE3071) |
 
 ## Tài liệu
 

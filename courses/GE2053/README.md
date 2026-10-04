@@ -10,6 +10,7 @@
 | Khoa | Khoa Kỹ thuật Địa chất và Dầu khí |
 | Phần | Lý thuyết |
 | Trạng thái | Đang dạy |
+| Sổ tay HCMUT | [Trang môn trên Sổ tay HCMUT](https://hcmut.edu.vn/study/handbook/subject/GE2053) |
 | Môn liên quan | [CH2089](../CH2089/README.md) Quá trình và thiết bị công nghệ 1, [GE3179](../GE3179/README.md) Thu gom và vận chuyển dầu khí |
 
 ## Tài liệu

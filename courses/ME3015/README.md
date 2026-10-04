@@ -5,11 +5,12 @@
 | Mục | Thông tin |
 |---|---|
 | Mã môn | ME3015 |
-| Tên | Kỹ thuật robot / robot Robotics |
+| Tên | Kỹ thuật robot / Robotics |
 | Tín chỉ | 3 |
 | Khoa | Khoa Cơ khí |
 | Phần | Lý thuyết |
 | Trạng thái | Đang dạy |
+| Sổ tay HCMUT | [Trang môn trên Sổ tay HCMUT](https://hcmut.edu.vn/study/handbook/subject/ME3015) |
 
 ## Tài liệu
 

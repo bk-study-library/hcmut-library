@@ -1,0 +1,45 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "CI5015",
+  "code": "CI5015",
+  "name": "Công trình Xanh, Không gian, Âm Thanh và Ánh sáng",
+  "nameEn": "Green Building, Space, Sound and Light",
+  "credits": 3,
+  "faculty": "fce",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "FCE_KY_THUAT_XAY_DUNG_2021_PFIEV",
+      "block": "K10",
+      "required": false
+    },
+    {
+      "program": "FCE_KY_THUAT_XAY_DUNG_2022_PFIEV",
+      "block": "K10",
+      "required": false
+    },
+    {
+      "program": "FCE_KY_THUAT_XAY_DUNG_2023_PFIEV",
+      "block": "K10",
+      "required": false
+    },
+    {
+      "program": "FCE_KY_THUAT_XAY_DUNG_2024_PFIEV",
+      "block": "K15",
+      "required": false
+    },
+    {
+      "program": "FCE_KY_THUAT_XAY_DUNG_2026_PFIEV",
+      "block": "K16",
+      "required": false
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/CI5015",
+  "note": "Nhập từ CTĐT chính thức (Sổ tay HCMUT, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

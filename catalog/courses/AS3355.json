@@ -1,0 +1,25 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "AS3355",
+  "code": "AS3355",
+  "name": "Cơ học lượng tử cho kỹ sư",
+  "nameEn": "Quantum Mechanics for Engineers",
+  "credits": 4,
+  "faculty": "fas",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "FAS_KY_THUAT_LUONG_TU_2027",
+      "block": "K11",
+      "required": true
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/AS3355",
+  "note": "Nhập từ CTĐT chính thức (Sổ tay HCMUT, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

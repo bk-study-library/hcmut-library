@@ -11,14 +11,25 @@
   "programs": [
     {
       "program": "FME_KY_THUAT_NHIET_2024",
-      "block": "K19",
-      "required": true
+      "block": "K13",
+      "required": false
+    },
+    {
+      "program": "FME_KY_THUAT_NHIET_2024",
+      "block": "K15",
+      "required": false
+    },
+    {
+      "program": "FME_KY_THUAT_NHIET_2026",
+      "block": "K12",
+      "required": false
     }
   ],
   "parts": [
     "theory"
   ],
   "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/ME4303",
   "note": "Nhập từ nguồn công khai (truy cập 03/10/2026).",
   "updated": "2026-10-04"
 }

@@ -1,0 +1,80 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "CH2013",
+  "code": "CH2013",
+  "name": "Hóa vô cơ (+TN)",
+  "nameEn": "Inorganic Chemistry (+Lab)",
+  "credits": 4,
+  "faculty": "che",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "CHE_KY_THUAT_HOA_HOC_2019",
+      "block": "K03",
+      "required": false
+    },
+    {
+      "program": "CHE_KY_THUAT_HOA_HOC_2020",
+      "block": "K03",
+      "required": false
+    },
+    {
+      "program": "CHE_KY_THUAT_HOA_HOC_2021",
+      "block": "K03",
+      "required": false
+    },
+    {
+      "program": "CHE_KY_THUAT_HOA_HOC_2022",
+      "block": "K03",
+      "required": false
+    },
+    {
+      "program": "CHE_KY_THUAT_HOA_HOC_2023",
+      "block": "K03",
+      "required": false
+    },
+    {
+      "program": "CHE_KY_THUAT_HOA_HOC_2024",
+      "block": "K02",
+      "required": true
+    },
+    {
+      "program": "CHE_KY_THUAT_HOA_HOC_2024_CTTA",
+      "block": "K02",
+      "required": true
+    },
+    {
+      "program": "CHE_KY_THUAT_HOA_HOC_2025_CNTN",
+      "block": "K02",
+      "required": true
+    },
+    {
+      "program": "CHE_KY_THUAT_HOA_HOC_2025_CTTA",
+      "block": "K02",
+      "required": true
+    },
+    {
+      "program": "CHE_KY_THUAT_HOA_HOC_2026",
+      "block": "K02",
+      "required": true
+    },
+    {
+      "program": "CHE_KY_THUAT_HOA_HOC_2026_CNTN",
+      "block": "K02",
+      "required": true
+    },
+    {
+      "program": "CHE_KY_THUAT_HOA_HOC_2026_CTTA",
+      "block": "K02",
+      "required": true
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/CH2013",
+  "note": "Nhập từ CTĐT chính thức (Sổ tay HCMUT, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

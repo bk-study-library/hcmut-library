@@ -1,0 +1,45 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "IM4037",
+  "code": "IM4037",
+  "name": "Quản lý dự án linh hoạt",
+  "nameEn": "Agile Project Management",
+  "credits": 3,
+  "faculty": "sim",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "FCE_KIEN_TRUC_7580101X_2021",
+      "block": "K08",
+      "required": false
+    },
+    {
+      "program": "SIM_QUAN_TRI_KINH_DOANH_2026_CTTA",
+      "block": "K14",
+      "required": false
+    },
+    {
+      "program": "SIM_QUAN_TRI_KINH_DOANH_2026_CTTA",
+      "block": "K16",
+      "required": false
+    },
+    {
+      "program": "SIM_TS_153_2026",
+      "block": "K14",
+      "required": false
+    },
+    {
+      "program": "SIM_TS_153_2026",
+      "block": "K16",
+      "required": false
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/IM4037",
+  "note": "Nhập từ CTĐT chính thức (Sổ tay HCMUT, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

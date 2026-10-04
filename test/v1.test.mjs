@@ -187,3 +187,35 @@ test('v1: teachers của môn lấy từ mục chưa gỡ, không trùng, vắng
   const row = buildV1(repo).index.courses.find((c) => c.id === course);
   assert.deepEqual(row.teachers, ['Trần B']);
 });
+
+// v1/majors.json: danh sách ngành, chỉ thêm (không đổi index.json hay courses/).
+test('v1/majors.json thật: đủ ngành của catalog/majors.json, không null, url tới trang ngành', () => {
+  const majors = JSON.parse(fs.readFileSync(path.join(ROOT, 'v1', 'majors.json'), 'utf8'));
+  const catalog = JSON.parse(fs.readFileSync(path.join(ROOT, 'catalog', 'majors.json'), 'utf8'));
+  assert.equal(majors.schemaVersion, 1);
+  assert.equal(majors.generated, catalog.updated);
+  assert.equal(majors.site, index.site);
+  assert.equal(majors.majors.length, catalog.majors.length);
+  walk(majors, (v, at) => assert.notEqual(v, null, `null ở ${at}`));
+  const keys = new Set(index.faculties.map((f) => f.key));
+  for (const m of majors.majors) {
+    assert.deepEqual(Object.keys(m).filter((k) => !['code', 'name', 'nameEn', 'faculty', 'level', 'programTypes', 'handbookUrl', 'url'].includes(k)), []);
+    assert.ok(keys.has(m.faculty), m.code);
+    assert.ok(['dai-hoc', 'thac-si', 'tien-si'].includes(m.level), m.code);
+    assert.equal(m.url, `${index.site}major/${encodeURIComponent(m.code.replace(/\+/g, '-'))}/`);
+  }
+  assert.ok(majors.majors.some((m) => m.code === '7520201+7520207' && m.url.endsWith('/major/7520201-7520207/')));
+});
+
+test('v1/majors.json: chỉ có khi repo có catalog/majors.json; dựng hai lần cùng nội dung', () => {
+  const dir = copyFixture();
+  assert.ok(!serializeV1(buildV1(loadRepo(dir))).some(([p]) => p === 'majors.json'));
+  writeJson(dir, 'catalog/majors.json', { updated: '2026-10-04', majors: [{ code: '7520201', name: 'Kỹ thuật Điện', faculty: 'EE', programTypes: ['CQ'] }] });
+  const a = serializeV1(buildV1(loadRepo(dir))).find(([p]) => p === 'majors.json');
+  const b = serializeV1(buildV1(loadRepo(dir))).find(([p]) => p === 'majors.json');
+  assert.equal(a[1], b[1]);
+  const doc = JSON.parse(a[1]);
+  assert.equal(doc.generated, '2026-10-04');
+  // level vắng trong catalog thì v1 ghi dai-hoc; không có handbookUrl thì vắng.
+  assert.deepEqual(doc.majors, [{ code: '7520201', name: 'Kỹ thuật Điện', faculty: 'EE', level: 'dai-hoc', programTypes: ['CQ'], url: `${doc.site}major/7520201/` }]);
+});

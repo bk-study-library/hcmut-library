@@ -10,6 +10,7 @@
 | Khoa | Khoa Kỹ thuật Địa chất và Dầu khí |
 | Phần | Lý thuyết |
 | Trạng thái | Đang dạy |
+| Sổ tay HCMUT | [Trang môn trên Sổ tay HCMUT](https://hcmut.edu.vn/study/handbook/subject/GE2011) |
 | Môn liên quan | [GE2051](../GE2051/README.md) Cơ sở khoa học địa chất dầu khí và ngành dầu khí |
 
 ## Tài liệu

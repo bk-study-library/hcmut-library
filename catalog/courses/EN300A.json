@@ -1,0 +1,32 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "EN300A",
+  "code": "EN300A",
+  "name": "Kỹ thuật xử lý khí thải (mở rộng)",
+  "credits": 0,
+  "faculty": "fenr",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "FENR_KY_THUAT_MOI_TRUONG_2024_CNTN",
+      "block": "K13",
+      "required": false
+    },
+    {
+      "program": "FENR_KY_THUAT_MOI_TRUONG_2025_CNTN",
+      "block": "K13",
+      "required": false
+    },
+    {
+      "program": "FENR_KY_THUAT_MOI_TRUONG_2026_CNTN",
+      "block": "K14",
+      "required": false
+    }
+  ],
+  "parts": [],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/EN300A",
+  "note": "Nhập từ CTĐT chính thức (Sổ tay HCMUT, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

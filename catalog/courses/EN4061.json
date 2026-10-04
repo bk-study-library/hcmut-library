@@ -1,0 +1,50 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "EN4061",
+  "code": "EN4061",
+  "name": "Thu hồi năng lượng từ chất thải",
+  "nameEn": "Recovering energy from waste",
+  "credits": 3,
+  "faculty": "fenr",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "DEE_KY_THUAT_DIEN_2025_CTTA",
+      "block": "K14",
+      "required": false
+    },
+    {
+      "program": "DEE_KY_THUAT_DIEN_2026_CTTA",
+      "block": "K14",
+      "required": false
+    },
+    {
+      "program": "FENR_KINH_TE_TAI_NGUYEN_THIEN_NHIEN_2025",
+      "block": "K16",
+      "required": false
+    },
+    {
+      "program": "FENR_KINH_TE_TAI_NGUYEN_THIEN_NHIEN_2025_CTTA",
+      "block": "K16",
+      "required": false
+    },
+    {
+      "program": "FENR_KINH_TE_TAI_NGUYEN_THIEN_NHIEN_2026",
+      "block": "K16",
+      "required": false
+    },
+    {
+      "program": "FENR_KINH_TE_TAI_NGUYEN_THIEN_NHIEN_2026_CTTA",
+      "block": "K16",
+      "required": false
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/EN4061",
+  "note": "Nhập từ CTĐT chính thức (Sổ tay HCMUT, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

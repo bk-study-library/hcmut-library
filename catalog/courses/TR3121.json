@@ -1,0 +1,70 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "TR3121",
+  "code": "TR3121",
+  "name": "Hệ thống Điện - Điện tử Ô tô",
+  "nameEn": "Automotive Electrical-Electronic Systems",
+  "credits": 3,
+  "faculty": "fte",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "FTE_KY_THUAT_O_TO_2019",
+      "block": "K06",
+      "required": false
+    },
+    {
+      "program": "FTE_KY_THUAT_O_TO_2020",
+      "block": "K06",
+      "required": false
+    },
+    {
+      "program": "FTE_KY_THUAT_O_TO_2021",
+      "block": "K06",
+      "required": false
+    },
+    {
+      "program": "FTE_KY_THUAT_O_TO_2022",
+      "block": "K06",
+      "required": false
+    },
+    {
+      "program": "FTE_KY_THUAT_O_TO_2023",
+      "block": "K06",
+      "required": false
+    },
+    {
+      "program": "FTE_KY_THUAT_O_TO_2024",
+      "block": "K10",
+      "required": true
+    },
+    {
+      "program": "FTE_KY_THUAT_O_TO_2024_CTTA",
+      "block": "K11",
+      "required": true
+    },
+    {
+      "program": "FTE_KY_THUAT_O_TO_2025_CTTA",
+      "block": "K11",
+      "required": true
+    },
+    {
+      "program": "FTE_TS_142_2026",
+      "block": "K12",
+      "required": false
+    },
+    {
+      "program": "FTE_TS_242_2026_TA",
+      "block": "K12",
+      "required": false
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/TR3121",
+  "note": "Nhập từ CTĐT chính thức (Sổ tay HCMUT, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

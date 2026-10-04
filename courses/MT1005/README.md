@@ -7,9 +7,10 @@
 | Mã môn | MT1005 |
 | Tên | Giải tích 2 / Calculus 2 |
 | Tín chỉ | 4 |
-| Khoa | Khoa Khoa học Ứng dụng |
+| Khoa | Môn chung toàn trường |
 | Phần | Lý thuyết |
 | Trạng thái | Đang dạy |
+| Sổ tay HCMUT | [Trang môn trên Sổ tay HCMUT](https://hcmut.edu.vn/study/handbook/subject/MT1005) |
 | Môn liên quan | [MT1003](../MT1003/README.md) Giải tích 1 |
 
 ## Tài liệu

@@ -1,0 +1,30 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "MA3179",
+  "code": "MA3179",
+  "name": "An toàn Công nghiệp trong ngành Bán dẫn",
+  "nameEn": "Industrial Safety for the Semiconductor Indus",
+  "credits": 3,
+  "faculty": "fmt",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "UNKNOWN_TS_159_2026",
+      "block": "K06",
+      "required": true
+    },
+    {
+      "program": "UNKNOWN_TS_259_2026_TA",
+      "block": "K06",
+      "required": true
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/MA3179",
+  "note": "Nhập từ CTĐT chính thức (Sổ tay HCMUT, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

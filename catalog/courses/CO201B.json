@@ -1,0 +1,32 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "CO201B",
+  "code": "CO201B",
+  "name": "Hệ Cơ sở Dữ liệu (Mở rộng)",
+  "credits": 0,
+  "faculty": "cse",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "CSE_KHOA_HOC_MAY_TINH_2024_CNTN",
+      "block": "K23",
+      "required": false
+    },
+    {
+      "program": "CSE_KHOA_HOC_MAY_TINH_2025_CNTN",
+      "block": "K23",
+      "required": false
+    },
+    {
+      "program": "CSE_KHOA_HOC_MAY_TINH_2026_CNTN",
+      "block": "K24",
+      "required": false
+    }
+  ],
+  "parts": [],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/CO201B",
+  "note": "Nhập từ CTĐT chính thức (Sổ tay HCMUT, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

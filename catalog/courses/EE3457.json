@@ -1,0 +1,35 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "EE3457",
+  "code": "EE3457",
+  "name": "Điều khiển phương tiện thông minh",
+  "nameEn": "Smart Vehicle Control",
+  "credits": 3,
+  "faculty": "dee",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "FTE_KY_THUAT_PHUONG_TIEN_KHONG_NGUOI_LAI_2027",
+      "block": "K12",
+      "required": false
+    },
+    {
+      "program": "FTE_KY_THUAT_PHUONG_TIEN_KHONG_NGUOI_LAI_2027_CTTA",
+      "block": "K12",
+      "required": false
+    },
+    {
+      "program": "FTE_KY_THUAT_PHUONG_TIEN_KHONG_NGUOI_LAI_75201XX_2027",
+      "block": "K12",
+      "required": false
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/EE3457",
+  "note": "Nhập từ CTĐT chính thức (Sổ tay HCMUT, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

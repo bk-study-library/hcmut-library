@@ -1,0 +1,70 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "EN3219",
+  "code": "EN3219",
+  "name": "Kỹ thuật thông gió và kiểm soát ô nhiễm tiếng ồn",
+  "nameEn": "Ventilation and Noise Pollution Control Engineering",
+  "credits": 3,
+  "faculty": "fenr",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "FENR_KY_THUAT_MOI_TRUONG_2024",
+      "block": "K11",
+      "required": false
+    },
+    {
+      "program": "FENR_KY_THUAT_MOI_TRUONG_2024_CNTN",
+      "block": "K11",
+      "required": false
+    },
+    {
+      "program": "FENR_KY_THUAT_MOI_TRUONG_2024_CTTA",
+      "block": "K12",
+      "required": false
+    },
+    {
+      "program": "FENR_KY_THUAT_MOI_TRUONG_2025_CNTN",
+      "block": "K11",
+      "required": false
+    },
+    {
+      "program": "FENR_KY_THUAT_MOI_TRUONG_2025_CTTA",
+      "block": "K12",
+      "required": false
+    },
+    {
+      "program": "FENR_KY_THUAT_MOI_TRUONG_2026",
+      "block": "K12",
+      "required": false
+    },
+    {
+      "program": "FENR_KY_THUAT_MOI_TRUONG_2026_CNTN",
+      "block": "K12",
+      "required": false
+    },
+    {
+      "program": "FENR_KY_THUAT_MOI_TRUONG_2026_CTTA",
+      "block": "K12",
+      "required": false
+    },
+    {
+      "program": "FENR_QUAN_LY_TAI_NGUYEN_VA_MOI_TRUONG_2026",
+      "block": "K16",
+      "required": false
+    },
+    {
+      "program": "FENR_QUAN_LY_TAI_NGUYEN_VA_MOI_TRUONG_2026_CTTA",
+      "block": "K16",
+      "required": false
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/EN3219",
+  "note": "Nhập từ CTĐT chính thức (Sổ tay HCMUT, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

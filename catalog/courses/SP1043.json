@@ -1,0 +1,73 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "SP1043",
+  "code": "SP1043",
+  "name": "Văn hóa Nhật",
+  "nameEn": "Japanese Culture",
+  "credits": 0,
+  "faculty": "chung",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "CSE_KHOA_HOC_MAY_TINH_2024_DHNB",
+      "block": "K10",
+      "required": false
+    },
+    {
+      "program": "CSE_KHOA_HOC_MAY_TINH_2025_DHNB",
+      "block": "K10",
+      "required": false
+    },
+    {
+      "program": "CSE_KHOA_HOC_MAY_TINH_2026_DHNB",
+      "block": "K10",
+      "required": false
+    },
+    {
+      "program": "DEE_KY_THUAT_DIEN_2024_CTQT",
+      "block": "K10",
+      "required": true
+    },
+    {
+      "program": "DEE_KY_THUAT_DIEN_2025_CTQT",
+      "block": "K10",
+      "required": true
+    },
+    {
+      "program": "DEE_KY_THUAT_DIEN_2026_CTQT",
+      "block": "K10",
+      "required": true
+    },
+    {
+      "program": "FAS_CO_KY_THUAT_2021",
+      "block": "K08",
+      "required": false
+    },
+    {
+      "program": "FAS_CO_KY_THUAT_2022",
+      "block": "K01",
+      "required": false
+    },
+    {
+      "program": "FAS_CO_KY_THUAT_2024_DHNB",
+      "block": "K10",
+      "required": false
+    },
+    {
+      "program": "FAS_CO_KY_THUAT_2025_DHNB",
+      "block": "K10",
+      "required": false
+    },
+    {
+      "program": "FAS_TS_268_2026_NB",
+      "block": "K10",
+      "required": false
+    }
+  ],
+  "parts": [],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/SP1043",
+  "note": "Nhập từ CTĐT chính thức (Sổ tay HCMUT, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

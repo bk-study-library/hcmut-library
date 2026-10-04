@@ -1,0 +1,24 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "ME3857",
+  "code": "ME3857",
+  "name": "Thực tập tốt nghiệp (Kỹ thuật Dệt)",
+  "credits": 5,
+  "faculty": "fme",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "FME_KY_THUAT_DET_2026",
+      "block": "K15",
+      "required": true
+    }
+  ],
+  "parts": [
+    "lab"
+  ],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/ME3857",
+  "note": "Nhập từ CTĐT chính thức (Sổ tay HCMUT, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

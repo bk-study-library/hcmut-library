@@ -1,0 +1,35 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "AS2035",
+  "code": "AS2035",
+  "name": "Giới thiệu ngôn ngữ lập trình",
+  "nameEn": "Fortran Introduction to Fortran",
+  "credits": 3,
+  "faculty": "fas",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "FAS_VAT_LY_KY_THUAT_2019",
+      "block": "K04",
+      "required": false
+    },
+    {
+      "program": "FAS_VAT_LY_KY_THUAT_2020",
+      "block": "K04",
+      "required": false
+    },
+    {
+      "program": "FAS_VAT_LY_KY_THUAT_2021",
+      "block": "K04",
+      "required": false
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/AS2035",
+  "note": "Nhập từ Kế hoạch giảng dạy (PDF của trường, truy cập 04/10/2026). Tên lấy từ PDF. Chờ người duyệt xác nhận.",
+  "updated": "2026-10-04"
+}

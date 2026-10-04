@@ -1,0 +1,85 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "CH4163",
+  "code": "CH4163",
+  "name": "An toàn Sinh học",
+  "nameEn": "Biosafety",
+  "credits": 3,
+  "faculty": "che",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "CHE_CONG_NGHE_SINH_HOC_2024",
+      "block": "K06",
+      "required": true
+    },
+    {
+      "program": "CHE_CONG_NGHE_SINH_HOC_2024_CTTA",
+      "block": "K06",
+      "required": true
+    },
+    {
+      "program": "CHE_CONG_NGHE_SINH_HOC_2025_CTTA",
+      "block": "K06",
+      "required": true
+    },
+    {
+      "program": "CHE_CONG_NGHE_SINH_HOC_2026",
+      "block": "K06",
+      "required": true
+    },
+    {
+      "program": "CHE_CONG_NGHE_THUC_PHAM_2024",
+      "block": "K06",
+      "required": false
+    },
+    {
+      "program": "CHE_CONG_NGHE_THUC_PHAM_2024_CNTN",
+      "block": "K06",
+      "required": false
+    },
+    {
+      "program": "CHE_CONG_NGHE_THUC_PHAM_2024_CTTA",
+      "block": "K06",
+      "required": false
+    },
+    {
+      "program": "CHE_CONG_NGHE_THUC_PHAM_2025_CNTN",
+      "block": "K06",
+      "required": false
+    },
+    {
+      "program": "CHE_CONG_NGHE_THUC_PHAM_2025_CTTA",
+      "block": "K06",
+      "required": false
+    },
+    {
+      "program": "CHE_CONG_NGHE_THUC_PHAM_2026",
+      "block": "K06",
+      "required": false
+    },
+    {
+      "program": "CHE_CONG_NGHE_THUC_PHAM_2026_CNTN",
+      "block": "K06",
+      "required": false
+    },
+    {
+      "program": "CHE_TS_218_2026_TA",
+      "block": "K06",
+      "required": true
+    },
+    {
+      "program": "CHE_TS_219_2026_TA",
+      "block": "K06",
+      "required": false
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/CH4163",
+  "note": "Nhập từ CTĐT chính thức (Sổ tay HCMUT, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

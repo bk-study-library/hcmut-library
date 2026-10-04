@@ -1,0 +1,190 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "CO4035",
+  "code": "CO4035",
+  "name": "Hệ hoạch Định tài Nguyên tổ chức",
+  "nameEn": "Enterprise Resource Planning Systems",
+  "credits": 3,
+  "faculty": "cse",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "CSE_KHOA_HOC_MAY_TINH_2019",
+      "block": "K07",
+      "required": false
+    },
+    {
+      "program": "CSE_KHOA_HOC_MAY_TINH_2020",
+      "block": "K11",
+      "required": false
+    },
+    {
+      "program": "CSE_KHOA_HOC_MAY_TINH_2020",
+      "block": "K23",
+      "required": false
+    },
+    {
+      "program": "CSE_KHOA_HOC_MAY_TINH_2021",
+      "block": "K11",
+      "required": false
+    },
+    {
+      "program": "CSE_KHOA_HOC_MAY_TINH_2021",
+      "block": "K23",
+      "required": false
+    },
+    {
+      "program": "CSE_KHOA_HOC_MAY_TINH_2022",
+      "block": "K07",
+      "required": false
+    },
+    {
+      "program": "CSE_KHOA_HOC_MAY_TINH_2023",
+      "block": "K11",
+      "required": false
+    },
+    {
+      "program": "CSE_KHOA_HOC_MAY_TINH_2023",
+      "block": "K23",
+      "required": false
+    },
+    {
+      "program": "CSE_KHOA_HOC_MAY_TINH_2024",
+      "block": "K14",
+      "required": false
+    },
+    {
+      "program": "CSE_KHOA_HOC_MAY_TINH_2024",
+      "block": "K18",
+      "required": false
+    },
+    {
+      "program": "CSE_KHOA_HOC_MAY_TINH_2024_CNTN",
+      "block": "K14",
+      "required": false
+    },
+    {
+      "program": "CSE_KHOA_HOC_MAY_TINH_2024_CNTN",
+      "block": "K18",
+      "required": false
+    },
+    {
+      "program": "CSE_KHOA_HOC_MAY_TINH_2024_CTTA",
+      "block": "K15",
+      "required": false
+    },
+    {
+      "program": "CSE_KHOA_HOC_MAY_TINH_2024_CTTA",
+      "block": "K19",
+      "required": false
+    },
+    {
+      "program": "CSE_KHOA_HOC_MAY_TINH_2024_DHNB",
+      "block": "K17",
+      "required": false
+    },
+    {
+      "program": "CSE_KHOA_HOC_MAY_TINH_2024_DHNB",
+      "block": "K21",
+      "required": false
+    },
+    {
+      "program": "CSE_KHOA_HOC_MAY_TINH_2025_CNTN",
+      "block": "K14",
+      "required": false
+    },
+    {
+      "program": "CSE_KHOA_HOC_MAY_TINH_2025_CNTN",
+      "block": "K18",
+      "required": false
+    },
+    {
+      "program": "CSE_KHOA_HOC_MAY_TINH_2025_CTTA",
+      "block": "K15",
+      "required": false
+    },
+    {
+      "program": "CSE_KHOA_HOC_MAY_TINH_2025_CTTA",
+      "block": "K19",
+      "required": false
+    },
+    {
+      "program": "CSE_KHOA_HOC_MAY_TINH_2025_DHNB",
+      "block": "K17",
+      "required": false
+    },
+    {
+      "program": "CSE_KHOA_HOC_MAY_TINH_2025_DHNB",
+      "block": "K21",
+      "required": false
+    },
+    {
+      "program": "CSE_KHOA_HOC_MAY_TINH_2026",
+      "block": "K15",
+      "required": false
+    },
+    {
+      "program": "CSE_KHOA_HOC_MAY_TINH_2026",
+      "block": "K19",
+      "required": false
+    },
+    {
+      "program": "CSE_KHOA_HOC_MAY_TINH_2026_CNTN",
+      "block": "K15",
+      "required": false
+    },
+    {
+      "program": "CSE_KHOA_HOC_MAY_TINH_2026_CNTN",
+      "block": "K19",
+      "required": false
+    },
+    {
+      "program": "CSE_KHOA_HOC_MAY_TINH_2026_CTTA",
+      "block": "K15",
+      "required": false
+    },
+    {
+      "program": "CSE_KHOA_HOC_MAY_TINH_2026_CTTA",
+      "block": "K19",
+      "required": false
+    },
+    {
+      "program": "CSE_KHOA_HOC_MAY_TINH_2026_DHNB",
+      "block": "K17",
+      "required": false
+    },
+    {
+      "program": "CSE_KHOA_HOC_MAY_TINH_2026_DHNB",
+      "block": "K21",
+      "required": false
+    },
+    {
+      "program": "SIM_QUAN_TRI_KINH_DOANH_2026_CTTA",
+      "block": "K14",
+      "required": false
+    },
+    {
+      "program": "SIM_QUAN_TRI_KINH_DOANH_2026_CTTA",
+      "block": "K16",
+      "required": false
+    },
+    {
+      "program": "SIM_TS_153_2026",
+      "block": "K14",
+      "required": false
+    },
+    {
+      "program": "SIM_TS_153_2026",
+      "block": "K16",
+      "required": false
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/CO4035",
+  "note": "Nhập từ CTĐT chính thức (Sổ tay HCMUT, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

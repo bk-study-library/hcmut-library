@@ -62,7 +62,7 @@ export function programCode(p) {
 }
 
 // Chuẩn hóa chữ từ PDF: gạch dài thành gạch ngang, ngoặc kép cong thành thẳng, gộp khoảng trắng.
-const clean = (s) =>
+export const clean = (s) =>
   String(s || '')
     .normalize('NFC')
     .replace(/[\u2012-\u2015]/g, '-')

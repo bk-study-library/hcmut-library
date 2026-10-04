@@ -1,0 +1,24 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "IU3087",
+  "code": "IU3087",
+  "name": "Độ tin Cậy và Đảm bảo Chất lượng",
+  "credits": 3,
+  "faculty": "fme",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "FME_TS_141_2026",
+      "block": "K12",
+      "required": false
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/IU3087",
+  "note": "Nhập từ CTĐT chính thức (Sổ tay HCMUT, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

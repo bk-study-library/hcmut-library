@@ -1,0 +1,44 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "IM4035",
+  "code": "IM4035",
+  "name": "ISO 9000",
+  "credits": 3,
+  "faculty": "sim",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "SIM_QUAN_LY_CONG_NGHIEP_2019",
+      "block": "K07",
+      "required": false
+    },
+    {
+      "program": "SIM_QUAN_LY_CONG_NGHIEP_2020",
+      "block": "K07",
+      "required": false
+    },
+    {
+      "program": "SIM_QUAN_LY_CONG_NGHIEP_2021",
+      "block": "K07",
+      "required": false
+    },
+    {
+      "program": "SIM_QUAN_LY_CONG_NGHIEP_2022",
+      "block": "K07",
+      "required": false
+    },
+    {
+      "program": "SIM_QUAN_LY_CONG_NGHIEP_2023",
+      "block": "K07",
+      "required": false
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/IM4035",
+  "note": "Nhập từ Kế hoạch giảng dạy (PDF của trường, truy cập 04/10/2026). Tên lấy từ PDF. Chờ người duyệt xác nhận. Tên lấy từ PDF không có dấu tiếng Việt, có thể lệch dòng khi trích bảng. Tên trong Kế hoạch giảng dạy: ISO 9000 ISO 9000.",
+  "updated": "2026-10-04"
+}

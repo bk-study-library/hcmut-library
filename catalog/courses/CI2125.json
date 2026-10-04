@@ -1,0 +1,30 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "CI2125",
+  "code": "CI2125",
+  "name": "Thiết kế I - Công trình Công cộng",
+  "nameEn": "Design Studio I - Public Buildings",
+  "credits": 3,
+  "faculty": "fce",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "FCE_KIEN_TRUC_2023",
+      "block": "K04",
+      "required": false
+    },
+    {
+      "program": "FCE_KIEN_TRUC_7580101X_2021",
+      "block": "K12",
+      "required": false
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/CI2125",
+  "note": "Nhập từ CTĐT chính thức (Sổ tay HCMUT, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

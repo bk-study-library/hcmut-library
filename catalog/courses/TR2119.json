@@ -1,0 +1,29 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "TR2119",
+  "code": "TR2119",
+  "name": "Thực tập kỹ thuật ô tô",
+  "credits": 3,
+  "faculty": "fte",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "FTE_TS_142_2026",
+      "block": "K11",
+      "required": true
+    },
+    {
+      "program": "FTE_TS_242_2026_TA",
+      "block": "K11",
+      "required": true
+    }
+  ],
+  "parts": [
+    "lab"
+  ],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/TR2119",
+  "note": "Nhập từ CTĐT chính thức (Sổ tay HCMUT, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

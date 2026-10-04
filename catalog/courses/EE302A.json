@@ -1,0 +1,27 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "EE302A",
+  "code": "EE302A",
+  "name": "Thực tập Điện tử 2 (Mở rộng)",
+  "credits": 0,
+  "faculty": "dee",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "DEE_THIET_KE_VI_MACH_2024_CNTN",
+      "block": "K13",
+      "required": false
+    },
+    {
+      "program": "DEE_THIET_KE_VI_MACH_2025_CNTN",
+      "block": "K13",
+      "required": false
+    }
+  ],
+  "parts": [],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/EE302A",
+  "note": "Nhập từ CTĐT chính thức (Sổ tay HCMUT, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

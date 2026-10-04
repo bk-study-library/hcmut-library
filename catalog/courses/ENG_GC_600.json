@@ -1,0 +1,477 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "ENG_GC_600",
+  "code": "ENG_GC_600",
+  "name": "Đ/kiện tiếng Anh tốt nghiệp ĐH tiêu chuẩn, VLVH",
+  "credits": 0,
+  "faculty": "chung",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "CHE_CONG_NGHE_SINH_HOC_2024",
+      "block": "K18",
+      "required": true
+    },
+    {
+      "program": "CHE_CONG_NGHE_SINH_HOC_2026",
+      "block": "K20",
+      "required": true
+    },
+    {
+      "program": "CHE_CONG_NGHE_THUC_PHAM_2024",
+      "block": "K18",
+      "required": true
+    },
+    {
+      "program": "CHE_CONG_NGHE_THUC_PHAM_2026",
+      "block": "K19",
+      "required": true
+    },
+    {
+      "program": "CHE_KY_THUAT_HOA_HOC_2024",
+      "block": "K23",
+      "required": true
+    },
+    {
+      "program": "CHE_KY_THUAT_HOA_HOC_2026",
+      "block": "K24",
+      "required": true
+    },
+    {
+      "program": "CSE_KHOA_HOC_MAY_TINH_2024",
+      "block": "K28",
+      "required": true
+    },
+    {
+      "program": "CSE_KHOA_HOC_MAY_TINH_2026",
+      "block": "K29",
+      "required": true
+    },
+    {
+      "program": "CSE_KY_THUAT_MAY_TINH_2024",
+      "block": "K25",
+      "required": true
+    },
+    {
+      "program": "CSE_KY_THUAT_MAY_TINH_2026",
+      "block": "K26",
+      "required": true
+    },
+    {
+      "program": "CSE_TS_146_2026",
+      "block": "K21",
+      "required": true
+    },
+    {
+      "program": "DEE_KY_THUAT_DIEN_2024",
+      "block": "K18",
+      "required": true
+    },
+    {
+      "program": "DEE_KY_THUAT_DIEN_2026",
+      "block": "K19",
+      "required": true
+    },
+    {
+      "program": "DEE_KY_THUAT_DIEN_TU_VIEN_THONG_2024",
+      "block": "K18",
+      "required": true
+    },
+    {
+      "program": "DEE_KY_THUAT_DIEN_TU_VIEN_THONG_2026",
+      "block": "K19",
+      "required": true
+    },
+    {
+      "program": "DEE_KY_THUAT_DIEU_KHIEN_VA_TU_DONG_HOA_2024",
+      "block": "K18",
+      "required": true
+    },
+    {
+      "program": "DEE_KY_THUAT_DIEU_KHIEN_VA_TU_DONG_HOA_2026",
+      "block": "K19",
+      "required": true
+    },
+    {
+      "program": "DEE_THIET_KE_VI_MACH_2024",
+      "block": "K18",
+      "required": true
+    },
+    {
+      "program": "DEE_THIET_KE_VI_MACH_2026",
+      "block": "K19",
+      "required": true
+    },
+    {
+      "program": "FAS_CO_KY_THUAT_2024",
+      "block": "K18",
+      "required": true
+    },
+    {
+      "program": "FAS_KHOA_HOC_DU_LIEU_2024",
+      "block": "K18",
+      "required": true
+    },
+    {
+      "program": "FAS_KY_THUAT_LUONG_TU_2027",
+      "block": "K21",
+      "required": true
+    },
+    {
+      "program": "FAS_TS_138_2026",
+      "block": "K21",
+      "required": true
+    },
+    {
+      "program": "FAS_VAT_LY_KY_THUAT_2024",
+      "block": "K23",
+      "required": true
+    },
+    {
+      "program": "FAS_VAT_LY_KY_THUAT_2026",
+      "block": "K24",
+      "required": true
+    },
+    {
+      "program": "FCE_CONG_NGHE_KY_THUAT_VAT_LIEU_XAY_DUNG_2024",
+      "block": "K18",
+      "required": true
+    },
+    {
+      "program": "FCE_CONG_NGHE_KY_THUAT_VAT_LIEU_XAY_DUNG_2026",
+      "block": "K19",
+      "required": true
+    },
+    {
+      "program": "FCE_KIEN_TRUC_2024",
+      "block": "K21",
+      "required": true
+    },
+    {
+      "program": "FCE_KIEN_TRUC_2026",
+      "block": "K23",
+      "required": true
+    },
+    {
+      "program": "FCE_KINH_TE_XAY_DUNG_2024",
+      "block": "K18",
+      "required": true
+    },
+    {
+      "program": "FCE_KY_THUAT_CO_SO_HA_TANG_2024",
+      "block": "K18",
+      "required": true
+    },
+    {
+      "program": "FCE_KY_THUAT_CO_SO_HA_TANG_2026",
+      "block": "K19",
+      "required": true
+    },
+    {
+      "program": "FCE_KY_THUAT_TRAC_DIA_BAN_DO_2024",
+      "block": "K18",
+      "required": true
+    },
+    {
+      "program": "FCE_KY_THUAT_TRAC_DIA_BAN_DO_2026",
+      "block": "K19",
+      "required": true
+    },
+    {
+      "program": "FCE_KY_THUAT_XAY_DUNG_2023",
+      "block": "K18",
+      "required": true
+    },
+    {
+      "program": "FCE_KY_THUAT_XAY_DUNG_2024",
+      "block": "K18",
+      "required": true
+    },
+    {
+      "program": "FCE_KY_THUAT_XAY_DUNG_2026",
+      "block": "K19",
+      "required": true
+    },
+    {
+      "program": "FCE_KY_THUAT_XAY_DUNG_CONG_TRINH_BIEN_2024",
+      "block": "K18",
+      "required": true
+    },
+    {
+      "program": "FCE_KY_THUAT_XAY_DUNG_CONG_TRINH_BIEN_2026",
+      "block": "K19",
+      "required": true
+    },
+    {
+      "program": "FCE_KY_THUAT_XAY_DUNG_CONG_TRINH_GIAO_THONG_2024",
+      "block": "K18",
+      "required": true
+    },
+    {
+      "program": "FCE_KY_THUAT_XAY_DUNG_CONG_TRINH_GIAO_THONG_2026",
+      "block": "K22",
+      "required": true
+    },
+    {
+      "program": "FCE_KY_THUAT_XAY_DUNG_CONG_TRINH_THUY_2024",
+      "block": "K18",
+      "required": true
+    },
+    {
+      "program": "FCE_KY_THUAT_XAY_DUNG_CONG_TRINH_THUY_2026",
+      "block": "K19",
+      "required": true
+    },
+    {
+      "program": "FCE_TS_148_2026",
+      "block": "K19",
+      "required": true
+    },
+    {
+      "program": "FENR_KINH_TE_TAI_NGUYEN_THIEN_NHIEN_2025",
+      "block": "K22",
+      "required": true
+    },
+    {
+      "program": "FENR_KINH_TE_TAI_NGUYEN_THIEN_NHIEN_2026",
+      "block": "K22",
+      "required": true
+    },
+    {
+      "program": "FENR_KY_THUAT_MOI_TRUONG_2024",
+      "block": "K18",
+      "required": true
+    },
+    {
+      "program": "FENR_KY_THUAT_MOI_TRUONG_2026",
+      "block": "K19",
+      "required": true
+    },
+    {
+      "program": "FENR_QUAN_LY_TAI_NGUYEN_VA_MOI_TRUONG_2024",
+      "block": "K18",
+      "required": true
+    },
+    {
+      "program": "FENR_QUAN_LY_TAI_NGUYEN_VA_MOI_TRUONG_2026",
+      "block": "K22",
+      "required": true
+    },
+    {
+      "program": "FME_BAO_DUONG_CONG_NGHIEP_2024",
+      "block": "K18",
+      "required": true
+    },
+    {
+      "program": "FME_CONG_NGHE_DET_MAY_2024",
+      "block": "K18",
+      "required": true
+    },
+    {
+      "program": "FME_CONG_NGHE_DET_MAY_2026",
+      "block": "K19",
+      "required": true
+    },
+    {
+      "program": "FME_KY_THUAT_CO_DIEN_TU_2024",
+      "block": "K21",
+      "required": true
+    },
+    {
+      "program": "FME_KY_THUAT_CO_KHI_2024",
+      "block": "K18",
+      "required": true
+    },
+    {
+      "program": "FME_KY_THUAT_DET_2024",
+      "block": "K18",
+      "required": true
+    },
+    {
+      "program": "FME_KY_THUAT_DET_2026",
+      "block": "K19",
+      "required": true
+    },
+    {
+      "program": "FME_KY_THUAT_HE_THONG_CONG_NGHIEP_2024",
+      "block": "K18",
+      "required": true
+    },
+    {
+      "program": "FME_KY_THUAT_NHIET_2024",
+      "block": "K21",
+      "required": true
+    },
+    {
+      "program": "FME_KY_THUAT_NHIET_2026",
+      "block": "K19",
+      "required": true
+    },
+    {
+      "program": "FME_LOGISTICS_VA_QUAN_LY_CHUOI_CUNG_UNG_2024",
+      "block": "K18",
+      "required": true
+    },
+    {
+      "program": "FME_TS_109_2026",
+      "block": "K19",
+      "required": true
+    },
+    {
+      "program": "FME_TS_110_2026",
+      "block": "K22",
+      "required": true
+    },
+    {
+      "program": "FME_TS_141_2026",
+      "block": "K19",
+      "required": true
+    },
+    {
+      "program": "FMT_KY_THUAT_CHE_BIEN_KHOANG_SAN_2027",
+      "block": "K19",
+      "required": true
+    },
+    {
+      "program": "FMT_KY_THUAT_VAT_LIEU_2024",
+      "block": "K37",
+      "required": true
+    },
+    {
+      "program": "FMT_KY_THUAT_VAT_LIEU_2026",
+      "block": "K28",
+      "required": true
+    },
+    {
+      "program": "FTE_KY_THUAT_GIAO_THONG_THONG_MINH_2027",
+      "block": "K19",
+      "required": true
+    },
+    {
+      "program": "FTE_KY_THUAT_HANG_KHONG_2024",
+      "block": "K18",
+      "required": true
+    },
+    {
+      "program": "FTE_KY_THUAT_HANG_KHONG_2026",
+      "block": "K20",
+      "required": true
+    },
+    {
+      "program": "FTE_KY_THUAT_O_TO_2024",
+      "block": "K18",
+      "required": true
+    },
+    {
+      "program": "FTE_KY_THUAT_PHUONG_TIEN_KHONG_NGUOI_LAI_2027",
+      "block": "K19",
+      "required": true
+    },
+    {
+      "program": "FTE_KY_THUAT_PHUONG_TIEN_KHONG_NGUOI_LAI_75201XX_2027",
+      "block": "K19",
+      "required": true
+    },
+    {
+      "program": "FTE_KY_THUAT_TAU_THUY_2024",
+      "block": "K18",
+      "required": true
+    },
+    {
+      "program": "FTE_KY_THUAT_TAU_THUY_2026",
+      "block": "K19",
+      "required": true
+    },
+    {
+      "program": "FTE_KY_THUAT_TAU_THUY_HANG_KHONG_SN_2024_SN",
+      "block": "K19",
+      "required": true
+    },
+    {
+      "program": "FTE_KY_THUAT_TAU_THUY_HANG_KHONG_SN_2026_SN",
+      "block": "K20",
+      "required": true
+    },
+    {
+      "program": "FTE_TS_142_2026",
+      "block": "K22",
+      "required": true
+    },
+    {
+      "program": "FTE_TS_152_2026",
+      "block": "K21",
+      "required": true
+    },
+    {
+      "program": "GEOPET_DIA_KY_THUAT_XAY_DUNG_2024",
+      "block": "K18",
+      "required": true
+    },
+    {
+      "program": "GEOPET_KY_THUAT_DAU_KHI_2024",
+      "block": "K19",
+      "required": true
+    },
+    {
+      "program": "GEOPET_KY_THUAT_DIA_CHAT_2024",
+      "block": "K20",
+      "required": true
+    },
+    {
+      "program": "GEOPET_TS_147_2026",
+      "block": "K19",
+      "required": true
+    },
+    {
+      "program": "GEOPET_TS_151_2026",
+      "block": "K19",
+      "required": true
+    },
+    {
+      "program": "SIM_KY_THUAT_HE_THONG_CONG_NGHIEP_2026",
+      "block": "K19",
+      "required": true
+    },
+    {
+      "program": "SIM_KY_THUAT_HE_THONG_CONG_NGHIEP_2026_CTTA",
+      "block": "K18",
+      "required": true
+    },
+    {
+      "program": "SIM_LOGISTICS_VA_QUAN_LY_CHUOI_CUNG_UNG_2026",
+      "block": "K22",
+      "required": true
+    },
+    {
+      "program": "SIM_QUAN_LY_CONG_NGHIEP_2024",
+      "block": "K23",
+      "required": true
+    },
+    {
+      "program": "SIM_QUAN_LY_CONG_NGHIEP_2026",
+      "block": "K22",
+      "required": true
+    },
+    {
+      "program": "SIM_QUAN_TRI_KINH_DOANH_2025",
+      "block": "K23",
+      "required": true
+    },
+    {
+      "program": "SIM_TS_153_2026",
+      "block": "K22",
+      "required": true
+    },
+    {
+      "program": "UNKNOWN_TS_159_2026",
+      "block": "K19",
+      "required": true
+    }
+  ],
+  "parts": [],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/ENG_GC_600",
+  "note": "Nhập từ CTĐT chính thức (Sổ tay HCMUT, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

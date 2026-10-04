@@ -1,0 +1,17 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "MA3183",
+  "code": "MA3183",
+  "name": "Thực tập Ngoài trường",
+  "nameEn": "Internship",
+  "credits": 2,
+  "faculty": "fmt",
+  "aliases": [],
+  "status": "active",
+  "programs": [],
+  "parts": [],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/MA3183",
+  "note": "Nhập từ Kế hoạch giảng dạy (PDF của trường, truy cập 04/10/2026). Tên lấy từ PDF. Chờ người duyệt xác nhận.",
+  "updated": "2026-10-04"
+}

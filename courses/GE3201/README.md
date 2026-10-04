@@ -10,6 +10,7 @@
 | Khoa | Khoa Kỹ thuật Địa chất và Dầu khí |
 | Phần | Lý thuyết |
 | Trạng thái | Đang dạy |
+| Sổ tay HCMUT | [Trang môn trên Sổ tay HCMUT](https://hcmut.edu.vn/study/handbook/subject/GE3201) |
 | Mã, tên cũ | GE4041 Địa chất công trình - địa chất thủy văn khu vực |
 | Thay cho | [GE4041](../GE4041/README.md) |
 

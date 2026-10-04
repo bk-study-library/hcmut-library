@@ -1,15 +1,16 @@
-# ME2111 Thiết kế công việc và nh ân trắc học
+# ME2111 Thiết kế công việc và nhân trắc học
 
 <!-- File này do "npm run build" sinh từ catalog/courses/ME2111.json và items/. Chỉ sửa phần Mẹo học, giữa hai dòng meo-hoc. -->
 
 | Mục | Thông tin |
 |---|---|
 | Mã môn | ME2111 |
-| Tên | Thiết kế công việc và nh ân trắc học / Work Design and Ergonomics |
+| Tên | Thiết kế công việc và nhân trắc học / Work Design and Ergonomics |
 | Tín chỉ | 3 |
 | Khoa | Khoa Cơ khí |
 | Phần | Lý thuyết |
 | Trạng thái | Đang dạy |
+| Sổ tay HCMUT | [Trang môn trên Sổ tay HCMUT](https://hcmut.edu.vn/study/handbook/subject/ME2111) |
 
 ## Tài liệu
 

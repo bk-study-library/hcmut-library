@@ -1,0 +1,30 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "AS4023",
+  "code": "AS4023",
+  "name": "Vật liệu và nhiên liệu hạt nhân",
+  "nameEn": "Nuclear materials and fuel",
+  "credits": 3,
+  "faculty": "fas",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "FAS_TS_156_2026",
+      "block": "K07",
+      "required": false
+    },
+    {
+      "program": "FAS_TS_256_2026_TA",
+      "block": "K11",
+      "required": true
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/AS4023",
+  "note": "Nhập từ CTĐT chính thức (Sổ tay HCMUT, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

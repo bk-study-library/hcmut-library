@@ -1,0 +1,30 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "AS2077",
+  "code": "AS2077",
+  "name": "Đo lường và an toàn bức xạ ion hóa",
+  "nameEn": "Measurement and Safety of Ionizing Radiation",
+  "credits": 3,
+  "faculty": "fas",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "FAS_TS_156_2026",
+      "block": "K04",
+      "required": false
+    },
+    {
+      "program": "FAS_TS_256_2026_TA",
+      "block": "K09",
+      "required": true
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/AS2077",
+  "note": "Nhập từ CTĐT chính thức (Sổ tay HCMUT, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

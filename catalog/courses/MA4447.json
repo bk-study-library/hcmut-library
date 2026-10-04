@@ -1,0 +1,25 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "MA4447",
+  "code": "MA4447",
+  "name": "Học kỳ thực tập doanh nghiệp",
+  "nameEn": "Industry Internship Semester",
+  "credits": 11,
+  "faculty": "fmt",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "FMT_KY_THUAT_CHE_BIEN_KHOANG_SAN_2027",
+      "block": "K15",
+      "required": true
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/MA4447",
+  "note": "Nhập từ CTĐT chính thức (Sổ tay HCMUT, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

@@ -1,0 +1,35 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "CH3439",
+  "code": "CH3439",
+  "name": "Sinh học phân tử và di truyền",
+  "nameEn": "Molecular Biology and Genetics",
+  "credits": 3,
+  "faculty": "che",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "CHE_CONG_NGHE_SINH_HOC_2024",
+      "block": "K10",
+      "required": true
+    },
+    {
+      "program": "CHE_CONG_NGHE_SINH_HOC_2024_CTTA",
+      "block": "K11",
+      "required": true
+    },
+    {
+      "program": "CHE_CONG_NGHE_SINH_HOC_2025_CTTA",
+      "block": "K13",
+      "required": true
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/CH3439",
+  "note": "Nhập từ CTĐT chính thức (Sổ tay HCMUT, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

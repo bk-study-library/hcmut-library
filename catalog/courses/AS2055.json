@@ -1,0 +1,70 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "AS2055",
+  "code": "AS2055",
+  "name": "Cơ kỹ thuật đại cương",
+  "nameEn": "General Engineering Mechanics",
+  "credits": 3,
+  "faculty": "fas",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "FAS_CO_KY_THUAT_2022",
+      "block": "K01",
+      "required": false
+    },
+    {
+      "program": "FAS_CO_KY_THUAT_2023",
+      "block": "K03",
+      "required": false
+    },
+    {
+      "program": "FAS_CO_KY_THUAT_2024",
+      "block": "K08",
+      "required": true
+    },
+    {
+      "program": "FAS_CO_KY_THUAT_2024_CNTN",
+      "block": "K08",
+      "required": true
+    },
+    {
+      "program": "FAS_CO_KY_THUAT_2024_DHNB",
+      "block": "K11",
+      "required": true
+    },
+    {
+      "program": "FAS_CO_KY_THUAT_2025_CNTN",
+      "block": "K08",
+      "required": true
+    },
+    {
+      "program": "FAS_CO_KY_THUAT_2025_DHNB",
+      "block": "K11",
+      "required": true
+    },
+    {
+      "program": "FAS_CO_KY_THUAT_2026_CNTN",
+      "block": "K11",
+      "required": true
+    },
+    {
+      "program": "FAS_TS_138_2026",
+      "block": "K11",
+      "required": true
+    },
+    {
+      "program": "FAS_TS_268_2026_NB",
+      "block": "K11",
+      "required": true
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/AS2055",
+  "note": "Nhập từ CTĐT chính thức (Sổ tay HCMUT, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

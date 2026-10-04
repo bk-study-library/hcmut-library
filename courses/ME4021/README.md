@@ -5,11 +5,12 @@
 | Mục | Thông tin |
 |---|---|
 | Mã môn | ME4021 |
-| Tên | Vận tải hàng hóa / Freight Transportation KT |
+| Tên | Vận tải hàng hóa / Freight Transportation |
 | Tín chỉ | 3 |
 | Khoa | Khoa Cơ khí |
 | Phần | Lý thuyết |
 | Trạng thái | Đang dạy |
+| Sổ tay HCMUT | [Trang môn trên Sổ tay HCMUT](https://hcmut.edu.vn/study/handbook/subject/ME4021) |
 
 ## Tài liệu
 

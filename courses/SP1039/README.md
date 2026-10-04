@@ -7,9 +7,10 @@
 | Mã môn | SP1039 |
 | Tên | Lịch sử Đảng Cộng sản Việt Nam / History of Vietnamese Communist Party |
 | Tín chỉ | 2 |
-| Khoa | Lý luận chính trị (chưa xác định đơn vị) |
+| Khoa | Môn chung toàn trường |
 | Phần | Lý thuyết |
 | Trạng thái | Đang dạy |
+| Sổ tay HCMUT | [Trang môn trên Sổ tay HCMUT](https://hcmut.edu.vn/study/handbook/subject/SP1039) |
 
 ## Tài liệu
 

@@ -1,15 +1,16 @@
-# EE3167 Thiết kế và phát triển ứng dụng
+# EE3167 Thiết kế và Phát triển Ứng dụng IoT
 
 <!-- File này do "npm run build" sinh từ catalog/courses/EE3167.json và items/. Chỉ sửa phần Mẹo học, giữa hai dòng meo-hoc. -->
 
 | Mục | Thông tin |
 |---|---|
 | Mã môn | EE3167 |
-| Tên | Thiết kế và phát triển ứng dụng / Design and Development of IoT Applications |
+| Tên | Thiết kế và Phát triển Ứng dụng IoT / Design and Development of IoT Applications |
 | Tín chỉ | 3 |
 | Khoa | Khoa Điện - Điện tử |
 | Phần | Lý thuyết |
 | Trạng thái | Đang dạy |
+| Sổ tay HCMUT | [Trang môn trên Sổ tay HCMUT](https://hcmut.edu.vn/study/handbook/subject/EE3167) |
 
 ## Tài liệu
 

@@ -2,232 +2,300 @@
   "$schema": "../../schema/program.schema.json",
   "code": "DEE_SONG_NGANH_KY_THUAT_DIEN_TU_VIEN_THONG_KY_THUAT_DIEN_2021",
   "name": "Song ngành: Kỹ thuật Điện tử - Viễn thông - Kỹ thuật Điện",
-  "nameEn": "Dual Degree: Electronics - Telecommunications Engineering - Electrical Engineering",
   "faculty": "dee",
   "year": "2021",
-  "source": "https://drive.google.com/file/d/1OjxJelRmiKN812iQuQk1dVzmhPzxL0NK/view",
+  "major": "7520207+7520201",
+  "type": "SN",
+  "level": "dai-hoc",
+  "variant": "Song ngành",
+  "note": "Sổ tay không có năm này cho ngành và loại chương trình này. Danh sách môn lấy từ Kế hoạch giảng dạy (PDF), khối là học kỳ chứ không phải khối kiến thức; tên khối kiến thức, bắt buộc hay tự chọn chưa có.",
+  "source": "https://drive.google.com/file/d/17dUmG0ADguGdv-f_AnRRP1KuGZR_ueLQ/view",
+  "ctdtUrl": "https://drive.google.com/file/d/1OjxJelRmiKN812iQuQk1dVzmhPzxL0NK/view",
+  "planUrl": "https://drive.google.com/file/d/17dUmG0ADguGdv-f_AnRRP1KuGZR_ueLQ/view",
   "blocks": [
     {
       "id": "K01",
-      "name": "Toán (Mathem atics)",
-      "group": "1. Kiến thức giáo dục đại cương (General Knowledge )",
-      "required": true,
+      "name": "Học kỳ 1",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
       "courses": [
-        "MT1003",
-        "MT1005",
+        "LA1003",
         "MT1007",
-        "MT2013"
-      ]
+        "MT1003",
+        "PH1003",
+        "PH1007",
+        "EE1001"
+      ],
+      "semesters": {
+        "LA1003": 1,
+        "MT1007": 1,
+        "MT1003": 1,
+        "PH1003": 1,
+        "PH1007": 1,
+        "EE1001": 1
+      }
     },
     {
       "id": "K02",
-      "name": "Khoa học tự nhiên (Science)",
-      "group": "1. Kiến thức giáo dục đại cương (General Knowledge )",
-      "required": true,
+      "name": "Học kỳ 2",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
       "courses": [
+        "LA1005",
+        "MT1005",
+        "EE1007",
+        "MT1009",
         "CH1003",
-        "PH1003",
-        "PH1007"
-      ]
+        "MI1003"
+      ],
+      "semesters": {
+        "LA1005": 2,
+        "MT1005": 2,
+        "EE1007": 2,
+        "MT1009": 2,
+        "CH1003": 2,
+        "MI1003": 2
+      }
     },
     {
       "id": "K03",
-      "name": "Toán và KH tự nhiên khác (Other Mathem atics and Science)",
-      "group": "1. Kiến thức giáo dục đại cương (General Knowledge )",
-      "required": true,
+      "name": "Học kỳ 3",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
       "courses": [
-        "EE1007",
-        "MT1009"
-      ]
+        "LA1007",
+        "MT2013",
+        "EE2033",
+        "EE1009",
+        "EE2009",
+        "SP1007"
+      ],
+      "semesters": {
+        "LA1007": 3,
+        "MT2013": 3,
+        "EE2033": 3,
+        "EE1009": 3,
+        "EE2009": 3,
+        "SP1007": 3
+      }
     },
     {
       "id": "K04",
-      "name": "Kinh tế- Chính trị- Xã hội- Luật (Econom ics - Politics - Sociology - Law)",
-      "group": "1. Kiến thức giáo dục đại cương (General Knowledge )",
-      "required": true,
+      "name": "Học kỳ 4",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
       "courses": [
-        "SP1007",
-        "SP1031",
-        "SP1033",
-        "SP1035",
-        "SP1037",
-        "SP1039"
-      ]
+        "LA1009",
+        "EE2039",
+        "EE2005",
+        "EE2035",
+        "EE2003",
+        "SP1031"
+      ],
+      "semesters": {
+        "LA1009": 4,
+        "EE2039": 4,
+        "EE2005": 4,
+        "EE2035": 4,
+        "EE2003": 4,
+        "SP1031": 4
+      }
     },
     {
       "id": "K05",
-      "name": "Nhập m ôn (Introduction to Engineering)",
-      "group": "1. Kiến thức giáo dục đại cương (General Knowledge )",
-      "required": true,
+      "name": "Học kỳ 5",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
       "courses": [
-        "EE1001"
-      ]
+        "EE2015",
+        "EE3003",
+        "EE3015",
+        "EE2023",
+        "EE2025",
+        "SP1033"
+      ],
+      "semesters": {
+        "EE2015": 5,
+        "EE3003": 5,
+        "EE3015": 5,
+        "EE2023": 5,
+        "EE2025": 5,
+        "SP1033": 5
+      }
     },
     {
       "id": "K06",
-      "name": "17 Nhóm Quản lý (chọn 3 tín chỉ trong các học phần sau)",
-      "group": "Nhập m ôn (Introduction to Engineering)",
+      "name": "Học kỳ 6",
+      "kind": "khac",
       "required": false,
+      "requiredUnknown": true,
       "courses": [
-        "IM1013",
-        "IM1027",
-        "IM1025",
-        "IM3001",
-        "IM1023"
-      ]
-    },
-    {
-      "id": "K07",
-      "name": "Con người và m ôi trường (Hum ans and Environm ent)",
-      "group": "1. Kiến thức giáo dục đại cương (General Knowledge )",
-      "required": true,
-      "courses": [
-        "EN1003"
-      ]
-    },
-    {
-      "id": "K08",
-      "name": "Ngoại ngữ (Foreign Language)",
-      "group": "1. Kiến thức giáo dục đại cương (General Knowledge )",
-      "required": true,
-      "courses": [
-        "LA1003",
-        "LA1005",
-        "LA1007",
-        "LA1009"
-      ]
-    },
-    {
-      "id": "K09",
-      "name": "Cơ sở ngành 1 (Core 1)",
-      "group": "2. Kiến thức giáo dục chuyên nghiệp (Professional Knowledge )",
-      "required": true,
-      "courses": [
-        "EE2005",
-        "EE2015",
         "EE2047",
-        "EE2049"
-      ]
-    },
-    {
-      "id": "K10",
-      "name": "Cơ sở ngành 2 (Core 2)",
-      "group": "2. Kiến thức giáo dục chuyên nghiệp (Professional Knowledge )",
-      "required": true,
-      "courses": [
-        "EE2017",
-        "EE2019",
-        "EE2021",
-        "EE2051"
-      ]
-    },
-    {
-      "id": "K11",
-      "name": "Cơ sở ngành (Core)",
-      "group": "2. Kiến thức giáo dục chuyên nghiệp (Professional Knowledge )",
-      "required": true,
-      "courses": [
-        "EE1009",
-        "EE2003",
-        "EE2009",
-        "EE2023",
-        "EE2025",
-        "EE2033",
-        "EE2035",
-        "EE2039",
-        "EE2057"
-      ]
-    },
-    {
-      "id": "K12",
-      "name": "Chuyên ngành 1 (Speciality 1)",
-      "group": "2. Kiến thức giáo dục chuyên nghiệp (Professional Knowledge )",
-      "required": true,
-      "courses": [
-        "EE3003",
         "EE3011",
-        "EE3015",
-        "EE3025",
-        "EE3165"
-      ]
-    },
-    {
-      "id": "K13",
-      "name": "Nhóm tự chọn A (chọn 9 tín chỉ trong các học phần sau)",
-      "group": "Chuyên ngành 1 (Speciality 1)",
-      "required": false,
-      "courses": [
-        "EE3031",
-        "EE3035",
-        "EE3037",
-        "EE3041",
-        "EE3043",
+        "EE3165",
+        "EE2049",
+        "EE2017",
+        "SP1035",
         "EE3085",
         "EE3107",
         "EE3111",
+        "EE3127",
+        "EE3035",
+        "EE3169",
+        "EE3167",
+        "EE3041",
         "EE3117",
         "EE3121",
-        "EE3127",
+        "EE3043",
+        "EE3037",
+        "EE3031",
         "EE3129",
-        "EE3167",
-        "EE3169",
         "EE3177"
-      ]
+      ],
+      "semesters": {
+        "EE2047": 6,
+        "EE3011": 6,
+        "EE3165": 6,
+        "EE2049": 6,
+        "EE2017": 6,
+        "SP1035": 6,
+        "EE3085": 6,
+        "EE3107": 6,
+        "EE3111": 6,
+        "EE3127": 6,
+        "EE3035": 6,
+        "EE3169": 6,
+        "EE3167": 6,
+        "EE3041": 6,
+        "EE3117": 6,
+        "EE3121": 6,
+        "EE3043": 6,
+        "EE3037": 6,
+        "EE3031": 6,
+        "EE3129": 6,
+        "EE3177": 6
+      }
     },
     {
-      "id": "K14",
-      "name": "Chuyên ngành 2 (Speciality 2)",
-      "group": "2. Kiến thức giáo dục chuyên nghiệp (Professional Knowledge )",
-      "required": true,
+      "id": "K07",
+      "name": "Học kỳ 7",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
       "courses": [
+        "EE3025",
+        "EE2021",
+        "EE2019",
+        "EE2051",
+        "SP1039"
+      ],
+      "semesters": {
+        "EE3025": 7,
+        "EE2021": 7,
+        "EE2019": 7,
+        "EE2051": 7,
+        "SP1039": 7
+      }
+    },
+    {
+      "id": "K08",
+      "name": "Học kỳ 8",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "EE3013",
         "EE3001",
         "EE3009",
-        "EE3013",
-        "EE3027",
-        "EE3097"
-      ]
+        "EE2057",
+        "EE4105",
+        "SP1037"
+      ],
+      "semesters": {
+        "EE3013": 8,
+        "EE3001": 8,
+        "EE3009": 8,
+        "EE2057": 8,
+        "EE4105": 8,
+        "SP1037": 8
+      }
     },
     {
-      "id": "K15",
-      "name": "Nhóm tự chọn B (chọn 6 tín chỉ trong các học phần sau)",
-      "group": "Chuyên ngành 2 (Speciality 2)",
+      "id": "K09",
+      "name": "Học kỳ 9",
+      "kind": "khac",
       "required": false,
+      "requiredUnknown": true,
       "courses": [
-        "EE3087",
-        "EE3089",
-        "EE3091",
-        "EE3093",
-        "EE3095",
-        "EE3099",
+        "EE3097",
+        "EE3027",
+        "EE4117",
+        "EE3145",
         "EE3101",
         "EE3131",
-        "EE3133",
-        "EE3135",
-        "EE3139"
-      ]
-    },
-    {
-      "id": "K16",
-      "name": "Điều khiển và ứng dụng các bộ biến đổi công suất",
-      "group": "2. Kiến thức giáo dục chuyên nghiệp (Professional Knowledge )",
-      "required": true,
-      "courses": [
+        "EE3139",
+        "EE3091",
+        "EE3095",
+        "EE3089",
+        "EE3099",
         "EE3143",
-        "EE3145",
+        "EE3135",
+        "EE3133",
         "EE3171",
+        "EE3087",
+        "EE3093",
         "EE3179"
-      ]
+      ],
+      "semesters": {
+        "EE3097": 9,
+        "EE3027": 9,
+        "EE4117": 9,
+        "EE3145": 9,
+        "EE3101": 9,
+        "EE3131": 9,
+        "EE3139": 9,
+        "EE3091": 9,
+        "EE3095": 9,
+        "EE3089": 9,
+        "EE3099": 9,
+        "EE3143": 9,
+        "EE3135": 9,
+        "EE3133": 9,
+        "EE3171": 9,
+        "EE3087": 9,
+        "EE3093": 9,
+        "EE3179": 9
+      }
     },
     {
-      "id": "K17",
-      "name": "Thực tập ngoài trường (KT Điện tử- Viễn thông & Kỹ",
-      "group": "2. Kiến thức giáo dục chuyên nghiệp (Professional Knowledge )",
-      "required": true,
+      "id": "K10",
+      "name": "Học kỳ 10",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
       "courses": [
-        "EE4105",
-        "EE4117",
-        "EE4205"
-      ]
+        "EN1003",
+        "EE4205",
+        "IM1013",
+        "IM3001",
+        "IM1027",
+        "IM1023",
+        "IM1025"
+      ],
+      "semesters": {
+        "EN1003": 10,
+        "EE4205": 10,
+        "IM1013": 10,
+        "IM3001": 10,
+        "IM1027": 10,
+        "IM1023": 10,
+        "IM1025": 10
+      }
     }
   ],
   "updated": "2026-10-04"

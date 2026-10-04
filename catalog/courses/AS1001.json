@@ -1,0 +1,165 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "AS1001",
+  "code": "AS1001",
+  "name": "Nhập môn Về kỹ thuật",
+  "nameEn": "Introduction to Engineering",
+  "credits": 3,
+  "faculty": "fas",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "CSE_TS_146_2026",
+      "block": "K04",
+      "required": true
+    },
+    {
+      "program": "CSE_TS_251_2026_TA",
+      "block": "K04",
+      "required": true
+    },
+    {
+      "program": "FAS_CO_KY_THUAT_2019",
+      "block": "K01",
+      "required": false
+    },
+    {
+      "program": "FAS_CO_KY_THUAT_2020",
+      "block": "K01",
+      "required": false
+    },
+    {
+      "program": "FAS_CO_KY_THUAT_2021",
+      "block": "K01",
+      "required": false
+    },
+    {
+      "program": "FAS_CO_KY_THUAT_2022",
+      "block": "K01",
+      "required": false
+    },
+    {
+      "program": "FAS_CO_KY_THUAT_2023",
+      "block": "K01",
+      "required": false
+    },
+    {
+      "program": "FAS_CO_KY_THUAT_2024",
+      "block": "K04",
+      "required": true
+    },
+    {
+      "program": "FAS_CO_KY_THUAT_2024_CNTN",
+      "block": "K04",
+      "required": true
+    },
+    {
+      "program": "FAS_CO_KY_THUAT_2024_DHNB",
+      "block": "K04",
+      "required": true
+    },
+    {
+      "program": "FAS_CO_KY_THUAT_2025_CNTN",
+      "block": "K04",
+      "required": true
+    },
+    {
+      "program": "FAS_CO_KY_THUAT_2025_DHNB",
+      "block": "K04",
+      "required": true
+    },
+    {
+      "program": "FAS_CO_KY_THUAT_2026_CNTN",
+      "block": "K04",
+      "required": true
+    },
+    {
+      "program": "FAS_KHOA_HOC_DU_LIEU_2024",
+      "block": "K04",
+      "required": true
+    },
+    {
+      "program": "FAS_KY_THUAT_LUONG_TU_2027",
+      "block": "K04",
+      "required": true
+    },
+    {
+      "program": "FAS_TS_138_2026",
+      "block": "K04",
+      "required": true
+    },
+    {
+      "program": "FAS_TS_156_2026",
+      "block": "K01",
+      "required": false
+    },
+    {
+      "program": "FAS_TS_256_2026_TA",
+      "block": "K04",
+      "required": true
+    },
+    {
+      "program": "FAS_TS_268_2026_NB",
+      "block": "K04",
+      "required": true
+    },
+    {
+      "program": "FAS_VAT_LY_KY_THUAT_2019",
+      "block": "K01",
+      "required": false
+    },
+    {
+      "program": "FAS_VAT_LY_KY_THUAT_2020",
+      "block": "K01",
+      "required": false
+    },
+    {
+      "program": "FAS_VAT_LY_KY_THUAT_2021",
+      "block": "K01",
+      "required": false
+    },
+    {
+      "program": "FAS_VAT_LY_KY_THUAT_2022",
+      "block": "K01",
+      "required": false
+    },
+    {
+      "program": "FAS_VAT_LY_KY_THUAT_2023",
+      "block": "K01",
+      "required": false
+    },
+    {
+      "program": "FAS_VAT_LY_KY_THUAT_2024",
+      "block": "K04",
+      "required": true
+    },
+    {
+      "program": "FAS_VAT_LY_KY_THUAT_2024_CTTA",
+      "block": "K04",
+      "required": true
+    },
+    {
+      "program": "FAS_VAT_LY_KY_THUAT_2025_CTTA",
+      "block": "K04",
+      "required": true
+    },
+    {
+      "program": "FAS_VAT_LY_KY_THUAT_2026",
+      "block": "K04",
+      "required": true
+    },
+    {
+      "program": "FAS_VAT_LY_KY_THUAT_2026_CTTA",
+      "block": "K04",
+      "required": true
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/AS1001",
+  "note": "Nhập từ CTĐT chính thức (Sổ tay HCMUT, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

@@ -1,0 +1,39 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "CO4359",
+  "code": "CO4359",
+  "name": "Học kỳ thực tập doanh nghiệp",
+  "credits": 11,
+  "faculty": "cse",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "CSE_KHOA_HOC_MAY_TINH_2026",
+      "block": "K25",
+      "required": true
+    },
+    {
+      "program": "CSE_KHOA_HOC_MAY_TINH_2026_CNTN",
+      "block": "K26",
+      "required": true
+    },
+    {
+      "program": "CSE_KHOA_HOC_MAY_TINH_2026_CTTA",
+      "block": "K25",
+      "required": true
+    },
+    {
+      "program": "CSE_KHOA_HOC_MAY_TINH_2026_DHNB",
+      "block": "K27",
+      "required": true
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/CO4359",
+  "note": "Nhập từ CTĐT chính thức (Sổ tay HCMUT, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

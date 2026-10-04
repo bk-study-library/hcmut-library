@@ -1,0 +1,22 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "ME3863",
+  "code": "ME3863",
+  "name": "Thực tập ngoài trường",
+  "credits": 4,
+  "faculty": "fme",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "FME_TS_141_2026",
+      "block": "K15",
+      "required": true
+    }
+  ],
+  "parts": [],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/ME3863",
+  "note": "Nhập từ CTĐT chính thức (Sổ tay HCMUT, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

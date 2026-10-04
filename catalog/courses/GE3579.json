@@ -1,0 +1,22 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "GE3579",
+  "code": "GE3579",
+  "name": "Thực tập ngoài trường",
+  "credits": 4,
+  "faculty": "geopet",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "GEOPET_TS_147_2026",
+      "block": "K15",
+      "required": true
+    }
+  ],
+  "parts": [],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/GE3579",
+  "note": "Nhập từ CTĐT chính thức (Sổ tay HCMUT, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

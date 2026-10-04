@@ -1,0 +1,70 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "CH3371",
+  "code": "CH3371",
+  "name": "Phân tích Thực phẩm",
+  "nameEn": "Food Analysis",
+  "credits": 3,
+  "faculty": "che",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "CHE_CONG_NGHE_THUC_PHAM_2019",
+      "block": "K05",
+      "required": false
+    },
+    {
+      "program": "CHE_CONG_NGHE_THUC_PHAM_2020",
+      "block": "K05",
+      "required": false
+    },
+    {
+      "program": "CHE_CONG_NGHE_THUC_PHAM_2021",
+      "block": "K05",
+      "required": false
+    },
+    {
+      "program": "CHE_CONG_NGHE_THUC_PHAM_2022",
+      "block": "K05",
+      "required": false
+    },
+    {
+      "program": "CHE_CONG_NGHE_THUC_PHAM_2023",
+      "block": "K05",
+      "required": false
+    },
+    {
+      "program": "CHE_CONG_NGHE_THUC_PHAM_2024",
+      "block": "K10",
+      "required": true
+    },
+    {
+      "program": "CHE_CONG_NGHE_THUC_PHAM_2024_CNTN",
+      "block": "K10",
+      "required": true
+    },
+    {
+      "program": "CHE_CONG_NGHE_THUC_PHAM_2024_CTTA",
+      "block": "K11",
+      "required": true
+    },
+    {
+      "program": "CHE_CONG_NGHE_THUC_PHAM_2025_CNTN",
+      "block": "K10",
+      "required": true
+    },
+    {
+      "program": "CHE_CONG_NGHE_THUC_PHAM_2025_CTTA",
+      "block": "K11",
+      "required": true
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/CH3371",
+  "note": "Nhập từ CTĐT chính thức (Sổ tay HCMUT, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

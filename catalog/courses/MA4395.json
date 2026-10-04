@@ -1,0 +1,35 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "MA4395",
+  "code": "MA4395",
+  "name": "Thực tập Kỹ sư",
+  "nameEn": "Engineering Internship",
+  "credits": 2,
+  "faculty": "fmt",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "FMT_VAT_LIEU_POLYMER_VA_COMPOSITE_PFIEV_2022_PFIEV",
+      "block": "K08",
+      "required": false
+    },
+    {
+      "program": "FMT_VAT_LIEU_POLYMER_VA_COMPOSITE_PFIEV_2023_PFIEV",
+      "block": "K08",
+      "required": false
+    },
+    {
+      "program": "FMT_VAT_LIEU_POLYMER_VA_COMPOSITE_PFIEV_2024_PFIEV",
+      "block": "K15",
+      "required": true
+    }
+  ],
+  "parts": [
+    "lab"
+  ],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/MA4395",
+  "note": "Nhập từ CTĐT chính thức (Sổ tay HCMUT, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

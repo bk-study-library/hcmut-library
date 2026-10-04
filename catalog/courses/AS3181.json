@@ -1,0 +1,40 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "AS3181",
+  "code": "AS3181",
+  "name": "Thống kê nhiều chiều",
+  "nameEn": "Multivariate Statistics",
+  "credits": 3,
+  "faculty": "fas",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "CHE_CONG_NGHE_SINH_HOC_2025_CTTA",
+      "block": "K14",
+      "required": false
+    },
+    {
+      "program": "CSE_TS_146_2026",
+      "block": "K13",
+      "required": true
+    },
+    {
+      "program": "CSE_TS_251_2026_TA",
+      "block": "K13",
+      "required": true
+    },
+    {
+      "program": "FAS_KHOA_HOC_DU_LIEU_2024",
+      "block": "K08",
+      "required": true
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/AS3181",
+  "note": "Nhập từ CTĐT chính thức (Sổ tay HCMUT, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

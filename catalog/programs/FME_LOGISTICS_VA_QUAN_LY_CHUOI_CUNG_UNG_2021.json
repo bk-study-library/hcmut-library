@@ -1,157 +1,193 @@
 {
   "$schema": "../../schema/program.schema.json",
   "code": "FME_LOGISTICS_VA_QUAN_LY_CHUOI_CUNG_UNG_2021",
-  "name": "Logistics và Quản lý chuỗi Cung ứng",
-  "faculty": "fme",
+  "name": "Logistics và Quản lý Chuỗi cung ứng",
+  "nameEn": "Logistics and Supply Chain Management",
+  "faculty": "sim",
   "year": "2021",
-  "source": "https://drive.google.com/file/d/1ixURAkT7YnVVJcU330x4gsZMlXJ3j3qC/view",
+  "major": "7510605",
+  "type": "CQ",
+  "level": "dai-hoc",
+  "note": "Sổ tay không có năm này cho ngành và loại chương trình này. Danh sách môn lấy từ Kế hoạch giảng dạy (PDF), khối là học kỳ chứ không phải khối kiến thức; tên khối kiến thức, bắt buộc hay tự chọn chưa có.",
+  "source": "https://drive.google.com/file/d/1qbRfMcReyZcLxUzf0MJ7oAdJxs4VomtP/view",
+  "ctdtUrl": "https://drive.google.com/file/d/1ixURAkT7YnVVJcU330x4gsZMlXJ3j3qC/view",
+  "planUrl": "https://drive.google.com/file/d/1qbRfMcReyZcLxUzf0MJ7oAdJxs4VomtP/view",
   "blocks": [
     {
       "id": "K01",
-      "name": "Toá n (Mathematics)",
-      "group": "1. Kiến thức giá o dục đại cương (Genera l Kno wled ge )",
-      "required": true,
+      "name": "Học kỳ 1",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
       "courses": [
+        "LA1003",
         "MT1003",
-        "MT1005",
-        "MT1007",
-        "MT2013"
-      ]
+        "PH1003",
+        "CH1003",
+        "ME1001"
+      ],
+      "semesters": {
+        "LA1003": 1,
+        "MT1003": 1,
+        "PH1003": 1,
+        "CH1003": 1,
+        "ME1001": 1
+      }
     },
     {
       "id": "K02",
-      "name": "Kho a học tự nhiên (Science)",
-      "group": "1. Kiến thức giá o dục đại cương (Genera l Kno wled ge )",
-      "required": true,
+      "name": "Học kỳ 2",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
       "courses": [
-        "CH1003",
-        "PH1003",
-        "PH1007"
-      ]
+        "LA1005",
+        "MT1005",
+        "MT1007",
+        "PH1005",
+        "PH1007",
+        "ME1009",
+        "MI1003"
+      ],
+      "semesters": {
+        "LA1005": 2,
+        "MT1005": 2,
+        "MT1007": 2,
+        "PH1005": 2,
+        "PH1007": 2,
+        "ME1009": 2,
+        "MI1003": 2
+      }
     },
     {
       "id": "K03",
-      "name": "Toá n và KH tự nhiên khá c (Other Mathematics and Science)",
-      "group": "1. Kiến thức giá o dục đại cương (Genera l Kno wled ge )",
-      "required": true,
+      "name": "Học kỳ 3",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
       "courses": [
+        "LA1007",
         "MT1009",
-        "PH1005"
-      ]
+        "SP1031",
+        "ME2125",
+        "ME2123",
+        "ME2049"
+      ],
+      "semesters": {
+        "LA1007": 3,
+        "MT1009": 3,
+        "SP1031": 3,
+        "ME2125": 3,
+        "ME2123": 3,
+        "ME2049": 3
+      }
     },
     {
       "id": "K04",
-      "name": "Kinh tế- Chính trị- Xã hội- Luật (Econo mics - Politics - Sociology - Law)",
-      "group": "1. Kiến thức giá o dục đại cương (Genera l Kno wled ge )",
-      "required": true,
+      "name": "Học kỳ 4",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
       "courses": [
-        "SP1007",
-        "SP1031",
+        "LA1009",
+        "MT2013",
         "SP1033",
-        "SP1035",
-        "SP1037",
-        "SP1039"
-      ]
+        "ME2113",
+        "ME2111",
+        "ME2051"
+      ],
+      "semesters": {
+        "LA1009": 4,
+        "MT2013": 4,
+        "SP1033": 4,
+        "ME2113": 4,
+        "ME2111": 4,
+        "ME2051": 4
+      }
     },
     {
       "id": "K05",
-      "name": "Nhập mô n (Intro duction to Engineering )",
-      "group": "1. Kiến thức giá o dục đại cương (Genera l Kno wled ge )",
-      "required": true,
+      "name": "Học kỳ 5",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
       "courses": [
-        "ME1001"
-      ]
+        "SP1035",
+        "ME3159",
+        "ME3165",
+        "ME3157",
+        "ME2045"
+      ],
+      "semesters": {
+        "SP1035": 5,
+        "ME3159": 5,
+        "ME3165": 5,
+        "ME3157": 5,
+        "ME2045": 5
+      }
     },
     {
       "id": "K06",
-      "name": "Quản lý (Mana gement for Engineers)",
-      "group": "1. Kiến thức giá o dục đại cương (Genera l Kno wled ge )",
-      "required": true,
+      "name": "Học kỳ 6",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
       "courses": [
-        "ME1009"
-      ]
+        "SP1039",
+        "ME3223",
+        "ME3167",
+        "ME3225",
+        "ME3253",
+        "ME3129"
+      ],
+      "semesters": {
+        "SP1039": 6,
+        "ME3223": 6,
+        "ME3167": 6,
+        "ME3225": 6,
+        "ME3253": 6,
+        "ME3129": 6
+      }
     },
     {
       "id": "K07",
-      "name": "Con người và mô i trường (Hum ans and Enviro nm ent)",
-      "group": "1. Kiến thức giá o dục đại cương (Genera l Kno wled ge )",
-      "required": true,
+      "name": "Học kỳ 7",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
       "courses": [
-        "ME2111"
-      ]
+        "SP1037",
+        "ME4103",
+        "ME4021",
+        "ME4025",
+        "ME4607"
+      ],
+      "semesters": {
+        "SP1037": 7,
+        "ME4103": 7,
+        "ME4021": 7,
+        "ME4025": 7,
+        "ME4607": 7
+      }
     },
     {
       "id": "K08",
-      "name": "Ngoại ngữ (Fo reig n Lang uage)",
-      "group": "1. Kiến thức giá o dục đại cương (Genera l Kno wled ge )",
-      "required": true,
+      "name": "Học kỳ 8",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
       "courses": [
-        "LA1003",
-        "LA1005",
-        "LA1007",
-        "LA1009"
-      ]
-    },
-    {
-      "id": "K09",
-      "name": "Cơ sở ngành (Core)",
-      "group": "2. Kiến thức giá o dục chuyên nghiệp (Professional Kno wled ge )",
-      "required": true,
-      "courses": [
-        "ME2045",
-        "ME2049",
-        "ME2051",
-        "ME2113",
-        "ME2123",
-        "ME2125",
-        "ME3157"
-      ]
-    },
-    {
-      "id": "K10",
-      "name": "Thực tập đại cươn g",
-      "group": "2. Kiến thức giá o dục chuyên nghiệp (Professional Kno wled ge )",
-      "required": true,
-      "courses": [
-        "ME3159",
-        "ME3165",
-        "ME3167",
-        "ME3223",
-        "ME3225"
-      ]
-    },
-    {
-      "id": "K11",
-      "name": "Chuyên ngà nh (Speciality)",
-      "group": "2. Kiến thức giá o dục chuyên nghiệp (Professional Kno wled ge )",
-      "required": true,
-      "courses": [
-        "ME3253",
-        "ME3257",
-        "ME4021",
+        "SP1007",
         "ME4023",
-        "ME4025"
-      ]
-    },
-    {
-      "id": "K12",
-      "name": "Phân tích và thiết kế hệ thố ng thô ng tin q uản lý",
-      "group": "2. Kiến thức giá o dục chuyên nghiệp (Professional Kno wled ge )",
-      "required": true,
-      "courses": [
-        "ME4607"
-      ]
-    },
-    {
-      "id": "K13",
-      "name": "Tốt nghiệp (Graduation)",
-      "group": "2. Kiến thức giá o dục chuyên nghiệp (Professional Kno wled ge )",
-      "required": true,
-      "courses": [
-        "ME3129",
-        "ME4103",
+        "ME3257",
         "ME4377"
-      ]
+      ],
+      "semesters": {
+        "SP1007": 8,
+        "ME4023": 8,
+        "ME3257": 8,
+        "ME4377": 8
+      }
     }
   ],
   "updated": "2026-10-04"

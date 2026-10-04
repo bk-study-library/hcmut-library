@@ -1,0 +1,27 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "AS3369",
+  "code": "AS3369",
+  "name": "Thực tập ngoài trường KHDL 2",
+  "credits": 4,
+  "faculty": "fas",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "CSE_TS_146_2026",
+      "block": "K17",
+      "required": true
+    },
+    {
+      "program": "CSE_TS_251_2026_TA",
+      "block": "K17",
+      "required": true
+    }
+  ],
+  "parts": [],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/AS3369",
+  "note": "Nhập từ CTĐT chính thức (Sổ tay HCMUT, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

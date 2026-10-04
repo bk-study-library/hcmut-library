@@ -1,0 +1,255 @@
+{
+  "$schema": "../../schema/program.schema.json",
+  "code": "FCE_KY_THUAT_XAY_DUNG_2021_PFIEV",
+  "name": "Kỹ thuật Xây dựng",
+  "nameEn": "Civil Engineering",
+  "faculty": "fce",
+  "year": "2021",
+  "major": "7580201",
+  "type": "PFIEV",
+  "level": "dai-hoc",
+  "variant": "PFIEV (kỹ sư Việt Pháp)",
+  "note": "Sổ tay không có năm này cho ngành và loại chương trình này. Danh sách môn lấy từ Kế hoạch giảng dạy (PDF), khối là học kỳ chứ không phải khối kiến thức; tên khối kiến thức, bắt buộc hay tự chọn chưa có.",
+  "source": "https://drive.google.com/file/d/1WMnNtbReBX8yeVZIKvmmTEO-Pf0J1JIL/view",
+  "ctdtUrl": "https://drive.google.com/file/d/1a7LsauL1ZFSyUkVHq_gDmKHMDYaj6dim/view",
+  "planUrl": "https://drive.google.com/file/d/1WMnNtbReBX8yeVZIKvmmTEO-Pf0J1JIL/view",
+  "blocks": [
+    {
+      "id": "K01",
+      "name": "Học kỳ 1",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "CH1003",
+        "LA1011",
+        "LA1003",
+        "MT1011",
+        "MT1015",
+        "CI1001"
+      ],
+      "semesters": {
+        "CH1003": 1,
+        "LA1011": 1,
+        "LA1003": 1,
+        "MT1011": 1,
+        "MT1015": 1,
+        "CI1001": 1
+      }
+    },
+    {
+      "id": "K02",
+      "name": "Học kỳ 2",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "EN1003",
+        "LA1013",
+        "PH1009",
+        "LA1005",
+        "MT1013",
+        "SP1007",
+        "MI1003"
+      ],
+      "semesters": {
+        "EN1003": 2,
+        "LA1013": 2,
+        "PH1009": 2,
+        "LA1005": 2,
+        "MT1013": 2,
+        "SP1007": 2,
+        "MI1003": 2
+      }
+    },
+    {
+      "id": "K03",
+      "name": "Học kỳ 3",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "PH2005",
+        "PH2007",
+        "MT2007",
+        "LA1015",
+        "LA1007",
+        "MT2009"
+      ],
+      "semesters": {
+        "PH2005": 3,
+        "PH2007": 3,
+        "MT2007": 3,
+        "LA1015": 3,
+        "LA1007": 3,
+        "MT2009": 3
+      }
+    },
+    {
+      "id": "K04",
+      "name": "Học kỳ 4",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "SP1031",
+        "LA1017",
+        "EE2031",
+        "AS2049",
+        "MT2011",
+        "LA1009",
+        "CI2109"
+      ],
+      "semesters": {
+        "SP1031": 4,
+        "LA1017": 4,
+        "EE2031": 4,
+        "AS2049": 4,
+        "MT2011": 4,
+        "LA1009": 4,
+        "CI2109": 4
+      }
+    },
+    {
+      "id": "K05",
+      "name": "Học kỳ 5",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "SP1033",
+        "LA3021",
+        "CI2095",
+        "CI2155",
+        "CI1033",
+        "CI2157",
+        "CI3289",
+        "CI3291"
+      ],
+      "semesters": {
+        "SP1033": 5,
+        "LA3021": 5,
+        "CI2095": 5,
+        "CI2155": 5,
+        "CI1033": 5,
+        "CI2157": 5,
+        "CI3289": 5,
+        "CI3291": 5
+      }
+    },
+    {
+      "id": "K06",
+      "name": "Học kỳ 6",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "SP1035",
+        "LA3023",
+        "CI2003",
+        "CI2007",
+        "CI3385"
+      ],
+      "semesters": {
+        "SP1035": 6,
+        "LA3023": 6,
+        "CI2003": 6,
+        "CI2007": 6,
+        "CI3385": 6
+      }
+    },
+    {
+      "id": "K07",
+      "name": "Học kỳ 7",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "SP1039",
+        "CI2135",
+        "CI2137",
+        "CI1007",
+        "CI2037"
+      ],
+      "semesters": {
+        "SP1039": 7,
+        "CI2135": 7,
+        "CI2137": 7,
+        "CI1007": 7,
+        "CI2037": 7
+      }
+    },
+    {
+      "id": "K08",
+      "name": "Học kỳ 8",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "SP1037",
+        "CI2145",
+        "CI2139",
+        "CI2133",
+        "CI4385",
+        "CI3241",
+        "CI4201",
+        "CI3025"
+      ],
+      "semesters": {
+        "SP1037": 8,
+        "CI2145": 8,
+        "CI2139": 8,
+        "CI2133": 8,
+        "CI4385": 8,
+        "CI3241": 8,
+        "CI4201": 8,
+        "CI3025": 8
+      }
+    },
+    {
+      "id": "K09",
+      "name": "Học kỳ 9",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "CI5005",
+        "CI5031",
+        "CI5009",
+        "CI2147",
+        "CI5019",
+        "CI5021",
+        "CI5023",
+        "CI5025",
+        "CI5029"
+      ],
+      "semesters": {
+        "CI5005": 9,
+        "CI5031": 9,
+        "CI5009": 9,
+        "CI2147": 9,
+        "CI5019": 9,
+        "CI5021": 9,
+        "CI5023": 9,
+        "CI5025": 9,
+        "CI5029": 9
+      }
+    },
+    {
+      "id": "K10",
+      "name": "Học kỳ 10",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "CI5017",
+        "CI5015"
+      ],
+      "semesters": {
+        "CI5017": 10,
+        "CI5015": 10
+      }
+    }
+  ],
+  "updated": "2026-10-04"
+}

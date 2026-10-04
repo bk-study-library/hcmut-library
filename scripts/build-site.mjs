@@ -11,7 +11,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { loadRepo, buildIndex, serializeIndex, TOOL_ROOT } from './lib/repo.mjs';
-import { EXAM_KINDS, TYPES, TYPE_ORDER, PARTS, STATUS, REPO, REPO_URL, SITE_URL, issueUrl, formatSize, formatBook } from './lib/labels.mjs';
+import { EXAM_KINDS, TYPES, TYPE_ORDER, PARTS, STATUS, REPO, REPO_URL, SITE_URL, issueUrl, formatSize, formatBook, PROGRAM_TYPES, BLOCK_KINDS, DEGREES, LEVELS, DEFAULT_LEVEL, majorKey } from './lib/labels.mjs';
 import { previewTarget } from './lib/preview.mjs';
 import { S } from './lib/strings.mjs';
 import { buildV1, serializeV1 } from './lib/v1.mjs';
@@ -49,6 +49,11 @@ function readSiteConfig(root) {
     docDescriptionMax: Number.isInteger(cfg.docDescriptionMax) && cfg.docDescriptionMax > 0 ? cfg.docDescriptionMax : 200,
     // Ảnh xem trước khi chia sẻ link (og:image), đường dẫn tính từ gốc site, nằm trong site-src/assets/.
     socialImage: /^assets\/[A-Za-z0-9._-]+\.png$/.test(cfg.socialImage || '') ? String(cfg.socialImage) : '',
+    // Khóa khoa của nhóm Môn chung toàn trường (catalog/faculties.json): trang khoa này có ghi chú riêng,
+    // trang khoa khác tách "Môn chung khoa dùng" khỏi "Môn của khoa".
+    sharedFaculty: typeof cfg.sharedFaculty === 'string' ? cfg.sharedFaculty : '',
+    // Thứ tự loại chương trình trên badge, bộ chọn loại; loại đầu là loại chính của ngành.
+    programTypeOrder: Array.isArray(cfg.programTypeOrder) ? cfg.programTypeOrder.map(String) : Object.keys(PROGRAM_TYPES),
   };
 }
 
@@ -114,9 +119,6 @@ export function docFilterValues(docs) {
     examKinds: Object.keys(EXAM_KINDS).filter((x) => kinds.has(x)),
   };
 }
-
-// Khóa khoa của nhóm Môn chung toàn trường (catalog/faculties.json): trang khoa này có ghi chú riêng.
-const SHARED_FACULTY = 'chung';
 
 // Chương trình có listed: false (bản nháp nguồn) vẫn có trang riêng nhưng không vào danh sách.
 export const isListed = (p) => p.listed !== false;
@@ -363,11 +365,25 @@ function addProgramUrl(f, p) {
   return issueUrl('them-chuong-trinh.yml', fields);
 }
 
+// Nhãn loại chương trình là link mở ô tìm trang chủ với ?q=<mã loại> (hoặc nhãn variant khi chương trình
+// chưa có type), để xem mọi chương trình cùng loại. root: gốc site tính từ trang hiện tại.
+export function typeTagLink(t, root, q, label) {
+  return `<a class="tag" href="${root}${t.lang === 'en' ? 'en/' : ''}?q=${encodeURIComponent(q)}">${esc(label)}</a>`;
+}
+
+// Nhãn loại của một chương trình: theo type (trừ CQ), không có type thì theo variant.
+function programTypeTag(t, p, root) {
+  if (p.type && p.type !== 'CQ' && PROGRAM_TYPES[p.type]) return typeTagLink(t, root, p.type, PROGRAM_TYPES[p.type][t.lang]);
+  if (!p.type && p.variant) return typeTagLink(t, root, p.variant, p.variant);
+  return '';
+}
+
 // Một dòng chương trình: tên, loại, số môn (hoặc chưa có danh sách môn).
-function programLi(t, p, href, { withYear = false } = {}) {
+function programLi(t, p, href, { withYear = false, root = './' } = {}) {
   const n = programCourseCount(p);
   const label = withYear && p.year ? `${programName(t, p)} (${p.year})` : programName(t, p);
-  return `<li><a href="${href}">${esc(label)}</a>${p.variant ? ` <span class="tag">${esc(p.variant)}</span>` : ''} <span class="muted small">${esc(n ? t.coursesCount(n) : t.programNoCoursesShort)}</span></li>`;
+  const tag = programTypeTag(t, p, root);
+  return `<li><a href="${href}">${esc(label)}</a>${tag ? ` ${tag}` : ''} <span class="muted small">${esc(n ? t.coursesCount(n) : t.programNoCoursesShort)}</span></li>`;
 }
 
 // Chương trình xếp theo khóa, mới nhất trước; chương trình không ghi khóa ở cuối.
@@ -375,7 +391,7 @@ function byYearDesc(a, b) {
   return (b.year || '0000').localeCompare(a.year || '0000') || a.name.localeCompare(b.name, 'vi') || a.code.localeCompare(b.code);
 }
 
-function programsByYear(t, progs, hrefOf) {
+function programsByYear(t, progs, hrefOf, root) {
   const groups = new Map();
   for (const p of progs.slice().sort(byYearDesc)) {
     const k = p.year || '';
@@ -383,7 +399,7 @@ function programsByYear(t, progs, hrefOf) {
     groups.get(k).push(p);
   }
   return [...groups]
-    .map(([y, list]) => `<h3>${esc(y ? t.cohort(y) : t.cohortUnknown)}</h3><ul class="list">${list.map((p) => programLi(t, p, hrefOf(p))).join('')}</ul>`)
+    .map(([y, list]) => `<h3>${esc(y ? t.cohort(y) : t.cohortUnknown)}</h3><ul class="list">${list.map((p) => programLi(t, p, hrefOf(p), { root })).join('')}</ul>`)
     .join('');
 }
 
@@ -400,6 +416,125 @@ export function officialProgramLinks(t, p, site) {
     if (site.officialProgramsPage) buttons.push(`<a class="btn subtle" href="${esc(site.officialProgramsPage)}" rel="noopener">${esc(t.programTable)}</a>`);
   }
   return { buttons, pdf };
+}
+
+// ---------- Ngành, bộ chọn khóa và loại, lộ trình theo học kỳ ----------
+
+const typeLabel = (t, type, full = false) => (PROGRAM_TYPES[type] ? (full ? PROGRAM_TYPES[type][t.lang] : PROGRAM_TYPES[type].short[t.lang]) : type);
+const majorDisplayName = (t, m) => (t.lang === 'en' && m.nameEn ? m.nameEn : m.name);
+const typeRank = (order, type) => {
+  const i = order.indexOf(type);
+  return i < 0 ? order.length : i;
+};
+
+// Nhãn ngắn của chương trình trong một ngành: "Khóa 2026, Tiêu chuẩn" (thêm chuyên ngành nếu có).
+export function cohortLabel(t, p) {
+  return [p.year ? t.cohort(p.year) : t.cohortUnknown, p.type ? typeLabel(t, p.type) : null, p.track || null].filter(Boolean).join(', ');
+}
+
+export const hasSemesters = (p) => p.blocks.some((b) => b.semesters && Object.keys(b.semesters).length);
+
+// Khối của chương trình đã là từng học kỳ (chỉ có kế hoạch giảng dạy): mỗi khối có môn đều cùng một học kỳ
+// cho mọi môn. Khi đó trang chương trình không cần thêm phần lộ trình, vì khối đã là lộ trình.
+export function blocksAreSemesters(p) {
+  const filled = p.blocks.filter((b) => b.courses.length);
+  return (
+    filled.length > 0 &&
+    filled.every((b) => {
+      const s = b.semesters || {};
+      const vals = new Set(b.courses.map((id) => s[id]));
+      return vals.size === 1 && !vals.has(undefined);
+    })
+  );
+}
+
+// Môn theo học kỳ đề xuất (học kỳ sớm nhất nếu có ở nhiều khối), rồi môn chưa có học kỳ theo vai trò khối.
+export function semesterPlan(p) {
+  const seen = new Set();
+  const sem = new Map();
+  for (const b of p.blocks) {
+    for (const id of b.courses) {
+      const n = b.semesters?.[id];
+      if (!n || seen.has(id)) continue;
+      seen.add(id);
+      if (!sem.has(n)) sem.set(n, []);
+      sem.get(n).push(id);
+    }
+  }
+  const rest = new Map();
+  for (const b of p.blocks) {
+    for (const id of b.courses) {
+      if (seen.has(id)) continue;
+      seen.add(id);
+      const k = BLOCK_KINDS[b.kind] ? b.kind : 'khac';
+      if (!rest.has(k)) rest.set(k, []);
+      rest.get(k).push(id);
+    }
+  }
+  const kinds = Object.keys(BLOCK_KINDS);
+  return {
+    semesters: [...sem].sort((a, b) => a[0] - b[0]),
+    rest: [...rest].sort((a, b) => kinds.indexOf(a[0]) - kinds.indexOf(b[0])),
+  };
+}
+
+// Chương trình chính của một nhóm: ưu tiên có danh sách môn, có học kỳ đề xuất, loại xếp đầu, khóa mới nhất.
+export function mainProgram(list, order) {
+  const filled = list.filter((p) => programCourseCount(p));
+  const withSem = filled.filter(hasSemesters);
+  const pool = withSem.length ? withSem : filled.length ? filled : list;
+  return pool.slice().sort((a, b) => typeRank(order, a.type) - typeRank(order, b.type) || (b.year || '').localeCompare(a.year || '') || a.code.localeCompare(b.code))[0] || null;
+}
+
+// Bộ chọn loại chương trình và khóa (link tới trang chương trình). current: chương trình đang xem.
+function majorPickers(t, list, current, hrefOf, order, currentAttr) {
+  const chip = (p, label, on) => `<a class="chip" href="${hrefOf(p)}"${on ? ` aria-current="${currentAttr}"` : ''}>${esc(label)}</a>`;
+  const types = [...new Set(list.map((p) => p.type).filter(Boolean))].sort((a, b) => typeRank(order, a) - typeRank(order, b));
+  const typeChips = types.map((type) => chip(mainProgram(list.filter((p) => p.type === type), order), typeLabel(t, type), type === current.type));
+  const cohorts = list
+    .filter((p) => p.type === current.type)
+    .sort((a, b) => (b.year || '').localeCompare(a.year || '') || (a.track || '').localeCompare(b.track || '', 'vi'));
+  const cohortChips = cohorts.map((p) => chip(p, [p.year || t.cohortUnknown, p.track].filter(Boolean).join(', '), p.code === current.code));
+  const row = (label, chips) => `<div class="pick-row"><span class="pick-label">${esc(label)}</span><span class="chips">${chips.join('')}</span></div>`;
+  return `<nav class="pickers" aria-label="${esc(t.pickersLabel)}">${types.length > 1 ? row(t.pickType, typeChips) : ''}${row(t.pickCohort, cohortChips)}</nav>`;
+}
+
+// Lộ trình theo học kỳ: mỗi học kỳ một bảng môn; môn chưa có học kỳ gập theo vai trò khối.
+function roadmapHtml(t, p, allCourses, root) {
+  const plan = semesterPlan(p);
+  const list = (ids) => ids.map((id) => allCourses.get(id)).filter(Boolean);
+  const sems = plan.semesters
+    .map(([n, ids]) => `<section class="sem" id="hoc-ky-${n}"><h3>${esc(t.semester(n))} <span class="muted small">${esc(t.coursesCount(list(ids).length))}</span></h3>${courseTable(t, list(ids), root, t.semester(n))}</section>`)
+    .join('');
+  const rest = plan.rest.length
+    ? `<section class="sem"><h3>${esc(t.noSemester)}</h3>${plan.rest
+        .map(([kind, ids]) => `<details class="sem-rest"><summary>${esc(BLOCK_KINDS[kind][t.lang])} <span class="muted small">${esc(t.coursesCount(list(ids).length))}</span></summary>${courseTable(t, list(ids), root, BLOCK_KINDS[kind][t.lang])}</details>`)
+        .join('')}</section>`
+    : '';
+  return sems + rest;
+}
+
+// Một dòng ngành: tên (link trang ngành), nhãn loại, các khóa có danh sách môn (mới trước).
+function majorRow(t, m, progs, root, P, order) {
+  const href = `${root}${P(`major/${majorKey(m.code)}/`)}`;
+  const types = [...new Set(progs.map((p) => p.type).filter(Boolean))].sort((a, b) => typeRank(order, a) - typeRank(order, b));
+  const filled = progs.filter((p) => programCourseCount(p));
+  const years = [...new Set(filled.map((p) => p.year).filter(Boolean))].sort().reverse();
+  const links = years.map((y) => {
+    const p = mainProgram(filled.filter((x) => x.year === y), order);
+    return `<a href="${root}${P(`program/${p.code}/`)}">${esc(y)}</a>`;
+  });
+  const tags = types.map((x) => typeTagLink(t, root, x, typeLabel(t, x))).join('');
+  return `<li class="major-row"><span class="major-head"><a class="major-name" href="${href}">${esc(majorDisplayName(t, m))}</a>${tags}</span><span class="muted small">${links.length ? `${esc(t.cohortsLabel)}: ${links.join(', ')}` : esc(t.majorNoCourses)}</span></li>`;
+}
+
+// Danh sách ngành của một khoa, xếp theo tên.
+function majorList(t, majors, progsOfMajor, root, P, order) {
+  const rows = majors
+    .slice()
+    .sort((a, b) => majorDisplayName(t, a).localeCompare(majorDisplayName(t, b), t.lang) || a.code.localeCompare(b.code))
+    .map((m) => majorRow(t, m, progsOfMajor(m.code), root, P, order));
+  return rows.length ? `<ul class="majors">${rows.join('')}</ul>` : '';
 }
 
 // Link xem trước qua Worker, chỉ cho file nằm trong danh sách được phép (scripts/lib/preview.mjs).
@@ -514,20 +649,56 @@ export function buildSite({ root = TOOL_ROOT, out = path.join(TOOL_ROOT, 'site')
   const progByCode = new Map(index.programs.map((p) => [p.code, p]));
   const listedPrograms = index.programs.filter(isListed);
   const totalItems = index.counts.items;
+  // Ngành và chương trình của từng ngành (chỉ chương trình được liệt kê).
+  const typeOrder = siteCfg.programTypeOrder;
+  const majors = index.majors || [];
+  const majorByCode = new Map(majors.map((m) => [m.code, m]));
+  const majorProgs = new Map();
+  for (const p of listedPrograms) {
+    if (!p.major || !majorByCode.has(p.major)) continue;
+    if (!majorProgs.has(p.major)) majorProgs.set(p.major, []);
+    majorProgs.get(p.major).push(p);
+  }
+  const progsOfMajor = (code) => majorProgs.get(code) || [];
+  // Ngành của khoa: ngành do khoa quản lý, hoặc có chương trình ghi khoa này (ví dụ PFIEV do khoa khác dạy).
+  const majorsOfFaculty = (key) => majors.filter((m) => progsOfMajor(m.code).length && (m.faculty === key || progsOfMajor(m.code).some((p) => p.faculty === key)));
+  // Chương trình chưa gắn ngành của khoa: có danh sách môn, và chưa có (để gập lại).
+  const loosePrograms = (key) => {
+    const list = listedPrograms.filter((p) => p.faculty === key && !(p.major && majorByCode.has(p.major))).sort(byYearDesc);
+    return { filled: list.filter((p) => programCourseCount(p)), empty: list.filter((p) => !programCourseCount(p)) };
+  };
+  const shared = siteCfg.sharedFaculty;
   // Danh sách chương trình cho ô tìm ở trang chủ (chỉ web dùng, không thuộc hợp đồng v1).
+  // Ngành là dòng kind: "major" (link tới trang ngành, key là đoạn đường dẫn); chương trình gắn ngành ghi
+  // major và majorName để tìm tên ngành hay mã ngành ra cả chương trình.
   write(
     'assets/programs.json',
-    JSON.stringify(
-      listedPrograms.map((p) => {
+    JSON.stringify([
+      ...majors
+        .filter((m) => progsOfMajor(m.code).length)
+        .map((m) => {
+          const row = { kind: 'major', code: m.code, key: majorKey(m.code), name: m.name };
+          if (m.nameEn) row.nameEn = m.nameEn;
+          row.faculty = m.faculty;
+          row.types = [...new Set(progsOfMajor(m.code).map((p) => p.type).filter(Boolean))].sort((a, b) => typeRank(typeOrder, a) - typeRank(typeOrder, b));
+          row.programs = progsOfMajor(m.code).length;
+          return row;
+        }),
+      ...listedPrograms.map((p) => {
         const row = { code: p.code, name: p.name };
         if (p.nameEn) row.nameEn = p.nameEn;
         if (p.year) row.year = p.year;
         if (p.variant) row.variant = p.variant;
+        if (p.type) row.type = p.type;
+        if (p.major && majorByCode.has(p.major)) {
+          row.major = p.major;
+          if (majorByCode.get(p.major).name !== p.name) row.majorName = majorByCode.get(p.major).name;
+        }
         row.faculty = p.faculty;
         row.courses = programCourseCount(p);
         return row;
       }),
-    ) + '\n',
+    ]) + '\n',
   );
   // Tài liệu cho ô tìm ở trang chủ (chỉ web dùng, không thuộc hợp đồng v1).
   const docs = docIndex(repo.items, allCourses, { descriptionMax: siteCfg.docDescriptionMax });
@@ -555,14 +726,20 @@ export function buildSite({ root = TOOL_ROOT, out = path.join(TOOL_ROOT, 'site')
           return `<li><a class="card" href="${root}${P(`faculty/${f.key}/`)}"><strong>${esc(facultyName(t, f))}</strong><span class="muted">${esc(stats)}</span></a></li>`;
         })
         .join('');
-      // Gộp theo khoa, mỗi khoa một khối đóng mở, để vài trăm chương trình vẫn dễ đọc.
+      // Gộp theo khoa, mỗi khoa một khối đóng mở; trong khoa là từng ngành (một dòng, kèm các khóa),
+      // rồi chương trình chưa gắn ngành, cuối cùng là chương trình chưa có danh sách môn (gập lại).
       const progList = `<div class="prog-groups">${index.faculties
         .map((f) => {
-          const list = progsOf(f.key).sort(byYearDesc);
-          const inner = list.length
-            ? `<ul class="list">${list.map((p) => programLi(t, p, `${root}${P(`program/${p.code}/`)}`, { withYear: true })).join('')}</ul>`
-            : `<p class="muted">${esc(t.facultyNoPrograms)}</p>`;
-          return `<details class="prog-fac"><summary><span class="prog-fac-name">${esc(facultyName(t, f))}</span> <span class="muted small">${esc(t.programsCount(list.length))}</span></summary>${inner}<p><a class="btn subtle" href="${esc(addProgramUrl(f))}" rel="noopener">${esc(t.addProgram)}</a></p></details>`;
+          const ms = majorsOfFaculty(f.key);
+          const { filled, empty } = loosePrograms(f.key);
+          const li = (p) => programLi(t, p, `${root}${P(`program/${p.code}/`)}`, { withYear: true, root });
+          const parts = [];
+          if (ms.length) parts.push(majorList(t, ms, progsOfMajor, root, P, typeOrder));
+          if (filled.length) parts.push(`${ms.length ? `<h3>${esc(t.otherPrograms)}</h3>` : ''}<ul class="list">${filled.map(li).join('')}</ul>`);
+          if (empty.length) parts.push(`<details class="prog-empty"><summary>${esc(t.emptyPrograms(empty.length))}</summary><ul class="list">${empty.map(li).join('')}</ul></details>`);
+          const inner = parts.length ? parts.join('') : `<p class="muted">${esc(t.facultyNoPrograms)}</p>`;
+          const stats = [ms.length ? t.majorsCount(ms.length) : null, t.programsCount(progsOf(f.key).length)].filter(Boolean).join(', ');
+          return `<details class="prog-fac"><summary><span class="prog-fac-name">${esc(facultyName(t, f))}</span> <span class="muted small">${esc(stats)}</span></summary>${inner}<p><a class="btn subtle" href="${esc(addProgramUrl(f))}" rel="noopener">${esc(t.addProgram)}</a></p></details>`;
         })
         .join('')}</div>`;
       // Ô lọc tài liệu: chỉ có khi có giá trị để chọn. Nhãn hiện rõ trên mỗi ô.
@@ -620,7 +797,7 @@ export function buildSite({ root = TOOL_ROOT, out = path.join(TOOL_ROOT, 'site')
 </section>
 <section aria-labelledby="h-prog">
   <h2 id="h-prog">${esc(t.programsTitle)}</h2>
-  <p class="muted">${esc(t.programsCount(listedPrograms.length))}</p>
+  <p class="muted">${esc([majorProgs.size ? t.majorsCount(majorProgs.size) : null, t.programsCount(listedPrograms.length)].filter(Boolean).join(', '))}</p>
   ${progList}
   <p class="actions"><a class="btn" href="${esc(addProgramUrl(null))}" rel="noopener">${esc(t.addProgram)}</a></p>
 </section>
@@ -641,18 +818,37 @@ export function buildSite({ root = TOOL_ROOT, out = path.join(TOOL_ROOT, 'site')
       const here = P(`faculty/${f.key}/index.html`);
       const root = relPrefix(here);
       const progs = listedPrograms.filter((p) => p.faculty === f.key);
+      const ms = majorsOfFaculty(f.key);
+      const loose = loosePrograms(f.key);
+      const looseCount = loose.filled.length + loose.empty.length;
+      const hrefOf = (p) => `${root}${P(`program/${p.code}/`)}`;
+      const sharedFac = shared && f.key !== shared ? facByKey.get(shared) : null;
+      const sharedLink = sharedFac ? `<a href="${root}${P(`faculty/${sharedFac.key}/`)}">${esc(facultyName(t, sharedFac))}</a>` : '';
+      // Môn chung toàn trường có trong chương trình của khoa: tách khỏi bảng môn của khoa.
+      const sharedUsed = sharedFac
+        ? [...new Set(progs.flatMap((p) => p.blocks.flatMap((b) => b.courses)))]
+            .map((id) => allCourses.get(id))
+            .filter((c) => c && c.faculty === shared)
+            .sort((a, b) => a.id.localeCompare(b.id))
+        : [];
+      const emptyFac = !progs.length && !f.courses.length && !ms.length;
+      const otherBlock = looseCount || !ms.length
+        ? `<h2>${esc(ms.length ? t.otherPrograms : t.facultyPrograms)}</h2>
+<p class="muted">${esc(t.programsCount(looseCount))}</p>
+${loose.filled.length ? programsByYear(t, loose.filled, hrefOf, root) : ''}${loose.empty.length ? `<details class="prog-empty"><summary>${esc(t.emptyPrograms(loose.empty.length))}</summary>${programsByYear(t, loose.empty, hrefOf, root)}</details>` : ''}${looseCount ? '' : `<p class="muted">${esc(t.facultyNoPrograms)}</p>`}`
+        : '';
       const body = `
 <h1>${esc(facultyName(t, f))}</h1>
 ${f.key === 'unknown' ? `<p class="note">${esc(lang === 'vi' ? 'Môn có tiền tố mã chưa xác minh. Khi biết đúng khoa, mở form Sửa danh mục môn.' : 'Courses whose code prefix is not verified yet. If you know the right faculty, open the Fix course details form.')}</p>` : ''}
-${f.key === SHARED_FACULTY ? `<p class="note">${esc(t.facultySharedNote)}</p>` : ''}
-${!progs.length && !f.courses.length ? `<div class="note" role="note"><p>${esc(t.facultyEmpty)}</p></div>` : ''}
-<h2>${esc(t.facultyPrograms)}</h2>
-<p class="muted">${esc(t.programsCount(progs.length))}</p>
-${progs.length ? programsByYear(t, progs, (p) => `${root}${P(`program/${p.code}/`)}`) : `<p class="muted">${esc(t.facultyNoPrograms)}</p>`}
+${shared && f.key === shared ? `<p class="note">${esc(t.facultySharedNote)}</p>` : ''}
+${emptyFac ? `<div class="note" role="note"><p>${esc(t.facultyEmpty)}${sharedLink ? ` ${esc(t.facultyEmptyShared)} ${sharedLink}.` : ''}</p></div>` : ''}
+${ms.length ? `<h2>${esc(t.facultyMajors)}</h2>\n<p class="muted">${esc(t.majorsCount(ms.length))}</p>\n${majorList(t, ms, progsOfMajor, root, P, typeOrder)}` : ''}
+${otherBlock}
 <p class="actions"><a class="btn" href="${esc(addProgramUrl(f))}" rel="noopener">${esc(t.addProgram)}</a></p>
 <h2>${esc(t.facultyCourses)}</h2>
 <p class="muted">${esc(t.coursesCount(f.courses.length))}</p>
-${courseTable(t, f.courses, root, t.facultyCourses)}`;
+${courseTable(t, f.courses, root, t.facultyCourses)}
+${sharedUsed.length ? `<h2>${esc(t.facultySharedCourses)}</h2>\n<p class="muted">${esc(t.coursesCount(sharedUsed.length))}. ${esc(t.facultySharedCoursesNote)} ${sharedLink}.</p>\n${courseTable(t, sharedUsed, root, t.facultySharedCourses)}` : ''}`;
       write(
         here,
         finish(
@@ -676,19 +872,27 @@ ${courseTable(t, f.courses, root, t.facultyCourses)}`;
       const here = P(`program/${p.code}/index.html`);
       const root = relPrefix(here);
       const fac = facByKey.get(p.faculty);
-      const blocks = p.blocks
+      const blockList = p.blocks
         .filter((b) => b.courses.length)
         .map((b) => {
           const list = b.courses.map((id) => allCourses.get(id)).filter(Boolean);
-          const meta = [b.required ? t.required : t.elective, b.creditsNeed ? t.blockCredits(b.creditsNeed) : null].filter(Boolean).join(', ');
-          return `<section class="block" id="${blockAnchor(b.id)}"><h2>${esc(b.name)} <span class="muted small">${esc(meta)}</span></h2>${b.group ? `<p class="muted small">${esc(b.group)}</p>` : ''}${courseTable(t, list, root, b.name)}</section>`;
+          const meta = [b.requiredUnknown ? null : b.required ? t.required : t.elective, b.creditsNeed ? t.blockCredits(b.creditsNeed) : null, b.coursesNeed ? t.coursesNeed(b.coursesNeed) : null].filter(Boolean).join(', ');
+          return `<section class="block" id="${blockAnchor(b.id)}"><h3>${esc(b.name)}${meta ? ` <span class="muted small">${esc(meta)}</span>` : ''}</h3>${b.group ? `<p class="muted small">${esc(b.group)}</p>` : ''}${courseTable(t, list, root, b.name)}</section>`;
         })
         .join('');
+      // Khối đã là từng học kỳ (chỉ có kế hoạch giảng dạy) thì tiêu đề là lộ trình, không thêm phần lộ trình riêng.
+      const semBlocks = blocksAreSemesters(p);
+      const blocks = blockList ? `<h2 id="h-blocks">${esc(semBlocks ? t.roadmapTitle : t.blocksTitle)}</h2>${blockList}` : '';
+      const road = hasSemesters(p) && !semBlocks ? `<section aria-labelledby="h-road"><h2 id="h-road">${esc(t.roadmapTitle)}</h2>${roadmapHtml(t, p, allCourses, root)}</section>` : '';
+      const pMajor = p.major ? majorByCode.get(p.major) : null;
+      const siblings = pMajor && isListed(p) ? progsOfMajor(pMajor.code) : [];
+      const pick = siblings.length > 1 ? majorPickers(t, siblings, p, (x) => `${root}${P(`program/${x.code}/`)}`, typeOrder, 'page') : '';
       const pname = programName(t, p);
       // Link chính thức: PDF CTĐT và kế hoạch giảng dạy của trường nếu có; không có thì link nguồn
       // (nếu có) và bảng CTĐT của trường. Chưa có danh sách môn: ghi chú, nút gửi CTĐT đứng đầu hàng.
       const official = officialProgramLinks(t, p, siteCfg);
       const hosted = official.pdf ? `<p class="muted small">${esc(t.programPdfHosted)}</p>` : '';
+      if (p.handbookUrl) official.buttons.push(`<a class="btn subtle" href="${esc(p.handbookUrl)}" rel="noopener">${esc(t.handbookMajor)}</a>`);
       const actions = blocks
         ? official.buttons.length
           ? `<p class="actions">${official.buttons.join('')}</p>${hosted}`
@@ -700,10 +904,20 @@ ${courseTable(t, f.courses, root, t.facultyCourses)}`;
         ? ''
         : `<div class="note" role="note"><p>${esc(t.programDraft)}${mains.length ? ` ${esc(t.programDraftSee)}: ${mains.map((x) => `<a href="${root}${P(`program/${x.code}/`)}">${esc(x.year ? `${programName(t, x)} (${x.year})` : programName(t, x))}</a>`).join(', ')}.` : ''}</p></div>`;
       const n = programCourseCount(p);
-      const meta = [esc(t.programCode(p.code)), fac ? `<a href="${root}${P(`faculty/${fac.key}/`)}">${esc(facultyName(t, fac))}</a>` : null, p.variant ? esc(p.variant) : null, esc(n ? t.coursesCount(n) : t.programNoCoursesShort)]
+      const meta = [
+        esc(t.programCode(p.code)),
+        fac ? `<a href="${root}${P(`faculty/${fac.key}/`)}">${esc(facultyName(t, fac))}</a>` : null,
+        pMajor ? `${esc(t.majorLink)} <a href="${root}${P(`major/${majorKey(pMajor.code)}/`)}">${esc(majorDisplayName(t, pMajor))}</a>` : null,
+        programTypeTag(t, p, root) || null,
+        p.level && p.level !== DEFAULT_LEVEL && LEVELS[p.level] ? esc(LEVELS[p.level][lang]) : null,
+        p.degree && DEGREES[p.degree] ? esc(DEGREES[p.degree][lang]) : null,
+        p.totalCredits ? esc(t.totalCredits(p.totalCredits)) : null,
+        esc(n ? t.coursesCount(n) : t.programNoCoursesShort),
+      ]
         .filter(Boolean)
         .join(', ');
-      const body = `<h1>${esc(pname)}${p.year ? ` (${esc(p.year)})` : ''}</h1><p class="muted">${meta}</p>${draft}${p.note ? `<p class="small" lang="vi">${esc(p.note)}</p>` : ''}${actions}${blocks}`;
+      const notes = [p.note ? `<p class="small" lang="vi">${esc(p.note)}</p>` : '', p.reviewNote ? `<p class="small" lang="vi">${esc(p.reviewNote)}</p>` : ''].join('');
+      const body = `<h1>${esc(pname)}${p.year ? ` (${esc(p.year)})` : ''}</h1><p class="muted">${meta}</p>${draft}${notes}${actions}${pick}${road}${blocks}`;
       write(
         here,
         finish(
@@ -713,7 +927,12 @@ ${courseTable(t, f.courses, root, t.facultyCourses)}`;
             title: p.year ? `${pname} (${p.year})` : pname,
             description: t.programDescription(p.year ? `${pname} (${p.year})` : pname, n),
             body,
-            crumbs: [['', t.nav.home], ...(fac ? [[`faculty/${fac.key}/`, facultyName(t, fac)]] : []), ['', pname]],
+            crumbs: [
+              ['', t.nav.home],
+              ...(fac ? [[`faculty/${fac.key}/`, facultyName(t, fac)]] : []),
+              ...(pMajor ? [[`major/${majorKey(pMajor.code)}/`, majorDisplayName(t, pMajor)]] : []),
+              ['', p.year && pMajor ? cohortLabel(t, p) : pname],
+            ],
             alt: `program/${p.code}/index.html`,
             noindex: !isListed(p),
           }),
@@ -721,6 +940,67 @@ ${courseTable(t, f.courses, root, t.facultyCourses)}`;
         ),
       );
       if (isListed(p)) listPage(here, p.updated);
+    }
+
+    // Trang ngành: bộ chọn loại và khóa, lộ trình theo học kỳ của chương trình chính (khóa mới nhất có danh
+    // sách môn, loại xếp đầu theo programTypeOrder), nút tới PDF CTĐT, kế hoạch giảng dạy và Sổ tay.
+    for (const m of majors) {
+      const key = majorKey(m.code);
+      const here = P(`major/${key}/index.html`);
+      const root = relPrefix(here);
+      const list = progsOfMajor(m.code);
+      const main = mainProgram(list, typeOrder);
+      const fac = facByKey.get(m.faculty);
+      const name = majorDisplayName(t, m);
+      const progHref = (x) => `${root}${P(`program/${x.code}/`)}`;
+      const types = [...new Set(list.map((p) => p.type).filter(Boolean))].sort((a, b) => typeRank(typeOrder, a) - typeRank(typeOrder, b));
+      const meta = [
+        esc(t.majorCode(m.code)),
+        fac ? `<a href="${root}${P(`faculty/${fac.key}/`)}">${esc(facultyName(t, fac))}</a>` : null,
+        m.level && m.level !== DEFAULT_LEVEL && LEVELS[m.level] ? esc(LEVELS[m.level][lang]) : null,
+        list.length ? esc(t.programsCount(list.length)) : null,
+      ]
+        .filter(Boolean)
+        .join(', ');
+      const tags = types.map((x) => typeTagLink(t, root, x, typeLabel(t, x, true))).join('');
+      const buttons = [];
+      let hosted = '';
+      if (main) {
+        const official = officialProgramLinks(t, main, siteCfg);
+        if (official.pdf) {
+          buttons.push(...official.buttons);
+          hosted = `<p class="muted small">${esc(t.programPdfHosted)}</p>`;
+        }
+      }
+      if (m.handbookUrl) buttons.push(`<a class="btn subtle" href="${esc(m.handbookUrl)}" rel="noopener">${esc(t.handbookMajor)}</a>`);
+      const n = main ? programCourseCount(main) : 0;
+      let road;
+      if (main && n && hasSemesters(main)) {
+        road = `<p class="muted">${esc(t.roadmapOf(cohortLabel(t, main)))}</p>${roadmapHtml(t, main, allCourses, root)}<p class="actions"><a class="btn" href="${progHref(main)}">${esc(t.roadmapOpen)}</a></p>`;
+      } else if (main && n) {
+        road = `<p class="muted">${esc(t.roadmapNone)}</p><p class="actions"><a class="btn" href="${progHref(main)}">${esc(t.roadmapOpen)}</a></p>`;
+      } else {
+        road = `<div class="note" role="note"><p>${esc(t.programNoCourses)}</p></div><p class="actions"><a class="btn primary" href="${esc(addProgramUrl(fac, { name: m.name }))}" rel="noopener">${esc(t.addProgram)}</a></p>`;
+      }
+      const body = `<h1>${esc(name)}</h1><p class="muted">${meta}</p>${tags ? `<p class="tags">${tags}</p>` : ''}${buttons.length ? `<p class="actions">${buttons.join('')}</p>${hosted}` : ''}
+${main ? `<section aria-labelledby="h-progs"><h2 id="h-progs">${esc(t.programsOfMajor)}</h2>${majorPickers(t, list, main, progHref, typeOrder, 'true')}</section>` : ''}
+<section aria-labelledby="h-road"><h2 id="h-road">${esc(t.roadmapTitle)}</h2>${road}</section>`;
+      write(
+        here,
+        finish(
+          layout({
+            t,
+            path: here,
+            title: name,
+            description: t.majorDescription(name),
+            body,
+            crumbs: [['', t.nav.home], ...(fac ? [[`faculty/${fac.key}/`, facultyName(t, fac)]] : []), ['', name]],
+            alt: `major/${key}/index.html`,
+          }),
+          t,
+        ),
+      );
+      listPage(here, latest(list.map((p) => p.updated)));
     }
 
     // Trang môn
@@ -745,19 +1025,44 @@ ${courseTable(t, f.courses, root, t.facultyCourses)}`;
       if (c.related.length) rows.push([t.related, c.related.map(cLink).join('<br>')]);
       const teachers = [...new Set(c.items.filter((i) => !i.removed && i.teacher).map((i) => i.teacher))].sort((a, b) => a.localeCompare(b, 'vi'));
       if (teachers.length) rows.push([t.teachersOfCourse, esc(teachers.join(', '))]);
+      if (c.handbookUrl) rows.push([t.handbook, `<a href="${esc(c.handbookUrl)}" rel="noopener">${esc(t.handbookCourse)}</a>`]);
       if (c.programs.length) {
-        const lines = c.programs.map((pg) => {
+        // Chương trình đã gắn ngành gom theo ngành: một dòng mỗi ngành, các khóa (kèm loại) là link tới khối có môn.
+        const byMajor = new Map();
+        const loose = [];
+        for (const pg of c.programs) {
+          const pr = progByCode.get(pg.program);
+          if (pr && pr.major && majorByCode.has(pr.major) && isListed(pr)) {
+            if (!byMajor.has(pr.major)) byMajor.set(pr.major, new Map());
+            const seen = byMajor.get(pr.major);
+            if (!seen.has(pr.code)) seen.set(pr.code, { pr, pg });
+          } else loose.push(pg);
+        }
+        const majorLines = [...byMajor]
+          .map(([code, seen]) => [majorByCode.get(code), [...seen.values()]])
+          .sort((a, b) => majorDisplayName(t, a[0]).localeCompare(majorDisplayName(t, b[0]), lang))
+          .map(([m, list]) => {
+            const links = list
+              .sort((a, b) => (b.pr.year || '').localeCompare(a.pr.year || '') || typeRank(typeOrder, a.pr.type) - typeRank(typeOrder, b.pr.type) || a.pr.code.localeCompare(b.pr.code))
+              .map(({ pr, pg }) => {
+                const label = [pr.year, pr.type && pr.type !== 'CQ' ? typeLabel(t, pr.type) : null, pr.track].filter(Boolean).join(' ');
+                return `<a href="${root}${P(`program/${pr.code}/`)}#${blockAnchor(pg.block)}">${esc(label || pr.code)}</a>`;
+              });
+            return `<a href="${root}${P(`major/${majorKey(m.code)}/`)}">${esc(majorDisplayName(t, m))}</a>: ${links.join(', ')}`;
+          });
+        const looseLines = loose.map((pg) => {
           const pr = progByCode.get(pg.program);
           const b = pr && pr.blocks.find((x) => x.id === pg.block);
           const label = pr ? (pr.year ? `${programName(t, pr)} (${pr.year})` : programName(t, pr)) : pg.program;
           const draft = pr && !isListed(pr) ? ` <span class="tag">${esc(t.programDraftTag)}</span>` : '';
           const href = `${root}${P(`program/${pg.program}/`)}`;
-          const where = `${b ? `${b.name}, ` : ''}${pg.required ? t.required : t.elective}`;
+          const where = `${b ? `${b.name}, ` : ''}${b && b.requiredUnknown ? '' : pg.required ? t.required : t.elective}`.replace(/, $/, '');
           return `<a href="${href}">${esc(label)}</a>${draft}, ${b ? `<a href="${href}#${blockAnchor(b.id)}">${esc(where)}</a>` : esc(where)}`;
         });
+        const lines = [...majorLines, ...looseLines];
         // Môn chung (Giải tích, Vật lý...) thuộc vài chục chương trình: gói lại cho gọn.
         const progCount = new Set(c.programs.map((x) => x.program)).size;
-        rows.push([t.programsOfCourse, progCount > 5 ? `<details><summary>${esc(t.programsCount(progCount))}</summary>${lines.join('<br>')}</details>` : lines.join('<br>')]);
+        rows.push([t.programsOfCourse, lines.length > 5 ? `<details><summary>${esc(t.programsCount(progCount))}</summary>${lines.join('<br>')}</details>` : lines.join('<br>')]);
       }
       const groups = TYPE_ORDER.map((type) => {
         const list = c.items.filter((i) => i.type === type).sort((a, b) => Number(!!a.removed) - Number(!!b.removed) || a.title.localeCompare(b.title));

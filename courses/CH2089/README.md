@@ -10,6 +10,7 @@
 | Khoa | Khoa Kỹ thuật Hóa học |
 | Phần | Lý thuyết |
 | Trạng thái | Đang dạy |
+| Sổ tay HCMUT | [Trang môn trên Sổ tay HCMUT](https://hcmut.edu.vn/study/handbook/subject/CH2089) |
 | Môn liên quan | [GE2053](../GE2053/README.md) Nhiệt động học vỉa và tính chất chất lưu, [GE3179](../GE3179/README.md) Thu gom và vận chuyển dầu khí |
 
 ## Tài liệu

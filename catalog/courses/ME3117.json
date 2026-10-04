@@ -3,32 +3,33 @@
   "id": "ME3117",
   "code": "ME3117",
   "name": "Thiết kế mặt bằng",
-  "nameEn": "Facility Layout Design KT",
+  "nameEn": "Facility Layout Design",
   "credits": 3,
   "faculty": "fme",
   "aliases": [],
   "status": "active",
   "programs": [
     {
+      "program": "FME_KY_THUAT_HE_THONG_CONG_NGHIEP_2019",
+      "block": "K05",
+      "required": false
+    },
+    {
       "program": "FME_KY_THUAT_HE_THONG_CONG_NGHIEP_2020",
-      "block": "K01",
-      "required": true
+      "block": "K05",
+      "required": false
     },
     {
       "program": "FME_KY_THUAT_HE_THONG_CONG_NGHIEP_2021",
-      "block": "K09",
-      "required": true
-    },
-    {
-      "program": "FME_KY_THUAT_HE_THONG_CONG_NGHIEP_2019",
-      "block": "K01",
-      "required": true
+      "block": "K05",
+      "required": false
     }
   ],
   "parts": [
     "theory"
   ],
   "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/ME3117",
   "note": "Nhập từ nguồn công khai (truy cập 03/10/2026).",
   "updated": "2026-10-04"
 }

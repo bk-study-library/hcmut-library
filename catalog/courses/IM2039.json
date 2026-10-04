@@ -1,0 +1,29 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "IM2039",
+  "code": "IM2039",
+  "name": "Kinh doanh điện tử",
+  "credits": 3,
+  "faculty": "sim",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "SIM_QUAN_TRI_KINH_DOANH_2026_CTTA",
+      "block": "K09",
+      "required": true
+    },
+    {
+      "program": "SIM_TS_153_2026",
+      "block": "K09",
+      "required": true
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/IM2039",
+  "note": "Nhập từ CTĐT chính thức (Sổ tay HCMUT, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

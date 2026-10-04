@@ -1,0 +1,29 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "MA3409",
+  "code": "MA3409",
+  "name": "Lý thuyết và Công nghệ đúc",
+  "credits": 3,
+  "faculty": "fmt",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "FMT_KY_THUAT_VAT_LIEU_2026",
+      "block": "K15",
+      "required": true
+    },
+    {
+      "program": "FMT_TS_229_2026_TA",
+      "block": "K15",
+      "required": true
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/MA3409",
+  "note": "Nhập từ CTĐT chính thức (Sổ tay HCMUT, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

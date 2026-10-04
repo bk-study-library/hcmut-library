@@ -1,0 +1,422 @@
+{
+  "$schema": "../../schema/program.schema.json",
+  "code": "FCE_KY_THUAT_XAY_DUNG_CONG_TRINH_GIAO_THONG_2026_CNTN",
+  "name": "Kỹ thuật Xây dựng Công trình Giao thông",
+  "nameEn": "Transportation Engineering",
+  "faculty": "fce",
+  "year": "2026",
+  "major": "7580205",
+  "type": "CNTN",
+  "level": "dai-hoc",
+  "degree": "cu-nhan",
+  "totalCredits": 132,
+  "variant": "Chương trình tài năng",
+  "note": "Bảng CTĐT của trường không có cột riêng cho loại chương trình này; ctdtUrl và planUrl để trống. Học kỳ đề xuất mượn kế hoạch giảng dạy của chương trình tiêu chuẩn cùng ngành nên chỉ gần đúng.",
+  "source": "https://hcmut.edu.vn/study/handbook/course/undergraduate/7580205?program=CNTN",
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/undergraduate/7580205?program=CNTN",
+  "blocks": [
+    {
+      "id": "K01",
+      "name": "A.1. TOÁN",
+      "group": "A. TOÁN & KHOA HỌC TỰ NHIÊN",
+      "kind": "toan-khtn",
+      "required": true,
+      "creditsNeed": 18,
+      "courses": [
+        "MT1003",
+        "MT1007",
+        "MT1005",
+        "MT2013",
+        "MT1009"
+      ],
+      "semesters": {
+        "MT1003": 1,
+        "MT1007": 1,
+        "MT1005": 2,
+        "MT2013": 3,
+        "MT1009": 4
+      }
+    },
+    {
+      "id": "K02",
+      "name": "A.2. KHOA HỌC TỰ NHIÊN",
+      "group": "A. TOÁN & KHOA HỌC TỰ NHIÊN",
+      "kind": "toan-khtn",
+      "required": true,
+      "creditsNeed": 12,
+      "courses": [
+        "PH1003",
+        "PH1007",
+        "CH1003",
+        "CI1069"
+      ],
+      "semesters": {
+        "PH1003": 1,
+        "PH1007": 1,
+        "CH1003": 2,
+        "CI1069": 2
+      }
+    },
+    {
+      "id": "K03",
+      "name": "B.1. KINH TẾ - CHÍNH TRỊ - XÃ HỘI - LUẬT",
+      "group": "B. GIÁO DỤC CHUNG",
+      "kind": "ly-luan-chinh-tri",
+      "required": true,
+      "creditsNeed": 14,
+      "courses": [
+        "SP1073",
+        "SP1031",
+        "SP1033",
+        "SP1035",
+        "SP1039",
+        "SP1037"
+      ],
+      "semesters": {
+        "SP1031": 4,
+        "SP1033": 5,
+        "SP1035": 6,
+        "SP1039": 7,
+        "SP1037": 8
+      }
+    },
+    {
+      "id": "K04",
+      "name": "B.2. NHẬP MÔN",
+      "group": "B. GIÁO DỤC CHUNG",
+      "kind": "giao-duc-chung",
+      "required": true,
+      "creditsNeed": 3,
+      "courses": [
+        "CI1001"
+      ],
+      "semesters": {
+        "CI1001": 1
+      }
+    },
+    {
+      "id": "K05",
+      "name": "B.3.1. KIẾN THỨC QUẢN LÝ/ KHỞI NGHIỆP",
+      "group": "B. GIÁO DỤC CHUNG > B.3. KIẾN THỨC QUẢN LÝ/ KHỞI NGHIỆP",
+      "kind": "giao-duc-chung",
+      "required": false,
+      "creditsNeed": 3,
+      "courses": [
+        "CI3289",
+        "CI3291",
+        "IM1031",
+        "ME1019"
+      ],
+      "semesters": {
+        "CI3289": 5,
+        "CI3291": 5,
+        "IM1031": 5,
+        "ME1019": 5
+      }
+    },
+    {
+      "id": "K06",
+      "name": "B.4. KIẾN THỨC VỀ CON NGƯỜI VÀ MÔI TRƯỜNG/KỸ NĂNG NGHỀ NGHIỆP CHUYÊN NGHIỆP",
+      "group": "B. GIÁO DỤC CHUNG",
+      "kind": "giao-duc-chung",
+      "required": true,
+      "creditsNeed": 2,
+      "courses": [
+        "EN1025"
+      ]
+    },
+    {
+      "id": "K07",
+      "name": "B.5. NGOẠI NGỮ",
+      "group": "B. GIÁO DỤC CHUNG",
+      "kind": "ngoai-ngu",
+      "required": true,
+      "creditsNeed": 8,
+      "courses": [
+        "LA1003",
+        "LA1005",
+        "LA1007",
+        "LA1009"
+      ],
+      "semesters": {
+        "LA1003": 1,
+        "LA1005": 2,
+        "LA1007": 3,
+        "LA1009": 4
+      }
+    },
+    {
+      "id": "K08",
+      "name": "B.6.1. KỸ NĂNG BỔ TRỢ",
+      "group": "B. GIÁO DỤC CHUNG > B.6. KIẾN THỨC VÀ KỸ NĂNG BỔ TRỢ",
+      "kind": "giao-duc-chung",
+      "required": false,
+      "requiredUnknown": true,
+      "coursesNeed": 1,
+      "courses": [
+        "SK1001",
+        "SK1003",
+        "SK2001",
+        "SK2003",
+        "SK3001",
+        "SK3003",
+        "SK4001",
+        "SK4003"
+      ]
+    },
+    {
+      "id": "K09",
+      "name": "C.1. BẮT BUỘC CƠ SỞ NGÀNH",
+      "group": "C. CƠ SỞ NGÀNH",
+      "kind": "co-so-nganh",
+      "required": true,
+      "creditsNeed": 34,
+      "courses": [
+        "CI1033",
+        "CI1007",
+        "CI2003",
+        "CI2095",
+        "CI2037",
+        "CI2007",
+        "CI2133",
+        "CI2135",
+        "CI2137",
+        "CI2139",
+        "CI2151"
+      ],
+      "semesters": {
+        "CI1033": 2,
+        "CI1007": 3,
+        "CI2003": 3,
+        "CI2095": 3,
+        "CI2037": 4,
+        "CI2007": 4,
+        "CI2133": 5,
+        "CI2135": 5,
+        "CI2137": 5,
+        "CI2139": 5,
+        "CI2151": 8
+      }
+    },
+    {
+      "id": "K10",
+      "name": "C.2. TỰ CHỌN CƠ SỞ NGÀNH",
+      "group": "C. CƠ SỞ NGÀNH",
+      "kind": "co-so-nganh",
+      "required": false,
+      "creditsNeed": 0,
+      "courses": []
+    },
+    {
+      "id": "K11",
+      "name": "D.1.1. BẮT BUỘC NGÀNH",
+      "group": "D. NGÀNH/CHUYÊN NGÀNH > D.1. NGÀNH",
+      "kind": "nganh",
+      "required": true,
+      "creditsNeed": 3,
+      "courses": [
+        "CI2149",
+        "CI2177"
+      ],
+      "semesters": {
+        "CI2149": 7
+      }
+    },
+    {
+      "id": "K12",
+      "name": "D.1.2. TỰ CHỌN NGÀNH",
+      "group": "D. NGÀNH/CHUYÊN NGÀNH > D.1. NGÀNH",
+      "kind": "tu-chon-nganh",
+      "required": false,
+      "creditsNeed": 4,
+      "courses": [
+        "CI2145",
+        "CI3513"
+      ],
+      "semesters": {
+        "CI2145": 6
+      }
+    },
+    {
+      "id": "K13",
+      "name": "D.2.1.1. BẮT BUỘC CHUYÊN NGÀNH",
+      "group": "D. NGÀNH/CHUYÊN NGÀNH > D.2. CHUYÊN NGÀNH > D.2.1. CHUYÊN NGÀNH (CTDT Ngành Kỹ thuật Xây dựng Công trình Giao thông - Năm 2026 - chuyên ngành KTXD Công trình giao thông)",
+      "kind": "chuyen-nganh",
+      "required": true,
+      "creditsNeed": 15,
+      "courses": []
+    },
+    {
+      "id": "K14",
+      "name": "D.2.1.2. TỰ CHỌN CHUYÊN NGÀNH",
+      "group": "D. NGÀNH/CHUYÊN NGÀNH > D.2. CHUYÊN NGÀNH > D.2.1. CHUYÊN NGÀNH (CTDT Ngành Kỹ thuật Xây dựng Công trình Giao thông - Năm 2026 - chuyên ngành KTXD Công trình giao thông)",
+      "kind": "chuyen-nganh",
+      "required": false,
+      "creditsNeed": 0,
+      "courses": []
+    },
+    {
+      "id": "K15",
+      "name": "D.2.2.1. BẮT BUỘC CHUYÊN NGÀNH",
+      "group": "D. NGÀNH/CHUYÊN NGÀNH > D.2. CHUYÊN NGÀNH > D.2.2. CHUYÊN NGÀNH (CTDT Ngành Kỹ thuật Xây dựng Công trình Giao thông - Năm 2026 - chuyên ngành Đường sắt tốc độ cao và đường sắt đô thị)",
+      "kind": "chuyen-nganh",
+      "required": true,
+      "creditsNeed": 9,
+      "courses": []
+    },
+    {
+      "id": "K16",
+      "name": "D.2.2.2. TỰ CHỌN CHUYÊN NGÀNH",
+      "group": "D. NGÀNH/CHUYÊN NGÀNH > D.2. CHUYÊN NGÀNH > D.2.2. CHUYÊN NGÀNH (CTDT Ngành Kỹ thuật Xây dựng Công trình Giao thông - Năm 2026 - chuyên ngành Đường sắt tốc độ cao và đường sắt đô thị)",
+      "kind": "chuyen-nganh",
+      "required": false,
+      "creditsNeed": 6,
+      "courses": []
+    },
+    {
+      "id": "K17",
+      "name": "D.3. KHỐI KIẾN THỨC MỞ RỘNG CHƯƠNG TRÌNH TÀI NĂNG",
+      "group": "D. NGÀNH/CHUYÊN NGÀNH",
+      "kind": "nganh",
+      "required": false,
+      "requiredUnknown": true,
+      "coursesNeed": 9,
+      "courses": [
+        "CI213E",
+        "CI414C",
+        "CI326B",
+        "CI326A",
+        "CI203D",
+        "CI213C",
+        "CI350A",
+        "CI351A",
+        "CI476A"
+      ]
+    },
+    {
+      "id": "K18",
+      "name": "E. TỰ CHỌN (KHÁC)/TỰ DO",
+      "kind": "tu-chon-tu-do",
+      "required": false,
+      "creditsNeed": 6,
+      "courses": []
+    },
+    {
+      "id": "K19",
+      "name": "F. HỌC PHẦN TỐT NGHIỆP",
+      "kind": "tot-nghiep",
+      "required": true,
+      "creditsNeed": 10,
+      "courses": [
+        "CI3421",
+        "CI4171",
+        "CI4417"
+      ],
+      "semesters": {
+        "CI4171": 7,
+        "CI4417": 8
+      }
+    },
+    {
+      "id": "K20",
+      "name": "G. GIÁO DỤC QUỐC PHÒNG",
+      "kind": "quoc-phong",
+      "required": true,
+      "creditsNeed": 0,
+      "courses": [
+        "MI1003"
+      ],
+      "semesters": {
+        "MI1003": 2
+      }
+    },
+    {
+      "id": "K21",
+      "name": "H.1. GIÁO DỤC THỂ CHẤT HỌC PHẦN 1",
+      "group": "H. GIÁO DỤC THỂ CHẤT",
+      "kind": "the-chat",
+      "required": false,
+      "coursesNeed": 1,
+      "courses": [
+        "PE1009",
+        "PE1011",
+        "PE1013",
+        "PE1015",
+        "PE1017",
+        "PE1019",
+        "PE1021",
+        "PE1023",
+        "PE1025",
+        "PE1027",
+        "PE1053",
+        "PE1057",
+        "PE1061",
+        "PE1001"
+      ],
+      "semesters": {
+        "PE1009": 1,
+        "PE1011": 1,
+        "PE1013": 1,
+        "PE1015": 1,
+        "PE1017": 1,
+        "PE1019": 1,
+        "PE1021": 1,
+        "PE1025": 1,
+        "PE1027": 1,
+        "PE1053": 1,
+        "PE1057": 1,
+        "PE1061": 1
+      }
+    },
+    {
+      "id": "K22",
+      "name": "H.2. GIÁO DỤC THỂ CHẤT HỌC PHẦN 2",
+      "group": "H. GIÁO DỤC THỂ CHẤT",
+      "kind": "the-chat",
+      "required": false,
+      "coursesNeed": 1,
+      "courses": [
+        "PE1033",
+        "PE1035",
+        "PE1037",
+        "PE1039",
+        "PE1041",
+        "PE1043",
+        "PE1045",
+        "PE1047",
+        "PE1049",
+        "PE1051",
+        "PE1055",
+        "PE1059",
+        "PE1063",
+        "PE1002"
+      ],
+      "semesters": {
+        "PE1033": 2,
+        "PE1035": 2,
+        "PE1037": 2,
+        "PE1039": 2,
+        "PE1041": 2,
+        "PE1043": 2,
+        "PE1045": 2,
+        "PE1049": 2,
+        "PE1051": 2,
+        "PE1055": 2,
+        "PE1059": 2,
+        "PE1063": 2
+      }
+    },
+    {
+      "id": "K23",
+      "name": "I. ĐIỀU KIỆN TỐT NGHIỆP",
+      "kind": "dieu-kien-tot-nghiep",
+      "required": true,
+      "coursesNeed": 0,
+      "courses": [
+        "ENG_GT_700",
+        "SA4001"
+      ]
+    }
+  ],
+  "updated": "2026-10-04"
+}

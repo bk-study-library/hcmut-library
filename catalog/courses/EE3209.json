@@ -3,19 +3,41 @@
   "id": "EE3209",
   "code": "EE3209",
   "name": "Thực tập ngoài trường (Thiết kế vi mạch)",
+  "nameEn": "Internship",
   "credits": 2,
   "faculty": "dee",
   "aliases": [],
   "status": "active",
   "programs": [
     {
+      "program": "DEE_THIET_KE_VI_MACH_2023",
+      "block": "K16",
+      "required": false
+    },
+    {
       "program": "DEE_THIET_KE_VI_MACH_2024",
-      "block": "K07",
+      "block": "K14",
+      "required": true
+    },
+    {
+      "program": "DEE_THIET_KE_VI_MACH_2024_CNTN",
+      "block": "K15",
+      "required": true
+    },
+    {
+      "program": "DEE_THIET_KE_VI_MACH_2025_CNTN",
+      "block": "K15",
+      "required": true
+    },
+    {
+      "program": "DEE_THIET_KE_VI_MACH_2025_CTTA",
+      "block": "K15",
       "required": true
     }
   ],
   "parts": [],
   "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/EE3209",
   "note": "Nhập từ nguồn công khai (truy cập 03/10/2026).",
   "updated": "2026-10-04"
 }

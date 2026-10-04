@@ -1,0 +1,25 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "EE4491",
+  "code": "EE4491",
+  "name": "Kỹ thuật hệ thống cho công nghệ lượng tử",
+  "nameEn": "Systems Engineering for Quantum Technologies",
+  "credits": 3,
+  "faculty": "dee",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "FAS_KY_THUAT_LUONG_TU_2027",
+      "block": "K12",
+      "required": false
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/EE4491",
+  "note": "Nhập từ CTĐT chính thức (Sổ tay HCMUT, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

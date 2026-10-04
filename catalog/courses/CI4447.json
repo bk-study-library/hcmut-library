@@ -1,0 +1,80 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "CI4447",
+  "code": "CI4447",
+  "name": "Đồ án Tốt nghiệp",
+  "nameEn": "Capstone Project",
+  "credits": 4,
+  "faculty": "fce",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "FCE_KY_THUAT_XAY_DUNG_2019",
+      "block": "K08",
+      "required": false
+    },
+    {
+      "program": "FCE_KY_THUAT_XAY_DUNG_2021",
+      "block": "K08",
+      "required": false
+    },
+    {
+      "program": "FCE_KY_THUAT_XAY_DUNG_2022",
+      "block": "K08",
+      "required": false
+    },
+    {
+      "program": "FCE_KY_THUAT_XAY_DUNG_2023",
+      "block": "K14",
+      "required": true
+    },
+    {
+      "program": "FCE_KY_THUAT_XAY_DUNG_2024",
+      "block": "K14",
+      "required": true
+    },
+    {
+      "program": "FCE_KY_THUAT_XAY_DUNG_2024_CNTN",
+      "block": "K15",
+      "required": true
+    },
+    {
+      "program": "FCE_KY_THUAT_XAY_DUNG_2024_CTTA",
+      "block": "K15",
+      "required": true
+    },
+    {
+      "program": "FCE_KY_THUAT_XAY_DUNG_2025_CNTN",
+      "block": "K15",
+      "required": true
+    },
+    {
+      "program": "FCE_KY_THUAT_XAY_DUNG_2025_CTTA",
+      "block": "K15",
+      "required": true
+    },
+    {
+      "program": "FCE_KY_THUAT_XAY_DUNG_2026",
+      "block": "K15",
+      "required": true
+    },
+    {
+      "program": "FCE_KY_THUAT_XAY_DUNG_2026_CNTN",
+      "block": "K16",
+      "required": true
+    },
+    {
+      "program": "FCE_KY_THUAT_XAY_DUNG_2026_CTTA",
+      "block": "K15",
+      "required": true
+    }
+  ],
+  "parts": [
+    "project"
+  ],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/CI4447",
+  "note": "Nhập từ CTĐT chính thức (Sổ tay HCMUT, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

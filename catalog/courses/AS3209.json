@@ -1,0 +1,30 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "AS3209",
+  "code": "AS3209",
+  "name": "Thu hồi và Lưu trữ Nguồn Phóng Xạ",
+  "nameEn": "Recovery and Storage of Radioactive Sources",
+  "credits": 3,
+  "faculty": "fas",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "FAS_TS_156_2026",
+      "block": "K05",
+      "required": false
+    },
+    {
+      "program": "FAS_TS_256_2026_TA",
+      "block": "K12",
+      "required": false
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/AS3209",
+  "note": "Nhập từ CTĐT chính thức (Sổ tay HCMUT, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

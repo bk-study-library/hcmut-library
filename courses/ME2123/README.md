@@ -1,15 +1,16 @@
-# ME2123 Kỹ th uật hệ thố ng
+# ME2123 Kỹ thuật Hệ thống
 
 <!-- File này do "npm run build" sinh từ catalog/courses/ME2123.json và items/. Chỉ sửa phần Mẹo học, giữa hai dòng meo-hoc. -->
 
 | Mục | Thông tin |
 |---|---|
 | Mã môn | ME2123 |
-| Tên | Kỹ th uật hệ thố ng / Systems Engineering KT |
+| Tên | Kỹ thuật Hệ thống / Systems Engineering |
 | Tín chỉ | 3 |
 | Khoa | Khoa Cơ khí |
 | Phần | Lý thuyết |
 | Trạng thái | Đang dạy |
+| Sổ tay HCMUT | [Trang môn trên Sổ tay HCMUT](https://hcmut.edu.vn/study/handbook/subject/ME2123) |
 
 ## Tài liệu
 

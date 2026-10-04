@@ -10,6 +10,7 @@
 | Khoa | Khoa Cơ khí |
 | Phần | chưa ghi |
 | Trạng thái | Đang dạy |
+| Sổ tay HCMUT | [Trang môn trên Sổ tay HCMUT](https://hcmut.edu.vn/study/handbook/subject/ME3123) |
 
 ## Tài liệu
 

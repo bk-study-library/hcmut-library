@@ -1,0 +1,27 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "CH3479",
+  "code": "CH3479",
+  "name": "Thực tập ngoài trường (Công nghệ Sinh học)",
+  "credits": 5,
+  "faculty": "che",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "CHE_CONG_NGHE_SINH_HOC_2026",
+      "block": "K16",
+      "required": true
+    },
+    {
+      "program": "CHE_TS_218_2026_TA",
+      "block": "K18",
+      "required": true
+    }
+  ],
+  "parts": [],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/CH3479",
+  "note": "Nhập từ CTĐT chính thức (Sổ tay HCMUT, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

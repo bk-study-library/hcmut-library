@@ -1,0 +1,45 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "EN4025",
+  "code": "EN4025",
+  "name": "Nhập môn phương pháp nghiên cứu khoa học trong quản lý tài nguyên và môi trường",
+  "nameEn": "Basic Scientific Research Methods in Natural Resources and Environmental Management",
+  "credits": 3,
+  "faculty": "fenr",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "FENR_QUAN_LY_TAI_NGUYEN_VA_MOI_TRUONG_2019",
+      "block": "K08",
+      "required": false
+    },
+    {
+      "program": "FENR_QUAN_LY_TAI_NGUYEN_VA_MOI_TRUONG_2020",
+      "block": "K08",
+      "required": false
+    },
+    {
+      "program": "FENR_QUAN_LY_TAI_NGUYEN_VA_MOI_TRUONG_2021",
+      "block": "K08",
+      "required": false
+    },
+    {
+      "program": "FENR_QUAN_LY_TAI_NGUYEN_VA_MOI_TRUONG_2022",
+      "block": "K08",
+      "required": false
+    },
+    {
+      "program": "FENR_QUAN_LY_TAI_NGUYEN_VA_MOI_TRUONG_2023",
+      "block": "K08",
+      "required": false
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/EN4025",
+  "note": "Nhập từ Kế hoạch giảng dạy (PDF của trường, truy cập 04/10/2026). Tên lấy từ PDF. Chờ người duyệt xác nhận. Tên trong Kế hoạch giảng dạy: Phương pháp nghiên cứu khoa học trong quản lý môi trường.",
+  "updated": "2026-10-04"
+}

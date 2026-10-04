@@ -1,0 +1,65 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "CH3327",
+  "code": "CH3327",
+  "name": "Hóa keo",
+  "nameEn": "Colloid Chemistry",
+  "credits": 3,
+  "faculty": "che",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "CHE_KY_THUAT_HOA_HOC_2019",
+      "block": "K05",
+      "required": false
+    },
+    {
+      "program": "CHE_KY_THUAT_HOA_HOC_2020",
+      "block": "K05",
+      "required": false
+    },
+    {
+      "program": "CHE_KY_THUAT_HOA_HOC_2021",
+      "block": "K05",
+      "required": false
+    },
+    {
+      "program": "CHE_KY_THUAT_HOA_HOC_2022",
+      "block": "K05",
+      "required": false
+    },
+    {
+      "program": "CHE_KY_THUAT_HOA_HOC_2023",
+      "block": "K05",
+      "required": false
+    },
+    {
+      "program": "CHE_KY_THUAT_HOA_HOC_2024",
+      "block": "K12",
+      "required": false
+    },
+    {
+      "program": "CHE_KY_THUAT_HOA_HOC_2024_CTTA",
+      "block": "K13",
+      "required": false
+    },
+    {
+      "program": "CHE_KY_THUAT_HOA_HOC_2025_CNTN",
+      "block": "K12",
+      "required": false
+    },
+    {
+      "program": "CHE_KY_THUAT_HOA_HOC_2025_CTTA",
+      "block": "K13",
+      "required": false
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/CH3327",
+  "note": "Nhập từ CTĐT chính thức (Sổ tay HCMUT, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

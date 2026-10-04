@@ -10,6 +10,7 @@
 | Khoa | Khoa Kỹ thuật Địa chất và Dầu khí |
 | Phần | Lý thuyết |
 | Trạng thái | Đang dạy |
+| Sổ tay HCMUT | [Trang môn trên Sổ tay HCMUT](https://hcmut.edu.vn/study/handbook/subject/GE4079) |
 | Mã, tên cũ | GE4019 Phương pháp lập bản đồ địa chất môi trường - địa chất đô thị |
 | Thay cho | [GE4019](../GE4019/README.md) |
 

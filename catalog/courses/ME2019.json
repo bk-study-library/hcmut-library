@@ -10,14 +10,164 @@
   "status": "active",
   "programs": [
     {
-      "program": "FME_KY_THUAT_NHIET_2020",
-      "block": "K01",
+      "program": "FME_CONG_NGHE_DET_MAY_2019",
+      "block": "K08",
+      "required": false
+    },
+    {
+      "program": "FME_CONG_NGHE_DET_MAY_2020",
+      "block": "K08",
+      "required": false
+    },
+    {
+      "program": "FME_CONG_NGHE_DET_MAY_2021",
+      "block": "K08",
+      "required": false
+    },
+    {
+      "program": "FME_KY_THUAT_CO_DIEN_TU_2019",
+      "block": "K03",
+      "required": false
+    },
+    {
+      "program": "FME_KY_THUAT_CO_DIEN_TU_2020",
+      "block": "K08",
+      "required": false
+    },
+    {
+      "program": "FME_KY_THUAT_CO_DIEN_TU_2021",
+      "block": "K08",
+      "required": false
+    },
+    {
+      "program": "FME_KY_THUAT_CO_DIEN_TU_2022",
+      "block": "K08",
+      "required": false
+    },
+    {
+      "program": "FME_KY_THUAT_CO_DIEN_TU_2023",
+      "block": "K08",
+      "required": false
+    },
+    {
+      "program": "FME_KY_THUAT_CO_DIEN_TU_2024",
+      "block": "K06",
       "required": true
     },
     {
-      "program": "FME_CONG_NGHE_DET_MAY_2019",
-      "block": "K01",
+      "program": "FME_KY_THUAT_CO_DIEN_TU_2024_CNTN",
+      "block": "K06",
       "required": true
+    },
+    {
+      "program": "FME_KY_THUAT_CO_DIEN_TU_2024_CTTA",
+      "block": "K06",
+      "required": true
+    },
+    {
+      "program": "FME_KY_THUAT_CO_DIEN_TU_2024_PFIEV",
+      "block": "K06",
+      "required": true
+    },
+    {
+      "program": "FME_KY_THUAT_CO_DIEN_TU_2025_CNTN",
+      "block": "K06",
+      "required": true
+    },
+    {
+      "program": "FME_KY_THUAT_CO_DIEN_TU_2025_CTTA",
+      "block": "K06",
+      "required": true
+    },
+    {
+      "program": "FME_KY_THUAT_CO_DIEN_TU_2026_CNTN",
+      "block": "K06",
+      "required": true
+    },
+    {
+      "program": "FME_KY_THUAT_CO_DIEN_TU_2026_PFIEV",
+      "block": "K06",
+      "required": true
+    },
+    {
+      "program": "FME_KY_THUAT_CO_KHI_2019",
+      "block": "K08",
+      "required": false
+    },
+    {
+      "program": "FME_KY_THUAT_CO_KHI_2020",
+      "block": "K08",
+      "required": false
+    },
+    {
+      "program": "FME_KY_THUAT_CO_KHI_2021",
+      "block": "K08",
+      "required": false
+    },
+    {
+      "program": "FME_KY_THUAT_CO_KHI_2022",
+      "block": "K04",
+      "required": false
+    },
+    {
+      "program": "FME_KY_THUAT_CO_KHI_2023",
+      "block": "K04",
+      "required": false
+    },
+    {
+      "program": "FME_KY_THUAT_CO_KHI_2024",
+      "block": "K06",
+      "required": true
+    },
+    {
+      "program": "FME_KY_THUAT_CO_KHI_2024_CNTN",
+      "block": "K06",
+      "required": true
+    },
+    {
+      "program": "FME_KY_THUAT_CO_KHI_2024_CTTA",
+      "block": "K06",
+      "required": true
+    },
+    {
+      "program": "FME_KY_THUAT_CO_KHI_2025_CNTN",
+      "block": "K06",
+      "required": true
+    },
+    {
+      "program": "FME_KY_THUAT_CO_KHI_2025_CTTA",
+      "block": "K06",
+      "required": true
+    },
+    {
+      "program": "FME_KY_THUAT_CO_KHI_2026_CNTN",
+      "block": "K06",
+      "required": true
+    },
+    {
+      "program": "FME_KY_THUAT_DET_2019",
+      "block": "K08",
+      "required": false
+    },
+    {
+      "program": "FME_KY_THUAT_DET_2020",
+      "block": "K08",
+      "required": false
+    },
+    {
+      "program": "FME_KY_THUAT_DET_2021",
+      "block": "K08",
+      "required": false
+    },
+    {
+      "program": "FME_KY_THUAT_NHIET_2019",
+      "block": "K07",
+      "required": false
+    },
+    {
+      "program": "FME_KY_THUAT_NHIET_2020",
+      "block": "K07",
+      "required": false
     },
     {
       "program": "FME_KY_THUAT_NHIET_2021",
@@ -26,52 +176,12 @@
     },
     {
       "program": "FME_KY_THUAT_NHIET_2022",
-      "block": "K07",
-      "required": true
-    },
-    {
-      "program": "FME_KY_THUAT_DET_2019",
-      "block": "K01",
-      "required": true
-    },
-    {
-      "program": "FME_KY_THUAT_DET_2020",
-      "block": "K01",
-      "required": true
-    },
-    {
-      "program": "FME_KY_THUAT_CO_DIEN_TU_2021",
-      "block": "K01",
-      "required": true
-    },
-    {
-      "program": "FME_CONG_NGHE_DET_MAY_2021",
-      "block": "K07",
+      "block": "K05",
       "required": false
     },
     {
-      "program": "FME_CONG_NGHE_DET_MAY_2020",
-      "block": "K01",
-      "required": true
-    },
-    {
-      "program": "FME_KY_THUAT_CO_DIEN_TU_2024",
-      "block": "K06",
-      "required": true
-    },
-    {
-      "program": "FME_KY_THUAT_CO_DIEN_TU_2023",
-      "block": "K07",
-      "required": true
-    },
-    {
-      "program": "FME_KY_THUAT_CO_DIEN_TU_2022",
-      "block": "K07",
-      "required": false
-    },
-    {
-      "program": "FME_KY_THUAT_DET_2021",
-      "block": "K07",
+      "program": "FME_KY_THUAT_NHIET_2023",
+      "block": "K05",
       "required": false
     },
     {
@@ -80,48 +190,28 @@
       "required": true
     },
     {
-      "program": "FME_KY_THUAT_NHIET_2023",
-      "block": "K07",
-      "required": false
-    },
-    {
-      "program": "FME_KY_THUAT_NHIET_2019",
-      "block": "K01",
+      "program": "FME_KY_THUAT_NHIET_2026",
+      "block": "K06",
       "required": true
     },
     {
-      "program": "FME_KY_THUAT_CO_DIEN_TU_2020",
-      "block": "K01",
+      "program": "FME_TS_109_2026",
+      "block": "K06",
       "required": true
     },
     {
-      "program": "FME_KY_THUAT_CO_KHI_2023",
-      "block": "K07",
+      "program": "FME_TS_110_2026",
+      "block": "K06",
       "required": true
     },
     {
-      "program": "FME_KY_THUAT_CO_KHI_2020",
-      "block": "K01",
+      "program": "FME_TS_209_2026_TA",
+      "block": "K06",
       "required": true
     },
     {
-      "program": "FME_KY_THUAT_CO_KHI_2024",
-      "block": "K07",
-      "required": true
-    },
-    {
-      "program": "FME_KY_THUAT_CO_KHI_2022",
-      "block": "K07",
-      "required": true
-    },
-    {
-      "program": "FME_KY_THUAT_CO_KHI_2021",
-      "block": "K07",
-      "required": true
-    },
-    {
-      "program": "FME_KY_THUAT_CO_KHI_2019",
-      "block": "K01",
+      "program": "FME_TS_210_2026_TA",
+      "block": "K06",
       "required": true
     }
   ],
@@ -129,6 +219,7 @@
     "theory"
   ],
   "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/ME2019",
   "note": "Nhập từ nguồn công khai (truy cập 03/10/2026).",
   "updated": "2026-10-04"
 }

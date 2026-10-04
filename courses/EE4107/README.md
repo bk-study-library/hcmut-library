@@ -1,15 +1,16 @@
-# EE4107 Kỹ thuật điều khiển và Tự động hóa)
+# EE4107 Thực tập ngoài trường (KT Điện tử- Viễn thông & Kỹ thuật điều khiển và Tự động hóa)
 
 <!-- File này do "npm run build" sinh từ catalog/courses/EE4107.json và items/. Chỉ sửa phần Mẹo học, giữa hai dòng meo-hoc. -->
 
 | Mục | Thông tin |
 |---|---|
 | Mã môn | EE4107 |
-| Tên | Kỹ thuật điều khiển và Tự động hóa) / Internship |
+| Tên | Thực tập ngoài trường (KT Điện tử- Viễn thông & Kỹ thuật điều khiển và Tự động hóa) / Internship |
 | Tín chỉ | 2 |
 | Khoa | Khoa Điện - Điện tử |
 | Phần | Lý thuyết |
 | Trạng thái | Đang dạy |
+| Sổ tay HCMUT | [Trang môn trên Sổ tay HCMUT](https://hcmut.edu.vn/study/handbook/subject/EE4107) |
 
 ## Tài liệu
 

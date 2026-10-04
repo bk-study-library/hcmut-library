@@ -1,0 +1,22 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "AS2091",
+  "code": "AS2091",
+  "name": "Thực tập ngoài trường KTHN 1",
+  "credits": 2,
+  "faculty": "fas",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "FAS_TS_256_2026_TA",
+      "block": "K15",
+      "required": true
+    }
+  ],
+  "parts": [],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/AS2091",
+  "note": "Nhập từ CTĐT chính thức (Sổ tay HCMUT, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

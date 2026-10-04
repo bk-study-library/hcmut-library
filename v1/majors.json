@@ -1,0 +1,790 @@
+{
+  "schemaVersion": 1,
+  "generated": "2026-10-04",
+  "site": "https://bk-study-library.github.io/hcmut-library/",
+  "majors": [
+    {
+      "code": "7340101",
+      "name": "Quản trị kinh doanh",
+      "nameEn": "Business Administration",
+      "faculty": "sim",
+      "level": "dai-hoc",
+      "programTypes": [
+        "CQ",
+        "CTTA"
+      ],
+      "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/undergraduate/7340101?program=CQ",
+      "url": "https://bk-study-library.github.io/hcmut-library/major/7340101/"
+    },
+    {
+      "code": "7420201",
+      "name": "Công nghệ Sinh học",
+      "nameEn": "Biotechnology",
+      "faculty": "che",
+      "level": "dai-hoc",
+      "programTypes": [
+        "CQ",
+        "CTTA"
+      ],
+      "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/undergraduate/7420201?program=CQ",
+      "url": "https://bk-study-library.github.io/hcmut-library/major/7420201/"
+    },
+    {
+      "code": "7460108",
+      "name": "Khoa học dữ liệu",
+      "nameEn": "Data Science",
+      "faculty": "fas",
+      "level": "dai-hoc",
+      "programTypes": [
+        "CQ",
+        "CTTA"
+      ],
+      "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/undergraduate/7460108?program=CQ",
+      "url": "https://bk-study-library.github.io/hcmut-library/major/7460108/"
+    },
+    {
+      "code": "7480101",
+      "name": "Khoa học Máy tính",
+      "nameEn": "Computer Science",
+      "faculty": "cse",
+      "level": "dai-hoc",
+      "programTypes": [
+        "CQ",
+        "CTTA",
+        "CNTN",
+        "DHNB"
+      ],
+      "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/undergraduate/7480101?program=CQ",
+      "url": "https://bk-study-library.github.io/hcmut-library/major/7480101/"
+    },
+    {
+      "code": "7480106",
+      "name": "Kỹ thuật Máy tính",
+      "nameEn": "Computer Engineering",
+      "faculty": "cse",
+      "level": "dai-hoc",
+      "programTypes": [
+        "CQ",
+        "CTTA",
+        "CNTN"
+      ],
+      "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/undergraduate/7480106?program=CQ",
+      "url": "https://bk-study-library.github.io/hcmut-library/major/7480106/"
+    },
+    {
+      "code": "7480201",
+      "name": "Công nghệ Thông tin (Vừa Làm Vừa Học)",
+      "faculty": "cse",
+      "level": "dai-hoc",
+      "programTypes": [
+        "VLVH"
+      ],
+      "url": "https://bk-study-library.github.io/hcmut-library/major/7480201/"
+    },
+    {
+      "code": "7510105",
+      "name": "Công nghệ Kỹ thuật Vật liệu Xây dựng",
+      "nameEn": "Construction Materials",
+      "faculty": "fce",
+      "level": "dai-hoc",
+      "programTypes": [
+        "CQ"
+      ],
+      "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/undergraduate/7510105?program=CQ",
+      "url": "https://bk-study-library.github.io/hcmut-library/major/7510105/"
+    },
+    {
+      "code": "7510211",
+      "name": "Bảo dưỡng Công nghiệp",
+      "nameEn": "Industrial Maintenance",
+      "faculty": "fme",
+      "level": "dai-hoc",
+      "programTypes": [
+        "CQ"
+      ],
+      "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/undergraduate/7510211?program=CQ",
+      "url": "https://bk-study-library.github.io/hcmut-library/major/7510211/"
+    },
+    {
+      "code": "7510601",
+      "name": "Quản lý Công nghiệp",
+      "nameEn": "Industrial Management",
+      "faculty": "sim",
+      "level": "dai-hoc",
+      "programTypes": [
+        "CQ",
+        "CTTA"
+      ],
+      "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/undergraduate/7510601?program=CQ",
+      "url": "https://bk-study-library.github.io/hcmut-library/major/7510601/"
+    },
+    {
+      "code": "7510605",
+      "name": "Logistics và Quản lý Chuỗi cung ứng",
+      "nameEn": "Logistics and Supply Chain Management",
+      "faculty": "sim",
+      "level": "dai-hoc",
+      "programTypes": [
+        "CQ",
+        "CTTA"
+      ],
+      "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/undergraduate/7510605?program=CQ",
+      "url": "https://bk-study-library.github.io/hcmut-library/major/7510605/"
+    },
+    {
+      "code": "7520101",
+      "name": "Cơ Kỹ thuật",
+      "nameEn": "Engineering Mechanics",
+      "faculty": "fas",
+      "level": "dai-hoc",
+      "programTypes": [
+        "CQ",
+        "CNTN",
+        "DHNB"
+      ],
+      "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/undergraduate/7520101?program=CQ",
+      "url": "https://bk-study-library.github.io/hcmut-library/major/7520101/"
+    },
+    {
+      "code": "7520103",
+      "name": "Kỹ thuật Cơ khí",
+      "nameEn": "Mechanical Engineering",
+      "faculty": "fme",
+      "level": "dai-hoc",
+      "programTypes": [
+        "CQ",
+        "CTTA",
+        "CNTN",
+        "PFIEV"
+      ],
+      "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/undergraduate/7520103?program=CQ",
+      "url": "https://bk-study-library.github.io/hcmut-library/major/7520103/"
+    },
+    {
+      "code": "7520105",
+      "name": "Kỹ thuật Giao thông thông minh (Thí điểm)",
+      "nameEn": "Intelligent Transportation Engineering",
+      "faculty": "fte",
+      "level": "dai-hoc",
+      "programTypes": [
+        "CQ"
+      ],
+      "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/undergraduate/7520105?program=CQ",
+      "url": "https://bk-study-library.github.io/hcmut-library/major/7520105/"
+    },
+    {
+      "code": "7520114",
+      "name": "Kỹ thuật Cơ điện tử",
+      "nameEn": "Mechatronic Engineering",
+      "faculty": "fme",
+      "level": "dai-hoc",
+      "programTypes": [
+        "CQ",
+        "CTTA",
+        "CNTN",
+        "PFIEV"
+      ],
+      "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/undergraduate/7520114?program=CQ",
+      "url": "https://bk-study-library.github.io/hcmut-library/major/7520114/"
+    },
+    {
+      "code": "7520115",
+      "name": "Kỹ thuật Nhiệt",
+      "nameEn": "Thermal Engineering",
+      "faculty": "fme",
+      "level": "dai-hoc",
+      "programTypes": [
+        "CQ"
+      ],
+      "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/undergraduate/7520115?program=CQ",
+      "url": "https://bk-study-library.github.io/hcmut-library/major/7520115/"
+    },
+    {
+      "code": "7520118",
+      "name": "Kỹ thuật Hệ thống Công nghiệp",
+      "nameEn": "Industrial and Systems Engineering",
+      "faculty": "sim",
+      "level": "dai-hoc",
+      "programTypes": [
+        "CQ",
+        "CTTA",
+        "CNTN"
+      ],
+      "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/undergraduate/7520118?program=CQ",
+      "url": "https://bk-study-library.github.io/hcmut-library/major/7520118/"
+    },
+    {
+      "code": "7520120",
+      "name": "Kỹ thuật Hàng không",
+      "nameEn": "Aerospace Engineering",
+      "faculty": "fte",
+      "level": "dai-hoc",
+      "programTypes": [
+        "CQ",
+        "CTTA",
+        "PFIEV"
+      ],
+      "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/undergraduate/7520120?program=CQ",
+      "url": "https://bk-study-library.github.io/hcmut-library/major/7520120/"
+    },
+    {
+      "code": "7520122",
+      "name": "Kỹ thuật Tàu thủy",
+      "nameEn": "Naval Architecture and Marine Engineering",
+      "faculty": "fte",
+      "level": "dai-hoc",
+      "programTypes": [
+        "CQ"
+      ],
+      "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/undergraduate/7520122?program=CQ",
+      "url": "https://bk-study-library.github.io/hcmut-library/major/7520122/"
+    },
+    {
+      "code": "7520125",
+      "name": "Kỹ thuật Phương tiện không người lái (Thí điểm)",
+      "nameEn": "Autonomous Vehicle Engineering",
+      "faculty": "fte",
+      "level": "dai-hoc",
+      "programTypes": [
+        "CQ",
+        "CTTA"
+      ],
+      "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/undergraduate/7520125?program=CQ",
+      "url": "https://bk-study-library.github.io/hcmut-library/major/7520125/"
+    },
+    {
+      "code": "752012SN",
+      "name": "Kỹ thuật tàu thủy - hàng không (SN)",
+      "nameEn": "Dual Degree: Naval Architecture and Marine - Aerospace Engineering",
+      "faculty": "fte",
+      "level": "dai-hoc",
+      "programTypes": [
+        "SN"
+      ],
+      "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/undergraduate/752012SN?program=SN",
+      "url": "https://bk-study-library.github.io/hcmut-library/major/752012SN/"
+    },
+    {
+      "code": "7520130",
+      "name": "Kỹ thuật Ô tô",
+      "nameEn": "Automotive Engineering",
+      "faculty": "fte",
+      "level": "dai-hoc",
+      "programTypes": [
+        "CQ",
+        "CTTA"
+      ],
+      "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/undergraduate/7520130?program=CQ",
+      "url": "https://bk-study-library.github.io/hcmut-library/major/7520130/"
+    },
+    {
+      "code": "7520135",
+      "name": "Kỹ thuật đường sắt (thí điểm)",
+      "nameEn": "Railway Engineering",
+      "faculty": "fte",
+      "level": "dai-hoc",
+      "programTypes": [
+        "CQ",
+        "CTTA"
+      ],
+      "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/undergraduate/7520135?program=CQ",
+      "url": "https://bk-study-library.github.io/hcmut-library/major/7520135/"
+    },
+    {
+      "code": "75201xx",
+      "name": "Kỹ thuật Phương tiện Không người lái",
+      "nameEn": "Autonomous Vehicle Engineering",
+      "faculty": "fte",
+      "level": "dai-hoc",
+      "programTypes": [
+        "CQ"
+      ],
+      "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/undergraduate/75201xx?program=CQ",
+      "url": "https://bk-study-library.github.io/hcmut-library/major/75201xx/"
+    },
+    {
+      "code": "7520201",
+      "name": "Kỹ thuật điện",
+      "nameEn": "Electrical Engineering",
+      "faculty": "dee",
+      "level": "dai-hoc",
+      "programTypes": [
+        "CQ",
+        "CTTA",
+        "CNTN",
+        "PFIEV",
+        "CTQT"
+      ],
+      "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/undergraduate/7520201?program=CQ",
+      "url": "https://bk-study-library.github.io/hcmut-library/major/7520201/"
+    },
+    {
+      "code": "7520201+7520207",
+      "name": "Song ngành: Kỹ thuật Điện - Kỹ thuật Điện tử - Viễn thông",
+      "faculty": "dee",
+      "level": "dai-hoc",
+      "programTypes": [
+        "SN"
+      ],
+      "url": "https://bk-study-library.github.io/hcmut-library/major/7520201-7520207/"
+    },
+    {
+      "code": "7520201+7520216",
+      "name": "Song ngành: Kỹ thuật Điện - Kỹ thuật Điều khiển và Tự động hóa",
+      "faculty": "dee",
+      "level": "dai-hoc",
+      "programTypes": [
+        "SN"
+      ],
+      "url": "https://bk-study-library.github.io/hcmut-library/major/7520201-7520216/"
+    },
+    {
+      "code": "7520202",
+      "name": "Thiết kế vi mạch (thí điểm)",
+      "nameEn": "Integrated Circuit Design",
+      "faculty": "dee",
+      "level": "dai-hoc",
+      "programTypes": [
+        "CQ",
+        "CTTA",
+        "CNTN"
+      ],
+      "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/undergraduate/7520202?program=CQ",
+      "url": "https://bk-study-library.github.io/hcmut-library/major/7520202/"
+    },
+    {
+      "code": "7520207",
+      "name": "Kỹ thuật Điện tử - Viễn thông",
+      "nameEn": "Electronics - Telecommunications Engineering",
+      "faculty": "dee",
+      "level": "dai-hoc",
+      "programTypes": [
+        "CQ",
+        "CNTN",
+        "PFIEV"
+      ],
+      "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/undergraduate/7520207?program=CQ",
+      "url": "https://bk-study-library.github.io/hcmut-library/major/7520207/"
+    },
+    {
+      "code": "7520207+7520201",
+      "name": "Song ngành: Kỹ thuật Điện tử - Viễn thông - Kỹ thuật Điện",
+      "faculty": "dee",
+      "level": "dai-hoc",
+      "programTypes": [
+        "SN"
+      ],
+      "url": "https://bk-study-library.github.io/hcmut-library/major/7520207-7520201/"
+    },
+    {
+      "code": "7520207+7520216",
+      "name": "Song ngành: Kỹ thuật Điện tử - Viễn thông - Kỹ thuật Điều khiển và Tự động hóa",
+      "faculty": "dee",
+      "level": "dai-hoc",
+      "programTypes": [
+        "SN"
+      ],
+      "url": "https://bk-study-library.github.io/hcmut-library/major/7520207-7520216/"
+    },
+    {
+      "code": "7520216",
+      "name": "Kỹ thuật Điều khiển và Tự động hóa",
+      "nameEn": "Control Engineering and Automation",
+      "faculty": "dee",
+      "level": "dai-hoc",
+      "programTypes": [
+        "CQ",
+        "CTTA",
+        "CNTN"
+      ],
+      "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/undergraduate/7520216?program=CQ",
+      "url": "https://bk-study-library.github.io/hcmut-library/major/7520216/"
+    },
+    {
+      "code": "7520216+7520201",
+      "name": "Song ngành: Kỹ thuật Điều khiển và Tự động hóa - Kỹ thuật Điện",
+      "faculty": "dee",
+      "level": "dai-hoc",
+      "programTypes": [
+        "SN"
+      ],
+      "url": "https://bk-study-library.github.io/hcmut-library/major/7520216-7520201/"
+    },
+    {
+      "code": "7520216+7520207",
+      "name": "Song ngành: Kỹ thuật Điều khiển và Tự động hóa - Kỹ thuật Điện tử - Viễn thông",
+      "faculty": "dee",
+      "level": "dai-hoc",
+      "programTypes": [
+        "SN"
+      ],
+      "url": "https://bk-study-library.github.io/hcmut-library/major/7520216-7520207/"
+    },
+    {
+      "code": "75202TT",
+      "name": "Kỹ thuật điện - điện tử (TT)",
+      "nameEn": "Electrical - Electronics Engineering",
+      "faculty": "dee",
+      "level": "dai-hoc",
+      "programTypes": [
+        "CTTT"
+      ],
+      "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/undergraduate/75202TT?program=CTTT",
+      "url": "https://bk-study-library.github.io/hcmut-library/major/75202TT/"
+    },
+    {
+      "code": "7520301",
+      "name": "Kỹ thuật Hóa học",
+      "nameEn": "Chemical Engineering",
+      "faculty": "che",
+      "level": "dai-hoc",
+      "programTypes": [
+        "CQ",
+        "CTTA",
+        "CNTN"
+      ],
+      "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/undergraduate/7520301?program=CQ",
+      "url": "https://bk-study-library.github.io/hcmut-library/major/7520301/"
+    },
+    {
+      "code": "7520309",
+      "name": "Kỹ thuật Vật liệu",
+      "nameEn": "Materials Engineering",
+      "faculty": "fmt",
+      "level": "dai-hoc",
+      "programTypes": [
+        "CQ",
+        "CTTA"
+      ],
+      "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/undergraduate/7520309?program=CQ",
+      "url": "https://bk-study-library.github.io/hcmut-library/major/7520309/"
+    },
+    {
+      "code": "7520312",
+      "name": "Kỹ thuật Dệt",
+      "nameEn": "Textile Engineering",
+      "faculty": "fme",
+      "level": "dai-hoc",
+      "programTypes": [
+        "CQ"
+      ],
+      "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/undergraduate/7520312?program=CQ",
+      "url": "https://bk-study-library.github.io/hcmut-library/major/7520312/"
+    },
+    {
+      "code": "7520315",
+      "name": "Kỹ thuật bán dẫn",
+      "nameEn": "Semiconductor Engineering",
+      "faculty": "fmt",
+      "level": "dai-hoc",
+      "programTypes": [
+        "CQ",
+        "CTTA"
+      ],
+      "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/undergraduate/7520315?program=CQ",
+      "url": "https://bk-study-library.github.io/hcmut-library/major/7520315/"
+    },
+    {
+      "code": "7520318",
+      "name": "Kỹ thuật Chế biến Khoáng sản (Thí điểm)",
+      "nameEn": "Mineral Processing Engineering",
+      "faculty": "fmt",
+      "level": "dai-hoc",
+      "programTypes": [
+        "CQ"
+      ],
+      "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/undergraduate/7520318?program=CQ",
+      "url": "https://bk-study-library.github.io/hcmut-library/major/7520318/"
+    },
+    {
+      "code": "7520320",
+      "name": "Kỹ thuật Môi trường",
+      "nameEn": "Environmental Engineering",
+      "faculty": "fenr",
+      "level": "dai-hoc",
+      "programTypes": [
+        "CQ",
+        "CTTA",
+        "CNTN"
+      ],
+      "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/undergraduate/7520320?program=CQ",
+      "url": "https://bk-study-library.github.io/hcmut-library/major/7520320/"
+    },
+    {
+      "code": "75203PC",
+      "name": "Vật liệu Polymer và Composite (PFIEV)",
+      "nameEn": "Polymer and Composite Materials (PFIEV)",
+      "faculty": "fmt",
+      "level": "dai-hoc",
+      "programTypes": [
+        "PFIEV"
+      ],
+      "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/undergraduate/75203PC?program=PFIEV",
+      "url": "https://bk-study-library.github.io/hcmut-library/major/75203PC/"
+    },
+    {
+      "code": "75203VL",
+      "name": "Vật liệu và Năng lượng (PFIEV)",
+      "nameEn": "Materials and Energy (PFIEV)",
+      "faculty": "fmt",
+      "level": "dai-hoc",
+      "programTypes": [
+        "PFIEV"
+      ],
+      "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/undergraduate/75203VL?program=PFIEV",
+      "url": "https://bk-study-library.github.io/hcmut-library/major/75203VL/"
+    },
+    {
+      "code": "7520401",
+      "name": "Vật lý Kỹ thuật",
+      "nameEn": "Engineering Physics",
+      "faculty": "fas",
+      "level": "dai-hoc",
+      "programTypes": [
+        "CQ",
+        "CTTA"
+      ],
+      "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/undergraduate/7520401?program=CQ",
+      "url": "https://bk-study-library.github.io/hcmut-library/major/7520401/"
+    },
+    {
+      "code": "7520402",
+      "name": "Kỹ thuật hạt nhân",
+      "nameEn": "Nuclear Engineering",
+      "faculty": "fas",
+      "level": "dai-hoc",
+      "programTypes": [
+        "CQ",
+        "CTTA"
+      ],
+      "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/undergraduate/7520402?program=CQ",
+      "url": "https://bk-study-library.github.io/hcmut-library/major/7520402/"
+    },
+    {
+      "code": "7520405",
+      "name": "Kỹ thuật Lượng tử (Thí điểm)",
+      "nameEn": "Quantum Engineering",
+      "faculty": "fas",
+      "level": "dai-hoc",
+      "programTypes": [
+        "CQ"
+      ],
+      "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/undergraduate/7520405?program=CQ",
+      "url": "https://bk-study-library.github.io/hcmut-library/major/7520405/"
+    },
+    {
+      "code": "7520501",
+      "name": "Kỹ thuật Địa chất",
+      "nameEn": "Geological Engineering",
+      "faculty": "geopet",
+      "level": "dai-hoc",
+      "programTypes": [
+        "CQ"
+      ],
+      "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/undergraduate/7520501?program=CQ",
+      "url": "https://bk-study-library.github.io/hcmut-library/major/7520501/"
+    },
+    {
+      "code": "7520503",
+      "name": "Kỹ thuật Trắc địa - Bản đồ",
+      "nameEn": "Surveying and Mapping Engineering",
+      "faculty": "fce",
+      "level": "dai-hoc",
+      "programTypes": [
+        "CQ"
+      ],
+      "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/undergraduate/7520503?program=CQ",
+      "url": "https://bk-study-library.github.io/hcmut-library/major/7520503/"
+    },
+    {
+      "code": "7520604",
+      "name": "Kỹ thuật Dầu khí",
+      "nameEn": "Petroleum Engineering",
+      "faculty": "geopet",
+      "level": "dai-hoc",
+      "programTypes": [
+        "CQ",
+        "CTTA"
+      ],
+      "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/undergraduate/7520604?program=CQ",
+      "url": "https://bk-study-library.github.io/hcmut-library/major/7520604/"
+    },
+    {
+      "code": "7540101",
+      "name": "Công nghệ Thực phẩm",
+      "nameEn": "Food Technology",
+      "faculty": "che",
+      "level": "dai-hoc",
+      "programTypes": [
+        "CQ",
+        "CTTA",
+        "CNTN"
+      ],
+      "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/undergraduate/7540101?program=CQ",
+      "url": "https://bk-study-library.github.io/hcmut-library/major/7540101/"
+    },
+    {
+      "code": "7540204",
+      "name": "Công nghệ Dệt, May",
+      "nameEn": "Textile, Clothing Technology",
+      "faculty": "fme",
+      "level": "dai-hoc",
+      "programTypes": [
+        "CQ"
+      ],
+      "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/undergraduate/7540204?program=CQ",
+      "url": "https://bk-study-library.github.io/hcmut-library/major/7540204/"
+    },
+    {
+      "code": "7580101",
+      "name": "Kiến trúc",
+      "nameEn": "Architecture",
+      "faculty": "fce",
+      "level": "dai-hoc",
+      "programTypes": [
+        "CQ",
+        "CTTA"
+      ],
+      "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/undergraduate/7580101?program=CQ",
+      "url": "https://bk-study-library.github.io/hcmut-library/major/7580101/"
+    },
+    {
+      "code": "7580101x",
+      "name": "Kiến trúc",
+      "nameEn": "Architecture",
+      "faculty": "fce",
+      "level": "dai-hoc",
+      "programTypes": [
+        "CQ"
+      ],
+      "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/undergraduate/7580101x?program=CQ",
+      "url": "https://bk-study-library.github.io/hcmut-library/major/7580101x/"
+    },
+    {
+      "code": "7580201",
+      "name": "Kỹ thuật Xây dựng",
+      "nameEn": "Civil Engineering",
+      "faculty": "fce",
+      "level": "dai-hoc",
+      "programTypes": [
+        "CQ",
+        "CTTA",
+        "CNTN",
+        "PFIEV"
+      ],
+      "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/undergraduate/7580201?program=CQ",
+      "url": "https://bk-study-library.github.io/hcmut-library/major/7580201/"
+    },
+    {
+      "code": "7580202",
+      "name": "Kỹ thuật Xây dựng Công trình Thủy",
+      "nameEn": "Hydraulics Engineering",
+      "faculty": "fce",
+      "level": "dai-hoc",
+      "programTypes": [
+        "CQ"
+      ],
+      "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/undergraduate/7580202?program=CQ",
+      "url": "https://bk-study-library.github.io/hcmut-library/major/7580202/"
+    },
+    {
+      "code": "7580203",
+      "name": "Kỹ thuật Xây dựng Công trình Biển",
+      "nameEn": "Coastal Engineering",
+      "faculty": "fce",
+      "level": "dai-hoc",
+      "programTypes": [
+        "CQ"
+      ],
+      "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/undergraduate/7580203?program=CQ",
+      "url": "https://bk-study-library.github.io/hcmut-library/major/7580203/"
+    },
+    {
+      "code": "7580205",
+      "name": "Kỹ thuật Xây dựng Công trình Giao thông",
+      "nameEn": "Transportation Engineering",
+      "faculty": "fce",
+      "level": "dai-hoc",
+      "programTypes": [
+        "CQ",
+        "CTTA",
+        "CNTN"
+      ],
+      "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/undergraduate/7580205?program=CQ",
+      "url": "https://bk-study-library.github.io/hcmut-library/major/7580205/"
+    },
+    {
+      "code": "7580210",
+      "name": "Kỹ thuật Cơ sở Hạ tầng",
+      "nameEn": "Infrastructure Engineering",
+      "faculty": "fce",
+      "level": "dai-hoc",
+      "programTypes": [
+        "CQ"
+      ],
+      "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/undergraduate/7580210?program=CQ",
+      "url": "https://bk-study-library.github.io/hcmut-library/major/7580210/"
+    },
+    {
+      "code": "7580211",
+      "name": "Địa kỹ thuật xây dựng",
+      "nameEn": "Geotechnical Engineering",
+      "faculty": "geopet",
+      "level": "dai-hoc",
+      "programTypes": [
+        "CQ"
+      ],
+      "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/undergraduate/7580211?program=CQ",
+      "url": "https://bk-study-library.github.io/hcmut-library/major/7580211/"
+    },
+    {
+      "code": "75802NDT",
+      "name": "Kỹ thuật và Quản lý Nước đô thị (PFIEV)",
+      "nameEn": "Urban Water Engineering and Management",
+      "faculty": "fce",
+      "level": "dai-hoc",
+      "programTypes": [
+        "PFIEV"
+      ],
+      "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/undergraduate/75802NDT?program=PFIEV",
+      "url": "https://bk-study-library.github.io/hcmut-library/major/75802NDT/"
+    },
+    {
+      "code": "7580301",
+      "name": "Kinh tế xây dựng",
+      "nameEn": "Construction Economics",
+      "faculty": "fce",
+      "level": "dai-hoc",
+      "programTypes": [
+        "CQ"
+      ],
+      "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/undergraduate/7580301?program=CQ",
+      "url": "https://bk-study-library.github.io/hcmut-library/major/7580301/"
+    },
+    {
+      "code": "7850101",
+      "name": "Quản lý Tài nguyên và Môi trường",
+      "nameEn": "Natural Resources and Environmental Management",
+      "faculty": "fenr",
+      "level": "dai-hoc",
+      "programTypes": [
+        "CQ",
+        "CTTA"
+      ],
+      "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/undergraduate/7850101?program=CQ",
+      "url": "https://bk-study-library.github.io/hcmut-library/major/7850101/"
+    },
+    {
+      "code": "7850102",
+      "name": "Kinh tế tài nguyên thiên nhiên",
+      "faculty": "fenr",
+      "level": "dai-hoc",
+      "programTypes": [
+        "CQ",
+        "CTTA"
+      ],
+      "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/undergraduate/7850102?program=CQ",
+      "url": "https://bk-study-library.github.io/hcmut-library/major/7850102/"
+    }
+  ]
+}

@@ -1,0 +1,70 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "TR4367",
+  "code": "TR4367",
+  "name": "Đồ án Tốt nghiệp",
+  "nameEn": "Capstone Project",
+  "credits": 4,
+  "faculty": "fte",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "FTE_KY_THUAT_HANG_KHONG_2019",
+      "block": "K08",
+      "required": false
+    },
+    {
+      "program": "FTE_KY_THUAT_HANG_KHONG_2020",
+      "block": "K08",
+      "required": false
+    },
+    {
+      "program": "FTE_KY_THUAT_HANG_KHONG_2021",
+      "block": "K08",
+      "required": false
+    },
+    {
+      "program": "FTE_KY_THUAT_HANG_KHONG_2022",
+      "block": "K08",
+      "required": false
+    },
+    {
+      "program": "FTE_KY_THUAT_HANG_KHONG_2023",
+      "block": "K08",
+      "required": false
+    },
+    {
+      "program": "FTE_KY_THUAT_HANG_KHONG_2024",
+      "block": "K14",
+      "required": true
+    },
+    {
+      "program": "FTE_KY_THUAT_HANG_KHONG_2024_CTTA",
+      "block": "K15",
+      "required": true
+    },
+    {
+      "program": "FTE_KY_THUAT_HANG_KHONG_2025_CTTA",
+      "block": "K15",
+      "required": true
+    },
+    {
+      "program": "FTE_KY_THUAT_HANG_KHONG_2026",
+      "block": "K16",
+      "required": true
+    },
+    {
+      "program": "FTE_TS_245_2026_TA",
+      "block": "K16",
+      "required": true
+    }
+  ],
+  "parts": [
+    "project"
+  ],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/TR4367",
+  "note": "Nhập từ CTĐT chính thức (Sổ tay HCMUT, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

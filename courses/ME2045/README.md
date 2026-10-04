@@ -1,15 +1,16 @@
-# ME2045 Kinh tế kỹ th uật
+# ME2045 Kinh tế Kỹ thuật
 
 <!-- File này do "npm run build" sinh từ catalog/courses/ME2045.json và items/. Chỉ sửa phần Mẹo học, giữa hai dòng meo-hoc. -->
 
 | Mục | Thông tin |
 |---|---|
 | Mã môn | ME2045 |
-| Tên | Kinh tế kỹ th uật / Engineering Economy KT |
+| Tên | Kinh tế Kỹ thuật / Engineering Economy |
 | Tín chỉ | 3 |
 | Khoa | Khoa Cơ khí |
 | Phần | Lý thuyết |
 | Trạng thái | Đang dạy |
+| Sổ tay HCMUT | [Trang môn trên Sổ tay HCMUT](https://hcmut.edu.vn/study/handbook/subject/ME2045) |
 
 ## Tài liệu
 

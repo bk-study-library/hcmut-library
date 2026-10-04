@@ -3,7 +3,7 @@
   "id": "ME2133",
   "code": "ME2133",
   "name": "Tiếp thị",
-  "nameEn": "Logi st i cs Market i ng",
+  "nameEn": "Logistics Marketing",
   "credits": 3,
   "faculty": "fme",
   "aliases": [],
@@ -11,19 +11,20 @@
   "programs": [
     {
       "program": "FME_CONG_NGHE_DET_MAY_2022",
-      "block": "K09",
-      "required": true
+      "block": "K05",
+      "required": false
     },
     {
       "program": "FME_CONG_NGHE_DET_MAY_2023",
-      "block": "K09",
-      "required": true
+      "block": "K05",
+      "required": false
     }
   ],
   "parts": [
     "theory"
   ],
   "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/ME2133",
   "note": "Nhập từ nguồn công khai (truy cập 03/10/2026).",
   "updated": "2026-10-04"
 }

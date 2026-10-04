@@ -1,0 +1,90 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "CI5009",
+  "code": "CI5009",
+  "name": "Đồ án Nghiên cứu Khoa học và Phát triển",
+  "nameEn": "RandD Training Project",
+  "credits": 1,
+  "faculty": "fce",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "FCE_KY_THUAT_VA_QUAN_LY_NUOC_DO_THI_PFIEV_2020_PFIEV",
+      "block": "K09",
+      "required": false
+    },
+    {
+      "program": "FCE_KY_THUAT_VA_QUAN_LY_NUOC_DO_THI_PFIEV_2021_PFIEV",
+      "block": "K09",
+      "required": false
+    },
+    {
+      "program": "FCE_KY_THUAT_VA_QUAN_LY_NUOC_DO_THI_PFIEV_2022_PFIEV",
+      "block": "K09",
+      "required": false
+    },
+    {
+      "program": "FCE_KY_THUAT_VA_QUAN_LY_NUOC_DO_THI_PFIEV_2023_PFIEV",
+      "block": "K09",
+      "required": false
+    },
+    {
+      "program": "FCE_KY_THUAT_VA_QUAN_LY_NUOC_DO_THI_PFIEV_2024_PFIEV",
+      "block": "K11",
+      "required": true
+    },
+    {
+      "program": "FCE_KY_THUAT_VA_QUAN_LY_NUOC_DO_THI_PFIEV_2026_PFIEV",
+      "block": "K12",
+      "required": true
+    },
+    {
+      "program": "FCE_KY_THUAT_XAY_DUNG_2020",
+      "block": "K16",
+      "required": false
+    },
+    {
+      "program": "FCE_KY_THUAT_XAY_DUNG_2020",
+      "block": "K17",
+      "required": false
+    },
+    {
+      "program": "FCE_KY_THUAT_XAY_DUNG_2020_PFIEV",
+      "block": "K12",
+      "required": false
+    },
+    {
+      "program": "FCE_KY_THUAT_XAY_DUNG_2021_PFIEV",
+      "block": "K09",
+      "required": false
+    },
+    {
+      "program": "FCE_KY_THUAT_XAY_DUNG_2022_PFIEV",
+      "block": "K09",
+      "required": false
+    },
+    {
+      "program": "FCE_KY_THUAT_XAY_DUNG_2023_PFIEV",
+      "block": "K09",
+      "required": false
+    },
+    {
+      "program": "FCE_KY_THUAT_XAY_DUNG_2024_PFIEV",
+      "block": "K11",
+      "required": true
+    },
+    {
+      "program": "FCE_KY_THUAT_XAY_DUNG_2026_PFIEV",
+      "block": "K12",
+      "required": true
+    }
+  ],
+  "parts": [
+    "project"
+  ],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/CI5009",
+  "note": "Nhập từ CTĐT chính thức (Sổ tay HCMUT, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

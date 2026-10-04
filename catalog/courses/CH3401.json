@@ -1,0 +1,30 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "CH3401",
+  "code": "CH3401",
+  "name": "Công nghệ sản xuất kháng sinh",
+  "nameEn": "Antibiotic Production Technology",
+  "credits": 3,
+  "faculty": "che",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "CHE_CONG_NGHE_SINH_HOC_2024",
+      "block": "K11",
+      "required": false
+    },
+    {
+      "program": "CHE_CONG_NGHE_SINH_HOC_2024_CTTA",
+      "block": "K12",
+      "required": false
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/CH3401",
+  "note": "Nhập từ CTĐT chính thức (Sổ tay HCMUT, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

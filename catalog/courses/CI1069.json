@@ -1,0 +1,395 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "CI1069",
+  "code": "CI1069",
+  "name": "Khoa học Trái đất",
+  "nameEn": "EarTh Science",
+  "credits": 4,
+  "faculty": "fce",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "FCE_CONG_NGHE_KY_THUAT_VAT_LIEU_XAY_DUNG_2019",
+      "block": "K02",
+      "required": false
+    },
+    {
+      "program": "FCE_CONG_NGHE_KY_THUAT_VAT_LIEU_XAY_DUNG_2020",
+      "block": "K02",
+      "required": false
+    },
+    {
+      "program": "FCE_CONG_NGHE_KY_THUAT_VAT_LIEU_XAY_DUNG_2021",
+      "block": "K02",
+      "required": false
+    },
+    {
+      "program": "FCE_CONG_NGHE_KY_THUAT_VAT_LIEU_XAY_DUNG_2022",
+      "block": "K02",
+      "required": false
+    },
+    {
+      "program": "FCE_CONG_NGHE_KY_THUAT_VAT_LIEU_XAY_DUNG_2023",
+      "block": "K02",
+      "required": false
+    },
+    {
+      "program": "FCE_CONG_NGHE_KY_THUAT_VAT_LIEU_XAY_DUNG_2024",
+      "block": "K02",
+      "required": true
+    },
+    {
+      "program": "FCE_CONG_NGHE_KY_THUAT_VAT_LIEU_XAY_DUNG_2026",
+      "block": "K02",
+      "required": true
+    },
+    {
+      "program": "FCE_KIEN_TRUC_2019",
+      "block": "K02",
+      "required": false
+    },
+    {
+      "program": "FCE_KIEN_TRUC_2020",
+      "block": "K02",
+      "required": false
+    },
+    {
+      "program": "FCE_KIEN_TRUC_2021",
+      "block": "K02",
+      "required": false
+    },
+    {
+      "program": "FCE_KIEN_TRUC_2022",
+      "block": "K02",
+      "required": false
+    },
+    {
+      "program": "FCE_KIEN_TRUC_2023",
+      "block": "K02",
+      "required": false
+    },
+    {
+      "program": "FCE_KIEN_TRUC_2024",
+      "block": "K02",
+      "required": true
+    },
+    {
+      "program": "FCE_KIEN_TRUC_2024_CTTA",
+      "block": "K02",
+      "required": true
+    },
+    {
+      "program": "FCE_KIEN_TRUC_2025_CTTA",
+      "block": "K02",
+      "required": true
+    },
+    {
+      "program": "FCE_KIEN_TRUC_2026",
+      "block": "K02",
+      "required": true
+    },
+    {
+      "program": "FCE_KIEN_TRUC_2026_CTTA",
+      "block": "K02",
+      "required": true
+    },
+    {
+      "program": "FCE_KIEN_TRUC_7580101X_2021",
+      "block": "K26",
+      "required": false
+    },
+    {
+      "program": "FCE_KIEN_TRUC_7580101X_2021",
+      "block": "K32",
+      "required": false
+    },
+    {
+      "program": "FCE_KIEN_TRUC_7580101X_2022",
+      "block": "K13",
+      "required": false
+    },
+    {
+      "program": "FCE_KIEN_TRUC_7580101X_2024",
+      "block": "K01",
+      "required": false
+    },
+    {
+      "program": "FCE_KINH_TE_XAY_DUNG_2024",
+      "block": "K02",
+      "required": true
+    },
+    {
+      "program": "FCE_KY_THUAT_CO_SO_HA_TANG_2019",
+      "block": "K02",
+      "required": false
+    },
+    {
+      "program": "FCE_KY_THUAT_CO_SO_HA_TANG_2020",
+      "block": "K02",
+      "required": false
+    },
+    {
+      "program": "FCE_KY_THUAT_CO_SO_HA_TANG_2021",
+      "block": "K02",
+      "required": false
+    },
+    {
+      "program": "FCE_KY_THUAT_CO_SO_HA_TANG_2022",
+      "block": "K02",
+      "required": false
+    },
+    {
+      "program": "FCE_KY_THUAT_CO_SO_HA_TANG_2023",
+      "block": "K02",
+      "required": false
+    },
+    {
+      "program": "FCE_KY_THUAT_CO_SO_HA_TANG_2024",
+      "block": "K02",
+      "required": true
+    },
+    {
+      "program": "FCE_KY_THUAT_CO_SO_HA_TANG_2026",
+      "block": "K02",
+      "required": true
+    },
+    {
+      "program": "FCE_KY_THUAT_TRAC_DIA_BAN_DO_2019",
+      "block": "K02",
+      "required": false
+    },
+    {
+      "program": "FCE_KY_THUAT_TRAC_DIA_BAN_DO_2020",
+      "block": "K02",
+      "required": false
+    },
+    {
+      "program": "FCE_KY_THUAT_TRAC_DIA_BAN_DO_2021",
+      "block": "K02",
+      "required": false
+    },
+    {
+      "program": "FCE_KY_THUAT_TRAC_DIA_BAN_DO_2022",
+      "block": "K02",
+      "required": false
+    },
+    {
+      "program": "FCE_KY_THUAT_TRAC_DIA_BAN_DO_2023",
+      "block": "K02",
+      "required": false
+    },
+    {
+      "program": "FCE_KY_THUAT_TRAC_DIA_BAN_DO_2024",
+      "block": "K02",
+      "required": true
+    },
+    {
+      "program": "FCE_KY_THUAT_TRAC_DIA_BAN_DO_2026",
+      "block": "K02",
+      "required": true
+    },
+    {
+      "program": "FCE_KY_THUAT_XAY_DUNG_2019",
+      "block": "K02",
+      "required": false
+    },
+    {
+      "program": "FCE_KY_THUAT_XAY_DUNG_2021",
+      "block": "K02",
+      "required": false
+    },
+    {
+      "program": "FCE_KY_THUAT_XAY_DUNG_2022",
+      "block": "K02",
+      "required": false
+    },
+    {
+      "program": "FCE_KY_THUAT_XAY_DUNG_2023",
+      "block": "K01",
+      "required": true
+    },
+    {
+      "program": "FCE_KY_THUAT_XAY_DUNG_2024",
+      "block": "K01",
+      "required": true
+    },
+    {
+      "program": "FCE_KY_THUAT_XAY_DUNG_2024_CNTN",
+      "block": "K01",
+      "required": true
+    },
+    {
+      "program": "FCE_KY_THUAT_XAY_DUNG_2024_CTTA",
+      "block": "K01",
+      "required": true
+    },
+    {
+      "program": "FCE_KY_THUAT_XAY_DUNG_2025_CNTN",
+      "block": "K01",
+      "required": true
+    },
+    {
+      "program": "FCE_KY_THUAT_XAY_DUNG_2025_CTTA",
+      "block": "K01",
+      "required": true
+    },
+    {
+      "program": "FCE_KY_THUAT_XAY_DUNG_2026",
+      "block": "K02",
+      "required": true
+    },
+    {
+      "program": "FCE_KY_THUAT_XAY_DUNG_2026_CNTN",
+      "block": "K02",
+      "required": true
+    },
+    {
+      "program": "FCE_KY_THUAT_XAY_DUNG_2026_CTTA",
+      "block": "K02",
+      "required": true
+    },
+    {
+      "program": "FCE_KY_THUAT_XAY_DUNG_CONG_TRINH_BIEN_2019",
+      "block": "K02",
+      "required": false
+    },
+    {
+      "program": "FCE_KY_THUAT_XAY_DUNG_CONG_TRINH_BIEN_2020",
+      "block": "K02",
+      "required": false
+    },
+    {
+      "program": "FCE_KY_THUAT_XAY_DUNG_CONG_TRINH_BIEN_2021",
+      "block": "K02",
+      "required": false
+    },
+    {
+      "program": "FCE_KY_THUAT_XAY_DUNG_CONG_TRINH_BIEN_2022",
+      "block": "K02",
+      "required": false
+    },
+    {
+      "program": "FCE_KY_THUAT_XAY_DUNG_CONG_TRINH_BIEN_2023",
+      "block": "K02",
+      "required": false
+    },
+    {
+      "program": "FCE_KY_THUAT_XAY_DUNG_CONG_TRINH_BIEN_2024",
+      "block": "K02",
+      "required": true
+    },
+    {
+      "program": "FCE_KY_THUAT_XAY_DUNG_CONG_TRINH_BIEN_2026",
+      "block": "K02",
+      "required": true
+    },
+    {
+      "program": "FCE_KY_THUAT_XAY_DUNG_CONG_TRINH_GIAO_THONG_2019",
+      "block": "K02",
+      "required": false
+    },
+    {
+      "program": "FCE_KY_THUAT_XAY_DUNG_CONG_TRINH_GIAO_THONG_2020",
+      "block": "K02",
+      "required": false
+    },
+    {
+      "program": "FCE_KY_THUAT_XAY_DUNG_CONG_TRINH_GIAO_THONG_2021",
+      "block": "K02",
+      "required": false
+    },
+    {
+      "program": "FCE_KY_THUAT_XAY_DUNG_CONG_TRINH_GIAO_THONG_2022",
+      "block": "K02",
+      "required": false
+    },
+    {
+      "program": "FCE_KY_THUAT_XAY_DUNG_CONG_TRINH_GIAO_THONG_2023",
+      "block": "K02",
+      "required": false
+    },
+    {
+      "program": "FCE_KY_THUAT_XAY_DUNG_CONG_TRINH_GIAO_THONG_2024",
+      "block": "K02",
+      "required": true
+    },
+    {
+      "program": "FCE_KY_THUAT_XAY_DUNG_CONG_TRINH_GIAO_THONG_2024_CNTN",
+      "block": "K02",
+      "required": true
+    },
+    {
+      "program": "FCE_KY_THUAT_XAY_DUNG_CONG_TRINH_GIAO_THONG_2024_CTTA",
+      "block": "K02",
+      "required": true
+    },
+    {
+      "program": "FCE_KY_THUAT_XAY_DUNG_CONG_TRINH_GIAO_THONG_2025_CNTN",
+      "block": "K02",
+      "required": true
+    },
+    {
+      "program": "FCE_KY_THUAT_XAY_DUNG_CONG_TRINH_GIAO_THONG_2026",
+      "block": "K02",
+      "required": true
+    },
+    {
+      "program": "FCE_KY_THUAT_XAY_DUNG_CONG_TRINH_GIAO_THONG_2026_CNTN",
+      "block": "K02",
+      "required": true
+    },
+    {
+      "program": "FCE_KY_THUAT_XAY_DUNG_CONG_TRINH_GIAO_THONG_2026_CTTA",
+      "block": "K02",
+      "required": true
+    },
+    {
+      "program": "FCE_KY_THUAT_XAY_DUNG_CONG_TRINH_THUY_2019",
+      "block": "K02",
+      "required": false
+    },
+    {
+      "program": "FCE_KY_THUAT_XAY_DUNG_CONG_TRINH_THUY_2020",
+      "block": "K02",
+      "required": false
+    },
+    {
+      "program": "FCE_KY_THUAT_XAY_DUNG_CONG_TRINH_THUY_2021",
+      "block": "K02",
+      "required": false
+    },
+    {
+      "program": "FCE_KY_THUAT_XAY_DUNG_CONG_TRINH_THUY_2022",
+      "block": "K02",
+      "required": false
+    },
+    {
+      "program": "FCE_KY_THUAT_XAY_DUNG_CONG_TRINH_THUY_2023",
+      "block": "K02",
+      "required": false
+    },
+    {
+      "program": "FCE_KY_THUAT_XAY_DUNG_CONG_TRINH_THUY_2024",
+      "block": "K02",
+      "required": true
+    },
+    {
+      "program": "FCE_KY_THUAT_XAY_DUNG_CONG_TRINH_THUY_2026",
+      "block": "K02",
+      "required": true
+    },
+    {
+      "program": "FCE_TS_148_2026",
+      "block": "K02",
+      "required": true
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/CI1069",
+  "note": "Nhập từ CTĐT chính thức (Sổ tay HCMUT, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

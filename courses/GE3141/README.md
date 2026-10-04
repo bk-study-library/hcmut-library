@@ -10,6 +10,7 @@
 | Khoa | Khoa Kỹ thuật Địa chất và Dầu khí |
 | Phần | Lý thuyết |
 | Trạng thái | Đang dạy |
+| Sổ tay HCMUT | [Trang môn trên Sổ tay HCMUT](https://hcmut.edu.vn/study/handbook/subject/GE3141) |
 | Mã, tên cũ | GE3025 Địa thống kê |
 | Thay cho | [GE3025](../GE3025/README.md) |
 | Môn liên quan | [GE3213](../GE3213/README.md) Địa thống kê ứng dụng trong kỹ thuật dầu khí, [GE3215](../GE3215/README.md) Địa thống kê ứng dụng |

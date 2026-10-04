@@ -1,0 +1,42 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "CI213D",
+  "code": "CI213D",
+  "name": "Cơ học đất (Mở rộng)",
+  "credits": 0,
+  "faculty": "fce",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "FCE_KY_THUAT_XAY_DUNG_2024_CNTN",
+      "block": "K13",
+      "required": false
+    },
+    {
+      "program": "FCE_KY_THUAT_XAY_DUNG_2025_CNTN",
+      "block": "K13",
+      "required": false
+    },
+    {
+      "program": "FCE_KY_THUAT_XAY_DUNG_2026_CNTN",
+      "block": "K14",
+      "required": false
+    },
+    {
+      "program": "FCE_KY_THUAT_XAY_DUNG_CONG_TRINH_GIAO_THONG_2024_CNTN",
+      "block": "K13",
+      "required": false
+    },
+    {
+      "program": "FCE_KY_THUAT_XAY_DUNG_CONG_TRINH_GIAO_THONG_2025_CNTN",
+      "block": "K13",
+      "required": false
+    }
+  ],
+  "parts": [],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/CI213D",
+  "note": "Nhập từ CTĐT chính thức (Sổ tay HCMUT, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

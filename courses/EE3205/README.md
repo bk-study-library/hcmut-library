@@ -1,15 +1,16 @@
-# EE3205 Mạch điện tử nâng caox
+# EE3205 Mạch điện tử nâng cao
 
 <!-- File này do "npm run build" sinh từ catalog/courses/EE3205.json và items/. Chỉ sửa phần Mẹo học, giữa hai dòng meo-hoc. -->
 
 | Mục | Thông tin |
 |---|---|
 | Mã môn | EE3205 |
-| Tên | Mạch điện tử nâng caox / Advanced Electronic Circuits |
+| Tên | Mạch điện tử nâng cao / Advanced Electronic Circuits |
 | Tín chỉ | 3 |
 | Khoa | Khoa Điện - Điện tử |
 | Phần | Lý thuyết |
 | Trạng thái | Đang dạy |
+| Sổ tay HCMUT | [Trang môn trên Sổ tay HCMUT](https://hcmut.edu.vn/study/handbook/subject/EE3205) |
 
 ## Tài liệu
 

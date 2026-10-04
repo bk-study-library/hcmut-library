@@ -11,17 +11,17 @@
   "programs": [
     {
       "program": "FME_CONG_NGHE_DET_MAY_2019",
-      "block": "K02",
+      "block": "K05",
+      "required": false
+    },
+    {
+      "program": "FME_CONG_NGHE_DET_MAY_2020",
+      "block": "K05",
       "required": false
     },
     {
       "program": "FME_CONG_NGHE_DET_MAY_2021",
-      "block": "K10",
-      "required": true
-    },
-    {
-      "program": "FME_CONG_NGHE_DET_MAY_2020",
-      "block": "K02",
+      "block": "K05",
       "required": false
     }
   ],
@@ -29,6 +29,7 @@
     "lab"
   ],
   "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/ME2033",
   "note": "Nhập từ nguồn công khai (truy cập 03/10/2026).",
   "updated": "2026-10-04"
 }

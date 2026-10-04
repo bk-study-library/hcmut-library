@@ -10,23 +10,173 @@
   "status": "active",
   "programs": [
     {
-      "program": "DEE_KY_THUAT_DIEU_KHIEN_VA_TU_DONG_HOA_2024",
-      "block": "K05",
-      "required": true
-    },
-    {
-      "program": "DEE_THIET_KE_VI_MACH_2024",
-      "block": "K05",
-      "required": true
-    },
-    {
       "program": "DEE_KY_THUAT_DIEN_2024",
-      "block": "K05",
+      "block": "K08",
+      "required": true
+    },
+    {
+      "program": "DEE_KY_THUAT_DIEN_2024_CNTN",
+      "block": "K08",
+      "required": true
+    },
+    {
+      "program": "DEE_KY_THUAT_DIEN_2024_CTQT",
+      "block": "K11",
+      "required": true
+    },
+    {
+      "program": "DEE_KY_THUAT_DIEN_2025_CNTN",
+      "block": "K08",
+      "required": true
+    },
+    {
+      "program": "DEE_KY_THUAT_DIEN_2025_CTQT",
+      "block": "K11",
+      "required": true
+    },
+    {
+      "program": "DEE_KY_THUAT_DIEN_2025_CTTA",
+      "block": "K09",
+      "required": true
+    },
+    {
+      "program": "DEE_KY_THUAT_DIEN_2026",
+      "block": "K09",
+      "required": true
+    },
+    {
+      "program": "DEE_KY_THUAT_DIEN_2026_CNTN",
+      "block": "K09",
+      "required": true
+    },
+    {
+      "program": "DEE_KY_THUAT_DIEN_2026_CTQT",
+      "block": "K11",
+      "required": true
+    },
+    {
+      "program": "DEE_KY_THUAT_DIEN_2026_CTTA",
+      "block": "K09",
       "required": true
     },
     {
       "program": "DEE_KY_THUAT_DIEN_TU_VIEN_THONG_2024",
-      "block": "K05",
+      "block": "K08",
+      "required": true
+    },
+    {
+      "program": "DEE_KY_THUAT_DIEN_TU_VIEN_THONG_2024_CNTN",
+      "block": "K08",
+      "required": true
+    },
+    {
+      "program": "DEE_KY_THUAT_DIEN_TU_VIEN_THONG_2025_CNTN",
+      "block": "K08",
+      "required": true
+    },
+    {
+      "program": "DEE_KY_THUAT_DIEN_TU_VIEN_THONG_2026",
+      "block": "K09",
+      "required": true
+    },
+    {
+      "program": "DEE_KY_THUAT_DIEN_TU_VIEN_THONG_2026_CNTN",
+      "block": "K09",
+      "required": true
+    },
+    {
+      "program": "DEE_KY_THUAT_DIEU_KHIEN_VA_TU_DONG_HOA_2024",
+      "block": "K08",
+      "required": true
+    },
+    {
+      "program": "DEE_KY_THUAT_DIEU_KHIEN_VA_TU_DONG_HOA_2024_CNTN",
+      "block": "K08",
+      "required": true
+    },
+    {
+      "program": "DEE_KY_THUAT_DIEU_KHIEN_VA_TU_DONG_HOA_2025_CNTN",
+      "block": "K08",
+      "required": true
+    },
+    {
+      "program": "DEE_KY_THUAT_DIEU_KHIEN_VA_TU_DONG_HOA_2026",
+      "block": "K09",
+      "required": true
+    },
+    {
+      "program": "DEE_KY_THUAT_DIEU_KHIEN_VA_TU_DONG_HOA_2026_CNTN",
+      "block": "K09",
+      "required": true
+    },
+    {
+      "program": "DEE_KY_THUAT_DIEU_KHIEN_VA_TU_DONG_HOA_2026_CTTA",
+      "block": "K09",
+      "required": true
+    },
+    {
+      "program": "DEE_THIET_KE_VI_MACH_2023",
+      "block": "K03",
+      "required": false
+    },
+    {
+      "program": "DEE_THIET_KE_VI_MACH_2024",
+      "block": "K08",
+      "required": true
+    },
+    {
+      "program": "DEE_THIET_KE_VI_MACH_2024_CNTN",
+      "block": "K08",
+      "required": true
+    },
+    {
+      "program": "DEE_THIET_KE_VI_MACH_2025_CNTN",
+      "block": "K08",
+      "required": true
+    },
+    {
+      "program": "DEE_THIET_KE_VI_MACH_2025_CTTA",
+      "block": "K09",
+      "required": true
+    },
+    {
+      "program": "DEE_THIET_KE_VI_MACH_2026",
+      "block": "K09",
+      "required": true
+    },
+    {
+      "program": "DEE_THIET_KE_VI_MACH_2026_CNTN",
+      "block": "K09",
+      "required": true
+    },
+    {
+      "program": "DEE_TS_258_2026_TA",
+      "block": "K09",
+      "required": true
+    },
+    {
+      "program": "FTE_KY_THUAT_GIAO_THONG_THONG_MINH_2027",
+      "block": "K12",
+      "required": false
+    },
+    {
+      "program": "FTE_TS_142_2026",
+      "block": "K12",
+      "required": false
+    },
+    {
+      "program": "FTE_TS_242_2026_TA",
+      "block": "K12",
+      "required": false
+    },
+    {
+      "program": "UNKNOWN_TS_159_2026",
+      "block": "K09",
+      "required": true
+    },
+    {
+      "program": "UNKNOWN_TS_259_2026_TA",
+      "block": "K09",
       "required": true
     }
   ],
@@ -34,6 +184,7 @@
     "theory"
   ],
   "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/EE2081",
   "note": "Nhập từ nguồn công khai (truy cập 03/10/2026).",
   "updated": "2026-10-04"
 }

@@ -10,54 +10,39 @@
   "status": "active",
   "programs": [
     {
+      "program": "GEOPET_KY_THUAT_DIA_CHAT_2019",
+      "block": "K05",
+      "required": false
+    },
+    {
+      "program": "GEOPET_KY_THUAT_DIA_CHAT_2020",
+      "block": "K05",
+      "required": false
+    },
+    {
+      "program": "GEOPET_KY_THUAT_DIA_CHAT_2021",
+      "block": "K05",
+      "required": false
+    },
+    {
+      "program": "GEOPET_KY_THUAT_DIA_CHAT_2022",
+      "block": "K05",
+      "required": false
+    },
+    {
+      "program": "GEOPET_KY_THUAT_DIA_CHAT_2023",
+      "block": "K05",
+      "required": false
+    },
+    {
       "program": "GEOPET_KY_THUAT_DIA_CHAT_2024",
       "block": "K11",
       "required": false
     },
     {
-      "program": "GEOPET_KY_THUAT_DIA_CHAT_2023",
-      "block": "K10",
+      "program": "GEOPET_TS_151_2026",
+      "block": "K11",
       "required": true
-    },
-    {
-      "program": "GEOPET_KY_THUAT_DIA_CHAT_2022",
-      "block": "K12",
-      "required": true
-    },
-    {
-      "program": "GEOPET_KY_THUAT_DIA_CHAT_2022",
-      "block": "K23",
-      "required": false
-    },
-    {
-      "program": "GEOPET_KY_THUAT_DIA_CHAT_2021",
-      "block": "K12",
-      "required": true
-    },
-    {
-      "program": "GEOPET_KY_THUAT_DIA_CHAT_2021",
-      "block": "K25",
-      "required": false
-    },
-    {
-      "program": "GEOPET_KY_THUAT_DIA_CHAT_2020",
-      "block": "K03",
-      "required": false
-    },
-    {
-      "program": "GEOPET_KY_THUAT_DIA_CHAT_2020",
-      "block": "K06",
-      "required": false
-    },
-    {
-      "program": "GEOPET_KY_THUAT_DIA_CHAT_2019",
-      "block": "K03",
-      "required": false
-    },
-    {
-      "program": "GEOPET_KY_THUAT_DIA_CHAT_2019",
-      "block": "K06",
-      "required": false
     }
   ],
   "parts": [
@@ -66,6 +51,7 @@
   "related": [
     "GE3079"
   ],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/GE3203",
   "note": "Nhập từ nguồn công khai (truy cập 03/10/2026).",
   "updated": "2026-10-04"
 }

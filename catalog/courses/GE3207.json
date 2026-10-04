@@ -2,7 +2,7 @@
   "$schema": "../../schema/course.schema.json",
   "id": "GE3207",
   "code": "GE3207",
-  "name": "nghiệp khác",
+  "name": "Công nghệ chế biến dầu khí phục vụ cho các ngành công nghiệp khác",
   "nameEn": "Petroleum Rafinery Technology to Create Input Products for",
   "credits": 3,
   "faculty": "geopet",
@@ -10,13 +10,13 @@
   "status": "active",
   "programs": [
     {
-      "program": "GEOPET_KY_THUAT_DAU_KHI_2020",
-      "block": "K04",
+      "program": "GEOPET_KY_THUAT_DAU_KHI_2019",
+      "block": "K06",
       "required": false
     },
     {
-      "program": "GEOPET_KY_THUAT_DAU_KHI_2019",
-      "block": "K04",
+      "program": "GEOPET_KY_THUAT_DAU_KHI_2020",
+      "block": "K06",
       "required": false
     }
   ],
@@ -24,6 +24,7 @@
     "theory"
   ],
   "related": [],
-  "note": "Nhập từ nguồn công khai (truy cập 03/10/2026).",
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/GE3207",
+  "note": "Nhập từ nguồn công khai (truy cập 03/10/2026). Tên lấy từ Kế hoạch giảng dạy (PDF của trường). Chờ người duyệt xác nhận.",
   "updated": "2026-10-04"
 }

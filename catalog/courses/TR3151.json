@@ -1,0 +1,30 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "TR3151",
+  "code": "TR3151",
+  "name": "Tổ chức khai thác và quản lý vùng nước cảng",
+  "nameEn": "Ports Organization and Management",
+  "credits": 3,
+  "faculty": "fte",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "FTE_KY_THUAT_TAU_THUY_2024",
+      "block": "K11",
+      "required": false
+    },
+    {
+      "program": "FTE_KY_THUAT_TAU_THUY_HANG_KHONG_SN_2024_SN",
+      "block": "K11",
+      "required": false
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/TR3151",
+  "note": "Nhập từ CTĐT chính thức (Sổ tay HCMUT, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

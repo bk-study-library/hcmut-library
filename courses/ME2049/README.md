@@ -5,11 +5,12 @@
 | Mục | Thông tin |
 |---|---|
 | Mã môn | ME2049 |
-| Tên | ứng dụng máy tính trong công nghiệp / Computer Applications for Industrial Engineering KT |
+| Tên | ứng dụng máy tính trong công nghiệp / Computer Applications for Industrial Engineering |
 | Tín chỉ | 3 |
 | Khoa | Khoa Cơ khí |
 | Phần | Lý thuyết |
 | Trạng thái | Đang dạy |
+| Sổ tay HCMUT | [Trang môn trên Sổ tay HCMUT](https://hcmut.edu.vn/study/handbook/subject/ME2049) |
 
 ## Tài liệu
 

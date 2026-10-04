@@ -1,0 +1,30 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "AS2075",
+  "code": "AS2075",
+  "name": "Cơ học lượng tử, Vật lý nguyên tử và Vật lý hạt nhân nâng cao",
+  "nameEn": "Advanced Quantum Mechanics, Atomic Physics, and Nuclear Physics",
+  "credits": 4,
+  "faculty": "fas",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "FAS_TS_156_2026",
+      "block": "K03",
+      "required": false
+    },
+    {
+      "program": "FAS_TS_256_2026_TA",
+      "block": "K09",
+      "required": true
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/AS2075",
+  "note": "Nhập từ CTĐT chính thức (Sổ tay HCMUT, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

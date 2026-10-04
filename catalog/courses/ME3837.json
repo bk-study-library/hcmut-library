@@ -1,0 +1,32 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "ME3837",
+  "code": "ME3837",
+  "name": "Thực tập ngoài trường",
+  "credits": 5,
+  "faculty": "fme",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "FME_KY_THUAT_CO_KHI_2026_CNTN",
+      "block": "K16",
+      "required": true
+    },
+    {
+      "program": "FME_TS_109_2026",
+      "block": "K15",
+      "required": true
+    },
+    {
+      "program": "FME_TS_209_2026_TA",
+      "block": "K15",
+      "required": true
+    }
+  ],
+  "parts": [],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/ME3837",
+  "note": "Nhập từ CTĐT chính thức (Sổ tay HCMUT, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

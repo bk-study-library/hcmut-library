@@ -1,0 +1,40 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "CH4127",
+  "code": "CH4127",
+  "name": "Công nghệ chế biến khí thiên nhiên",
+  "nameEn": "Natural Gas Processing",
+  "credits": 3,
+  "faculty": "che",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "CHE_KY_THUAT_HOA_HOC_2024",
+      "block": "K13",
+      "required": false
+    },
+    {
+      "program": "CHE_KY_THUAT_HOA_HOC_2024_CTTA",
+      "block": "K14",
+      "required": false
+    },
+    {
+      "program": "CHE_KY_THUAT_HOA_HOC_2025_CNTN",
+      "block": "K13",
+      "required": false
+    },
+    {
+      "program": "CHE_KY_THUAT_HOA_HOC_2025_CTTA",
+      "block": "K14",
+      "required": false
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/CH4127",
+  "note": "Nhập từ CTĐT chính thức (Sổ tay HCMUT, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

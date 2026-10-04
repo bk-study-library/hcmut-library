@@ -1,15 +1,16 @@
-# EE2059 khiển và Tự động hóa)
+# EE2059 Đồ án 1 (KT Điện tử- Viễn thông & Kỹ thuật điều khiển và Tự động hóa)
 
 <!-- File này do "npm run build" sinh từ catalog/courses/EE2059.json và items/. Chỉ sửa phần Mẹo học, giữa hai dòng meo-hoc. -->
 
 | Mục | Thông tin |
 |---|---|
 | Mã môn | EE2059 |
-| Tên | khiển và Tự động hóa) / Project 1 |
+| Tên | Đồ án 1 (KT Điện tử- Viễn thông & Kỹ thuật điều khiển và Tự động hóa) / Project 1 |
 | Tín chỉ | 1 |
 | Khoa | Khoa Điện - Điện tử |
 | Phần | Lý thuyết |
 | Trạng thái | Đang dạy |
+| Sổ tay HCMUT | [Trang môn trên Sổ tay HCMUT](https://hcmut.edu.vn/study/handbook/subject/EE2059) |
 
 ## Tài liệu
 

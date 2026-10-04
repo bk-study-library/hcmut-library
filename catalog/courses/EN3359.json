@@ -1,0 +1,29 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "EN3359",
+  "code": "EN3359",
+  "name": "Drone và hệ thống thông tin địa lý (GIS)trong Logistics",
+  "credits": 3,
+  "faculty": "fenr",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "FME_TS_228_2026_TA",
+      "block": "K15",
+      "required": true
+    },
+    {
+      "program": "SIM_LOGISTICS_VA_QUAN_LY_CHUOI_CUNG_UNG_2026",
+      "block": "K15",
+      "required": true
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/EN3359",
+  "note": "Nhập từ CTĐT chính thức (Sổ tay HCMUT, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

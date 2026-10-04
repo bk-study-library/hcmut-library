@@ -1,0 +1,27 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "GE3577",
+  "code": "GE3577",
+  "name": "Thực tập ngoài trường",
+  "credits": 4,
+  "faculty": "geopet",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "GEOPET_TS_150_2026",
+      "block": "K16",
+      "required": true
+    },
+    {
+      "program": "GEOPET_TS_220_2026_TA",
+      "block": "K16",
+      "required": true
+    }
+  ],
+  "parts": [],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/GE3577",
+  "note": "Nhập từ CTĐT chính thức (Sổ tay HCMUT, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

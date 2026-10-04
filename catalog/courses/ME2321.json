@@ -11,7 +11,27 @@
   "programs": [
     {
       "program": "FME_LOGISTICS_VA_QUAN_LY_CHUOI_CUNG_UNG_2024",
-      "block": "K12",
+      "block": "K08",
+      "required": true
+    },
+    {
+      "program": "FME_TS_228_2026_TA",
+      "block": "K09",
+      "required": true
+    },
+    {
+      "program": "SIM_LOGISTICS_VA_QUAN_LY_CHUOI_CUNG_UNG_2024_CTTA",
+      "block": "K09",
+      "required": true
+    },
+    {
+      "program": "SIM_LOGISTICS_VA_QUAN_LY_CHUOI_CUNG_UNG_2025_CTTA",
+      "block": "K09",
+      "required": true
+    },
+    {
+      "program": "SIM_LOGISTICS_VA_QUAN_LY_CHUOI_CUNG_UNG_2026",
+      "block": "K09",
       "required": true
     }
   ],
@@ -19,6 +39,7 @@
     "theory"
   ],
   "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/ME2321",
   "note": "Nhập từ nguồn công khai (truy cập 03/10/2026).",
   "updated": "2026-10-04"
 }

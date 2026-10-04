@@ -1,0 +1,60 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "IM3041",
+  "code": "IM3041",
+  "name": "Hệ Hỗ trợ Quyết định và Trí tuệ Kinh doanh",
+  "nameEn": "Decision Support and Business Intelligence Systems",
+  "credits": 3,
+  "faculty": "sim",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "CSE_TS_146_2026",
+      "block": "K12",
+      "required": false
+    },
+    {
+      "program": "CSE_TS_251_2026_TA",
+      "block": "K12",
+      "required": false
+    },
+    {
+      "program": "FAS_KHOA_HOC_DU_LIEU_2024",
+      "block": "K11",
+      "required": false
+    },
+    {
+      "program": "SIM_QUAN_LY_CONG_NGHIEP_2019",
+      "block": "K06",
+      "required": false
+    },
+    {
+      "program": "SIM_QUAN_LY_CONG_NGHIEP_2020",
+      "block": "K06",
+      "required": false
+    },
+    {
+      "program": "SIM_QUAN_LY_CONG_NGHIEP_2021",
+      "block": "K06",
+      "required": false
+    },
+    {
+      "program": "SIM_QUAN_LY_CONG_NGHIEP_2022",
+      "block": "K06",
+      "required": false
+    },
+    {
+      "program": "SIM_QUAN_LY_CONG_NGHIEP_2023",
+      "block": "K06",
+      "required": false
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/IM3041",
+  "note": "Nhập từ CTĐT chính thức (Sổ tay HCMUT, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

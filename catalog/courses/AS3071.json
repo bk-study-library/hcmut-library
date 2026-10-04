@@ -1,0 +1,60 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "AS3071",
+  "code": "AS3071",
+  "name": "Trường điện từ",
+  "nameEn": "Electromagnetic Field Theory",
+  "credits": 3,
+  "faculty": "fas",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "FAS_VAT_LY_KY_THUAT_2019",
+      "block": "K06",
+      "required": false
+    },
+    {
+      "program": "FAS_VAT_LY_KY_THUAT_2020",
+      "block": "K06",
+      "required": false
+    },
+    {
+      "program": "FAS_VAT_LY_KY_THUAT_2021",
+      "block": "K06",
+      "required": false
+    },
+    {
+      "program": "FAS_VAT_LY_KY_THUAT_2022",
+      "block": "K08",
+      "required": false
+    },
+    {
+      "program": "FAS_VAT_LY_KY_THUAT_2023",
+      "block": "K08",
+      "required": false
+    },
+    {
+      "program": "FAS_VAT_LY_KY_THUAT_2026_CTTA",
+      "block": "K14",
+      "required": false
+    },
+    {
+      "program": "UNKNOWN_TS_159_2026",
+      "block": "K12",
+      "required": false
+    },
+    {
+      "program": "UNKNOWN_TS_259_2026_TA",
+      "block": "K12",
+      "required": false
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/AS3071",
+  "note": "Nhập từ CTĐT chính thức (Sổ tay HCMUT, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

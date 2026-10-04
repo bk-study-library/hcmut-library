@@ -11,27 +11,27 @@
   "programs": [
     {
       "program": "FME_KY_THUAT_NHIET_2020",
-      "block": "K01",
-      "required": true
+      "block": "K04",
+      "required": false
     },
     {
       "program": "FME_KY_THUAT_NHIET_2021",
-      "block": "K09",
-      "required": true
+      "block": "K04",
+      "required": false
     },
     {
       "program": "FME_KY_THUAT_NHIET_2022",
-      "block": "K09",
-      "required": true
-    },
-    {
-      "program": "FME_KY_THUAT_NHIET_2024",
-      "block": "K12",
-      "required": true
+      "block": "K04",
+      "required": false
     },
     {
       "program": "FME_KY_THUAT_NHIET_2023",
-      "block": "K09",
+      "block": "K04",
+      "required": false
+    },
+    {
+      "program": "FME_KY_THUAT_NHIET_2024",
+      "block": "K08",
       "required": true
     }
   ],
@@ -39,6 +39,7 @@
     "theory"
   ],
   "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/ME2129",
   "note": "Nhập từ nguồn công khai (truy cập 03/10/2026).",
   "updated": "2026-10-04"
 }

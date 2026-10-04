@@ -7,9 +7,10 @@
 | Mã môn | PE1019 |
 | Tên | Bơi (học Phần 1) / Swimming |
 | Tín chỉ | 0 |
-| Khoa | Giáo dục thể chất và Quốc phòng (chưa xác định đơn vị) |
+| Khoa | Môn chung toàn trường |
 | Phần | chưa ghi |
 | Trạng thái | Đang dạy |
+| Sổ tay HCMUT | [Trang môn trên Sổ tay HCMUT](https://hcmut.edu.vn/study/handbook/subject/PE1019) |
 
 ## Tài liệu
 

@@ -8,13 +8,7 @@
   "faculty": "geopet",
   "aliases": [],
   "status": "active",
-  "programs": [
-    {
-      "program": "GEOPET_KY_THUAT_DIA_CHAT_2023",
-      "block": "K14",
-      "required": true
-    }
-  ],
+  "programs": [],
   "parts": [
     "theory"
   ],

@@ -5,11 +5,12 @@
 | Mục | Thông tin |
 |---|---|
 | Mã môn | ME3257 |
-| Tên | Mô hình ra quyết định trong chuỗi cung ứng / Decision Making Models in Supply Chain KT |
+| Tên | Mô hình ra quyết định trong chuỗi cung ứng / Decision Making Models in Supply Chain |
 | Tín chỉ | 3 |
 | Khoa | Khoa Cơ khí |
 | Phần | Lý thuyết |
 | Trạng thái | Đang dạy |
+| Sổ tay HCMUT | [Trang môn trên Sổ tay HCMUT](https://hcmut.edu.vn/study/handbook/subject/ME3257) |
 
 ## Tài liệu
 

@@ -1,0 +1,35 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "TR1011",
+  "code": "TR1011",
+  "name": "Nhập môn về kỹ thuật Phương tiện không người lái",
+  "nameEn": "Introduction to Autonomous Vehicle Engineering",
+  "credits": 3,
+  "faculty": "fte",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "FTE_KY_THUAT_PHUONG_TIEN_KHONG_NGUOI_LAI_2027",
+      "block": "K04",
+      "required": true
+    },
+    {
+      "program": "FTE_KY_THUAT_PHUONG_TIEN_KHONG_NGUOI_LAI_2027_CTTA",
+      "block": "K04",
+      "required": true
+    },
+    {
+      "program": "FTE_KY_THUAT_PHUONG_TIEN_KHONG_NGUOI_LAI_75201XX_2027",
+      "block": "K04",
+      "required": true
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/TR1011",
+  "note": "Nhập từ CTĐT chính thức (Sổ tay HCMUT, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

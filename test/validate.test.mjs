@@ -63,6 +63,71 @@ test('catalog/site.json thật: programPdfHosts chỉ gồm Drive và tên miề
   const site = JSON.parse(fs.readFileSync(path.join(TOOL_ROOT, 'catalog', 'site.json'), 'utf8'));
   assert.deepEqual(site.programPdfHosts, ['drive.google.com', 'hcmut.edu.vn', '*.hcmut.edu.vn']);
   assert.match(site.officialProgramsPage, /^https:\/\/hcmut\.edu\.vn\//);
+  assert.deepEqual(site.handbookHosts, ['hcmut.edu.vn']);
+  assert.equal(site.sharedFaculty, 'chung');
+});
+
+// Fixture có thêm catalog/majors.json và chương trình TEST_2019 gắn ngành, có loại, bậc, vai trò khối, học kỳ đề xuất.
+function withMajor(d) {
+  writeJson(d, 'catalog/majors.json', {
+    updated: '2026-10-04',
+    majors: [{ code: '7520201', name: 'Kỹ thuật Điện', faculty: 'EE', level: 'dai-hoc', programTypes: ['CQ'], handbookUrl: 'https://hcmut.edu.vn/study/handbook/course/undergraduate/7520201?program=CQ' }],
+  });
+  editJson(d, 'catalog/programs/TEST_2019.json', (p) => {
+    Object.assign(p, { major: '7520201', type: 'CQ', level: 'dai-hoc', degree: 'cu-nhan', totalCredits: 132, handbookUrl: 'https://hcmut.edu.vn/study/handbook/course/undergraduate/7520201?program=CQ' });
+    Object.assign(p.blocks[0], { kind: 'co-so-nganh', coursesNeed: 1, semesters: { EE1009: 3 } });
+  });
+}
+
+test('ngành và trường mới của chương trình: hợp lệ khi đủ, báo lỗi đúng mã khi sai', () => {
+  const PROG = 'catalog/programs/TEST_2019.json';
+  const after = (fn) => errorsAfter((d) => { withMajor(d); fn(d); });
+  assert.deepEqual(after(() => {}), []);
+  assert.deepEqual(after((d) => editJson(d, PROG, (p) => { p.major = '7999999'; })), ['MAJOR_MISSING']);
+  assert.deepEqual(after((d) => editJson(d, PROG, (p) => { p.type = 'ABC'; })), ['SCHEMA']);
+  assert.deepEqual(after((d) => editJson(d, PROG, (p) => { p.level = 'cao-dang'; })), ['SCHEMA']);
+  assert.deepEqual(after((d) => editJson(d, PROG, (p) => { p.blocks[0].kind = 'khoi-la'; })), ['SCHEMA']);
+  assert.deepEqual(after((d) => editJson(d, PROG, (p) => { p.blocks[0].semesters = { EE1010: 2 }; })), ['SEMESTER_REF']);
+  assert.deepEqual(after((d) => editJson(d, PROG, (p) => { p.blocks[0].semesters = { EE1009: 0 }; })), ['SCHEMA']);
+  assert.deepEqual(after((d) => editJson(d, PROG, (p) => { p.blocks[0].semesters = { 'ee 1009': 1 }; })), ['SCHEMA', 'SEMESTER_REF']);
+  assert.deepEqual(after((d) => editJson(d, PROG, (p) => { p.blocks[0].requiredUnknown = true; })), ['BLOCK_REQUIRED']);
+  assert.deepEqual(after((d) => editJson(d, PROG, (p) => { p.handbookUrl = 'https://example.com/so-tay'; })), ['HANDBOOK_URL']);
+  assert.deepEqual(after((d) => editJson(d, 'catalog/courses/EE1009.json', (c) => { c.handbookUrl = 'https://hcmut.edu.vn/study/handbook/subject/EE1009'; })), []);
+  assert.deepEqual(after((d) => editJson(d, 'catalog/courses/EE1009.json', (c) => { c.handbookUrl = 'http://hcmut.edu.vn/x'; })), ['HANDBOOK_URL', 'SCHEMA']);
+  assert.deepEqual(after((d) => editJson(d, 'catalog/majors.json', (m) => { m.majors[0].faculty = 'khong-co'; })), ['FACULTY_MISSING']);
+  assert.deepEqual(after((d) => editJson(d, 'catalog/majors.json', (m) => { m.majors.push({ ...m.majors[0] }); })), ['DUP_ID']);
+  assert.deepEqual(after((d) => editJson(d, 'catalog/majors.json', (m) => { delete m.updated; m.majors[0].programTypes = ['XX']; })), ['SCHEMA']);
+  assert.deepEqual(after((d) => editJson(d, 'catalog/majors.json', (m) => { m.majors[0].handbookUrl = 'https://example.com/'; })), ['HANDBOOK_URL']);
+  // Không có catalog/majors.json mà chương trình ghi major: lỗi.
+  assert.deepEqual(after((d) => fs.rmSync(path.join(d, 'catalog', 'majors.json'))), ['MAJOR_MISSING']);
+});
+
+test('worker-catalog.json thật khớp summarize(index) của Worker; index.json không lặp programs của môn', async () => {
+  const { summarize } = await import('../worker/src/catalog.mjs');
+  const { workerCatalog } = await import('../scripts/lib/worker-catalog.mjs');
+  const index = buildIndex(loadRepo(TOOL_ROOT));
+  const file = JSON.parse(fs.readFileSync(path.join(TOOL_ROOT, 'worker-catalog.json'), 'utf8'));
+  assert.deepEqual(file, workerCatalog(index));
+  const fromIndex = summarize({ p: 1 }, JSON.parse(fs.readFileSync(path.join(TOOL_ROOT, 'index.json'), 'utf8')));
+  assert.deepEqual({ courses: file.courses, shas: file.shas, blocked: file.blocked }, { courses: fromIndex.courses, shas: fromIndex.shas, blocked: fromIndex.blocked });
+  assert.equal(file.schemaVersion, 1);
+  assert.equal(file.courses.length, index.counts.courses);
+  // Worker parse nhanh: file nhỏ hơn nhiều so với index.json.
+  assert.ok(fs.statSync(path.join(TOOL_ROOT, 'worker-catalog.json')).size < 512 * 1024);
+  const disk = JSON.parse(fs.readFileSync(path.join(TOOL_ROOT, 'index.json'), 'utf8'));
+  assert.ok(disk.faculties.every((f) => f.courses.every((c) => !('programs' in c))));
+  // Quan hệ môn, chương trình vẫn dựng lại được từ programs[].blocks[].courses.
+  const inBlocks = new Set(disk.programs.flatMap((p) => p.blocks.flatMap((b) => b.courses)));
+  for (const f of index.faculties) for (const c of f.courses) assert.equal(inBlocks.has(c.id), c.programs.length > 0, c.id);
+});
+
+test('index.json có danh sách ngành và counts.majors', () => {
+  const dir = copyFixture();
+  withMajor(dir);
+  const index = buildIndex(loadRepo(dir));
+  assert.equal(index.counts.majors, 1);
+  assert.deepEqual(index.majors.map((m) => m.code), ['7520201']);
+  assert.deepEqual(index.programs[0].blocks[0].semesters, { EE1009: 3 });
 });
 
 test('related, replacedBy, replaces phải trỏ tới môn có thật', () => {

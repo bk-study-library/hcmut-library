@@ -10,6 +10,7 @@
 | Khoa | Khoa Kỹ thuật Địa chất và Dầu khí |
 | Phần | Lý thuyết |
 | Trạng thái | Đang dạy |
+| Sổ tay HCMUT | [Trang môn trên Sổ tay HCMUT](https://hcmut.edu.vn/study/handbook/subject/GE4093) |
 | Mã, tên cũ | GE3059 Phân tích và dự báo khai thác dầu khí; GE3115 Quản lý mỏ và dự án dầu khí tích hợp |
 | Thay cho | [GE3059](../GE3059/README.md), [GE3115](../GE3115/README.md) |
 

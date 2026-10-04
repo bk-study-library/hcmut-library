@@ -1,15 +1,16 @@
-# EE3207 Thiết kế vi mạch tương tựx
+# EE3207 Thiết kế vi mạch tương tự
 
 <!-- File này do "npm run build" sinh từ catalog/courses/EE3207.json và items/. Chỉ sửa phần Mẹo học, giữa hai dòng meo-hoc. -->
 
 | Mục | Thông tin |
 |---|---|
 | Mã môn | EE3207 |
-| Tên | Thiết kế vi mạch tương tựx / Analog IC Design |
+| Tên | Thiết kế vi mạch tương tự / Analog IC Design |
 | Tín chỉ | 3 |
 | Khoa | Khoa Điện - Điện tử |
 | Phần | Lý thuyết |
 | Trạng thái | Đang dạy |
+| Sổ tay HCMUT | [Trang môn trên Sổ tay HCMUT](https://hcmut.edu.vn/study/handbook/subject/EE3207) |
 
 ## Tài liệu
 

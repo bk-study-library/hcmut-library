@@ -10,6 +10,7 @@
 | Khoa | Khoa Kỹ thuật Địa chất và Dầu khí |
 | Phần | Lý thuyết |
 | Trạng thái | Đang dạy |
+| Sổ tay HCMUT | [Trang môn trên Sổ tay HCMUT](https://hcmut.edu.vn/study/handbook/subject/GE1011) |
 | Mã, tên cũ | GE2007 Địa vật lý đại cương |
 | Thay cho | [GE2007](../GE2007/README.md) |
 

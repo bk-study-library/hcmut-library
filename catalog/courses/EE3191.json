@@ -1,0 +1,30 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "EE3191",
+  "code": "EE3191",
+  "name": "Cơ sở điều khiển tự động",
+  "nameEn": "Fundamentals of Control Systems",
+  "credits": 3,
+  "faculty": "dee",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "FAS_CO_KY_THUAT_2022",
+      "block": "K01",
+      "required": false
+    },
+    {
+      "program": "FAS_CO_KY_THUAT_2023",
+      "block": "K08",
+      "required": false
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/EE3191",
+  "note": "Nhập từ Kế hoạch giảng dạy (PDF của trường, truy cập 04/10/2026). Tên lấy từ PDF. Chờ người duyệt xác nhận.",
+  "updated": "2026-10-04"
+}

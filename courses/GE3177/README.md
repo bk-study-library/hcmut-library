@@ -10,6 +10,7 @@
 | Khoa | Khoa Kỹ thuật Địa chất và Dầu khí |
 | Phần | Lý thuyết |
 | Trạng thái | Đang dạy |
+| Sổ tay HCMUT | [Trang môn trên Sổ tay HCMUT](https://hcmut.edu.vn/study/handbook/subject/GE3177) |
 | Mã, tên cũ | GE3109 Phương pháp tìm kiếm thăm dò thẩm lượng dầu khí |
 | Thay cho | [GE3109](../GE3109/README.md) |
 

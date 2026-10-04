@@ -1,0 +1,45 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "ME5001",
+  "code": "ME5001",
+  "name": "Đồ án Chuyên ngành Cơ điện tử",
+  "nameEn": "Mechatronics System Design Project",
+  "credits": 2,
+  "faculty": "fme",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "FME_KY_THUAT_CO_DIEN_TU_2021_PFIEV",
+      "block": "K09",
+      "required": false
+    },
+    {
+      "program": "FME_KY_THUAT_CO_DIEN_TU_2022_PFIEV",
+      "block": "K09",
+      "required": false
+    },
+    {
+      "program": "FME_KY_THUAT_CO_DIEN_TU_2023_PFIEV",
+      "block": "K09",
+      "required": false
+    },
+    {
+      "program": "FME_KY_THUAT_CO_DIEN_TU_2024_PFIEV",
+      "block": "K16",
+      "required": true
+    },
+    {
+      "program": "FME_KY_THUAT_CO_DIEN_TU_2026_PFIEV",
+      "block": "K17",
+      "required": true
+    }
+  ],
+  "parts": [
+    "project"
+  ],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/ME5001",
+  "note": "Nhập từ CTĐT chính thức (Sổ tay HCMUT, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

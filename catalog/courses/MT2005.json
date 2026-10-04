@@ -1,0 +1,30 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "MT2005",
+  "code": "MT2005",
+  "name": "Phương trình Toán lý và Cơ sở toán ứng dụng",
+  "nameEn": "Equations of Physical Mathematics and Fundamentals of Applied Mathematics",
+  "credits": 3,
+  "faculty": "chung",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "UNKNOWN_TS_159_2026",
+      "block": "K09",
+      "required": true
+    },
+    {
+      "program": "UNKNOWN_TS_259_2026_TA",
+      "block": "K09",
+      "required": true
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/MT2005",
+  "note": "Nhập từ CTĐT chính thức (Sổ tay HCMUT, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

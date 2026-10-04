@@ -10,6 +10,7 @@
 | Khoa | Khoa Kỹ thuật Địa chất và Dầu khí |
 | Phần | Lý thuyết |
 | Trạng thái | Đang dạy |
+| Sổ tay HCMUT | [Trang môn trên Sổ tay HCMUT](https://hcmut.edu.vn/study/handbook/subject/GE3161) |
 | Mã, tên cũ | GE3053 Địa mạo - tân kiến tạo và trầm tích đệ tứ; GE4055 Đánh giá tác động môi trường |
 | Thay cho | [GE3053](../GE3053/README.md), [GE4055](../GE4055/README.md) |
 

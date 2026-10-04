@@ -1,15 +1,16 @@
-# ME3239 Công nghệ
+# ME3239 Công nghệ CNC
 
 <!-- File này do "npm run build" sinh từ catalog/courses/ME3239.json và items/. Chỉ sửa phần Mẹo học, giữa hai dòng meo-hoc. -->
 
 | Mục | Thông tin |
 |---|---|
 | Mã môn | ME3239 |
-| Tên | Công nghệ / CNC CNC Technology |
+| Tên | Công nghệ CNC / CNC CNC Technology |
 | Tín chỉ | 3 |
 | Khoa | Khoa Cơ khí |
 | Phần | Lý thuyết |
 | Trạng thái | Đang dạy |
+| Sổ tay HCMUT | [Trang môn trên Sổ tay HCMUT](https://hcmut.edu.vn/study/handbook/subject/ME3239) |
 
 ## Tài liệu
 

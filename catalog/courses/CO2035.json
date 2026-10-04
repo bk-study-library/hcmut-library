@@ -1,0 +1,125 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "CO2035",
+  "code": "CO2035",
+  "name": "Xử lý Tín hiệu số",
+  "nameEn": "Digital Signal Processing",
+  "credits": 3,
+  "faculty": "cse",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "CSE_KY_THUAT_MAY_TINH_2019",
+      "block": "K05",
+      "required": false
+    },
+    {
+      "program": "CSE_KY_THUAT_MAY_TINH_2020",
+      "block": "K12",
+      "required": false
+    },
+    {
+      "program": "CSE_KY_THUAT_MAY_TINH_2020",
+      "block": "K17",
+      "required": false
+    },
+    {
+      "program": "CSE_KY_THUAT_MAY_TINH_2020",
+      "block": "K22",
+      "required": false
+    },
+    {
+      "program": "CSE_KY_THUAT_MAY_TINH_2021",
+      "block": "K12",
+      "required": false
+    },
+    {
+      "program": "CSE_KY_THUAT_MAY_TINH_2021",
+      "block": "K17",
+      "required": false
+    },
+    {
+      "program": "CSE_KY_THUAT_MAY_TINH_2021",
+      "block": "K22",
+      "required": false
+    },
+    {
+      "program": "CSE_KY_THUAT_MAY_TINH_2022",
+      "block": "K05",
+      "required": false
+    },
+    {
+      "program": "CSE_KY_THUAT_MAY_TINH_2023",
+      "block": "K12",
+      "required": false
+    },
+    {
+      "program": "CSE_KY_THUAT_MAY_TINH_2023",
+      "block": "K17",
+      "required": false
+    },
+    {
+      "program": "CSE_KY_THUAT_MAY_TINH_2023",
+      "block": "K22",
+      "required": false
+    },
+    {
+      "program": "CSE_KY_THUAT_MAY_TINH_2024",
+      "block": "K15",
+      "required": false
+    },
+    {
+      "program": "CSE_KY_THUAT_MAY_TINH_2024",
+      "block": "K19",
+      "required": false
+    },
+    {
+      "program": "CSE_KY_THUAT_MAY_TINH_2024_CNTN",
+      "block": "K15",
+      "required": false
+    },
+    {
+      "program": "CSE_KY_THUAT_MAY_TINH_2024_CNTN",
+      "block": "K19",
+      "required": false
+    },
+    {
+      "program": "CSE_KY_THUAT_MAY_TINH_2025_CNTN",
+      "block": "K15",
+      "required": false
+    },
+    {
+      "program": "CSE_KY_THUAT_MAY_TINH_2025_CNTN",
+      "block": "K19",
+      "required": false
+    },
+    {
+      "program": "CSE_KY_THUAT_MAY_TINH_2026",
+      "block": "K16",
+      "required": false
+    },
+    {
+      "program": "CSE_KY_THUAT_MAY_TINH_2026",
+      "block": "K20",
+      "required": false
+    },
+    {
+      "program": "CSE_KY_THUAT_MAY_TINH_2026_CNTN",
+      "block": "K16",
+      "required": false
+    },
+    {
+      "program": "CSE_KY_THUAT_MAY_TINH_2026_CNTN",
+      "block": "K20",
+      "required": false
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/CO2035",
+  "note": "Nhập từ CTĐT chính thức (Sổ tay HCMUT, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

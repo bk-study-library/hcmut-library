@@ -1,0 +1,55 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "AS2069",
+  "code": "AS2069",
+  "name": "Phương pháp số cho khoa học dữ liệu",
+  "nameEn": "Numerical methods for data science",
+  "credits": 4,
+  "faculty": "fas",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "CSE_TS_146_2026",
+      "block": "K02",
+      "required": true
+    },
+    {
+      "program": "CSE_TS_251_2026_TA",
+      "block": "K02",
+      "required": true
+    },
+    {
+      "program": "FAS_KHOA_HOC_DU_LIEU_2024",
+      "block": "K01",
+      "required": true
+    },
+    {
+      "program": "SIM_QUAN_TRI_KINH_DOANH_2025",
+      "block": "K05",
+      "required": false
+    },
+    {
+      "program": "SIM_QUAN_TRI_KINH_DOANH_2025_CTTA",
+      "block": "K05",
+      "required": false
+    },
+    {
+      "program": "SIM_QUAN_TRI_KINH_DOANH_2026_CTTA",
+      "block": "K05",
+      "required": false
+    },
+    {
+      "program": "SIM_TS_153_2026",
+      "block": "K05",
+      "required": false
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/AS2069",
+  "note": "Nhập từ CTĐT chính thức (Sổ tay HCMUT, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

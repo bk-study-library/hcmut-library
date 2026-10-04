@@ -1,0 +1,105 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "EN1017",
+  "code": "EN1017",
+  "name": "Hóa Môi trường",
+  "nameEn": "Environmental Chemistry",
+  "credits": 3,
+  "faculty": "fenr",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "FENR_KINH_TE_TAI_NGUYEN_THIEN_NHIEN_2025",
+      "block": "K02",
+      "required": true
+    },
+    {
+      "program": "FENR_KINH_TE_TAI_NGUYEN_THIEN_NHIEN_2025_CTTA",
+      "block": "K02",
+      "required": true
+    },
+    {
+      "program": "FENR_KINH_TE_TAI_NGUYEN_THIEN_NHIEN_2026",
+      "block": "K02",
+      "required": true
+    },
+    {
+      "program": "FENR_KINH_TE_TAI_NGUYEN_THIEN_NHIEN_2026_CTTA",
+      "block": "K02",
+      "required": true
+    },
+    {
+      "program": "FENR_KY_THUAT_MOI_TRUONG_2024",
+      "block": "K02",
+      "required": true
+    },
+    {
+      "program": "FENR_KY_THUAT_MOI_TRUONG_2024_CNTN",
+      "block": "K02",
+      "required": true
+    },
+    {
+      "program": "FENR_KY_THUAT_MOI_TRUONG_2024_CTTA",
+      "block": "K02",
+      "required": true
+    },
+    {
+      "program": "FENR_KY_THUAT_MOI_TRUONG_2025_CNTN",
+      "block": "K02",
+      "required": true
+    },
+    {
+      "program": "FENR_KY_THUAT_MOI_TRUONG_2025_CTTA",
+      "block": "K02",
+      "required": true
+    },
+    {
+      "program": "FENR_KY_THUAT_MOI_TRUONG_2026",
+      "block": "K02",
+      "required": true
+    },
+    {
+      "program": "FENR_KY_THUAT_MOI_TRUONG_2026_CNTN",
+      "block": "K02",
+      "required": true
+    },
+    {
+      "program": "FENR_KY_THUAT_MOI_TRUONG_2026_CTTA",
+      "block": "K02",
+      "required": true
+    },
+    {
+      "program": "FENR_QUAN_LY_TAI_NGUYEN_VA_MOI_TRUONG_2024",
+      "block": "K02",
+      "required": true
+    },
+    {
+      "program": "FENR_QUAN_LY_TAI_NGUYEN_VA_MOI_TRUONG_2024_CTTA",
+      "block": "K02",
+      "required": true
+    },
+    {
+      "program": "FENR_QUAN_LY_TAI_NGUYEN_VA_MOI_TRUONG_2025_CTTA",
+      "block": "K02",
+      "required": true
+    },
+    {
+      "program": "FENR_QUAN_LY_TAI_NGUYEN_VA_MOI_TRUONG_2026",
+      "block": "K02",
+      "required": true
+    },
+    {
+      "program": "FENR_QUAN_LY_TAI_NGUYEN_VA_MOI_TRUONG_2026_CTTA",
+      "block": "K02",
+      "required": true
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/EN1017",
+  "note": "Nhập từ CTĐT chính thức (Sổ tay HCMUT, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

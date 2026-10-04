@@ -1,0 +1,27 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "CH210E",
+  "code": "CH210E",
+  "name": "Hóa lý 2 (Mở rộng)",
+  "credits": 0,
+  "faculty": "che",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "CHE_KY_THUAT_HOA_HOC_2025_CNTN",
+      "block": "K14",
+      "required": false
+    },
+    {
+      "program": "CHE_KY_THUAT_HOA_HOC_2026_CNTN",
+      "block": "K19",
+      "required": false
+    }
+  ],
+  "parts": [],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/CH210E",
+  "note": "Nhập từ CTĐT chính thức (Sổ tay HCMUT, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

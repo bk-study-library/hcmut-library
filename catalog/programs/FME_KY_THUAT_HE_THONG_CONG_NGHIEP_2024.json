@@ -3,50 +3,65 @@
   "code": "FME_KY_THUAT_HE_THONG_CONG_NGHIEP_2024",
   "name": "Kỹ thuật Hệ thống Công nghiệp",
   "nameEn": "Industrial and Systems Engineering",
-  "faculty": "fme",
+  "faculty": "sim",
   "year": "2024",
-  "source": "https://drive.google.com/file/d/10KQgqBQZA081VHUEUXgd0O3mY_n9lbDJ/view",
+  "major": "7520118",
+  "type": "CQ",
+  "level": "dai-hoc",
+  "degree": "cu-nhan",
+  "totalCredits": 132,
+  "source": "https://hcmut.edu.vn/study/handbook/course/undergraduate/7520118?program=CQ",
+  "ctdtUrl": "https://drive.google.com/file/d/10KQgqBQZA081VHUEUXgd0O3mY_n9lbDJ/view",
+  "planUrl": "https://drive.google.com/file/d/1W6fnDEeA4A5-z4a9V3Q6QpEi676nhUc0/view",
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/undergraduate/7520118?program=CQ",
   "blocks": [
     {
       "id": "K01",
-      "name": "A1. Toán (Mathematics)",
-      "group": "A. Toán và Khoa học tự nhiên (Mathematics and Basic Sciences)",
+      "name": "A.1. TOÁN",
+      "group": "A. TOÁN & KHOA HỌC TỰ NHIÊN",
+      "kind": "toan-khtn",
       "required": true,
-      "creditsNeed": 15,
+      "creditsNeed": 18,
       "courses": [
         "MT1003",
         "MT1005",
         "MT1007",
-        "MT2013"
-      ]
+        "MT2013",
+        "MT1009"
+      ],
+      "semesters": {
+        "MT1003": 1,
+        "MT1005": 2,
+        "MT1007": 2,
+        "MT2013": 4,
+        "MT1009": 3
+      }
     },
     {
       "id": "K02",
-      "name": "A2. Khoa học tự nhiên (Basic Sciences)",
-      "group": "A. Toán và Khoa học tự nhiên (Mathematics and Basic Sciences)",
+      "name": "A.2. KHOA HỌC TỰ NHIÊN",
+      "group": "A. TOÁN & KHOA HỌC TỰ NHIÊN",
+      "kind": "toan-khtn",
       "required": true,
-      "creditsNeed": 8,
+      "creditsNeed": 12,
       "courses": [
         "CH1003",
         "PH1003",
-        "PH1007"
-      ]
+        "PH1007",
+        "PH1005"
+      ],
+      "semesters": {
+        "CH1003": 1,
+        "PH1003": 1,
+        "PH1007": 2,
+        "PH1005": 2
+      }
     },
     {
       "id": "K03",
-      "name": "A3. Toán và Khoa học tự nhiên khác (Mathematics and Basic Sciences others)",
-      "group": "A. Toán và Khoa học tự nhiên (Mathematics and Basic Sciences)",
-      "required": true,
-      "creditsNeed": 7,
-      "courses": [
-        "MT1009",
-        "PH1005"
-      ]
-    },
-    {
-      "id": "K04",
-      "name": "B1. Kinh tế - Chính trị - Xã hội - Luật (Economic - Political - Social - The law)",
-      "group": "B. Giáo dục chung (General education)",
+      "name": "B.1. KINH TẾ - CHÍNH TRỊ - XÃ HỘI - LUẬT",
+      "group": "B. GIÁO DỤC CHUNG",
+      "kind": "ly-luan-chinh-tri",
       "required": true,
       "creditsNeed": 13,
       "courses": [
@@ -56,42 +71,63 @@
         "SP1035",
         "SP1037",
         "SP1039"
-      ]
+      ],
+      "semesters": {
+        "SP1007": 8,
+        "SP1031": 3,
+        "SP1033": 4,
+        "SP1035": 5,
+        "SP1037": 7,
+        "SP1039": 6
+      }
     },
     {
-      "id": "K05",
-      "name": "B2.1. Nhập môn (Introduction to Engineering)",
-      "group": "B. Giáo dục chung (General education)",
+      "id": "K04",
+      "name": "B.2. NHẬP MÔN",
+      "group": "B. GIÁO DỤC CHUNG",
+      "kind": "giao-duc-chung",
       "required": true,
       "creditsNeed": 3,
       "courses": [
         "ME1001"
-      ]
+      ],
+      "semesters": {
+        "ME1001": 1
+      }
     },
     {
-      "id": "K06",
-      "name": "B2.2. Quản lý (Management )",
-      "group": "B. Giáo dục chung (General education)",
+      "id": "K05",
+      "name": "B.3. KIẾN THỨC QUẢN LÝ/ KHỞI NGHIỆP",
+      "group": "B. GIÁO DỤC CHUNG",
+      "kind": "giao-duc-chung",
       "required": true,
       "creditsNeed": 3,
       "courses": [
         "ME2181"
-      ]
+      ],
+      "semesters": {
+        "ME2181": 5
+      }
     },
     {
-      "id": "K07",
-      "name": "B2.3. Con người và môi trường (Humans and Environment)",
-      "group": "B. Giáo dục chung (General education)",
+      "id": "K06",
+      "name": "B.4. KIẾN THỨC VỀ CON NGƯỜI VÀ MÔI TRƯỜNG/KỸ NĂNG NGHỀ NGHIỆP CHUYÊN NGHIỆP",
+      "group": "B. GIÁO DỤC CHUNG",
+      "kind": "giao-duc-chung",
       "required": true,
       "creditsNeed": 3,
       "courses": [
         "ME2177"
-      ]
+      ],
+      "semesters": {
+        "ME2177": 4
+      }
     },
     {
-      "id": "K08",
-      "name": "B3. Ngoại ngữ (Foreign Languages)",
-      "group": "B. Giáo dục chung (General education)",
+      "id": "K07",
+      "name": "B.5. NGOẠI NGỮ",
+      "group": "B. GIÁO DỤC CHUNG",
+      "kind": "ngoai-ngu",
       "required": true,
       "creditsNeed": 8,
       "courses": [
@@ -99,64 +135,19 @@
         "LA1005",
         "LA1007",
         "LA1009"
-      ]
+      ],
+      "semesters": {
+        "LA1003": 1,
+        "LA1005": 2,
+        "LA1007": 3,
+        "LA1009": 4
+      }
     },
     {
-      "id": "K09",
-      "name": "B4. Giáo dục quốc phòng (Military Trainning)",
-      "group": "B. Giáo dục chung (General education)",
-      "required": true,
-      "creditsNeed": 0,
-      "courses": [
-        "MI1003"
-      ]
-    },
-    {
-      "id": "K10",
-      "name": "B5.1. Giáo Dục Thể Chất Học Phần 1 (Physical Education - Session 1)",
-      "group": "B. Giáo dục chung (General education)",
-      "required": true,
-      "creditsNeed": 0,
-      "courses": [
-        "PE1009",
-        "PE1011",
-        "PE1013",
-        "PE1015",
-        "PE1017",
-        "PE1019",
-        "PE1021",
-        "PE1025",
-        "PE1027",
-        "PE1053",
-        "PE1057",
-        "PE1061"
-      ]
-    },
-    {
-      "id": "K11",
-      "name": "B5.2. Giáo Dục Thể Chất Học Phần 2 (Physical Education - Session 2)",
-      "group": "B. Giáo dục chung (General education)",
-      "required": true,
-      "creditsNeed": 0,
-      "courses": [
-        "PE1033",
-        "PE1035",
-        "PE1037",
-        "PE1039",
-        "PE1041",
-        "PE1043",
-        "PE1045",
-        "PE1049",
-        "PE1051",
-        "PE1055",
-        "PE1059",
-        "PE1063"
-      ]
-    },
-    {
-      "id": "K12",
-      "name": "C1.1. Cơ sở ngành (Core Courses)",
-      "group": "C. Cơ sở ngành/Ngành/Chuyên ngành (Core Courses/Speciality Courses)",
+      "id": "K08",
+      "name": "C.1. BẮT BUỘC CƠ SỞ NGÀNH",
+      "group": "C. CƠ SỞ NGÀNH",
+      "kind": "co-so-nganh",
       "required": true,
       "creditsNeed": 34,
       "courses": [
@@ -172,12 +163,36 @@
         "ME2147",
         "ME2149",
         "ME2319"
-      ]
+      ],
+      "semesters": {
+        "CI1003": 3,
+        "ME1009": 2,
+        "ME2045": 5,
+        "ME2049": 3,
+        "ME2051": 3,
+        "ME2123": 5,
+        "ME2139": 4,
+        "ME2141": 5,
+        "ME2143": 4,
+        "ME2147": 7,
+        "ME2149": 6,
+        "ME2319": 5
+      }
     },
     {
-      "id": "K13",
-      "name": "C1.2. Chuyên ngành (Speciality Courses)",
-      "group": "C. Cơ sở ngành/Ngành/Chuyên ngành (Core Courses/Speciality Courses)",
+      "id": "K09",
+      "name": "C.2. TỰ CHỌN CƠ SỞ NGÀNH",
+      "group": "C. CƠ SỞ NGÀNH",
+      "kind": "co-so-nganh",
+      "required": false,
+      "creditsNeed": 0,
+      "courses": []
+    },
+    {
+      "id": "K10",
+      "name": "D.1.1. BẮT BUỘC NGÀNH",
+      "group": "D. NGÀNH/CHUYÊN NGÀNH > D.1. NGÀNH",
+      "kind": "nganh",
       "required": true,
       "creditsNeed": 18,
       "courses": [
@@ -187,27 +202,157 @@
         "ME4031",
         "ME4607",
         "ME4615"
-      ]
+      ],
+      "semesters": {
+        "ME3161": 6,
+        "ME3225": 8,
+        "ME3229": 7,
+        "ME4031": 7,
+        "ME4607": 7,
+        "ME4615": 8
+      }
+    },
+    {
+      "id": "K11",
+      "name": "D.1.2. TỰ CHỌN NGÀNH",
+      "group": "D. NGÀNH/CHUYÊN NGÀNH > D.1. NGÀNH",
+      "kind": "tu-chon-nganh",
+      "required": false,
+      "creditsNeed": 0,
+      "courses": []
+    },
+    {
+      "id": "K12",
+      "name": "D.2. CHUYÊN NGÀNH",
+      "group": "D. NGÀNH/CHUYÊN NGÀNH",
+      "kind": "chuyen-nganh",
+      "required": true,
+      "creditsNeed": 0,
+      "courses": []
+    },
+    {
+      "id": "K13",
+      "name": "E. TỰ CHỌN (KHÁC)/TỰ DO",
+      "kind": "tu-chon-tu-do",
+      "required": false,
+      "creditsNeed": 12,
+      "courses": []
     },
     {
       "id": "K14",
-      "name": "C2. Tốt nghiệp bậc cử nhân (Graduation Practice/Projects)",
-      "group": "C. Cơ sở ngành/Ngành/Chuyên ngành (Core Courses/Speciality Courses)",
+      "name": "F. HỌC PHẦN TỐT NGHIỆP",
+      "kind": "tot-nghiep",
       "required": true,
       "creditsNeed": 8,
       "courses": [
         "ME3127",
         "ME4101",
         "ME4367"
-      ]
+      ],
+      "semesters": {
+        "ME3127": 6,
+        "ME4101": 7,
+        "ME4367": 8
+      }
     },
     {
       "id": "K15",
-      "name": "D. Điều kiện tốt nghiệp (Gradution Condition)",
+      "name": "G. GIÁO DỤC QUỐC PHÒNG",
+      "kind": "quoc-phong",
       "required": true,
       "creditsNeed": 0,
       "courses": [
-        "SA4001"
+        "MI1003"
+      ],
+      "semesters": {
+        "MI1003": 2
+      }
+    },
+    {
+      "id": "K16",
+      "name": "H.1. GIÁO DỤC THỂ CHẤT HỌC PHẦN 1",
+      "group": "H. GIÁO DỤC THỂ CHẤT",
+      "kind": "the-chat",
+      "required": false,
+      "coursesNeed": 1,
+      "courses": [
+        "PE1009",
+        "PE1011",
+        "PE1013",
+        "PE1015",
+        "PE1017",
+        "PE1019",
+        "PE1021",
+        "PE1023",
+        "PE1025",
+        "PE1027",
+        "PE1053",
+        "PE1057",
+        "PE1061",
+        "PE1001"
+      ],
+      "semesters": {
+        "PE1009": 1,
+        "PE1011": 1,
+        "PE1013": 1,
+        "PE1015": 1,
+        "PE1017": 1,
+        "PE1019": 1,
+        "PE1021": 1,
+        "PE1025": 1,
+        "PE1027": 1,
+        "PE1053": 1,
+        "PE1057": 1,
+        "PE1061": 1
+      }
+    },
+    {
+      "id": "K17",
+      "name": "H.2. GIÁO DỤC THỂ CHẤT HỌC PHẦN 2",
+      "group": "H. GIÁO DỤC THỂ CHẤT",
+      "kind": "the-chat",
+      "required": false,
+      "coursesNeed": 1,
+      "courses": [
+        "PE1033",
+        "PE1035",
+        "PE1037",
+        "PE1039",
+        "PE1041",
+        "PE1043",
+        "PE1045",
+        "PE1047",
+        "PE1049",
+        "PE1051",
+        "PE1055",
+        "PE1059",
+        "PE1063",
+        "PE1002"
+      ],
+      "semesters": {
+        "PE1033": 2,
+        "PE1035": 2,
+        "PE1037": 2,
+        "PE1039": 2,
+        "PE1041": 2,
+        "PE1043": 2,
+        "PE1045": 2,
+        "PE1049": 2,
+        "PE1051": 2,
+        "PE1055": 2,
+        "PE1059": 2,
+        "PE1063": 2
+      }
+    },
+    {
+      "id": "K18",
+      "name": "I. ĐIỀU KIỆN TỐT NGHIỆP",
+      "kind": "dieu-kien-tot-nghiep",
+      "required": true,
+      "coursesNeed": 0,
+      "courses": [
+        "SA4001",
+        "ENG_GC_600"
       ]
     }
   ],

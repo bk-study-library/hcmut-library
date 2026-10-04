@@ -1,0 +1,39 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "IM3061",
+  "code": "IM3061",
+  "name": "Anh văn trong Kinh doanh",
+  "credits": 3,
+  "faculty": "sim",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "SIM_QUAN_TRI_KINH_DOANH_2025",
+      "block": "K12",
+      "required": false
+    },
+    {
+      "program": "SIM_QUAN_TRI_KINH_DOANH_2025_CTTA",
+      "block": "K12",
+      "required": false
+    },
+    {
+      "program": "SIM_QUAN_TRI_KINH_DOANH_2026_CTTA",
+      "block": "K12",
+      "required": false
+    },
+    {
+      "program": "SIM_TS_153_2026",
+      "block": "K12",
+      "required": false
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/IM3061",
+  "note": "Nhập từ CTĐT chính thức (Sổ tay HCMUT, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

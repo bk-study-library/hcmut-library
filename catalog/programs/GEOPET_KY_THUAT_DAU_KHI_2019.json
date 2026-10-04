@@ -5,171 +5,246 @@
   "nameEn": "Petroleum Engineering",
   "faculty": "geopet",
   "year": "2019",
-  "source": "https://drive.google.com/file/d/1uEi_6zYtwqs7LBO7duqDlqmMCACPSXPt/view",
+  "major": "7520604",
+  "type": "CQ",
+  "level": "dai-hoc",
+  "totalCredits": 131,
+  "note": "Sổ tay không có năm này cho ngành và loại chương trình này. Danh sách môn lấy từ Kế hoạch giảng dạy (PDF), khối là học kỳ chứ không phải khối kiến thức; tên khối kiến thức, bắt buộc hay tự chọn chưa có.",
+  "source": "https://drive.google.com/file/d/1GVFesMfvIM3UmZARJmFsYNqDU_A17e-L/view",
+  "ctdtUrl": "https://drive.google.com/file/d/1uEi_6zYtwqs7LBO7duqDlqmMCACPSXPt/view",
+  "planUrl": "https://drive.google.com/file/d/1GVFesMfvIM3UmZARJmFsYNqDU_A17e-L/view",
   "blocks": [
     {
       "id": "K01",
-      "name": "I. Các môn bắt buộc (Compulsary Courses) 72",
-      "required": true,
+      "name": "Học kỳ 1",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
       "courses": [
+        "LA1003",
         "MT1003",
-        "MT1005",
-        "MT1007",
-        "MT2013",
-        "CH1003",
         "PH1003",
-        "PH1007",
-        "GE1013",
-        "MT1009",
-        "SP1007",
-        "SP1031",
-        "SP1033",
-        "SP1035",
-        "SP1037",
-        "SP1039",
+        "CH1003",
         "GE1001",
-        "GE3151"
-      ]
+        "MI1003",
+        "PE1003"
+      ],
+      "semesters": {
+        "LA1003": 1,
+        "MT1003": 1,
+        "PH1003": 1,
+        "CH1003": 1,
+        "GE1001": 1,
+        "MI1003": 1,
+        "PE1003": 1
+      }
     },
     {
       "id": "K02",
-      "name": "Trip",
-      "group": "I. Các môn bắt buộc (Compulsary Courses) 72",
-      "required": true,
+      "name": "Học kỳ 2",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
       "courses": [
-        "LA1003",
         "LA1005",
-        "LA1007",
-        "LA1009",
+        "MT1007",
+        "PH1007",
+        "MT1005",
         "GE1011",
-        "GE2033",
-        "GE2035",
-        "GE2041",
-        "GE2043"
-      ]
+        "GE1013",
+        "PE1005"
+      ],
+      "semesters": {
+        "LA1005": 2,
+        "MT1007": 2,
+        "PH1007": 2,
+        "MT1005": 2,
+        "GE1011": 2,
+        "GE1013": 2,
+        "PE1005": 2
+      }
     },
     {
       "id": "K03",
-      "name": "3 thiểu 3 TC) 3 Quản lý",
-      "group": "II. Các môn bắt buộc và tự chọn của chuyên ngành",
+      "name": "Học kỳ 3",
+      "kind": "khac",
       "required": false,
+      "requiredUnknown": true,
       "courses": [
-        "CH2089",
-        "GE3015",
-        "GE3017",
-        "GE3105",
-        "GE3141",
-        "GE3155",
-        "GE3157",
-        "GE3159",
-        "GE3167",
-        "GE3175",
-        "GE3205",
-        "GE3045"
-      ]
+        "LA1007",
+        "MT1009",
+        "GE2033",
+        "GE2043",
+        "GE2035",
+        "SP1031",
+        "PE1007"
+      ],
+      "semesters": {
+        "LA1007": 3,
+        "MT1009": 3,
+        "GE2033": 3,
+        "GE2043": 3,
+        "GE2035": 3,
+        "SP1031": 3,
+        "PE1007": 3
+      }
     },
     {
       "id": "K04",
-      "name": "Công nghệ chế biến dầu khí phục vụ cho các ngành công",
-      "group": "II. Các môn bắt buộc và tự chọn của chuyên ngành",
+      "name": "Học kỳ 4",
+      "kind": "khac",
       "required": false,
+      "requiredUnknown": true,
       "courses": [
-        "GE3207",
-        "GE4091",
-        "GE4093",
-        "GE3345",
-        "GE4141",
-        "GE4347",
-        "GE3163",
-        "GE3177"
-      ]
+        "LA1009",
+        "MT2013",
+        "GE2041",
+        "CH2089",
+        "SP1033",
+        "GE2011",
+        "GE2001",
+        "GE2045"
+      ],
+      "semesters": {
+        "LA1009": 4,
+        "MT2013": 4,
+        "GE2041": 4,
+        "CH2089": 4,
+        "SP1033": 4,
+        "GE2011": 4,
+        "GE2001": 4,
+        "GE2045": 4
+      }
     },
     {
       "id": "K05",
-      "name": "Các môn tự chọn nhóm (Elective Courses - Group) A",
-      "group": "II. Các môn bắt buộc và tự chọn của chuyên ngành",
+      "name": "Học kỳ 5",
+      "kind": "khac",
       "required": false,
+      "requiredUnknown": true,
       "courses": [
-        "GE2001",
-        "GE2011",
-        "GE2045"
-      ]
+        "GE3155",
+        "GE3141",
+        "GE3157",
+        "SP1035",
+        "GE3163",
+        "GE3045",
+        "GE3167",
+        "GE3205",
+        "GE3165",
+        "GE3179",
+        "GE3169",
+        "GE3171",
+        "GE3173"
+      ],
+      "semesters": {
+        "GE3155": 5,
+        "GE3141": 5,
+        "GE3157": 5,
+        "SP1035": 5,
+        "GE3163": 5,
+        "GE3045": 5,
+        "GE3167": 5,
+        "GE3205": 5,
+        "GE3165": 5,
+        "GE3179": 5,
+        "GE3169": 5,
+        "GE3171": 5,
+        "GE3173": 5
+      }
     },
     {
       "id": "K06",
-      "name": "Các môn tự chọn nhóm (Elective Courses - Group) B",
-      "group": "II. Các môn bắt buộc và tự chọn của chuyên ngành",
+      "name": "Học kỳ 6",
+      "kind": "khac",
       "required": false,
+      "requiredUnknown": true,
       "courses": [
-        "GE3161",
-        "GE4101",
-        "GE4103",
-        "IM1023",
-        "IM1027"
-      ]
-    },
-    {
-      "id": "K07",
-      "name": "5 thiểu 3 TC) 3 Quản lý",
-      "group": "II. Các môn bắt buộc và tự chọn của chuyên ngành",
-      "required": false,
-      "courses": [
-        "CH2089",
-        "GE3015",
         "GE3017",
-        "GE3105",
-        "GE3141",
-        "GE3155",
-        "GE3157",
-        "GE3159"
-      ]
-    },
-    {
-      "id": "K08",
-      "name": "Các môn tự chọn nhóm (Elective Courses - Group) C",
-      "group": "II. Các môn bắt buộc và tự chọn của chuyên ngành",
-      "required": false,
-      "courses": [
-        "GE3045",
-        "GE3163",
-        "GE3165",
-        "GE3167",
-        "GE3169",
-        "GE3171",
-        "GE3173",
-        "GE3179",
-        "GE3205"
-      ]
-    },
-    {
-      "id": "K09",
-      "name": "Các môn tự chọn nhóm (Elective Courses - Group) D",
-      "group": "II. Các môn bắt buộc và tự chọn của chuyên ngành",
-      "required": false,
-      "courses": [
-        "GE2029",
-        "GE3079",
-        "GE3175",
+        "SP1039",
+        "GE3159",
+        "GE3207",
+        "GE3345",
         "GE3177",
+        "GE3175",
+        "GE3079",
+        "GE3199",
+        "GE2029",
         "GE3181",
         "GE3183",
         "GE3185",
         "GE3187",
         "GE3189",
-        "GE3191",
-        "GE3199"
-      ]
+        "GE3191"
+      ],
+      "semesters": {
+        "GE3017": 6,
+        "SP1039": 6,
+        "GE3159": 6,
+        "GE3207": 6,
+        "GE3345": 6,
+        "GE3177": 6,
+        "GE3175": 6,
+        "GE3079": 6,
+        "GE3199": 6,
+        "GE2029": 6,
+        "GE3181": 6,
+        "GE3183": 6,
+        "GE3185": 6,
+        "GE3187": 6,
+        "GE3189": 6,
+        "GE3191": 6
+      }
     },
     {
-      "id": "K10",
-      "name": "III. Chứng chỉ (Certification)",
+      "id": "K07",
+      "name": "Học kỳ 7",
+      "kind": "khac",
       "required": false,
+      "requiredUnknown": true,
       "courses": [
-        "MI1003",
-        "PE1003",
-        "PE1005",
-        "PE1007"
-      ]
+        "GE3105",
+        "GE3015",
+        "GE4091",
+        "SP1037",
+        "GE4141"
+      ],
+      "semesters": {
+        "GE3105": 7,
+        "GE3015": 7,
+        "GE4091": 7,
+        "SP1037": 7,
+        "GE4141": 7
+      }
+    },
+    {
+      "id": "K08",
+      "name": "Học kỳ 8",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "GE3151",
+        "GE4093",
+        "SP1007",
+        "GE4347",
+        "IM1023",
+        "IM1027",
+        "GE3161",
+        "GE4101",
+        "GE4103"
+      ],
+      "semesters": {
+        "GE3151": 8,
+        "GE4093": 8,
+        "SP1007": 8,
+        "GE4347": 8,
+        "IM1023": 8,
+        "IM1027": 8,
+        "GE3161": 8,
+        "GE4101": 8,
+        "GE4103": 8
+      }
     }
   ],
   "updated": "2026-10-04"

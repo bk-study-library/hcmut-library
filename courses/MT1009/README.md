@@ -7,9 +7,10 @@
 | Mã môn | MT1009 |
 | Tên | Phương pháp tính / Numerical Methods |
 | Tín chỉ | 3 |
-| Khoa | Khoa Khoa học Ứng dụng |
+| Khoa | Môn chung toàn trường |
 | Phần | Lý thuyết |
 | Trạng thái | Đang dạy |
+| Sổ tay HCMUT | [Trang môn trên Sổ tay HCMUT](https://hcmut.edu.vn/study/handbook/subject/MT1009) |
 | Môn liên quan | [GE1023](../GE1023/README.md) Phân tích dữ liệu trong ngành dầu khí |
 
 ## Tài liệu

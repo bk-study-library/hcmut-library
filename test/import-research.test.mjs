@@ -164,14 +164,20 @@ test('nhập research hai lần: không đổi file nào', () => {
   assert.deepEqual(snap(dir), before);
 });
 
-test('danh mục thật: 725 môn, 194 chương trình, không lỗi, không cảnh báo', () => {
+test('danh mục thật: 2414 môn, 547 chương trình, 62 ngành, không lỗi, không cảnh báo', () => {
   const repo = loadRepo(TOOL_ROOT);
   assert.deepEqual(repo.errors, []);
   assert.deepEqual(repo.warnings, []);
-  assert.equal(repo.courses.size, 725);
-  assert.equal(repo.programs.size, 194);
+  assert.equal(repo.courses.size, 2414);
+  assert.equal(repo.programs.size, 547);
+  assert.equal(repo.majors.size, 62);
+  // Chương trình rỗng chỉ còn mục tuyển sinh 2026 chưa khớp ngành nào; chương trình gắn ngành đều có môn.
   const empty = [...repo.programs.values()].filter((p) => !p.blocks.some((b) => b.courses.length));
-  assert.equal(empty.length, 100);
+  assert.equal(empty.length, 45);
+  assert.ok(empty.every((p) => !p.major && p.code.includes('_TS_')));
+  // Mọi khoa có ngành; không môn nào còn ở khoa Chưa xác định.
+  assert.equal(new Set([...repo.majors.values()].map((m) => m.faculty)).size, 11);
+  assert.equal([...repo.courses.values()].filter((c) => c.faculty === 'unknown').length, 0);
   for (const p of repo.programs.values()) assert.match(p.code, /^[A-Z0-9_]+$/);
   assert.ok(repo.courses.get('GE4169-2024').programs.every((x) => repo.programs.get(x.program).year >= '2024'));
 });
@@ -185,8 +191,9 @@ test('danh mục thật: GE4169, GE3239, GE4165 tách theo khóa giống nhau', 
     assert.ok(old && neu, code);
     assert.equal(neu.code, code);
     assert.notEqual(neu.name, old.name, code);
-    assert.deepEqual(old.programs.map((x) => x.program), ['GEOPET_KY_THUAT_DIA_CHAT_2023'], code);
-    assert.deepEqual(neu.programs.map((x) => x.program), ['GEOPET_DIA_KY_THUAT_XAY_DUNG_2024'], code);
+    // Nghĩa cũ chỉ có trong PDF CTĐT 2023, không có trong kế hoạch giảng dạy nên không còn thuộc chương trình nào.
+    assert.deepEqual(old.programs, [], code);
+    assert.ok(neu.programs.some((x) => x.program === 'GEOPET_DIA_KY_THUAT_XAY_DUNG_2024'), code);
     assert.ok(old.programs.every((x) => repo.programs.get(x.program).year < '2024'), code);
     assert.ok(neu.programs.every((x) => repo.programs.get(x.program).year >= '2024'), code);
     const p2024 = repo.programs.get('GEOPET_DIA_KY_THUAT_XAY_DUNG_2024').blocks.flatMap((b) => b.courses);
@@ -207,7 +214,8 @@ test('danh mục thật: điều kiện tốt nghiệp chung thuộc Môn chung 
   const repo = loadRepo(TOOL_ROOT);
   const shared = repo.faculties.faculties.find((f) => f.key === 'chung');
   assert.equal(shared.name.vi, 'Môn chung toàn trường');
-  for (const id of ['SA4001']) {
+  // Tiền tố dùng chung (Toán, Vật lý, ngoại ngữ, lý luận chính trị, thể chất) cũng về Môn chung toàn trường.
+  for (const id of ['SA4001', 'MT1003', 'PH1003', 'LA1003', 'SP1031', 'PE1009']) {
     assert.equal(repo.courses.get(id).faculty, 'chung', id);
     const rule = repo.faculties.prefixes.find((h) => new RegExp(h.pattern).test(id));
     assert.ok(rule, id);

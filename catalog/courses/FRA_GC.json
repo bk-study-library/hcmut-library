@@ -1,0 +1,107 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "FRA_GC",
+  "code": "FRA_GC",
+  "name": "Điều kiện tiếng Pháp tốt nghiệp đại học",
+  "credits": 0,
+  "faculty": "chung",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "DEE_KY_THUAT_DIEN_2024_PFIEV",
+      "block": "K19",
+      "required": true
+    },
+    {
+      "program": "DEE_KY_THUAT_DIEN_2026_PFIEV",
+      "block": "K20",
+      "required": true
+    },
+    {
+      "program": "DEE_KY_THUAT_DIEN_TU_VIEN_THONG_2024_PFIEV",
+      "block": "K19",
+      "required": true
+    },
+    {
+      "program": "DEE_KY_THUAT_DIEN_TU_VIEN_THONG_2026_PFIEV",
+      "block": "K20",
+      "required": true
+    },
+    {
+      "program": "FCE_KY_THUAT_VA_QUAN_LY_NUOC_DO_THI_PFIEV_2024_PFIEV",
+      "block": "K21",
+      "required": true
+    },
+    {
+      "program": "FCE_KY_THUAT_VA_QUAN_LY_NUOC_DO_THI_PFIEV_2026_PFIEV",
+      "block": "K22",
+      "required": true
+    },
+    {
+      "program": "FCE_KY_THUAT_XAY_DUNG_2020_PFIEV",
+      "block": "K21",
+      "required": true
+    },
+    {
+      "program": "FCE_KY_THUAT_XAY_DUNG_2024_PFIEV",
+      "block": "K22",
+      "required": true
+    },
+    {
+      "program": "FCE_KY_THUAT_XAY_DUNG_2026_PFIEV",
+      "block": "K22",
+      "required": true
+    },
+    {
+      "program": "FME_KY_THUAT_CO_DIEN_TU_2024_PFIEV",
+      "block": "K20",
+      "required": true
+    },
+    {
+      "program": "FME_KY_THUAT_CO_DIEN_TU_2026_PFIEV",
+      "block": "K21",
+      "required": true
+    },
+    {
+      "program": "FMT_KY_THUAT_CO_KHI_2024_PFIEV",
+      "block": "K21",
+      "required": true
+    },
+    {
+      "program": "FMT_VAT_LIEU_POLYMER_VA_COMPOSITE_PFIEV_2024_PFIEV",
+      "block": "K19",
+      "required": true
+    },
+    {
+      "program": "FMT_VAT_LIEU_POLYMER_VA_COMPOSITE_PFIEV_2026_PFIEV",
+      "block": "K20",
+      "required": true
+    },
+    {
+      "program": "FMT_VAT_LIEU_VA_NANG_LUONG_PFIEV_2024_PFIEV",
+      "block": "K20",
+      "required": true
+    },
+    {
+      "program": "FMT_VAT_LIEU_VA_NANG_LUONG_PFIEV_2026_PFIEV",
+      "block": "K21",
+      "required": true
+    },
+    {
+      "program": "FTE_KY_THUAT_HANG_KHONG_2024_PFIEV",
+      "block": "K19",
+      "required": true
+    },
+    {
+      "program": "FTE_KY_THUAT_HANG_KHONG_2026_PFIEV",
+      "block": "K19",
+      "required": true
+    }
+  ],
+  "parts": [],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/FRA_GC",
+  "note": "Nhập từ CTĐT chính thức (Sổ tay HCMUT, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

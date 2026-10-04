@@ -1,0 +1,30 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "CI4225",
+  "code": "CI4225",
+  "name": "Quản lý xây dựng ứng dụng mô hình hóa thông tin công trình",
+  "nameEn": "Building Information Modeling for Construction Management",
+  "credits": 3,
+  "faculty": "fce",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "FCE_KINH_TE_XAY_DUNG_2024",
+      "block": "K11",
+      "required": false
+    },
+    {
+      "program": "FCE_TS_148_2026",
+      "block": "K11",
+      "required": true
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/CI4225",
+  "note": "Nhập từ CTĐT chính thức (Sổ tay HCMUT, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

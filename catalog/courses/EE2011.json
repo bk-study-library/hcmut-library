@@ -1,0 +1,265 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "EE2011",
+  "code": "EE2011",
+  "name": "Kỹ thuật Điện - Điện tử",
+  "nameEn": "Electrical and Electronics Engineering",
+  "credits": 3,
+  "faculty": "dee",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "FAS_CO_KY_THUAT_2019",
+      "block": "K04",
+      "required": false
+    },
+    {
+      "program": "FAS_CO_KY_THUAT_2020",
+      "block": "K04",
+      "required": false
+    },
+    {
+      "program": "FAS_CO_KY_THUAT_2021",
+      "block": "K08",
+      "required": false
+    },
+    {
+      "program": "FAS_CO_KY_THUAT_2022",
+      "block": "K01",
+      "required": false
+    },
+    {
+      "program": "FAS_CO_KY_THUAT_2023",
+      "block": "K05",
+      "required": false
+    },
+    {
+      "program": "FAS_TS_156_2026",
+      "block": "K03",
+      "required": false
+    },
+    {
+      "program": "FAS_TS_256_2026_TA",
+      "block": "K09",
+      "required": true
+    },
+    {
+      "program": "FAS_VAT_LY_KY_THUAT_2019",
+      "block": "K04",
+      "required": false
+    },
+    {
+      "program": "FAS_VAT_LY_KY_THUAT_2020",
+      "block": "K04",
+      "required": false
+    },
+    {
+      "program": "FAS_VAT_LY_KY_THUAT_2021",
+      "block": "K04",
+      "required": false
+    },
+    {
+      "program": "FAS_VAT_LY_KY_THUAT_2022",
+      "block": "K04",
+      "required": false
+    },
+    {
+      "program": "FAS_VAT_LY_KY_THUAT_2023",
+      "block": "K04",
+      "required": false
+    },
+    {
+      "program": "FAS_VAT_LY_KY_THUAT_2024",
+      "block": "K08",
+      "required": true
+    },
+    {
+      "program": "FAS_VAT_LY_KY_THUAT_2024_CTTA",
+      "block": "K09",
+      "required": true
+    },
+    {
+      "program": "FAS_VAT_LY_KY_THUAT_2025_CTTA",
+      "block": "K09",
+      "required": true
+    },
+    {
+      "program": "FAS_VAT_LY_KY_THUAT_2026",
+      "block": "K09",
+      "required": true
+    },
+    {
+      "program": "FAS_VAT_LY_KY_THUAT_2026_CTTA",
+      "block": "K09",
+      "required": true
+    },
+    {
+      "program": "FTE_KY_THUAT_GIAO_THONG_THONG_MINH_2027",
+      "block": "K09",
+      "required": true
+    },
+    {
+      "program": "FTE_KY_THUAT_HANG_KHONG_2019",
+      "block": "K04",
+      "required": false
+    },
+    {
+      "program": "FTE_KY_THUAT_HANG_KHONG_2020",
+      "block": "K04",
+      "required": false
+    },
+    {
+      "program": "FTE_KY_THUAT_HANG_KHONG_2021",
+      "block": "K05",
+      "required": false
+    },
+    {
+      "program": "FTE_KY_THUAT_HANG_KHONG_2022",
+      "block": "K05",
+      "required": false
+    },
+    {
+      "program": "FTE_KY_THUAT_HANG_KHONG_2023",
+      "block": "K05",
+      "required": false
+    },
+    {
+      "program": "FTE_KY_THUAT_HANG_KHONG_2024",
+      "block": "K08",
+      "required": true
+    },
+    {
+      "program": "FTE_KY_THUAT_HANG_KHONG_2024_CTTA",
+      "block": "K09",
+      "required": true
+    },
+    {
+      "program": "FTE_KY_THUAT_HANG_KHONG_2025_CTTA",
+      "block": "K09",
+      "required": true
+    },
+    {
+      "program": "FTE_KY_THUAT_HANG_KHONG_2026",
+      "block": "K09",
+      "required": true
+    },
+    {
+      "program": "FTE_KY_THUAT_PHUONG_TIEN_KHONG_NGUOI_LAI_2027",
+      "block": "K09",
+      "required": true
+    },
+    {
+      "program": "FTE_KY_THUAT_PHUONG_TIEN_KHONG_NGUOI_LAI_2027_CTTA",
+      "block": "K09",
+      "required": true
+    },
+    {
+      "program": "FTE_KY_THUAT_PHUONG_TIEN_KHONG_NGUOI_LAI_75201XX_2027",
+      "block": "K09",
+      "required": true
+    },
+    {
+      "program": "FTE_KY_THUAT_TAU_THUY_2019",
+      "block": "K04",
+      "required": false
+    },
+    {
+      "program": "FTE_KY_THUAT_TAU_THUY_2020",
+      "block": "K04",
+      "required": false
+    },
+    {
+      "program": "FTE_KY_THUAT_TAU_THUY_2021",
+      "block": "K04",
+      "required": false
+    },
+    {
+      "program": "FTE_KY_THUAT_TAU_THUY_2022",
+      "block": "K04",
+      "required": false
+    },
+    {
+      "program": "FTE_KY_THUAT_TAU_THUY_2023",
+      "block": "K04",
+      "required": false
+    },
+    {
+      "program": "FTE_KY_THUAT_TAU_THUY_2024",
+      "block": "K08",
+      "required": true
+    },
+    {
+      "program": "FTE_KY_THUAT_TAU_THUY_2026",
+      "block": "K09",
+      "required": true
+    },
+    {
+      "program": "FTE_KY_THUAT_TAU_THUY_HANG_KHONG_SN_2019_SN",
+      "block": "K05",
+      "required": false
+    },
+    {
+      "program": "FTE_KY_THUAT_TAU_THUY_HANG_KHONG_SN_2020_SN",
+      "block": "K05",
+      "required": false
+    },
+    {
+      "program": "FTE_KY_THUAT_TAU_THUY_HANG_KHONG_SN_2021_SN",
+      "block": "K05",
+      "required": false
+    },
+    {
+      "program": "FTE_KY_THUAT_TAU_THUY_HANG_KHONG_SN_2022_SN",
+      "block": "K05",
+      "required": false
+    },
+    {
+      "program": "FTE_KY_THUAT_TAU_THUY_HANG_KHONG_SN_2023_SN",
+      "block": "K05",
+      "required": false
+    },
+    {
+      "program": "FTE_KY_THUAT_TAU_THUY_HANG_KHONG_SN_2024_SN",
+      "block": "K08",
+      "required": true
+    },
+    {
+      "program": "FTE_KY_THUAT_TAU_THUY_HANG_KHONG_SN_2026_SN",
+      "block": "K09",
+      "required": true
+    },
+    {
+      "program": "FTE_TS_142_2026",
+      "block": "K12",
+      "required": false
+    },
+    {
+      "program": "FTE_TS_152_2026",
+      "block": "K09",
+      "required": true
+    },
+    {
+      "program": "FTE_TS_242_2026_TA",
+      "block": "K12",
+      "required": false
+    },
+    {
+      "program": "FTE_TS_245_2026_TA",
+      "block": "K09",
+      "required": true
+    },
+    {
+      "program": "FTE_TS_252_2026_TA",
+      "block": "K09",
+      "required": true
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/EE2011",
+  "note": "Nhập từ CTĐT chính thức (Sổ tay HCMUT, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

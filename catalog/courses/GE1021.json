@@ -12,18 +12,19 @@
     {
       "program": "GEOPET_KY_THUAT_DAU_KHI_2021",
       "block": "K06",
-      "required": true
+      "required": false
     },
     {
       "program": "GEOPET_KY_THUAT_DAU_KHI_2022",
       "block": "K06",
-      "required": true
+      "required": false
     }
   ],
   "parts": [
     "theory"
   ],
   "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/GE1021",
   "note": "Nhập từ nguồn công khai (truy cập 03/10/2026).",
   "updated": "2026-10-04"
 }

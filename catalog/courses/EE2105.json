@@ -1,0 +1,34 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "EE2105",
+  "code": "EE2105",
+  "name": "Thực tập nhận thức nghề nghiệp (Kỹ thuật Điều khiển và Tự động hóa)",
+  "credits": 2,
+  "faculty": "dee",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "DEE_KY_THUAT_DIEU_KHIEN_VA_TU_DONG_HOA_2026",
+      "block": "K09",
+      "required": true
+    },
+    {
+      "program": "DEE_KY_THUAT_DIEU_KHIEN_VA_TU_DONG_HOA_2026_CNTN",
+      "block": "K09",
+      "required": true
+    },
+    {
+      "program": "DEE_KY_THUAT_DIEU_KHIEN_VA_TU_DONG_HOA_2026_CTTA",
+      "block": "K09",
+      "required": true
+    }
+  ],
+  "parts": [
+    "lab"
+  ],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/EE2105",
+  "note": "Nhập từ CTĐT chính thức (Sổ tay HCMUT, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

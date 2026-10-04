@@ -1,0 +1,24 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "GE3583",
+  "code": "GE3583",
+  "name": "Thực hành các phương pháp khảo sát và TN hiện trường",
+  "credits": 1,
+  "faculty": "geopet",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "GEOPET_TS_147_2026",
+      "block": "K09",
+      "required": true
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/GE3583",
+  "note": "Nhập từ CTĐT chính thức (Sổ tay HCMUT, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

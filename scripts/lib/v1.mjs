@@ -2,6 +2,7 @@
 //
 //   v1/index.json           danh sách môn (nhẹ, dùng để tìm và ghép môn)
 //   v1/courses/<ID>.json    tài liệu của một môn
+//   v1/majors.json          danh sách ngành (khi có catalog/majors.json)
 //
 // Hợp đồng v1 (đổi tên, xóa hay đổi nghĩa trường thì ra /v2/, giữ /v1/ ít nhất 6 tháng):
 // - Trường tùy chọn vắng mặt khi không có, không dùng null. Bên đọc bỏ qua trường lạ.
@@ -11,7 +12,7 @@
 // Mô tả cho người đọc: docs/v1.md.
 
 import path from 'node:path';
-import { SITE_URL, RAW_URL } from './labels.mjs';
+import { SITE_URL, RAW_URL, DEFAULT_LEVEL, majorKey } from './labels.mjs';
 
 export const SCHEMA_VERSION = 1;
 
@@ -116,12 +117,32 @@ export function buildV1(repo, { site = SITE_URL } = {}) {
     faculties: repo.faculties.faculties.map((f) => ({ key: f.key, name: f.name })),
     courses: list,
   };
-  return { index, details };
+  return { index, details, majors: buildMajors(repo, site) };
+}
+
+// v1/majors.json: danh sách ngành. Chỉ có khi repo có catalog/majors.json; generated là updated của file đó
+// để file không đổi khi danh sách ngành không đổi.
+function buildMajors(repo, site) {
+  if (!repo.majorsUpdated || !repo.majors) return null;
+  const majors = [...repo.majors.values()]
+    .sort((a, b) => a.code.localeCompare(b.code))
+    .map((m) => {
+      const row = { code: m.code, name: m.name };
+      if (m.nameEn) row.nameEn = m.nameEn;
+      row.faculty = m.faculty;
+      row.level = m.level || DEFAULT_LEVEL;
+      row.programTypes = m.programTypes;
+      if (m.handbookUrl) row.handbookUrl = m.handbookUrl;
+      row.url = `${site}major/${encodeURIComponent(majorKey(m.code))}/`;
+      return row;
+    });
+  return { schemaVersion: SCHEMA_VERSION, generated: repo.majorsUpdated, site, majors };
 }
 
 // Danh sách [đường dẫn tính từ thư mục v1, nội dung].
-export function serializeV1({ index, details }) {
+export function serializeV1({ index, details, majors }) {
   const out = [['index.json', JSON.stringify(index, null, 2) + '\n']];
+  if (majors) out.push(['majors.json', JSON.stringify(majors, null, 2) + '\n']);
   for (const [id, d] of details) out.push([`courses/${id}.json`, JSON.stringify(d, null, 2) + '\n']);
   return out;
 }

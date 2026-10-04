@@ -1,0 +1,29 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "TR4411",
+  "code": "TR4411",
+  "name": "Chuyên đề 2 - Thiết kế và phát triển phương tiện đường sắt",
+  "credits": 3,
+  "faculty": "fte",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "FTE_TS_152_2026",
+      "block": "K14",
+      "required": false
+    },
+    {
+      "program": "FTE_TS_252_2026_TA",
+      "block": "K14",
+      "required": false
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/TR4411",
+  "note": "Nhập từ CTĐT chính thức (Sổ tay HCMUT, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

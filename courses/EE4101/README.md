@@ -1,15 +1,16 @@
-# EE4101 thôn g)
+# EE4101 Thực tập ngoài trường (Kỹ thuật điện & KT Điện tử- Viễn thông)
 
 <!-- File này do "npm run build" sinh từ catalog/courses/EE4101.json và items/. Chỉ sửa phần Mẹo học, giữa hai dòng meo-hoc. -->
 
 | Mục | Thông tin |
 |---|---|
 | Mã môn | EE4101 |
-| Tên | thôn g) |
+| Tên | Thực tập ngoài trường (Kỹ thuật điện & KT Điện tử- Viễn thông) / Internship |
 | Tín chỉ | 2 |
 | Khoa | Khoa Điện - Điện tử |
 | Phần | Lý thuyết |
 | Trạng thái | Đang dạy |
+| Sổ tay HCMUT | [Trang môn trên Sổ tay HCMUT](https://hcmut.edu.vn/study/handbook/subject/EE4101) |
 
 ## Tài liệu
 

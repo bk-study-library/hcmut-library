@@ -10,6 +10,7 @@
 | Khoa | Khoa Kỹ thuật Địa chất và Dầu khí |
 | Phần | Đồ án |
 | Trạng thái | Đang dạy |
+| Sổ tay HCMUT | [Trang môn trên Sổ tay HCMUT](https://hcmut.edu.vn/study/handbook/subject/GE3197) |
 | Mã, tên cũ | GE1009 Thực tập tinh thể khoáng vật thạch học; GE3031 Sức bền kết cấu |
 | Thay cho | [GE1009](../GE1009/README.md), [GE3031](../GE3031/README.md) |
 

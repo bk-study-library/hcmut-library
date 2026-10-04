@@ -1,15 +1,16 @@
-# ME4357 Đồ án tốt nghiệp (cn dệt may)
+# ME4357 Đồ án Tốt nghiệp (Công nghệ Dệt may)
 
 <!-- File này do "npm run build" sinh từ catalog/courses/ME4357.json và items/. Chỉ sửa phần Mẹo học, giữa hai dòng meo-hoc. -->
 
 | Mục | Thông tin |
 |---|---|
 | Mã môn | ME4357 |
-| Tên | Đồ án tốt nghiệp (cn dệt may) / Capstone Project |
+| Tên | Đồ án Tốt nghiệp (Công nghệ Dệt may) / Capstone Project |
 | Tín chỉ | 4 |
 | Khoa | Khoa Cơ khí |
 | Phần | Đồ án |
 | Trạng thái | Đang dạy |
+| Sổ tay HCMUT | [Trang môn trên Sổ tay HCMUT](https://hcmut.edu.vn/study/handbook/subject/ME4357) |
 
 ## Tài liệu
 

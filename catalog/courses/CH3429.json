@@ -1,0 +1,50 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "CH3429",
+  "code": "CH3429",
+  "name": "Công nghệ sản xuất mỹ phẩm",
+  "nameEn": "Technology of cosmetic manufacturing",
+  "credits": 3,
+  "faculty": "che",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "CHE_KY_THUAT_HOA_HOC_2021",
+      "block": "K05",
+      "required": false
+    },
+    {
+      "program": "CHE_KY_THUAT_HOA_HOC_2022",
+      "block": "K05",
+      "required": false
+    },
+    {
+      "program": "CHE_KY_THUAT_HOA_HOC_2023",
+      "block": "K05",
+      "required": false
+    },
+    {
+      "program": "CHE_KY_THUAT_HOA_HOC_2024",
+      "block": "K16",
+      "required": false
+    },
+    {
+      "program": "CHE_KY_THUAT_HOA_HOC_2024_CTTA",
+      "block": "K17",
+      "required": false
+    },
+    {
+      "program": "CHE_KY_THUAT_HOA_HOC_2025_CTTA",
+      "block": "K17",
+      "required": false
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/CH3429",
+  "note": "Nhập từ CTĐT chính thức (Sổ tay HCMUT, truy cập 04/10/2026). Tên trong Kế hoạch giảng dạy: Chuyên ngành Công nghệ Mỹ phẩm (Major of Cosmetic Technology).",
+  "updated": "2026-10-04"
+}

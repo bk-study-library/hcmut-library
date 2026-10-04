@@ -2,17 +2,34 @@
   "$schema": "../../schema/course.schema.json",
   "id": "ME3239",
   "code": "ME3239",
-  "name": "Công nghệ",
+  "name": "Công nghệ CNC",
   "nameEn": "CNC CNC Technology",
   "credits": 3,
   "faculty": "fme",
   "aliases": [],
   "status": "active",
-  "programs": [],
+  "programs": [
+    {
+      "program": "FME_KY_THUAT_CO_KHI_2026_CNTN",
+      "block": "K12",
+      "required": false
+    },
+    {
+      "program": "FME_TS_109_2026",
+      "block": "K12",
+      "required": false
+    },
+    {
+      "program": "FME_TS_209_2026_TA",
+      "block": "K12",
+      "required": false
+    }
+  ],
   "parts": [
     "theory"
   ],
   "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/ME3239",
   "note": "Nhập từ nguồn công khai (truy cập 03/10/2026).",
   "updated": "2026-10-04"
 }

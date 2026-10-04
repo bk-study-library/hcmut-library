@@ -10,6 +10,7 @@
 | Khoa | Khoa Kỹ thuật Hóa học |
 | Phần | Lý thuyết |
 | Trạng thái | Đang dạy |
+| Sổ tay HCMUT | [Trang môn trên Sổ tay HCMUT](https://hcmut.edu.vn/study/handbook/subject/CH1003) |
 
 ## Tài liệu
 

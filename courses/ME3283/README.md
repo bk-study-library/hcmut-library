@@ -1,15 +1,16 @@
-# ME3283 Cô ng nghệ sợi 1
+# ME3283 Công nghệ sợi 1
 
 <!-- File này do "npm run build" sinh từ catalog/courses/ME3283.json và items/. Chỉ sửa phần Mẹo học, giữa hai dòng meo-hoc. -->
 
 | Mục | Thông tin |
 |---|---|
 | Mã môn | ME3283 |
-| Tên | Cô ng nghệ sợi 1 / Spi nni |
+| Tên | Công nghệ sợi 1 / Spinning Technology 1 |
 | Tín chỉ | 3 |
 | Khoa | Khoa Cơ khí |
 | Phần | Lý thuyết |
 | Trạng thái | Đang dạy |
+| Sổ tay HCMUT | [Trang môn trên Sổ tay HCMUT](https://hcmut.edu.vn/study/handbook/subject/ME3283) |
 
 ## Tài liệu
 

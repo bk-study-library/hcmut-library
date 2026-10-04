@@ -1,0 +1,45 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "CO2037",
+  "code": "CO2037",
+  "name": "Mạch Điện - Điện tử",
+  "nameEn": "Electrical Electronic Circuits",
+  "credits": 4,
+  "faculty": "cse",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "CSE_KY_THUAT_MAY_TINH_2019",
+      "block": "K03",
+      "required": false
+    },
+    {
+      "program": "CSE_KY_THUAT_MAY_TINH_2020",
+      "block": "K05",
+      "required": false
+    },
+    {
+      "program": "CSE_KY_THUAT_MAY_TINH_2021",
+      "block": "K05",
+      "required": false
+    },
+    {
+      "program": "CSE_KY_THUAT_MAY_TINH_2022",
+      "block": "K03",
+      "required": false
+    },
+    {
+      "program": "CSE_KY_THUAT_MAY_TINH_2023",
+      "block": "K05",
+      "required": false
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/CO2037",
+  "note": "Nhập từ CTĐT chính thức (Sổ tay HCMUT, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

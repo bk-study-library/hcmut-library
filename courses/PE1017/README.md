@@ -7,9 +7,10 @@
 | Mã môn | PE1017 |
 | Tên | Cầu lông (Học phần 1) / Badminton |
 | Tín chỉ | 0 |
-| Khoa | Giáo dục thể chất và Quốc phòng (chưa xác định đơn vị) |
+| Khoa | Môn chung toàn trường |
 | Phần | chưa ghi |
 | Trạng thái | Đang dạy |
+| Sổ tay HCMUT | [Trang môn trên Sổ tay HCMUT](https://hcmut.edu.vn/study/handbook/subject/PE1017) |
 
 ## Tài liệu
 

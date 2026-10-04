@@ -1,0 +1,34 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "CH3463",
+  "code": "CH3463",
+  "name": "Công nghệ Sau Thu hoạch",
+  "credits": 3,
+  "faculty": "che",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "CHE_CONG_NGHE_THUC_PHAM_2026",
+      "block": "K12",
+      "required": false
+    },
+    {
+      "program": "CHE_CONG_NGHE_THUC_PHAM_2026_CNTN",
+      "block": "K12",
+      "required": false
+    },
+    {
+      "program": "CHE_TS_219_2026_TA",
+      "block": "K12",
+      "required": false
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/CH3463",
+  "note": "Nhập từ CTĐT chính thức (Sổ tay HCMUT, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

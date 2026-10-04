@@ -1,0 +1,49 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "ME3831",
+  "code": "ME3831",
+  "name": "Thực hành Kỹ thuật Thiết kế",
+  "credits": 1,
+  "faculty": "fme",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "FME_KY_THUAT_CO_DIEN_TU_2026_CNTN",
+      "block": "K11",
+      "required": true
+    },
+    {
+      "program": "FME_KY_THUAT_CO_KHI_2026_CNTN",
+      "block": "K11",
+      "required": true
+    },
+    {
+      "program": "FME_TS_109_2026",
+      "block": "K11",
+      "required": true
+    },
+    {
+      "program": "FME_TS_110_2026",
+      "block": "K11",
+      "required": true
+    },
+    {
+      "program": "FME_TS_209_2026_TA",
+      "block": "K11",
+      "required": true
+    },
+    {
+      "program": "FME_TS_210_2026_TA",
+      "block": "K11",
+      "required": true
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/ME3831",
+  "note": "Nhập từ CTĐT chính thức (Sổ tay HCMUT, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

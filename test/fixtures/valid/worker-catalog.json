@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "generated": "2026-10-01",
+  "courses": [
+    {"id":"EE1009","code":"EE1009","status":"active","ids":["prelab-2-tham-khao","tom-tat-c1"]},
+    {"id":"EE1010","code":"EE1010","status":"active","ids":["go-bo","link-doi-tac"]},
+    {"id":"400111","code":"400111","status":"retired","ids":[]}
+  ],
+  "shas": [
+    "1111111111111111111111111111111111111111111111111111111111111111",
+    "48d99f80b7d4df1cbe9be9cf80651255170eddc91ed973193c1c5ea0ba4f932d"
+  ],
+  "blocked": []
+}

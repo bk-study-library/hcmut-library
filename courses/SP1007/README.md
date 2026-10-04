@@ -7,9 +7,10 @@
 | Mã môn | SP1007 |
 | Tên | Pháp luật Việt Nam đại cương / Introduction to Vietnamese Law |
 | Tín chỉ | 2 |
-| Khoa | Lý luận chính trị (chưa xác định đơn vị) |
+| Khoa | Môn chung toàn trường |
 | Phần | Lý thuyết |
 | Trạng thái | Đang dạy |
+| Sổ tay HCMUT | [Trang môn trên Sổ tay HCMUT](https://hcmut.edu.vn/study/handbook/subject/SP1007) |
 
 ## Tài liệu
 

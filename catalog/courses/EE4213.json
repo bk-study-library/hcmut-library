@@ -1,0 +1,30 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "EE4213",
+  "code": "EE4213",
+  "name": "Đồ án cơ sở ngành (HTNL)",
+  "nameEn": "Project 1 (Energy Systems)",
+  "credits": 1,
+  "faculty": "dee",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "DEE_KY_THUAT_DIEN_2024_PFIEV",
+      "block": "K09",
+      "required": true
+    },
+    {
+      "program": "DEE_KY_THUAT_DIEN_2026_PFIEV",
+      "block": "K10",
+      "required": true
+    }
+  ],
+  "parts": [
+    "project"
+  ],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/EE4213",
+  "note": "Nhập từ CTĐT chính thức (Sổ tay HCMUT, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

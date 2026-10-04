@@ -1,0 +1,29 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "MA3201",
+  "code": "MA3201",
+  "name": "Các Kỹ thuật Phân tích Điện hóa và Ứng dụng",
+  "credits": 3,
+  "faculty": "fmt",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "UNKNOWN_TS_159_2026",
+      "block": "K12",
+      "required": false
+    },
+    {
+      "program": "UNKNOWN_TS_259_2026_TA",
+      "block": "K12",
+      "required": false
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/MA3201",
+  "note": "Nhập từ CTĐT chính thức (Sổ tay HCMUT, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

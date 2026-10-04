@@ -10,6 +10,7 @@
 | Khoa | Khoa Kỹ thuật Địa chất và Dầu khí |
 | Phần | Lý thuyết |
 | Trạng thái | Đang dạy |
+| Sổ tay HCMUT | [Trang môn trên Sổ tay HCMUT](https://hcmut.edu.vn/study/handbook/subject/GE1013) |
 | Mã, tên cũ | GE1003 Địa chất cơ sở; GE1005 Thực tập địa chất cơ sở |
 | Thay cho | [GE1003](../GE1003/README.md), [GE1005](../GE1005/README.md) |
 

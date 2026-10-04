@@ -1,15 +1,16 @@
-# ME3169 Thực tập kỹ thu ật dệt
+# ME3169 Thực tập Kỹ thuật Dệt
 
 <!-- File này do "npm run build" sinh từ catalog/courses/ME3169.json và items/. Chỉ sửa phần Mẹo học, giữa hai dòng meo-hoc. -->
 
 | Mục | Thông tin |
 |---|---|
 | Mã môn | ME3169 |
-| Tên | Thực tập kỹ thu ật dệt / Text i le pra ct i ces |
+| Tên | Thực tập Kỹ thuật Dệt / Textile practices |
 | Tín chỉ | 2 |
 | Khoa | Khoa Cơ khí |
 | Phần | Thí nghiệm |
 | Trạng thái | Đang dạy |
+| Sổ tay HCMUT | [Trang môn trên Sổ tay HCMUT](https://hcmut.edu.vn/study/handbook/subject/ME3169) |
 
 ## Tài liệu
 

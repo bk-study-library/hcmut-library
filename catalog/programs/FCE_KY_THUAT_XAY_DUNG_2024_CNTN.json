@@ -1,0 +1,399 @@
+{
+  "$schema": "../../schema/program.schema.json",
+  "code": "FCE_KY_THUAT_XAY_DUNG_2024_CNTN",
+  "name": "Kỹ thuật Xây dựng",
+  "nameEn": "Civil Engineering",
+  "faculty": "fce",
+  "year": "2024",
+  "major": "7580201",
+  "type": "CNTN",
+  "level": "dai-hoc",
+  "degree": "cu-nhan",
+  "totalCredits": 131,
+  "variant": "Chương trình tài năng",
+  "note": "Bảng CTĐT của trường không có cột riêng cho loại chương trình này; ctdtUrl và planUrl để trống. Học kỳ đề xuất mượn kế hoạch giảng dạy của chương trình tiêu chuẩn cùng ngành nên chỉ gần đúng.",
+  "source": "https://hcmut.edu.vn/study/handbook/course/undergraduate/7580201?program=CNTN",
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/undergraduate/7580201?program=CNTN",
+  "blocks": [
+    {
+      "id": "K01",
+      "name": "A.1. TOÁN",
+      "group": "A. TOÁN & KHOA HỌC TỰ NHIÊN",
+      "kind": "toan-khtn",
+      "required": true,
+      "creditsNeed": 22,
+      "courses": [
+        "MT1003",
+        "MT1007",
+        "MT1005",
+        "CI1069",
+        "MT2013",
+        "MT1009"
+      ],
+      "semesters": {
+        "MT1003": 1,
+        "MT1007": 1,
+        "MT1005": 2,
+        "CI1069": 2,
+        "MT2013": 3,
+        "MT1009": 4
+      }
+    },
+    {
+      "id": "K02",
+      "name": "A.2. KHOA HỌC TỰ NHIÊN",
+      "group": "A. TOÁN & KHOA HỌC TỰ NHIÊN",
+      "kind": "toan-khtn",
+      "required": true,
+      "creditsNeed": 8,
+      "courses": [
+        "PH1003",
+        "PH1007",
+        "CH1003"
+      ],
+      "semesters": {
+        "PH1003": 1,
+        "PH1007": 1,
+        "CH1003": 2
+      }
+    },
+    {
+      "id": "K03",
+      "name": "B.1. KINH TẾ - CHÍNH TRỊ - XÃ HỘI - LUẬT",
+      "group": "B. GIÁO DỤC CHUNG",
+      "kind": "ly-luan-chinh-tri",
+      "required": true,
+      "creditsNeed": 13,
+      "courses": [
+        "SP1007",
+        "SP1031",
+        "SP1033",
+        "SP1035",
+        "SP1039",
+        "SP1037"
+      ],
+      "semesters": {
+        "SP1007": 3,
+        "SP1031": 4,
+        "SP1033": 5,
+        "SP1035": 6,
+        "SP1039": 7,
+        "SP1037": 8
+      }
+    },
+    {
+      "id": "K04",
+      "name": "B.2. NHẬP MÔN",
+      "group": "B. GIÁO DỤC CHUNG",
+      "kind": "giao-duc-chung",
+      "required": true,
+      "creditsNeed": 3,
+      "courses": [
+        "CI1001"
+      ],
+      "semesters": {
+        "CI1001": 1
+      }
+    },
+    {
+      "id": "K05",
+      "name": "B.3.1. KIẾN THỨC QUẢN LÝ/ KHỞI NGHIỆP",
+      "group": "B. GIÁO DỤC CHUNG > B.3. KIẾN THỨC QUẢN LÝ/ KHỞI NGHIỆP",
+      "kind": "giao-duc-chung",
+      "required": false,
+      "creditsNeed": 3,
+      "courses": [
+        "CI3289",
+        "CI3291",
+        "IM1031",
+        "ME1019"
+      ],
+      "semesters": {
+        "CI3289": 5,
+        "CI3291": 5,
+        "IM1031": 5,
+        "ME1019": 5
+      }
+    },
+    {
+      "id": "K06",
+      "name": "B.4. KIẾN THỨC VỀ CON NGƯỜI VÀ MÔI TRƯỜNG/KỸ NĂNG NGHỀ NGHIỆP CHUYÊN NGHIỆP",
+      "group": "B. GIÁO DỤC CHUNG",
+      "kind": "giao-duc-chung",
+      "required": true,
+      "creditsNeed": 3,
+      "courses": [
+        "EN1003"
+      ],
+      "semesters": {
+        "EN1003": 8
+      }
+    },
+    {
+      "id": "K07",
+      "name": "B.5. NGOẠI NGỮ",
+      "group": "B. GIÁO DỤC CHUNG",
+      "kind": "ngoai-ngu",
+      "required": true,
+      "creditsNeed": 8,
+      "courses": [
+        "LA1003",
+        "LA1005",
+        "LA1007",
+        "LA1009"
+      ],
+      "semesters": {
+        "LA1003": 1,
+        "LA1005": 2,
+        "LA1007": 3,
+        "LA1009": 4
+      }
+    },
+    {
+      "id": "K08",
+      "name": "C.1. BẮT BUỘC CƠ SỞ NGÀNH",
+      "group": "C. CƠ SỞ NGÀNH",
+      "kind": "co-so-nganh",
+      "required": true,
+      "creditsNeed": 39,
+      "courses": [
+        "CI1033",
+        "CI1007",
+        "CI2003",
+        "CI2095",
+        "CI2037",
+        "CI2007",
+        "CI2133",
+        "CI2135",
+        "CI2137",
+        "CI2139",
+        "CI2145",
+        "CI2147",
+        "CI2151"
+      ],
+      "semesters": {
+        "CI1033": 2,
+        "CI1007": 3,
+        "CI2003": 3,
+        "CI2095": 3,
+        "CI2037": 4,
+        "CI2007": 4,
+        "CI2133": 5,
+        "CI2135": 5,
+        "CI2137": 5,
+        "CI2139": 5,
+        "CI2145": 6,
+        "CI2147": 7,
+        "CI2151": 8
+      }
+    },
+    {
+      "id": "K09",
+      "name": "C.2. TỰ CHỌN CƠ SỞ NGÀNH",
+      "group": "C. CƠ SỞ NGÀNH",
+      "kind": "co-so-nganh",
+      "required": false,
+      "creditsNeed": 0,
+      "courses": []
+    },
+    {
+      "id": "K10",
+      "name": "D.1.1. BẮT BUỘC NGÀNH",
+      "group": "D. NGÀNH/CHUYÊN NGÀNH > D.1. NGÀNH",
+      "kind": "nganh",
+      "required": true,
+      "creditsNeed": 12,
+      "courses": [
+        "CI3243",
+        "CI3043",
+        "CI4189",
+        "CI4131"
+      ],
+      "semesters": {
+        "CI3243": 6,
+        "CI3043": 6,
+        "CI4189": 7,
+        "CI4131": 7
+      }
+    },
+    {
+      "id": "K11",
+      "name": "D.1.2. TỰ CHỌN NGÀNH",
+      "group": "D. NGÀNH/CHUYÊN NGÀNH > D.1. NGÀNH",
+      "kind": "tu-chon-nganh",
+      "required": false,
+      "creditsNeed": 3,
+      "courses": [
+        "CI3061",
+        "CI3241",
+        "CI4161",
+        "CI3507"
+      ],
+      "semesters": {
+        "CI3061": 7,
+        "CI3241": 7,
+        "CI4161": 7,
+        "CI3507": 7
+      }
+    },
+    {
+      "id": "K12",
+      "name": "D.2. CHUYÊN NGÀNH",
+      "group": "D. NGÀNH/CHUYÊN NGÀNH",
+      "kind": "chuyen-nganh",
+      "required": true,
+      "creditsNeed": 0,
+      "courses": []
+    },
+    {
+      "id": "K13",
+      "name": "D.3. KHỐI KIẾN THỨC MỞ RỘNG CHƯƠNG TRÌNH TÀI NĂNG",
+      "group": "D. NGÀNH/CHUYÊN NGÀNH",
+      "kind": "nganh",
+      "required": false,
+      "requiredUnknown": true,
+      "coursesNeed": 11,
+      "courses": [
+        "CI209C",
+        "CI203D",
+        "CI200D",
+        "CI213B",
+        "CI213C",
+        "CI213D",
+        "CI213E",
+        "CI214C",
+        "CI214D",
+        "CI304B",
+        "CI418E"
+      ]
+    },
+    {
+      "id": "K14",
+      "name": "E. TỰ CHỌN (KHÁC)/TỰ DO",
+      "kind": "tu-chon-tu-do",
+      "required": false,
+      "creditsNeed": 9,
+      "courses": []
+    },
+    {
+      "id": "K15",
+      "name": "F. HỌC PHẦN TỐT NGHIỆP",
+      "kind": "tot-nghiep",
+      "required": true,
+      "creditsNeed": 8,
+      "courses": [
+        "CI3445",
+        "CI4133",
+        "CI4447"
+      ],
+      "semesters": {
+        "CI3445": 6,
+        "CI4133": 7,
+        "CI4447": 8
+      }
+    },
+    {
+      "id": "K16",
+      "name": "G. GIÁO DỤC QUỐC PHÒNG",
+      "kind": "quoc-phong",
+      "required": true,
+      "creditsNeed": 0,
+      "courses": [
+        "MI1003"
+      ],
+      "semesters": {
+        "MI1003": 2
+      }
+    },
+    {
+      "id": "K17",
+      "name": "H.1. GIÁO DỤC THỂ CHẤT HỌC PHẦN 1",
+      "group": "H. GIÁO DỤC THỂ CHẤT",
+      "kind": "the-chat",
+      "required": false,
+      "coursesNeed": 1,
+      "courses": [
+        "PE1009",
+        "PE1011",
+        "PE1013",
+        "PE1015",
+        "PE1017",
+        "PE1019",
+        "PE1021",
+        "PE1023",
+        "PE1025",
+        "PE1027",
+        "PE1053",
+        "PE1057",
+        "PE1061",
+        "PE1001"
+      ],
+      "semesters": {
+        "PE1009": 1,
+        "PE1011": 1,
+        "PE1013": 1,
+        "PE1015": 1,
+        "PE1017": 1,
+        "PE1019": 1,
+        "PE1021": 1,
+        "PE1023": 1,
+        "PE1025": 1,
+        "PE1027": 1,
+        "PE1053": 1,
+        "PE1057": 1,
+        "PE1061": 1
+      }
+    },
+    {
+      "id": "K18",
+      "name": "H.2. GIÁO DỤC THỂ CHẤT HỌC PHẦN 2",
+      "group": "H. GIÁO DỤC THỂ CHẤT",
+      "kind": "the-chat",
+      "required": false,
+      "coursesNeed": 1,
+      "courses": [
+        "PE1033",
+        "PE1035",
+        "PE1037",
+        "PE1039",
+        "PE1041",
+        "PE1043",
+        "PE1045",
+        "PE1047",
+        "PE1049",
+        "PE1051",
+        "PE1055",
+        "PE1059",
+        "PE1063",
+        "PE1002"
+      ],
+      "semesters": {
+        "PE1033": 2,
+        "PE1035": 2,
+        "PE1037": 2,
+        "PE1039": 2,
+        "PE1041": 2,
+        "PE1043": 2,
+        "PE1045": 2,
+        "PE1047": 2,
+        "PE1049": 2,
+        "PE1051": 2,
+        "PE1055": 2,
+        "PE1059": 2,
+        "PE1063": 2
+      }
+    },
+    {
+      "id": "K19",
+      "name": "I. ĐIỀU KIỆN TỐT NGHIỆP",
+      "kind": "dieu-kien-tot-nghiep",
+      "required": true,
+      "coursesNeed": 0,
+      "courses": [
+        "SA4001",
+        "ENG_GT_700"
+      ]
+    }
+  ],
+  "updated": "2026-10-04"
+}

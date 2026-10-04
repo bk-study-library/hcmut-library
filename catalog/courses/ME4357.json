@@ -2,7 +2,7 @@
   "$schema": "../../schema/course.schema.json",
   "id": "ME4357",
   "code": "ME4357",
-  "name": "Đồ án tốt nghiệp (cn dệt may)",
+  "name": "Đồ án Tốt nghiệp (Công nghệ Dệt may)",
   "nameEn": "Capstone Project",
   "credits": 4,
   "faculty": "fme",
@@ -10,37 +10,32 @@
   "status": "active",
   "programs": [
     {
-      "program": "FME_CONG_NGHE_DET_MAY_2024",
-      "block": "K14",
-      "required": true
+      "program": "FME_CONG_NGHE_DET_MAY_2019",
+      "block": "K08",
+      "required": false
     },
     {
-      "program": "FME_CONG_NGHE_DET_MAY_2019",
-      "block": "K02",
+      "program": "FME_CONG_NGHE_DET_MAY_2020",
+      "block": "K08",
+      "required": false
+    },
+    {
+      "program": "FME_CONG_NGHE_DET_MAY_2021",
+      "block": "K08",
       "required": false
     },
     {
       "program": "FME_CONG_NGHE_DET_MAY_2022",
-      "block": "K11",
-      "required": true
-    },
-    {
-      "program": "FME_CONG_NGHE_DET_MAY_2023",
-      "block": "K11",
-      "required": true
-    },
-    {
-      "program": "FME_CONG_NGHE_DET_MAY_2021",
-      "block": "K11",
-      "required": true
-    },
-    {
-      "program": "FME_CONG_NGHE_DET_MAY_2020",
-      "block": "K02",
+      "block": "K08",
       "required": false
     },
     {
-      "program": "FME_KY_THUAT_DET_2024",
+      "program": "FME_CONG_NGHE_DET_MAY_2023",
+      "block": "K08",
+      "required": false
+    },
+    {
+      "program": "FME_CONG_NGHE_DET_MAY_2024",
       "block": "K14",
       "required": true
     }
@@ -49,6 +44,7 @@
     "project"
   ],
   "related": [],
-  "note": "Nhập từ nguồn công khai (truy cập 03/10/2026). Tên khác trong CTĐT: Đồ án Tốt nghiệp (Công nghệ Dệt may) (2024). Chờ người duyệt xác nhận.",
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/ME4357",
+  "note": "Nhập từ nguồn công khai (truy cập 03/10/2026). Tên khác trong CTĐT: Đồ án Tốt nghiệp (Công nghệ Dệt may) (2024). Chờ người duyệt xác nhận. Tên trong Kế hoạch giảng dạy: Đồ án tốt nghiệp (cn dệt may).",
   "updated": "2026-10-04"
 }

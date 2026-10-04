@@ -1,0 +1,115 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "AS1003",
+  "code": "AS1003",
+  "name": "Cơ lý thuyết",
+  "nameEn": "Engineering Mechanics",
+  "credits": 3,
+  "faculty": "fas",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "FAS_CO_KY_THUAT_2019",
+      "block": "K03",
+      "required": false
+    },
+    {
+      "program": "FAS_CO_KY_THUAT_2020",
+      "block": "K03",
+      "required": false
+    },
+    {
+      "program": "FAS_CO_KY_THUAT_2021",
+      "block": "K03",
+      "required": false
+    },
+    {
+      "program": "FAS_CO_KY_THUAT_2022",
+      "block": "K01",
+      "required": false
+    },
+    {
+      "program": "FAS_CO_KY_THUAT_2023",
+      "block": "K03",
+      "required": false
+    },
+    {
+      "program": "FAS_CO_KY_THUAT_2024",
+      "block": "K08",
+      "required": true
+    },
+    {
+      "program": "FAS_CO_KY_THUAT_2024_CNTN",
+      "block": "K08",
+      "required": true
+    },
+    {
+      "program": "FAS_CO_KY_THUAT_2024_DHNB",
+      "block": "K11",
+      "required": true
+    },
+    {
+      "program": "FAS_CO_KY_THUAT_2025_CNTN",
+      "block": "K08",
+      "required": true
+    },
+    {
+      "program": "FAS_CO_KY_THUAT_2025_DHNB",
+      "block": "K11",
+      "required": true
+    },
+    {
+      "program": "FAS_CO_KY_THUAT_2026_CNTN",
+      "block": "K11",
+      "required": true
+    },
+    {
+      "program": "FAS_KHOA_HOC_DU_LIEU_2024",
+      "block": "K11",
+      "required": false
+    },
+    {
+      "program": "FAS_TS_138_2026",
+      "block": "K11",
+      "required": true
+    },
+    {
+      "program": "FAS_TS_268_2026_NB",
+      "block": "K11",
+      "required": true
+    },
+    {
+      "program": "FTE_KY_THUAT_O_TO_2019",
+      "block": "K02",
+      "required": false
+    },
+    {
+      "program": "FTE_KY_THUAT_O_TO_2020",
+      "block": "K02",
+      "required": false
+    },
+    {
+      "program": "FTE_KY_THUAT_O_TO_2021",
+      "block": "K02",
+      "required": false
+    },
+    {
+      "program": "FTE_KY_THUAT_O_TO_2022",
+      "block": "K02",
+      "required": false
+    },
+    {
+      "program": "FTE_KY_THUAT_O_TO_2023",
+      "block": "K02",
+      "required": false
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/AS1003",
+  "note": "Nhập từ CTĐT chính thức (Sổ tay HCMUT, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

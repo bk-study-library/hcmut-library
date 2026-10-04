@@ -10,6 +10,7 @@
 | Khoa | Khoa Kỹ thuật Địa chất và Dầu khí |
 | Phần | Lý thuyết, Thí nghiệm |
 | Trạng thái | Đang dạy |
+| Sổ tay HCMUT | [Trang môn trên Sổ tay HCMUT](https://hcmut.edu.vn/study/handbook/subject/GE2033) |
 | Mã, tên cũ | GE1007 Tinh thể - khoáng vật - thạch học |
 | Thay cho | [GE1007](../GE1007/README.md) |
 

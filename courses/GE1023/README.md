@@ -6,10 +6,11 @@
 |---|---|
 | Mã môn | GE1023 |
 | Tên | Phân tích dữ liệu trong ngành dầu khí / Data analytics in oil and gas industry |
-| Tín chỉ | undefined |
+| Tín chỉ | 3 |
 | Khoa | Khoa Kỹ thuật Địa chất và Dầu khí |
 | Phần | Lý thuyết |
 | Trạng thái | Đang dạy |
+| Sổ tay HCMUT | [Trang môn trên Sổ tay HCMUT](https://hcmut.edu.vn/study/handbook/subject/GE1023) |
 | Môn liên quan | [MT1009](../MT1009/README.md) Phương pháp tính |
 
 ## Tài liệu

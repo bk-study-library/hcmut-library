@@ -1,0 +1,194 @@
+{
+  "$schema": "../../schema/program.schema.json",
+  "code": "CSE_CONG_NGHE_THONG_TIN_VUA_LAM_VUA_HOC_2021_VLVH",
+  "name": "Công nghệ Thông tin (Vừa Làm Vừa Học)",
+  "faculty": "cse",
+  "year": "2021",
+  "major": "7480201",
+  "type": "VLVH",
+  "level": "dai-hoc",
+  "variant": "Vừa làm vừa học",
+  "note": "Sổ tay không có năm này cho ngành và loại chương trình này. Danh sách môn lấy từ Kế hoạch giảng dạy (PDF), khối là học kỳ chứ không phải khối kiến thức; tên khối kiến thức, bắt buộc hay tự chọn chưa có.",
+  "source": "https://drive.google.com/file/d/1rLuxC0zfTwKLfCaRmi6tdd6w7hxmYu9U/view",
+  "ctdtUrl": "https://drive.google.com/file/d/1M2UWTVpFfnFjf23cRKkrlLGVifrKaNO6/view",
+  "planUrl": "https://drive.google.com/file/d/1rLuxC0zfTwKLfCaRmi6tdd6w7hxmYu9U/view",
+  "blocks": [
+    {
+      "id": "K01",
+      "name": "Học kỳ 1",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "LA1003",
+        "MT1003",
+        "PH1003",
+        "CO1005",
+        "CO1033"
+      ],
+      "semesters": {
+        "LA1003": 1,
+        "MT1003": 1,
+        "PH1003": 1,
+        "CO1005": 1,
+        "CO1033": 1
+      }
+    },
+    {
+      "id": "K02",
+      "name": "Học kỳ 2",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "LA1005",
+        "MT1005",
+        "MT1007",
+        "CO1007",
+        "CO1027"
+      ],
+      "semesters": {
+        "LA1005": 2,
+        "MT1005": 2,
+        "MT1007": 2,
+        "CO1007": 2,
+        "CO1027": 2
+      }
+    },
+    {
+      "id": "K03",
+      "name": "Học kỳ 3",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "LA1007",
+        "SP1031",
+        "CO2007",
+        "PH1005",
+        "CO2003"
+      ],
+      "semesters": {
+        "LA1007": 3,
+        "SP1031": 3,
+        "CO2007": 3,
+        "PH1005": 3,
+        "CO2003": 3
+      }
+    },
+    {
+      "id": "K04",
+      "name": "Học kỳ 4",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "LA1009",
+        "SP1033",
+        "CO2017",
+        "CH1003",
+        "MT2013",
+        "PH1007"
+      ],
+      "semesters": {
+        "LA1009": 4,
+        "SP1033": 4,
+        "CO2017": 4,
+        "CH1003": 4,
+        "MT2013": 4,
+        "PH1007": 4
+      }
+    },
+    {
+      "id": "K05",
+      "name": "Học kỳ 5",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "SP1035",
+        "CO3093",
+        "CO2013",
+        "CO3001"
+      ],
+      "semesters": {
+        "SP1035": 5,
+        "CO3093": 5,
+        "CO2013": 5,
+        "CO3001": 5
+      }
+    },
+    {
+      "id": "K06",
+      "name": "Học kỳ 6",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "SP1039",
+        "CO2001",
+        "CO3043",
+        "CO3115",
+        "CO3355"
+      ],
+      "semesters": {
+        "SP1039": 6,
+        "CO2001": 6,
+        "CO3043": 6,
+        "CO3115": 6,
+        "CO3355": 6
+      }
+    },
+    {
+      "id": "K07",
+      "name": "Học kỳ 7",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "SP1037",
+        "CO4043",
+        "CO3045",
+        "CO3027",
+        "CO3061",
+        "IM1013",
+        "IM3001",
+        "IM1027",
+        "IM1023",
+        "IM1025"
+      ],
+      "semesters": {
+        "SP1037": 7,
+        "CO4043": 7,
+        "CO3045": 7,
+        "CO3027": 7,
+        "CO3061": 7,
+        "IM1013": 7,
+        "IM3001": 7,
+        "IM1027": 7,
+        "IM1023": 7,
+        "IM1025": 7
+      }
+    },
+    {
+      "id": "K08",
+      "name": "Học kỳ 8",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "SP1007",
+        "CO4357",
+        "CO3021",
+        "CO3069"
+      ],
+      "semesters": {
+        "SP1007": 8,
+        "CO4357": 8,
+        "CO3021": 8,
+        "CO3069": 8
+      }
+    }
+  ],
+  "updated": "2026-10-04"
+}

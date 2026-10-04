@@ -1,0 +1,22 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "CCGDTC",
+  "code": "CCGDTC",
+  "name": "Chứng chỉ Giáo Dục Thể Chất",
+  "credits": 0,
+  "faculty": "chung",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "FCE_KY_THUAT_XAY_DUNG_2020_PFIEV",
+      "block": "K19",
+      "required": true
+    }
+  ],
+  "parts": [],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/CCGDTC",
+  "note": "Nhập từ CTĐT chính thức (Sổ tay HCMUT, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

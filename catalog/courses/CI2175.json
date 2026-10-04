@@ -1,0 +1,29 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "CI2175",
+  "code": "CI2175",
+  "name": "Nguyên lý Thiết kế Kiến trúc Công trình Công cộng",
+  "credits": 3,
+  "faculty": "fce",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "FCE_KIEN_TRUC_2026",
+      "block": "K11",
+      "required": true
+    },
+    {
+      "program": "FCE_KIEN_TRUC_2026_CTTA",
+      "block": "K11",
+      "required": true
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/CI2175",
+  "note": "Nhập từ CTĐT chính thức (Sổ tay HCMUT, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

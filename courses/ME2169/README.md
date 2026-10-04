@@ -1,15 +1,16 @@
-# ME2169 Kiểm định và đánh giá chất lượng trong dệt may
+# ME2169 Kiểm định và đánh giá chất lượng hàng dệt may
 
 <!-- File này do "npm run build" sinh từ catalog/courses/ME2169.json và items/. Chỉ sửa phần Mẹo học, giữa hai dòng meo-hoc. -->
 
 | Mục | Thông tin |
 |---|---|
 | Mã môn | ME2169 |
-| Tên | Kiểm định và đánh giá chất lượng trong dệt may / Testing and Accreditation in Textiles |
+| Tên | Kiểm định và đánh giá chất lượng hàng dệt may / Testing and Accreditation in Textiles |
 | Tín chỉ | 3 |
 | Khoa | Khoa Cơ khí |
 | Phần | Lý thuyết |
 | Trạng thái | Đang dạy |
+| Sổ tay HCMUT | [Trang môn trên Sổ tay HCMUT](https://hcmut.edu.vn/study/handbook/subject/ME2169) |
 
 ## Tài liệu
 

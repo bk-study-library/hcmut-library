@@ -1,0 +1,35 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "MA4183",
+  "code": "MA4183",
+  "name": "Vật liệu và Công nghệ Bán dẫn",
+  "nameEn": "Semiconductor Materials & Technology",
+  "credits": 4,
+  "faculty": "fmt",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "FMT_KY_THUAT_VAT_LIEU_2024",
+      "block": "K14",
+      "required": true
+    },
+    {
+      "program": "FMT_KY_THUAT_VAT_LIEU_2024_CTTA",
+      "block": "K15",
+      "required": true
+    },
+    {
+      "program": "FMT_KY_THUAT_VAT_LIEU_2025_CTTA",
+      "block": "K15",
+      "required": true
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/MA4183",
+  "note": "Nhập từ CTĐT chính thức (Sổ tay HCMUT, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

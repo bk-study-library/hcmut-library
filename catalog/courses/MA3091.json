@@ -1,0 +1,35 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "MA3091",
+  "code": "MA3091",
+  "name": "Công nghệ Chế tạo các hệ Năng lượng",
+  "nameEn": "Fabrication Technology for Energy Systems",
+  "credits": 4,
+  "faculty": "fmt",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "FMT_KY_THUAT_VAT_LIEU_2024",
+      "block": "K23",
+      "required": false
+    },
+    {
+      "program": "FMT_KY_THUAT_VAT_LIEU_2024_CTTA",
+      "block": "K24",
+      "required": false
+    },
+    {
+      "program": "FMT_KY_THUAT_VAT_LIEU_2025_CTTA",
+      "block": "K24",
+      "required": false
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/MA3091",
+  "note": "Nhập từ CTĐT chính thức (Sổ tay HCMUT, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

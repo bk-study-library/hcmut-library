@@ -1,0 +1,30 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "MA1005",
+  "code": "MA1005",
+  "name": "Nhập môn về Kỹ thuật Bán dẫn",
+  "nameEn": "Introduction to Semiconductor Engineering",
+  "credits": 3,
+  "faculty": "fmt",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "UNKNOWN_TS_159_2026",
+      "block": "K04",
+      "required": true
+    },
+    {
+      "program": "UNKNOWN_TS_259_2026_TA",
+      "block": "K04",
+      "required": true
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/MA1005",
+  "note": "Nhập từ CTĐT chính thức (Sổ tay HCMUT, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

@@ -1,0 +1,60 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "TR2007",
+  "code": "TR2007",
+  "name": "Kết cấu Động cơ Đốt trong",
+  "nameEn": "Internal Combustion Engine Mechanics",
+  "credits": 3,
+  "faculty": "fte",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "FTE_KY_THUAT_O_TO_2019",
+      "block": "K04",
+      "required": false
+    },
+    {
+      "program": "FTE_KY_THUAT_O_TO_2020",
+      "block": "K04",
+      "required": false
+    },
+    {
+      "program": "FTE_KY_THUAT_O_TO_2021",
+      "block": "K04",
+      "required": false
+    },
+    {
+      "program": "FTE_KY_THUAT_O_TO_2022",
+      "block": "K04",
+      "required": false
+    },
+    {
+      "program": "FTE_KY_THUAT_O_TO_2023",
+      "block": "K04",
+      "required": false
+    },
+    {
+      "program": "FTE_KY_THUAT_O_TO_2024",
+      "block": "K08",
+      "required": true
+    },
+    {
+      "program": "FTE_KY_THUAT_O_TO_2024_CTTA",
+      "block": "K09",
+      "required": true
+    },
+    {
+      "program": "FTE_KY_THUAT_O_TO_2025_CTTA",
+      "block": "K09",
+      "required": true
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/TR2007",
+  "note": "Nhập từ CTĐT chính thức (Sổ tay HCMUT, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

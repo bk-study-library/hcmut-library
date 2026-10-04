@@ -4,8 +4,289 @@
   "name": "Song ngành: Kỹ thuật Điều khiển và Tự động hóa - Kỹ thuật Điện tử - Viễn thông",
   "faculty": "dee",
   "year": "2022",
-  "source": "https://hcmut.edu.vn/home/giao-dien/chuong-trinh-dao-tao/all",
-  "note": "Có trong danh mục CTĐT của trường nhưng chưa có file CTĐT.",
-  "blocks": [],
+  "major": "7520216+7520207",
+  "type": "SN",
+  "level": "dai-hoc",
+  "variant": "Song ngành",
+  "note": "Sổ tay không có năm này cho ngành và loại chương trình này. Danh sách môn lấy từ Kế hoạch giảng dạy (PDF), khối là học kỳ chứ không phải khối kiến thức; tên khối kiến thức, bắt buộc hay tự chọn chưa có.",
+  "source": "https://drive.google.com/file/d/1vLFHOqybWaSbOAtxG9IMFyrbJHQ6dPcB/view",
+  "ctdtUrl": "https://drive.google.com/file/d/1U-UqoJDEL3hrJwWDkt0rwadFDwEW0LDS/view",
+  "planUrl": "https://drive.google.com/file/d/1vLFHOqybWaSbOAtxG9IMFyrbJHQ6dPcB/view",
+  "blocks": [
+    {
+      "id": "K01",
+      "name": "Học kỳ 1",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "LA1003",
+        "MT1007",
+        "MT1003",
+        "PH1003",
+        "PH1007",
+        "EE1001"
+      ],
+      "semesters": {
+        "LA1003": 1,
+        "MT1007": 1,
+        "MT1003": 1,
+        "PH1003": 1,
+        "PH1007": 1,
+        "EE1001": 1
+      }
+    },
+    {
+      "id": "K02",
+      "name": "Học kỳ 2",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "LA1005",
+        "MT1005",
+        "EE1007",
+        "MT1009",
+        "CH1003",
+        "MI1003"
+      ],
+      "semesters": {
+        "LA1005": 2,
+        "MT1005": 2,
+        "EE1007": 2,
+        "MT1009": 2,
+        "CH1003": 2,
+        "MI1003": 2
+      }
+    },
+    {
+      "id": "K03",
+      "name": "Học kỳ 3",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "LA1007",
+        "MT2013",
+        "EE2033",
+        "EE1009",
+        "EE2009",
+        "SP1007"
+      ],
+      "semesters": {
+        "LA1007": 3,
+        "MT2013": 3,
+        "EE2033": 3,
+        "EE1009": 3,
+        "EE2009": 3,
+        "SP1007": 3
+      }
+    },
+    {
+      "id": "K04",
+      "name": "Học kỳ 4",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "LA1009",
+        "EE2039",
+        "EE2005",
+        "EE2035",
+        "EE2017",
+        "SP1031"
+      ],
+      "semesters": {
+        "LA1009": 4,
+        "EE2039": 4,
+        "EE2005": 4,
+        "EE2035": 4,
+        "EE2017": 4,
+        "SP1031": 4
+      }
+    },
+    {
+      "id": "K05",
+      "name": "Học kỳ 5",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "EE2021",
+        "EE2019",
+        "EE3029",
+        "EE2023",
+        "EE2025",
+        "SP1033"
+      ],
+      "semesters": {
+        "EE2021": 5,
+        "EE2019": 5,
+        "EE3029": 5,
+        "EE2023": 5,
+        "EE2025": 5,
+        "SP1033": 5
+      }
+    },
+    {
+      "id": "K06",
+      "name": "Học kỳ 6",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "EE3017",
+        "EE3005",
+        "EE3007",
+        "EE2051",
+        "EE2003",
+        "SP1035",
+        "EE3057",
+        "EE3063",
+        "EE3175",
+        "EE3067",
+        "EE3069",
+        "EE3071",
+        "EE3075",
+        "EE3077",
+        "EE3079",
+        "EE3173"
+      ],
+      "semesters": {
+        "EE3017": 6,
+        "EE3005": 6,
+        "EE3007": 6,
+        "EE2051": 6,
+        "EE2003": 6,
+        "SP1035": 6,
+        "EE3057": 6,
+        "EE3063": 6,
+        "EE3175": 6,
+        "EE3067": 6,
+        "EE3069": 6,
+        "EE3071": 6,
+        "EE3075": 6,
+        "EE3077": 6,
+        "EE3079": 6,
+        "EE3173": 6
+      }
+    },
+    {
+      "id": "K07",
+      "name": "Học kỳ 7",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "EE3065",
+        "EE2015",
+        "EE2047",
+        "EE2049",
+        "SP1039"
+      ],
+      "semesters": {
+        "EE3065": 7,
+        "EE2015": 7,
+        "EE2047": 7,
+        "EE2049": 7,
+        "SP1039": 7
+      }
+    },
+    {
+      "id": "K08",
+      "name": "Học kỳ 8",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "EE3003",
+        "EE3015",
+        "EE3165",
+        "EE2063",
+        "EE4111",
+        "SP1037"
+      ],
+      "semesters": {
+        "EE3003": 8,
+        "EE3015": 8,
+        "EE3165": 8,
+        "EE2063": 8,
+        "EE4111": 8,
+        "SP1037": 8
+      }
+    },
+    {
+      "id": "K09",
+      "name": "Học kỳ 9",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "EE3025",
+        "EE3011",
+        "EE4123",
+        "EE3031",
+        "EE3035",
+        "EE3037",
+        "EE3041",
+        "EE3043",
+        "EE3085",
+        "EE3107",
+        "EE3111",
+        "EE3117",
+        "EE3121",
+        "EE3127",
+        "EE3129",
+        "EE3167",
+        "EE3169",
+        "EE3177"
+      ],
+      "semesters": {
+        "EE3025": 9,
+        "EE3011": 9,
+        "EE4123": 9,
+        "EE3031": 9,
+        "EE3035": 9,
+        "EE3037": 9,
+        "EE3041": 9,
+        "EE3043": 9,
+        "EE3085": 9,
+        "EE3107": 9,
+        "EE3111": 9,
+        "EE3117": 9,
+        "EE3121": 9,
+        "EE3127": 9,
+        "EE3129": 9,
+        "EE3167": 9,
+        "EE3169": 9,
+        "EE3177": 9
+      }
+    },
+    {
+      "id": "K10",
+      "name": "Học kỳ 10",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "EN1003",
+        "EE4211",
+        "IM1013",
+        "IM3001",
+        "IM1027",
+        "IM1023",
+        "IM1025"
+      ],
+      "semesters": {
+        "EN1003": 10,
+        "EE4211": 10,
+        "IM1013": 10,
+        "IM3001": 10,
+        "IM1027": 10,
+        "IM1023": 10,
+        "IM1025": 10
+      }
+    }
+  ],
   "updated": "2026-10-04"
 }

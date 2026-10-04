@@ -10,23 +10,23 @@
   "status": "active",
   "programs": [
     {
-      "program": "FME_CONG_NGHE_DET_MAY_2024",
-      "block": "K12",
-      "required": true
-    },
-    {
       "program": "FME_CONG_NGHE_DET_MAY_2022",
-      "block": "K09",
-      "required": true
+      "block": "K04",
+      "required": false
     },
     {
       "program": "FME_CONG_NGHE_DET_MAY_2023",
-      "block": "K09",
+      "block": "K04",
+      "required": false
+    },
+    {
+      "program": "FME_CONG_NGHE_DET_MAY_2024",
+      "block": "K08",
       "required": true
     },
     {
-      "program": "FME_KY_THUAT_DET_2024",
-      "block": "K12",
+      "program": "FME_CONG_NGHE_DET_MAY_2026",
+      "block": "K09",
       "required": true
     }
   ],
@@ -34,6 +34,7 @@
     "theory"
   ],
   "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/ME2163",
   "note": "Nhập từ nguồn công khai (truy cập 03/10/2026).",
   "updated": "2026-10-04"
 }

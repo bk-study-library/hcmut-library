@@ -10,8 +10,23 @@
   "status": "active",
   "programs": [
     {
-      "program": "GEOPET_KY_THUAT_DAU_KHI_2024",
+      "program": "GEOPET_KY_THUAT_DAU_KHI_2023",
       "block": "K06",
+      "required": false
+    },
+    {
+      "program": "GEOPET_KY_THUAT_DAU_KHI_2024",
+      "block": "K05",
+      "required": true
+    },
+    {
+      "program": "GEOPET_KY_THUAT_DAU_KHI_2024_CTTA",
+      "block": "K05",
+      "required": true
+    },
+    {
+      "program": "GEOPET_KY_THUAT_DAU_KHI_2025_CTTA",
+      "block": "K05",
       "required": true
     }
   ],
@@ -19,6 +34,7 @@
     "theory"
   ],
   "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/GE1025",
   "note": "Nhập từ nguồn công khai (truy cập 03/10/2026).",
   "updated": "2026-10-04"
 }

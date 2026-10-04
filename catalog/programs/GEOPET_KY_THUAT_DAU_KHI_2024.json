@@ -5,11 +5,21 @@
   "nameEn": "Petroleum Engineering",
   "faculty": "geopet",
   "year": "2024",
-  "source": "https://drive.google.com/file/d/1d9akLPufKtO9iVl5ihYSDvPbr5FA0Oi5/view",
+  "major": "7520604",
+  "type": "CQ",
+  "level": "dai-hoc",
+  "degree": "cu-nhan",
+  "totalCredits": 132,
+  "source": "https://hcmut.edu.vn/study/handbook/course/undergraduate/7520604?program=CQ",
+  "ctdtUrl": "https://drive.google.com/file/d/1d9akLPufKtO9iVl5ihYSDvPbr5FA0Oi5/view",
+  "planUrl": "https://drive.google.com/file/d/1WJck5ZvRWTDeBXPwABrlbC91JqH_ZOoa/view",
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/undergraduate/7520604?program=CQ",
   "blocks": [
     {
       "id": "K01",
-      "name": "1.1. Toán (Mathematics)",
+      "name": "A.1. TOÁN",
+      "group": "A. TOÁN & KHOA HỌC TỰ NHIÊN",
+      "kind": "toan-khtn",
       "required": true,
       "creditsNeed": 15,
       "courses": [
@@ -17,32 +27,41 @@
         "MT1005",
         "MT1007",
         "MT2013"
-      ]
+      ],
+      "semesters": {
+        "MT1003": 1,
+        "MT1005": 2,
+        "MT1007": 2,
+        "MT2013": 4
+      }
     },
     {
       "id": "K02",
-      "name": "1.2. Khoa học tự nhiên (Natural Sciences)",
+      "name": "A.2. KHOA HỌC TỰ NHIÊN",
+      "group": "A. TOÁN & KHOA HỌC TỰ NHIÊN",
+      "kind": "toan-khtn",
       "required": true,
-      "creditsNeed": 8,
+      "creditsNeed": 15,
       "courses": [
         "CH1003",
         "PH1003",
-        "PH1007"
-      ]
+        "PH1007",
+        "GE1013",
+        "GE1027"
+      ],
+      "semesters": {
+        "CH1003": 1,
+        "PH1003": 1,
+        "PH1007": 2,
+        "GE1013": 2,
+        "GE1027": 3
+      }
     },
     {
       "id": "K03",
-      "name": "1.3. Toán và Khoa học tự nhiên khác (Other Mathematics and Sciences)",
-      "required": true,
-      "creditsNeed": 7,
-      "courses": [
-        "GE1013",
-        "GE1027"
-      ]
-    },
-    {
-      "id": "K04",
-      "name": "1.4. Kinh tế - Chính trị - Xã hội - Luật (Economics - Politics - Sociology - Law)",
+      "name": "B.1. KINH TẾ - CHÍNH TRỊ - XÃ HỘI - LUẬT",
+      "group": "B. GIÁO DỤC CHUNG",
+      "kind": "ly-luan-chinh-tri",
       "required": true,
       "creditsNeed": 13,
       "courses": [
@@ -52,38 +71,63 @@
         "SP1035",
         "SP1037",
         "SP1039"
-      ]
+      ],
+      "semesters": {
+        "SP1007": 8,
+        "SP1031": 3,
+        "SP1033": 4,
+        "SP1035": 5,
+        "SP1037": 7,
+        "SP1039": 6
+      }
     },
     {
-      "id": "K05",
-      "name": "1.5.1. Nhập môn (Introduction to Engineering)",
+      "id": "K04",
+      "name": "B.2. NHẬP MÔN",
+      "group": "B. GIÁO DỤC CHUNG",
+      "kind": "giao-duc-chung",
       "required": true,
       "creditsNeed": 3,
       "courses": [
         "GE1001"
-      ]
+      ],
+      "semesters": {
+        "GE1001": 1
+      }
     },
     {
-      "id": "K06",
-      "name": "1.5.2. Quản lý (Management for Engineers (Select 3 credits))",
+      "id": "K05",
+      "name": "B.3. KIẾN THỨC QUẢN LÝ/ KHỞI NGHIỆP",
+      "group": "B. GIÁO DỤC CHUNG",
+      "kind": "giao-duc-chung",
       "required": true,
       "creditsNeed": 3,
       "courses": [
         "GE1025"
-      ]
+      ],
+      "semesters": {
+        "GE1025": 6
+      }
     },
     {
-      "id": "K07",
-      "name": "1.5.3. Con người và môi trường (Humans and the Environment)",
+      "id": "K06",
+      "name": "B.4. KIẾN THỨC VỀ CON NGƯỜI VÀ MÔI TRƯỜNG/KỸ NĂNG NGHỀ NGHIỆP CHUYÊN NGHIỆP",
+      "group": "B. GIÁO DỤC CHUNG",
+      "kind": "giao-duc-chung",
       "required": true,
       "creditsNeed": 3,
       "courses": [
         "GE1029"
-      ]
+      ],
+      "semesters": {
+        "GE1029": 2
+      }
     },
     {
-      "id": "K08",
-      "name": "1.6. Ngoại ngữ (Foreign Language)",
+      "id": "K07",
+      "name": "B.5. NGOẠI NGỮ",
+      "group": "B. GIÁO DỤC CHUNG",
+      "kind": "ngoai-ngu",
       "required": true,
       "creditsNeed": 8,
       "courses": [
@@ -91,11 +135,19 @@
         "LA1005",
         "LA1007",
         "LA1009"
-      ]
+      ],
+      "semesters": {
+        "LA1003": 1,
+        "LA1005": 2,
+        "LA1007": 3,
+        "LA1009": 4
+      }
     },
     {
-      "id": "K09",
-      "name": "2.1. Cơ sở ngành (Major's Core Courses)",
+      "id": "K08",
+      "name": "C.1. BẮT BUỘC CƠ SỞ NGÀNH",
+      "group": "C. CƠ SỞ NGÀNH",
+      "kind": "co-so-nganh",
       "required": true,
       "creditsNeed": 28,
       "courses": [
@@ -109,11 +161,34 @@
         "GE3205",
         "GE2055",
         "GE2057"
-      ]
+      ],
+      "semesters": {
+        "GE2051": 3,
+        "GE2001": 3,
+        "GE2053": 3,
+        "GE2061": 4,
+        "GE2063": 4,
+        "GE2059": 4,
+        "GE3017": 5,
+        "GE3205": 5,
+        "GE2055": 5,
+        "GE2057": 5
+      }
+    },
+    {
+      "id": "K09",
+      "name": "C.2. TỰ CHỌN CƠ SỞ NGÀNH",
+      "group": "C. CƠ SỞ NGÀNH",
+      "kind": "co-so-nganh",
+      "required": false,
+      "creditsNeed": 0,
+      "courses": []
     },
     {
       "id": "K10",
-      "name": "2.2. Ngành (Specialty Courses)",
+      "name": "D.1.1. BẮT BUỘC NGÀNH",
+      "group": "D. NGÀNH/CHUYÊN NGÀNH > D.1. NGÀNH",
+      "kind": "nganh",
       "required": true,
       "creditsNeed": 21,
       "courses": [
@@ -124,22 +199,38 @@
         "GE4091",
         "GE4145",
         "GE4153"
-      ]
+      ],
+      "semesters": {
+        "GE3219": 5,
+        "GE3217": 6,
+        "GE3105": 6,
+        "GE4091": 7,
+        "GE4145": 7,
+        "GE4153": 8
+      }
     },
     {
       "id": "K11",
-      "name": "2.3. Tự chọn nhóm A (Elective Courses - Group A)",
-      "required": true,
+      "name": "D.1.2.1. TỰ CHỌN NGÀNH",
+      "group": "D. NGÀNH/CHUYÊN NGÀNH > D.1. NGÀNH > D.1.2. TỰ CHỌN NGÀNH",
+      "kind": "tu-chon-nganh",
+      "required": false,
       "creditsNeed": 3,
       "courses": [
         "GE3223",
         "GE3221"
-      ]
+      ],
+      "semesters": {
+        "GE3223": 7,
+        "GE3221": 7
+      }
     },
     {
       "id": "K12",
-      "name": "2.4. Tự chọn nhóm B (Elective Courses - Group B)",
-      "required": true,
+      "name": "D.1.2.2. TỰ CHỌN NGÀNH",
+      "group": "D. NGÀNH/CHUYÊN NGÀNH > D.1. NGÀNH > D.1.2. TỰ CHỌN NGÀNH",
+      "kind": "tu-chon-nganh",
+      "required": false,
       "creditsNeed": 3,
       "courses": [
         "GE4147",
@@ -147,66 +238,147 @@
         "GE4151",
         "ME1019",
         "IM1031"
-      ]
+      ],
+      "semesters": {
+        "GE4147": 8,
+        "GE4149": 8,
+        "GE4151": 8,
+        "ME1019": 8,
+        "IM1031": 8
+      }
     },
     {
       "id": "K13",
-      "name": "2.5. Tốt nghiệp (Graduation)",
+      "name": "D.2. CHUYÊN NGÀNH",
+      "group": "D. NGÀNH/CHUYÊN NGÀNH",
+      "kind": "chuyen-nganh",
+      "required": true,
+      "creditsNeed": 0,
+      "courses": []
+    },
+    {
+      "id": "K14",
+      "name": "E. TỰ CHỌN (KHÁC)/TỰ DO",
+      "kind": "tu-chon-tu-do",
+      "required": false,
+      "creditsNeed": 9,
+      "courses": []
+    },
+    {
+      "id": "K15",
+      "name": "F. HỌC PHẦN TỐT NGHIỆP",
+      "kind": "tot-nghiep",
       "required": true,
       "creditsNeed": 8,
       "courses": [
         "GE3345",
         "GE4141",
         "GE4347"
-      ]
+      ],
+      "semesters": {
+        "GE3345": 6,
+        "GE4141": 7,
+        "GE4347": 8
+      }
     },
     {
-      "id": "K14",
-      "name": "4. Giáo dục quốc phòng (Military Trainning)",
+      "id": "K16",
+      "name": "G. GIÁO DỤC QUỐC PHÒNG",
+      "kind": "quoc-phong",
       "required": true,
       "creditsNeed": 0,
       "courses": [
         "MI1003"
-      ]
+      ],
+      "semesters": {
+        "MI1003": 2
+      }
     },
     {
-      "id": "K15",
-      "name": "Khối",
-      "required": true,
+      "id": "K17",
+      "name": "H.1. GIÁO DỤC THỂ CHẤT HỌC PHẦN 1",
+      "group": "H. GIÁO DỤC THỂ CHẤT",
+      "kind": "the-chat",
+      "required": false,
+      "coursesNeed": 1,
       "courses": [
         "PE1009",
         "PE1011",
         "PE1013",
-        "PE1021",
         "PE1015",
         "PE1017",
-        "PE1025",
         "PE1019",
+        "PE1021",
+        "PE1023",
+        "PE1025",
         "PE1027",
         "PE1053",
         "PE1057",
         "PE1061",
-        "PE1037",
-        "PE1041",
+        "PE1001"
+      ],
+      "semesters": {
+        "PE1009": 1,
+        "PE1011": 1,
+        "PE1013": 1,
+        "PE1015": 1,
+        "PE1017": 1,
+        "PE1019": 1,
+        "PE1021": 1,
+        "PE1025": 1,
+        "PE1027": 1,
+        "PE1053": 1,
+        "PE1057": 1,
+        "PE1061": 1
+      }
+    },
+    {
+      "id": "K18",
+      "name": "H.2. GIÁO DỤC THỂ CHẤT HỌC PHẦN 2",
+      "group": "H. GIÁO DỤC THỂ CHẤT",
+      "kind": "the-chat",
+      "required": false,
+      "coursesNeed": 1,
+      "courses": [
         "PE1033",
-        "PE1045",
-        "PE1043",
-        "PE1039",
         "PE1035",
+        "PE1037",
+        "PE1039",
+        "PE1041",
+        "PE1043",
+        "PE1045",
+        "PE1047",
         "PE1049",
         "PE1051",
         "PE1055",
+        "PE1059",
         "PE1063",
-        "PE1059"
-      ]
+        "PE1002"
+      ],
+      "semesters": {
+        "PE1033": 2,
+        "PE1035": 2,
+        "PE1037": 2,
+        "PE1039": 2,
+        "PE1041": 2,
+        "PE1043": 2,
+        "PE1045": 2,
+        "PE1049": 2,
+        "PE1051": 2,
+        "PE1055": 2,
+        "PE1059": 2,
+        "PE1063": 2
+      }
     },
     {
-      "id": "K16",
-      "name": "Z. Điều kiện tốt nghiệp (Graduation Condition)",
-      "required": false,
-      "creditsNeed": 0,
+      "id": "K19",
+      "name": "I. ĐIỀU KIỆN TỐT NGHIỆP",
+      "kind": "dieu-kien-tot-nghiep",
+      "required": true,
+      "coursesNeed": 0,
       "courses": [
-        "SA4001"
+        "SA4001",
+        "ENG_GC_600"
       ]
     }
   ],

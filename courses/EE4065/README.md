@@ -1,15 +1,16 @@
-# EE4065 Nhà máy điện & trạm biến áp (PBL)
+# EE4065 Nhà máy Điện và Trạm biến áp (PBL)
 
 <!-- File này do "npm run build" sinh từ catalog/courses/EE4065.json và items/. Chỉ sửa phần Mẹo học, giữa hai dòng meo-hoc. -->
 
 | Mục | Thông tin |
 |---|---|
 | Mã môn | EE4065 |
-| Tên | Nhà máy điện & trạm biến áp (PBL) / Electric Power Plants and Substations |
+| Tên | Nhà máy Điện và Trạm biến áp (PBL) / Electric Power Plants and Substations |
 | Tín chỉ | 3 |
 | Khoa | Khoa Điện - Điện tử |
 | Phần | Lý thuyết |
 | Trạng thái | Đang dạy |
+| Sổ tay HCMUT | [Trang môn trên Sổ tay HCMUT](https://hcmut.edu.vn/study/handbook/subject/EE4065) |
 
 ## Tài liệu
 

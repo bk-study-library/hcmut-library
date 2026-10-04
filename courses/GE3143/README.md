@@ -10,6 +10,7 @@
 | Khoa | Khoa Kỹ thuật Địa chất và Dầu khí |
 | Phần | Lý thuyết |
 | Trạng thái | Đang dạy |
+| Sổ tay HCMUT | [Trang môn trên Sổ tay HCMUT](https://hcmut.edu.vn/study/handbook/subject/GE3143) |
 | Mã, tên cũ | GE3051 Địa kỹ thuật 2 |
 | Thay cho | [GE3051](../GE3051/README.md) |
 

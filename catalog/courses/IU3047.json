@@ -2,7 +2,8 @@
   "$schema": "../../schema/course.schema.json",
   "id": "IU3047",
   "code": "IU3047",
-  "name": "Project 1",
+  "name": "Đồ án 1",
+  "nameEn": "Project 1",
   "credits": 1,
   "faculty": "fme",
   "aliases": [],
@@ -10,7 +11,7 @@
   "programs": [
     {
       "program": "FME_BAO_DUONG_CONG_NGHIEP_2024",
-      "block": "K12",
+      "block": "K10",
       "required": true
     }
   ],
@@ -18,6 +19,7 @@
     "theory"
   ],
   "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/IU3047",
   "note": "Nhập từ nguồn công khai (truy cập 03/10/2026). Nguồn chỉ có tên tiếng Anh.",
   "updated": "2026-10-04"
 }
