@@ -1,0 +1,23 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "EE4345",
+  "code": "EE4345",
+  "name": "Đồ án 2 (Thiết kế vi mạch)",
+  "credits": 2,
+  "faculty": "dee",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "DEE_THIET_KE_VI_MACH_2024",
+      "block": "K07",
+      "required": true
+    }
+  ],
+  "parts": [
+    "project"
+  ],
+  "related": [],
+  "note": "Nhập từ nguồn công khai (truy cập 03/10/2026).",
+  "updated": "2026-10-04"
+}

@@ -1,0 +1,82 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "GE2035",
+  "code": "GE2035",
+  "name": "Địa chất kiến trúc và đo vẽ bản đồ địa chất",
+  "nameEn": "Structural Geology and Geological Mapping",
+  "credits": 3,
+  "faculty": "geopet",
+  "aliases": [
+    {
+      "code": "GE2003",
+      "name": "Địa chất kiến trúc và đo vẽ bản đồ địa chất",
+      "to": "2018-12-31"
+    },
+    {
+      "code": "GE2005",
+      "name": "Thực tập địa chất kiến trúc",
+      "to": "2018-12-31"
+    }
+  ],
+  "status": "active",
+  "replaces": [
+    "GE2003",
+    "GE2005"
+  ],
+  "programs": [
+    {
+      "program": "GEOPET_KY_THUAT_DIA_CHAT_2024",
+      "block": "K09",
+      "required": true
+    },
+    {
+      "program": "GEOPET_KY_THUAT_DAU_KHI_2021",
+      "block": "K09",
+      "required": true
+    },
+    {
+      "program": "GEOPET_KY_THUAT_DAU_KHI_2020",
+      "block": "K02",
+      "required": true
+    },
+    {
+      "program": "GEOPET_KY_THUAT_DIA_CHAT_2022",
+      "block": "K09",
+      "required": true
+    },
+    {
+      "program": "GEOPET_KY_THUAT_DIA_CHAT_2021",
+      "block": "K09",
+      "required": true
+    },
+    {
+      "program": "GEOPET_KY_THUAT_DIA_CHAT_2020",
+      "block": "K01",
+      "required": true
+    },
+    {
+      "program": "GEOPET_KY_THUAT_DIA_CHAT_2019",
+      "block": "K01",
+      "required": true
+    },
+    {
+      "program": "GEOPET_KY_THUAT_DAU_KHI_2019",
+      "block": "K02",
+      "required": true
+    },
+    {
+      "program": "GEOPET_KY_THUAT_DAU_KHI_GEOPET_COURSE_LIST",
+      "block": "K03",
+      "required": true
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [
+    "GE2059",
+    "GE3045"
+  ],
+  "note": "Nhập từ nguồn công khai (truy cập 03/10/2026).",
+  "updated": "2026-10-04"
+}

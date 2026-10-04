@@ -1,0 +1,283 @@
+{
+  "$schema": "../../schema/program.schema.json",
+  "code": "FME_KY_THUAT_NHIET_2024",
+  "name": "Kỹ thuật Nhiệt",
+  "nameEn": "Thermal Engineering",
+  "faculty": "fme",
+  "year": "2024",
+  "source": "https://drive.google.com/file/d/1ti39BAMci3_A3W6qVjIuCx16y1e-ue_J/view",
+  "blocks": [
+    {
+      "id": "K01",
+      "name": "A1. Toán (Mathematics )",
+      "group": "A. Toán và Khoa hoc tự nhiên (30 tín chỉ) (Mathematics and Basic Sciences)",
+      "required": true,
+      "creditsNeed": 15,
+      "courses": [
+        "MT1003",
+        "MT1005",
+        "MT1007",
+        "MT2013"
+      ]
+    },
+    {
+      "id": "K02",
+      "name": "A2. Khoa học tự nhiên (Basic Sciences)",
+      "group": "A. Toán và Khoa hoc tự nhiên (30 tín chỉ) (Mathematics and Basic Sciences)",
+      "required": true,
+      "creditsNeed": 8,
+      "courses": [
+        "CH1003",
+        "PH1003",
+        "PH1007"
+      ]
+    },
+    {
+      "id": "K03",
+      "name": "A3. Toán và Khoa học tự nhiên khác (Other Mathematics and Basic Sciences )",
+      "group": "A. Toán và Khoa hoc tự nhiên (30 tín chỉ) (Mathematics and Basic Sciences)",
+      "required": true,
+      "creditsNeed": 7,
+      "courses": [
+        "MT1009",
+        "PH1005"
+      ]
+    },
+    {
+      "id": "K04",
+      "name": "B1. Kinh tế - Chính trị - Xã hội - Luật (Economics - Politics - Sociology - Law)",
+      "group": "B. Giáo dục chung (30 tín chỉ) (General education)",
+      "required": true,
+      "creditsNeed": 13,
+      "courses": [
+        "SP1007",
+        "SP1031",
+        "SP1033",
+        "SP1035",
+        "SP1037",
+        "SP1039"
+      ]
+    },
+    {
+      "id": "K05",
+      "name": "B2.1. Nhập môn (Introduction to Engineering)",
+      "group": "B. Giáo dục chung (30 tín chỉ) (General education)",
+      "required": true,
+      "creditsNeed": 3,
+      "courses": [
+        "ME1001"
+      ]
+    },
+    {
+      "id": "K06",
+      "name": "B2.2. Con người và Môi trường (Humans and Environment)",
+      "group": "B. Giáo dục chung (30 tín chỉ) (General education)",
+      "required": true,
+      "creditsNeed": 3,
+      "courses": [
+        "ME2019"
+      ]
+    },
+    {
+      "id": "K07",
+      "name": "B2.3. Tự chọn Quản lý (tối thiểu 3 tín chỉ) (Management for Engineers)",
+      "group": "B. Giáo dục chung (30 tín chỉ) (General education)",
+      "required": true,
+      "creditsNeed": 3,
+      "courses": [
+        "IM1013",
+        "IM1023",
+        "IM1025",
+        "IM1027",
+        "IM3001"
+      ]
+    },
+    {
+      "id": "K08",
+      "name": "B3. Ngoại ngữ (Foreign Languages)",
+      "group": "B. Giáo dục chung (30 tín chỉ) (General education)",
+      "required": true,
+      "creditsNeed": 8,
+      "courses": [
+        "LA1003",
+        "LA1005",
+        "LA1007",
+        "LA1009"
+      ]
+    },
+    {
+      "id": "K09",
+      "name": "B4. Giáo dục quốc phòng (Military Trainning)",
+      "group": "B. Giáo dục chung (30 tín chỉ) (General education)",
+      "required": true,
+      "creditsNeed": 0,
+      "courses": [
+        "MI1003"
+      ]
+    },
+    {
+      "id": "K10",
+      "name": "B5.1. Giáo dục thể chất học phần 1 (Physical Education Part 1)",
+      "group": "B. Giáo dục chung (30 tín chỉ) (General education)",
+      "required": true,
+      "creditsNeed": 0,
+      "courses": [
+        "PE1009",
+        "PE1011",
+        "PE1013",
+        "PE1015",
+        "PE1017",
+        "PE1019",
+        "PE1021",
+        "PE1025",
+        "PE1027",
+        "PE1053",
+        "PE1057",
+        "PE1061"
+      ]
+    },
+    {
+      "id": "K11",
+      "name": "B5.2. Giáo dục thể chất học phần 2 (Physical Education Part 2)",
+      "group": "B. Giáo dục chung (30 tín chỉ) (General education)",
+      "required": true,
+      "creditsNeed": 0,
+      "courses": [
+        "PE1033",
+        "PE1035",
+        "PE1037",
+        "PE1039",
+        "PE1041",
+        "PE1043",
+        "PE1045",
+        "PE1049",
+        "PE1051",
+        "PE1055",
+        "PE1059",
+        "PE1063"
+      ]
+    },
+    {
+      "id": "K12",
+      "name": "C1. Cơ sở ngành (Core Courses)",
+      "group": "C. Cơ sở ngành/Ngành/Chuyên ngành (72 tín ch ỉ) (Core Courses/Speciality Courses)",
+      "required": true,
+      "creditsNeed": 30,
+      "courses": [
+        "CI1003",
+        "CI2003",
+        "EE1005",
+        "ME1013",
+        "ME1015",
+        "ME2099",
+        "ME2121",
+        "ME2129",
+        "ME2159",
+        "ME2161"
+      ]
+    },
+    {
+      "id": "K13",
+      "name": "C2.1. Khối kiến thức Chuyên ngành chung (General Speciality Courses)",
+      "group": "C. Cơ sở ngành/Ngành/Chuyên ngành (72 tín ch ỉ) (Core Courses/Speciality Courses)",
+      "required": true,
+      "creditsNeed": 10,
+      "courses": [
+        "ME3043",
+        "ME3149",
+        "ME3153",
+        "ME3155"
+      ]
+    },
+    {
+      "id": "K14",
+      "name": "Project in Heat Exchanger Orientation (2 credits))",
+      "group": "C. Cơ sở ngành/Ngành/Chuyên ngành (72 tín ch ỉ) (Core Courses/Speciality Courses)",
+      "required": true,
+      "courses": [
+        "ME3199"
+      ]
+    },
+    {
+      "id": "K15",
+      "name": "A.2. Khối kiến thức chuyên ngành K ỹ thuật Nhiệt (7 tín chỉ) (Courses in the Speciality of Thermal Engineering (7 credits))",
+      "group": "C. Cơ sở ngành/Ngành/Chuyên ngành (72 tín ch ỉ) (Core Courses/Speciality Courses)",
+      "required": true,
+      "creditsNeed": 7,
+      "courses": [
+        "ME4131",
+        "ME4075",
+        "ME4015"
+      ]
+    },
+    {
+      "id": "K16",
+      "name": "Design Project in Refrigeration Equipment Orientation (2 credits))",
+      "group": "C. Cơ sở ngành/Ngành/Chuyên ngành (72 tín ch ỉ) (Core Courses/Speciality Courses)",
+      "required": true,
+      "courses": [
+        "ME3151"
+      ]
+    },
+    {
+      "id": "K17",
+      "name": "B.2. Khối kiến thức dành cho SV chuyên ngành K ỹ thuật Nhiệt lạnh (7 tín chỉ) (Courses in the Speciality of Heat and Refrigeration Engineering (7 credits))",
+      "group": "C. Cơ sở ngành/Ngành/Chuyên ngành (72 tín ch ỉ) (Core Courses/Speciality Courses)",
+      "required": true,
+      "creditsNeed": 7,
+      "courses": [
+        "ME4073",
+        "ME4075",
+        "ME4307"
+      ]
+    },
+    {
+      "id": "K18",
+      "name": "the group of courses below))",
+      "group": "C. Cơ sở ngành/Ngành/Chuyên ngành (72 tín ch ỉ) (Core Courses/Speciality Courses)",
+      "required": true,
+      "courses": [
+        "ME4313",
+        "ME4083",
+        "ME4311",
+        "ME4141",
+        "ME4305"
+      ]
+    },
+    {
+      "id": "K19",
+      "name": "(Select 6 credits in the group of courses below))",
+      "group": "C. Cơ sở ngành/Ngành/Chuyên ngành (72 tín ch ỉ) (Core Courses/Speciality Courses)",
+      "required": true,
+      "courses": [
+        "ME4313",
+        "ME4083",
+        "ME4311",
+        "ME4301",
+        "ME4303"
+      ]
+    },
+    {
+      "id": "K20",
+      "name": "C3. Tốt nghiệp bậc cử nhân (Graduation Practice/Projects)",
+      "group": "C. Cơ sở ngành/Ngành/Chuyên ngành (72 tín ch ỉ) (Core Courses/Speciality Courses)",
+      "required": true,
+      "creditsNeed": 8,
+      "courses": [
+        "ME3125",
+        "ME4081",
+        "ME4337"
+      ]
+    },
+    {
+      "id": "K21",
+      "name": "D. Điều kiện tốt nghiệp (Gradution Condition)",
+      "required": true,
+      "creditsNeed": 0,
+      "courses": [
+        "SA4001"
+      ]
+    }
+  ],
+  "updated": "2026-10-04"
+}

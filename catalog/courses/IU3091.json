@@ -1,0 +1,23 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "IU3091",
+  "code": "IU3091",
+  "name": "Industrial Tribology and Lubrication",
+  "credits": 3,
+  "faculty": "fme",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "FME_BAO_DUONG_CONG_NGHIEP_2024",
+      "block": "K12",
+      "required": true
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "note": "Nhập từ nguồn công khai (truy cập 03/10/2026). Nguồn chỉ có tên tiếng Anh.",
+  "updated": "2026-10-04"
+}

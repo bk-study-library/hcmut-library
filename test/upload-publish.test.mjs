@@ -7,7 +7,7 @@ import crypto from 'node:crypto';
 import { parseReleaseUrl, planPublish, planRemovals, branchCode, pendingSha, verifyFile, isLightPr } from '../scripts/upload/publish.mjs';
 import { releaseAssetUrl } from '../scripts/upload/term.mjs';
 
-const REPO = 'bk-study-library/bk-study-library';
+const REPO = 'bk-study-library/hcmut-library';
 const NAME = 'MT1005_summary_tom-tat.pdf';
 const SHA = 'b1c2d3' + 'e'.repeat(58);
 const CODE = 'abcdEF1234';

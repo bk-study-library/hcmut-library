@@ -1,0 +1,24 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "GE3325",
+  "code": "GE3325",
+  "name": "Thực tập ngoài trường",
+  "credits": 1,
+  "faculty": "geopet",
+  "aliases": [
+    {
+      "code": "GE3323",
+      "name": "Thực tập tốt nghiệp",
+      "to": "2018-12-31"
+    }
+  ],
+  "status": "active",
+  "replaces": [
+    "GE3323"
+  ],
+  "programs": [],
+  "parts": [],
+  "related": [],
+  "note": "Nhập từ nguồn công khai (truy cập 03/10/2026).",
+  "updated": "2026-10-04"
+}

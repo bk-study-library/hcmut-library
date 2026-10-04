@@ -110,7 +110,7 @@ Mở `worker/wrangler.jsonc`, mục `vars`, kiểm lại:
 
 | Biến | Giá trị |
 |---|---|
-| `REPO` | `bk-study-library/bk-study-library` (đổi nếu repo ở nơi khác) |
+| `REPO` | `bk-study-library/hcmut-library` (đổi nếu repo ở nơi khác) |
 | `BRANCH` | `main` |
 | `ALLOWED_ORIGINS` | các nguồn được gọi Worker, cách nhau bằng dấu phẩy. Khi chạy thử trên máy: `http://localhost:8080`. Khi repo public: `https://bk-study-library.github.io`, gỡ nguồn localhost |
 | `CATALOG_TTL_SECONDS` | `300` |
@@ -160,7 +160,7 @@ Ba workflow chỉ chạy khi PR do đúng `BOT_LOGIN` mở. Sai tên bot thì wo
 Bot gắn nhãn này khi mở PR, và `kiem-file` chỉ chạy khi PR có nhãn. Repo chưa có nhãn thì việc gửi bài lỗi ở bước gắn nhãn. Tạo nhãn bằng GitHub CLI:
 
 ```bash
-gh label create tai-lieu-moi --repo bk-study-library/bk-study-library --description "Tài liệu gửi qua form" --color 0E8A16
+gh label create tai-lieu-moi --repo bk-study-library/hcmut-library --description "Tài liệu gửi qua form" --color 0E8A16
 ```
 
 Hoặc trên web: **Issues** > **Labels** > **New label**.

@@ -1,0 +1,11 @@
+{
+  "$schema": "../../schema/program.schema.json",
+  "code": "CSE_TS_146_2026",
+  "name": "Khoa học Dữ liệu",
+  "faculty": "cse",
+  "year": "2026",
+  "source": "https://hcmut.edu.vn/tuyen-sinh/dai-hoc-chinh-quy",
+  "note": "Ngành tuyển sinh 2026, mã tuyển sinh 146. Chưa có danh sách môn công khai.",
+  "blocks": [],
+  "updated": "2026-10-04"
+}

@@ -1,0 +1,61 @@
+name: Thêm chương trình đào tạo
+description: Gửi chương trình đào tạo (CTĐT) của khóa bạn để thư viện thêm danh sách môn
+title: "[CTĐT] "
+labels: [danh mục, cần duyệt]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        CTĐT là văn bản công khai của trường. Bạn gửi link chính thức hoặc file CTĐT, người duyệt nhập danh sách môn rồi mở Pull Request. Thư viện chỉ lấy mã môn, tên môn, tín chỉ và khối kiến thức.
+
+        Không đính kèm bảng điểm, ảnh chụp MyBK có MSSV hay điểm. File đính kèm ở đây hiện công khai ngay.
+  - type: dropdown
+    id: khoa
+    attributes:
+      label: Khoa
+      options:
+        - "Khoa Cơ khí"
+        - "Khoa Công nghệ Vật liệu"
+        - "Khoa Điện - Điện tử"
+        - "Khoa Khoa học Ứng dụng"
+        - "Khoa Khoa học và Kỹ thuật Máy tính"
+        - "Khoa Kỹ thuật Địa chất và Dầu khí"
+        - "Khoa Kỹ thuật Giao thông"
+        - "Khoa Kỹ thuật Hóa học"
+        - "Khoa Kỹ thuật Xây dựng"
+        - "Khoa Môi trường và Tài nguyên"
+        - "Khoa Quản lý Công nghiệp"
+        - "Trung tâm Ngoại ngữ"
+        - "Lý luận chính trị (chưa xác định đơn vị)"
+        - "Giáo dục thể chất và Quốc phòng (chưa xác định đơn vị)"
+        - "Chưa xác định"
+    validations: { required: true }
+  - type: input
+    id: nganh
+    attributes:
+      label: Tên ngành
+      description: Ghi như trong CTĐT, kèm loại chương trình nếu có (ví dụ dạy và học bằng tiếng Anh).
+      placeholder: Kỹ thuật Điện
+    validations: { required: true }
+  - type: input
+    id: khoa-hoc
+    attributes:
+      label: Khóa (năm vào trường)
+      placeholder: "2024"
+    validations: { required: true }
+  - type: input
+    id: link-ctdt
+    attributes:
+      label: Link CTĐT chính thức
+      description: Trang của trường hoặc của khoa. Không có link thì đính kèm file ở ô bên dưới.
+      placeholder: https://hcmut.edu.vn/...
+  - type: textarea
+    id: file-ctdt
+    attributes:
+      label: File CTĐT (không bắt buộc)
+      description: Kéo file PDF CTĐT vào ô này.
+  - type: textarea
+    id: ghi-chu
+    attributes:
+      label: Ghi chú
+      description: Ví dụ chuyên ngành, năm ban hành, chỗ CTĐT khác với danh mục hiện có.

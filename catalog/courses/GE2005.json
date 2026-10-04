@@ -1,0 +1,18 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "GE2005",
+  "code": "GE2005",
+  "name": "Thực tập địa chất kiến trúc",
+  "credits": 1,
+  "faculty": "geopet",
+  "aliases": [],
+  "status": "retired",
+  "replacedBy": "GE2035",
+  "programs": [],
+  "parts": [
+    "lab"
+  ],
+  "related": [],
+  "note": "Nhập từ nguồn công khai (truy cập 03/10/2026).",
+  "updated": "2026-10-04"
+}

@@ -1,0 +1,12 @@
+{
+  "$schema": "../../schema/program.schema.json",
+  "code": "CSE_TS_206_2026_TA",
+  "name": "Khoa học Máy tính (Chuyên ngành: Khoa học Máy tính, Công nghệ Dữ liệu và Dữ liệu lớn, An ninh Hệ thống và Mạng, Trí tuệ Nhân tạo, Công nghệ Phần mềm)",
+  "faculty": "cse",
+  "year": "2026",
+  "variant": "Dạy và học bằng tiếng Anh",
+  "source": "https://hcmut.edu.vn/tuyen-sinh/dai-hoc-chinh-quy",
+  "note": "Ngành tuyển sinh 2026, mã tuyển sinh 206. Chưa có danh sách môn công khai.",
+  "blocks": [],
+  "updated": "2026-10-04"
+}

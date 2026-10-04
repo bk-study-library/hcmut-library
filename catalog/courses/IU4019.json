@@ -1,0 +1,44 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "IU4019",
+  "code": "IU4019",
+  "name": "An toàn và môi trường trong bảo dưỡng",
+  "nameEn": "Safety and Environmental Issues in Industrial Maintenance",
+  "credits": 3,
+  "faculty": "fme",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "FME_BAO_DUONG_CONG_NGHIEP_2020",
+      "block": "K01",
+      "required": true
+    },
+    {
+      "program": "FME_BAO_DUONG_CONG_NGHIEP_2023",
+      "block": "K07",
+      "required": true
+    },
+    {
+      "program": "FME_BAO_DUONG_CONG_NGHIEP_2022",
+      "block": "K07",
+      "required": true
+    },
+    {
+      "program": "FME_BAO_DUONG_CONG_NGHIEP_2021",
+      "block": "K07",
+      "required": true
+    },
+    {
+      "program": "FME_BAO_DUONG_CONG_NGHIEP_2019",
+      "block": "K01",
+      "required": true
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "note": "Nhập từ nguồn công khai (truy cập 03/10/2026).",
+  "updated": "2026-10-04"
+}

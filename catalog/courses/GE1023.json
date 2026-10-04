@@ -1,0 +1,19 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "GE1023",
+  "code": "GE1023",
+  "name": "Phân tích dữ liệu trong ngành dầu khí",
+  "nameEn": "Data analytics in oil and gas industry",
+  "faculty": "geopet",
+  "aliases": [],
+  "status": "active",
+  "programs": [],
+  "parts": [
+    "theory"
+  ],
+  "related": [
+    "MT1009"
+  ],
+  "note": "Nhập từ nguồn công khai (truy cập 03/10/2026). Nguồn chưa ghi số tín chỉ.",
+  "updated": "2026-10-04"
+}

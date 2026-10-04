@@ -1,0 +1,11 @@
+{
+  "$schema": "../../schema/program.schema.json",
+  "code": "FMT_TS_129_2026",
+  "name": "Kỹ thuật Vật liệu (Chuyên ngành: Kỹ thuật Vật liệu, Kỹ thuật Vật liệu Kim loại, Kỹ thuật Vật liệu Năng lượng, Kỹ thuật Vật liệu Polymer, Kỹ thuật Vật liệu Silicat)",
+  "faculty": "fmt",
+  "year": "2026",
+  "source": "https://hcmut.edu.vn/tuyen-sinh/dai-hoc-chinh-quy",
+  "note": "Ngành tuyển sinh 2026, mã tuyển sinh 129. Chưa có danh sách môn công khai.",
+  "blocks": [],
+  "updated": "2026-10-04"
+}

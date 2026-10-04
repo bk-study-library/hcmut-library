@@ -1,0 +1,20 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "GE3091",
+  "code": "GE3091",
+  "name": "Dung dịch khoan và xi măng",
+  "credits": 2,
+  "faculty": "geopet",
+  "aliases": [],
+  "status": "retired",
+  "programs": [],
+  "parts": [
+    "theory"
+  ],
+  "related": [
+    "GE2047",
+    "GE3199"
+  ],
+  "note": "Nhập từ nguồn công khai (truy cập 03/10/2026).",
+  "updated": "2026-10-04"
+}

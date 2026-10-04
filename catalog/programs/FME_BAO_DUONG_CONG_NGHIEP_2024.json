@@ -1,0 +1,189 @@
+{
+  "$schema": "../../schema/program.schema.json",
+  "code": "FME_BAO_DUONG_CONG_NGHIEP_2024",
+  "name": "Bảo dưỡng Công nghiệp",
+  "nameEn": "Industrial Maintenance",
+  "faculty": "fme",
+  "year": "2024",
+  "source": "https://drive.google.com/file/d/1OjLKM0Ys8oKiiiaw5SZoHC1ZBq4ewZJ-/view",
+  "blocks": [
+    {
+      "id": "K01",
+      "name": "A1. Toán (Mathematics) ID)",
+      "required": true,
+      "creditsNeed": 15,
+      "courses": [
+        "MT1003",
+        "MT1005",
+        "MT1007",
+        "MT2013"
+      ]
+    },
+    {
+      "id": "K02",
+      "name": "A11. Giáo dục quốc phòng (National defense education)",
+      "required": true,
+      "creditsNeed": 0,
+      "courses": [
+        "MI1003"
+      ]
+    },
+    {
+      "id": "K03",
+      "name": "A2. Khoa học tự nhiên (Natural Science)",
+      "required": true,
+      "creditsNeed": 8,
+      "courses": [
+        "CH1003",
+        "PH1003",
+        "PH1007"
+      ]
+    },
+    {
+      "id": "K04",
+      "name": "A3. Toán và khoa học tự nhiên khác (Mathematics and other Natural Sciences)",
+      "required": true,
+      "creditsNeed": 7,
+      "courses": [
+        "IU1011",
+        "IU2031"
+      ]
+    },
+    {
+      "id": "K05",
+      "name": "A4. Kinh tế - Chính trị - Xã hội - Luật (Economics - Politics - Society - Law)",
+      "required": true,
+      "creditsNeed": 13,
+      "courses": [
+        "SP1031",
+        "SP1033",
+        "SP1035",
+        "SP1037",
+        "SP1039",
+        "SP1007"
+      ]
+    },
+    {
+      "id": "K06",
+      "name": "A51. Nhập môn (Introduction to Engineering)",
+      "required": true,
+      "creditsNeed": 3,
+      "courses": [
+        "IU1001"
+      ]
+    },
+    {
+      "id": "K07",
+      "name": "A52. Quản lý cho kỹ sư (Management for engineers)",
+      "required": false,
+      "creditsNeed": 3,
+      "courses": [
+        "IM1031",
+        "ME1019",
+        "IU4025",
+        "IU4027",
+        "ME2173"
+      ]
+    },
+    {
+      "id": "K08",
+      "name": "A53. Con người và môi trường (Humans and Environment)",
+      "required": true,
+      "creditsNeed": 3,
+      "courses": [
+        "IU3105"
+      ]
+    },
+    {
+      "id": "K09",
+      "name": "A6. Ngoại ngữ (Foreign Language)",
+      "required": true,
+      "creditsNeed": 8,
+      "courses": [
+        "LA1003",
+        "LA1005",
+        "LA1007",
+        "LA1009"
+      ]
+    },
+    {
+      "id": "K10",
+      "name": "A7. Cơ sở ngành ( Core)",
+      "required": true,
+      "creditsNeed": 32,
+      "courses": [
+        "IU1015",
+        "CI2003",
+        "ME2013",
+        "IU2035",
+        "IU2001",
+        "IU2043",
+        "IU3061",
+        "IU3115",
+        "IU2011",
+        "IU3017",
+        "IU2039",
+        "PE1009",
+        "PE1011",
+        "PE1013",
+        "PE1015",
+        "PE1017",
+        "PE1019",
+        "PE1021",
+        "PE1025",
+        "PE1027",
+        "PE1053",
+        "PE1057",
+        "PE1061"
+      ]
+    },
+    {
+      "id": "K11",
+      "name": "A9. 0(Physical Education Part 2 (Select one of the courses in the list))",
+      "required": true,
+      "courses": [
+        "PE1033",
+        "PE1035",
+        "PE1037",
+        "PE1039",
+        "PE1041",
+        "PE1043",
+        "PE1045",
+        "PE1049",
+        "PE1051",
+        "PE1055",
+        "PE1059",
+        "PE1063"
+      ]
+    },
+    {
+      "id": "K12",
+      "name": "B1. Chuyên ngành (Speciality)",
+      "required": true,
+      "creditsNeed": 23,
+      "courses": [
+        "IU3091",
+        "IU3063",
+        "IU4015",
+        "IU4017",
+        "IU3103",
+        "IU3011",
+        "IU3117",
+        "IU3047",
+        "IU3101"
+      ]
+    },
+    {
+      "id": "K13",
+      "name": "C1. Tốt nghiệp (Graduation)",
+      "required": true,
+      "creditsNeed": 8,
+      "courses": [
+        "IU4013",
+        "IU3325",
+        "IU4327"
+      ]
+    }
+  ],
+  "updated": "2026-10-04"
+}

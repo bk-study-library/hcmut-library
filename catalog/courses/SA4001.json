@@ -1,0 +1,94 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "SA4001",
+  "code": "SA4001",
+  "name": "Hoạt động sinh viên",
+  "nameEn": "Student Activities",
+  "credits": 0,
+  "faculty": "unknown",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "FME_CONG_NGHE_DET_MAY_2024",
+      "block": "K15",
+      "required": true
+    },
+    {
+      "program": "FME_LOGISTICS_VA_QUAN_LY_CHUOI_CUNG_UNG_2024",
+      "block": "K15",
+      "required": true
+    },
+    {
+      "program": "FME_KY_THUAT_HE_THONG_CONG_NGHIEP_2024",
+      "block": "K15",
+      "required": true
+    },
+    {
+      "program": "FME_KY_THUAT_CO_DIEN_TU_2024",
+      "block": "K19",
+      "required": true
+    },
+    {
+      "program": "FME_KY_THUAT_NHIET_2024",
+      "block": "K21",
+      "required": true
+    },
+    {
+      "program": "FME_KY_THUAT_DET_2024",
+      "block": "K15",
+      "required": true
+    },
+    {
+      "program": "FME_KY_THUAT_CO_KHI_2024",
+      "block": "K15",
+      "required": true
+    },
+    {
+      "program": "GEOPET_KY_THUAT_DIA_CHAT_2024",
+      "block": "K18",
+      "required": true
+    },
+    {
+      "program": "GEOPET_KY_THUAT_DAU_KHI_2024",
+      "block": "K16",
+      "required": false
+    },
+    {
+      "program": "GEOPET_DIA_KY_THUAT_XAY_DUNG_2024",
+      "block": "K16",
+      "required": false
+    },
+    {
+      "program": "DEE_KY_THUAT_DIEU_KHIEN_VA_TU_DONG_HOA_2024",
+      "block": "K14",
+      "required": true
+    },
+    {
+      "program": "DEE_THIET_KE_VI_MACH_2024",
+      "block": "K13",
+      "required": true
+    },
+    {
+      "program": "DEE_KY_THUAT_DIEN_2024",
+      "block": "K14",
+      "required": true
+    },
+    {
+      "program": "DEE_KY_THUAT_DIEN_TU_VIEN_THONG_2024",
+      "block": "K14",
+      "required": true
+    },
+    {
+      "program": "DEE_KY_THUAT_DIEN_2019_MYBK_SEED",
+      "block": "K15",
+      "required": false
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "note": "Nhập từ nguồn công khai (truy cập 03/10/2026).",
+  "updated": "2026-10-04"
+}

@@ -1,0 +1,12 @@
+{
+  "$schema": "../../schema/program.schema.json",
+  "code": "FAS_TS_268_2026_NB",
+  "name": "Cơ Kỹ thuật",
+  "faculty": "fas",
+  "year": "2026",
+  "variant": "Định hướng Nhật Bản",
+  "source": "https://hcmut.edu.vn/tuyen-sinh/dai-hoc-chinh-quy",
+  "note": "Ngành tuyển sinh 2026, mã tuyển sinh 268. Chưa có danh sách môn công khai.",
+  "blocks": [],
+  "updated": "2026-10-04"
+}

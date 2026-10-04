@@ -1,0 +1,159 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "EE2003",
+  "code": "EE2003",
+  "name": "Trường điện từ",
+  "nameEn": "Electromagnetic Field",
+  "credits": 3,
+  "faculty": "dee",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "DEE_SONG_NGANH_KY_THUAT_DIEN_TU_VIEN_THONG_KY_THUAT_DIEU_KHIEN_VA_TU_DONG_HOA_2019",
+      "block": "K03",
+      "required": true
+    },
+    {
+      "program": "DEE_SONG_NGANH_KY_THUAT_DIEN_KY_THUAT_DIEN_TU_VIEN_THONG_2022",
+      "block": "K11",
+      "required": true
+    },
+    {
+      "program": "DEE_SONG_NGANH_KY_THUAT_DIEN_KY_THUAT_DIEN_TU_VIEN_THONG_2023",
+      "block": "K11",
+      "required": true
+    },
+    {
+      "program": "DEE_SONG_NGANH_KY_THUAT_DIEN_TU_VIEN_THONG_KY_THUAT_DIEU_KHIEN_VA_TU_DONG_HOA_2023",
+      "block": "K09",
+      "required": true
+    },
+    {
+      "program": "DEE_SONG_NGANH_KY_THUAT_DIEN_TU_VIEN_THONG_KY_THUAT_DIEU_KHIEN_VA_TU_DONG_HOA_2022",
+      "block": "K09",
+      "required": true
+    },
+    {
+      "program": "DEE_SONG_NGANH_KY_THUAT_DIEN_TU_VIEN_THONG_KY_THUAT_DIEU_KHIEN_VA_TU_DONG_HOA_2021",
+      "block": "K09",
+      "required": true
+    },
+    {
+      "program": "DEE_SONG_NGANH_KY_THUAT_DIEN_TU_VIEN_THONG_KY_THUAT_DIEU_KHIEN_VA_TU_DONG_HOA_2020",
+      "block": "K03",
+      "required": true
+    },
+    {
+      "program": "DEE_SONG_NGANH_KY_THUAT_DIEN_TU_VIEN_THONG_KY_THUAT_DIEN_2020",
+      "block": "K02",
+      "required": true
+    },
+    {
+      "program": "DEE_SONG_NGANH_KY_THUAT_DIEN_TU_VIEN_THONG_KY_THUAT_DIEN_2021",
+      "block": "K11",
+      "required": true
+    },
+    {
+      "program": "DEE_SONG_NGANH_KY_THUAT_DIEN_TU_VIEN_THONG_KY_THUAT_DIEN_2022",
+      "block": "K11",
+      "required": true
+    },
+    {
+      "program": "DEE_SONG_NGANH_KY_THUAT_DIEN_TU_VIEN_THONG_KY_THUAT_DIEN_2019",
+      "block": "K02",
+      "required": true
+    },
+    {
+      "program": "DEE_SONG_NGANH_KY_THUAT_DIEN_TU_VIEN_THONG_KY_THUAT_DIEN_2023",
+      "block": "K09",
+      "required": true
+    },
+    {
+      "program": "DEE_THIET_KE_VI_MACH_2024",
+      "block": "K05",
+      "required": true
+    },
+    {
+      "program": "DEE_KY_THUAT_DIEN_2019",
+      "block": "K01",
+      "required": true
+    },
+    {
+      "program": "DEE_KY_THUAT_DIEN_2020",
+      "block": "K02",
+      "required": true
+    },
+    {
+      "program": "DEE_KY_THUAT_DIEN_2021",
+      "block": "K09",
+      "required": true
+    },
+    {
+      "program": "DEE_KY_THUAT_DIEN_2022",
+      "block": "K09",
+      "required": true
+    },
+    {
+      "program": "DEE_KY_THUAT_DIEN_2023",
+      "block": "K09",
+      "required": true
+    },
+    {
+      "program": "DEE_KY_THUAT_DIEN_2024",
+      "block": "K05",
+      "required": true
+    },
+    {
+      "program": "DEE_KY_THUAT_DIEN_TU_VIEN_THONG_2019",
+      "block": "K01",
+      "required": true
+    },
+    {
+      "program": "DEE_KY_THUAT_DIEN_TU_VIEN_THONG_2020",
+      "block": "K01",
+      "required": true
+    },
+    {
+      "program": "DEE_KY_THUAT_DIEN_TU_VIEN_THONG_2021",
+      "block": "K09",
+      "required": true
+    },
+    {
+      "program": "DEE_KY_THUAT_DIEN_TU_VIEN_THONG_2022",
+      "block": "K09",
+      "required": true
+    },
+    {
+      "program": "DEE_KY_THUAT_DIEN_TU_VIEN_THONG_2023",
+      "block": "K09",
+      "required": true
+    },
+    {
+      "program": "DEE_KY_THUAT_DIEN_TU_VIEN_THONG_2024",
+      "block": "K05",
+      "required": true
+    },
+    {
+      "program": "DEE_CTDT_PFIEV_CHUYEN_NGANH_HE_THONG_NANG_LUONG_DIEN_2023_DEE_FILE_SYSTEM",
+      "block": "K07",
+      "required": true
+    },
+    {
+      "program": "DEE_CHUYEN_NGANH_KY_THUAT_DIEN_TU_VIEN_THONG_2023_DEE_FILE_SYSTEM",
+      "block": "K06",
+      "required": true
+    },
+    {
+      "program": "DEE_KY_THUAT_DIEN_2019_MYBK_SEED",
+      "block": "K09",
+      "required": false
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "note": "Nhập từ nguồn công khai (truy cập 03/10/2026).",
+  "updated": "2026-10-04"
+}

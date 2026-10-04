@@ -1,0 +1,11 @@
+{
+  "$schema": "../../schema/program.schema.json",
+  "code": "CHE_TS_114_2026",
+  "name": "Nhóm ngành Hoá - Thực phẩm - Sinh học (Ngành/Chuyên ngành: Công nghệ Thực phẩm; Công nghệ Sinh học; Kỹ thuật Hóa học/Kỹ thuật Hóa học, Công nghệ Hóa dược, Công nghệ Mỹ phẩm)",
+  "faculty": "che",
+  "year": "2026",
+  "source": "https://hcmut.edu.vn/tuyen-sinh/dai-hoc-chinh-quy",
+  "note": "Ngành tuyển sinh 2026, mã tuyển sinh 114. Chưa có danh sách môn công khai.",
+  "blocks": [],
+  "updated": "2026-10-04"
+}

@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 // Sinh trang web tĩnh (GitHub Pages) từ catalog/ và courses/ vào site/.
 //
-//   node scripts/build-site.mjs [--root DIR] [--out site] [--base /bk-study-library/]
+//   node scripts/build-site.mjs [--root DIR] [--out site] [--base /hcmut-library/]
 //
 // Mọi link trong trang là link tương đối, nên trang chạy được ở bất kỳ đường dẫn nào.
 // Riêng 404.html dùng --base vì GitHub Pages trả trang này cho mọi đường dẫn sai.
@@ -95,11 +95,13 @@ function layout({ t, path: here, title, description, body, crumbs = [], alt, bas
   const href = (lang, p) => root + pagePath(lang, p).replace(/index\.html$/, '');
   const L = (p) => href(t.lang, p);
   const altHref = alt ? href(t.other, alt) : href(t.other, '');
+  // Gửi tài liệu chỉ có bản tiếng Việt: trang tiếng Anh cũng trỏ về form này.
+  const current = here.replace(/^en\//, '').replace(/index\.html$/, '');
   const nav = [
-    ['', t.nav.home],
-    ['contribute/', t.nav.contribute],
-    ['review/', t.nav.review],
-    ['takedown/', t.nav.takedown],
+    [L(''), '', t.nav.home],
+    [root + 'gui-tai-lieu/', 'gui-tai-lieu/', t.nav.send],
+    [L('review/'), 'review/', t.nav.review],
+    [L('takedown/'), 'takedown/', t.nav.takedown],
   ];
   const crumbHtml = crumbs.length
     ? `<nav class="crumbs" aria-label="${esc(t.breadcrumb)}"><ol>${crumbs
@@ -124,7 +126,7 @@ function layout({ t, path: here, title, description, body, crumbs = [], alt, bas
   <div class="wrap top-in">
     <a class="brand" href="${L('')}"><span class="brand-mark" aria-hidden="true">BK</span><span class="brand-text"><strong>${esc(t.siteName)}</strong><span>${esc(t.siteTag)}</span></span></a>
     <nav class="nav" aria-label="${esc(t.nav.home)}">
-      <ul>${nav.map(([p, label]) => `<li><a href="${L(p)}"${p === here.replace(/^en\//, '').replace(/index\.html$/, '') ? ' aria-current="page"' : ''}>${esc(label)}</a></li>`).join('')}
+      <ul>${nav.map(([link, p, label]) => `<li><a href="${link}"${p === current ? ' aria-current="page"' : ''}>${esc(label)}</a></li>`).join('')}
       <li><a href="${REPO_URL}" rel="noopener">${esc(t.nav.github)}</a></li>
       <li><a class="lang" href="${altHref}" hreflang="${t.other}" lang="${t.other}">${esc(t.otherName)}</a></li></ul>
     </nav>
@@ -153,7 +155,7 @@ function itemsCountOf(course) {
 function courseRow(t, c, root) {
   const href = `${root}${pagePath(t.lang, `course/${c.id}/`)}`;
   const n = itemsCountOf(c);
-  return `<tr${c.status === 'retired' ? ' class="retired"' : ''}><th scope="row"><a href="${href}">${esc(c.code)}</a></th><td><a href="${href}">${esc(t.lang === 'en' && c.nameEn ? c.nameEn : c.name)}</a>${c.status === 'retired' ? ` <span class="tag">${esc(STATUS.retired[t.lang])}</span>` : ''}</td><td class="num">${c.credits}</td><td class="num">${n || ''}</td></tr>`;
+  return `<tr${c.status === 'retired' ? ' class="retired"' : ''}><th scope="row"><a href="${href}">${esc(c.code)}</a></th><td><a href="${href}">${esc(t.lang === 'en' && c.nameEn ? c.nameEn : c.name)}</a>${c.status === 'retired' ? ` <span class="tag">${esc(STATUS.retired[t.lang])}</span>` : ''}</td><td class="num">${c.credits ?? ''}</td><td class="num">${n || `<span class="muted">${esc(t.noMaterial)}</span>`}</td></tr>`;
 }
 
 function courseTable(t, courses, root, caption) {
@@ -165,6 +167,50 @@ function courseTable(t, courses, root, caption) {
 
 function facultyName(t, f) {
   return f ? f.name[t.lang] || f.name.vi : '';
+}
+
+// Số môn khác nhau trong mọi khối của chương trình.
+function programCourseCount(p) {
+  return new Set(p.blocks.flatMap((b) => b.courses)).size;
+}
+
+function programName(t, p) {
+  return t.lang === 'en' && p.nameEn ? p.nameEn : p.name;
+}
+
+// Link tới form issue Thêm chương trình, điền sẵn khoa (tên tiếng Việt, khớp lựa chọn trong form).
+function addProgramUrl(f, p) {
+  const fields = {};
+  if (f) fields.khoa = f.name.vi;
+  if (p) {
+    fields.nganh = p.name;
+    if (p.year) fields['khoa-hoc'] = p.year;
+  }
+  return issueUrl('them-chuong-trinh.yml', fields);
+}
+
+// Một dòng chương trình: tên, loại, số môn (hoặc chưa có danh sách môn).
+function programLi(t, p, href, { withYear = false } = {}) {
+  const n = programCourseCount(p);
+  const label = withYear && p.year ? `${programName(t, p)} (${p.year})` : programName(t, p);
+  return `<li><a href="${href}">${esc(label)}</a>${p.variant ? ` <span class="tag">${esc(p.variant)}</span>` : ''} <span class="muted small">${esc(n ? t.coursesCount(n) : t.programNoCoursesShort)}</span></li>`;
+}
+
+// Chương trình xếp theo khóa, mới nhất trước; chương trình không ghi khóa ở cuối.
+function byYearDesc(a, b) {
+  return (b.year || '0000').localeCompare(a.year || '0000') || a.name.localeCompare(b.name, 'vi') || a.code.localeCompare(b.code);
+}
+
+function programsByYear(t, progs, hrefOf) {
+  const groups = new Map();
+  for (const p of progs.slice().sort(byYearDesc)) {
+    const k = p.year || '';
+    if (!groups.has(k)) groups.set(k, []);
+    groups.get(k).push(p);
+  }
+  return [...groups]
+    .map(([y, list]) => `<h3>${esc(y ? t.cohort(y) : t.cohortUnknown)}</h3><ul class="list">${list.map((p) => programLi(t, p, hrefOf(p))).join('')}</ul>`)
+    .join('');
 }
 
 function renderItem(t, it) {
@@ -193,7 +239,7 @@ function renderItem(t, it) {
   return `<li class="item${it.removed ? ' is-removed' : ''}"><h4>${esc(it.title)} ${badges}</h4>${it.description ? `<p>${esc(it.description)}</p>` : ''}<p class="meta">${esc(meta.join(', '))}. ${esc(authors)}</p>${note}${actions}</li>`;
 }
 
-export function buildSite({ root = TOOL_ROOT, out = path.join(TOOL_ROOT, 'site'), base = '/bk-study-library/' } = {}) {
+export function buildSite({ root = TOOL_ROOT, out = path.join(TOOL_ROOT, 'site'), base = '/hcmut-library/' } = {}) {
   const repo = loadRepo(root);
   if (repo.errors.length) {
     throw new Error(`Danh mục còn ${repo.errors.length} lỗi; chạy "npm run validate" trước.`);
@@ -231,6 +277,7 @@ export function buildSite({ root = TOOL_ROOT, out = path.join(TOOL_ROOT, 'site')
   const allCourses = new Map();
   for (const f of index.faculties) for (const c of f.courses) allCourses.set(c.id, { ...c, faculty: c.faculty });
   const facByKey = new Map(index.faculties.map((f) => [f.key, f]));
+  const progByCode = new Map(index.programs.map((p) => [p.code, p]));
   const totalItems = index.counts.items;
   GENERATED = index.generated;
   const finish = (html) => html;
@@ -243,20 +290,27 @@ export function buildSite({ root = TOOL_ROOT, out = path.join(TOOL_ROOT, 'site')
     {
       const here = P('index.html');
       const root = relPrefix(here);
+      const progsOf = (key) => index.programs.filter((p) => p.faculty === key);
       const facList = index.faculties
-        .filter((f) => f.courses.length)
-        .map(
-          (f) =>
-            `<li><a class="card" href="${root}${P(`faculty/${f.key}/`)}"><strong>${esc(facultyName(t, f))}</strong><span class="muted">${esc(t.coursesCount(f.courses.length))}, ${esc(
-              t.itemsCount(f.courses.reduce((n, c) => n + itemsCountOf(c), 0)),
-            )}</span></a></li>`,
-        )
+        .map((f) => {
+          const np = progsOf(f.key).length;
+          const stats =
+            f.courses.length || np
+              ? [t.coursesCount(f.courses.length), t.itemsCount(f.courses.reduce((n, c) => n + itemsCountOf(c), 0)), np ? t.programsCount(np) : null].filter(Boolean).join(', ')
+              : t.noData;
+          return `<li><a class="card" href="${root}${P(`faculty/${f.key}/`)}"><strong>${esc(facultyName(t, f))}</strong><span class="muted">${esc(stats)}</span></a></li>`;
+        })
         .join('');
-      const progList = index.programs.length
-        ? `<ul class="list">${index.programs
-            .map((p) => `<li><a href="${root}${P(`program/${p.code}/`)}">${esc(p.name)} (${esc(p.year)})</a> <span class="muted">${esc(facultyName(t, facByKey.get(p.faculty)))}</span></li>`)
-            .join('')}</ul>`
-        : `<p class="muted">${esc(t.noPrograms)}</p>`;
+      // Gộp theo khoa, mỗi khoa một khối đóng mở, để vài trăm chương trình vẫn dễ đọc.
+      const progList = `<div class="prog-groups">${index.faculties
+        .map((f) => {
+          const list = progsOf(f.key).sort(byYearDesc);
+          const inner = list.length
+            ? `<ul class="list">${list.map((p) => programLi(t, p, `${root}${P(`program/${p.code}/`)}`, { withYear: true })).join('')}</ul>`
+            : `<p class="muted">${esc(t.facultyNoPrograms)}</p>`;
+          return `<details class="prog-fac"><summary><span class="prog-fac-name">${esc(facultyName(t, f))}</span> <span class="muted small">${esc(t.programsCount(list.length))}</span></summary>${inner}<p><a class="btn subtle" href="${esc(addProgramUrl(f))}" rel="noopener">${esc(t.addProgram)}</a></p></details>`;
+        })
+        .join('')}</div>`;
       const body = `
 <section class="hero">
   <h1>${esc(t.homeTitle)}</h1>
@@ -278,10 +332,12 @@ export function buildSite({ root = TOOL_ROOT, out = path.join(TOOL_ROOT, 'site')
 </section>
 <section aria-labelledby="h-prog">
   <h2 id="h-prog">${esc(t.programsTitle)}</h2>
+  <p class="muted">${esc(t.programsCount(index.programs.length))}</p>
   ${progList}
+  <p class="actions"><a class="btn" href="${esc(addProgramUrl(null))}" rel="noopener">${esc(t.addProgram)}</a></p>
 </section>
 <section class="cta-row">
-  <div class="panel"><p>${esc(t.contributeCta)}</p><p><a class="btn primary" href="${root}${P('contribute/')}">${esc(t.contributeBtn)}</a></p></div>
+  <div class="panel"><p>${esc(t.contributeCta)}</p><p class="actions"><a class="btn primary" href="${root}gui-tai-lieu/">${esc(t.contributeBtn)}</a><a class="btn subtle" href="${root}${P('contribute/')}">${esc(t.contributeGuide)}</a></p></div>
   <div class="panel"><p>${esc(t.reviewCta)}</p><p><a class="btn" href="${root}${P('review/')}">${esc(t.reviewBtn)}</a></p></div>
 </section>
 <script type="application/json" id="search-strings">${JSON.stringify({ results: [t.results(0), t.results(1), t.results(2)], lang })}</script>
@@ -298,9 +354,13 @@ export function buildSite({ root = TOOL_ROOT, out = path.join(TOOL_ROOT, 'site')
       const body = `
 <h1>${esc(facultyName(t, f))}</h1>
 ${f.key === 'unknown' ? `<p class="note">${esc(lang === 'vi' ? 'Môn có tiền tố mã chưa xác minh. Khi biết đúng khoa, mở form Sửa danh mục môn.' : 'Courses whose code prefix is not verified yet. If you know the right faculty, open the Fix course details form.')}</p>` : ''}
+${!progs.length && !f.courses.length ? `<div class="note" role="note"><p>${esc(t.facultyEmpty)}</p></div>` : ''}
 <h2>${esc(t.facultyPrograms)}</h2>
-${progs.length ? `<ul class="list">${progs.map((p) => `<li><a href="${root}${P(`program/${p.code}/`)}">${esc(p.name)} (${esc(p.year)})</a></li>`).join('')}</ul>` : `<p class="muted">${esc(t.noPrograms)}</p>`}
+<p class="muted">${esc(t.programsCount(progs.length))}</p>
+${progs.length ? programsByYear(t, progs, (p) => `${root}${P(`program/${p.code}/`)}`) : `<p class="muted">${esc(t.facultyNoPrograms)}</p>`}
+<p class="actions"><a class="btn" href="${esc(addProgramUrl(f))}" rel="noopener">${esc(t.addProgram)}</a></p>
 <h2>${esc(t.facultyCourses)}</h2>
+<p class="muted">${esc(t.coursesCount(f.courses.length))}</p>
 ${courseTable(t, f.courses, root, t.facultyCourses)}`;
       write(
         here,
@@ -318,19 +378,27 @@ ${courseTable(t, f.courses, root, t.facultyCourses)}`;
         .map((b) => {
           const list = b.courses.map((id) => allCourses.get(id)).filter(Boolean);
           const meta = [b.required ? t.required : t.elective, b.creditsNeed ? t.blockCredits(b.creditsNeed) : null].filter(Boolean).join(', ');
-          return `<section class="block"><h2>${esc(b.name)} <span class="muted small">${esc(meta)}</span></h2>${courseTable(t, list, root, b.name)}</section>`;
+          return `<section class="block"><h2>${esc(b.name)} <span class="muted small">${esc(meta)}</span></h2>${b.group ? `<p class="muted small">${esc(b.group)}</p>` : ''}${courseTable(t, list, root, b.name)}</section>`;
         })
         .join('');
-      const body = `<h1>${esc(p.name)} (${esc(p.year)})</h1><p class="muted">${esc(p.code)}${fac ? `, <a href="${root}${P(`faculty/${fac.key}/`)}">${esc(facultyName(t, fac))}</a>` : ''}</p>${p.source ? `<p class="muted small">${esc(p.source)}</p>` : ''}${blocks}`;
+      const pname = programName(t, p);
+      const empty = blocks
+        ? ''
+        : `<div class="note" role="note"><p>${esc(t.programNoCourses)}</p></div><p class="actions"><a class="btn primary" href="${esc(addProgramUrl(fac, p))}" rel="noopener">${esc(t.addProgram)}</a></p>`;
+      const source = /^https?:\/\//.test(p.source || '') ? `<p class="small"><a href="${esc(p.source)}" rel="noopener">${esc(t.programSource)}</a></p>` : '';
+      const meta = [esc(p.code), fac ? `<a href="${root}${P(`faculty/${fac.key}/`)}">${esc(facultyName(t, fac))}</a>` : null, p.variant ? esc(p.variant) : null, esc(t.coursesCount(programCourseCount(p)))]
+        .filter(Boolean)
+        .join(', ');
+      const body = `<h1>${esc(pname)}${p.year ? ` (${esc(p.year)})` : ''}</h1><p class="muted">${meta}</p>${p.note ? `<p class="small" lang="vi">${esc(p.note)}</p>` : ''}${source}${empty}${blocks}`;
       write(
         here,
         finish(
           layout({
             t,
             path: here,
-            title: p.name,
+            title: p.year ? `${pname} (${p.year})` : pname,
             body,
-            crumbs: [['', t.nav.home], ...(fac ? [[`faculty/${fac.key}/`, facultyName(t, fac)]] : []), ['', p.name]],
+            crumbs: [['', t.nav.home], ...(fac ? [[`faculty/${fac.key}/`, facultyName(t, fac)]] : []), ['', pname]],
             alt: `program/${p.code}/index.html`,
           }),
           t,
@@ -349,7 +417,7 @@ ${courseTable(t, f.courses, root, t.facultyCourses)}`;
       };
       const rows = [
         [t.code, esc(c.code) + (c.code !== c.id ? ` <span class="muted">(ID ${esc(c.id)})</span>` : '')],
-        [t.credits, String(c.credits)],
+        [t.credits, c.credits != null ? String(c.credits) : `<span class="muted">${esc(t.partsNone)}</span>`],
         [t.faculty, fac ? `<a href="${root}${P(`faculty/${fac.key}/`)}">${esc(facultyName(t, fac))}</a>` : esc(c.faculty)],
         [t.parts, c.parts.length ? esc(c.parts.map((x) => PARTS[x][lang]).join(', ')) : `<span class="muted">${esc(t.partsNone)}</span>`],
         [t.status, esc(STATUS[c.status][lang])],
@@ -359,16 +427,15 @@ ${courseTable(t, f.courses, root, t.facultyCourses)}`;
       if (c.replaces && c.replaces.length) rows.push([t.replaces, c.replaces.map(cLink).join(', ')]);
       if (c.related.length) rows.push([t.related, c.related.map(cLink).join('<br>')]);
       if (c.programs.length) {
-        rows.push([
-          t.programsOfCourse,
-          c.programs
-            .map((pg) => {
-              const pr = index.programs.find((x) => x.code === pg.program);
-              const b = pr && pr.blocks.find((x) => x.id === pg.block);
-              return `<a href="${root}${P(`program/${pg.program}/`)}">${esc(pr ? `${pr.name} (${pr.year})` : pg.program)}</a>${b ? `, ${esc(b.name)}` : ''}, ${esc(pg.required ? t.required : t.elective)}`;
-            })
-            .join('<br>'),
-        ]);
+        const lines = c.programs.map((pg) => {
+          const pr = progByCode.get(pg.program);
+          const b = pr && pr.blocks.find((x) => x.id === pg.block);
+          const label = pr ? (pr.year ? `${programName(t, pr)} (${pr.year})` : programName(t, pr)) : pg.program;
+          return `<a href="${root}${P(`program/${pg.program}/`)}">${esc(label)}</a>${b ? `, ${esc(b.name)}` : ''}, ${esc(pg.required ? t.required : t.elective)}`;
+        });
+        // Môn chung (Giải tích, Vật lý...) thuộc vài chục chương trình: gói lại cho gọn.
+        const progCount = new Set(c.programs.map((x) => x.program)).size;
+        rows.push([t.programsOfCourse, progCount > 5 ? `<details><summary>${esc(t.programsCount(progCount))}</summary>${lines.join('<br>')}</details>` : lines.join('<br>')]);
       }
       const groups = TYPE_ORDER.map((type) => {
         const list = c.items.filter((i) => i.type === type).sort((a, b) => Number(!!a.removed) - Number(!!b.removed) || a.title.localeCompare(b.title));

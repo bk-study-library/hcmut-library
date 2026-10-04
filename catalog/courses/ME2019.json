@@ -1,0 +1,134 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "ME2019",
+  "code": "ME2019",
+  "name": "Môi trường và con người",
+  "nameEn": "Environment and Human",
+  "credits": 3,
+  "faculty": "fme",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "FME_KY_THUAT_NHIET_2020",
+      "block": "K01",
+      "required": true
+    },
+    {
+      "program": "FME_CONG_NGHE_DET_MAY_2019",
+      "block": "K01",
+      "required": true
+    },
+    {
+      "program": "FME_KY_THUAT_NHIET_2021",
+      "block": "K07",
+      "required": false
+    },
+    {
+      "program": "FME_KY_THUAT_NHIET_2022",
+      "block": "K07",
+      "required": true
+    },
+    {
+      "program": "FME_KY_THUAT_DET_2019",
+      "block": "K01",
+      "required": true
+    },
+    {
+      "program": "FME_KY_THUAT_DET_2020",
+      "block": "K01",
+      "required": true
+    },
+    {
+      "program": "FME_KY_THUAT_CO_DIEN_TU_2021",
+      "block": "K01",
+      "required": true
+    },
+    {
+      "program": "FME_CONG_NGHE_DET_MAY_2021",
+      "block": "K07",
+      "required": false
+    },
+    {
+      "program": "FME_CONG_NGHE_DET_MAY_2020",
+      "block": "K01",
+      "required": true
+    },
+    {
+      "program": "FME_KY_THUAT_CO_DIEN_TU_2024",
+      "block": "K06",
+      "required": true
+    },
+    {
+      "program": "FME_KY_THUAT_CO_DIEN_TU_2023",
+      "block": "K07",
+      "required": true
+    },
+    {
+      "program": "FME_KY_THUAT_CO_DIEN_TU_2022",
+      "block": "K07",
+      "required": false
+    },
+    {
+      "program": "FME_KY_THUAT_DET_2021",
+      "block": "K07",
+      "required": false
+    },
+    {
+      "program": "FME_KY_THUAT_NHIET_2024",
+      "block": "K06",
+      "required": true
+    },
+    {
+      "program": "FME_KY_THUAT_NHIET_2023",
+      "block": "K07",
+      "required": false
+    },
+    {
+      "program": "FME_KY_THUAT_NHIET_2019",
+      "block": "K01",
+      "required": true
+    },
+    {
+      "program": "FME_KY_THUAT_CO_DIEN_TU_2020",
+      "block": "K01",
+      "required": true
+    },
+    {
+      "program": "FME_KY_THUAT_CO_KHI_2023",
+      "block": "K07",
+      "required": true
+    },
+    {
+      "program": "FME_KY_THUAT_CO_KHI_2020",
+      "block": "K01",
+      "required": true
+    },
+    {
+      "program": "FME_KY_THUAT_CO_KHI_2024",
+      "block": "K07",
+      "required": true
+    },
+    {
+      "program": "FME_KY_THUAT_CO_KHI_2022",
+      "block": "K07",
+      "required": true
+    },
+    {
+      "program": "FME_KY_THUAT_CO_KHI_2021",
+      "block": "K07",
+      "required": true
+    },
+    {
+      "program": "FME_KY_THUAT_CO_KHI_2019",
+      "block": "K01",
+      "required": true
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "note": "Nhập từ nguồn công khai (truy cập 03/10/2026).",
+  "updated": "2026-10-04"
+}
