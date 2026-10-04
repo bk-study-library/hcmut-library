@@ -74,7 +74,20 @@ export function planPublish(itemsChanged, existingAssets, repo) {
   return plan;
 }
 
-// Mục vừa chuyển sang removed: true (trước chưa gỡ) thì xóa file trên Release của repo; link ngoài bỏ qua.
+const itemKey = (i) => `${i.course}/${i.id}`;
+
+// Mục có ở bản trước (chưa gỡ) nhưng file mục bị xóa khỏi repo, mà có file trên Release của repo.
+// Gỡ tài liệu phải đặt removed: true, không xóa file mục; validate.mjs --base báo lỗi theo hàm này.
+export function deletedWithRelease(itemsBefore, itemsAfter, repo) {
+  const after = new Set(itemsAfter.map(itemKey));
+  return itemsBefore
+    .filter((it) => !it.removed && !after.has(itemKey(it)))
+    .map((it) => ({ course: it.course, id: it.id, assets: (it.files || []).map((f) => parseReleaseUrl(f.url, repo)).filter(Boolean) }))
+    .filter((x) => x.assets.length);
+}
+
+// File trên Release của repo cần xóa: của mục vừa chuyển sang removed: true (trước chưa gỡ), và của mục
+// bị xóa hẳn khỏi repo (có ở itemsBefore, không có ở itemsAfter). Link ngoài bỏ qua.
 // liveItems: mọi mục ở bản sau; file mà mục còn hiệu lực khác vẫn dùng thì giữ lại.
 export function planRemovals(itemsBefore, itemsAfter, repo, liveItems = []) {
   const inUse = new Set();
@@ -85,16 +98,20 @@ export function planRemovals(itemsBefore, itemsAfter, repo, liveItems = []) {
       if (t) inUse.add(`${t.tag}/${t.name}`);
     }
   }
-  const key = (i) => `${i.course}/${i.id}`;
-  const before = new Map(itemsBefore.map((i) => [key(i), i]));
-  const out = [];
+  const before = new Map(itemsBefore.map((i) => [itemKey(i), i]));
+  const files = [];
   for (const item of itemsAfter) {
-    const prev = before.get(key(item));
+    const prev = before.get(itemKey(item));
     if (!prev || prev.removed || !item.removed) continue;
-    for (const f of item.files || []) {
-      const target = parseReleaseUrl(f.url, repo);
-      if (target && !inUse.has(`${target.tag}/${target.name}`) && !out.some((o) => o.tag === target.tag && o.name === target.name)) out.push(target);
-    }
+    files.push(...(item.files || []));
+  }
+  for (const gone of deletedWithRelease(itemsBefore, itemsAfter, repo)) {
+    files.push(...before.get(itemKey(gone)).files);
+  }
+  const out = [];
+  for (const f of files) {
+    const target = parseReleaseUrl(f.url, repo);
+    if (target && !inUse.has(`${target.tag}/${target.name}`) && !out.some((o) => o.tag === target.tag && o.name === target.name)) out.push(target);
   }
   return out;
 }
@@ -193,16 +210,18 @@ function unpublish(a) {
   }
   // Nhánh mới tạo (before toàn số 0): không có bản trước để so.
   if (/^0+$/.test(a.before)) return;
-  const diff = run('git', ['diff', '--name-only', '-z', '--diff-filter=AM', a.before, a.after, '--', 'courses']);
+  // Cả file mục bị xóa (D): gỡ bằng cách xóa file mục thì file trên Release cũng phải xóa.
+  const diff = run('git', ['diff', '--name-status', '-z', '--no-renames', '--diff-filter=AMD', a.before, a.after, '--', 'courses']);
   if (diff.status !== 0) throw new Error(`git diff lỗi: ${diff.stderr.trim()}`);
-  const paths = diff.stdout.split('\0').filter((p) => ITEM_PATH.test(p));
+  const parts = diff.stdout.split('\0');
   const itemsBefore = [];
   const itemsAfter = [];
-  for (const p of paths) {
+  for (let i = 0; i + 1 < parts.length; i += 2) {
+    const [status, p] = [parts[i], parts[i + 1]];
+    if (!ITEM_PATH.test(p)) continue;
     const shown = run('git', ['show', `${a.before}:${p}`]);
-    if (shown.status !== 0) continue;
-    itemsBefore.push(JSON.parse(shown.stdout));
-    itemsAfter.push(readJson(p));
+    if (shown.status === 0) itemsBefore.push(JSON.parse(shown.stdout));
+    if (status !== 'D') itemsAfter.push(readJson(p));
   }
   const live = loadRepo('.').items;
   for (const { tag, name } of planRemovals(itemsBefore, itemsAfter, a.repo, live)) {

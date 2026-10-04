@@ -8,8 +8,9 @@ name: phat-hanh-file
 #              chưa có), rồi xóa pending/, clean/, mã xem bài token/ và khóa sha/ trong kho.
 #              Sách tham khảo không file (locate ghi light=true) thì không có gì để phát hành
 #              hay dọn: các bước sau đều bỏ qua.
-#   go-file    (push vào main, đổi courses/**/items/*.json)  mục vừa chuyển sang removed thì
-#              xóa file tương ứng trên Release của repo; link ngoài bỏ qua.
+#   go-file    (push vào main, đổi courses/**/items/*.json)  mục vừa chuyển sang removed, hoặc file
+#              mục bị xóa hẳn, thì xóa file tương ứng trên Release của repo (trừ khi mục còn hiệu lực
+#              khác vẫn dùng); link ngoài bỏ qua. validate.yml cũng báo lỗi ITEM_DELETED khi xóa file mục.
 #
 # Mô hình đe dọa. pull_request_target chạy với quyền ghi. Workflow và script lấy từ main,
 # không bao giờ checkout hay chạy mã của nhánh PR. Chỉ chạy khi PR cùng repo, nhánh upload/*

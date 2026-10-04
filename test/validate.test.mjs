@@ -3,7 +3,8 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
 import { loadRepo, TOOL_ROOT, buildIndex, serializeIndex, scanText } from '../scripts/lib/repo.mjs';
-import { run } from '../scripts/validate.mjs';
+import { run, deletedItemErrors } from '../scripts/validate.mjs';
+import { spawnSync } from 'node:child_process';
 import { syncReadmes } from '../scripts/lib/readme.mjs';
 import { copyFixture, editJson, writeJson, codes, FIXTURES } from './helpers.mjs';
 
@@ -278,4 +279,26 @@ test('--allow-stale: file sinh ra cũ chỉ là cảnh báo, lỗi khác vẫn c
   assert.equal(run(['--root', dir, '--quiet', '--allow-stale']).ok, true);
   editJson(dir, ITEM, (it) => { delete it.title; });
   assert.equal(run(['--root', dir, '--quiet', '--allow-stale']).ok, false);
+});
+
+test('--base: xóa file mục có file trên Release thì báo ITEM_DELETED; đặt removed thì không', () => {
+  const dir = copyFixture();
+  const git = (...a) => {
+    const r = spawnSync('git', a, { cwd: dir, encoding: 'utf8' });
+    assert.equal(r.status, 0, r.stderr);
+    return r.stdout;
+  };
+  git('init', '-q');
+  git('-c', 'user.name=t', '-c', 'user.email=t@t', 'add', '-A');
+  git('-c', 'user.name=t', '-c', 'user.email=t@t', 'commit', '-q', '-m', 'goc');
+  fs.rmSync(path.join(dir, PRELAB));
+  const errs = deletedItemErrors(dir, 'HEAD', loadRepo(dir).items);
+  assert.deepEqual(errs.map((e) => [e.code, e.file]), [['ITEM_DELETED', PRELAB]]);
+  assert.match(errs[0].msg, /removed/);
+  // Mục chỉ có file .md trong git (không có Release) thì xóa không bị báo.
+  git('checkout', '-q', '--', PRELAB);
+  fs.rmSync(path.join(dir, ITEM));
+  assert.deepEqual(deletedItemErrors(dir, 'HEAD', loadRepo(dir).items), []);
+  // Ref không có thì báo lỗi, không bỏ qua.
+  assert.equal(deletedItemErrors(dir, 'khong-co-ref', [])[0].code, 'GIT');
 });
