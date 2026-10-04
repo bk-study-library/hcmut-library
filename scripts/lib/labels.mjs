@@ -47,7 +47,7 @@ export const STATUS = {
 // Loại chương trình (trường type của chương trình). short: nhãn ngắn trên badge; vi, en: tên đầy đủ.
 // Nhãn vi của loại khác CQ cũng là giá trị variant mà script nhập CTĐT ghi vào chương trình.
 export const PROGRAM_TYPES = {
-  CQ: { short: { vi: 'Chính quy', en: 'Standard' }, vi: 'Chương trình chính quy', en: 'Standard program' },
+  CQ: { short: { vi: 'Tiêu chuẩn', en: 'Standard' }, vi: 'Chương trình tiêu chuẩn', en: 'Standard program' },
   CTTA: { short: { vi: 'Tiếng Anh', en: 'In English' }, vi: 'Dạy và học bằng tiếng Anh', en: 'Taught in English' },
   CNTN: { short: { vi: 'Tài năng', en: 'Honors' }, vi: 'Chương trình tài năng', en: 'Honors program' },
   PFIEV: { short: { vi: 'PFIEV', en: 'PFIEV' }, vi: 'PFIEV (kỹ sư Việt Pháp)', en: 'PFIEV (French-Vietnamese engineer)' },
@@ -69,7 +69,7 @@ export const PROGRAM_TYPES = {
 
 // Nhãn chương trình ngắn của một mã môn (scripts/lib/program-label.mjs): mã này dạy cho hệ nào.
 export const PROGRAM_LABELS = {
-  CQ: { vi: 'Chính quy', en: 'Standard' },
+  CQ: { vi: 'Tiêu chuẩn', en: 'Standard' },
   CTTT: { vi: 'Tiên tiến', en: 'Advanced' },
   PFIEV: { vi: 'Việt Pháp', en: 'French-Vietnamese' },
   CTTA: { vi: 'Tiếng Anh', en: 'In English' },
