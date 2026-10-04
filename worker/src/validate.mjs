@@ -3,9 +3,16 @@ import { slugify } from '../../scripts/upload/naming.mjs';
 import { formatSize } from '../../scripts/lib/labels.mjs';
 import { scanText } from '../../scripts/lib/pii.mjs';
 import { extensionsFor } from '../../scripts/lib/extensions.mjs';
+import courseSchema from '../../schema/course.schema.json';
 
 const MESSAGES = {
   course: 'Không tìm thấy môn này. Chọn môn trong danh sách.',
+  courseBoth: 'Chọn một môn trong danh sách hoặc thêm môn mới, không chọn cả hai.',
+  newCode: 'Mã môn không hợp lệ. Dùng chữ in hoa và số như trên Sổ tay, ví dụ EE5429.',
+  newCodeExists: (code) => `Môn ${code} đã có trong thư viện. Chọn môn này trong danh sách.`,
+  newNameEmpty: 'Chưa có tên môn. Nhập tên môn như trên Sổ tay.',
+  newNameLong: (max) => `Tên môn quá dài. Rút xuống tối đa ${max} ký tự.`,
+  newNameChars: 'Tên môn chỉ gồm chữ, số, khoảng trắng và các dấu , . ( ) - & / + \' :. Không ghi link hay @.',
   type: 'Không nhận loại tài liệu này. Chọn loại trong danh sách.',
   typeLink: 'Không gửi link qua form này được. Dùng nút "Thêm link" trên trang môn.',
   titleEmpty: 'Chưa có tiêu đề. Nhập tiêu đề cho tài liệu.',
@@ -48,6 +55,38 @@ const CONFIRMS = ['confirm-own', 'confirm-license', 'confirm-not-book'];
 const OPTIONAL = ['description', 'term', 'chapter', 'examKind', 'teacher', 'displayName'];
 
 const val = (fields, key) => String(fields[key] ?? '').trim();
+
+// Mã môn mới: mẫu mã hiện tại (code) của schema môn, không có hậu tố năm.
+const COURSE_CODE = new RegExp(courseSchema.properties.code.pattern);
+// Tên môn mới thành tên môn công khai trên web, README và v1: chỉ chữ, số, khoảng trắng và vài dấu
+// hay gặp trong tên môn. Không có @, #, [ ], < >, |, dấu `: không thành nhắc tên, tham chiếu,
+// liên kết hay thẻ ở bất kỳ đâu tên môn hiện ra.
+const COURSE_NAME = /^[\p{L}\p{M}\p{N} ,.()&/+':-]+$/u;
+const LINKISH = /:\/\/|\bwww\./i;
+
+// Môn có sẵn trùng mã: id, mã hiện tại, hay id bỏ hậu tố năm (GE4169-2024 là GE4169).
+function courseTaken(courses, code) {
+  for (const c of courses.values()) {
+    if (c.id === code || c.code === code || c.id.replace(/-[0-9]{4}$/, '') === code) return true;
+  }
+  return false;
+}
+
+// Môn mới: chỉ khi không chọn môn có sẵn. Trả { code, name } hoặc undefined khi có lỗi.
+function parseNewCourse(fields, errors, lim, courses) {
+  const code = val(fields, 'newCourseCode').toUpperCase();
+  const name = val(fields, 'newCourseName').replace(/\s+/g, ' ');
+  if (!COURSE_CODE.test(code)) errors.newCourseCode = MESSAGES.newCode;
+  else if (courseTaken(courses, code)) errors.newCourseCode = MESSAGES.newCodeExists(code);
+  if (!name) errors.newCourseName = MESSAGES.newNameEmpty;
+  else if (name.length > lim.courseNameMax) errors.newCourseName = MESSAGES.newNameLong(lim.courseNameMax);
+  else if (LINKISH.test(name) || !COURSE_NAME.test(name) || !slugify(name)) errors.newCourseName = MESSAGES.newNameChars;
+  else {
+    const label = piiLabel(name);
+    if (label) errors.newCourseName = MESSAGES.pii('tên môn', label);
+  }
+  return errors.newCourseCode || errors.newCourseName ? undefined : { code, name };
+}
 
 // Các ô chữ thành siêu dữ liệu công khai của mục, nên chặn thông tin cá nhân (cùng mẫu với
 // validate.mjs, không bỏ qua dòng "pii-ok"). Tên ô dùng trong thông báo lỗi.
@@ -140,8 +179,15 @@ export function validateSubmission(fields, file, ctx) {
   const lim = policy.fields;
   const errors = {};
 
-  const course = val(fields, 'course');
-  if (!courses.has(course)) errors.course = MESSAGES.course;
+  // Môn: chọn môn có sẵn, hoặc đề xuất đúng một môn mới (mã và tên), không cả hai.
+  let course = val(fields, 'course');
+  let newCourse;
+  const wantsNew = Boolean(val(fields, 'newCourseCode') || val(fields, 'newCourseName'));
+  if (course && wantsNew) errors.course = MESSAGES.courseBoth;
+  else if (wantsNew) {
+    newCourse = parseNewCourse(fields, errors, lim, courses);
+    if (newCourse) course = newCourse.code;
+  } else if (!courses.has(course)) errors.course = MESSAGES.course;
 
   const type = val(fields, 'type');
   // Link đi theo form Issue "Thêm link", không qua đường tải file.
@@ -209,5 +255,6 @@ export function validateSubmission(fields, file, ctx) {
     if (v) form[key] = v;
   }
   if (book) form.book = book;
+  if (newCourse) form.newCourse = newCourse;
   return { ok: true, form, ext };
 }

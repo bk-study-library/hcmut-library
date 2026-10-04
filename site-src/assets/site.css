@@ -348,6 +348,19 @@ tr.retired td, tr.retired th { color: var(--muted); }
 
 .upload .book { border: 1px solid var(--border); border-radius: var(--radius); padding: 12px 14px; }
 .upload .book[hidden] { display: none; }
+/* Môn mới (khi tìm không thấy môn): khung như ô sách, lời mời có nút nhẹ cùng hàng. */
+.upload .new-course { border: 1px solid var(--border); border-radius: var(--radius); padding: 12px 14px; }
+.upload .new-course[hidden], .upload .new-offer[hidden] { display: none; }
+.upload .new-course .actions { margin: 12px 0 0; }
+.upload .new-offer { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: 8px 0 0; color: var(--muted); }
+.upload .pick li.muted + li button { border-top: 1px solid var(--border); }
+.upload .pick li + li.muted { margin-top: 8px; }
+/* Một tên, nhiều mã: dòng gộp (tên, các mã, số mã) mở ra danh sách mã theo ngành, thụt vào như ô tìm trang chủ. */
+.upload .pick .same-name > button { flex-wrap: wrap; align-items: baseline; }
+.same-name-codes { display: inline-flex; flex-wrap: wrap; gap: 4px 6px; margin-right: 8px; }
+.upload .pick .same-name > .pick { margin: 0 0 8px 16px; border-left: 2px solid var(--border); }
+.upload .pick .same-name > .pick[hidden] { display: none; }
+.upload .pick .same-name > .pick li:first-child button { border-top: 0; }
 .upload .more { border: 1px solid var(--border); border-radius: var(--radius); padding: 10px 14px; }
 .upload .more summary { cursor: pointer; font-weight: 600; padding: 4px 0; }
 .upload .muted, .upload .err { margin: 4px 0 0; }

@@ -548,6 +548,113 @@ describe('POST /submit', () => {
     expect(item).not.toHaveProperty('files');
   });
 
+  describe('môn mới gửi kèm bài', () => {
+    const NEW_NAME = 'Kỹ thuật và hệ thống siêu cao tần';
+    const newForm = (over = {}, file) => form({ course: '', newCourseCode: 'EE5430', newCourseName: NEW_NAME, ...over }, file);
+    const decode = (put) => new TextDecoder().decode(Uint8Array.from(atob(JSON.parse(put.body).content), (c) => c.charCodeAt(0)));
+
+    it('thêm file môn và mục tài liệu trên nhánh, PR nêu môn mới mà không có tên môn', async () => {
+      const bytes = pdfBytes(900, 17);
+      const { res, body, fetch } = await run(post(newForm({}, bytes)));
+      expect(res.status).toBe(201);
+
+      const puts = fetch.find('PUT', '/contents/');
+      expect(puts.map((p) => new URL(p.url).pathname)).toEqual([
+        `/repos/${REPO}/contents/catalog/courses/EE5430.json`,
+        `/repos/${REPO}/contents/courses/EE5430/items/${SLUG}.json`,
+      ]);
+      const courseText = decode(puts[0]);
+      expect(courseText.endsWith('}\n')).toBe(true);
+      expect(JSON.parse(courseText)).toEqual({
+        $schema: '../../schema/course.schema.json',
+        id: 'EE5430',
+        code: 'EE5430',
+        name: NEW_NAME,
+        faculty: 'dee',
+        aliases: [],
+        status: 'active',
+        programs: [],
+        parts: ['theory'],
+        related: [],
+        handbookUrl: 'https://hcmut.edu.vn/study/handbook/subject/EE5430',
+        note: 'Môn mới do người gửi đề xuất, chờ người duyệt xác nhận.',
+        updated: JSON.parse(decode(puts[1])).added,
+      });
+      const item = JSON.parse(decode(puts[1]));
+      expect(item.course).toBe('EE5430');
+      expect(item.files[0].name).toBe(`EE5430_summary_${SLUG}.pdf`);
+      expect((await r2Keys()).find((k) => k.startsWith('pending/'))).toBe(`pending/${body.code}/EE5430_summary_${SLUG}.pdf`);
+      expect((await env.QUARANTINE.get(`token/${body.code}`)).customMetadata).toEqual({ course: 'EE5430' });
+
+      const pr = JSON.parse(fetch.find('POST', '/pulls')[0].body);
+      // Tiêu đề giữ trung tính như bài thường; nội dung PR báo môn mới (mã đã qua mẫu) kèm link Sổ tay.
+      expect(pr.title).toBe(`Bài gửi ${body.code}: EE5430`);
+      expect(pr.body).toContain('Môn mới: EE5430');
+      expect(pr.body).toContain('https://hcmut.edu.vn/study/handbook/subject/EE5430');
+      expect(pr.body).toContain('catalog/courses/EE5430.json');
+      for (const text of [pr.title, pr.body, ...puts.map((p) => JSON.parse(p.body).message)]) {
+        for (const userText of [NEW_NAME, 'siêu cao tần', 'sieu-cao-tan', TITLE, DISPLAY]) expect(text).not.toContain(userText);
+      }
+      expect(JSON.parse(puts[0].body).message).toBe(`feat(catalog): thêm môn mới EE5430 gửi qua form ${body.code}`);
+      expect(JSON.parse(puts[0].body).branch).toBe(`upload/${body.code}`);
+    });
+
+    it('bài thường: PR không có dòng môn mới, chỉ một file trên nhánh', async () => {
+      const { res, fetch } = await run(post(form({}, pdfBytes(900, 19))));
+      expect(res.status).toBe(201);
+      expect(fetch.find('PUT', '/contents/')).toHaveLength(1);
+      expect(JSON.parse(fetch.find('POST', '/pulls')[0].body).body).not.toContain('Môn mới');
+    });
+
+    const rejected = async (fd, key) => {
+      const { res, body, fetch } = await run(post(fd));
+      expect(res.status).toBe(400);
+      expect(body.errors[key]).toBeTruthy();
+      expect(await r2Keys()).toEqual([]);
+      expect(fetch.find('POST', '/git/refs')).toEqual([]);
+      return body;
+    };
+
+    it('mã sai mẫu: 400, không lưu gì', async () => {
+      await rejected(newForm({ newCourseCode: 'EE5430-2024' }), 'newCourseCode');
+    });
+
+    it('mã đã có trong danh mục (kể cả mã của môn có hậu tố năm): 400', async () => {
+      await rejected(newForm({ newCourseCode: 'MT1005' }), 'newCourseCode');
+      await rejected(newForm({ newCourseCode: 'GE4169' }), 'newCourseCode');
+    });
+
+    it('tên môn quá dài: 400', async () => {
+      await rejected(newForm({ newCourseName: 'A'.repeat(policy.fields.courseNameMax + 1) }), 'newCourseName');
+    });
+
+    it('chọn cả môn có sẵn và môn mới: 400', async () => {
+      await rejected(newForm({ course: 'MT1005' }), 'course');
+    });
+
+    it('không chọn môn, không thêm môn mới: 400', async () => {
+      await rejected(form({ course: '' }), 'course');
+    });
+
+    it('gửi hai mã môn mới (ô lặp): 400, chỉ một môn mới mỗi bài', async () => {
+      const fd = newForm();
+      fd.append('newCourseCode', 'EE5432');
+      await rejected(fd, 'course');
+      const fd2 = form();
+      fd2.append('course', 'GE4169-2024');
+      await rejected(fd2, 'course');
+    });
+
+    it('ghi file môn lỗi: 502, dọn kho và xóa nhánh', async () => {
+      const fetch = fakeFetch({ fail: { putFile: 500 } });
+      const { res } = await run(post(newForm({}, pdfBytes(900, 23))), { fetch });
+      expect(res.status).toBe(502);
+      expect(await r2Keys()).toEqual([]);
+      expect(fetch.find('DELETE', '/git/refs/heads/')).toHaveLength(1);
+      expect(fetch.find('POST', '/pulls')).toEqual([]);
+    });
+  });
+
   it('danh mục được giữ trong Cache API theo CATALOG_TTL_SECONDS', async () => {
     const fetch = fakeFetch();
     const envOver = { CATALOG_TTL_SECONDS: '60', BRANCH: `cache-${crypto.randomUUID()}` };

@@ -35,6 +35,7 @@ import { cleanOffice, readZip, zipFindings, pdfActiveContent, splitPdfText, imag
 import { scanText, PII_PATTERNS, TOOL_ROOT } from '../lib/repo.mjs';
 import { loadPolicy } from '../lib/policy.mjs';
 import { extensionsFor } from '../lib/extensions.mjs';
+import { newCoursePath } from './course.mjs';
 
 const QUARANTINE = /^(pending|clean)\/([A-Za-z0-9]{10})\/([^/]+)$/;
 const BRANCH = /^upload\/([A-Za-z0-9]{10})$/;
@@ -86,16 +87,20 @@ export function locateInfo(item, branch) {
 
 // files: [{ filename, status, previous_filename }] của PR. Trả đường dẫn mục tài liệu duy nhất.
 // Ngoài mục đó PR chỉ được có file do validate.mjs --write sinh ra: chỉ mục, v1/ và README
-// của cùng môn. File đổi tên thì đường dẫn cũ cũng phải nằm trong phạm vi đó.
+// của cùng môn, cùng file môn mới catalog/courses/<môn>.json khi người gửi đề xuất môn chưa có
+// (chỉ thêm mới, không sửa môn đã có). File đổi tên thì đường dẫn cũ cũng phải nằm trong phạm vi đó.
 export function pickItemFile(files) {
   const hits = files.filter((f) => ITEM_FILE.test(f.filename) && f.status !== 'removed');
   if (hits.length !== 1) throw new Error(`PR cần sửa đúng một file courses/<môn>/items/<id>.json, gặp ${hits.length}.`);
   const item = hits[0];
   if (item.previous_filename) throw new Error(`PR sửa file ngoài phạm vi: ${item.previous_filename}.`);
-  const allowed = generatedPaths(ITEM_FILE.exec(item.filename)[1]);
+  const course = ITEM_FILE.exec(item.filename)[1];
+  const allowed = generatedPaths(course);
   const ok = (p) => allowed.some((a) => (a.endsWith('/') ? p.startsWith(a) : p === a));
   for (const f of files) {
     if (f === item) continue;
+    // Môn mới người gửi đề xuất kèm bài: chỉ thêm file của đúng môn đó, không sửa môn đã có.
+    if (f.filename === newCoursePath(course) && f.status === 'added' && !f.previous_filename) continue;
     for (const p of [f.filename, f.previous_filename]) {
       if (p !== undefined && p !== null && !ok(p)) throw new Error(`PR sửa file ngoài phạm vi: ${p}.`);
     }

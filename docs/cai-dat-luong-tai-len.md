@@ -323,6 +323,18 @@ Kiểm: trong **Releases** có pre-release `files-HK<xxx>` kèm file, và link c
 
 Khi repo còn private, file trên Release chỉ thành viên đã đăng nhập mới tải được. Web và app BK Study Desk tải được sau khi repo public.
 
+## Bài có môn mới
+
+Người gửi không tìm thấy môn có thể bấm **Thêm môn mới** trên form (sau khi xem các gợi ý **Có phải môn này?**). Khi đó form gửi `newCourseCode`, `newCourseName` thay cho `course`, và Worker:
+
+- kiểm mã theo mẫu `code` của `schema/course.schema.json` (không có hậu tố năm), mã chưa có trong `worker-catalog.json`, tên không quá `fields.courseNameMax` của `catalog/policy.json`, tên không có link, `@`, ký tự lạ hay thông tin cá nhân; mỗi bài đúng một môn;
+- thêm `catalog/courses/<MÃ>.json` vào nhánh `upload/<mã bài>` trước file mục: khoa theo `prefixes` của `catalog/faculties.json` (không khớp thì `unknown`), `handbookUrl` dựng từ `handbookSubjectUrl` của `catalog/site.json`, `note` ghi môn mới chờ duyệt;
+- ghi **Môn mới: <MÃ>** và link Sổ tay vào nội dung PR. Tiêu đề PR vẫn trung tính; tên môn là chữ người gửi nên chỉ nằm trong file môn và trang `/xem-duyet/<mã bài>` (trang này có phần Môn mới ở đầu).
+
+`kiem-file` nhận file môn mới của đúng môn đó (chỉ khi thêm mới), rồi `validate.mjs --write` dựng lại `index.json`, `v1/`, `worker-catalog.json` và README của môn như bài thường. Hai bài cùng đề xuất một mã: gộp bài đầu xong thì bài sau thành sửa môn đã có nên `kiem-file` dừng; đóng bài sau và nhờ người gửi chọn môn vừa thêm.
+
+Tiền tố khoa, mẫu link Sổ tay và mẫu mã môn được đóng gói vào Worker lúc deploy (như `catalog/policy.json` của `/xem-truoc`), nên đổi các file này thì deploy lại Worker.
+
 ## Duyệt nhiều bài cùng lúc
 
 Mỗi PR gửi bài đều sửa các file sinh ra: `index.json`, `index.min.json`, `worker-catalog.json`, `v1/` và README của môn. Sau khi merge một PR, các PR khác đang mở sẽ xung đột ở các file này. Với từng PR còn lại:

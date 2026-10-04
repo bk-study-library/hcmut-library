@@ -18,6 +18,8 @@
   "itemsPerGroup": 8,
   "programPdfHosts": ["drive.google.com", "hcmut.edu.vn", "*.hcmut.edu.vn"],
   "handbookHosts": ["hcmut.edu.vn"],
+  "handbookSubjectUrl": "https://hcmut.edu.vn/study/handbook/subject/{code}",
+  "nearCodeSpan": 2,
   "sharedFaculty": "chung",
   "programTypeOrder": ["CQ", "CTTA", "CNTN", "PFIEV", "CTTT", "DHNB", "SN", "CTQT", "VLVH", "UD", "NC", "CSAU", "TAUD", "STEM", "PT1", "PT2", "TAPT1"],
   "officialProgramsPage": "https://hcmut.edu.vn/bai-viet/chuong-trinh-dao-tao-tu-khoa-2019",
@@ -25,5 +27,6 @@
   "docDescriptionMax": 200,
   "sameNameGroupMin": 2,
   "contextWideMajors": 5,
+  "sameNameChipsMax": 4,
   "socialImage": "assets/social-preview.png"
 }

@@ -26,9 +26,11 @@ Một số điều cần nhớ:
 ### 1. Gửi file qua trang web (khuyên dùng, không cần tài khoản GitHub)
 
 1. Mở [Gửi tài liệu](https://bk-study-library.github.io/hcmut-library/gui-tai-lieu/), hoặc bấm **Gửi tài liệu** trên trang môn để form chọn sẵn môn.
-2. Chọn môn, loại tài liệu, nhập tiêu đề, chọn file. File .zip chỉ nhận cho loại Gói quiz; loại khác thì gửi từng file, hoặc gộp thành một file PDF.
+2. Tìm môn theo tên (mã có thể đổi qua các khóa). Môn có nhiều mã cùng tên (ví dụ Đồ án tốt nghiệp) hiện thành một dòng; bấm vào để chọn đúng mã theo ngành hoặc khóa. Chọn loại tài liệu, nhập tiêu đề, chọn file. File .zip chỉ nhận cho loại Gói quiz; loại khác thì gửi từng file, hoặc gộp thành một file PDF.
 3. Chọn giấy phép, đánh dấu ba ô cam kết, qua bước xác minh Turnstile của Cloudflare.
 4. Bấm **Gửi tài liệu**. Trang hiện mã bài. Hãy lưu mã này để hỏi về bài của bạn.
+
+Không tìm thấy môn: form gợi ý các môn có mã gần (cùng tiền tố, số lệch vài đơn vị, theo `nearCodeSpan` trong `catalog/site.json`) dưới dòng **Có phải môn này?**. Mã trường thường là số lẻ, mã của CTĐT cũ đôi khi là số chẵn, nên hãy xem các gợi ý trước. Không đúng môn nào thì bấm **Thêm môn mới**, ghi mã và tên môn như trên Sổ tay HCMUT. Tên bạn gõ trùng tên môn đã có thì form cũng gợi ý môn đó. Mỗi bài chỉ thêm được một môn mới; mã đã có trong thư viện thì form chọn môn đó thay vì thêm mới.
 
 Điều gì xảy ra tiếp theo:
 
@@ -91,6 +93,7 @@ Người duyệt là sinh viên đã học qua môn, làm tình nguyện. Danh s
 
 ### Danh sách kiểm của người duyệt
 
+- [ ] PR có dòng **Môn mới: <mã>** (bài thêm `catalog/courses/<mã>.json`): mở trang môn trên Sổ tay HCMUT (link trong PR và trang xem bài), kiểm mã, tên, khoa. Sai thì sửa file môn trong PR; trùng môn đã có (ví dụ gõ EE5430 trong khi môn là EE5429) thì đóng PR và nhờ người gửi chọn môn đó. Đã xác nhận thì thay `note` chờ duyệt bằng nguồn đã kiểm trước khi gộp.
 - [ ] Không phải file sách có bản quyền. Nếu là sách, đổi sang loại Sách tham khảo và chỉ giữ tên sách.
 - [ ] Không có file chạy được. File .zip chỉ có ở gói quiz: mở ra xem. Máy đã báo mục có mật khẩu, đường dẫn lạ, file nén lồng hay loại lạ.
 - [ ] PR có nhãn `can-xem-tay`: đọc lý do trong comment của `kiem-file` (ClamAV không quét hết, PDF có JavaScript, Office có macro hay liên kết ngoài, .zip lạ) và mở file trên máy có phần mềm diệt virus trước khi quyết định.
