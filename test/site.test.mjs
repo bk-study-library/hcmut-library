@@ -1057,3 +1057,12 @@ test('items.json: tài liệu của môn sau đại học ghi levels cho ô Bậ
 test('trang chủ: không có môn, chương trình sau đại học thì không có ô Bậc', () => {
   assert.doesNotMatch(read('index.html'), /id="q-level"/);
 });
+
+test('mọi trang có icon: SVG, PNG 32 px và apple-touch-icon, file có thật', () => {
+  for (const f of ['assets/favicon.svg', 'assets/favicon-32.png', 'assets/apple-touch-icon.png']) assert.ok(fs.existsSync(path.join(out, f)), f);
+  for (const p of ['index.html', 'en/index.html', 'gui-tai-lieu/index.html', '404.html']) {
+    const html = read(p);
+    assert.match(html, /<link rel="icon" href="[^"]*assets\/favicon\.svg" type="image\/svg\+xml">/, p);
+    assert.match(html, /<link rel="apple-touch-icon" href="[^"]*assets\/apple-touch-icon\.png">/, p);
+  }
+});

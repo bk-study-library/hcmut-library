@@ -361,6 +361,9 @@ ${cspMeta({ upload })}
 ${noindex || notFound ? '<meta name="robots" content="noindex">\n' : ''}<title>${esc(title ? `${title} | ${t.siteName}` : t.siteName)}</title>
 <meta name="description" content="${esc(desc)}">
 ${headMeta({ t, here, title, description: desc, alt, pair, social: SOCIAL, notFound })}
+<link rel="icon" href="${root}assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="${root}assets/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="${root}assets/apple-touch-icon.png">
 <link rel="stylesheet" href="${root}assets/site.css">
 </head>
 <body>
