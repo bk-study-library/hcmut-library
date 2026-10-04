@@ -54,7 +54,20 @@ const t = Math.floor(NOW / 1000);
 const goodClaims = (over = {}) => ({ aud: [AUD], iss: `https://${TEAM}`, exp: t + 600, nbf: t - 10, iat: t - 10, email: 'x@y', ...over });
 
 // fetch giả: khóa Access, GitHub (token, danh mục, PR theo nhánh).
-function fakeFetch({ pr = { state: 'open', merged_at: null }, fail = {} } = {}) {
+const ITEM_PATH = 'courses/MT1005/items/tom-tat.json';
+const ITEM = {
+  id: 'tom-tat',
+  course: 'MT1005',
+  type: 'summary',
+  title: 'Tóm tắt <script>alert(1)</script>',
+  description: 'Dòng 1\nXem https://lua-dao.example',
+  lang: 'vi',
+  license: 'CC-BY-SA-4.0',
+  teacher: 'Thầy "A" & cô B',
+  authors: ['Nguyen Van An'],
+};
+
+function fakeFetch({ pr = { state: 'open', merged_at: null }, fail = {}, item = ITEM, files = [{ filename: ITEM_PATH, status: 'added' }, { filename: 'index.json', status: 'modified' }] } = {}) {
   const calls = [];
   const fn = async (url, init = {}) => {
     const method = init.method ?? 'GET';
@@ -64,6 +77,14 @@ function fakeFetch({ pr = { state: 'open', merged_at: null }, fail = {} } = {}) 
     if (u.pathname.startsWith('/app/installations/')) return json({ token: 'ghs_secret' }, 201);
     if (u.pathname === `/repos/${REPO}/contents/catalog/policy.json`) return new Response(JSON.stringify(policy));
     if (u.pathname === `/repos/${REPO}/contents/index.json`) return new Response(JSON.stringify(index));
+    if (u.pathname === `/repos/${REPO}/compare/main...upload/${CODE}`) {
+      if (fail.compare) return json({ message: 'x' }, fail.compare);
+      return json({ files });
+    }
+    if (u.pathname === `/repos/${REPO}/contents/${ITEM_PATH}`) {
+      if (u.searchParams.get('ref') !== `upload/${CODE}`) return json({ message: 'Not Found' }, 404);
+      return new Response(typeof item === 'string' ? item : JSON.stringify(item));
+    }
     if (u.pathname === `/repos/${REPO}/pulls` && method === 'GET') {
       if (fail.pulls) return json({ message: 'x' }, fail.pulls);
       return json(pr ? [pr] : []);
@@ -210,10 +231,10 @@ describe('GET /xem-duyet/<mã>', () => {
     expect((await get('/xem-duyet/abc', { headers: await auth() })).res.status).toBe(404);
   });
 
-  it('JWT hợp lệ: trả bản đã làm sạch, ưu tiên clean hơn pending, header an toàn', async () => {
+  it('JWT hợp lệ: /file trả bản đã làm sạch, ưu tiên clean hơn pending, header an toàn', async () => {
     await env.QUARANTINE.put(`pending/${CODE}/${NAME}`, new Uint8Array([9, 9, 9]));
     await env.QUARANTINE.put(`clean/${CODE}/${NAME}`, pdf);
-    const { res } = await get(`/xem-duyet/${CODE}`, { headers: await auth() });
+    const { res } = await get(`/xem-duyet/${CODE}/file`, { headers: await auth() });
     expect(res.status).toBe(200);
     expect(new Uint8Array(await res.arrayBuffer())).toEqual(pdf);
     for (const [h, v] of Object.entries(SAFE)) expect(res.headers.get(h)).toBe(v);
@@ -222,18 +243,18 @@ describe('GET /xem-duyet/<mã>', () => {
     expect(res.headers.get('content-length')).toBe(String(pdf.length));
   });
 
-  it('chỉ có pending: trang cảnh báo chưa quét, nút tải trả file dạng attachment', async () => {
+  it('chỉ có pending: /file là trang cảnh báo chưa quét, nút tải trả file dạng attachment', async () => {
     await env.QUARANTINE.put(`pending/${CODE}/${NAME}`, pdf);
-    const { res } = await get(`/xem-duyet/${CODE}`, { headers: await auth() });
+    const { res } = await get(`/xem-duyet/${CODE}/file`, { headers: await auth() });
     expect(res.status).toBe(200);
     expect(res.headers.get('content-type')).toBe('text/html; charset=utf-8');
     expect(res.headers.get('cache-control')).toBe('private, no-store');
     expect(res.headers.get('referrer-policy')).toBe('no-referrer');
     const html = await res.text();
     expect(html).toContain('File chưa quét virus xong');
-    expect(html).toContain(`href="/xem-duyet/${CODE}?tai=1"`);
+    expect(html).toContain(`href="/xem-duyet/${CODE}/file?tai=1"`);
 
-    const dl = await get(`/xem-duyet/${CODE}?tai=1`, { headers: await auth() });
+    const dl = await get(`/xem-duyet/${CODE}/file?tai=1`, { headers: await auth() });
     expect(dl.res.status).toBe(200);
     expect(new Uint8Array(await dl.res.arrayBuffer())).toEqual(pdf);
     expect(dl.res.headers.get('content-disposition')).toBe(`attachment; filename*=UTF-8''${NAME}`);
@@ -254,15 +275,72 @@ describe('GET /xem-duyet/<mã>', () => {
       if (list.objects.length) await env.QUARANTINE.delete(list.objects.map((o) => o.key));
       // Content-Type lưu trong R2 bị bỏ qua: chỉ tin policy.
       await env.QUARANTINE.put(`clean/${CODE}/${name}`, pdf, { httpMetadata: { contentType: 'text/html' } });
-      const { res } = await get(`/xem-duyet/${CODE}`, { headers: await auth() });
+      const { res } = await get(`/xem-duyet/${CODE}/file`, { headers: await auth() });
       expect(res.headers.get('content-disposition')).toBe(`${disp}; filename*=UTF-8''${name}`);
       expect(res.headers.get('content-type')).toBe(mime);
     }
   });
 
-  it('không có file: 404', async () => {
-    const { res } = await get(`/xem-duyet/${CODE}`, { headers: await auth() });
+  it('không có file: /file trả 404', async () => {
+    const { res } = await get(`/xem-duyet/${CODE}/file`, { headers: await auth() });
     expect(res.status).toBe(404);
+  });
+
+  it('trang duyệt: hiện chữ người gửi đã thoát HTML, rồi nút xem và tải file', async () => {
+    await env.QUARANTINE.put(`clean/${CODE}/${NAME}`, pdf);
+    const { res, fetch } = await get(`/xem-duyet/${CODE}`, { headers: await auth() });
+    expect(res.status).toBe(200);
+    expect(res.headers.get('content-type')).toBe('text/html; charset=utf-8');
+    expect(res.headers.get('content-security-policy')).toContain("default-src 'none'");
+    expect(res.headers.get('cache-control')).toBe('private, no-store');
+    const html = await res.text();
+    expect(html).toContain(`Duyệt bài ${CODE}`);
+    expect(html).toContain('Tóm tắt &lt;script&gt;alert(1)&lt;/script&gt;');
+    expect(html).not.toContain('<script');
+    expect(html).toContain('Thầy &quot;A&quot; &amp; cô B');
+    expect(html).toContain('Dòng 1\nXem https://lua-dao.example');
+    expect(html).not.toContain('href="https://lua-dao');
+    expect(html).toContain('<dt>Loại</dt><dd>Tóm tắt</dd>');
+    expect(html).toContain('<dt>Tên hiển thị</dt><dd>Nguyen Van An</dd>');
+    // Chữ đứng trước nút file.
+    expect(html.indexOf('Tóm tắt &lt;script')).toBeLessThan(html.indexOf(`href="/xem-duyet/${CODE}/file"`));
+    expect(html).toContain(`href="/xem-duyet/${CODE}/file?tai=1"`);
+    const [cmp] = fetch.find('/compare/');
+    expect(cmp.url).toBe(`https://api.github.com/repos/${REPO}/compare/main...upload/${CODE}`);
+  });
+
+  it('trang duyệt: file chưa quét thì cảnh báo và chỉ có nút tải', async () => {
+    await env.QUARANTINE.put(`pending/${CODE}/${NAME}`, pdf);
+    const html = await (await get(`/xem-duyet/${CODE}`, { headers: await auth() })).res.text();
+    expect(html).toContain('Máy chưa quét virus xong');
+    expect(html).toContain(`href="/xem-duyet/${CODE}/file?tai=1"`);
+    expect(html).not.toContain(`href="/xem-duyet/${CODE}/file"`);
+  });
+
+  it('trang duyệt: sách tham khảo không file, có thông tin sách', async () => {
+    const item = { ...ITEM, type: 'book-ref', book: { title: 'Giải tích 1', authors: ['A', 'B'], year: 2020 } };
+    const html = await (await get(`/xem-duyet/${CODE}`, { headers: await auth(), fetch: fakeFetch({ item }) })).res.text();
+    expect(html).toContain('<dt>Tên sách</dt><dd>Giải tích 1</dd>');
+    expect(html).toContain('<dt>Tác giả</dt><dd>A, B</dd>');
+    expect(html).toContain('Bài này là sách tham khảo, không có file.');
+  });
+
+  it('trang duyệt: không đọc được mục (nhánh mất, nhiều mục, JSON hỏng) thì báo, vẫn hiện phần file', async () => {
+    await env.QUARANTINE.put(`clean/${CODE}/${NAME}`, pdf);
+    const two = [{ filename: ITEM_PATH, status: 'added' }, { filename: 'courses/MT1005/items/khac.json', status: 'added' }];
+    for (const fetch of [fakeFetch({ fail: { compare: 404 } }), fakeFetch({ files: two }), fakeFetch({ item: '{hỏng' }), fakeFetch({ item: [1] })]) {
+      const { res } = await get(`/xem-duyet/${CODE}`, { headers: await auth(), fetch });
+      expect(res.status).toBe(200);
+      const html = await res.text();
+      expect(html).toContain('Không đọc được mục tài liệu');
+      expect(html).toContain(`href="/xem-duyet/${CODE}/file"`);
+    }
+  });
+
+  it('/file cần đăng nhập như trang duyệt', async () => {
+    await env.QUARANTINE.put(`clean/${CODE}/${NAME}`, pdf);
+    expect((await get(`/xem-duyet/${CODE}/file`)).res.status).toBe(403);
+    expect((await get('/xem-duyet/abc/file', { headers: await auth() })).res.status).toBe(404);
   });
 
   it('chỉ nhận GET', async () => {

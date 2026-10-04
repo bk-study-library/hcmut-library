@@ -1,7 +1,7 @@
 // Xem file chờ duyệt: người duyệt (/xem-duyet/<mã>, sau Cloudflare Access) và người gửi
 // (/xem/<mã>?k=<mã bí mật>). File trong kho cách ly không bao giờ công khai: mọi đường đều kiểm
 // quyền trước khi đọc R2. Không ghi log mã bí mật, IP hay tên file.
-import { SITE_URL } from '../../scripts/lib/labels.mjs';
+import { SITE_URL, TYPES, EXAM_KINDS } from '../../scripts/lib/labels.mjs';
 
 export const CODE = /^[A-Za-z0-9]{10}$/;
 // 32 byte base64url không đệm: 43 ký tự.
@@ -33,6 +33,14 @@ export const VIEW_MESSAGES = {
   fileButton: 'Xem file',
   noFile: 'File không còn trong kho chờ duyệt.',
   secret: 'Link này là bí mật, chỉ bạn có. Đừng chia sẻ cho người khác. Link hết hạn khi file chờ duyệt bị xóa.',
+  reviewTitle: (code) => `Duyệt bài ${code}`,
+  fieldsTitle: 'Nội dung người gửi nhập',
+  fieldsNote: 'Chữ dưới đây do người gửi nhập, chưa ai duyệt. Đọc kỹ trước khi gộp; có chữ xúc phạm, quảng cáo hay link lạ thì đóng PR.',
+  noItem: 'Không đọc được mục tài liệu từ nhánh của bài. Nhánh có thể đã bị xóa.',
+  fileTitle: 'File',
+  viewFile: 'Xem file',
+  downloadFile: 'Tải file',
+  noFileBook: 'Bài này là sách tham khảo, không có file.',
 };
 
 const esc = (s) =>
@@ -49,6 +57,8 @@ const CSS = [
   'h1{font-size:1.4rem;margin:0 0 1rem}a{color:var(--accent)}.muted{color:var(--muted)}',
   '.warn{color:var(--warn);background:var(--warn-soft);padding:.75rem;border-radius:6px}',
   '.btn{display:inline-block;padding:.5rem 1rem;border-radius:6px;background:var(--accent);color:var(--accent-text);text-decoration:none}',
+  'h2{font-size:1.1rem;margin:1.5rem 0 .5rem}.actions{display:flex;flex-wrap:wrap;gap:8px}',
+  'dl.fields{margin:0 0 1rem}dl.fields dt{font-weight:600;margin-top:.75rem}dl.fields dd{margin:.25rem 0 0;white-space:pre-wrap;overflow-wrap:anywhere}',
 ].join('');
 
 const SECURITY_HEADERS = {
@@ -206,4 +216,74 @@ export function statusPage({ code, status, course, fileHref }) {
   parts.push(fileHref ? `<p><a class="btn" href="${esc(fileHref)}">${esc(m.fileButton)}</a></p>` : para(m.noFile, 'muted'));
   parts.push(para(m.secret, 'muted'));
   return htmlPage(200, m.statusTitle(code), parts.join(''));
+}
+
+// ---------- Trang duyệt bài ----------
+
+// Các ô của mục tài liệu hiện cho người duyệt, theo thứ tự. Giá trị luôn được thoát HTML.
+const ITEM_FIELDS = [
+  ['title', 'Tiêu đề'],
+  ['description', 'Mô tả'],
+  ['course', 'Môn'],
+  ['type', 'Loại', (v) => TYPES[v]?.vi ?? v],
+  ['lang', 'Ngôn ngữ'],
+  ['license', 'Giấy phép'],
+  ['chapter', 'Chương'],
+  ['term', 'Học kỳ'],
+  ['examKind', 'Loại kiểm tra', (v) => EXAM_KINDS[v] ?? v],
+  ['teacher', 'Giảng viên'],
+  ['authors', 'Tên hiển thị'],
+];
+const BOOK_FIELDS = [
+  ['title', 'Tên sách'],
+  ['authors', 'Tác giả'],
+  ['year', 'Năm'],
+  ['publisher', 'Nhà xuất bản'],
+  ['isbn', 'ISBN'],
+];
+
+// Chỉ nhận chuỗi, số và mảng chuỗi; giá trị dạng khác bỏ qua.
+function fieldText(v) {
+  if (typeof v === 'string' || typeof v === 'number') return String(v);
+  if (Array.isArray(v) && v.every((x) => typeof x === 'string' || typeof x === 'number')) return v.join(', ');
+  return '';
+}
+
+export function itemFieldRows(item) {
+  const rows = [];
+  if (!item || typeof item !== 'object') return rows;
+  for (const [key, label, show] of ITEM_FIELDS) {
+    const text = fieldText(item[key]);
+    if (text) rows.push([label, show ? show(text) : text]);
+  }
+  if (item.book && typeof item.book === 'object') {
+    for (const [key, label] of BOOK_FIELDS) {
+      const text = fieldText(item.book[key]);
+      if (text) rows.push([label, text]);
+    }
+  }
+  return rows;
+}
+
+// item: mục tài liệu trên nhánh của bài (null khi không đọc được). file: kết quả locateFile.
+export function reviewPage({ code, item, file }) {
+  const m = VIEW_MESSAGES;
+  const parts = [`<h2>${esc(m.fieldsTitle)}</h2>`];
+  const rows = itemFieldRows(item);
+  if (rows.length) {
+    parts.push(para(m.fieldsNote, 'muted'));
+    parts.push(`<dl class="fields">${rows.map(([k, v]) => `<dt>${esc(k)}</dt><dd>${esc(v)}</dd>`).join('')}</dl>`);
+  } else {
+    parts.push(para(m.noItem, 'warn'));
+  }
+  parts.push(`<h2>${esc(m.fileTitle)}</h2>`);
+  const href = `/xem-duyet/${code}/file`;
+  if (file?.clean) {
+    parts.push(`<p class="actions"><a class="btn" href="${esc(href)}">${esc(m.viewFile)}</a><a class="btn" href="${esc(`${href}?tai=1`)}">${esc(m.downloadFile)}</a></p>`);
+  } else if (file) {
+    parts.push(para(m.pending, 'warn'), `<p class="actions"><a class="btn" href="${esc(`${href}?tai=1`)}">${esc(m.pendingButton)}</a></p>`);
+  } else {
+    parts.push(para(item?.type === 'book-ref' ? m.noFileBook : m.noFile, 'muted'));
+  }
+  return htmlPage(200, m.reviewTitle(code), parts.join(''));
 }
