@@ -343,3 +343,6 @@ main.wrap:has(> .prose) { max-width: 792px; }
 .facts summary { padding: 6px 0; }
 /* Mã chương trình và tên dài không có khoảng trắng: xuống dòng thay vì làm trang cuộn ngang. */
 main h1, main h2, main p, main li { overflow-wrap: break-word; }
+.more-items { margin-top: 10px; }
+.more-items > summary { cursor: pointer; font-weight: 600; color: var(--accent); padding: 4px 0; }
+.more-items > .items { margin-top: 10px; }
