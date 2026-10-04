@@ -7,7 +7,7 @@ import { importSeed, inferParts } from '../scripts/import-seed.mjs';
 import { run } from '../scripts/validate.mjs';
 import { FIXTURES, readJson, editJson } from './helpers.mjs';
 
-const seed = JSON.parse(fs.readFileSync(path.join(FIXTURES, 'seed-k2019.json'), 'utf8'));
+const seed = JSON.parse(fs.readFileSync(path.join(FIXTURES, 'seed-mau.json'), 'utf8'));
 // Bộ khoa cố định cho test (khóa theo tiền tố mã), không phụ thuộc catalog/faculties.json đang dùng.
 const FACULTIES = path.join(FIXTURES, 'faculties-prefix.json');
 const faculties = JSON.parse(fs.readFileSync(FACULTIES, 'utf8'));
@@ -19,23 +19,23 @@ function freshRoot() {
   return dir;
 }
 
-test('seed fixture: 83 môn của chương trình, không có điểm', () => {
-  assert.equal(seed.courses.length, 83);
+test('seed mẫu: 16 môn, không có điểm', () => {
+  assert.equal(seed.courses.length, 16);
   assert.ok(!/"(score|letter|gpa\w*)"/.test(JSON.stringify(seed)));
 });
 
-test('nhập seed: 83 môn + 1 môn ngoài CTĐT, một chương trình, kiểm sạch', () => {
+test('nhập seed: 16 môn + 1 môn ngoài CTĐT, một chương trình, kiểm sạch', () => {
   const dir = freshRoot();
   const report = importSeed(seed, dir, { date: '2026-10-03', faculties });
-  assert.equal(report.created.length, 84);
-  assert.equal(fs.readdirSync(path.join(dir, 'catalog', 'courses')).length, 84);
-  const prog = readJson(dir, 'catalog/programs/DH_CQ_DD_KDI_2019.json');
+  assert.equal(report.created.length, 17);
+  assert.equal(fs.readdirSync(path.join(dir, 'catalog', 'courses')).length, 17);
+  const prog = readJson(dir, 'catalog/programs/DH_MAU_2019.json');
   assert.equal(prog.faculty, 'EE');
-  assert.equal(prog.blocks.reduce((n, b) => n + b.courses.length, 0), 83);
+  assert.equal(prog.blocks.reduce((n, b) => n + b.courses.length, 0), 16);
   const r = run(['--root', dir, '--write', '--quiet']);
   assert.deepEqual(r.repo.errors, []);
   assert.deepEqual(r.repo.warnings, []);
-  assert.equal(r.index.counts.courses, 84);
+  assert.equal(r.index.counts.courses, 17);
 });
 
 test('nhập seed: khoa theo tiền tố đã xác minh, còn lại là unknown', () => {
@@ -69,7 +69,7 @@ test('nhập lại sau khi môn đổi mã: giữ ID, không tạo môn trùng',
   });
   const report = importSeed(seed, dir, { date: '2026-10-04', faculties });
   assert.equal(report.created.length, 0);
-  assert.equal(fs.readdirSync(path.join(dir, 'catalog', 'courses')).length, 84);
+  assert.equal(fs.readdirSync(path.join(dir, 'catalog', 'courses')).length, 17);
   const c = readJson(dir, 'catalog/courses/EE1009.json');
   assert.equal(c.code, 'EE1109');
   assert.equal(c.updated, '2026-10-04');
