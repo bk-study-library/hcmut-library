@@ -125,6 +125,19 @@
     q.value = c.code + ' ' + c.name;
     list.textContent = '';
     errBox('course').textContent = '';
+    fillTeachers(c.teachers || []);
+  }
+
+  // Gợi ý tên giảng viên đã có ở môn này, để cùng một người không thành nhiều cách viết.
+  function fillTeachers(names) {
+    var dl = document.getElementById('teacher-list');
+    if (!dl) return;
+    dl.textContent = '';
+    names.forEach(function (n) {
+      var o = document.createElement('option');
+      o.value = n;
+      dl.appendChild(o);
+    });
   }
 
   function renderResults() {
@@ -161,6 +174,7 @@
 
   q.addEventListener('input', function () {
     courseId.value = '';
+    fillTeachers([]);
     clearTimeout(timer);
     timer = setTimeout(renderResults, 80);
   });
@@ -195,6 +209,7 @@
   }
 
   function resetForm() {
+    fillTeachers([]);
     form.reset();
     courseId.value = '';
     list.textContent = '';

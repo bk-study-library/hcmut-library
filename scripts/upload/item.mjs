@@ -2,6 +2,16 @@
 
 const OPTIONAL = ['description', 'term', 'chapter', 'examKind', 'teacher'];
 
+// Bỏ danh xưng và học hàm ở đầu ("Thầy", "Cô", "TS.", "PGS.TS."...) để cùng một giảng viên
+// không thành nhiều tên khi tìm. Người duyệt vẫn sửa tay được trong PR.
+const TEACHER_PREFIX = /^(?:(?:thầy|thay|cô|co|gv|giảng viên|giang vien|gs|pgs|ts|ths|tskh|ks|cn)(?:\.\s*|\s+))+/iu;
+
+export function normalizeTeacher(name) {
+  const clean = String(name || '').replace(/\s+/g, ' ').trim();
+  const stripped = clean.replace(TEACHER_PREFIX, '').trim();
+  return stripped || clean;
+}
+
 export function buildItem(form, file, today, id) {
   const item = {
     id,
@@ -17,6 +27,7 @@ export function buildItem(form, file, today, id) {
   for (const key of OPTIONAL) {
     if (form[key]) item[key] = form[key];
   }
+  if (item.teacher) item.teacher = normalizeTeacher(item.teacher);
   if (form.displayName) item.authors = [form.displayName];
   if (form.type === 'book-ref' && form.book) {
     item.book = form.book;
