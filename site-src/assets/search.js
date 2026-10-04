@@ -1,6 +1,7 @@
-// Ô tìm trên trang chủ: môn (v1/index.json, search-core.js, cùng logic với app BK Study Desk) và
-// chương trình (assets/programs.json), kèm lọc theo khoa. Câu tìm và khoa nằm trên địa chỉ trang
-// (?q=, ?khoa=) để link chia sẻ được. Chạy hoàn toàn trên máy người xem, không gửi chữ gõ đi đâu.
+// Ô tìm trên trang chủ: môn (v1/index.json, search-core.js, cùng logic với app BK Study Desk),
+// chương trình (assets/programs.json) và tài liệu (assets/items.json, search-docs.js), kèm lọc theo
+// khoa, loại tài liệu, học kỳ, kỳ thi. Câu tìm và bộ lọc nằm trên địa chỉ trang (?q=, ?khoa=, ?loai=,
+// ?hk=, ?ky=) để link chia sẻ được. Chạy hoàn toàn trên máy người xem, không gửi chữ gõ đi đâu.
 (function () {
   'use strict';
   var input = document.getElementById('q');
@@ -9,8 +10,24 @@
   var facSel = document.getElementById('q-fac');
   var progBox = document.getElementById('q-prog');
   var progList = document.getElementById('q-prog-list');
+  var docBox = document.getElementById('q-docs');
+  var docList = document.getElementById('q-docs-list');
+  var docStatus = document.getElementById('q-docs-status');
+  // Bộ lọc tài liệu: id ô chọn, tên tham số trên địa chỉ trang, khóa trong bộ lọc của BkDocs.
+  var DOC_FILTERS = [
+    ['q-type', 'loai', 'type'],
+    ['q-term', 'hk', 'term'],
+    ['q-kind', 'ky', 'examKind'],
+  ]
+    .map(function (f) {
+      return { el: document.getElementById(f[0]), param: f[1], key: f[2] };
+    })
+    .filter(function (f) {
+      return f.el;
+    });
   var PROG_MAX = 8;
   var programs = null;
+  var docs = null;
   if (!input || !list || !window.BkSearch) return;
 
   var html = document.documentElement;
@@ -18,6 +35,8 @@
   var prefix = html.getAttribute('data-lang-prefix') || '';
   var strings = JSON.parse(document.getElementById('search-strings').textContent);
   var en = strings.lang === 'en';
+  var ds = strings.docs || {};
+  var DOC_MAX = ds.max || 10;
   var MAX = 30;
   var idx = null;
   var byId = {};
@@ -52,7 +71,7 @@
     });
     idx = window.BkSearch.prepare(index);
     input.disabled = false;
-    if (input.value || (facSel && facSel.value)) run();
+    if (input.value || (facSel && facSel.value) || hasDocFilter()) run();
   }
 
   // Chương trình khớp khi mọi từ gõ là đầu một từ trong tên, loại, khóa hoặc mã chương trình.
@@ -113,7 +132,79 @@
     }
   }
 
-  // Ghi câu tìm và khoa lên địa chỉ trang, không thêm mục vào lịch sử trình duyệt.
+  function docFilters() {
+    var f = { faculty: facSel ? facSel.value : '' };
+    DOC_FILTERS.forEach(function (x) {
+      f[x.key] = x.el.value;
+    });
+    return f;
+  }
+
+  function hasDocFilter() {
+    return DOC_FILTERS.some(function (x) {
+      return x.el.value;
+    });
+  }
+
+  function fill(tpl, n) {
+    return String(tpl || '').replace('{n}', n).replace('{max}', DOC_MAX);
+  }
+
+  function docCountText(n) {
+    var c = ds.count || [];
+    return n === 0 ? c[0] : n === 1 ? c[1] : fill(c[2], n);
+  }
+
+  // hits null: ẩn khối Tài liệu. Có câu tìm mà không có tài liệu nào khớp thì cũng ẩn cho gọn;
+  // đã chọn bộ lọc tài liệu thì luôn hiện, kể cả khi không có mục nào, để bạn biết bộ lọc đã chạy.
+  function renderDocs(hits, filtered) {
+    if (!docBox || !docList) return;
+    docList.textContent = '';
+    var show = !!hits && (hits.length > 0 || !!filtered);
+    docBox.hidden = !show;
+    if (docStatus) docStatus.textContent = show ? docCountText(hits.length) : '';
+    if (!show) return;
+    hits.slice(0, DOC_MAX).forEach(function (d) {
+      var li = document.createElement('li');
+      var a = document.createElement('a');
+      a.href = root + prefix + d.url;
+      var code = document.createElement('span');
+      code.className = 'code';
+      code.textContent = d.code;
+      var title = document.createElement('span');
+      title.className = 'doc-title';
+      title.textContent = d.title;
+      var meta = document.createElement('span');
+      meta.className = 'muted';
+      var parts = [en && d.courseNameEn ? d.courseNameEn : d.courseName];
+      var type = (ds.types || {})[d.type];
+      parts.push(type ? type[0] : d.type);
+      if (d.term) parts.push(d.term);
+      if (d.examKind) parts.push(((ds.examKinds || {})[d.examKind] || [d.examKind])[0]);
+      if (d.chapter) parts.push(ds.chapter + ' ' + d.chapter);
+      if (d.teacher) parts.push(strings.teacher + ': ' + d.teacher);
+      meta.textContent = parts.join(', ');
+      a.appendChild(code);
+      a.appendChild(title);
+      a.appendChild(meta);
+      if (d.description) {
+        var desc = document.createElement('span');
+        desc.className = 'doc-desc muted';
+        desc.textContent = d.description;
+        a.appendChild(desc);
+      }
+      li.appendChild(a);
+      docList.appendChild(li);
+    });
+    if (hits.length > DOC_MAX) {
+      var more = document.createElement('li');
+      more.className = 'muted';
+      more.textContent = fill(ds.more, hits.length - DOC_MAX);
+      docList.appendChild(more);
+    }
+  }
+
+  // Ghi câu tìm và bộ lọc lên địa chỉ trang, không thêm mục vào lịch sử trình duyệt.
   function syncUrl() {
     try {
       var params = new URLSearchParams(location.search);
@@ -123,6 +214,10 @@
       else params.delete('q');
       if (fac) params.set('khoa', fac);
       else params.delete('khoa');
+      DOC_FILTERS.forEach(function (x) {
+        if (x.el.value) params.set(x.param, x.el.value);
+        else params.delete(x.param);
+      });
       var s = params.toString();
       history.replaceState(null, '', location.pathname + (s ? '?' + s : '') + location.hash);
     } catch (e) {
@@ -135,6 +230,10 @@
     syncUrl();
     var fac = facSel ? facSel.value : '';
     renderPrograms(input.value.trim() ? matchPrograms(input.value, fac) : []);
+    var filtered = hasDocFilter();
+    if (!docs) renderDocs(null);
+    else if (input.value.trim()) renderDocs(window.BkDocs.search(docs, input.value, docFilters()), filtered);
+    else renderDocs(filtered ? window.BkDocs.list(docs, docFilters()) : null, filtered);
     if (!idx || (!input.value.trim() && !fac)) {
       status.textContent = '';
       return;
@@ -200,8 +299,16 @@
     var progs = getJson(root + 'assets/programs.json').catch(function () {
       return [];
     });
-    Promise.all([getJson(root + 'v1/index.json'), progs])
+    // Thiếu danh sách tài liệu thì vẫn tìm môn và chương trình.
+    var items =
+      window.BkDocs && docBox
+        ? getJson(root + 'assets/items.json').catch(function () {
+            return [];
+          })
+        : Promise.resolve([]);
+    Promise.all([getJson(root + 'v1/index.json'), progs, items])
       .then(function (res) {
+        docs = window.BkDocs && docBox && Array.isArray(res[2]) ? window.BkDocs.prepare(res[2], { types: ds.types, examKinds: ds.examKinds }) : null;
         programs = (Array.isArray(res[1]) ? res[1] : []).map(function (p) {
           var text = [p.name, p.nameEn, p.variant, p.year, p.code.replace(/_/g, ' ')].filter(Boolean).join(' ');
           return { code: p.code, name: p.name, nameEn: p.nameEn, year: p.year, variant: p.variant, faculty: p.faculty, courses: p.courses, words: window.BkSearch.fold(text).split(' '), folded: window.BkSearch.fold(en && p.nameEn ? p.nameEn : p.name) };
@@ -213,21 +320,46 @@
         status.textContent = en ? "Couldn't load the course list. Try again in a moment." : 'Không tải được danh sách môn. Thử lại sau ít phút.';
       });
   }
+  var selects = (facSel ? [facSel] : []).concat(
+    DOC_FILTERS.map(function (x) {
+      return x.el;
+    }),
+  );
   ['pointerenter', 'touchstart', 'focus', 'keydown', 'input'].forEach(function (ev) {
     input.addEventListener(ev, ensureIndex, { passive: true });
-    if (facSel) facSel.addEventListener(ev, ensureIndex, { passive: true });
+    selects.forEach(function (s) {
+      s.addEventListener(ev, ensureIndex, { passive: true });
+    });
   });
-  if (facSel) facSel.addEventListener('change', function () {
-    ensureIndex();
-    run();
+  selects.forEach(function (s) {
+    s.addEventListener('change', function () {
+      ensureIndex();
+      run();
+    });
   });
-  // Link có sẵn câu tìm hoặc khoa (?q=, ?khoa=), ví dụ từ tên giảng viên trên trang môn.
+
+  // Chỉ nhận giá trị có sẵn trong ô chọn; giá trị lạ trên địa chỉ trang thì bỏ qua.
+  function setIfOption(sel, v) {
+    if (!sel || !v) return;
+    var opts = sel.options || [];
+    for (var i = 0; i < opts.length; i++) {
+      if (opts[i].value === v) {
+        sel.value = v;
+        return;
+      }
+    }
+  }
+
+  // Link có sẵn câu tìm hoặc bộ lọc (?q=, ?khoa=, ?loai=, ?hk=, ?ky=), ví dụ từ tên giảng viên trên trang môn.
   try {
     var start = new URLSearchParams(location.search);
     if (start.get('q')) input.value = start.get('q');
-    if (facSel && start.get('khoa') && facSel.querySelector('option[value="' + start.get('khoa').replace(/[^a-z0-9-]/gi, '') + '"]')) facSel.value = start.get('khoa');
+    setIfOption(facSel, start.get('khoa'));
+    DOC_FILTERS.forEach(function (x) {
+      setIfOption(x.el, start.get(x.param));
+    });
   } catch (e) {
     // Địa chỉ lạ: bỏ qua.
   }
-  if (input.value || (facSel && facSel.value)) ensureIndex();
+  if (input.value || (facSel && facSel.value) || hasDocFilter()) ensureIndex();
 })();

@@ -100,3 +100,166 @@ test('tìm theo tên giảng viên và lọc theo khoa', () => {
   assert.deepEqual(plain(BkSearch.list(m, { faculty: 'eee' }).map((h) => h.id)), ['EE1009', 'EE2033']);
   assert.equal(BkSearch.list(m).length, 3);
 });
+
+// Tìm tài liệu (search-docs.js): nạp sau search-core.js như trên trang chủ.
+function loadDocs() {
+  const ctx = vm.createContext({});
+  for (const f of ['search-core.js', 'search-docs.js']) vm.runInContext(fs.readFileSync(path.join(ROOT, 'site-src', 'assets', f), 'utf8'), ctx);
+  return ctx.BkDocs;
+}
+
+const DOCS = [
+  { id: 'de-gk-241', course: 'MT1005', code: 'MT1005', courseName: 'Giải tích 2', faculty: 'fas', title: 'Đề giữa kỳ HK241', type: 'exam-past', term: 'HK241', examKind: 'gk', lang: 'vi', added: '2026-09-01', url: 'course/MT1005/#de-gk-241' },
+  { id: 'de-ck-241', course: 'MT1005', code: 'MT1005', courseName: 'Giải tích 2', faculty: 'fas', title: 'Đề thi', type: 'exam-past', term: 'HK241', examKind: 'ck', lang: 'vi', added: '2026-10-01', url: 'course/MT1005/#de-ck-241' },
+  { id: 'tom-tat-mach', course: 'EE2033', code: 'EE2033', courseName: 'Giải tích mạch', faculty: 'eee', title: 'Tóm tắt mạch điện', description: 'Phasor, quá độ bậc một', type: 'summary', term: 'HK251', teacher: 'Lê Thị Bình', chapter: '3', lang: 'vi', added: '2026-08-01', url: 'course/EE2033/#tom-tat-mach' },
+  { id: 'ghi-chu-gt', course: 'MT1005', code: 'MT1005', courseName: 'Giải tích 2', faculty: 'fas', title: 'Ghi chú tích phân bội', type: 'notes', lang: 'vi', added: '2026-07-01', url: 'course/MT1005/#ghi-chu-gt' },
+];
+const LABELS = {
+  types: { 'exam-past': ['Đề cũ', 'Past exams (public)'], summary: ['Tóm tắt', 'Summaries'], notes: ['Ghi chú', 'Notes'] },
+  examKinds: { gk: ['Giữa kỳ', 'Midterm'], ck: ['Cuối kỳ', 'Final'] },
+};
+// Kết quả tạo trong vm context khác realm: so qua JSON.
+const plainIds = (list) => JSON.parse(JSON.stringify(list.map((x) => x.id)));
+
+test('tìm tài liệu: theo học kỳ, kỳ thi, mã môn, tên môn, loại, mô tả, giảng viên, không dấu', () => {
+  const D = loadDocs();
+  const d = D.prepare(DOCS, LABELS);
+  const ids = (q, f) => plainIds(D.search(d, q, f));
+  // Mục có học kỳ trong tiêu đề đứng trước mục mới hơn chỉ khớp theo trường term.
+  assert.deepEqual(ids('HK241'), ['de-gk-241', 'de-ck-241']);
+  assert.deepEqual(ids('241'), ['de-gk-241', 'de-ck-241']);
+  assert.deepEqual(ids('hk 241'), ['de-ck-241', 'de-gk-241']);
+  assert.deepEqual(ids('cuoi ky'), ['de-ck-241']);
+  assert.deepEqual(ids('giữa kỳ'), ['de-gk-241']);
+  assert.deepEqual(ids('final'), ['de-ck-241']);
+  assert.deepEqual(ids('ee2033'), ['tom-tat-mach']);
+  assert.deepEqual(ids('phasor'), ['tom-tat-mach']);
+  assert.deepEqual(ids('le thi binh'), ['tom-tat-mach']);
+  assert.deepEqual(ids('tom tat'), ['tom-tat-mach']);
+  assert.deepEqual(ids('de cu giai tich 2'), ['de-ck-241', 'de-gk-241']);
+  assert.deepEqual(ids('khong co gi'), []);
+  assert.deepEqual(ids('   '), []);
+});
+
+test('tìm tài liệu: tiêu đề chứa cả cụm đứng trước, cùng mức thì mới thêm trước', () => {
+  const D = loadDocs();
+  const d = D.prepare(DOCS, LABELS);
+  // "giai tich" khớp tên môn của mọi mục, không mục nào có cụm này trong tiêu đề: mới nhất trước.
+  assert.deepEqual(plainIds(D.search(d, 'giai tich')), ['de-ck-241', 'de-gk-241', 'tom-tat-mach', 'ghi-chu-gt']);
+  // "tich phan" nằm trong tiêu đề của mục cũ nhất: đứng đầu.
+  assert.equal(D.search(d, 'tich phan')[0].id, 'ghi-chu-gt');
+  assert.equal(D.search(d, 'de giua ky')[0].id, 'de-gk-241');
+});
+
+test('tìm tài liệu: bộ lọc loại, học kỳ, kỳ thi, khoa; liệt kê khi chưa gõ, mới nhất trước', () => {
+  const D = loadDocs();
+  const d = D.prepare(DOCS, LABELS);
+  assert.deepEqual(plainIds(D.search(d, 'giai tich', { type: 'notes' })), ['ghi-chu-gt']);
+  assert.deepEqual(plainIds(D.search(d, 'giai tich', { faculty: 'eee' })), ['tom-tat-mach']);
+  assert.deepEqual(plainIds(D.list(d, { term: 'HK241' })), ['de-ck-241', 'de-gk-241']);
+  assert.deepEqual(plainIds(D.list(d, { term: 'HK241', examKind: 'gk' })), ['de-gk-241']);
+  assert.deepEqual(plainIds(D.list(d, { type: 'exam-past', faculty: 'eee' })), []);
+  assert.deepEqual(plainIds(D.list(d, {})), ['de-ck-241', 'de-gk-241', 'tom-tat-mach', 'ghi-chu-gt']);
+});
+
+// Trang chủ với DOM giả có ô lọc tài liệu, địa chỉ trang và lịch sử giả; fetch trả file theo đường dẫn.
+async function homeDocs({ q = '', search = '', type = '', term = '' } = {}) {
+  const el = (tag) => {
+    const e = { tagName: tag, children: [], className: '', href: '', value: '', hidden: false, disabled: true, listeners: {}, options: [] };
+    let text = '';
+    Object.defineProperty(e, 'textContent', {
+      get: () => text,
+      set: (v) => {
+        text = String(v);
+        e.children = [];
+      },
+    });
+    e.appendChild = (c) => e.children.push(c);
+    e.addEventListener = (ev, fn) => (e.listeners[ev] ||= []).push(fn);
+    return e;
+  };
+  const ids = ['q', 'q-results', 'q-status', 'q-fac', 'q-type', 'q-term', 'q-kind', 'q-docs', 'q-docs-list', 'q-docs-status', 'search-strings'];
+  const byId = Object.fromEntries(ids.map((id) => [id, el(id)]));
+  for (const [id, values] of Object.entries({ 'q-type': ['exam-past', 'summary', 'notes'], 'q-term': ['HK251', 'HK241'], 'q-kind': ['gk', 'ck'] })) {
+    byId[id].options = ['', ...values].map((value) => ({ value }));
+  }
+  byId['q-docs'].hidden = true;
+  byId['q-type'].value = type;
+  byId['q-term'].value = term;
+  byId['search-strings'].textContent = JSON.stringify({
+    results: ['Không có môn nào khớp', '1 môn khớp', '2 môn khớp'],
+    teacher: 'Giảng viên',
+    lang: 'vi',
+    docs: { max: 2, count: ['Không có tài liệu nào khớp.', '1 tài liệu khớp', '{n} tài liệu khớp'], more: 'Còn {n} tài liệu nữa.', chapter: 'Chương', ...LABELS },
+  });
+  const document = {
+    documentElement: { getAttribute: (k) => ({ 'data-root': './', 'data-lang-prefix': '' })[k] ?? null },
+    getElementById: (id) => byId[id] || null,
+    createElement: el,
+  };
+  const loc = { search, pathname: '/', hash: '' };
+  const history = {
+    replaceState: (_s, _t, url) => {
+      loc.last = url;
+    },
+  };
+  const files = { './v1/index.json': index, './assets/programs.json': [], './assets/items.json': DOCS };
+  const fetched = [];
+  const fetch = async (url) => {
+    fetched.push(url);
+    return { ok: url in files, json: async () => files[url] };
+  };
+  const ctx = vm.createContext({ document, setTimeout, clearTimeout, fetch, location: loc, history, URLSearchParams });
+  ctx.window = ctx;
+  for (const f of ['search-core.js', 'search-docs.js', 'search.js']) vm.runInContext(fs.readFileSync(path.join(ROOT, 'site-src', 'assets', f), 'utf8'), ctx);
+  const settle = () => new Promise((r) => setTimeout(r, 20));
+  if (q) byId.q.value = q;
+  if (!search) for (const fn of byId.q.listeners.focus) fn();
+  await settle();
+  const rows = () => byId['q-docs-list'].children.map((li) => (li.children[0] ? li.children[0].children.map((s) => s.textContent) : li.textContent));
+  return { byId, loc, fetched, rows, settle };
+}
+
+test('trang chủ: khối Tài liệu hiện kết quả có mã môn, tiêu đề, meta, link tới mục trên trang môn', async () => {
+  const h = await homeDocs({ q: 'giai tich' });
+  assert.ok(h.fetched.includes('./assets/items.json'));
+  assert.equal(h.byId['q-docs'].hidden, false);
+  assert.equal(h.byId['q-docs-status'].textContent, '4 tài liệu khớp');
+  const rows = h.rows();
+  // Hiện tối đa max (2), rồi dòng "còn nữa".
+  assert.equal(rows.length, 3);
+  assert.deepEqual(rows[0], ['MT1005', 'Đề thi', 'Giải tích 2, Đề cũ, HK241, Cuối kỳ']);
+  assert.equal(rows[2], 'Còn 2 tài liệu nữa.');
+  assert.equal(h.byId['q-docs-list'].children[0].children[0].href, './course/MT1005/#de-ck-241');
+  assert.match(h.loc.last, /\?q=giai\+tich$/);
+  // Câu tìm không khớp tài liệu nào: khối ẩn, không thêm dòng trống.
+  const none = await homeDocs({ q: 'khong co tai lieu nay' });
+  assert.equal(none.byId['q-docs'].hidden, true);
+});
+
+test('trang chủ: chọn bộ lọc khi chưa gõ thì liệt kê tài liệu, ghi bộ lọc lên địa chỉ trang', async () => {
+  const h = await homeDocs({ term: 'HK241' });
+  h.byId['q-term'].listeners.change[0]();
+  await h.settle();
+  assert.equal(h.byId['q-docs'].hidden, false);
+  assert.deepEqual(h.rows().map((r) => r[1]), ['Đề thi', 'Đề giữa kỳ HK241']);
+  assert.match(h.loc.last, /\?hk=HK241$/);
+  // Bộ lọc không có mục nào: vẫn hiện khối, ghi rõ không có tài liệu khớp.
+  h.byId['q-type'].value = 'summary';
+  h.byId['q-type'].listeners.change[0]();
+  assert.equal(h.byId['q-docs-status'].textContent, 'Không có tài liệu nào khớp.');
+  assert.equal(h.byId['q-docs'].hidden, false);
+  assert.match(h.loc.last, /loai=summary/);
+  assert.match(h.loc.last, /hk=HK241/);
+});
+
+test('trang chủ: đọc ?loai=, ?hk=, ?ky= từ địa chỉ trang; giá trị lạ bị bỏ qua', async () => {
+  const h = await homeDocs({ search: '?hk=HK241&ky=gk&loai=khong-co' });
+  assert.equal(h.byId['q-term'].value, 'HK241');
+  assert.equal(h.byId['q-kind'].value, 'gk');
+  assert.equal(h.byId['q-type'].value, '');
+  assert.deepEqual(h.rows().map((r) => r[1]), ['Đề giữa kỳ HK241']);
+  const q = await homeDocs({ search: '?q=phasor' });
+  assert.equal(q.byId.q.value, 'phasor');
+  assert.deepEqual(q.rows()[0], ['EE2033', 'Tóm tắt mạch điện', 'Giải tích mạch, Tóm tắt, HK251, Chương 3, Giảng viên: Lê Thị Bình', 'Phasor, quá độ bậc một']);
+});

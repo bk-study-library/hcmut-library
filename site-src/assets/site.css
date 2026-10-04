@@ -377,3 +377,14 @@ main h1, main h2, main p, main li { overflow-wrap: break-word; }
 .more-items { margin-top: 10px; }
 .more-items > summary { cursor: pointer; font-weight: 600; color: var(--accent); padding: 4px 0; }
 .more-items > .items { margin-top: 10px; }
+
+/* Bộ lọc và kết quả tài liệu ở ô tìm trang chủ */
+.search-filters { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin-top: 8px; }
+.search .search-filters label { font-size: 13px; color: var(--muted); margin-bottom: 4px; }
+.search .search-filters select { width: 100%; max-width: none; }
+@media (max-width: 560px) {
+  .search-filters { grid-template-columns: 1fr; }
+}
+#q-docs-status { margin: 0 0 4px; }
+.results .doc-title { font-weight: 600; }
+.results .doc-desc { flex-basis: 100%; font-size: 13px; }
