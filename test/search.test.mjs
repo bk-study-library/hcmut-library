@@ -33,6 +33,53 @@ test('mọi id trong bộ câu tìm có trong index', () => {
   for (const c of spec.cases) for (const id of [c.top, ...(c.in || [])].filter(Boolean)) assert.ok(known.has(id), id);
 });
 
+// Chạy search.js của trang chủ trên một DOM giả tối thiểu, với v1/index.json thật.
+async function homeSearch(q, fac = '') {
+  const el = (tag) => {
+    const e = { tagName: tag, children: [], className: '', href: '', value: '', disabled: true, listeners: {} };
+    let text = '';
+    Object.defineProperty(e, 'textContent', {
+      get: () => text,
+      set: (v) => {
+        text = String(v);
+        e.children = [];
+      },
+    });
+    e.appendChild = (c) => e.children.push(c);
+    e.addEventListener = (ev, fn) => (e.listeners[ev] ||= []).push(fn);
+    return e;
+  };
+  const byId = { q: el('input'), 'q-results': el('ul'), 'q-status': el('p'), 'q-fac': el('select'), 'search-strings': el('script') };
+  byId['search-strings'].textContent = JSON.stringify({ results: ['Không có môn nào khớp', '1 môn khớp', '2 môn khớp'], teacher: 'Giảng viên', lang: 'vi' });
+  byId['q-fac'].value = fac;
+  const document = {
+    documentElement: { getAttribute: (k) => ({ 'data-root': './', 'data-lang-prefix': '' })[k] ?? null },
+    getElementById: (id) => byId[id] || null,
+    createElement: el,
+  };
+  const ctx = vm.createContext({ document, setTimeout, clearTimeout, fetch: async () => ({ ok: true, json: async () => index }) });
+  ctx.window = ctx;
+  vm.runInContext(fs.readFileSync(path.join(ROOT, 'site-src', 'assets', 'search-core.js'), 'utf8'), ctx);
+  vm.runInContext(fs.readFileSync(path.join(ROOT, 'site-src', 'assets', 'search.js'), 'utf8'), ctx);
+  byId.q.value = q;
+  for (const fn of byId.q.listeners.focus) fn();
+  await new Promise((r) => setTimeout(r, 20));
+  return byId['q-results'].children.map((li) => li.children[0].children.map((s) => s.textContent));
+}
+
+test('ô tìm trang chủ: dòng kết quả có mã, tên, khoa; mã dùng lại ghi ID kèm năm', async () => {
+  const rows = await homeSearch('GE3239');
+  assert.deepEqual(rows.map((r) => r[0]), ['GE3239', 'GE3239']);
+  assert.match(rows[0][2], /^Khoa Kỹ thuật Địa chất và Dầu khí$/);
+  assert.match(rows[1][2], /^Khoa Kỹ thuật Địa chất và Dầu khí, ID GE3239-2024$/);
+  // Tên trùng: mỗi dòng có mã riêng và khoa, đủ để phân biệt khi không lọc khoa.
+  const dup = await homeSearch('do an tot nghiep');
+  const names = dup.filter((r) => r[1] === 'Đồ án tốt nghiệp');
+  assert.ok(names.length >= 2);
+  assert.equal(new Set(names.map((r) => r[0])).size, names.length);
+  assert.ok(names.every((r) => r[2].length > 0));
+});
+
 test('tìm theo tên giảng viên và lọc theo khoa', () => {
   const mini = {
     courses: [

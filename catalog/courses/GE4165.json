@@ -13,17 +13,12 @@
       "program": "GEOPET_KY_THUAT_DIA_CHAT_2023",
       "block": "K14",
       "required": true
-    },
-    {
-      "program": "GEOPET_DIA_KY_THUAT_XAY_DUNG_2024",
-      "block": "K12",
-      "required": false
     }
   ],
   "parts": [
     "theory"
   ],
   "related": [],
-  "note": "Nhập từ nguồn công khai (truy cập 03/10/2026). Tên khác trong CTĐT: Quản lý dự án (2024). Chờ người duyệt xác nhận.",
+  "note": "Nhập từ nguồn công khai (truy cập 03/10/2026). CTĐT Kỹ thuật Địa chất 2023. Mã GE4165 xuất hiện với môn khác trong CTĐT 2024, xem GE4165-2024. Chờ người duyệt xác nhận.",
   "updated": "2026-10-04"
 }

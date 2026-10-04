@@ -28,6 +28,7 @@ body:
         - "Trung tâm Ngoại ngữ"
         - "Lý luận chính trị (chưa xác định đơn vị)"
         - "Giáo dục thể chất và Quốc phòng (chưa xác định đơn vị)"
+        - "Môn chung toàn trường"
         - "Chưa xác định"
     validations: { required: true }
   - type: input

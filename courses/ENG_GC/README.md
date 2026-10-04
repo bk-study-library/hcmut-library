@@ -7,8 +7,8 @@
 | Mã môn | ENG_GC |
 | Tên | Đ/kiện tiếng Anh tốt nghiệp ĐH tiêu chuẩn, VLVH |
 | Tín chỉ | 0 |
-| Khoa | Khoa Môi trường và Tài nguyên |
-| Phần | Lý thuyết |
+| Khoa | Môn chung toàn trường |
+| Phần | chưa ghi |
 | Trạng thái | Đang dạy |
 
 ## Tài liệu

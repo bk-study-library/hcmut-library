@@ -17,13 +17,14 @@
 //   Hai môn đều còn dạy thì chỉ ghi related hai chiều.
 // - status retired chỉ khi status_hints ghi rõ retired; "possibly retired" vẫn để active.
 // - Mỗi bản ghi chương trình thành một file catalog/programs/<mã>.json, kể cả khi chưa có danh sách môn.
-// - Chạy lại cho cùng kết quả: updated chỉ đổi khi nội dung đổi.
+// - Chạy lại cho cùng kết quả: updated chỉ đổi khi nội dung đổi. Trường ghi tay listed, ctdtUrl,
+//   planUrl của chương trình được giữ; bản chép từ MyBK có listed: false.
 
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { TOOL_ROOT } from './lib/repo.mjs';
-import { inferParts } from './import-seed.mjs';
+import { inferParts, keptProgramFields } from './import-seed.mjs';
 
 const CODE_RE = /^[A-Z0-9_]{3,12}$/;
 
@@ -275,6 +276,10 @@ export function importResearch(research, outRoot, { date, faculties, log = () =>
     if (!hasCourses) report.programsEmpty++;
     const faculty = p.faculty && facKeys.has(p.faculty) ? p.faculty : 'unknown';
     const src = sourceUrl(p);
+    // Trường người duyệt ghi tay (listed, ctdtUrl, planUrl) giữ nguyên khi nhập lại.
+    const kept = keptProgramFields(path.join(programsDir, `${code}.json`));
+    // Bản chép từ MyBK là nguồn nháp: có trang riêng nhưng không hiện trong danh sách chương trình.
+    const listed = 'listed' in kept ? kept.listed : (p.sources || []).includes('seed-mybk-kdi-2019') ? false : undefined;
     programs.push({
       $schema: '../../schema/program.schema.json',
       code,
@@ -283,7 +288,10 @@ export function importResearch(research, outRoot, { date, faculties, log = () =>
       faculty,
       ...(year != null ? { year: String(year) } : {}),
       ...(v ? { variant: v.label } : {}),
+      ...(listed !== undefined ? { listed } : {}),
       ...(src ? { source: src } : {}),
+      ...(kept.ctdtUrl ? { ctdtUrl: kept.ctdtUrl } : {}),
+      ...(kept.planUrl ? { planUrl: kept.planUrl } : {}),
       ...(note ? { note } : {}),
       blocks,
       updated: date,

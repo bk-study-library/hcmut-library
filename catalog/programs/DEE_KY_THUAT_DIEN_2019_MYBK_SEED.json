@@ -4,6 +4,7 @@
   "name": "Kỹ thuật Điện",
   "faculty": "dee",
   "year": "2019",
+  "listed": false,
   "note": "Nhập từ bản MyBK do sinh viên cung cấp, đã đối chiếu với CTĐT công khai cùng khóa.",
   "blocks": [
     {
