@@ -77,8 +77,22 @@
     return (en && c.ctxEn) || c.ctx || '';
   }
 
+  // Phần ngoặc cuối tên ghi ngành hoặc hệ, ví dụ "Đồ án Tốt nghiệp (Khoa học Máy tính)".
+  var TAIL = /\s*\(([^()]*)\)\s*$/;
+
+  function baseName(s) {
+    return String(s || '').replace(TAIL, '').trim();
+  }
+
+  function tailOf(s) {
+    var m = String(s || '').match(TAIL);
+    return m ? m[1].trim() : '';
+  }
+
+  // Khóa gộp: tên bỏ phần ngoặc cuối, chữ thường. "Đồ án tốt nghiệp" và
+  // "Đồ án Tốt nghiệp (Khoa học Máy tính)" về cùng một dòng.
   function nameKey(s) {
-    return String(s || '')
+    return baseName(s)
       .normalize('NFC')
       .toLowerCase()
       .replace(/\s+/g, ' ')
@@ -327,7 +341,7 @@
     code.className = 'code';
     code.textContent = c.code;
     var name = document.createElement('span');
-    name.textContent = inGroup ? ctx || facultyName[c.faculty] || c.faculty : displayName(c);
+    name.textContent = inGroup ? tailOf(displayName(c)) || ctx || facultyName[c.faculty] || c.faculty : displayName(c);
     var meta = document.createElement('span');
     meta.className = 'muted';
     // Môn trùng tên ghi ngữ cảnh thay cho tên khoa; đã lọc theo khoa thì không lặp tên khoa ở từng dòng.
@@ -355,14 +369,17 @@
     return li;
   }
 
-  // Dòng gộp: "Đồ án tốt nghiệp, 50 môn theo ngành", mở ra là danh sách mã kèm ngành.
+  // Một tên nhiều mã: dòng gộp ghi tên môn, các mã (tối đa CODES_SHOWN, còn lại ghi "+N"),
+  // mở ra là danh sách mã kèm ngành.
   // Trong nhóm: môn có tài liệu trước, rồi theo ngữ cảnh.
+  var CODES_SHOWN = 4;
+
   function groupLi(group, fac) {
     // Tên hiện là cách viết gặp nhiều nhất trong nhóm ("Đồ án tốt nghiệp" hơn "Đồ án Tốt nghiệp").
     var seen = {};
     var title = '';
     group.forEach(function (h) {
-      var n = displayName(byId[h.id]);
+      var n = baseName(displayName(byId[h.id]));
       seen[n] = (seen[n] || 0) + 1;
       if (!title || seen[n] > seen[title]) title = n;
     });
@@ -374,10 +391,25 @@
     var name = document.createElement('span');
     name.className = 'same-name-title';
     name.textContent = title;
+    var codes = document.createElement('span');
+    codes.className = 'same-name-codes';
+    group.slice(0, CODES_SHOWN).forEach(function (h) {
+      var chip = document.createElement('span');
+      chip.className = 'code';
+      chip.textContent = byId[h.id].code;
+      codes.appendChild(chip);
+    });
+    if (group.length > CODES_SHOWN) {
+      var more = document.createElement('span');
+      more.className = 'muted';
+      more.textContent = '+' + (group.length - CODES_SHOWN);
+      codes.appendChild(more);
+    }
     var meta = document.createElement('span');
     meta.className = 'muted';
-    meta.textContent = en ? group.length + ' courses by major' : group.length + ' môn theo ngành';
+    meta.textContent = en ? group.length + ' codes, one per major or intake' : group.length + ' mã, theo ngành hoặc khóa';
     sum.appendChild(name);
+    sum.appendChild(codes);
     sum.appendChild(meta);
     box.appendChild(sum);
     var inner = document.createElement('ul');
