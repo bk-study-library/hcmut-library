@@ -99,6 +99,7 @@ function makeEnv(over = {}) {
     GH_APP_ID: '1',
     GH_APP_PRIVATE_KEY: pem,
     GH_INSTALLATION_ID: '2',
+    REVIEW_BASE: 'https://up.example/',
     ...over,
   };
 }
@@ -167,7 +168,15 @@ describe('POST /submit', () => {
     expect(res.headers.get('Access-Control-Allow-Origin')).toBe(SITE);
 
     const name = `MT1005_summary_${SLUG}_HK251.pdf`;
-    expect(await r2Keys()).toEqual([`pending/${body.code}/${name}`, `sha/${sha}`].sort());
+    expect(await r2Keys()).toEqual([`pending/${body.code}/${name}`, `sha/${sha}`, `token/${body.code}`].sort());
+    // Link xem bài của người gửi: R2 chỉ giữ sha256 của mã bí mật, kèm môn.
+    const view = new URL(body.viewUrl);
+    expect(`${view.origin}${view.pathname}`).toBe(`https://up.example/xem/${body.code}`);
+    const k = view.searchParams.get('k');
+    expect(k).toMatch(/^[A-Za-z0-9_-]{43}$/);
+    const tok = await env.QUARANTINE.get(`token/${body.code}`);
+    expect(await tok.text()).toBe(await sha256Hex(new TextEncoder().encode(k)));
+    expect(tok.customMetadata).toEqual({ course: 'MT1005' });
     const stored = await env.QUARANTINE.get(`pending/${body.code}/${name}`);
     expect(new Uint8Array(await stored.arrayBuffer())).toEqual(bytes);
     expect(stored.httpMetadata.contentType).toBe('application/pdf');
@@ -208,10 +217,20 @@ describe('POST /submit', () => {
     expect(prBody.body).toContain(DISPLAY);
     expect(prBody.body).not.toContain(UPLOAD_NAME);
     expect(prBody.body).not.toContain('| Mô tả |');
+    expect(prBody.body).toContain(`Xem file (người duyệt): https://up.example/xem-duyet/${body.code}`);
+    expect(prBody.body).not.toContain(k);
     const [labels] = fetch.find('POST', '/labels');
     expect(JSON.parse(labels.body)).toEqual({ labels: ['tai-lieu-moi'] });
     // Không gửi token GitHub hay secret Turnstile ra ngoài phản hồi.
     expect(JSON.stringify(body)).not.toContain('ghs_secret');
+  });
+
+  it('REVIEW_BASE trống: không tạo mã xem bài, không có link', async () => {
+    const { res, body, fetch } = await run(post(form()), { envOver: { REVIEW_BASE: '' } });
+    expect(res.status).toBe(201);
+    expect(body).not.toHaveProperty('viewUrl');
+    expect((await r2Keys()).some((k) => k.startsWith('token/'))).toBe(false);
+    expect(JSON.parse(fetch.find('POST', '/pulls')[0].body).body).not.toContain('xem-duyet');
   });
 
   it('trả link PR khi PUBLIC_PR_LINKS là "true"', async () => {
@@ -425,10 +444,11 @@ describe('POST /submit', () => {
     expect(JSON.parse(pr.body).title).toBe(`Tài liệu mới: GE4169 ${TITLE}`);
   });
 
-  it('sách tham khảo: không có file, vẫn mở PR, kho rỗng', async () => {
-    const { res, fetch } = await run(post(form({ type: 'book-ref', 'book-title': 'Giải tích', 'book-authors': 'A, B' }, null)));
+  it('sách tham khảo: không có file, vẫn mở PR, kho chỉ có mã xem bài', async () => {
+    const { res, body, fetch } = await run(post(form({ type: 'book-ref', 'book-title': 'Giải tích', 'book-authors': 'A, B' }, null)));
     expect(res.status).toBe(201);
-    expect(await r2Keys()).toEqual([]);
+    expect(await r2Keys()).toEqual([`token/${body.code}`]);
+    expect(JSON.parse(fetch.find('POST', '/pulls')[0].body).body).not.toContain('xem-duyet');
     const [put] = fetch.find('PUT', '/contents/');
     const item = JSON.parse(new TextDecoder().decode(Uint8Array.from(atob(JSON.parse(put.body).content), (c) => c.charCodeAt(0))));
     expect(item.book).toEqual({ title: 'Giải tích', authors: ['A', 'B'] });

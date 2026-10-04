@@ -147,6 +147,16 @@ export class GitHub {
     return { number, html_url };
   }
 
+  // PR mới nhất có nhánh head này (mọi trạng thái), hoặc null. Trả state và merged.
+  async findPr(head) {
+    const owner = this.repo.split('/')[0];
+    const q = `state=all&per_page=1&head=${encodeURIComponent(`${owner}:${head}`)}`;
+    const res = await this.#call('GET', `/pulls?${q}`);
+    const list = await res.json();
+    if (!Array.isArray(list) || !list.length) return null;
+    return { state: list[0].state, merged: Boolean(list[0].merged_at) };
+  }
+
   async addLabels(number, labels) {
     await this.#call('POST', `/issues/${encodeURIComponent(String(number))}/labels`, { labels });
   }
