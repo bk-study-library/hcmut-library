@@ -483,13 +483,16 @@ function addProgramUrl(f, p) {
 
 // Nhãn loại chương trình là link mở ô tìm trang chủ với ?q=<mã loại> (hoặc nhãn variant khi chương trình
 // chưa có type), để xem mọi chương trình cùng loại. root: gốc site tính từ trang hiện tại.
+// Tên chính thức của loại chương trình (Sổ tay HCMUT) hiện khi trỏ chuột vào mã viết tắt.
+const typeTitle = (t, type) => (PROGRAM_TYPES[type]?.official ? ` title="${esc(PROGRAM_TYPES[type].official[t.lang])}"` : '');
+
 export function typeTagLink(t, root, q, label) {
-  return `<a class="tag" href="${root}${t.lang === 'en' ? 'en/' : ''}?q=${encodeURIComponent(q)}">${esc(label)}</a>`;
+  return `<a class="tag" href="${root}${t.lang === 'en' ? 'en/' : ''}?q=${encodeURIComponent(q)}"${typeTitle(t, q)}>${esc(label)}</a>`;
 }
 
 // Nhãn loại của một chương trình: theo type (trừ CQ), không có type thì theo variant.
 function programTypeTag(t, p, root) {
-  if (p.type && p.type !== 'CQ' && PROGRAM_TYPES[p.type]) return typeTagLink(t, root, p.type, PROGRAM_TYPES[p.type][t.lang]);
+  if (p.type && p.type !== 'CQ' && PROGRAM_TYPES[p.type]) return typeTagLink(t, root, p.type, PROGRAM_TYPES[p.type].abbr);
   if (!p.type && p.variant) return typeTagLink(t, root, p.variant, p.variant);
   return '';
 }
@@ -545,14 +548,14 @@ export function officialProgramLinks(t, p, site) {
 
 // ---------- Ngành, bộ chọn khóa và loại, lộ trình theo học kỳ ----------
 
-const typeLabel = (t, type, full = false) => (PROGRAM_TYPES[type] ? (full ? PROGRAM_TYPES[type][t.lang] : PROGRAM_TYPES[type].short[t.lang]) : type);
+const typeLabel = (t, type) => (PROGRAM_TYPES[type] ? PROGRAM_TYPES[type].short[t.lang] : type);
 const majorDisplayName = (t, m) => (t.lang === 'en' && m.nameEn ? m.nameEn : m.name);
 const typeRank = (order, type) => {
   const i = order.indexOf(type);
   return i < 0 ? order.length : i;
 };
 
-// Nhãn ngắn của chương trình trong một ngành: "Khóa 2026, Chính quy" (thêm chuyên ngành nếu có).
+// Nhãn ngắn của chương trình trong một ngành: "Khóa 2026, Tiêu chuẩn" (thêm chuyên ngành nếu có).
 export function cohortLabel(t, p) {
   return [p.year ? t.cohort(p.year) : t.cohortUnknown, p.type ? typeLabel(t, p.type) : null, p.track || null].filter(Boolean).join(', ');
 }
@@ -613,9 +616,9 @@ export function mainProgram(list, order) {
 
 // Bộ chọn loại chương trình và khóa (link tới trang chương trình). current: chương trình đang xem.
 function majorPickers(t, list, current, hrefOf, order, currentAttr) {
-  const chip = (p, label, on) => `<a class="chip" href="${hrefOf(p)}"${on ? ` aria-current="${currentAttr}"` : ''}>${esc(label)}</a>`;
+  const chip = (p, label, on, title = '') => `<a class="chip" href="${hrefOf(p)}"${title}${on ? ` aria-current="${currentAttr}"` : ''}>${esc(label)}</a>`;
   const types = [...new Set(list.map((p) => p.type).filter(Boolean))].sort((a, b) => typeRank(order, a) - typeRank(order, b));
-  const typeChips = types.map((type) => chip(mainProgram(list.filter((p) => p.type === type), order), typeLabel(t, type), type === current.type));
+  const typeChips = types.map((type) => chip(mainProgram(list.filter((p) => p.type === type), order), typeLabel(t, type), type === current.type, typeTitle(t, type)));
   const cohorts = list
     .filter((p) => p.type === current.type)
     .sort((a, b) => (b.year || '').localeCompare(a.year || '') || (a.track || '').localeCompare(b.track || '', 'vi'));
@@ -675,7 +678,16 @@ function majorList(t, majors, progsOfMajor, root, P, order) {
     .slice()
     .sort((a, b) => majorDisplayName(t, a).localeCompare(majorDisplayName(t, b), t.lang) || a.code.localeCompare(b.code))
     .map((m) => majorRow(t, m, progsOfMajor(m.code), root, P, order));
-  return rows.length ? `<ul class="majors">${rows.join('')}</ul>` : '';
+  if (!rows.length) return '';
+  const types = [...new Set(majors.flatMap((m) => progsOfMajor(m.code).map((p) => p.type)).filter((x) => PROGRAM_TYPES[x]))].sort((a, b) => typeRank(order, a) - typeRank(order, b));
+  return `<ul class="majors">${rows.join('')}</ul>${abbrNote(t, types)}`;
+}
+
+// Ghi chú viết tắt: mã loại chương trình (theo Sổ tay HCMUT) và tên chính thức, gập lại.
+function abbrNote(t, types) {
+  if (!types.length) return '';
+  const rows = types.map((x) => `<dt>${esc(PROGRAM_TYPES[x].abbr)}</dt><dd>${esc(PROGRAM_TYPES[x].official[t.lang])}</dd>`).join('');
+  return `<details class="abbr-note"><summary>${esc(t.abbrTitle)}</summary><dl>${rows}</dl><p class="muted small">${esc(t.abbrSource)}</p></details>`;
 }
 
 // Link xem trước qua Worker, chỉ cho file nằm trong danh sách được phép (scripts/lib/preview.mjs).
@@ -1280,7 +1292,7 @@ ${pgBlock}`;
       ]
         .filter(Boolean)
         .join(', ');
-      const tags = types.map((x) => typeTagLink(t, root, x, typeLabel(t, x, true))).join('');
+      const tags = types.map((x) => typeTagLink(t, root, x, typeLabel(t, x))).join('');
       const buttons = [];
       let hosted = '';
       if (main) {

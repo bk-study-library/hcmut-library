@@ -11,7 +11,7 @@
   "degree": "cu-nhan",
   "totalCredits": 132,
   "variant": "Chương trình tài năng",
-  "note": "Bảng CTĐT của trường không có cột riêng cho loại chương trình này; ctdtUrl và planUrl để trống. Học kỳ đề xuất mượn kế hoạch giảng dạy của chương trình chính quy cùng ngành nên chỉ gần đúng.",
+  "note": "Bảng CTĐT của trường không có cột riêng cho loại chương trình này; ctdtUrl và planUrl để trống. Học kỳ đề xuất mượn kế hoạch giảng dạy của chương trình tiêu chuẩn cùng ngành nên chỉ gần đúng.",
   "source": "https://hcmut.edu.vn/study/handbook/course/undergraduate/7520202?program=CNTN",
   "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/undergraduate/7520202?program=CNTN",
   "blocks": [
