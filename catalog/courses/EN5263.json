@@ -1,0 +1,43 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "EN5263",
+  "code": "EN5263",
+  "name": "Ứng dụng thống kê trong quản lý tài nguyên và môi trường",
+  "nameEn": "Application of statistics in natural resources and environmental management",
+  "credits": 3,
+  "faculty": "fenr",
+  "levels": [
+    "thac-si",
+    "tien-si"
+  ],
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "FENR_THAC_SI_CHINH_SACH_CONG_2025_UD",
+      "block": "K05",
+      "required": true
+    },
+    {
+      "program": "FENR_THAC_SI_QUAN_LY_TAI_NGUYEN_VA_MOI_TRUONG_2025_NC",
+      "block": "K03",
+      "required": true
+    },
+    {
+      "program": "FENR_THAC_SI_QUAN_LY_TAI_NGUYEN_VA_MOI_TRUONG_2025_UD",
+      "block": "K04",
+      "required": true
+    },
+    {
+      "program": "FENR_TIEN_SI_QUAN_LY_TAI_NGUYEN_VA_MOI_TRUONG_2025_PT2",
+      "block": "K02",
+      "required": false
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "note": "Nhập từ CTĐT sau đại học chính thức (PDF của trường, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

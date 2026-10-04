@@ -3,7 +3,7 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
-import { TYPES, TYPE_ORDER, PARTS, STATUS, SITE_URL, issueUrl, formatSize, formatBook, REPO_URL } from './labels.mjs';
+import { TYPES, TYPE_ORDER, PARTS, STATUS, LEVELS, SITE_URL, issueUrl, formatSize, formatBook, REPO_URL } from './labels.mjs';
 
 const TIPS_START = '<!-- meo-hoc:start -->';
 const TIPS_END = '<!-- meo-hoc:end -->';
@@ -41,6 +41,7 @@ export function renderCourseReadme(course, items, faculties, courses, existing) 
     ['Tên', course.name + (course.nameEn ? ` / ${course.nameEn}` : '')],
     ['Tín chỉ', String(course.credits)],
     ['Khoa', fac ? fac.name.vi : course.faculty],
+    ...(Array.isArray(course.levels) && course.levels.some((l) => l !== 'dai-hoc') ? [['Bậc', course.levels.map((l) => LEVELS[l]?.vi ?? l).join(', ')]] : []),
     ['Phần', course.parts.length ? course.parts.map((p) => PARTS[p].vi).join(', ') : 'chưa ghi'],
     ['Trạng thái', STATUS[course.status].vi],
   ];

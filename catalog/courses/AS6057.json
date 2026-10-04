@@ -1,0 +1,27 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "AS6057",
+  "code": "AS6057",
+  "name": "Chuyên đề nghiên cứu trước luận văn",
+  "nameEn": "Pre - Thesis Research Project",
+  "credits": 15,
+  "faculty": "fas",
+  "levels": [
+    "thac-si"
+  ],
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "FAS_THAC_SI_KHOA_HOC_TINH_TOAN_2025_NC",
+      "block": "K06",
+      "required": true
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "note": "Nhập từ CTĐT sau đại học chính thức (PDF của trường, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

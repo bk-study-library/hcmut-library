@@ -1,0 +1,43 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "CI5115",
+  "code": "CI5115",
+  "name": "Ứng dụng tính toán mềm trong quản lý xây dựng",
+  "nameEn": "Artificial Inteligent in Construction Management",
+  "credits": 3,
+  "faculty": "fce",
+  "levels": [
+    "thac-si",
+    "tien-si"
+  ],
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "FCE_THAC_SI_QUAN_LY_XAY_DUNG_2025_NC",
+      "block": "K04",
+      "required": false
+    },
+    {
+      "program": "FCE_THAC_SI_QUAN_LY_XAY_DUNG_2025_TAUD",
+      "block": "K07",
+      "required": false
+    },
+    {
+      "program": "FCE_THAC_SI_QUAN_LY_XAY_DUNG_2025_UD",
+      "block": "K06",
+      "required": false
+    },
+    {
+      "program": "FCE_TIEN_SI_QUAN_LY_XAY_DUNG_2025_PT2",
+      "block": "K02",
+      "required": true
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "note": "Nhập từ CTĐT sau đại học chính thức (PDF của trường, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

@@ -1,0 +1,37 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "CH7595",
+  "code": "CH7595",
+  "name": "Luận án tiến sĩ - phần 4",
+  "nameEn": "PhD Dissertation - part 4",
+  "credits": 15,
+  "faculty": "che",
+  "levels": [
+    "tien-si"
+  ],
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "CHE_TIEN_SI_KY_THUAT_HOA_HOC_2025_PT1",
+      "block": "K03",
+      "required": true
+    },
+    {
+      "program": "CHE_TIEN_SI_KY_THUAT_HOA_HOC_2025_PT2",
+      "block": "K04",
+      "required": true
+    },
+    {
+      "program": "CHE_TIEN_SI_KY_THUAT_HOA_HOC_2025_TAPT1",
+      "block": "K03",
+      "required": true
+    }
+  ],
+  "parts": [
+    "project"
+  ],
+  "related": [],
+  "note": "Nhập từ CTĐT sau đại học chính thức (PDF của trường, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

@@ -1,0 +1,27 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "CH5679",
+  "code": "CH5679",
+  "name": "Thực tập Công nghệ sinh học 2",
+  "nameEn": "Internship 2",
+  "credits": 3,
+  "faculty": "che",
+  "levels": [
+    "thac-si"
+  ],
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "CHE_THAC_SI_CONG_NGHE_SINH_HOC_2025_UD",
+      "block": "K07",
+      "required": true
+    }
+  ],
+  "parts": [
+    "lab"
+  ],
+  "related": [],
+  "note": "Nhập từ CTĐT sau đại học chính thức (PDF của trường, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

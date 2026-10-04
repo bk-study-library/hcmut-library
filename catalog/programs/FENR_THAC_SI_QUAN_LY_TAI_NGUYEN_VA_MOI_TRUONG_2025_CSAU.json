@@ -1,0 +1,74 @@
+{
+  "$schema": "../../schema/program.schema.json",
+  "code": "FENR_THAC_SI_QUAN_LY_TAI_NGUYEN_VA_MOI_TRUONG_2025_CSAU",
+  "name": "Quản lý tài nguyên và môi trường",
+  "nameEn": "Natural Resources and Environmental Management",
+  "faculty": "fenr",
+  "year": "2025",
+  "major": "8850101",
+  "type": "CSAU",
+  "level": "thac-si",
+  "orientation": "nghien-cuu",
+  "degree": "thac-si",
+  "totalCredits": 60,
+  "variant": "Thạc sĩ nghiên cứu chuyên sâu",
+  "source": "https://drive.google.com/file/d/1Al_PgHjknAztvZh4bqTYZUWIaJprbE8X/view",
+  "ctdtUrl": "https://drive.google.com/file/d/1Al_PgHjknAztvZh4bqTYZUWIaJprbE8X/view",
+  "planUrl": "https://drive.google.com/file/d/1BApQjoJ4Gz56d9Su0cdkJFmKP4BUjZ-H/view",
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/postgraduate/8850101?program=CS",
+  "groups": [
+    {
+      "name": "A. Đa ngành Tổng quát (General Interdisciplinary Knowledge)",
+      "creditsNeed": 6
+    }
+  ],
+  "blocks": [
+    {
+      "id": "K01",
+      "name": "A.1. Bắt buộc Đa ngành, tổng quát (Compulsory General Multidisciplinary Courses)",
+      "group": "A. Đa ngành Tổng quát (General Interdisciplinary Knowledge)",
+      "kind": "chung",
+      "required": true,
+      "creditsNeed": 6,
+      "courses": [
+        "AS5113",
+        "GK5033"
+      ]
+    },
+    {
+      "id": "K02",
+      "name": "A.2. Ngoại ngữ (Foreign Languages)",
+      "group": "A. Đa ngành Tổng quát (General Interdisciplinary Knowledge)",
+      "kind": "ngoai-ngu",
+      "required": true,
+      "creditsNeed": 0,
+      "courses": [
+        "GK5047",
+        "GK5049"
+      ]
+    },
+    {
+      "id": "K03",
+      "name": "B. Học phần tốt nghiệp (Graduation Module)",
+      "kind": "luan-van",
+      "required": true,
+      "creditsNeed": 54,
+      "courses": [
+        "EN6065",
+        "EN6067",
+        "EN6069",
+        "EN6071"
+      ]
+    },
+    {
+      "id": "K04",
+      "name": "E. Điều kiện tốt nghiệp (Graduation Condition)",
+      "kind": "dieu-kien-tot-nghiep",
+      "required": true,
+      "courses": [
+        "ENG_B2"
+      ]
+    }
+  ],
+  "updated": "2026-10-04"
+}

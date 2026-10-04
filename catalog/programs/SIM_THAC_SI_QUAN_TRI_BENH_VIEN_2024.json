@@ -1,0 +1,18 @@
+{
+  "$schema": "../../schema/program.schema.json",
+  "code": "SIM_THAC_SI_QUAN_TRI_BENH_VIEN_2024",
+  "name": "Quản trị bệnh viện",
+  "nameEn": "Hospital Administration",
+  "faculty": "sim",
+  "year": "2024",
+  "major": "8340130",
+  "type": "CQ",
+  "level": "thac-si",
+  "degree": "thac-si",
+  "totalCredits": 60,
+  "note": "Bản CTĐT 2022 dạng văn bản mô tả, liệt kê tên môn nhưng không ghi mã môn, nên chưa tách khối và mã. Tổng tín chỉ lấy theo quy định chung (60 thạc sĩ, 90 tiến sĩ).",
+  "source": "https://drive.google.com/file/d/1KXzq2gf6ZryFH0XsozyDIUEevmIqh1Qs/view",
+  "ctdtUrl": "https://drive.google.com/file/d/1KXzq2gf6ZryFH0XsozyDIUEevmIqh1Qs/view",
+  "blocks": [],
+  "updated": "2026-10-04"
+}

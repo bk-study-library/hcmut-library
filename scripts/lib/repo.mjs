@@ -9,6 +9,7 @@ import { validate } from './schema.mjs';
 import { loadPolicy, missingKeys } from './policy.mjs';
 import { PII_PATTERNS, scanText } from './pii.mjs';
 import { extensionsFor } from './extensions.mjs';
+import { DEFAULT_LEVEL, LEVELS, courseLevels } from './labels.mjs';
 
 export const TOOL_ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '..');
 
@@ -213,6 +214,15 @@ export function loadRepo(root) {
         majors.set(x.code, x);
         if (!facultyKeys.has(x.faculty)) err('FACULTY_MISSING', 'catalog/majors.json', `ngành ${x.code}: khoa "${x.faculty}" không có trong faculties.json`);
       }
+      // Mã phụ (aliases) không trùng mã ngành nào, và chỉ thuộc một ngành.
+      const aliasOwner = new Map();
+      for (const x of majors.values()) {
+        for (const a of x.aliases || []) {
+          if (majors.has(a)) err('MAJOR_ALIAS', 'catalog/majors.json', `ngành ${x.code}: mã phụ ${a} đang là mã của một ngành`);
+          if (aliasOwner.has(a) && aliasOwner.get(a) !== x.code) err('MAJOR_ALIAS', 'catalog/majors.json', `mã phụ ${a} ghi ở cả ${aliasOwner.get(a)} và ${x.code}`);
+          aliasOwner.set(a, x.code);
+        }
+      }
     }
   }
 
@@ -236,6 +246,12 @@ export function loadRepo(root) {
     checkHandbook(pr.handbookUrl, pr._file, '');
     // Chương trình gắn ngành thì ngành phải có trong catalog/majors.json.
     if (pr.major && !majors.has(pr.major)) err('MAJOR_MISSING', pr._file, `ngành ${pr.major} không có trong catalog/majors.json`);
+    // Khối cha (groups): tên không trùng, và có khối con ghi đúng tên đó ở group.
+    const groupNames = (pr.groups || []).map((g) => g.name);
+    if (new Set(groupNames).size !== groupNames.length) err('GROUP_REF', pr._file, 'groups có tên trùng');
+    for (const g of groupNames) {
+      if (!(pr.blocks || []).some((b) => b.group === g)) err('GROUP_REF', pr._file, `groups "${g}" không có khối nào ghi group này`);
+    }
     for (const b of pr.blocks || []) {
       if (b.requiredUnknown && b.required) err('BLOCK_REQUIRED', pr._file, `khối ${b.id}: có requiredUnknown thì required là false`);
       for (const id of Object.keys(b.semesters || {})) {
@@ -294,10 +310,12 @@ export function loadRepo(root) {
   }
   for (const pr of programs.values()) {
     if (!facultyKeys.has(pr.faculty)) err('FACULTY_MISSING', pr._file, `khoa "${pr.faculty}" không có trong faculties.json`);
+    const level = pr.level || DEFAULT_LEVEL;
     for (const b of pr.blocks) {
       for (const id of b.courses) {
         const c = courses.get(id);
         if (!c) err('REF_PROGRAM_COURSE', pr._file, `khối ${b.id} có môn không tồn tại: ${id}`);
+        else if (LEVELS[level] && !courseLevels(c).includes(level)) err('COURSE_LEVEL', pr._file, `môn ${id} thuộc chương trình bậc ${level} nhưng levels của môn không có bậc này`);
         else if (!(c.programs || []).some((x) => x.program === pr.code && x.block === b.id)) {
           err('PROGRAM_MISMATCH', pr._file, `môn ${id} không ghi khối ${b.id} của ${pr.code}`);
         }

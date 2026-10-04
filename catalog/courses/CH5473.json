@@ -1,0 +1,27 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "CH5473",
+  "code": "CH5473",
+  "name": "Phụ gia cho các sản phẩm dầu",
+  "nameEn": "Additives in Petroleum Products",
+  "credits": 3,
+  "faculty": "che",
+  "levels": [
+    "thac-si"
+  ],
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "CHE_THAC_SI_KY_THUAT_HOA_DAU_VA_LOC_DAU_2025_UD",
+      "block": "K06",
+      "required": false
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "note": "Nhập từ CTĐT sau đại học chính thức (PDF của trường, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

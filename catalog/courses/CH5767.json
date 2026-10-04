@@ -1,0 +1,43 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "CH5767",
+  "code": "CH5767",
+  "name": "Truy xuất nguồn gốc thực phẩm",
+  "nameEn": "Food Traceability",
+  "credits": 3,
+  "faculty": "che",
+  "levels": [
+    "thac-si",
+    "tien-si"
+  ],
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "CHE_THAC_SI_CONG_NGHE_THUC_PHAM_2025_NC",
+      "block": "K04",
+      "required": false
+    },
+    {
+      "program": "CHE_THAC_SI_CONG_NGHE_THUC_PHAM_2025_UD",
+      "block": "K05",
+      "required": true
+    },
+    {
+      "program": "CHE_THAC_SI_CONG_NGHE_THUC_PHAM_2026_STEM",
+      "block": "K04",
+      "required": false
+    },
+    {
+      "program": "CHE_TIEN_SI_CONG_NGHE_THUC_PHAM_2025_PT2",
+      "block": "K02",
+      "required": false
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "note": "Nhập từ CTĐT sau đại học chính thức (PDF của trường, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

@@ -1,0 +1,67 @@
+{
+  "$schema": "../../schema/program.schema.json",
+  "code": "FAS_TIEN_SI_TOAN_UNG_DUNG_2025_TAPT1",
+  "name": "Toán ứng dụng",
+  "nameEn": "Applied Mathematics",
+  "faculty": "fas",
+  "year": "2025",
+  "major": "9460112",
+  "type": "TAPT1",
+  "level": "tien-si",
+  "degree": "tien-si",
+  "totalCredits": 90,
+  "variant": "Tiến sĩ phương thức 1 dạy bằng tiếng Anh",
+  "note": "Chỉ có trên Sổ tay HCMUT, không có PDF CTĐT trên trang Đào tạo. Sổ tay không ghi tên tiếng Anh của môn.",
+  "source": "https://hcmut.edu.vn/study/handbook/course/postgraduate/9460112?program=CTTATS1_1",
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/postgraduate/9460112?program=CTTATS1_1",
+  "blocks": [
+    {
+      "id": "K01",
+      "name": "A. ĐA NGÀNH TỔNG QUÁT",
+      "kind": "chung",
+      "required": true,
+      "creditsNeed": 3,
+      "courses": [
+        "GK5007"
+      ]
+    },
+    {
+      "id": "K02",
+      "name": "B. TIỂU LUẬN TỔNG QUAN VÀ CHUYÊN ĐỀ TIẾN SĨ",
+      "kind": "tieu-luan-chuyen-de",
+      "required": true,
+      "creditsNeed": 0,
+      "courses": [
+        "AS7129",
+        "AS7131",
+        "AS7133"
+      ]
+    },
+    {
+      "id": "K03",
+      "name": "C. HỌC PHẦN TỐT NGHIỆP",
+      "kind": "luan-an",
+      "required": true,
+      "creditsNeed": 87,
+      "courses": [
+        "AS7135",
+        "AS7137",
+        "AS7139",
+        "AS7141",
+        "AS7143",
+        "AS7145"
+      ]
+    },
+    {
+      "id": "K04",
+      "name": "D. ĐIỀU KIỆN TỐT NGHIỆP",
+      "kind": "dieu-kien-tot-nghiep",
+      "required": true,
+      "creditsNeed": 0,
+      "courses": [
+        "ENG_B2"
+      ]
+    }
+  ],
+  "updated": "2026-10-04"
+}

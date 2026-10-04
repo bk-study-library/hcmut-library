@@ -110,6 +110,8 @@
         faculty: c.faculty,
         teachers: teachers,
         retired: c.status === 'retired',
+        // Môn chỉ có ở sau đại học (levels có mà không có dai-hoc): xếp sau môn đại học khi khớp theo tên.
+        postgrad: !!(c.levels && c.levels.length && c.levels.indexOf('dai-hoc') < 0),
         items: c.items || 0,
         codes: codes,
         acronyms: acr,
@@ -162,6 +164,7 @@
   }
 
   // Điểm: mã hiện tại 0, mã cũ 0.25, đầu mã 1, viết tắt 1.5, theo từ 2 đến 4 (trừ điểm thưởng cụm từ). Môn đã ngừng cộng 0.5.
+  // Môn chỉ có ở sau đại học cộng 0.5 khi không khớp đúng mã, để bậc đại học (mặc định) đứng trước.
   function scoreCourse(c, tokens, compact, marks) {
     var s;
     var exact = c.codes.indexOf(compact);
@@ -182,6 +185,7 @@
       else if (tokens.length === 1 && compact.length >= 3 && c.acronyms.some(function (a) { return a.indexOf(compact) === 0; })) s = 3.5;
       else return -1;
     }
+    if (c.postgrad && s >= 1) s += 0.5;
     return c.retired ? s + 0.5 : s;
   }
 
@@ -237,7 +241,7 @@
     var hits = [];
     for (var i = 0; i < idx.courses.length; i++) {
       var c = idx.courses[i];
-      if (inFaculty(c, opts)) hits.push({ id: c.id, score: c.retired ? 1 : 0, code: c.code, items: c.items });
+      if (inFaculty(c, opts)) hits.push({ id: c.id, score: c.retired || c.postgrad ? 1 : 0, code: c.code, items: c.items });
     }
     hits.sort(function (a, b) {
       return b.items - a.items || byRank(a, b);

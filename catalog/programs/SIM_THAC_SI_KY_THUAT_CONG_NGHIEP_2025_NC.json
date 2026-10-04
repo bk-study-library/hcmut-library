@@ -1,0 +1,123 @@
+{
+  "$schema": "../../schema/program.schema.json",
+  "code": "SIM_THAC_SI_KY_THUAT_CONG_NGHIEP_2025_NC",
+  "name": "Kỹ thuật công nghiệp",
+  "nameEn": "Industrial Engineering",
+  "faculty": "sim",
+  "year": "2025",
+  "major": "8520117",
+  "type": "NC",
+  "level": "thac-si",
+  "orientation": "nghien-cuu",
+  "degree": "thac-si",
+  "totalCredits": 60,
+  "variant": "Thạc sĩ định hướng nghiên cứu",
+  "note": "ME5347: dòng bị tách qua hai trang, đã ghép",
+  "source": "https://drive.google.com/file/d/1e7BkCZWPMSl096GnVc34ZVH00PuikkKa/view",
+  "ctdtUrl": "https://drive.google.com/file/d/1e7BkCZWPMSl096GnVc34ZVH00PuikkKa/view",
+  "planUrl": "https://drive.google.com/file/d/1kK_bTG-oOY255D5gzDFEvg0NcXVClf-u/view",
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/postgraduate/8520117?program=NC",
+  "groups": [
+    {
+      "name": "A. Đa ngành Tổng quát (General Interdisciplinary Knowledge)",
+      "creditsNeed": 6
+    },
+    {
+      "name": "B. Cơ sở ngành (Core courses)",
+      "creditsNeed": 12
+    }
+  ],
+  "blocks": [
+    {
+      "id": "K01",
+      "name": "A.1. Bắt buộc Đa ngành, tổng quát (Compulsory General Multidisciplinary Courses)",
+      "group": "A. Đa ngành Tổng quát (General Interdisciplinary Knowledge)",
+      "kind": "chung",
+      "required": true,
+      "creditsNeed": 6,
+      "courses": [
+        "AS5113",
+        "GK5033"
+      ]
+    },
+    {
+      "id": "K02",
+      "name": "A.2. Ngoại ngữ (Foreign Languages)",
+      "group": "A. Đa ngành Tổng quát (General Interdisciplinary Knowledge)",
+      "kind": "ngoai-ngu",
+      "required": true,
+      "creditsNeed": 0,
+      "courses": [
+        "GK5047",
+        "GK5049"
+      ]
+    },
+    {
+      "id": "K03",
+      "name": "B.1. Bắt buộc cơ sở ngành (Compulsory Foundation Courses)",
+      "group": "B. Cơ sở ngành (Core courses)",
+      "kind": "co-so-nganh",
+      "required": true,
+      "creditsNeed": 9,
+      "courses": [
+        "ME5267",
+        "ME5731",
+        "ME5703"
+      ]
+    },
+    {
+      "id": "K04",
+      "name": "B.2. Tự chọn cơ sở ngành (Elective Foundation Courses)",
+      "group": "B. Cơ sở ngành (Core courses)",
+      "kind": "co-so-nganh",
+      "required": false,
+      "creditsNeed": 3,
+      "courses": [
+        "ME5709",
+        "ME5705"
+      ]
+    },
+    {
+      "id": "K05",
+      "name": "C. Ngành/Chuyên ngành (Major/Speciality)",
+      "kind": "chuyen-nganh",
+      "required": false,
+      "creditsNeed": 12,
+      "courses": [
+        "ME5725",
+        "ME5729",
+        "ME5181",
+        "ME5723",
+        "ME5721",
+        "ME5719",
+        "ME5713",
+        "ME5717",
+        "ME5733",
+        "ME5711",
+        "ME5715",
+        "ME5347"
+      ]
+    },
+    {
+      "id": "K06",
+      "name": "D. Học phần tốt nghiệp (Graduation Module)",
+      "kind": "luan-van",
+      "required": true,
+      "creditsNeed": 30,
+      "courses": [
+        "ME6113",
+        "ME6115"
+      ]
+    },
+    {
+      "id": "K07",
+      "name": "E. Điều kiện tốt nghiệp (Graduation Condition)",
+      "kind": "dieu-kien-tot-nghiep",
+      "required": true,
+      "courses": [
+        "ENG_B2"
+      ]
+    }
+  ],
+  "updated": "2026-10-04"
+}

@@ -1,0 +1,100 @@
+{
+  "$schema": "../../schema/program.schema.json",
+  "code": "DEE_TIEN_SI_KY_THUAT_VIEN_THONG_2025_PT2",
+  "name": "Kỹ thuật Viễn thông",
+  "nameEn": "Telecommunications Engineering",
+  "faculty": "dee",
+  "year": "2025",
+  "major": "9520208",
+  "type": "PT2",
+  "level": "tien-si",
+  "degree": "tien-si",
+  "totalCredits": 90,
+  "variant": "Tiến sĩ phương thức 2",
+  "source": "https://drive.google.com/file/d/1Hw1-397yLFHJy7nx96zH1DKho7LNyolz/view",
+  "ctdtUrl": "https://drive.google.com/file/d/1Hw1-397yLFHJy7nx96zH1DKho7LNyolz/view",
+  "planUrl": "https://drive.google.com/file/d/1IBKyieLTNA1I6-aUrHkPhq1eGpypt0XF/view",
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/postgraduate/9520208?program=PT2_1",
+  "blocks": [
+    {
+      "id": "K01",
+      "name": "A. Đa Ngành Tổng Quát (General Interdisciplinary Knowledge)",
+      "kind": "chung",
+      "required": true,
+      "creditsNeed": 3,
+      "courses": [
+        "GK5007"
+      ]
+    },
+    {
+      "id": "K02",
+      "name": "B. Học phần trình độ tiến sĩ (Supplementary Courses for Doctoral Students)",
+      "kind": "hoc-phan-tien-si",
+      "required": false,
+      "creditsNeed": 12,
+      "courses": [
+        "EE5207",
+        "EE5277",
+        "EE5229",
+        "EE5305",
+        "EE5211",
+        "EE5287",
+        "EE5297",
+        "EE5299",
+        "EE5273",
+        "EE5379",
+        "EE5315",
+        "EE5435",
+        "EE5219",
+        "EE5433",
+        "EE5431",
+        "EE5215",
+        "EE5295",
+        "EE5303",
+        "EE5341",
+        "EE5429",
+        "EE5275",
+        "EE5301",
+        "EE5291",
+        "EE5427",
+        "EE5377"
+      ]
+    },
+    {
+      "id": "K03",
+      "name": "C. Tiểu luận tổng quan và Chuyên đề tiến sĩ (Doctoral Literature Review Essay and Doctoral Seminars)",
+      "kind": "tieu-luan-chuyen-de",
+      "required": true,
+      "creditsNeed": 0,
+      "courses": [
+        "EE7137",
+        "EE7139",
+        "EE7141"
+      ]
+    },
+    {
+      "id": "K04",
+      "name": "D. Học phần tốt nghiệp (Graduation Module)",
+      "kind": "luan-an",
+      "required": true,
+      "creditsNeed": 75,
+      "courses": [
+        "EE7145",
+        "EE7147",
+        "EE7149",
+        "EE7151",
+        "EE7153"
+      ]
+    },
+    {
+      "id": "K05",
+      "name": "E. Điều kiện tốt nghiệp (Other Graduation Requirements)",
+      "kind": "dieu-kien-tot-nghiep",
+      "required": true,
+      "courses": [
+        "ENG_B2"
+      ]
+    }
+  ],
+  "updated": "2026-10-04"
+}

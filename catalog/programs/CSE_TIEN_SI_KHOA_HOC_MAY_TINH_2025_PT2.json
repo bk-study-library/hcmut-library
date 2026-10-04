@@ -1,0 +1,115 @@
+{
+  "$schema": "../../schema/program.schema.json",
+  "code": "CSE_TIEN_SI_KHOA_HOC_MAY_TINH_2025_PT2",
+  "name": "Khoa học Máy tính",
+  "nameEn": "Computer Science",
+  "faculty": "cse",
+  "year": "2025",
+  "major": "9480101",
+  "type": "PT2",
+  "level": "tien-si",
+  "degree": "tien-si",
+  "totalCredits": 90,
+  "variant": "Tiến sĩ phương thức 2",
+  "source": "https://drive.google.com/file/d/113YP_c1vwLoRDOAD1nSqMT9B77HX9sf6/view",
+  "ctdtUrl": "https://drive.google.com/file/d/113YP_c1vwLoRDOAD1nSqMT9B77HX9sf6/view",
+  "planUrl": "https://drive.google.com/file/d/1nFIt9BqtpqO0nKGTvcvx6GGlu3uSE0wW/view",
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/postgraduate/9480101?program=PT2_1",
+  "blocks": [
+    {
+      "id": "K01",
+      "name": "A. Đa Ngành Tổng Quát (General Interdisciplinary Knowledge)",
+      "kind": "chung",
+      "required": true,
+      "creditsNeed": 3,
+      "courses": [
+        "GK5007"
+      ]
+    },
+    {
+      "id": "K02",
+      "name": "B. Học phần trình độ tiến sĩ (Supplementary Courses for Doctoral Students)",
+      "kind": "hoc-phan-tien-si",
+      "required": false,
+      "creditsNeed": 12,
+      "courses": [
+        "CO5087",
+        "CO5089",
+        "CO5131",
+        "CO5179",
+        "CO5123",
+        "CO5181",
+        "CO5135",
+        "CO5075",
+        "CO5133",
+        "CO5085",
+        "CO5127",
+        "CO5187",
+        "CO5177",
+        "CO5079",
+        "CO5117",
+        "CO5093",
+        "CO5175",
+        "CO5157",
+        "CO5077",
+        "CO5125",
+        "CO5081",
+        "CO5119",
+        "CO5151",
+        "GK5043",
+        "CO5083",
+        "GK5041",
+        "CO5159",
+        "GK5039",
+        "CO5161",
+        "CO5137",
+        "GK5037",
+        "CO5073",
+        "GK5035",
+        "CO5321",
+        "CO5317",
+        "CO5183",
+        "CO5097",
+        "CO5095",
+        "CO5173",
+        "CO5115"
+      ]
+    },
+    {
+      "id": "K03",
+      "name": "C. Tiểu luận tổng quan và Chuyên đề tiến sĩ (Doctoral Literature Review Essay and Doctoral Seminars)",
+      "kind": "tieu-luan-chuyen-de",
+      "required": true,
+      "creditsNeed": 0,
+      "courses": [
+        "CO7267",
+        "CO7269",
+        "CO7265"
+      ]
+    },
+    {
+      "id": "K04",
+      "name": "D. Học phần tốt nghiệp (Graduation Module)",
+      "kind": "luan-an",
+      "required": true,
+      "creditsNeed": 75,
+      "courses": [
+        "CO7273",
+        "CO7275",
+        "CO7277",
+        "CO7279",
+        "CO7281"
+      ]
+    },
+    {
+      "id": "K05",
+      "name": "E. Điều kiện tốt nghiệp (Other Graduation Requirements)",
+      "kind": "dieu-kien-tot-nghiep",
+      "required": true,
+      "courses": [
+        "ENG_B2"
+      ]
+    }
+  ],
+  "updated": "2026-10-04"
+}

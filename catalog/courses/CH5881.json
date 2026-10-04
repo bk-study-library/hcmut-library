@@ -1,0 +1,27 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "CH5881",
+  "code": "CH5881",
+  "name": "Thực tập Kỹ thuật Hóa dầu và Lọc dầu 1",
+  "nameEn": "Internship in Petrochemical and Refining Engineering 1",
+  "credits": 3,
+  "faculty": "che",
+  "levels": [
+    "thac-si"
+  ],
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "CHE_THAC_SI_KY_THUAT_HOA_DAU_VA_LOC_DAU_2025_UD",
+      "block": "K07",
+      "required": true
+    }
+  ],
+  "parts": [
+    "lab"
+  ],
+  "related": [],
+  "note": "Nhập từ CTĐT sau đại học chính thức (PDF của trường, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

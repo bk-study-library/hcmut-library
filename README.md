@@ -54,7 +54,7 @@ Thư viện xuất dữ liệu công khai ở `v1/` (cũng phục vụ tại `<w
 ```
 catalog/
   faculties.json            khoa và gợi ý tiền tố mã môn
-  majors.json               ngành: mã ngành Bộ, tên, khoa, các loại chương trình, link Sổ tay
+  majors.json               ngành: mã ngành Bộ, tên, khoa, bậc, các loại chương trình, mã phụ, link Sổ tay
   policy.json               quy định chung: loại nhận, dung lượng, đuôi file, học kỳ
   site.json                 địa chỉ Worker nhận bài, khóa công khai Turnstile, host nhận cho link PDF CTĐT, cấu hình ô tìm tài liệu, ảnh xem trước khi chia sẻ link
   courses/<ID>.json         một file mỗi môn; ID cố định, không bao giờ đổi
@@ -90,7 +90,7 @@ Cần Node 22 trở lên. Phần chính của repo không có gói npm nào ph�
 | `npm run demo` | sinh trang web xem thử với dữ liệu mẫu lớn hơn (không đụng `catalog/`) |
 | `node scripts/import-seed.mjs --seed <file>` | nhập một chương trình đào tạo vào danh mục |
 | `node scripts/import-research.mjs --research <thư mục>` | nhập môn và chương trình từ bản thu thập nguồn công khai (`courses.json`, `programs.json`); môn đã có thì giữ, chỉ cập nhật chương trình |
-| `node scripts/import-ctdt.mjs --data <thư mục> [--date YYYY-MM-DD]` | nhập bộ dữ liệu CTĐT chính thức (`majors.json`, `programs.json`, `courses.json`, `links.json`): ngành, chương trình theo khóa và loại, khối kèm vai trò và học kỳ đề xuất, môn mới; xem mục Nhập CTĐT chính thức bên dưới |
+| `node scripts/import-ctdt.mjs --data <thư mục> [--sdh <thư mục>] [--date YYYY-MM-DD]` | nhập bộ dữ liệu CTĐT chính thức (`majors.json`, `programs.json`, `courses.json`, `links.json`): ngành, chương trình theo khóa và loại, khối kèm vai trò và học kỳ đề xuất, môn mới; `--sdh` nhập thêm CTĐT thạc sĩ, tiến sĩ (chạy riêng được, không cần `--data`); xem mục Nhập CTĐT chính thức bên dưới |
 | `cd worker && npm ci && npm test` | cài và chạy test của Worker (cần Node 24 theo CI) |
 
 ## Nhập CTĐT chính thức
@@ -101,14 +101,26 @@ Cần Node 22 trở lên. Phần chính của repo không có gói npm nào ph�
 - **Chương trình** là một ngành, một khóa, một loại (`type`: CQ, CTTA, CNTN, PFIEV, SN, CTTT, DHNB, VLVH, CTQT), có `major`, `level`, `degree`, `totalCredits`, `handbookUrl`, `track` (chuyên ngành, nếu ngành có CTĐT riêng cho từng chuyên ngành). Chương trình đã nhập trước đó giữ mã; chương trình cũ chưa gắn ngành mà cùng khoa, tên ngành, khóa, loại thì nhận dữ liệu mới và giữ mã cũ để link không hỏng. Còn lại có mã mới `<KHOA>_<TÊN NGÀNH>_<KHÓA>[_<LOẠI>]`. Chương trình cũ không khớp giữ nguyên. Giữ khi nhập lại: `listed`, `ctdtUrl`, `planUrl`, `reviewNote` (ghi chú của người duyệt); `note` do script ghi lại.
 - **Khối** có `kind` (vai trò chuẩn hóa: toán và khoa học tự nhiên, giáo dục chung, cơ sở ngành, chuyên ngành, tự chọn tự do, tốt nghiệp...), và `semesters` là bảng `{ ID môn: học kỳ đề xuất }` đặt cạnh `courses`, nên `courses` vẫn là mảng ID như cũ. Môn không có trong `semesters` là chưa có học kỳ đề xuất. Nguồn không ghi khối bắt buộc hay tự chọn thì `required: false` kèm `requiredUnknown: true`. Chương trình chỉ có kế hoạch giảng dạy thì mỗi khối là một học kỳ.
 - **Môn**: mã mới thì tạo, khoa theo tiền tố. Môn đã có giữ mọi trường do người duyệt ghi (aliases, related, replaces, ghi chú); tên theo Sổ tay thì sửa (khác chỉ ở chữ hoa thì giữ), tên chỉ có trong PDF chỉ thay tên đang có bị vỡ chữ, kèm ghi chú "Chờ người duyệt xác nhận". Tên tiếng Anh của nguồn đáng ngờ (tách ô sai) thì không ghi đè. Tín chỉ và `handbookUrl` chỉ điền khi còn trống. Mã bị dùng lại đã có ID kèm năm (GE4169-2024) thì chương trình từ năm đó trỏ tới ID kèm năm.
-- Tiền tố dùng chung cho mọi ngành (MT, PH, SP, LA, PE, MI, SK, SA, ENG_, FRA_, JPN_) thuộc khóa `sharedFaculty` trong `catalog/site.json` (hiện là `chung`, Môn chung toàn trường), `verified: false`.
+- Tiền tố dùng chung cho mọi ngành (MT, PH, SP, LA, PE, MI, SK, SA, ENG_, FRA_, JPN_, và GK của sau đại học) thuộc khóa `sharedFaculty` trong `catalog/site.json` (hiện là `chung`, Môn chung toàn trường), `verified: false`.
 - Không nhập gì từ MyBK hay tài khoản cá nhân.
+
+### Sau đại học (thạc sĩ, tiến sĩ)
+
+`--sdh <thư mục>` chạy `scripts/import-sdh.mjs` trên bộ dữ liệu sau đại học (`majors.json`, `programs.json`, `courses.json`; ngày truy cập nguồn lấy từ đuôi `YYYY-MM-DD` của tên thư mục). Cùng một danh mục với đại học, phân biệt bằng bậc:
+
+- **Ngành** có `level` `thac-si` (mã 8xxxxxx) hoặc `tien-si` (mã 9xxxxxx). Nguồn ghi hai mã cho cùng ngành thì người duyệt chọn mã chính trong `catalog/majors.json` và ghi mã phụ vào `aliases`; script gộp chương trình ghi mã phụ vào mã chính, kèm ghi chú. Hiện có 8520202 (mã phụ 85202a1) và 9850101 (mã phụ 9580101), chọn theo Sổ tay HCMUT, chờ Phòng Sau đại học xác nhận.
+- **Chương trình** có `level`, `degree`, `orientation` (`ung-dung`, `nghien-cuu`) và loại `type`: `UD` thạc sĩ ứng dụng, `NC` nghiên cứu, `CSAU` nghiên cứu chuyên sâu, `TAUD` ứng dụng dạy bằng tiếng Anh, `STEM` tài năng STEM, `PT1`, `PT2` tiến sĩ phương thức 1, 2, `TAPT1` phương thức 1 dạy bằng tiếng Anh. CTĐT trước khóa 2025 chưa chia hướng ghi `CQ`. Mã mới `<KHOA>_THAC_SI_<TÊN NGÀNH>_<KHÓA>[_<LOẠI>]` (tiến sĩ: `TIEN_SI`). Khoa của chương trình theo khoa của ngành; nguồn ghi khoa khác thì ghi chú để duyệt. Hai bản nguồn cùng ngành, loại, khóa gộp làm một.
+- **Khối** tên kèm chữ cái khối của nguồn (A.1, B, C.2), `kind` thêm `chung` (đa ngành tổng quát), `hoc-phan-tien-si`, `tieu-luan-chuyen-de`, `luan-van`, `luan-an`. Khối cha có tín chỉ riêng (khối A gồm A.1, A.2, A.3) ghi ở `groups` của chương trình (`{ name, creditsNeed }`), `name` trùng `group` của khối con. Chưa có học kỳ đề xuất.
+- CTĐT khóa 2022 không ghi mã môn: chương trình có `blocks` rỗng và link PDF, web ghi "chưa có danh sách mã môn". Không gắn mã theo tên môn.
+- **Môn** có `levels` (bậc có môn trong CTĐT, vắng nghĩa là chỉ đại học). Tiền tố GK (môn chung sau đại học) và ENG_B2 thuộc khoa `chung`. Mã đã có ở đại học: cùng tên thì chỉ thêm bậc; khác môn thì tạo ID kèm năm khóa (`<mã>-<năm>`), không ghi đè. Môn đại học không bao giờ trỏ sang ID kèm năm của sau đại học.
 
 ## Trang web
 
 GitHub Pages dựng trang từ `catalog/` và `courses/` mỗi khi `main` thay đổi (workflow `pages.yml`). Trang tĩnh, không đặt cookie, không có công cụ phân tích, không CDN, dùng font của máy. Chỉ trang Gửi tài liệu có widget Turnstile của Cloudflare để chống gửi tự động. Web có trang chủ với ô tìm kiếm (gõ không dấu được, tìm cả mã cũ), trang khoa, trang ngành, trang chương trình, trang môn, và các trang Đóng góp, Duyệt bài, Gỡ tài liệu. Bản tiếng Anh ở `/en/` chỉ có ba trang hướng dẫn ngắn.
 
 Điều hướng đi theo khoa, rồi ngành, rồi khóa, rồi học kỳ. Mục Chương trình đào tạo ở trang chủ gom theo khoa, mỗi ngành một dòng kèm nhãn loại chương trình và các khóa có danh sách môn (mới trước); chương trình chưa có danh sách môn gập lại riêng. Trang ngành (`major/<mã ngành>/`, mã song ngành đổi dấu `+` thành `-`) có bộ chọn loại và khóa, lộ trình theo học kỳ của khóa mới nhất (môn chưa có học kỳ gom theo vai trò khối), nút tới PDF CTĐT, kế hoạch giảng dạy và Sổ tay. Trang chương trình có cùng bộ chọn, phần Lộ trình theo học kỳ rồi Khối kiến thức. Trang khoa liệt kê ngành trước, rồi Môn của khoa và Môn chung khoa dùng. Thứ tự loại chương trình lấy từ `programTypeOrder` trong `catalog/site.json`.
+
+Đại học là mặc định: danh sách ngành, chương trình, môn ở trang chủ và trang khoa chỉ gồm đại học. Sau đại học nằm ở phần riêng bên dưới: trang chủ gập theo bậc (thạc sĩ, tiến sĩ), trang khoa có ngành theo bậc và bảng môn sau đại học gập lại. Trang ngành sau đại học ghi tên kèm bậc ("Thạc sĩ Kỹ thuật cơ khí"), có bộ chọn loại và khóa, và hiện khối kiến thức của chương trình chính vì chưa có học kỳ đề xuất. Trang môn có ở sau đại học có dòng Bậc. Ô tìm ghi bậc cho ngành, chương trình sau đại học (tìm được bằng "thạc sĩ", "tiến sĩ") và nhãn bậc nhỏ cho môn; khi cùng mức khớp, đại học đứng trước.
 
 Ô tìm trang chủ tìm cả môn, chương trình và tài liệu. Tài liệu tìm theo tiêu đề, mô tả, mã và tên môn, loại, học kỳ (`HK241` hay `241`), giữa kỳ, cuối kỳ, tên giảng viên, và lọc được theo loại, học kỳ, kỳ thi, khoa. Câu tìm và bộ lọc nằm trên địa chỉ trang (`?q=`, `?khoa=`, `?loai=`, `?hk=`, `?ky=`) nên chia sẻ link được. Danh sách tài liệu `assets/items.json` sinh lúc dựng web, chỉ web dùng, không thuộc hợp đồng `v1/`.
 

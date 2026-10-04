@@ -1,0 +1,126 @@
+{
+  "$schema": "../../schema/program.schema.json",
+  "code": "FME_THAC_SI_KY_THUAT_CO_KHI_2025_NC",
+  "name": "Kỹ thuật cơ khí",
+  "nameEn": "Mechanical Engineering",
+  "faculty": "fme",
+  "year": "2025",
+  "major": "8520103",
+  "type": "NC",
+  "level": "thac-si",
+  "orientation": "nghien-cuu",
+  "degree": "thac-si",
+  "totalCredits": 60,
+  "variant": "Thạc sĩ định hướng nghiên cứu",
+  "source": "https://drive.google.com/file/d/1QivPL7tmEG_R2JXjc1Nqlw45dLtMkjpi/view",
+  "ctdtUrl": "https://drive.google.com/file/d/1QivPL7tmEG_R2JXjc1Nqlw45dLtMkjpi/view",
+  "planUrl": "https://drive.google.com/file/d/17yiOc-ZLbeOJ_BbopxfESEvQuW6jZDK5/view",
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/postgraduate/8520103?program=NC",
+  "groups": [
+    {
+      "name": "A. Đa ngành Tổng quát (General Interdisciplinary Knowledge)",
+      "creditsNeed": 6
+    }
+  ],
+  "blocks": [
+    {
+      "id": "K01",
+      "name": "A.1. Bắt buộc Đa ngành, tổng quát (Compulsory General Multidisciplinary Courses)",
+      "group": "A. Đa ngành Tổng quát (General Interdisciplinary Knowledge)",
+      "kind": "chung",
+      "required": true,
+      "creditsNeed": 6,
+      "courses": [
+        "AS5113",
+        "GK5033"
+      ]
+    },
+    {
+      "id": "K02",
+      "name": "A.2. Ngoại ngữ (Foreign Languages)",
+      "group": "A. Đa ngành Tổng quát (General Interdisciplinary Knowledge)",
+      "kind": "ngoai-ngu",
+      "required": true,
+      "creditsNeed": 0,
+      "courses": [
+        "GK5047",
+        "GK5049"
+      ]
+    },
+    {
+      "id": "K03",
+      "name": "B. Cơ sở ngành (Core courses)",
+      "kind": "co-so-nganh",
+      "required": true,
+      "creditsNeed": 12,
+      "courses": [
+        "ME5327",
+        "ME5325",
+        "ME5263",
+        "ME5259"
+      ]
+    },
+    {
+      "id": "K04",
+      "name": "C. Ngành/Chuyên ngành (Major/Speciality)",
+      "kind": "chuyen-nganh",
+      "required": false,
+      "creditsNeed": 12,
+      "courses": [
+        "ME5027",
+        "ME5173",
+        "ME5111",
+        "ME5121",
+        "ME5123",
+        "ME5075",
+        "ME5073",
+        "ME5071",
+        "ME5343",
+        "ME5341",
+        "AS5231",
+        "ME5065",
+        "ME5063",
+        "ME5061",
+        "ME5059",
+        "ME5057",
+        "ME5055",
+        "ME5053",
+        "ME5051",
+        "ME5049",
+        "ME5047",
+        "ME5043",
+        "ME5041",
+        "ME5037",
+        "ME5035",
+        "ME5033",
+        "ME5031",
+        "ME5029",
+        "ME5025",
+        "ME5335",
+        "ME5021",
+        "ME5201"
+      ]
+    },
+    {
+      "id": "K05",
+      "name": "D. Học phần tốt nghiệp (Graduation Module)",
+      "kind": "luan-van",
+      "required": true,
+      "creditsNeed": 30,
+      "courses": [
+        "ME6057",
+        "ME6059"
+      ]
+    },
+    {
+      "id": "K06",
+      "name": "E. Điều kiện tốt nghiệp (Graduation Condition)",
+      "kind": "dieu-kien-tot-nghiep",
+      "required": true,
+      "courses": [
+        "ENG_B2"
+      ]
+    }
+  ],
+  "updated": "2026-10-04"
+}

@@ -14,6 +14,7 @@
     "nameEn": { "type": "string", "minLength": 1 },
     "credits": { "type": "integer", "minimum": 0, "maximum": 30, "description": "Bỏ trống khi nguồn chưa ghi số tín chỉ." },
     "faculty": { "type": "string", "pattern": "^[A-Za-z0-9_-]+$", "description": "Khóa trong catalog/faculties.json." },
+    "levels": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "enum": ["dai-hoc", "thac-si", "tien-si"] }, "description": "Bậc có môn này trong CTĐT. Vắng nghĩa là chỉ đại học." },
     "aliases": {
       "type": "array",
       "items": {

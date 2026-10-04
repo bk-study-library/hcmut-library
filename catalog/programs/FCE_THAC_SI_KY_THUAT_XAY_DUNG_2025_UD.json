@@ -1,0 +1,190 @@
+{
+  "$schema": "../../schema/program.schema.json",
+  "code": "FCE_THAC_SI_KY_THUAT_XAY_DUNG_2025_UD",
+  "name": "Kỹ Thuật xây dựng",
+  "nameEn": "Civil Engineering",
+  "faculty": "fce",
+  "year": "2025",
+  "major": "8580201",
+  "type": "UD",
+  "level": "thac-si",
+  "orientation": "ung-dung",
+  "degree": "thac-si",
+  "totalCredits": 60,
+  "variant": "Thạc sĩ định hướng ứng dụng",
+  "source": "https://drive.google.com/file/d/1oyVirDhrjokIbtsc9cLVfJn9xlXmt8bK/view",
+  "ctdtUrl": "https://drive.google.com/file/d/1oyVirDhrjokIbtsc9cLVfJn9xlXmt8bK/view",
+  "planUrl": "https://drive.google.com/file/d/1Mi69kTLRKNovN8sNUR7qnuOBt7HZZwIn/view",
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/postgraduate/8580201?program=UD",
+  "groups": [
+    {
+      "name": "A. Đa ngành Tổng quát (General Interdisciplinary Knowledge)",
+      "creditsNeed": 9
+    },
+    {
+      "name": "C. Ngành/Chuyên ngành (Major/Speciality)",
+      "creditsNeed": 24
+    }
+  ],
+  "blocks": [
+    {
+      "id": "K01",
+      "name": "A.1. Bắt buộc Đa ngành, tổng quát (Compulsory General Multidisciplinary Courses)",
+      "group": "A. Đa ngành Tổng quát (General Interdisciplinary Knowledge)",
+      "kind": "chung",
+      "required": true,
+      "creditsNeed": 3,
+      "courses": [
+        "AS5113"
+      ]
+    },
+    {
+      "id": "K02",
+      "name": "A.2. Tự chọn Đa ngành, tổng quát (Elective General Multidisciplinary Courses)",
+      "group": "A. Đa ngành Tổng quát (General Interdisciplinary Knowledge)",
+      "kind": "chung",
+      "required": false,
+      "creditsNeed": 6,
+      "courses": [
+        "GK5045",
+        "GK5043",
+        "GK5041",
+        "GK5039",
+        "GK5037",
+        "GK5035",
+        "GK5033",
+        "GK5025",
+        "GK5023",
+        "GK5021",
+        "GK5011",
+        "GK5009"
+      ]
+    },
+    {
+      "id": "K03",
+      "name": "A.3. Ngoại ngữ (Foreign Languages)",
+      "group": "A. Đa ngành Tổng quát (General Interdisciplinary Knowledge)",
+      "kind": "ngoai-ngu",
+      "required": true,
+      "creditsNeed": 0,
+      "courses": [
+        "GK5047",
+        "GK5049"
+      ]
+    },
+    {
+      "id": "K04",
+      "name": "B. Cơ sở ngành (Core courses)",
+      "kind": "co-so-nganh",
+      "required": true,
+      "creditsNeed": 12,
+      "courses": [
+        "CI5779",
+        "CI5247",
+        "CI5259",
+        "CI5253"
+      ]
+    },
+    {
+      "id": "K05",
+      "name": "C.1. Ngành/Chuyên ngành bắt buộc (Compulsory Major/Speciality Courses)",
+      "group": "C. Ngành/Chuyên ngành (Major/Speciality)",
+      "kind": "chuyen-nganh",
+      "required": true,
+      "creditsNeed": 12,
+      "courses": [
+        "CI5805",
+        "CI5245",
+        "CI5249",
+        "CI5251"
+      ]
+    },
+    {
+      "id": "K06",
+      "name": "C.2. Ngành/Chuyên ngành tự chọn (Elective Major/Speciality Courses)",
+      "group": "C. Ngành/Chuyên ngành (Major/Speciality)",
+      "kind": "chuyen-nganh",
+      "required": false,
+      "creditsNeed": 12,
+      "courses": [
+        "CI5599",
+        "CI5053",
+        "CI5791",
+        "CI5767",
+        "CI5765",
+        "CI5363",
+        "CI5361",
+        "CI5359",
+        "CI5357",
+        "CI5355",
+        "CI5319",
+        "CI5317",
+        "CI5315",
+        "CI5449",
+        "CI5447",
+        "CI5445",
+        "CI5443",
+        "CI5441",
+        "CI5215",
+        "CI5439",
+        "CI5437",
+        "CI5299",
+        "CI5219",
+        "CI5059",
+        "CI5057",
+        "CI5795",
+        "CI5339",
+        "CI5329",
+        "CI5295",
+        "CI5289",
+        "CI5287",
+        "CI5283",
+        "CI5781",
+        "CI5277",
+        "CI5275",
+        "CI5273",
+        "CI5271",
+        "CI5211",
+        "CI5051",
+        "CI5047",
+        "CI5235",
+        "CI5205",
+        "CI5777",
+        "CI5775",
+        "CI5773",
+        "CI5771",
+        "CI5641",
+        "CI5639",
+        "CI5367",
+        "CI5279",
+        "CI5269",
+        "CI5267",
+        "CI5265",
+        "CI5263",
+        "CI5261",
+        "CI5255"
+      ]
+    },
+    {
+      "id": "K07",
+      "name": "D. Học phần tốt nghiệp (Graduation Module)",
+      "kind": "luan-van",
+      "required": true,
+      "creditsNeed": 15,
+      "courses": [
+        "CI6137",
+        "CI6101"
+      ]
+    },
+    {
+      "id": "K08",
+      "name": "E. Điều kiện tốt nghiệp (Graduation Condition)",
+      "kind": "dieu-kien-tot-nghiep",
+      "required": true,
+      "courses": [
+        "ENG_B2"
+      ]
+    }
+  ],
+  "updated": "2026-10-04"
+}

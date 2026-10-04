@@ -1,0 +1,146 @@
+{
+  "$schema": "../../schema/program.schema.json",
+  "code": "FENR_THAC_SI_CHINH_SACH_CONG_2025_UD",
+  "name": "Chính sách công",
+  "faculty": "fenr",
+  "year": "2025",
+  "major": "8340402",
+  "type": "UD",
+  "level": "thac-si",
+  "orientation": "ung-dung",
+  "degree": "thac-si",
+  "totalCredits": 60,
+  "variant": "Thạc sĩ định hướng ứng dụng",
+  "note": "Chỉ có trên Sổ tay HCMUT, không có PDF CTĐT trên trang Đào tạo. Sổ tay không ghi tên tiếng Anh của môn.",
+  "source": "https://hcmut.edu.vn/study/handbook/course/postgraduate/8340402?program=UD",
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/postgraduate/8340402?program=UD",
+  "groups": [
+    {
+      "name": "A. ĐA NGÀNH TỔNG QUÁT",
+      "creditsNeed": 9
+    },
+    {
+      "name": "C. NGÀNH/CHUYÊN NGÀNH",
+      "creditsNeed": 24
+    }
+  ],
+  "blocks": [
+    {
+      "id": "K01",
+      "name": "A.1. BẮT BUỘC ĐA NGÀNH, TỔNG QUÁT",
+      "group": "A. ĐA NGÀNH TỔNG QUÁT",
+      "kind": "chung",
+      "required": true,
+      "creditsNeed": 3,
+      "courses": [
+        "AS5113"
+      ]
+    },
+    {
+      "id": "K02",
+      "name": "A.2. TỰ CHỌN ĐA NGÀNH, TỔNG QUÁT",
+      "group": "A. ĐA NGÀNH TỔNG QUÁT",
+      "kind": "chung",
+      "required": false,
+      "creditsNeed": 6,
+      "courses": [
+        "GK5033",
+        "GK5009",
+        "GK5011",
+        "GK5021",
+        "GK5023",
+        "GK5025",
+        "GK5035",
+        "GK5037",
+        "GK5039",
+        "GK5041",
+        "GK5043",
+        "GK5045"
+      ]
+    },
+    {
+      "id": "K03",
+      "name": "A.3. NGOẠI NGỮ",
+      "group": "A. ĐA NGÀNH TỔNG QUÁT",
+      "kind": "ngoai-ngu",
+      "required": true,
+      "creditsNeed": 0,
+      "courses": [
+        "GK5047",
+        "GK5049"
+      ]
+    },
+    {
+      "id": "K04",
+      "name": "B. CƠ SỞ NGÀNH",
+      "kind": "co-so-nganh",
+      "required": true,
+      "creditsNeed": 12,
+      "courses": [
+        "EN5313",
+        "EN5241",
+        "EN5181",
+        "EN5243"
+      ]
+    },
+    {
+      "id": "K05",
+      "name": "C.1. NGÀNH/CHUYÊN NGÀNH BẮT BUỘC",
+      "group": "C. NGÀNH/CHUYÊN NGÀNH",
+      "kind": "chuyen-nganh",
+      "required": true,
+      "creditsNeed": 12,
+      "courses": [
+        "EN5311",
+        "EN5263",
+        "EN5213",
+        "EN5221"
+      ]
+    },
+    {
+      "id": "K06",
+      "name": "C.2. NGÀNH/CHUYÊN NGÀNH TỰ CHỌN",
+      "group": "C. NGÀNH/CHUYÊN NGÀNH",
+      "kind": "chuyen-nganh",
+      "required": false,
+      "creditsNeed": 12,
+      "courses": [
+        "EN5061",
+        "EN5065",
+        "EN5073",
+        "EN5079",
+        "EN5081",
+        "EN5085",
+        "EN5111",
+        "EN5113",
+        "EN5115",
+        "EN5129",
+        "EN5161",
+        "EN5175",
+        "EN5177"
+      ]
+    },
+    {
+      "id": "K07",
+      "name": "D. HỌC PHẦN TỐT NGHIỆP",
+      "kind": "luan-van",
+      "required": true,
+      "creditsNeed": 15,
+      "courses": [
+        "EN6073",
+        "EN6031"
+      ]
+    },
+    {
+      "id": "K08",
+      "name": "E. ĐIỀU KIỆN TỐT NGHIỆP",
+      "kind": "dieu-kien-tot-nghiep",
+      "required": true,
+      "creditsNeed": 0,
+      "courses": [
+        "ENG_B2"
+      ]
+    }
+  ],
+  "updated": "2026-10-04"
+}

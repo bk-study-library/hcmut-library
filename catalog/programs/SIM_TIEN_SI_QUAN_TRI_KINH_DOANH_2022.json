@@ -1,0 +1,18 @@
+{
+  "$schema": "../../schema/program.schema.json",
+  "code": "SIM_TIEN_SI_QUAN_TRI_KINH_DOANH_2022",
+  "name": "Quản trị Kinh doanh",
+  "nameEn": "Business Administration",
+  "faculty": "sim",
+  "year": "2022",
+  "major": "9340101",
+  "type": "CQ",
+  "level": "tien-si",
+  "degree": "tien-si",
+  "totalCredits": 90,
+  "note": "Bản CTĐT 2022 dạng văn bản mô tả, liệt kê tên môn nhưng không ghi mã môn, nên chưa tách khối và mã. Tổng tín chỉ lấy theo quy định chung (60 thạc sĩ, 90 tiến sĩ).",
+  "source": "https://drive.google.com/file/d/1IMC0I6V-IZf34ILPdRS8Jr6Wv7ldpIT_/view",
+  "ctdtUrl": "https://drive.google.com/file/d/1IMC0I6V-IZf34ILPdRS8Jr6Wv7ldpIT_/view",
+  "blocks": [],
+  "updated": "2026-10-04"
+}

@@ -1,0 +1,27 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "EE7179",
+  "code": "EE7179",
+  "name": "Luận án tiến sĩ - chuẩn bị",
+  "nameEn": "PhD Dissertation Preparation",
+  "credits": 12,
+  "faculty": "dee",
+  "levels": [
+    "tien-si"
+  ],
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "DEE_TIEN_SI_THIET_KE_VI_MACH_2026_PT1",
+      "block": "K03",
+      "required": true
+    }
+  ],
+  "parts": [
+    "project"
+  ],
+  "related": [],
+  "note": "Nhập từ CTĐT sau đại học chính thức (PDF của trường, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

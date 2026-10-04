@@ -1,0 +1,79 @@
+{
+  "$schema": "../../schema/program.schema.json",
+  "code": "FTE_TIEN_SI_KY_THUAT_CO_KHI_DONG_LUC_2025_PT2",
+  "name": "Kỹ thuật Cơ khí động lực",
+  "nameEn": "Vehicle Engineering",
+  "faculty": "fte",
+  "year": "2025",
+  "major": "9520116",
+  "type": "PT2",
+  "level": "tien-si",
+  "degree": "tien-si",
+  "totalCredits": 90,
+  "variant": "Tiến sĩ phương thức 2",
+  "source": "https://drive.google.com/file/d/1UfiA1ZI0BfplAGJ5taiizb8u6sFvYRs8/view",
+  "ctdtUrl": "https://drive.google.com/file/d/1UfiA1ZI0BfplAGJ5taiizb8u6sFvYRs8/view",
+  "planUrl": "https://drive.google.com/file/d/1oQ5OYEFIGY4ybTbhynuQWBUswzMm8CmR/view",
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/postgraduate/9520116?program=PT2_1",
+  "blocks": [
+    {
+      "id": "K01",
+      "name": "A. Đa Ngành Tổng Quát (General Interdisciplinary Knowledge)",
+      "kind": "chung",
+      "required": true,
+      "creditsNeed": 3,
+      "courses": [
+        "GK5007"
+      ]
+    },
+    {
+      "id": "K02",
+      "name": "B. Học phần trình độ tiến sĩ (Supplementary Courses for Doctoral Students)",
+      "kind": "hoc-phan-tien-si",
+      "required": true,
+      "creditsNeed": 12,
+      "courses": [
+        "TR5095",
+        "TR5093",
+        "TR5091",
+        "TR5089"
+      ]
+    },
+    {
+      "id": "K03",
+      "name": "C. Tiểu luận tổng quan và Chuyên đề tiến sĩ (Doctoral Literature Review Essay and Doctoral Seminars)",
+      "kind": "tieu-luan-chuyen-de",
+      "required": true,
+      "creditsNeed": 0,
+      "courses": [
+        "TR7333",
+        "TR7335",
+        "TR7337"
+      ]
+    },
+    {
+      "id": "K04",
+      "name": "D. Học phần tốt nghiệp (Graduation Module)",
+      "kind": "luan-an",
+      "required": true,
+      "creditsNeed": 75,
+      "courses": [
+        "TR7341",
+        "TR7343",
+        "TR7345",
+        "TR7347",
+        "TR7349"
+      ]
+    },
+    {
+      "id": "K05",
+      "name": "E. Điều kiện tốt nghiệp (Other Graduation Requirements)",
+      "kind": "dieu-kien-tot-nghiep",
+      "required": true,
+      "courses": [
+        "ENG_B2"
+      ]
+    }
+  ],
+  "updated": "2026-10-04"
+}

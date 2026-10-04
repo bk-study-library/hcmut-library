@@ -1,0 +1,98 @@
+{
+  "$schema": "../../schema/program.schema.json",
+  "code": "FMT_TIEN_SI_KY_THUAT_VAT_LIEU_2025_PT2",
+  "name": "Kỹ thuật Vật liệu",
+  "nameEn": "Materials Engineering",
+  "faculty": "fmt",
+  "year": "2025",
+  "major": "9520309",
+  "type": "PT2",
+  "level": "tien-si",
+  "degree": "tien-si",
+  "totalCredits": 90,
+  "variant": "Tiến sĩ phương thức 2",
+  "source": "https://drive.google.com/file/d/1PNOH98YrerBT5Cj7CR8XfKuiYwUL4fRr/view",
+  "ctdtUrl": "https://drive.google.com/file/d/1PNOH98YrerBT5Cj7CR8XfKuiYwUL4fRr/view",
+  "planUrl": "https://drive.google.com/file/d/1a14IoPwjapzFj9pPMcyiRSLIx3KmJP11/view",
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/postgraduate/9520309?program=PT2_1",
+  "blocks": [
+    {
+      "id": "K01",
+      "name": "A. Đa Ngành Tổng Quát (General Interdisciplinary Knowledge)",
+      "kind": "chung",
+      "required": true,
+      "creditsNeed": 3,
+      "courses": [
+        "GK5007"
+      ]
+    },
+    {
+      "id": "K02",
+      "name": "B. Học phần trình độ tiến sĩ (Supplementary Courses for Doctoral Students)",
+      "kind": "hoc-phan-tien-si",
+      "required": false,
+      "creditsNeed": 12,
+      "courses": [
+        "MA5131",
+        "MA5129",
+        "MA5127",
+        "MA5125",
+        "MA5123",
+        "MA5029",
+        "MA5049",
+        "MA5097",
+        "MA5095",
+        "MA5089",
+        "MA5087",
+        "MA5085",
+        "MA5117",
+        "MA5055",
+        "MA5043",
+        "MA5073",
+        "MA5113",
+        "MA5069",
+        "MA5111",
+        "MA5121",
+        "MA5119",
+        "MA5083",
+        "MA5077"
+      ]
+    },
+    {
+      "id": "K03",
+      "name": "C. Tiểu luận tổng quan và Chuyên đề tiến sĩ (Doctoral Literature Review Essay and Doctoral Seminars)",
+      "kind": "tieu-luan-chuyen-de",
+      "required": true,
+      "creditsNeed": 0,
+      "courses": [
+        "MA7111",
+        "MA7113",
+        "MA7115"
+      ]
+    },
+    {
+      "id": "K04",
+      "name": "D. Học phần tốt nghiệp (Graduation Module)",
+      "kind": "luan-an",
+      "required": true,
+      "creditsNeed": 75,
+      "courses": [
+        "MA7119",
+        "MA7121",
+        "MA7123",
+        "MA7125",
+        "MA7127"
+      ]
+    },
+    {
+      "id": "K05",
+      "name": "E. Điều kiện tốt nghiệp (Other Graduation Requirements)",
+      "kind": "dieu-kien-tot-nghiep",
+      "required": true,
+      "courses": [
+        "ENG_B2"
+      ]
+    }
+  ],
+  "updated": "2026-10-04"
+}

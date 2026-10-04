@@ -1,0 +1,74 @@
+{
+  "$schema": "../../schema/program.schema.json",
+  "code": "SIM_THAC_SI_QUAN_TRI_BENH_VIEN_2025_CSAU",
+  "name": "Quản trị bệnh viện",
+  "nameEn": "Hospital Administration",
+  "faculty": "sim",
+  "year": "2025",
+  "major": "8340130",
+  "type": "CSAU",
+  "level": "thac-si",
+  "orientation": "nghien-cuu",
+  "degree": "thac-si",
+  "totalCredits": 60,
+  "variant": "Thạc sĩ nghiên cứu chuyên sâu",
+  "source": "https://drive.google.com/file/d/1FnsGEdQBW0AUeglCsQhn6rXjHbKkv1PN/view",
+  "ctdtUrl": "https://drive.google.com/file/d/1FnsGEdQBW0AUeglCsQhn6rXjHbKkv1PN/view",
+  "planUrl": "https://drive.google.com/file/d/1mUEKCpgdJpeKEAqSMt3SM9nqWJywpexP/view",
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/postgraduate/8340130?program=CS",
+  "groups": [
+    {
+      "name": "A. Đa ngành Tổng quát (General Interdisciplinary Knowledge)",
+      "creditsNeed": 6
+    }
+  ],
+  "blocks": [
+    {
+      "id": "K01",
+      "name": "A.1. Bắt buộc Đa ngành, tổng quát (Compulsory General Multidisciplinary Courses)",
+      "group": "A. Đa ngành Tổng quát (General Interdisciplinary Knowledge)",
+      "kind": "chung",
+      "required": true,
+      "creditsNeed": 6,
+      "courses": [
+        "AS5113",
+        "IM5149"
+      ]
+    },
+    {
+      "id": "K02",
+      "name": "A.2. Ngoại ngữ (Foreign Languages)",
+      "group": "A. Đa ngành Tổng quát (General Interdisciplinary Knowledge)",
+      "kind": "ngoai-ngu",
+      "required": true,
+      "creditsNeed": 0,
+      "courses": [
+        "GK5047",
+        "GK5049"
+      ]
+    },
+    {
+      "id": "K03",
+      "name": "B. Học phần tốt nghiệp (Graduation Module)",
+      "kind": "luan-van",
+      "required": true,
+      "creditsNeed": 54,
+      "courses": [
+        "IM6047",
+        "IM6049",
+        "IM6051",
+        "IM6053"
+      ]
+    },
+    {
+      "id": "K04",
+      "name": "E. Điều kiện tốt nghiệp (Graduation Condition)",
+      "kind": "dieu-kien-tot-nghiep",
+      "required": true,
+      "courses": [
+        "ENG_B2"
+      ]
+    }
+  ],
+  "updated": "2026-10-04"
+}

@@ -1,0 +1,127 @@
+{
+  "$schema": "../../schema/program.schema.json",
+  "code": "FAS_THAC_SI_VAT_LY_KY_THUAT_2025_NC",
+  "name": "Vật lý kỹ thuật",
+  "nameEn": "Engineering Physics",
+  "faculty": "fas",
+  "year": "2025",
+  "major": "8520401",
+  "type": "NC",
+  "level": "thac-si",
+  "orientation": "nghien-cuu",
+  "degree": "thac-si",
+  "totalCredits": 60,
+  "variant": "Thạc sĩ định hướng nghiên cứu",
+  "source": "https://drive.google.com/file/d/1QwywgZBBEz0Dd38Qf-1et-b-IZ6rHV1d/view",
+  "ctdtUrl": "https://drive.google.com/file/d/1QwywgZBBEz0Dd38Qf-1et-b-IZ6rHV1d/view",
+  "planUrl": "https://drive.google.com/file/d/1EZUaJ2lH1xCzNPCB6atNPhcjwGnBoZsr/view",
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/postgraduate/8520401?program=NC",
+  "groups": [
+    {
+      "name": "A. Đa ngành Tổng quát (General Interdisciplinary Knowledge)",
+      "creditsNeed": 6
+    },
+    {
+      "name": "C. Ngành/Chuyên ngành (Major/Speciality)",
+      "creditsNeed": 12
+    }
+  ],
+  "blocks": [
+    {
+      "id": "K01",
+      "name": "A.1. Bắt buộc Đa ngành, tổng quát (Compulsory General Multidisciplinary Courses)",
+      "group": "A. Đa ngành Tổng quát (General Interdisciplinary Knowledge)",
+      "kind": "chung",
+      "required": true,
+      "creditsNeed": 6,
+      "courses": [
+        "AS5113",
+        "GK5033"
+      ]
+    },
+    {
+      "id": "K02",
+      "name": "A.2. Ngoại ngữ (Foreign Languages)",
+      "group": "A. Đa ngành Tổng quát (General Interdisciplinary Knowledge)",
+      "kind": "ngoai-ngu",
+      "required": true,
+      "creditsNeed": 0,
+      "courses": [
+        "GK5047",
+        "GK5049"
+      ]
+    },
+    {
+      "id": "K03",
+      "name": "B. Cơ sở ngành (Core courses)",
+      "kind": "co-so-nganh",
+      "required": true,
+      "creditsNeed": 12,
+      "courses": [
+        "AS5101",
+        "AS5299",
+        "AS5105",
+        "AS5103"
+      ]
+    },
+    {
+      "id": "K04",
+      "name": "C.1. Ngành/Chuyên ngành bắt buộc (Compulsory Major/Speciality Courses)",
+      "group": "C. Ngành/Chuyên ngành (Major/Speciality)",
+      "kind": "chuyen-nganh",
+      "required": true,
+      "creditsNeed": 6,
+      "courses": [
+        "AS5159",
+        "AS5161"
+      ]
+    },
+    {
+      "id": "K05",
+      "name": "C.2. Ngành/Chuyên ngành tự chọn (Elective Major/Speciality Courses)",
+      "group": "C. Ngành/Chuyên ngành (Major/Speciality)",
+      "kind": "chuyen-nganh",
+      "required": false,
+      "creditsNeed": 6,
+      "courses": [
+        "AS5009",
+        "AS5163",
+        "AS5173",
+        "AS5167",
+        "AS5175",
+        "AS5169",
+        "AS5177",
+        "AS5171",
+        "AS5259",
+        "AS5011",
+        "AS5165",
+        "AS5185",
+        "AS5189",
+        "AS5179",
+        "AS5335",
+        "AS5337"
+      ]
+    },
+    {
+      "id": "K06",
+      "name": "D. Học phần tốt nghiệp (Graduation Module)",
+      "kind": "luan-van",
+      "required": true,
+      "creditsNeed": 30,
+      "courses": [
+        "AS6085",
+        "AS6087"
+      ]
+    },
+    {
+      "id": "K07",
+      "name": "E. Điều kiện tốt nghiệp (Graduation Condition)",
+      "kind": "dieu-kien-tot-nghiep",
+      "required": true,
+      "courses": [
+        "ENG_B2"
+      ]
+    }
+  ],
+  "updated": "2026-10-04"
+}

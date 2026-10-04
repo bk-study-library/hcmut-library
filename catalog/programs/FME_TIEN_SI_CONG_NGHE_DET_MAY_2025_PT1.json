@@ -1,0 +1,67 @@
+{
+  "$schema": "../../schema/program.schema.json",
+  "code": "FME_TIEN_SI_CONG_NGHE_DET_MAY_2025_PT1",
+  "name": "Công nghệ dệt, may",
+  "nameEn": "Textile, Garment Technology",
+  "faculty": "fme",
+  "year": "2025",
+  "major": "9540204",
+  "type": "PT1",
+  "level": "tien-si",
+  "degree": "tien-si",
+  "totalCredits": 90,
+  "variant": "Tiến sĩ phương thức 1",
+  "source": "https://drive.google.com/file/d/1JkqamUlxPaumTR82WLL2VkP4TcS5BQCO/view",
+  "ctdtUrl": "https://drive.google.com/file/d/1JkqamUlxPaumTR82WLL2VkP4TcS5BQCO/view",
+  "planUrl": "https://drive.google.com/file/d/1JL4cCRf_KcrsD_AsTHnOY_9m4YWMn77L/view",
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/postgraduate/9540204?program=PT1_1",
+  "blocks": [
+    {
+      "id": "K01",
+      "name": "A. Đa Ngành Tổng Quát (General Interdisciplinary Knowledge)",
+      "kind": "chung",
+      "required": true,
+      "creditsNeed": 3,
+      "courses": [
+        "GK5007"
+      ]
+    },
+    {
+      "id": "K02",
+      "name": "B. Tiểu luận tổng quan và Chuyên đề tiến sĩ (Doctoral Literature Review Essay and Doctoral Seminars)",
+      "kind": "tieu-luan-chuyen-de",
+      "required": true,
+      "creditsNeed": 0,
+      "courses": [
+        "ME7351",
+        "ME7353",
+        "ME7355"
+      ]
+    },
+    {
+      "id": "K03",
+      "name": "C. Học phần tốt nghiệp (Graduation Module)",
+      "kind": "luan-an",
+      "required": true,
+      "creditsNeed": 87,
+      "courses": [
+        "ME7357",
+        "ME7359",
+        "ME7361",
+        "ME7363",
+        "ME7365",
+        "ME7367"
+      ]
+    },
+    {
+      "id": "K04",
+      "name": "D. Điều kiện tốt nghiệp (Other Graduation Requirements)",
+      "kind": "dieu-kien-tot-nghiep",
+      "required": true,
+      "courses": [
+        "ENG_B2"
+      ]
+    }
+  ],
+  "updated": "2026-10-04"
+}

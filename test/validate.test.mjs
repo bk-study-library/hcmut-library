@@ -102,6 +102,34 @@ test('ngành và trường mới của chương trình: hợp lệ khi đủ, b�
   assert.deepEqual(after((d) => fs.rmSync(path.join(d, 'catalog', 'majors.json'))), ['MAJOR_MISSING']);
 });
 
+test('sau đại học: khối cha (groups), mã ngành phụ (aliases), bậc của môn (levels) khớp bậc chương trình', () => {
+  const PROG = 'catalog/programs/TEST_2019.json';
+  const COURSE = 'catalog/courses/EE1009.json';
+  const after = (fn) => errorsAfter((d) => { withMajor(d); fn(d); });
+  const pg = (d) => {
+    editJson(d, 'catalog/majors.json', (m) => { Object.assign(m.majors[0], { code: '8520201', level: 'thac-si', programTypes: ['UD'], aliases: ['85202a1'] }); });
+    editJson(d, PROG, (p) => Object.assign(p, { major: '8520201', type: 'UD', level: 'thac-si', orientation: 'ung-dung', degree: 'thac-si', groups: [{ name: 'A. Khối A', creditsNeed: 9 }] }));
+    editJson(d, PROG, (p) => { p.blocks[0].group = 'A. Khối A'; p.blocks[0].kind = 'luan-van'; });
+    editJson(d, COURSE, (c) => { c.levels = ['thac-si', 'tien-si']; });
+  };
+  assert.deepEqual(after(pg), []);
+  // Môn thiếu bậc của chương trình.
+  assert.deepEqual(after((d) => { pg(d); editJson(d, COURSE, (c) => { delete c.levels; }); }), ['COURSE_LEVEL']);
+  assert.deepEqual(after((d) => { pg(d); editJson(d, COURSE, (c) => { c.levels = ['tien-si']; }); }), ['COURSE_LEVEL']);
+  assert.deepEqual(after((d) => { pg(d); editJson(d, COURSE, (c) => { c.levels = []; }); }), ['COURSE_LEVEL', 'SCHEMA']);
+  assert.deepEqual(after((d) => { pg(d); editJson(d, COURSE, (c) => { c.levels = ['thac-si', 'thac-si']; }); }), ['SCHEMA']);
+  // Khối cha không khối nào trỏ tới, hoặc trùng tên.
+  assert.deepEqual(after((d) => { pg(d); editJson(d, PROG, (p) => { p.groups.push({ name: 'B. Khối B' }); }); }), ['GROUP_REF']);
+  assert.deepEqual(after((d) => { pg(d); editJson(d, PROG, (p) => { p.groups.push({ name: 'A. Khối A' }); }); }), ['GROUP_REF']);
+  assert.deepEqual(after((d) => { pg(d); editJson(d, PROG, (p) => { p.orientation = 'khac'; }); }), ['SCHEMA']);
+  // Mã phụ trùng mã một ngành, hoặc ghi ở hai ngành.
+  assert.deepEqual(after((d) => { pg(d); editJson(d, 'catalog/majors.json', (m) => { m.majors[0].aliases = ['8520201']; }); }), ['MAJOR_ALIAS']);
+  assert.deepEqual(
+    after((d) => { pg(d); editJson(d, 'catalog/majors.json', (m) => { m.majors.push({ code: '8520202', name: 'Ngành khác', faculty: 'EE', level: 'thac-si', programTypes: [], aliases: ['85202a1'] }); }); }),
+    ['MAJOR_ALIAS'],
+  );
+});
+
 test('worker-catalog.json thật khớp summarize(index) của Worker; index.json không lặp programs của môn', async () => {
   const { summarize } = await import('../worker/src/catalog.mjs');
   const { workerCatalog } = await import('../scripts/lib/worker-catalog.mjs');

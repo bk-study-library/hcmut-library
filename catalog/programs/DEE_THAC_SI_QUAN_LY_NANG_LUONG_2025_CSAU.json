@@ -1,0 +1,74 @@
+{
+  "$schema": "../../schema/program.schema.json",
+  "code": "DEE_THAC_SI_QUAN_LY_NANG_LUONG_2025_CSAU",
+  "name": "Quản lý năng lượng",
+  "nameEn": "Power Management",
+  "faculty": "dee",
+  "year": "2025",
+  "major": "8510602",
+  "type": "CSAU",
+  "level": "thac-si",
+  "orientation": "nghien-cuu",
+  "degree": "thac-si",
+  "totalCredits": 60,
+  "variant": "Thạc sĩ nghiên cứu chuyên sâu",
+  "source": "https://drive.google.com/file/d/1_Q50S83UHPMN2RJBDF5suzkJDYz_tfEb/view",
+  "ctdtUrl": "https://drive.google.com/file/d/1_Q50S83UHPMN2RJBDF5suzkJDYz_tfEb/view",
+  "planUrl": "https://drive.google.com/file/d/1bWNKuPPaXGKB7gZTGu5aTFNmFWi0Hxlk/view",
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/postgraduate/8510602?program=CS",
+  "groups": [
+    {
+      "name": "A. Đa ngành Tổng quát (General Interdisciplinary Knowledge)",
+      "creditsNeed": 6
+    }
+  ],
+  "blocks": [
+    {
+      "id": "K01",
+      "name": "A.1. Bắt buộc Đa ngành, tổng quát (Compulsory General Multidisciplinary Courses)",
+      "group": "A. Đa ngành Tổng quát (General Interdisciplinary Knowledge)",
+      "kind": "chung",
+      "required": true,
+      "creditsNeed": 6,
+      "courses": [
+        "AS5113",
+        "GK5033"
+      ]
+    },
+    {
+      "id": "K02",
+      "name": "A.2. Ngoại ngữ (Foreign Languages)",
+      "group": "A. Đa ngành Tổng quát (General Interdisciplinary Knowledge)",
+      "kind": "ngoai-ngu",
+      "required": true,
+      "creditsNeed": 0,
+      "courses": [
+        "GK5047",
+        "GK5049"
+      ]
+    },
+    {
+      "id": "K03",
+      "name": "B. Học phần tốt nghiệp (Graduation Module)",
+      "kind": "luan-van",
+      "required": true,
+      "creditsNeed": 54,
+      "courses": [
+        "EE6057",
+        "EE6059",
+        "EE6061",
+        "EE6063"
+      ]
+    },
+    {
+      "id": "K04",
+      "name": "E. Điều kiện tốt nghiệp (Graduation Condition)",
+      "kind": "dieu-kien-tot-nghiep",
+      "required": true,
+      "courses": [
+        "ENG_B2"
+      ]
+    }
+  ],
+  "updated": "2026-10-04"
+}

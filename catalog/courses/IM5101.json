@@ -1,0 +1,37 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "IM5101",
+  "code": "IM5101",
+  "name": "Chuyển đổi số",
+  "nameEn": "Digital Transformation",
+  "credits": 3,
+  "faculty": "sim",
+  "levels": [
+    "thac-si"
+  ],
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "SIM_THAC_SI_QUAN_TRI_KINH_DOANH_2025_NC",
+      "block": "K05",
+      "required": false
+    },
+    {
+      "program": "SIM_THAC_SI_QUAN_TRI_KINH_DOANH_2025_TAUD",
+      "block": "K06",
+      "required": false
+    },
+    {
+      "program": "SIM_THAC_SI_QUAN_TRI_KINH_DOANH_2025_UD",
+      "block": "K06",
+      "required": false
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "note": "Nhập từ CTĐT sau đại học chính thức (PDF của trường, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

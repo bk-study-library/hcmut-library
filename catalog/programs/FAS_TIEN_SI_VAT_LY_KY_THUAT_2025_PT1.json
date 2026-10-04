@@ -1,0 +1,69 @@
+{
+  "$schema": "../../schema/program.schema.json",
+  "code": "FAS_TIEN_SI_VAT_LY_KY_THUAT_2025_PT1",
+  "name": "Vật lý Kỹ thuật",
+  "nameEn": "Engineering Physics",
+  "faculty": "fas",
+  "year": "2025",
+  "major": "9520401",
+  "type": "PT1",
+  "level": "tien-si",
+  "degree": "tien-si",
+  "totalCredits": 90,
+  "variant": "Tiến sĩ phương thức 1",
+  "note": "PDF có lớp chữ hỏng phông (tọa độ suy biến, hai mã bị cắt thành GK507 và AS717); mã đã khôi phục thành GK5007 và AS7177 bằng cách đối chiếu bản phương thức 2 cùng ngành. Tín chỉ lấy theo lớp chữ.",
+  "source": "https://drive.google.com/file/d/18e2BWMZ814xom22ABw8snW2oiqgLQfJp/view",
+  "ctdtUrl": "https://drive.google.com/file/d/18e2BWMZ814xom22ABw8snW2oiqgLQfJp/view",
+  "planUrl": "https://drive.google.com/file/d/1l-oaF3g-j2lERxghFr4xu06XssVEVY1H/view",
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/postgraduate/9520401?program=PT1_1",
+  "blocks": [
+    {
+      "id": "K01",
+      "name": "A. Đa Ngành Tổng Quát (General Interdisciplinary Knowledge)",
+      "kind": "chung",
+      "required": true,
+      "creditsNeed": 3,
+      "courses": [
+        "GK5007"
+      ]
+    },
+    {
+      "id": "K02",
+      "name": "B. Tiểu luận tổng quan và Chuyên đề tiến sĩ (Doctoral Literature Review Essay and Doctoral Seminars)",
+      "kind": "tieu-luan-chuyen-de",
+      "required": true,
+      "creditsNeed": 0,
+      "courses": [
+        "AS7165",
+        "AS7167",
+        "AS7169"
+      ]
+    },
+    {
+      "id": "K03",
+      "name": "C. Học phần tốt nghiệp (Graduation Module)",
+      "kind": "luan-an",
+      "required": true,
+      "creditsNeed": 87,
+      "courses": [
+        "AS7171",
+        "AS7173",
+        "AS7175",
+        "AS7177",
+        "AS7179",
+        "AS7181"
+      ]
+    },
+    {
+      "id": "K04",
+      "name": "D. Điều kiện tốt nghiệp (Other Graduation Requirements)",
+      "kind": "dieu-kien-tot-nghiep",
+      "required": true,
+      "creditsNeed": 0,
+      "courses": [
+        "ENG_B2"
+      ]
+    }
+  ],
+  "updated": "2026-10-04"
+}

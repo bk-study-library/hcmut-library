@@ -1,0 +1,8 @@
+[
+  { "level": "thac-si", "major": "8520103", "majorName": "Kỹ thuật cơ khí", "nameEn": "Mechanical Engineering", "faculty": "fme", "versions": [], "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/postgraduate/8520103" },
+  { "level": "thac-si", "major": "8520202", "majorName": "Thiết kế vi mạch", "nameEn": null, "faculty": "dee", "versions": [], "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/postgraduate/8520202", "notes": ["Sổ tay dùng 8520202 cho Thiết kế vi mạch; bảng CTĐT PDF dùng 85202a1."] },
+  { "level": "thac-si", "major": "85202a1", "majorName": "Thiết kế vi mạch", "nameEn": "Integrated Circuit Design", "faculty": "dee", "versions": [], "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/postgraduate/85202a1", "notes": ["Bảng CTĐT thạc sĩ ghi mã ngành 85202a1 (mã thí điểm)."] },
+  { "level": "thac-si", "major": "8340101", "majorName": "Quản trị kinh doanh", "nameEn": "Business Administration", "faculty": "sim", "versions": [], "handbookUrl": null },
+  { "level": "tien-si", "major": "9520118", "majorName": "Kỹ thuật Hệ thống công nghiệp", "nameEn": "Industrial and Systems Engineering", "faculty": "sim", "versions": [], "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/postgraduate/9520118" },
+  { "level": "dai-hoc", "major": "7520103", "majorName": "Không nhập", "faculty": "fme", "versions": [] }
+]

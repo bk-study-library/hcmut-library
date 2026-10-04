@@ -1,0 +1,162 @@
+{
+  "$schema": "../../schema/program.schema.json",
+  "code": "FME_THAC_SI_KY_THUAT_CO_KHI_2025_UD",
+  "name": "Kỹ thuật cơ khí",
+  "nameEn": "Mechanical Engineering",
+  "faculty": "fme",
+  "year": "2025",
+  "major": "8520103",
+  "type": "UD",
+  "level": "thac-si",
+  "orientation": "ung-dung",
+  "degree": "thac-si",
+  "totalCredits": 60,
+  "variant": "Thạc sĩ định hướng ứng dụng",
+  "source": "https://drive.google.com/file/d/1Z26iZufM91haSw8_UWPhTNhJV6uFvA0m/view",
+  "ctdtUrl": "https://drive.google.com/file/d/1Z26iZufM91haSw8_UWPhTNhJV6uFvA0m/view",
+  "planUrl": "https://drive.google.com/file/d/1HuHGUxUqVYcsxee2VoO5V1FjyPoZqldt/view",
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/postgraduate/8520103?program=UD",
+  "groups": [
+    {
+      "name": "A. Đa ngành Tổng quát (General Interdisciplinary Knowledge)",
+      "creditsNeed": 9
+    },
+    {
+      "name": "C. Ngành/Chuyên ngành (Major/Speciality)",
+      "creditsNeed": 24
+    }
+  ],
+  "blocks": [
+    {
+      "id": "K01",
+      "name": "A.1. Bắt buộc Đa ngành, tổng quát (Compulsory General Multidisciplinary Courses)",
+      "group": "A. Đa ngành Tổng quát (General Interdisciplinary Knowledge)",
+      "kind": "chung",
+      "required": true,
+      "creditsNeed": 3,
+      "courses": [
+        "AS5113"
+      ]
+    },
+    {
+      "id": "K02",
+      "name": "A.2. Tự chọn Đa ngành, tổng quát (Elective General Multidisciplinary Courses)",
+      "group": "A. Đa ngành Tổng quát (General Interdisciplinary Knowledge)",
+      "kind": "chung",
+      "required": false,
+      "creditsNeed": 6,
+      "courses": [
+        "GK5045",
+        "GK5025",
+        "GK5009",
+        "GK5039",
+        "GK5037",
+        "GK5023",
+        "GK5021",
+        "GK5033",
+        "GK5043",
+        "GK5041",
+        "GK5035",
+        "GK5011"
+      ]
+    },
+    {
+      "id": "K03",
+      "name": "A.3. Ngoại ngữ (Foreign Languages)",
+      "group": "A. Đa ngành Tổng quát (General Interdisciplinary Knowledge)",
+      "kind": "ngoai-ngu",
+      "required": true,
+      "creditsNeed": 0,
+      "courses": [
+        "GK5047",
+        "GK5049"
+      ]
+    },
+    {
+      "id": "K04",
+      "name": "B. Cơ sở ngành (Core courses)",
+      "kind": "co-so-nganh",
+      "required": true,
+      "creditsNeed": 12,
+      "courses": [
+        "ME5327",
+        "ME5325",
+        "ME5263",
+        "ME5259"
+      ]
+    },
+    {
+      "id": "K05",
+      "name": "C.1. Ngành/Chuyên ngành bắt buộc (Compulsory Major/Speciality Courses)",
+      "group": "C. Ngành/Chuyên ngành (Major/Speciality)",
+      "kind": "chuyen-nganh",
+      "required": true,
+      "creditsNeed": 12,
+      "courses": [
+        "ME5335",
+        "ME5021",
+        "ME5201",
+        "ME5025"
+      ]
+    },
+    {
+      "id": "K06",
+      "name": "C.2. Ngành/Chuyên ngành tự chọn (Elective Major/Speciality Courses)",
+      "group": "C. Ngành/Chuyên ngành (Major/Speciality)",
+      "kind": "chuyen-nganh",
+      "required": false,
+      "creditsNeed": 12,
+      "courses": [
+        "ME5343",
+        "ME5341",
+        "AS5231",
+        "ME5123",
+        "ME5061",
+        "ME5029",
+        "ME5173",
+        "ME5111",
+        "ME5075",
+        "ME5043",
+        "ME5033",
+        "ME5031",
+        "ME5027",
+        "ME5121",
+        "ME5073",
+        "ME5065",
+        "ME5051",
+        "ME5055",
+        "ME5047",
+        "ME5037",
+        "ME5035",
+        "ME5071",
+        "ME5063",
+        "ME5059",
+        "ME5057",
+        "ME5053",
+        "ME5049",
+        "ME5041"
+      ]
+    },
+    {
+      "id": "K07",
+      "name": "D. Học phần tốt nghiệp (Graduation Module)",
+      "kind": "luan-van",
+      "required": true,
+      "creditsNeed": 15,
+      "courses": [
+        "ME6139",
+        "ME6055"
+      ]
+    },
+    {
+      "id": "K08",
+      "name": "E. Điều kiện tốt nghiệp (Graduation Condition)",
+      "kind": "dieu-kien-tot-nghiep",
+      "required": true,
+      "courses": [
+        "ENG_B2"
+      ]
+    }
+  ],
+  "updated": "2026-10-04"
+}

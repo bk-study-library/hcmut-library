@@ -1,0 +1,35 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "EE7159",
+  "code": "EE7159",
+  "name": "Chuyên đề tiến sĩ - phần 2",
+  "nameEn": "Doctoral Seminar - part 2",
+  "credits": 0,
+  "faculty": "dee",
+  "levels": [
+    "tien-si"
+  ],
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "DEE_TIEN_SI_KY_THUAT_DIEU_KHIEN_VA_TU_DONG_HOA_2025_PT1",
+      "block": "K02",
+      "required": true
+    },
+    {
+      "program": "DEE_TIEN_SI_KY_THUAT_DIEU_KHIEN_VA_TU_DONG_HOA_2025_PT2",
+      "block": "K03",
+      "required": true
+    },
+    {
+      "program": "DEE_TIEN_SI_KY_THUAT_DIEU_KHIEN_VA_TU_DONG_HOA_2025_TAPT1",
+      "block": "K02",
+      "required": true
+    }
+  ],
+  "parts": [],
+  "related": [],
+  "note": "Nhập từ CTĐT sau đại học chính thức (PDF của trường, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

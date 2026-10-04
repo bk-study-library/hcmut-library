@@ -74,6 +74,7 @@ Khoa của bạn chưa có chương trình, hoặc chương trình chưa có dan
 - Không nhập chương trình chép từ MyBK hay tài khoản cá nhân: đó là dữ liệu học tập riêng (môn đã chọn, mã khối nội bộ). Chỉ dùng CTĐT trường công bố. Chương trình cần ẩn khỏi danh sách thì đặt `listed: false`; các script nhập giữ nguyên `listed`, `ctdtUrl`, `planUrl` khi nhập lại.
 - Chương trình gắn với một ngành trong `catalog/majors.json` qua `major`, ghi loại (`type`), khóa (`year`). Học kỳ đề xuất ghi ở khối, trong `semesters` (`{ "MT1003": 1 }`), không đổi mảng `courses`. Vai trò khối ghi ở `kind`. Ghi chú của người duyệt cho chương trình nhập từ CTĐT chính thức để ở `reviewNote`: `scripts/import-ctdt.mjs` ghi lại `note` mỗi lần nhập nhưng giữ `reviewNote`.
 - Khi trường công bố CTĐT mới, người duyệt chạy lại `node scripts/import-ctdt.mjs --data <thư mục dữ liệu>` rồi `npm run build`, xem các dòng "Tên theo PDF, chờ duyệt", "Giữ tên đang có", "khác khoa, cần duyệt" mà script in ra trước khi mở Pull Request.
+- CTĐT thạc sĩ, tiến sĩ nhập bằng `--sdh <thư mục dữ liệu sau đại học>`. Nguồn ghi hai mã cho cùng một ngành thì ghi mã phụ vào `aliases` của ngành có mã chính trong `catalog/majors.json` trước khi nhập. Xem các dòng "Gộp mã ngành", "Trùng mã", "nguồn ghi khoa" mà script in ra.
 
 ## Duyệt bài
 

@@ -1,0 +1,104 @@
+{
+  "$schema": "../../schema/program.schema.json",
+  "code": "FCE_TIEN_SI_KY_THUAT_XAY_DUNG_2025_PT2",
+  "name": "Kỹ thuật Xây dựng",
+  "nameEn": "Civil Engineering",
+  "faculty": "fce",
+  "year": "2025",
+  "major": "9580201",
+  "type": "PT2",
+  "level": "tien-si",
+  "degree": "tien-si",
+  "totalCredits": 90,
+  "variant": "Tiến sĩ phương thức 2",
+  "source": "https://drive.google.com/file/d/1zXJUIsdx3gPYjAwApUznLM4Oue4jyTC3/view",
+  "ctdtUrl": "https://drive.google.com/file/d/1zXJUIsdx3gPYjAwApUznLM4Oue4jyTC3/view",
+  "planUrl": "https://drive.google.com/file/d/1WB5jMp8iWRsiKSrAesUWmU57nzfcuf6w/view",
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/postgraduate/9580201?program=PT2_1",
+  "blocks": [
+    {
+      "id": "K01",
+      "name": "A. Đa Ngành Tổng Quát (General Interdisciplinary Knowledge)",
+      "kind": "chung",
+      "required": true,
+      "creditsNeed": 3,
+      "courses": [
+        "GK5007"
+      ]
+    },
+    {
+      "id": "K02",
+      "name": "B. Học phần trình độ tiến sĩ (Supplementary Courses for Doctoral Students)",
+      "kind": "hoc-phan-tien-si",
+      "required": false,
+      "creditsNeed": 12,
+      "courses": [
+        "CI5781",
+        "CI5277",
+        "CI5275",
+        "CI5273",
+        "CI5271",
+        "CI5205",
+        "CI5779",
+        "CI5367",
+        "CI5267",
+        "CI5265",
+        "CI5775",
+        "CI5269",
+        "CI5279",
+        "CI5805",
+        "CI5247",
+        "CI5773",
+        "CI5771",
+        "CI5261",
+        "CI5599",
+        "CI5641",
+        "CI5639",
+        "CI5255",
+        "CI5263",
+        "CI5777",
+        "CI5245",
+        "CI5259",
+        "CI5249",
+        "CI5251",
+        "CI5253"
+      ]
+    },
+    {
+      "id": "K03",
+      "name": "C. Tiểu luận tổng quan và Chuyên đề tiến sĩ (Doctoral Literature Review Essay and Doctoral Seminars)",
+      "kind": "tieu-luan-chuyen-de",
+      "required": true,
+      "creditsNeed": 0,
+      "courses": [
+        "CI7553",
+        "CI7555",
+        "CI7557"
+      ]
+    },
+    {
+      "id": "K04",
+      "name": "D. Học phần tốt nghiệp (Graduation Module)",
+      "kind": "luan-an",
+      "required": true,
+      "creditsNeed": 75,
+      "courses": [
+        "CI7561",
+        "CI7563",
+        "CI7565",
+        "CI7567",
+        "CI7569"
+      ]
+    },
+    {
+      "id": "K05",
+      "name": "E. Điều kiện tốt nghiệp (Other Graduation Requirements)",
+      "kind": "dieu-kien-tot-nghiep",
+      "required": true,
+      "courses": [
+        "ENG_B2"
+      ]
+    }
+  ],
+  "updated": "2026-10-04"
+}

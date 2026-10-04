@@ -1,0 +1,67 @@
+{
+  "$schema": "../../schema/program.schema.json",
+  "code": "FME_TIEN_SI_KY_THUAT_CO_KHI_2025_PT1",
+  "name": "Kỹ thuật Cơ khí",
+  "nameEn": "Mechanical Engineering",
+  "faculty": "fme",
+  "year": "2025",
+  "major": "9520103",
+  "type": "PT1",
+  "level": "tien-si",
+  "degree": "tien-si",
+  "totalCredits": 90,
+  "variant": "Tiến sĩ phương thức 1",
+  "source": "https://drive.google.com/file/d/1uWmCGes86KEdMXG23zBI4RY0SW8yseFG/view",
+  "ctdtUrl": "https://drive.google.com/file/d/1uWmCGes86KEdMXG23zBI4RY0SW8yseFG/view",
+  "planUrl": "https://drive.google.com/file/d/1EoSn-1OkU6OUYHLBGB8DZ6unYeTLfPjd/view",
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/postgraduate/9520103?program=PT1_1",
+  "blocks": [
+    {
+      "id": "K01",
+      "name": "A. Đa Ngành Tổng Quát (General Interdisciplinary Knowledge)",
+      "kind": "chung",
+      "required": true,
+      "creditsNeed": 3,
+      "courses": [
+        "GK5007"
+      ]
+    },
+    {
+      "id": "K02",
+      "name": "B. Tiểu luận tổng quan và Chuyên đề tiến sĩ (Doctoral Literature Review Essay and Doctoral Seminars)",
+      "kind": "tieu-luan-chuyen-de",
+      "required": true,
+      "creditsNeed": 0,
+      "courses": [
+        "ME7297",
+        "ME7299",
+        "ME7301"
+      ]
+    },
+    {
+      "id": "K03",
+      "name": "C. Học phần tốt nghiệp (Graduation Module)",
+      "kind": "luan-an",
+      "required": true,
+      "creditsNeed": 87,
+      "courses": [
+        "ME7303",
+        "ME7305",
+        "ME7307",
+        "ME7309",
+        "ME7311",
+        "ME7313"
+      ]
+    },
+    {
+      "id": "K04",
+      "name": "D. Điều kiện tốt nghiệp (Other Graduation Requirements)",
+      "kind": "dieu-kien-tot-nghiep",
+      "required": true,
+      "courses": [
+        "ENG_B2"
+      ]
+    }
+  ],
+  "updated": "2026-10-04"
+}

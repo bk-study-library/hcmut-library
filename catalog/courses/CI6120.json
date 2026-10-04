@@ -1,0 +1,27 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "CI6120",
+  "code": "CI6120",
+  "name": "Luận văn thạc sĩ nghiên cứu chuyên sâu - phần 3",
+  "nameEn": "Research Intensive Master's Thesis - part 3",
+  "credits": 15,
+  "faculty": "fce",
+  "levels": [
+    "thac-si"
+  ],
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "FCE_THAC_SI_DIA_KY_THUAT_XAY_DUNG_2025_CSAU",
+      "block": "K03",
+      "required": true
+    }
+  ],
+  "parts": [
+    "project"
+  ],
+  "related": [],
+  "note": "Nhập từ CTĐT sau đại học chính thức (PDF của trường, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

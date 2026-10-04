@@ -1,0 +1,27 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "AS6075",
+  "code": "AS6075",
+  "name": "Luận văn thạc sĩ nghiên cứu chuyên sâu - phần 1",
+  "nameEn": "Research Intensive Master's Thesis - part 1",
+  "credits": 9,
+  "faculty": "fas",
+  "levels": [
+    "thac-si"
+  ],
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "FAS_THAC_SI_CO_KY_THUAT_2025_CSAU",
+      "block": "K03",
+      "required": true
+    }
+  ],
+  "parts": [
+    "project"
+  ],
+  "related": [],
+  "note": "Nhập từ CTĐT sau đại học chính thức (PDF của trường, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

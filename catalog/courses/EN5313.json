@@ -1,0 +1,43 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "EN5313",
+  "code": "EN5313",
+  "name": "Các nguyên lý trong quản lý tài nguyên và môi trường",
+  "nameEn": "Principles in Natural Resources & Environmental Management",
+  "credits": 3,
+  "faculty": "fenr",
+  "levels": [
+    "thac-si",
+    "tien-si"
+  ],
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "FENR_THAC_SI_CHINH_SACH_CONG_2025_UD",
+      "block": "K04",
+      "required": true
+    },
+    {
+      "program": "FENR_THAC_SI_QUAN_LY_TAI_NGUYEN_VA_MOI_TRUONG_2025_NC",
+      "block": "K03",
+      "required": true
+    },
+    {
+      "program": "FENR_THAC_SI_QUAN_LY_TAI_NGUYEN_VA_MOI_TRUONG_2025_UD",
+      "block": "K04",
+      "required": true
+    },
+    {
+      "program": "FENR_TIEN_SI_QUAN_LY_TAI_NGUYEN_VA_MOI_TRUONG_2025_PT2",
+      "block": "K02",
+      "required": false
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "note": "Nhập từ CTĐT sau đại học chính thức (PDF của trường, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

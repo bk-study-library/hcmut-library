@@ -1,0 +1,32 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "EE7125",
+  "code": "EE7125",
+  "name": "Luận án tiến sĩ - chuẩn bị",
+  "nameEn": "PhD Dissertation Preparation",
+  "credits": 12,
+  "faculty": "dee",
+  "levels": [
+    "tien-si"
+  ],
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "DEE_TIEN_SI_KY_THUAT_DIEN_TU_2025_PT1",
+      "block": "K03",
+      "required": true
+    },
+    {
+      "program": "DEE_TIEN_SI_KY_THUAT_DIEN_TU_2025_TAPT1",
+      "block": "K03",
+      "required": true
+    }
+  ],
+  "parts": [
+    "project"
+  ],
+  "related": [],
+  "note": "Nhập từ CTĐT sau đại học chính thức (PDF của trường, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

@@ -1,0 +1,67 @@
+{
+  "$schema": "../../schema/program.schema.json",
+  "code": "CSE_TIEN_SI_KHOA_HOC_MAY_TINH_2025_PT1",
+  "name": "Khoa học Máy tính",
+  "nameEn": "Computer Science",
+  "faculty": "cse",
+  "year": "2025",
+  "major": "9480101",
+  "type": "PT1",
+  "level": "tien-si",
+  "degree": "tien-si",
+  "totalCredits": 90,
+  "variant": "Tiến sĩ phương thức 1",
+  "source": "https://drive.google.com/file/d/1gDkSsACUZehUYWet8uEfLxkIsRgD1LDX/view",
+  "ctdtUrl": "https://drive.google.com/file/d/1gDkSsACUZehUYWet8uEfLxkIsRgD1LDX/view",
+  "planUrl": "https://drive.google.com/file/d/1KstHbps7kTzgmfGJaGTGrNrjUQFf6UlV/view",
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/postgraduate/9480101?program=PT1_1",
+  "blocks": [
+    {
+      "id": "K01",
+      "name": "A. Đa Ngành Tổng Quát (General Interdisciplinary Knowledge)",
+      "kind": "chung",
+      "required": true,
+      "creditsNeed": 3,
+      "courses": [
+        "GK5007"
+      ]
+    },
+    {
+      "id": "K02",
+      "name": "B. Tiểu luận tổng quan và Chuyên đề tiến sĩ (Doctoral Literature Review Essay and Doctoral Seminars)",
+      "kind": "tieu-luan-chuyen-de",
+      "required": true,
+      "creditsNeed": 0,
+      "courses": [
+        "CO7265",
+        "CO7267",
+        "CO7269"
+      ]
+    },
+    {
+      "id": "K03",
+      "name": "C. Học phần tốt nghiệp (Graduation Module)",
+      "kind": "luan-an",
+      "required": true,
+      "creditsNeed": 87,
+      "courses": [
+        "CO7271",
+        "CO7273",
+        "CO7275",
+        "CO7277",
+        "CO7279",
+        "CO7281"
+      ]
+    },
+    {
+      "id": "K04",
+      "name": "D. Điều kiện tốt nghiệp (Other Graduation Requirements)",
+      "kind": "dieu-kien-tot-nghiep",
+      "required": true,
+      "courses": [
+        "ENG_B2"
+      ]
+    }
+  ],
+  "updated": "2026-10-04"
+}

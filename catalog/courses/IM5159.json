@@ -1,0 +1,32 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "IM5159",
+  "code": "IM5159",
+  "name": "Nghiên cứu tình huống trong quản trị nhân sự, thay đổi của tổ chức trong bệnh viện",
+  "nameEn": "Case studies in healthcare HR and change management",
+  "credits": 3,
+  "faculty": "sim",
+  "levels": [
+    "thac-si"
+  ],
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "SIM_THAC_SI_QUAN_TRI_BENH_VIEN_2025_NC",
+      "block": "K04",
+      "required": false
+    },
+    {
+      "program": "SIM_THAC_SI_QUAN_TRI_BENH_VIEN_2025_UD",
+      "block": "K06",
+      "required": false
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "note": "Nhập từ CTĐT sau đại học chính thức (PDF của trường, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

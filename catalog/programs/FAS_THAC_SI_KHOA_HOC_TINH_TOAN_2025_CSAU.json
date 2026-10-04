@@ -1,0 +1,74 @@
+{
+  "$schema": "../../schema/program.schema.json",
+  "code": "FAS_THAC_SI_KHOA_HOC_TINH_TOAN_2025_CSAU",
+  "name": "Khoa học tính toán",
+  "nameEn": "Computational Science",
+  "faculty": "fas",
+  "year": "2025",
+  "major": "8460107",
+  "type": "CSAU",
+  "level": "thac-si",
+  "orientation": "nghien-cuu",
+  "degree": "thac-si",
+  "totalCredits": 60,
+  "variant": "Thạc sĩ nghiên cứu chuyên sâu",
+  "source": "https://drive.google.com/file/d/1C7lxwM5Qjam0y5EdtHtJ7SeKvey5Q94u/view",
+  "ctdtUrl": "https://drive.google.com/file/d/1C7lxwM5Qjam0y5EdtHtJ7SeKvey5Q94u/view",
+  "planUrl": "https://drive.google.com/file/d/13fgEkCDlm4cMLZWiAgeZFH53qjrNShDX/view",
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/postgraduate/8460107?program=CS",
+  "groups": [
+    {
+      "name": "A. Đa ngành Tổng quát (General Interdisciplinary Knowledge)",
+      "creditsNeed": 6
+    }
+  ],
+  "blocks": [
+    {
+      "id": "K01",
+      "name": "A.1. Bắt buộc Đa ngành, tổng quát (Compulsory General Multidisciplinary Courses)",
+      "group": "A. Đa ngành Tổng quát (General Interdisciplinary Knowledge)",
+      "kind": "chung",
+      "required": true,
+      "creditsNeed": 6,
+      "courses": [
+        "AS5113",
+        "GK5033"
+      ]
+    },
+    {
+      "id": "K02",
+      "name": "A.2. Ngoại ngữ (Foreign Languages)",
+      "group": "A. Đa ngành Tổng quát (General Interdisciplinary Knowledge)",
+      "kind": "ngoai-ngu",
+      "required": true,
+      "creditsNeed": 0,
+      "courses": [
+        "GK5047",
+        "GK5049"
+      ]
+    },
+    {
+      "id": "K03",
+      "name": "B. Học phần tốt nghiệp (Graduation Module)",
+      "kind": "luan-van",
+      "required": true,
+      "creditsNeed": 54,
+      "courses": [
+        "AS6061",
+        "AS6063",
+        "AS6065",
+        "AS6067"
+      ]
+    },
+    {
+      "id": "K04",
+      "name": "E. Điều kiện tốt nghiệp (Graduation Condition)",
+      "kind": "dieu-kien-tot-nghiep",
+      "required": true,
+      "courses": [
+        "ENG_B2"
+      ]
+    }
+  ],
+  "updated": "2026-10-04"
+}

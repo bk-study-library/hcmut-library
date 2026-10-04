@@ -1,0 +1,151 @@
+{
+  "$schema": "../../schema/program.schema.json",
+  "code": "DEE_THAC_SI_KY_THUAT_VIEN_THONG_2025_UD",
+  "name": "Kỹ thuật viễn thông",
+  "nameEn": "Telecommunications Engineering",
+  "faculty": "dee",
+  "year": "2025",
+  "major": "8520208",
+  "type": "UD",
+  "level": "thac-si",
+  "orientation": "ung-dung",
+  "degree": "thac-si",
+  "totalCredits": 60,
+  "variant": "Thạc sĩ định hướng ứng dụng",
+  "source": "https://drive.google.com/file/d/1g_1fdt9GcW0OVCZMlJy1jmKaf30HsPop/view",
+  "ctdtUrl": "https://drive.google.com/file/d/1g_1fdt9GcW0OVCZMlJy1jmKaf30HsPop/view",
+  "planUrl": "https://drive.google.com/file/d/10vKCIYXcL-wb5rlZP0hhq7Yb5YfOlScT/view",
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/postgraduate/8520208?program=UD",
+  "groups": [
+    {
+      "name": "A. Đa ngành Tổng quát (General Interdisciplinary Knowledge)",
+      "creditsNeed": 9
+    },
+    {
+      "name": "C. Ngành/Chuyên ngành (Major/Speciality)",
+      "creditsNeed": 24
+    }
+  ],
+  "blocks": [
+    {
+      "id": "K01",
+      "name": "A.1. Bắt buộc Đa ngành, tổng quát (Compulsory General Multidisciplinary Courses)",
+      "group": "A. Đa ngành Tổng quát (General Interdisciplinary Knowledge)",
+      "kind": "chung",
+      "required": true,
+      "creditsNeed": 3,
+      "courses": [
+        "AS5113"
+      ]
+    },
+    {
+      "id": "K02",
+      "name": "A.2. Tự chọn Đa ngành, tổng quát (Elective General Multidisciplinary Courses)",
+      "group": "A. Đa ngành Tổng quát (General Interdisciplinary Knowledge)",
+      "kind": "chung",
+      "required": false,
+      "creditsNeed": 6,
+      "courses": [
+        "GK5045",
+        "GK5043",
+        "GK5041",
+        "GK5037",
+        "GK5023",
+        "GK5021",
+        "GK5009",
+        "GK5033",
+        "GK5025",
+        "GK5011",
+        "GK5039",
+        "GK5035"
+      ]
+    },
+    {
+      "id": "K03",
+      "name": "A.3. Ngoại ngữ (Foreign Languages)",
+      "group": "A. Đa ngành Tổng quát (General Interdisciplinary Knowledge)",
+      "kind": "ngoai-ngu",
+      "required": true,
+      "creditsNeed": 0,
+      "courses": [
+        "GK5047",
+        "GK5049"
+      ]
+    },
+    {
+      "id": "K04",
+      "name": "B. Cơ sở ngành (Core courses)",
+      "kind": "co-so-nganh",
+      "required": true,
+      "creditsNeed": 12,
+      "courses": [
+        "EE5277",
+        "EE5427",
+        "EE5291",
+        "EE5377"
+      ]
+    },
+    {
+      "id": "K05",
+      "name": "C.1. Ngành/Chuyên ngành bắt buộc (Compulsory Major/Speciality Courses)",
+      "group": "C. Ngành/Chuyên ngành (Major/Speciality)",
+      "kind": "chuyen-nganh",
+      "required": true,
+      "creditsNeed": 12,
+      "courses": [
+        "EE5275",
+        "EE5301",
+        "EE5341",
+        "EE5429"
+      ]
+    },
+    {
+      "id": "K06",
+      "name": "C.2. Ngành/Chuyên ngành tự chọn (Elective Major/Speciality Courses)",
+      "group": "C. Ngành/Chuyên ngành (Major/Speciality)",
+      "kind": "chuyen-nganh",
+      "required": false,
+      "creditsNeed": 12,
+      "courses": [
+        "EE5207",
+        "EE5305",
+        "EE5211",
+        "EE5287",
+        "EE5297",
+        "EE5299",
+        "EE5273",
+        "EE5379",
+        "EE5229",
+        "EE5315",
+        "EE5435",
+        "EE5219",
+        "EE5433",
+        "EE5431",
+        "EE5215",
+        "EE5295",
+        "EE5303"
+      ]
+    },
+    {
+      "id": "K07",
+      "name": "D. Học phần tốt nghiệp (Graduation Module)",
+      "kind": "luan-van",
+      "required": true,
+      "creditsNeed": 15,
+      "courses": [
+        "EE6141",
+        "EE6107"
+      ]
+    },
+    {
+      "id": "K08",
+      "name": "E. Điều kiện tốt nghiệp (Graduation Condition)",
+      "kind": "dieu-kien-tot-nghiep",
+      "required": true,
+      "courses": [
+        "ENG_B2"
+      ]
+    }
+  ],
+  "updated": "2026-10-04"
+}

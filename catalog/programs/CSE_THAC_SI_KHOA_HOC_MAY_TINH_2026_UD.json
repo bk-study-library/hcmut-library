@@ -1,0 +1,154 @@
+{
+  "$schema": "../../schema/program.schema.json",
+  "code": "CSE_THAC_SI_KHOA_HOC_MAY_TINH_2026_UD",
+  "name": "Khoa học máy tính",
+  "nameEn": "Computer Science",
+  "faculty": "cse",
+  "year": "2026",
+  "major": "8480101",
+  "type": "UD",
+  "level": "thac-si",
+  "orientation": "ung-dung",
+  "degree": "thac-si",
+  "totalCredits": 60,
+  "variant": "Thạc sĩ định hướng ứng dụng",
+  "source": "https://drive.google.com/file/d/10K4TY4TrZpw0eBr7U9dmpoGKhflQtXAa/view",
+  "ctdtUrl": "https://drive.google.com/file/d/10K4TY4TrZpw0eBr7U9dmpoGKhflQtXAa/view",
+  "planUrl": "https://drive.google.com/file/d/1EmHLdTCHWXO0Dv-5qm5YB5KjI2WjgqRE/view",
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/postgraduate/8480101?program=UD",
+  "groups": [
+    {
+      "name": "A. Đa ngành Tổng quát (General Interdisciplinary Knowledge)",
+      "creditsNeed": 9
+    },
+    {
+      "name": "C. Ngành/Chuyên ngành (Major/Speciality)",
+      "creditsNeed": 24
+    }
+  ],
+  "blocks": [
+    {
+      "id": "K01",
+      "name": "A.1. Bắt buộc Đa ngành, tổng quát (Compulsory General Multidisciplinary Courses)",
+      "group": "A. Đa ngành Tổng quát (General Interdisciplinary Knowledge)",
+      "kind": "chung",
+      "required": true,
+      "creditsNeed": 3,
+      "courses": [
+        "AS5113"
+      ]
+    },
+    {
+      "id": "K02",
+      "name": "A.2. Tự chọn Đa ngành, tổng quát (Elective General Multidisciplinary Courses)",
+      "group": "A. Đa ngành Tổng quát (General Interdisciplinary Knowledge)",
+      "kind": "chung",
+      "required": false,
+      "creditsNeed": 6,
+      "courses": [
+        "GK5039",
+        "GK5041",
+        "GK5009",
+        "GK5037",
+        "GK5023",
+        "GK5035",
+        "GK5033",
+        "GK5011",
+        "GK5021",
+        "GK5025"
+      ]
+    },
+    {
+      "id": "K03",
+      "name": "A.3. Ngoại ngữ (Foreign Languages)",
+      "group": "A. Đa ngành Tổng quát (General Interdisciplinary Knowledge)",
+      "kind": "ngoai-ngu",
+      "required": true,
+      "creditsNeed": 0,
+      "courses": [
+        "GK5047",
+        "GK5049"
+      ]
+    },
+    {
+      "id": "K04",
+      "name": "B. Cơ sở ngành (Core courses)",
+      "kind": "co-so-nganh",
+      "required": true,
+      "creditsNeed": 12,
+      "courses": [
+        "CO5173",
+        "CO5115",
+        "CO5095",
+        "CO5097"
+      ]
+    },
+    {
+      "id": "K05",
+      "name": "C.1. Ngành/Chuyên ngành tự chọn (Elective Major/Speciality Courses)",
+      "group": "C. Ngành/Chuyên ngành (Major/Speciality)",
+      "kind": "chuyen-nganh",
+      "required": false,
+      "courses": [
+        "CO5135",
+        "CO5117",
+        "CO5125",
+        "CO5185",
+        "CO5081",
+        "CO5151",
+        "CO5159",
+        "CO5175",
+        "CO5119",
+        "CO5077",
+        "CO5137",
+        "CO5083",
+        "CO5161",
+        "CO5177",
+        "CO5085",
+        "CO5105",
+        "CO5321",
+        "CO5073",
+        "CO5317",
+        "CO5145",
+        "CO5127",
+        "CO5121",
+        "CO5093",
+        "CO5129",
+        "CO5157",
+        "CO5089",
+        "CO5181",
+        "CO5133",
+        "CO5079",
+        "CO5075",
+        "CO5131",
+        "CO5087",
+        "CO5179",
+        "CO5327",
+        "CO5325"
+      ]
+    },
+    {
+      "id": "K06",
+      "name": "D. Học phần tốt nghiệp (Graduation Module)",
+      "kind": "luan-van",
+      "required": true,
+      "creditsNeed": 15,
+      "courses": [
+        "CO5107",
+        "CO5109",
+        "CO6035"
+      ]
+    },
+    {
+      "id": "K07",
+      "name": "E. Điều kiện tốt nghiệp (Graduation Condition)",
+      "kind": "dieu-kien-tot-nghiep",
+      "required": true,
+      "creditsNeed": 0,
+      "courses": [
+        "ENG_B2"
+      ]
+    }
+  ],
+  "updated": "2026-10-04"
+}

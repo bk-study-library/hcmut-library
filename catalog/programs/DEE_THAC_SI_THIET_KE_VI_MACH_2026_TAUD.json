@@ -1,0 +1,145 @@
+{
+  "$schema": "../../schema/program.schema.json",
+  "code": "DEE_THAC_SI_THIET_KE_VI_MACH_2026_TAUD",
+  "name": "Thiết kế vi mạch",
+  "nameEn": "Integrated Circuit Design",
+  "faculty": "dee",
+  "year": "2026",
+  "major": "8520202",
+  "type": "TAUD",
+  "level": "thac-si",
+  "orientation": "ung-dung",
+  "degree": "thac-si",
+  "totalCredits": 60,
+  "variant": "Thạc sĩ ứng dụng dạy bằng tiếng Anh",
+  "note": "Chỉ có trên Sổ tay HCMUT, không có PDF CTĐT trên trang Đào tạo. Sổ tay không ghi tên tiếng Anh của môn.",
+  "source": "https://hcmut.edu.vn/study/handbook/course/postgraduate/8520202?program=CTTAUD",
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/postgraduate/8520202?program=CTTAUD",
+  "groups": [
+    {
+      "name": "A. ĐA NGÀNH TỔNG QUÁT",
+      "creditsNeed": 9
+    },
+    {
+      "name": "C. NGÀNH/CHUYÊN NGÀNH",
+      "creditsNeed": 24
+    }
+  ],
+  "blocks": [
+    {
+      "id": "K01",
+      "name": "A.1. BẮT BUỘC ĐA NGÀNH, TỔNG QUÁT",
+      "group": "A. ĐA NGÀNH TỔNG QUÁT",
+      "kind": "chung",
+      "required": true,
+      "creditsNeed": 3,
+      "courses": [
+        "AS5113"
+      ]
+    },
+    {
+      "id": "K02",
+      "name": "A.2. TỰ CHỌN ĐA NGÀNH, TỔNG QUÁT",
+      "group": "A. ĐA NGÀNH TỔNG QUÁT",
+      "kind": "chung",
+      "required": false,
+      "creditsNeed": 6,
+      "courses": [
+        "GK5033",
+        "GK5011",
+        "GK5009",
+        "GK5021",
+        "GK5023",
+        "GK5025",
+        "GK5035",
+        "GK5037",
+        "GK5039",
+        "GK5041",
+        "GK5043",
+        "GK5045"
+      ]
+    },
+    {
+      "id": "K03",
+      "name": "A.3. NGOẠI NGỮ",
+      "group": "A. ĐA NGÀNH TỔNG QUÁT",
+      "kind": "ngoai-ngu",
+      "required": true,
+      "creditsNeed": 0,
+      "courses": [
+        "GK5047",
+        "GK5049"
+      ]
+    },
+    {
+      "id": "K04",
+      "name": "B. CƠ SỞ NGÀNH",
+      "kind": "co-so-nganh",
+      "required": true,
+      "creditsNeed": 12,
+      "courses": [
+        "EE5303",
+        "EE5295",
+        "EE5427",
+        "EE5209"
+      ]
+    },
+    {
+      "id": "K05",
+      "name": "C.1. NGÀNH/CHUYÊN NGÀNH BẮT BUỘC",
+      "group": "C. NGÀNH/CHUYÊN NGÀNH",
+      "kind": "chuyen-nganh",
+      "required": true,
+      "creditsNeed": 12,
+      "courses": [
+        "EE5429",
+        "EE5365",
+        "EE5215",
+        "EE5207"
+      ]
+    },
+    {
+      "id": "K06",
+      "name": "C.2. NGÀNH/CHUYÊN NGÀNH TỰ CHỌN",
+      "group": "C. NGÀNH/CHUYÊN NGÀNH",
+      "kind": "chuyen-nganh",
+      "required": false,
+      "creditsNeed": 12,
+      "courses": [
+        "EE5219",
+        "EE5221",
+        "EE5223",
+        "EE5277",
+        "EE5291",
+        "EE5367",
+        "EE5231",
+        "EE5233",
+        "EE5229",
+        "EE5235",
+        "EE5211"
+      ]
+    },
+    {
+      "id": "K07",
+      "name": "D. HỌC PHẦN TỐT NGHIỆP",
+      "kind": "luan-van",
+      "required": true,
+      "creditsNeed": 15,
+      "courses": [
+        "EE6145",
+        "EE6093"
+      ]
+    },
+    {
+      "id": "K08",
+      "name": "E. ĐIỀU KIỆN TỐT NGHIỆP",
+      "kind": "dieu-kien-tot-nghiep",
+      "required": true,
+      "creditsNeed": 0,
+      "courses": [
+        "ENG_B2"
+      ]
+    }
+  ],
+  "updated": "2026-10-04"
+}

@@ -1,0 +1,32 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "ME5333",
+  "code": "ME5333",
+  "name": "An toàn và Phát triển bền vững trong Dệt may",
+  "nameEn": "Safety and Sustainable Development in Textile",
+  "credits": 3,
+  "faculty": "fme",
+  "levels": [
+    "thac-si"
+  ],
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "FME_THAC_SI_CONG_NGHE_DET_MAY_2025_NC",
+      "block": "K03",
+      "required": true
+    },
+    {
+      "program": "FME_THAC_SI_CONG_NGHE_DET_MAY_2025_UD",
+      "block": "K04",
+      "required": true
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "note": "Nhập từ CTĐT sau đại học chính thức (PDF của trường, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

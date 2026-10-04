@@ -58,6 +58,12 @@
     return en ? n + ' courses in ' + name + ', most materials first.' : name + ' có ' + n + ' môn, môn nhiều tài liệu xếp trước.';
   }
 
+  // Nhãn bậc sau đại học theo ngôn ngữ trang (levels trong search-strings: [nhãn hiện, nhãn ngôn ngữ kia]).
+  var LEVELS = strings.levels || {};
+  function levelText(l) {
+    return (LEVELS[l] || [l])[0];
+  }
+
   function displayName(c) {
     return en && c.nameEn ? c.nameEn : c.name;
   }
@@ -94,10 +100,12 @@
         return { p: p, head: p.folded === phrase ? 0 : at === 0 ? 1 : at > 0 ? 2 : 3 };
       })
       .sort(function (a, b) {
-        // Cùng mức khớp thì ngành đứng trước các chương trình theo khóa của nó.
+        // Cùng mức khớp thì đại học trước sau đại học, ngành đứng trước các chương trình theo khóa của nó.
         var am = a.p.kind === 'major' ? 0 : 1;
         var bm = b.p.kind === 'major' ? 0 : 1;
-        return a.head - b.head || am - bm || (b.p.courses ? 1 : 0) - (a.p.courses ? 1 : 0) || (b.p.year || '').localeCompare(a.p.year || '') || a.p.name.localeCompare(b.p.name);
+        var al = a.p.level ? 1 : 0;
+        var bl = b.p.level ? 1 : 0;
+        return a.head - b.head || al - bl || am - bm || (b.p.courses ? 1 : 0) - (a.p.courses ? 1 : 0) || (b.p.year || '').localeCompare(a.p.year || '') || a.p.name.localeCompare(b.p.name);
       })
       .map(function (x) {
         return x.p;
@@ -120,6 +128,8 @@
       var meta = document.createElement('span');
       meta.className = 'muted';
       var parts = [facultyName[p.faculty] || p.faculty];
+      // Ngành, chương trình sau đại học ghi bậc (Thạc sĩ, Tiến sĩ); chương trình có nhãn loại đã ghi bậc thì thôi.
+      if (p.level && (isMajor || !p.variant)) parts.unshift(levelText(p.level));
       if (isMajor) {
         parts.push((en ? 'Major ' : 'Ngành, mã ') + p.code);
         parts.push(en ? p.programs + (p.programs === 1 ? ' program' : ' programs') : p.programs + ' chương trình');
@@ -281,6 +291,16 @@
       a.appendChild(code);
       a.appendChild(name);
       a.appendChild(meta);
+      // Môn có ở sau đại học: nhãn nhỏ ghi bậc, đặt cuối dòng.
+      var lv = (c.levels || []).filter(function (l) {
+        return LEVELS[l];
+      });
+      if (lv.length) {
+        var tag = document.createElement('span');
+        tag.className = 'tag';
+        tag.textContent = lv.map(levelText).join(', ');
+        a.appendChild(tag);
+      }
       li.appendChild(a);
       list.appendChild(li);
     });
@@ -321,8 +341,9 @@
         programs = (Array.isArray(res[1]) ? res[1] : []).map(function (p) {
           // Chương trình gắn ngành tìm được theo tên ngành (majorName) và mã ngành (major).
           // Mã loại (type, types của ngành) để nhãn loại bấm được (?q=PFIEV, ?q=CTTA) ra đúng chương trình.
-          var text = [p.name, p.nameEn, p.majorName, p.major, p.variant, p.type, (p.types || []).join(' '), p.year, p.code.replace(/[_+]/g, ' ')].filter(Boolean).join(' ');
-          return { kind: p.kind, key: p.key, code: p.code, name: p.name, nameEn: p.nameEn, year: p.year, variant: p.variant, faculty: p.faculty, courses: p.courses, programs: p.programs, words: window.BkSearch.fold(text).split(' '), folded: window.BkSearch.fold(en && p.nameEn ? p.nameEn : p.name) };
+          // Bậc sau đại học tìm được bằng cả hai thứ tiếng ("thac si", "master").
+          var text = [p.name, p.nameEn, p.majorName, p.major, p.variant, p.type, (p.types || []).join(' '), p.year, p.code.replace(/[_+]/g, ' '), (LEVELS[p.level] || []).join(' ')].filter(Boolean).join(' ');
+          return { kind: p.kind, key: p.key, code: p.code, name: p.name, nameEn: p.nameEn, year: p.year, variant: p.variant, level: p.level, faculty: p.faculty, courses: p.courses, programs: p.programs, words: window.BkSearch.fold(text).split(' '), folded: window.BkSearch.fold(en && p.nameEn ? p.nameEn : p.name) };
         });
         load(res[0]);
       })

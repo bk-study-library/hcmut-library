@@ -1,0 +1,79 @@
+{
+  "$schema": "../../schema/program.schema.json",
+  "code": "SIM_TIEN_SI_KY_THUAT_HE_THONG_CONG_NGHIEP_2026_PT2",
+  "name": "Kỹ thuật Hệ thống công nghiệp",
+  "nameEn": "Industrial and Systems Engineering",
+  "faculty": "sim",
+  "year": "2026",
+  "major": "9520118",
+  "type": "PT2",
+  "level": "tien-si",
+  "degree": "tien-si",
+  "totalCredits": 90,
+  "variant": "Tiến sĩ phương thức 2",
+  "source": "https://drive.google.com/file/d/1Xd-xOnebz7YJj1nYjVxZOzP7Q8Pi4J5Y/view",
+  "ctdtUrl": "https://drive.google.com/file/d/1Xd-xOnebz7YJj1nYjVxZOzP7Q8Pi4J5Y/view",
+  "planUrl": "https://drive.google.com/file/d/1RgNieAs65JgzfASlcHyVCH_qxyWht17K/view",
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/postgraduate/9520118?program=PT2_1",
+  "blocks": [
+    {
+      "id": "K01",
+      "name": "A. Đa Ngành Tổng Quát (General Interdisciplinary Knowledge)",
+      "kind": "chung",
+      "required": true,
+      "creditsNeed": 3,
+      "courses": [
+        "GK5007"
+      ]
+    },
+    {
+      "id": "K02",
+      "name": "B. Học phần trình độ tiến sĩ (Supplementary Courses for Doctoral Students)",
+      "kind": "hoc-phan-tien-si",
+      "required": true,
+      "creditsNeed": 12,
+      "courses": [
+        "ME5739",
+        "ME5737",
+        "ME5735",
+        "ME5715"
+      ]
+    },
+    {
+      "id": "K03",
+      "name": "C. Tiểu luận tổng quan và Chuyên đề tiến sĩ (Doctoral Literature Review Essay and Doctoral Seminars)",
+      "kind": "tieu-luan-chuyen-de",
+      "required": true,
+      "creditsNeed": 0,
+      "courses": [
+        "ME7371",
+        "ME7373",
+        "ME7375"
+      ]
+    },
+    {
+      "id": "K04",
+      "name": "D. Học phần tốt nghiệp (Graduation Module)",
+      "kind": "luan-an",
+      "required": true,
+      "creditsNeed": 75,
+      "courses": [
+        "ME7379",
+        "ME7381",
+        "ME7383",
+        "ME7385",
+        "ME7387"
+      ]
+    },
+    {
+      "id": "K05",
+      "name": "E. Điều kiện tốt nghiệp (Other Graduation Requirements)",
+      "kind": "dieu-kien-tot-nghiep",
+      "required": true,
+      "courses": [
+        "ENG_B2"
+      ]
+    }
+  ],
+  "updated": "2026-10-04"
+}

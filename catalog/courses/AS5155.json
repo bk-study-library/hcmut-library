@@ -1,0 +1,38 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "AS5155",
+  "code": "AS5155",
+  "name": "Phương pháp tính tuổi thọ",
+  "nameEn": "Life-Time Calculation",
+  "credits": 3,
+  "faculty": "fas",
+  "levels": [
+    "thac-si",
+    "tien-si"
+  ],
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "FAS_THAC_SI_CO_KY_THUAT_2025_NC",
+      "block": "K05",
+      "required": false
+    },
+    {
+      "program": "FAS_THAC_SI_CO_KY_THUAT_2025_UD",
+      "block": "K05",
+      "required": true
+    },
+    {
+      "program": "FAS_TIEN_SI_CO_KY_THUAT_2025_PT2",
+      "block": "K02",
+      "required": false
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "note": "Nhập từ CTĐT sau đại học chính thức (PDF của trường, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

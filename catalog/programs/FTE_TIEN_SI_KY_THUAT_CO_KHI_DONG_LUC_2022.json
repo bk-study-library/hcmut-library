@@ -1,0 +1,18 @@
+{
+  "$schema": "../../schema/program.schema.json",
+  "code": "FTE_TIEN_SI_KY_THUAT_CO_KHI_DONG_LUC_2022",
+  "name": "Kỹ thuật Cơ khí động lực",
+  "nameEn": "Vehicle Engineering",
+  "faculty": "fte",
+  "year": "2022",
+  "major": "9520116",
+  "type": "CQ",
+  "level": "tien-si",
+  "degree": "tien-si",
+  "totalCredits": 90,
+  "note": "Bản CTĐT 2022 dạng văn bản mô tả, liệt kê tên môn nhưng không ghi mã môn, nên chưa tách khối và mã. Tổng tín chỉ lấy theo quy định chung (60 thạc sĩ, 90 tiến sĩ).",
+  "source": "https://drive.google.com/file/d/19PDLkCygwkHiMOEap71wpzmUzUl2Ga7s/view",
+  "ctdtUrl": "https://drive.google.com/file/d/19PDLkCygwkHiMOEap71wpzmUzUl2Ga7s/view",
+  "blocks": [],
+  "updated": "2026-10-04"
+}

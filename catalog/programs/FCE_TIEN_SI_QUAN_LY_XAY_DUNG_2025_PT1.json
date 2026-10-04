@@ -1,0 +1,67 @@
+{
+  "$schema": "../../schema/program.schema.json",
+  "code": "FCE_TIEN_SI_QUAN_LY_XAY_DUNG_2025_PT1",
+  "name": "Quản lý Xây dựng",
+  "nameEn": "Construction Management",
+  "faculty": "fce",
+  "year": "2025",
+  "major": "9580302",
+  "type": "PT1",
+  "level": "tien-si",
+  "degree": "tien-si",
+  "totalCredits": 90,
+  "variant": "Tiến sĩ phương thức 1",
+  "source": "https://drive.google.com/file/d/1SZGJw7BzXsFE0hIzktHbVlViIrN_qxyB/view",
+  "ctdtUrl": "https://drive.google.com/file/d/1SZGJw7BzXsFE0hIzktHbVlViIrN_qxyB/view",
+  "planUrl": "https://drive.google.com/file/d/182awLPZvBZvqho47KBOmrwAW1zYdG8J0/view",
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/postgraduate/9580302?program=PT1_1",
+  "blocks": [
+    {
+      "id": "K01",
+      "name": "A. Đa Ngành Tổng Quát (General Interdisciplinary Knowledge)",
+      "kind": "chung",
+      "required": true,
+      "creditsNeed": 3,
+      "courses": [
+        "GK5007"
+      ]
+    },
+    {
+      "id": "K02",
+      "name": "B. Tiểu luận tổng quan và Chuyên đề tiến sĩ (Doctoral Literature Review Essay and Doctoral Seminars)",
+      "kind": "tieu-luan-chuyen-de",
+      "required": true,
+      "creditsNeed": 0,
+      "courses": [
+        "CI7571",
+        "CI7573",
+        "CI7575"
+      ]
+    },
+    {
+      "id": "K03",
+      "name": "C. Học phần tốt nghiệp (Graduation Module)",
+      "kind": "luan-an",
+      "required": true,
+      "creditsNeed": 87,
+      "courses": [
+        "CI7577",
+        "CI7579",
+        "CI7581",
+        "CI7583",
+        "CI7585",
+        "CI7587"
+      ]
+    },
+    {
+      "id": "K04",
+      "name": "D. Điều kiện tốt nghiệp (Other Graduation Requirements)",
+      "kind": "dieu-kien-tot-nghiep",
+      "required": true,
+      "courses": [
+        "ENG_B2"
+      ]
+    }
+  ],
+  "updated": "2026-10-04"
+}

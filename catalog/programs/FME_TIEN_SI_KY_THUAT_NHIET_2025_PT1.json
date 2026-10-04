@@ -1,0 +1,67 @@
+{
+  "$schema": "../../schema/program.schema.json",
+  "code": "FME_TIEN_SI_KY_THUAT_NHIET_2025_PT1",
+  "name": "Kỹ thuật Nhiệt",
+  "nameEn": "Thermal Engineering",
+  "faculty": "fme",
+  "year": "2025",
+  "major": "9520115",
+  "type": "PT1",
+  "level": "tien-si",
+  "degree": "tien-si",
+  "totalCredits": 90,
+  "variant": "Tiến sĩ phương thức 1",
+  "source": "https://drive.google.com/file/d/16pazLLc5Br691mrO0dOzfF9Xluyh9zFW/view",
+  "ctdtUrl": "https://drive.google.com/file/d/16pazLLc5Br691mrO0dOzfF9Xluyh9zFW/view",
+  "planUrl": "https://drive.google.com/file/d/1ZPR81aLCyio-mJ0Pc3YZmxYAh_GsZ4Rc/view",
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/postgraduate/9520115?program=PT1_1",
+  "blocks": [
+    {
+      "id": "K01",
+      "name": "A. Đa Ngành Tổng Quát (General Interdisciplinary Knowledge)",
+      "kind": "chung",
+      "required": true,
+      "creditsNeed": 3,
+      "courses": [
+        "GK5007"
+      ]
+    },
+    {
+      "id": "K02",
+      "name": "B. Tiểu luận tổng quan và Chuyên đề tiến sĩ (Doctoral Literature Review Essay and Doctoral Seminars)",
+      "kind": "tieu-luan-chuyen-de",
+      "required": true,
+      "creditsNeed": 0,
+      "courses": [
+        "ME7315",
+        "ME7317",
+        "ME7319"
+      ]
+    },
+    {
+      "id": "K03",
+      "name": "C. Học phần tốt nghiệp (Graduation Module)",
+      "kind": "luan-an",
+      "required": true,
+      "creditsNeed": 87,
+      "courses": [
+        "ME7321",
+        "ME7323",
+        "ME7325",
+        "ME7327",
+        "ME7329",
+        "ME7331"
+      ]
+    },
+    {
+      "id": "K04",
+      "name": "D. Điều kiện tốt nghiệp (Other Graduation Requirements)",
+      "kind": "dieu-kien-tot-nghiep",
+      "required": true,
+      "courses": [
+        "ENG_B2"
+      ]
+    }
+  ],
+  "updated": "2026-10-04"
+}

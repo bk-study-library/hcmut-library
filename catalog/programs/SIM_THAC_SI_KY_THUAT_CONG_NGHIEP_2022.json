@@ -1,0 +1,18 @@
+{
+  "$schema": "../../schema/program.schema.json",
+  "code": "SIM_THAC_SI_KY_THUAT_CONG_NGHIEP_2022",
+  "name": "Kỹ thuật công nghiệp",
+  "nameEn": "Industrial Engineering",
+  "faculty": "sim",
+  "year": "2022",
+  "major": "8520117",
+  "type": "CQ",
+  "level": "thac-si",
+  "degree": "thac-si",
+  "totalCredits": 60,
+  "note": "Bản CTĐT 2022 dạng văn bản mô tả, liệt kê tên môn nhưng không ghi mã môn, nên chưa tách khối và mã. Tổng tín chỉ lấy theo quy định chung (60 thạc sĩ, 90 tiến sĩ).",
+  "source": "https://drive.google.com/file/d/16QTdgPLAIKRyvEuXuO3XQX5e6_2Z5skf/view",
+  "ctdtUrl": "https://drive.google.com/file/d/16QTdgPLAIKRyvEuXuO3XQX5e6_2Z5skf/view",
+  "blocks": [],
+  "updated": "2026-10-04"
+}

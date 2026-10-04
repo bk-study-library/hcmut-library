@@ -1,0 +1,74 @@
+{
+  "$schema": "../../schema/program.schema.json",
+  "code": "CSE_THAC_SI_HE_THONG_THONG_TIN_QUAN_LY_2026_CSAU",
+  "name": "Hệ thống thông tin quản lý",
+  "nameEn": "Management Information Systems",
+  "faculty": "cse",
+  "year": "2026",
+  "major": "8340405",
+  "type": "CSAU",
+  "level": "thac-si",
+  "orientation": "nghien-cuu",
+  "degree": "thac-si",
+  "totalCredits": 60,
+  "variant": "Thạc sĩ nghiên cứu chuyên sâu",
+  "source": "https://drive.google.com/file/d/1F2ebW_VItBEiINbc9OkrheUuqCp5-bE8/view",
+  "ctdtUrl": "https://drive.google.com/file/d/1F2ebW_VItBEiINbc9OkrheUuqCp5-bE8/view",
+  "planUrl": "https://drive.google.com/file/d/1hIW5vpTVBV5L8YLTJ6Xj4wcaTnOm4ovv/view",
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/postgraduate/8340405?program=CS",
+  "groups": [
+    {
+      "name": "A. Đa ngành Tổng quát (General Interdisciplinary Knowledge)",
+      "creditsNeed": 6
+    }
+  ],
+  "blocks": [
+    {
+      "id": "K01",
+      "name": "A.1. Bắt buộc Đa ngành, tổng quát (Compulsory General Multidisciplinary Courses)",
+      "group": "A. Đa ngành Tổng quát (General Interdisciplinary Knowledge)",
+      "kind": "chung",
+      "required": true,
+      "creditsNeed": 6,
+      "courses": [
+        "AS5113",
+        "GK5033"
+      ]
+    },
+    {
+      "id": "K02",
+      "name": "A.2. Ngoại ngữ (Foreign Languages)",
+      "group": "A. Đa ngành Tổng quát (General Interdisciplinary Knowledge)",
+      "kind": "ngoai-ngu",
+      "required": true,
+      "creditsNeed": 0,
+      "courses": [
+        "GK5047",
+        "GK5049"
+      ]
+    },
+    {
+      "id": "K03",
+      "name": "B. Học phần tốt nghiệp (Graduation Module)",
+      "kind": "luan-van",
+      "required": true,
+      "creditsNeed": 54,
+      "courses": [
+        "CO6027",
+        "CO6029",
+        "CO6031",
+        "CO6033"
+      ]
+    },
+    {
+      "id": "K04",
+      "name": "E. Điều kiện tốt nghiệp (Graduation Condition)",
+      "kind": "dieu-kien-tot-nghiep",
+      "required": true,
+      "courses": [
+        "ENG_B2"
+      ]
+    }
+  ],
+  "updated": "2026-10-04"
+}

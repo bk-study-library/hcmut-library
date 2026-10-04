@@ -1,0 +1,153 @@
+{
+  "$schema": "../../schema/program.schema.json",
+  "code": "CHE_THAC_SI_CONG_NGHE_THUC_PHAM_2025_UD",
+  "name": "Công nghệ thực phẩm",
+  "nameEn": "Food Technology",
+  "faculty": "che",
+  "year": "2025",
+  "major": "8540101",
+  "type": "UD",
+  "level": "thac-si",
+  "orientation": "ung-dung",
+  "degree": "thac-si",
+  "totalCredits": 60,
+  "variant": "Thạc sĩ định hướng ứng dụng",
+  "source": "https://drive.google.com/file/d/1N4ytX0P3LJsOdVydMudkjZ1DfMbLjSQB/view",
+  "ctdtUrl": "https://drive.google.com/file/d/1N4ytX0P3LJsOdVydMudkjZ1DfMbLjSQB/view",
+  "planUrl": "https://drive.google.com/file/d/1PGm8IJHBSS3t0psYxp-PEXJJtjS5cT_S/view",
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/postgraduate/8540101?program=UD",
+  "groups": [
+    {
+      "name": "A. Đa ngành Tổng quát (General Interdisciplinary Knowledge)",
+      "creditsNeed": 9
+    },
+    {
+      "name": "C. Ngành/Chuyên ngành (Major/Speciality)",
+      "creditsNeed": 24
+    }
+  ],
+  "blocks": [
+    {
+      "id": "K01",
+      "name": "A.1. Bắt buộc Đa ngành, tổng quát (Compulsory General Multidisciplinary Courses)",
+      "group": "A. Đa ngành Tổng quát (General Interdisciplinary Knowledge)",
+      "kind": "chung",
+      "required": true,
+      "creditsNeed": 3,
+      "courses": [
+        "AS5113"
+      ]
+    },
+    {
+      "id": "K02",
+      "name": "A.2. Tự chọn Đa ngành, tổng quát (Elective General Multidisciplinary Courses)",
+      "group": "A. Đa ngành Tổng quát (General Interdisciplinary Knowledge)",
+      "kind": "chung",
+      "required": false,
+      "creditsNeed": 6,
+      "courses": [
+        "GK5045",
+        "GK5043",
+        "GK5041",
+        "GK5039",
+        "GK5037",
+        "GK5035",
+        "GK5033",
+        "GK5025",
+        "GK5023",
+        "GK5021",
+        "GK5011",
+        "GK5009"
+      ]
+    },
+    {
+      "id": "K03",
+      "name": "A.3. Ngoại ngữ (Foreign Languages)",
+      "group": "A. Đa ngành Tổng quát (General Interdisciplinary Knowledge)",
+      "kind": "ngoai-ngu",
+      "required": true,
+      "creditsNeed": 0,
+      "courses": [
+        "GK5047",
+        "GK5049"
+      ]
+    },
+    {
+      "id": "K04",
+      "name": "B. Cơ sở ngành (Core courses)",
+      "kind": "co-so-nganh",
+      "required": true,
+      "creditsNeed": 12,
+      "courses": [
+        "CH5437",
+        "CH5435",
+        "CH5685",
+        "CH5683"
+      ]
+    },
+    {
+      "id": "K05",
+      "name": "C.1. Ngành/Chuyên ngành bắt buộc (Compulsory Major/Speciality Courses)",
+      "group": "C. Ngành/Chuyên ngành (Major/Speciality)",
+      "kind": "chuyen-nganh",
+      "required": true,
+      "creditsNeed": 12,
+      "courses": [
+        "CH5745",
+        "CH5747",
+        "CH5767",
+        "CH5407"
+      ]
+    },
+    {
+      "id": "K06",
+      "name": "C.2. Ngành/Chuyên ngành tự chọn (Elective Major/Speciality Courses)",
+      "group": "C. Ngành/Chuyên ngành (Major/Speciality)",
+      "kind": "chuyen-nganh",
+      "required": false,
+      "creditsNeed": 12,
+      "courses": [
+        "CH5509",
+        "CH5505",
+        "CH5485",
+        "CH5765",
+        "CH5477",
+        "CH5595",
+        "CH5763",
+        "CH5367",
+        "CH5749",
+        "CH5753",
+        "CH5409",
+        "CH5759",
+        "CH5755",
+        "CH5365",
+        "CH5757",
+        "CH5761",
+        "CH5369",
+        "CH5479"
+      ]
+    },
+    {
+      "id": "K07",
+      "name": "D. Học phần tốt nghiệp (Graduation Module)",
+      "kind": "luan-van",
+      "required": true,
+      "creditsNeed": 15,
+      "courses": [
+        "CH5673",
+        "CH5675",
+        "CH6083"
+      ]
+    },
+    {
+      "id": "K08",
+      "name": "E. Điều kiện tốt nghiệp (Graduation Condition)",
+      "kind": "dieu-kien-tot-nghiep",
+      "required": true,
+      "courses": [
+        "ENG_B2"
+      ]
+    }
+  ],
+  "updated": "2026-10-04"
+}

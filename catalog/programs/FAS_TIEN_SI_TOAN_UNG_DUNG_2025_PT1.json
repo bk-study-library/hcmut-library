@@ -1,0 +1,66 @@
+{
+  "$schema": "../../schema/program.schema.json",
+  "code": "FAS_TIEN_SI_TOAN_UNG_DUNG_2025_PT1",
+  "name": "Toán ứng dụng",
+  "nameEn": "Applied Mathematics",
+  "faculty": "fas",
+  "year": "2025",
+  "major": "9460112",
+  "type": "PT1",
+  "level": "tien-si",
+  "degree": "tien-si",
+  "totalCredits": 90,
+  "variant": "Tiến sĩ phương thức 1",
+  "source": "https://drive.google.com/file/d/1ZD6wOeKCb1OW5SCOifpSrKkaHrkj93q4/view",
+  "ctdtUrl": "https://drive.google.com/file/d/1ZD6wOeKCb1OW5SCOifpSrKkaHrkj93q4/view",
+  "planUrl": "https://drive.google.com/file/d/1JvR0QaOssQkVBwJQRnbkzzlZjV0pRA-C/view",
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/postgraduate/9460112?program=PT1_1",
+  "blocks": [
+    {
+      "id": "K01",
+      "name": "A. Đa Ngành Tổng Quát (General Interdisciplinary Knowledge)",
+      "kind": "chung",
+      "required": true,
+      "creditsNeed": 3,
+      "courses": [
+        "GK5007"
+      ]
+    },
+    {
+      "id": "K02",
+      "name": "B. Tiểu luận tổng quan và Chuyên đề tiến sĩ (Doctoral Literature Review Essay and Doctoral Seminars)",
+      "kind": "tieu-luan-chuyen-de",
+      "required": true,
+      "courses": [
+        "AS7129",
+        "AS7131",
+        "AS7133"
+      ]
+    },
+    {
+      "id": "K03",
+      "name": "C. Học phần tốt nghiệp (Graduation Module)",
+      "kind": "luan-an",
+      "required": true,
+      "creditsNeed": 87,
+      "courses": [
+        "AS7135",
+        "AS7137",
+        "AS7139",
+        "AS7141",
+        "AS7143",
+        "AS7145"
+      ]
+    },
+    {
+      "id": "K04",
+      "name": "D. Điều kiện tốt nghiệp (Other Graduation Requirements)",
+      "kind": "dieu-kien-tot-nghiep",
+      "required": true,
+      "courses": [
+        "ENG_B2"
+      ]
+    }
+  ],
+  "updated": "2026-10-04"
+}

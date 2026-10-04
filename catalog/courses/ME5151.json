@@ -1,0 +1,38 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "ME5151",
+  "code": "ME5151",
+  "name": "Công nghệ may hiện đại",
+  "nameEn": "Advances In Apparel Production",
+  "credits": 3,
+  "faculty": "fme",
+  "levels": [
+    "thac-si",
+    "tien-si"
+  ],
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "FME_THAC_SI_CONG_NGHE_DET_MAY_2025_NC",
+      "block": "K04",
+      "required": false
+    },
+    {
+      "program": "FME_THAC_SI_CONG_NGHE_DET_MAY_2025_UD",
+      "block": "K05",
+      "required": true
+    },
+    {
+      "program": "FME_TIEN_SI_CONG_NGHE_DET_MAY_2025_PT2",
+      "block": "K02",
+      "required": false
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "note": "Nhập từ CTĐT sau đại học chính thức (PDF của trường, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

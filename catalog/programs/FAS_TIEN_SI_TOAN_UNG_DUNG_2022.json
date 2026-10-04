@@ -1,0 +1,18 @@
+{
+  "$schema": "../../schema/program.schema.json",
+  "code": "FAS_TIEN_SI_TOAN_UNG_DUNG_2022",
+  "name": "Toán ứng dụng",
+  "nameEn": "Applied Mathematics",
+  "faculty": "fas",
+  "year": "2022",
+  "major": "9460112",
+  "type": "CQ",
+  "level": "tien-si",
+  "degree": "tien-si",
+  "totalCredits": 90,
+  "note": "Bản CTĐT 2022 dạng văn bản mô tả, liệt kê tên môn nhưng không ghi mã môn, nên chưa tách khối và mã. Tổng tín chỉ lấy theo quy định chung (60 thạc sĩ, 90 tiến sĩ).",
+  "source": "https://drive.google.com/file/d/19trn9YXygvsDTHgZKmfskVyRnj8GPgk0/view",
+  "ctdtUrl": "https://drive.google.com/file/d/19trn9YXygvsDTHgZKmfskVyRnj8GPgk0/view",
+  "blocks": [],
+  "updated": "2026-10-04"
+}

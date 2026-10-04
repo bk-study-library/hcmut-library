@@ -1,0 +1,48 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "CH5647",
+  "code": "CH5647",
+  "name": "Các phương pháp nghiên cứu cấu trúc của vật liệu",
+  "nameEn": "Methods to study structure of materials",
+  "credits": 3,
+  "faculty": "che",
+  "levels": [
+    "thac-si",
+    "tien-si"
+  ],
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "CHE_THAC_SI_KY_THUAT_HOA_HOC_2025_NC",
+      "block": "K04",
+      "required": false
+    },
+    {
+      "program": "CHE_THAC_SI_KY_THUAT_HOA_HOC_2025_UD",
+      "block": "K06",
+      "required": false
+    },
+    {
+      "program": "CHE_THAC_SI_KY_THUAT_HOA_HOC_2026_STEM",
+      "block": "K04",
+      "required": false
+    },
+    {
+      "program": "CHE_THAC_SI_KY_THUAT_HOA_HOC_2026_TAUD",
+      "block": "K06",
+      "required": false
+    },
+    {
+      "program": "CHE_TIEN_SI_KY_THUAT_HOA_HOC_2025_PT2",
+      "block": "K02",
+      "required": false
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "note": "Nhập từ CTĐT sau đại học chính thức (PDF của trường, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

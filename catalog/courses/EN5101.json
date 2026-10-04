@@ -1,0 +1,27 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "EN5101",
+  "code": "EN5101",
+  "name": "Kỹ thuật môi trường cho các nhà máy nhiệt điện đốt than",
+  "nameEn": "Environmental Engineering for Coal-Fired Power Plants",
+  "credits": 3,
+  "faculty": "fenr",
+  "levels": [
+    "tien-si"
+  ],
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "FENR_TIEN_SI_KY_THUAT_MOI_TRUONG_2025_PT2",
+      "block": "K02",
+      "required": false
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "note": "Nhập từ CTĐT sau đại học chính thức (PDF của trường, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

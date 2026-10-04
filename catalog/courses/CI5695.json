@@ -1,0 +1,27 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "CI5695",
+  "code": "CI5695",
+  "name": "Quy hoạch không gian",
+  "nameEn": "Spatial Planning",
+  "credits": 3,
+  "faculty": "fce",
+  "levels": [
+    "tien-si"
+  ],
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "FCE_TIEN_SI_KY_THUAT_TRAC_DIA_BAN_DO_2025_PT2",
+      "block": "K02",
+      "required": false
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "note": "Nhập từ CTĐT sau đại học chính thức (PDF của trường, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

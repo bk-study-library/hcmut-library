@@ -1,0 +1,32 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "CI6143",
+  "code": "CI6143",
+  "name": "Thực tập",
+  "nameEn": "Internship",
+  "credits": 6,
+  "faculty": "fce",
+  "levels": [
+    "thac-si"
+  ],
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "FCE_THAC_SI_QUAN_LY_XAY_DUNG_2025_TAUD",
+      "block": "K08",
+      "required": true
+    },
+    {
+      "program": "FCE_THAC_SI_QUAN_LY_XAY_DUNG_2025_UD",
+      "block": "K07",
+      "required": true
+    }
+  ],
+  "parts": [
+    "lab"
+  ],
+  "related": [],
+  "note": "Nhập từ CTĐT sau đại học chính thức (PDF của trường, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

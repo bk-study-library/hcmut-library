@@ -1,0 +1,58 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "CO5127",
+  "code": "CO5127",
+  "name": "Phương pháp thiết kế vi mạch",
+  "nameEn": "Hardware Design Methodologies",
+  "credits": 3,
+  "faculty": "cse",
+  "levels": [
+    "thac-si",
+    "tien-si"
+  ],
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "CSE_THAC_SI_KHOA_HOC_MAY_TINH_2025_NC",
+      "block": "K04",
+      "required": false
+    },
+    {
+      "program": "CSE_THAC_SI_KHOA_HOC_MAY_TINH_2025_UD",
+      "block": "K05",
+      "required": false
+    },
+    {
+      "program": "CSE_THAC_SI_KHOA_HOC_MAY_TINH_2026_NC",
+      "block": "K04",
+      "required": false
+    },
+    {
+      "program": "CSE_THAC_SI_KHOA_HOC_MAY_TINH_2026_TAUD",
+      "block": "K06",
+      "required": false
+    },
+    {
+      "program": "CSE_THAC_SI_KHOA_HOC_MAY_TINH_2026_UD",
+      "block": "K05",
+      "required": false
+    },
+    {
+      "program": "CSE_TIEN_SI_KHOA_HOC_MAY_TINH_2025_PT2",
+      "block": "K02",
+      "required": false
+    },
+    {
+      "program": "CSE_TIEN_SI_KHOA_HOC_MAY_TINH_2026_PT2",
+      "block": "K02",
+      "required": false
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "note": "Nhập từ CTĐT sau đại học chính thức (PDF của trường, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

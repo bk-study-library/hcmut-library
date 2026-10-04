@@ -1,0 +1,18 @@
+{
+  "$schema": "../../schema/program.schema.json",
+  "code": "FCE_THAC_SI_QUAN_LY_XAY_DUNG_2022",
+  "name": "Quản lý xây dựng",
+  "nameEn": "Construction Management",
+  "faculty": "fce",
+  "year": "2022",
+  "major": "8580302",
+  "type": "CQ",
+  "level": "thac-si",
+  "degree": "thac-si",
+  "totalCredits": 60,
+  "note": "Bản CTĐT 2022 dạng văn bản mô tả, liệt kê tên môn nhưng không ghi mã môn, nên chưa tách khối và mã. Tổng tín chỉ lấy theo quy định chung (60 thạc sĩ, 90 tiến sĩ).",
+  "source": "https://drive.google.com/file/d/1FoNJX8RytkWKfqoo8_ZZMVtFI6Qy2Acr/view",
+  "ctdtUrl": "https://drive.google.com/file/d/1FoNJX8RytkWKfqoo8_ZZMVtFI6Qy2Acr/view",
+  "blocks": [],
+  "updated": "2026-10-04"
+}

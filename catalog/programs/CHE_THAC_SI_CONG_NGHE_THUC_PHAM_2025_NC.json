@@ -1,0 +1,116 @@
+{
+  "$schema": "../../schema/program.schema.json",
+  "code": "CHE_THAC_SI_CONG_NGHE_THUC_PHAM_2025_NC",
+  "name": "Công nghệ thực phẩm",
+  "nameEn": "Food Technology",
+  "faculty": "che",
+  "year": "2025",
+  "major": "8540101",
+  "type": "NC",
+  "level": "thac-si",
+  "orientation": "nghien-cuu",
+  "degree": "thac-si",
+  "totalCredits": 60,
+  "variant": "Thạc sĩ định hướng nghiên cứu",
+  "source": "https://drive.google.com/file/d/1em1sAEs5BrnKwxk_G87PQwu6ZBt2fnvq/view",
+  "ctdtUrl": "https://drive.google.com/file/d/1em1sAEs5BrnKwxk_G87PQwu6ZBt2fnvq/view",
+  "planUrl": "https://drive.google.com/file/d/1L2RhIL9chGFPbTMfGvOF1-HveCu50MYy/view",
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/postgraduate/8540101?program=NC",
+  "groups": [
+    {
+      "name": "A. Đa ngành Tổng quát (General Interdisciplinary Knowledge)",
+      "creditsNeed": 6
+    }
+  ],
+  "blocks": [
+    {
+      "id": "K01",
+      "name": "A.1. Bắt buộc Đa ngành, tổng quát (Compulsory General Multidisciplinary Courses)",
+      "group": "A. Đa ngành Tổng quát (General Interdisciplinary Knowledge)",
+      "kind": "chung",
+      "required": true,
+      "creditsNeed": 6,
+      "courses": [
+        "AS5113",
+        "GK5033"
+      ]
+    },
+    {
+      "id": "K02",
+      "name": "A.2. Ngoại ngữ (Foreign Languages)",
+      "group": "A. Đa ngành Tổng quát (General Interdisciplinary Knowledge)",
+      "kind": "ngoai-ngu",
+      "required": true,
+      "creditsNeed": 0,
+      "courses": [
+        "GK5047",
+        "GK5049"
+      ]
+    },
+    {
+      "id": "K03",
+      "name": "B. Cơ sở ngành (Core courses)",
+      "kind": "co-so-nganh",
+      "required": true,
+      "creditsNeed": 12,
+      "courses": [
+        "CH5437",
+        "CH5435",
+        "CH5685",
+        "CH5683"
+      ]
+    },
+    {
+      "id": "K04",
+      "name": "C. Ngành/Chuyên ngành (Major/Speciality)",
+      "kind": "chuyen-nganh",
+      "required": false,
+      "creditsNeed": 12,
+      "courses": [
+        "CH5407",
+        "CH5747",
+        "CH5745",
+        "CH5767",
+        "CH5369",
+        "CH5367",
+        "CH5479",
+        "CH5765",
+        "CH5763",
+        "CH5761",
+        "CH5759",
+        "CH5757",
+        "CH5755",
+        "CH5753",
+        "CH5595",
+        "CH5749",
+        "CH5485",
+        "CH5477",
+        "CH5365",
+        "CH5509",
+        "CH5409",
+        "CH5505"
+      ]
+    },
+    {
+      "id": "K05",
+      "name": "D. Học phần tốt nghiệp (Graduation Module)",
+      "kind": "luan-van",
+      "required": true,
+      "creditsNeed": 30,
+      "courses": [
+        "CH6085",
+        "CH6087"
+      ]
+    },
+    {
+      "id": "K06",
+      "name": "E. Điều kiện tốt nghiệp (Graduation Condition)",
+      "kind": "dieu-kien-tot-nghiep",
+      "required": true,
+      "courses": [
+        "ENG_B2"
+      ]
+    }
+  ],
+  "updated": "2026-10-04"
+}

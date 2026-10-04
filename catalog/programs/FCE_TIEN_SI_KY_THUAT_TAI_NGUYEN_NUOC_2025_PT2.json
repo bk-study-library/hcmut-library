@@ -1,0 +1,85 @@
+{
+  "$schema": "../../schema/program.schema.json",
+  "code": "FCE_TIEN_SI_KY_THUAT_TAI_NGUYEN_NUOC_2025_PT2",
+  "name": "Kỹ thuật Tài nguyên Nước",
+  "nameEn": "Water Resources Engineering",
+  "faculty": "fce",
+  "year": "2025",
+  "major": "9580212",
+  "type": "PT2",
+  "level": "tien-si",
+  "degree": "tien-si",
+  "totalCredits": 90,
+  "variant": "Tiến sĩ phương thức 2",
+  "source": "https://drive.google.com/file/d/1pWKn2rsCpkjy46jjj3fXn1wvGhDeezUY/view",
+  "ctdtUrl": "https://drive.google.com/file/d/1pWKn2rsCpkjy46jjj3fXn1wvGhDeezUY/view",
+  "planUrl": "https://drive.google.com/file/d/10Y99JoVTv2nYDBN9IMDClb-g-0JbPMT5/view",
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/postgraduate/9580212?program=PT2_1",
+  "blocks": [
+    {
+      "id": "K01",
+      "name": "A. Đa Ngành Tổng Quát (General Interdisciplinary Knowledge)",
+      "kind": "chung",
+      "required": true,
+      "creditsNeed": 3,
+      "courses": [
+        "GK5007"
+      ]
+    },
+    {
+      "id": "K02",
+      "name": "B. Học phần trình độ tiến sĩ (Supplementary Courses for Doctoral Students)",
+      "kind": "hoc-phan-tien-si",
+      "required": false,
+      "creditsNeed": 12,
+      "courses": [
+        "CI5355",
+        "CI5315",
+        "CI5791",
+        "CI5359",
+        "CI5357",
+        "CI5321",
+        "CI5319",
+        "CI5317",
+        "CI5363",
+        "CI5361"
+      ]
+    },
+    {
+      "id": "K03",
+      "name": "C. Tiểu luận tổng quan và Chuyên đề tiến sĩ (Doctoral Literature Review Essay and Doctoral Seminars)",
+      "kind": "tieu-luan-chuyen-de",
+      "required": true,
+      "creditsNeed": 0,
+      "courses": [
+        "CI7617",
+        "CI7619",
+        "CI7621"
+      ]
+    },
+    {
+      "id": "K04",
+      "name": "D. Học phần tốt nghiệp (Graduation Module)",
+      "kind": "luan-an",
+      "required": true,
+      "creditsNeed": 75,
+      "courses": [
+        "CI7625",
+        "CI7627",
+        "CI7629",
+        "CI7631",
+        "CI7633"
+      ]
+    },
+    {
+      "id": "K05",
+      "name": "E. Điều kiện tốt nghiệp (Other Graduation Requirements)",
+      "kind": "dieu-kien-tot-nghiep",
+      "required": true,
+      "courses": [
+        "ENG_B2"
+      ]
+    }
+  ],
+  "updated": "2026-10-04"
+}

@@ -1,0 +1,37 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "CO5091",
+  "code": "CO5091",
+  "name": "Giao tiếp trong phát triển phần mềm",
+  "nameEn": "Communication for Software Engineers",
+  "credits": 3,
+  "faculty": "cse",
+  "levels": [
+    "thac-si"
+  ],
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "CSE_THAC_SI_KHOA_HOC_MAY_TINH_2025_NC",
+      "block": "K04",
+      "required": false
+    },
+    {
+      "program": "CSE_THAC_SI_KHOA_HOC_MAY_TINH_2025_UD",
+      "block": "K05",
+      "required": false
+    },
+    {
+      "program": "CSE_THAC_SI_KHOA_HOC_MAY_TINH_2026_TAUD",
+      "block": "K06",
+      "required": false
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "note": "Nhập từ CTĐT sau đại học chính thức (PDF của trường, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

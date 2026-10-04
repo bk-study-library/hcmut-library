@@ -1,0 +1,27 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "ME5735",
+  "code": "ME5735",
+  "name": "Phân tích và mô hình hóa hệ thống nâng cao",
+  "nameEn": "Advanced Systems Modeling and Analysis",
+  "credits": 3,
+  "faculty": "fme",
+  "levels": [
+    "tien-si"
+  ],
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "SIM_TIEN_SI_KY_THUAT_HE_THONG_CONG_NGHIEP_2026_PT2",
+      "block": "K02",
+      "required": true
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "note": "Nhập từ CTĐT sau đại học chính thức (PDF của trường, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

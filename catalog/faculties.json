@@ -38,7 +38,8 @@
     { "pattern": "^(PE|MI)[0-9]{3}[0-9A-Z]$", "faculty": "chung", "verified": false, "note": "Giáo dục thể chất, quốc phòng: mọi ngành đều học." },
     { "pattern": "^SK[0-9]{3}[0-9A-Z]$", "faculty": "chung", "verified": false, "note": "Kỹ năng bổ trợ dùng chung cho mọi ngành." },
     { "pattern": "^SA[0-9]{3}[0-9A-Z]$", "faculty": "chung", "verified": false, "note": "Hoạt động sinh viên, khối điều kiện tốt nghiệp trong CTĐT." },
-    { "pattern": "^(ENG|FRA|JPN)_[A-Z0-9_]+$", "faculty": "chung", "verified": false, "note": "Điều kiện ngoại ngữ tốt nghiệp (ENG_GC, FRA_GC, JPN_GC và mã tương tự), không phải môn của khoa nào." },
+    { "pattern": "^(ENG|FRA|JPN)_[A-Z0-9_]+$", "faculty": "chung", "verified": false, "note": "Điều kiện ngoại ngữ tốt nghiệp (ENG_GC, FRA_GC, JPN_GC, ENG_B2 của sau đại học và mã tương tự), không phải môn của khoa nào." },
+    { "pattern": "^GK[0-9]{4}$", "faculty": "chung", "verified": false, "note": "Môn chung sau đại học (chuyên đề nghiên cứu, quản lý, ngoại ngữ) trong CTĐT thạc sĩ, tiến sĩ của mọi ngành. Chưa có nguồn công khai ghi đơn vị quản lý." },
     { "pattern": "^CCGDTC$", "faculty": "chung", "verified": false, "note": "Chứng chỉ giáo dục thể chất, điều kiện tốt nghiệp chung." },
     { "pattern": "^[0-9]{6}$", "faculty": "unknown", "verified": false, "note": "Mã 6 chữ số kiểu cũ. Chưa rõ quy tắc đánh mã." }
   ]

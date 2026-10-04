@@ -1,0 +1,37 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "CI7661",
+  "code": "CI7661",
+  "name": "Luận án tiến sĩ - phần 1",
+  "nameEn": "PhD Dissertation - part 1",
+  "credits": 15,
+  "faculty": "fce",
+  "levels": [
+    "tien-si"
+  ],
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "FCE_TIEN_SI_DIA_KY_THUAT_XAY_DUNG_2025_PT1",
+      "block": "K03",
+      "required": true
+    },
+    {
+      "program": "FCE_TIEN_SI_DIA_KY_THUAT_XAY_DUNG_2025_PT2",
+      "block": "K05",
+      "required": true
+    },
+    {
+      "program": "FCE_TIEN_SI_DIA_KY_THUAT_XAY_DUNG_2025_TAPT1",
+      "block": "K03",
+      "required": true
+    }
+  ],
+  "parts": [
+    "project"
+  ],
+  "related": [],
+  "note": "Nhập từ CTĐT sau đại học chính thức (PDF của trường, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

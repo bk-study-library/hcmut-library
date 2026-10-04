@@ -1,0 +1,45 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "CO7265",
+  "code": "CO7265",
+  "name": "Tiểu luận tổng quan",
+  "nameEn": "Doctoral Literature Review Essay",
+  "credits": 0,
+  "faculty": "cse",
+  "levels": [
+    "tien-si"
+  ],
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "CSE_TIEN_SI_KHOA_HOC_MAY_TINH_2025_PT1",
+      "block": "K02",
+      "required": true
+    },
+    {
+      "program": "CSE_TIEN_SI_KHOA_HOC_MAY_TINH_2025_PT2",
+      "block": "K03",
+      "required": true
+    },
+    {
+      "program": "CSE_TIEN_SI_KHOA_HOC_MAY_TINH_2025_TAPT1",
+      "block": "K02",
+      "required": true
+    },
+    {
+      "program": "CSE_TIEN_SI_KHOA_HOC_MAY_TINH_2026_PT1",
+      "block": "K02",
+      "required": true
+    },
+    {
+      "program": "CSE_TIEN_SI_KHOA_HOC_MAY_TINH_2026_PT2",
+      "block": "K03",
+      "required": true
+    }
+  ],
+  "parts": [],
+  "related": [],
+  "note": "Nhập từ CTĐT sau đại học chính thức (PDF của trường, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

@@ -1,0 +1,32 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "EE6145",
+  "code": "EE6145",
+  "name": "Thực tập",
+  "nameEn": "Internship",
+  "credits": 6,
+  "faculty": "dee",
+  "levels": [
+    "thac-si"
+  ],
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "DEE_THAC_SI_THIET_KE_VI_MACH_2025_UD",
+      "block": "K07",
+      "required": true
+    },
+    {
+      "program": "DEE_THAC_SI_THIET_KE_VI_MACH_2026_TAUD",
+      "block": "K07",
+      "required": true
+    }
+  ],
+  "parts": [
+    "lab"
+  ],
+  "related": [],
+  "note": "Nhập từ CTĐT sau đại học chính thức (PDF của trường, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

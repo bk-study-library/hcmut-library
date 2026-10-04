@@ -1,0 +1,158 @@
+{
+  "$schema": "../../schema/program.schema.json",
+  "code": "CHE_THAC_SI_KY_THUAT_HOA_HOC_2026_TAUD",
+  "name": "Kỹ thuật hóa học",
+  "nameEn": "Chemical Engineering",
+  "faculty": "che",
+  "year": "2026",
+  "major": "8520301",
+  "type": "TAUD",
+  "level": "thac-si",
+  "orientation": "ung-dung",
+  "degree": "thac-si",
+  "totalCredits": 60,
+  "variant": "Thạc sĩ ứng dụng dạy bằng tiếng Anh",
+  "note": "Chỉ có trên Sổ tay HCMUT, không có PDF CTĐT trên trang Đào tạo. Sổ tay không ghi tên tiếng Anh của môn.",
+  "source": "https://hcmut.edu.vn/study/handbook/course/postgraduate/8520301?program=CTTAUD",
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/postgraduate/8520301?program=CTTAUD",
+  "groups": [
+    {
+      "name": "A. ĐA NGÀNH TỔNG QUÁT",
+      "creditsNeed": 9
+    },
+    {
+      "name": "C. NGÀNH/CHUYÊN NGÀNH",
+      "creditsNeed": 24
+    }
+  ],
+  "blocks": [
+    {
+      "id": "K01",
+      "name": "A.1. BẮT BUỘC ĐA NGÀNH, TỔNG QUÁT",
+      "group": "A. ĐA NGÀNH TỔNG QUÁT",
+      "kind": "chung",
+      "required": true,
+      "creditsNeed": 3,
+      "courses": [
+        "AS5113"
+      ]
+    },
+    {
+      "id": "K02",
+      "name": "A.2. TỰ CHỌN ĐA NGÀNH, TỔNG QUÁT",
+      "group": "A. ĐA NGÀNH TỔNG QUÁT",
+      "kind": "chung",
+      "required": false,
+      "creditsNeed": 6,
+      "courses": [
+        "GK5033",
+        "GK5011",
+        "GK5009",
+        "GK5021",
+        "GK5023",
+        "GK5025",
+        "GK5035",
+        "GK5037",
+        "GK5039",
+        "GK5041",
+        "GK5045",
+        "GK5043"
+      ]
+    },
+    {
+      "id": "K03",
+      "name": "A.3. NGOẠI NGỮ",
+      "group": "A. ĐA NGÀNH TỔNG QUÁT",
+      "kind": "ngoai-ngu",
+      "required": true,
+      "creditsNeed": 0,
+      "courses": [
+        "GK5047",
+        "GK5049"
+      ]
+    },
+    {
+      "id": "K04",
+      "name": "B. CƠ SỞ NGÀNH",
+      "kind": "co-so-nganh",
+      "required": true,
+      "creditsNeed": 12,
+      "courses": [
+        "CH5699",
+        "CH5703",
+        "CH5711",
+        "CH5311"
+      ]
+    },
+    {
+      "id": "K05",
+      "name": "C.1. NGÀNH/CHUYÊN NGÀNH BẮT BUỘC",
+      "group": "C. NGÀNH/CHUYÊN NGÀNH",
+      "kind": "chuyen-nganh",
+      "required": true,
+      "creditsNeed": 12,
+      "courses": [
+        "CH5601",
+        "CH5603",
+        "CH5605",
+        "CH5607"
+      ]
+    },
+    {
+      "id": "K06",
+      "name": "C.2. NGÀNH/CHUYÊN NGÀNH TỰ CHỌN",
+      "group": "C. NGÀNH/CHUYÊN NGÀNH",
+      "kind": "chuyen-nganh",
+      "required": false,
+      "creditsNeed": 12,
+      "courses": [
+        "CH5657",
+        "CH5659",
+        "CH5655",
+        "CH5649",
+        "CH5647",
+        "CH5645",
+        "CH5643",
+        "CH5617",
+        "CH5615",
+        "CH5613",
+        "CH5635",
+        "CH5633",
+        "CH5625",
+        "CH5623",
+        "CH5373",
+        "CH5445",
+        "CH5375",
+        "CH5405",
+        "CH5427",
+        "CH5609",
+        "CH5611",
+        "CH5341",
+        "CH5653"
+      ]
+    },
+    {
+      "id": "K07",
+      "name": "D. HỌC PHẦN TỐT NGHIỆP",
+      "kind": "luan-van",
+      "required": true,
+      "creditsNeed": 15,
+      "courses": [
+        "CH5597",
+        "CH5599",
+        "CH6055"
+      ]
+    },
+    {
+      "id": "K08",
+      "name": "E. ĐIỀU KIỆN TỐT NGHIỆP",
+      "kind": "dieu-kien-tot-nghiep",
+      "required": true,
+      "creditsNeed": 0,
+      "courses": [
+        "ENG_B2"
+      ]
+    }
+  ],
+  "updated": "2026-10-04"
+}

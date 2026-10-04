@@ -1,0 +1,53 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "CO5097",
+  "code": "CO5097",
+  "name": "Cơ sở Toán cho Khoa Học Máy Tính",
+  "nameEn": "Mathematical Foundation For Computer Science",
+  "credits": 3,
+  "faculty": "cse",
+  "levels": [
+    "thac-si",
+    "tien-si"
+  ],
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "CSE_THAC_SI_KHOA_HOC_MAY_TINH_2025_NC",
+      "block": "K03",
+      "required": true
+    },
+    {
+      "program": "CSE_THAC_SI_KHOA_HOC_MAY_TINH_2025_UD",
+      "block": "K04",
+      "required": true
+    },
+    {
+      "program": "CSE_THAC_SI_KHOA_HOC_MAY_TINH_2026_NC",
+      "block": "K03",
+      "required": true
+    },
+    {
+      "program": "CSE_THAC_SI_KHOA_HOC_MAY_TINH_2026_TAUD",
+      "block": "K04",
+      "required": true
+    },
+    {
+      "program": "CSE_THAC_SI_KHOA_HOC_MAY_TINH_2026_UD",
+      "block": "K04",
+      "required": true
+    },
+    {
+      "program": "CSE_TIEN_SI_KHOA_HOC_MAY_TINH_2025_PT2",
+      "block": "K02",
+      "required": false
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "note": "Nhập từ CTĐT sau đại học chính thức (PDF của trường, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

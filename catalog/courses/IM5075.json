@@ -1,0 +1,37 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "IM5075",
+  "code": "IM5075",
+  "name": "Lean và six sigma",
+  "nameEn": "Lean and Six Sigma",
+  "credits": 3,
+  "faculty": "sim",
+  "levels": [
+    "thac-si"
+  ],
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "SIM_THAC_SI_QUAN_TRI_KINH_DOANH_2022",
+      "block": "K03",
+      "required": false
+    },
+    {
+      "program": "SIM_THAC_SI_QUAN_TRI_KINH_DOANH_2025_TAUD",
+      "block": "K06",
+      "required": false
+    },
+    {
+      "program": "SIM_THAC_SI_QUAN_TRI_KINH_DOANH_2025_UD",
+      "block": "K06",
+      "required": false
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "note": "Nhập từ CTĐT sau đại học chính thức (PDF của trường, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

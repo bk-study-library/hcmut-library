@@ -1,0 +1,18 @@
+{
+  "$schema": "../../schema/program.schema.json",
+  "code": "DEE_TIEN_SI_KY_THUAT_DIEU_KHIEN_VA_TU_DONG_HOA_2022",
+  "name": "Kỹ thuật Điều khiển và Tự động hóa",
+  "nameEn": "Control Engineering and Automation",
+  "faculty": "dee",
+  "year": "2022",
+  "major": "9520216",
+  "type": "CQ",
+  "level": "tien-si",
+  "degree": "tien-si",
+  "totalCredits": 90,
+  "note": "Bản CTĐT 2022 dạng văn bản mô tả, liệt kê tên môn nhưng không ghi mã môn, nên chưa tách khối và mã. Tổng tín chỉ lấy theo quy định chung (60 thạc sĩ, 90 tiến sĩ).",
+  "source": "https://drive.google.com/file/d/1iMyBQXS0xREVAWyvxw0wwtc8prQg_M0t/view",
+  "ctdtUrl": "https://drive.google.com/file/d/1iMyBQXS0xREVAWyvxw0wwtc8prQg_M0t/view",
+  "blocks": [],
+  "updated": "2026-10-04"
+}
