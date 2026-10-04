@@ -1,0 +1,14 @@
+{
+  "id": "tom-tat-c1",
+  "course": "EE1009",
+  "type": "summary",
+  "title": "Tóm tắt chương 1",
+  "lang": "vi",
+  "term": "HK251",
+  "authors": ["an-danh"],
+  "license": "CC-BY-SA-4.0",
+  "origin": "self-made",
+  "files": [{ "name": "tom-tat-c1.md", "size": 82, "sha256": "48d99f80b7d4df1cbe9be9cf80651255170eddc91ed973193c1c5ea0ba4f932d", "path": "files/tom-tat-c1.md" }],
+  "added": "2026-10-01",
+  "removed": false
+}

@@ -1,0 +1,18 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "GE4169",
+  "code": "GE4169",
+  "name": "Khai phá dữ liệu",
+  "nameEn": "Data Mining",
+  "credits": 3,
+  "faculty": "geopet",
+  "aliases": [],
+  "status": "active",
+  "programs": [],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "note": "Dữ liệu mẫu cho hợp đồng v1. Tên, mã, tín chỉ lấy từ CTĐT công khai (truy cập 03/10/2026). CTĐT Kỹ thuật Địa chất 2023. Mã GE4169 xuất hiện với môn khác trong CTĐT 2024, xem GE4169-2024. Chờ người duyệt xác nhận.",
+  "updated": "2026-10-03"
+}

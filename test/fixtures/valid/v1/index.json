@@ -1,0 +1,71 @@
+{
+  "schemaVersion": 1,
+  "generated": "2026-10-01",
+  "site": "https://bk-study-library.github.io/bk-study-library/",
+  "counts": {
+    "courses": 3,
+    "items": 3
+  },
+  "faculties": [
+    {
+      "key": "EE",
+      "name": {
+        "vi": "Khoa Điện - Điện tử",
+        "en": "Faculty of Electrical and Electronics Engineering"
+      }
+    },
+    {
+      "key": "unknown",
+      "name": {
+        "vi": "Chưa xác định",
+        "en": "Unassigned"
+      }
+    }
+  ],
+  "courses": [
+    {
+      "id": "400111",
+      "code": "400111",
+      "name": "Môn cũ đã ngừng",
+      "credits": 3,
+      "faculty": "unknown",
+      "aliases": [],
+      "oldNames": [],
+      "status": "retired",
+      "replacedBy": "EE1009",
+      "items": 0,
+      "url": "https://bk-study-library.github.io/bk-study-library/course/400111/",
+      "detail": "courses/400111.json"
+    },
+    {
+      "id": "EE1009",
+      "code": "EE1009",
+      "name": "Kỹ thuật số",
+      "credits": 3,
+      "faculty": "EE",
+      "aliases": [
+        "402030"
+      ],
+      "oldNames": [
+        "Kỹ thuật số (mã cũ)"
+      ],
+      "status": "active",
+      "items": 2,
+      "url": "https://bk-study-library.github.io/bk-study-library/course/EE1009/",
+      "detail": "courses/EE1009.json"
+    },
+    {
+      "id": "EE1010",
+      "code": "EE1010",
+      "name": "Kỹ thuật số (Thí nghiệm)",
+      "credits": 0,
+      "faculty": "EE",
+      "aliases": [],
+      "oldNames": [],
+      "status": "active",
+      "items": 1,
+      "url": "https://bk-study-library.github.io/bk-study-library/course/EE1010/",
+      "detail": "courses/EE1010.json"
+    }
+  ]
+}

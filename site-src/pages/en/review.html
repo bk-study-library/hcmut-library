@@ -1,0 +1,31 @@
+<div class="prose">
+<h1>Review</h1>
+<p class="lead">A reviewer checks every contribution before it appears in the library. Reviewers are students who have taken the course and volunteer to help.</p>
+
+<h2>Who reviews</h2>
+<ul>
+  <li>For now: the repository maintainer (<a href="https://github.com/xeroz369" rel="noopener">@xeroz369</a>), listed in <code>.github/CODEOWNERS</code>.</li>
+  <li>As more people join, each faculty or group of courses gets its own reviewers, also listed in <code>CODEOWNERS</code> by course folder. GitHub then requests the right reviewer on each pull request.</li>
+  <li>To review for a course you know well, open the <a href="{{issue:dang-ky-duyet.yml}}" rel="noopener">Become a reviewer</a> form.</li>
+</ul>
+
+<h2>The steps a contribution goes through</h2>
+<ol>
+  <li><strong>Sent</strong>: through the upload page (a bot opens a pull request), through the Add a link form (an issue with the <code>cần duyệt</code> label; the reviewer opens the pull request from the issue by hand), or as your own pull request.</li>
+  <li><strong>Automatic checks</strong>: for files sent through the web page, the <code>kiem-file</code> workflow scans for viruses, strips PDF metadata, warns about student IDs, emails and phone numbers, and writes the release link into the pull request. The <code>validate</code> CI checks format, file types, sizes and duplicates.</li>
+  <li><strong>A reviewer reads it</strong> using the checklist below and asks the sender questions in the pull request or issue when needed.</li>
+  <li><strong>Merged</strong>: the reviewer merges the pull request. The <code>phat-hanh-file</code> workflow publishes the file to the <code>files-HKxxx</code> GitHub pre-release. If the pull request is closed instead, <code>don-kho</code> cleans up the waiting file.</li>
+  <li><strong>The issue is closed</strong> (for links) with a link to the course page.</li>
+</ol>
+<p>Target: a reply to every contribution within seven days. Takedown requests come first; see <a href="{{root}}takedown/">Takedown</a>.</p>
+
+<h2>Reviewer checklist</h2>
+<ul>
+  <li>It is not a copyrighted book file. Books become the Sách tham khảo type, listed by title only.</li>
+  <li>Personal information: read the machine warning in the PR and decide. It only warns, it does not block.</li>
+  <li>License: CC BY-SA 4.0 (or CC BY 4.0, CC0) for the sender's own work; for links, the source's actual license.</li>
+  <li>Right course, right type, a clear title, no advertising.</li>
+  <li>For .zip files: open them and check that there are no executables.</li>
+</ul>
+<p>Details (in Vietnamese): <a href="{{repo}}/blob/main/CONTRIBUTING.md" rel="noopener">CONTRIBUTING.md</a>.</p>
+</div>

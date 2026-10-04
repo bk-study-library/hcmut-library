@@ -1,0 +1,26 @@
+{
+  "$schema": "../../../schema/item.schema.json",
+  "id": "quiz-gioi-han-dao-ham",
+  "course": "MT1003",
+  "type": "quiz-pack",
+  "title": "Gói quiz giới hạn và đạo hàm",
+  "description": "4 câu (điền số, một đáp án, đúng/sai) theo định dạng Study Pack v1, mở được bằng Luyện tập trong BK Study Desk.",
+  "lang": "vi",
+  "chapter": "1",
+  "authors": [
+    "BK Study Library"
+  ],
+  "license": "CC-BY-SA-4.0",
+  "origin": "self-made",
+  "files": [
+    {
+      "name": "quiz-gioi-han-dao-ham.md",
+      "size": 1227,
+      "sha256": "cf6e7ca888ae2d759080d096d407de5d9be42b59e062e532f3293636c0c2e21e",
+      "path": "files/quiz-gioi-han-dao-ham.md"
+    }
+  ],
+  "example": true,
+  "added": "2026-10-03",
+  "removed": false
+}

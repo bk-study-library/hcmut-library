@@ -1,0 +1,8 @@
+# Dependabot: đề xuất bản mới của các action (đã ghim SHA). Repo không có gói npm nào.
+# cooldown: bản mới phải ra ít nhất 7 ngày mới được đề xuất.
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule: { interval: monthly }
+    cooldown: { default-days: 7 }

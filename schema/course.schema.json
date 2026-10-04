@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/bk-study-library/bk-study-library/schema/course.schema.json",
+  "title": "Course",
+  "description": "Một môn học trong danh mục. ID cố định từ lúc tạo, không bao giờ đổi. / One course in the catalog. The ID is fixed at creation and never changes.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "code", "name", "credits", "faculty", "aliases", "status", "programs", "parts", "related", "updated"],
+  "properties": {
+    "$schema": { "type": "string" },
+    "id": { "type": "string", "pattern": "^[A-Z0-9_]{3,12}(-[0-9]{4})?$", "description": "Mã môn lúc tạo; mã bị dùng lại cho môn khác thì thêm -<năm khóa>, ví dụ GE4169-2024. Dùng cho thư mục và URL." },
+    "code": { "type": "string", "pattern": "^[A-Z0-9_]{3,12}$", "description": "Mã môn hiện tại." },
+    "name": { "type": "string", "minLength": 1, "description": "Tên tiếng Việt hiện tại." },
+    "nameEn": { "type": "string", "minLength": 1 },
+    "credits": { "type": "integer", "minimum": 0, "maximum": 30 },
+    "faculty": { "type": "string", "pattern": "^[A-Za-z0-9_-]+$", "description": "Khóa trong catalog/faculties.json." },
+    "aliases": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["code", "name"],
+        "properties": {
+          "code": { "type": "string", "pattern": "^[A-Z0-9_]{3,12}$" },
+          "name": { "type": "string", "minLength": 1 },
+          "from": { "type": "string", "pattern": "^(HK[0-9]{3}|[0-9]{4}-[0-9]{2}-[0-9]{2})$" },
+          "to": { "type": "string", "pattern": "^(HK[0-9]{3}|[0-9]{4}-[0-9]{2}-[0-9]{2})$" }
+        }
+      }
+    },
+    "status": { "enum": ["active", "retired"] },
+    "replacedBy": { "type": "string", "pattern": "^[A-Z0-9_]{3,12}(-[0-9]{4})?$" },
+    "replaces": { "type": "array", "items": { "type": "string", "pattern": "^[A-Z0-9_]{3,12}(-[0-9]{4})?$" } },
+    "programs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["program", "block", "required"],
+        "properties": {
+          "program": { "type": "string", "pattern": "^[A-Z0-9_]+$" },
+          "block": { "type": "string", "minLength": 1 },
+          "required": { "type": "boolean" }
+        }
+      }
+    },
+    "parts": { "type": "array", "items": { "enum": ["theory", "lab", "assignment", "project"] } },
+    "related": { "type": "array", "items": { "type": "string", "pattern": "^[A-Z0-9_]{3,12}(-[0-9]{4})?$" } },
+    "note": { "type": "string" },
+    "updated": { "type": "string", "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$" }
+  }
+}

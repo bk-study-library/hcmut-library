@@ -1,0 +1,13 @@
+{
+  "id": "EE1010",
+  "code": "EE1010",
+  "name": "Kỹ thuật số (Thí nghiệm)",
+  "credits": 0,
+  "faculty": "EE",
+  "aliases": [],
+  "status": "active",
+  "programs": [],
+  "parts": ["lab"],
+  "related": ["EE1009"],
+  "updated": "2026-10-01"
+}

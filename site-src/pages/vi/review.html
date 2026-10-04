@@ -1,0 +1,31 @@
+<div class="prose">
+<h1>Duyệt bài</h1>
+<p class="lead">Mỗi tài liệu được người duyệt kiểm trước khi lên thư viện. Người duyệt là sinh viên đã học qua môn, tình nguyện giúp.</p>
+
+<h2>Ai duyệt</h2>
+<ul>
+  <li>Hiện tại: người duy trì repo (<a href="https://github.com/xeroz369" rel="noopener">@xeroz369</a>), ghi trong file <code>.github/CODEOWNERS</code>.</li>
+  <li>Khi có thêm người, mỗi khoa hoặc nhóm môn có người duyệt riêng, cũng ghi trong <code>CODEOWNERS</code> theo thư mục môn. GitHub tự mời đúng người duyệt khi có Pull Request.</li>
+  <li>Muốn duyệt cho môn bạn giỏi: mở form <a href="{{issue:dang-ky-duyet.yml}}" rel="noopener">Đăng ký duyệt bài</a>.</li>
+</ul>
+
+<h2>Bài đi qua những bước nào</h2>
+<ol>
+  <li><strong>Gửi</strong>: qua trang Gửi tài liệu (bot mở một Pull Request cho bài), qua form Thêm link (issue có nhãn <code>cần duyệt</code>, người duyệt tự tạo Pull Request từ issue), hoặc bạn tự mở Pull Request.</li>
+  <li><strong>Kiểm tự động</strong>: với file gửi qua trang web, workflow <code>kiem-file</code> quét virus, xóa siêu dữ liệu PDF, cảnh báo MSSV, email, số điện thoại, rồi ghi link Release vào Pull Request. CI <code>validate</code> kiểm định dạng, loại file, dung lượng và file trùng.</li>
+  <li><strong>Người duyệt đọc</strong>: theo danh sách bên dưới, hỏi lại người gửi trong Pull Request hoặc issue nếu cần.</li>
+  <li><strong>Merge</strong>: người duyệt merge Pull Request. Workflow <code>phat-hanh-file</code> đưa file lên GitHub Release <code>files-HKxxx</code> (pre-release). Pull Request bị đóng thì <code>don-kho</code> dọn file chờ duyệt.</li>
+  <li><strong>Đóng issue</strong> (với link) kèm link tới trang môn.</li>
+</ol>
+<p>Mục tiêu: trả lời bài gửi trong 7 ngày. Yêu cầu gỡ được ưu tiên, xem <a href="{{root}}takedown/">Gỡ tài liệu</a>.</p>
+
+<h2>Danh sách kiểm của người duyệt</h2>
+<ul>
+  <li>Không phải file sách có bản quyền. Sách thì chuyển thành loại Sách tham khảo, chỉ ghi tên.</li>
+  <li>Thông tin cá nhân: xem cảnh báo của máy trong PR rồi quyết. Máy chỉ cảnh báo, không chặn.</li>
+  <li>Giấy phép: tự soạn thì CC BY-SA 4.0 (hoặc CC BY 4.0, CC0); link thì ghi đúng giấy phép của nguồn.</li>
+  <li>Nội dung đúng môn, đúng loại, tiêu đề rõ, không quảng cáo.</li>
+  <li>File .zip: mở ra xem, không có file chạy được.</li>
+</ul>
+<p>Chi tiết: <a href="{{repo}}/blob/main/CONTRIBUTING.md" rel="noopener">CONTRIBUTING.md</a>.</p>
+</div>

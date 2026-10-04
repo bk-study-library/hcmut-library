@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/bk-study-library/bk-study-library/schema/program.schema.json",
+  "title": "Program",
+  "description": "Một chương trình đào tạo (CTĐT): khối kiến thức và ID môn. Không chứa điểm. / One curriculum: blocks and course IDs. No grades.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["code", "name", "faculty", "year", "blocks", "updated"],
+  "properties": {
+    "$schema": { "type": "string" },
+    "code": { "type": "string", "pattern": "^[A-Z0-9_]+$" },
+    "name": { "type": "string", "minLength": 1 },
+    "nameEn": { "type": "string", "minLength": 1 },
+    "faculty": { "type": "string", "pattern": "^[A-Za-z0-9_-]+$" },
+    "year": { "type": "string", "pattern": "^[0-9]{4}$" },
+    "source": { "type": "string" },
+    "blocks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "name", "required", "courses"],
+        "properties": {
+          "id": { "type": "string", "minLength": 1 },
+          "name": { "type": "string", "minLength": 1 },
+          "group": { "type": "string" },
+          "required": { "type": "boolean" },
+          "creditsNeed": { "type": "integer", "minimum": 0 },
+          "courses": { "type": "array", "items": { "type": "string", "pattern": "^[A-Z0-9_]{3,12}(-[0-9]{4})?$" } }
+        }
+      }
+    },
+    "updated": { "type": "string", "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$" }
+  }
+}

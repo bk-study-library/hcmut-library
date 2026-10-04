@@ -1,0 +1,13 @@
+{
+  "id": "link-doi-tac",
+  "course": "EE1010",
+  "type": "link",
+  "title": "Link từ đối tác",
+  "lang": "vi",
+  "license": "unknown",
+  "origin": "partner:vi-du",
+  "source": "Đối tác ví dụ",
+  "url": "https://example.org/ee1010",
+  "added": "2026-09-15",
+  "removed": false
+}

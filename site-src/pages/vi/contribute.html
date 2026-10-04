@@ -1,0 +1,36 @@
+<div class="prose">
+<h1>Đóng góp tài liệu</h1>
+<p class="lead">Thư viện sống nhờ sinh viên gửi bài và duyệt bài cho nhau. Bạn không cần tài khoản GitHub: điền form, chọn file, xong.</p>
+
+<h2>Tài liệu nào được đăng</h2>
+<p>Gần như mọi thứ: tóm tắt, ghi chú, bảng công thức, lời giải, đề cũ, mẫu và bài tham khảo cho prelab, báo cáo, bài tập lớn, gói quiz của BK Study Desk.</p>
+<p>Điều duy nhất không nhận là <strong>file sách có bản quyền</strong> (sách thương mại, sách của nhà xuất bản). Muốn giới thiệu một cuốn sách, chọn loại <strong>Sách tham khảo</strong> và chỉ ghi tên sách, tác giả, năm, nhà xuất bản, ISBN. Không gửi kèm file.</p>
+<p>Để an toàn cho người tải, thư viện chỉ nhận các đuôi file được liệt kê trên form và chặn file có virus.</p>
+
+<h2>Cách 1: gửi qua form, không cần Git</h2>
+<ol>
+  <li>Mở <a href="{{viroot}}gui-tai-lieu/">Gửi tài liệu</a>, hoặc bấm <strong>Gửi tài liệu</strong> trên trang môn để form chọn sẵn môn.</li>
+  <li>Chọn môn, loại tài liệu, nhập tiêu đề, chọn file. Nhiều file thì nén thành một file .zip.</li>
+  <li>Chọn giấy phép và đánh dấu ba ô cam kết.</li>
+  <li>Bấm <strong>Gửi tài liệu</strong>. Trang hiện mã bài của bạn, hãy lưu lại.</li>
+</ol>
+<p>Chỉ có link, không có file? Dùng form <a href="{{issue:them-link.yml}}" rel="noopener">Thêm link</a> (cần tài khoản GitHub).</p>
+
+<h2>Cách 2: Pull Request (nếu bạn dùng Git)</h2>
+<ol>
+  <li>Fork repo, thêm <code>courses/&lt;ID&gt;/items/&lt;id&gt;.json</code>. Cách này chỉ nhận thông tin tài liệu (JSON) và file <code>.md</code> dưới 1 MB, đặt ở <code>courses/&lt;ID&gt;/files/</code>. File khác thì gửi qua form.</li>
+  <li>Chạy <code>npm test</code> và <code>npm run build</code>, rồi commit cả file sinh ra.</li>
+  <li>Mở Pull Request và đánh dấu checklist.</li>
+</ol>
+<p>Chi tiết các trường: <a href="{{repo}}/blob/main/CONTRIBUTING.md" rel="noopener">CONTRIBUTING.md</a>.</p>
+
+<h2>Thông tin cá nhân</h2>
+<p>Thư viện không cấm đăng thông tin cá nhân, nhưng máy sẽ cảnh báo nếu thấy MSSV, email hay số điện thoại trong bài, để bạn và người duyệt cân nhắc có nên xóa không. Bạn nên tự xóa phần này trước khi gửi. Form không bắt nhập email; tên hiển thị để trống thì bài hiện là Ẩn danh. Cách thư viện xử lý dữ liệu: <a href="{{repo}}/blob/main/PRIVACY.md" rel="noopener">PRIVACY.md</a>.</p>
+
+<h2>Sau khi gửi</h2>
+<ul>
+  <li><strong>Mã bài</strong>: dùng mã này khi hỏi về bài của bạn.</li>
+  <li><strong>Thời gian duyệt</strong>: người duyệt làm việc tự nguyện nên chưa có hạn cố định. Bài được duyệt sẽ hiện trên trang môn. Xem <a href="{{root}}review/">cách duyệt bài</a>.</li>
+  <li><strong>Xin gỡ</strong>: nếu bài của bạn hoặc bài bạn có quyền với đang nằm trên thư viện, làm theo <a href="{{root}}takedown/">Gỡ tài liệu</a>.</li>
+</ul>
+</div>
