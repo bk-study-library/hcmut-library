@@ -6,7 +6,7 @@ Thư viện tài liệu học tập do sinh viên Bách Khoa TP.HCM (HCMUT) chia
 
 ## Trạng thái
 
-Bản khung (0.1.0). Danh mục mới có 8 môn và các tài liệu trong đó là dữ liệu mẫu (có đánh dấu "mẫu") để thử giao diện và quy trình. Danh mục đầy đủ sẽ được nhập sau, từ nguồn công khai.
+Bản khung (0.1.0). Danh mục có 737 môn và 195 chương trình đào tạo, nhập từ nguồn công khai (truy cập 03/10/2026). Mới có danh sách môn của Khoa Cơ khí, Khoa Điện - Điện tử, Khoa Kỹ thuật Địa chất và Dầu khí; 100 chương trình còn lại chưa có danh sách môn. Các tài liệu hiện có là dữ liệu mẫu (có đánh dấu "mẫu") để thử giao diện và quy trình.
 
 ## Quy định
 
@@ -57,7 +57,7 @@ catalog/
   policy.json               quy định chung: loại nhận, dung lượng, đuôi file, học kỳ
   site.json                 địa chỉ Worker nhận bài và khóa công khai Turnstile
   courses/<ID>.json         một file mỗi môn; ID cố định, không bao giờ đổi
-  programs/<mã CTĐT>.json   chương trình đào tạo (hiện chưa có)
+  programs/<mã CTĐT>.json   chương trình đào tạo; khối có thể rỗng khi chưa có danh sách môn
 courses/<ID>/
   README.md                 sinh tự động; chỉ sửa phần "Mẹo học"
   items/<item-id>.json      một mục mỗi tài liệu hoặc link
@@ -87,6 +87,7 @@ Cần Node 22 trở lên. Phần chính của repo không có gói npm nào ph�
 | `npm run site` | sinh trang web vào `site/` |
 | `npm run demo` | sinh trang web xem thử với dữ liệu mẫu lớn hơn (không đụng `catalog/`) |
 | `node scripts/import-seed.mjs --seed <file>` | nhập một chương trình đào tạo vào danh mục |
+| `node scripts/import-research.mjs --research <thư mục>` | nhập môn và chương trình từ bản thu thập nguồn công khai (`courses.json`, `programs.json`); môn đã có thì giữ, chỉ cập nhật chương trình |
 | `cd worker && npm ci && npm test` | cài và chạy test của Worker (cần Node 24 theo CI) |
 
 ## Trang web

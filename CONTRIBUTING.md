@@ -60,6 +60,15 @@ Mở form [Sửa danh mục môn](https://github.com/bk-study-library/bk-study-l
 - Trường dùng lại một mã cho môn khác thì môn sau có ID kèm năm khóa, ví dụ `GE4169-2024`.
 - Danh mục chỉ lấy từ nguồn công khai. Không ghi điểm, GPA hay số liệu cá nhân.
 
+## Thêm chương trình đào tạo
+
+Khoa của bạn chưa có chương trình, hoặc chương trình chưa có danh sách môn: mở form [Thêm chương trình đào tạo](https://github.com/bk-study-library/bk-study-library/issues/new?template=them-chuong-trinh.yml), hoặc bấm **Thêm chương trình đào tạo** trên trang khoa, trang chương trình hay mục Chương trình đào tạo ở trang chủ để form chọn sẵn khoa.
+
+- Ghi khoa, tên ngành như trong CTĐT, khóa (năm vào trường).
+- Gửi link CTĐT chính thức của trường hoặc của khoa. Không có link thì đính kèm file PDF CTĐT; CTĐT là văn bản công khai nên gửi qua issue được.
+- Không đính kèm bảng điểm hay ảnh chụp MyBK có MSSV, điểm.
+- Người duyệt nhập mã môn, tên, tín chỉ, khối kiến thức vào `catalog/programs/<mã>.json` và mục `programs` của từng môn, rồi mở Pull Request. Thư viện không lưu file CTĐT, chỉ lưu link nguồn.
+
 ## Duyệt bài
 
 Người duyệt là sinh viên đã học qua môn, làm tình nguyện. Danh sách người duyệt nằm trong [.github/CODEOWNERS](.github/CODEOWNERS). Hiện tại là người duy trì repo. Muốn tham gia, mở form [Đăng ký duyệt bài](https://github.com/bk-study-library/bk-study-library/issues/new?template=dang-ky-duyet.yml).
