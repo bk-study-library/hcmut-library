@@ -3,5 +3,28 @@
   "id": "EE5367",
   "code": "EE5367",
   "name": "Sản xuất, kiểm tra và đóng gói",
-  "items": []
+  "items": [
+    {
+      "id": "slide-chapter-5",
+      "type": "lecture-slides",
+      "title": "Slide chapter 5",
+      "lang": "vi",
+      "teacher": "Hoàng Trang",
+      "license": "CC-BY-SA-4.0",
+      "origin": "self-made",
+      "added": "2026-10-04",
+      "updated": "2026-10-04",
+      "files": [
+        {
+          "name": "EE5367_lecture-slides_slide-chapter-5.pdf",
+          "mime": "application/pdf",
+          "size": 2899601,
+          "sha256": "a520393b23d67f33e90f4bb4aecb083d357680b4a1727a46a4cefb02739dbed3",
+          "urls": [
+            "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261/EE5367_lecture-slides_slide-chapter-5.pdf"
+          ]
+        }
+      ]
+    }
+  ]
 }
