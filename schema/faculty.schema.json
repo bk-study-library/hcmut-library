@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://github.com/bk-study-library/library/schema/faculty.schema.json",
+  "$id": "https://github.com/bk-study-library/hcmut-library/schema/faculty.schema.json",
   "title": "Faculties",
   "description": "Khoa/ngành và gợi ý tiền tố mã môn. / Faculties or majors and course-code prefix hints.",
   "type": "object",

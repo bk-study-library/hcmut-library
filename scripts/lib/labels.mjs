@@ -1,9 +1,9 @@
 // Nhãn hiển thị dùng chung cho README môn và trang web.
 
-export const REPO = 'bk-study-library/library';
+export const REPO = 'bk-study-library/hcmut-library';
 export const REPO_URL = `https://github.com/${REPO}`;
 // Địa chỉ web công khai. Đổi khi gắn tên miền riêng; app đọc <SITE_URL>v1/index.json.
-export const SITE_URL = 'https://bk-study-library.github.io/library/';
+export const SITE_URL = 'https://bk-study-library.github.io/hcmut-library/';
 export const RAW_URL = `https://raw.githubusercontent.com/${REPO}/main/`;
 
 export const TYPE_ORDER = [

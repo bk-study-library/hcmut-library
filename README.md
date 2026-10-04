@@ -1,6 +1,6 @@
 # BK Study Library
 
-Thư viện tài liệu học tập do sinh viên Bách Khoa TP.HCM (HCMUT) chia sẻ, xếp theo mã môn. Đọc trên web, không cần cài gì: **https://bk-study-library.github.io/library/**
+Thư viện tài liệu học tập do sinh viên Bách Khoa TP.HCM (HCMUT) chia sẻ, xếp theo mã môn. Đọc trên web, không cần cài gì: **https://bk-study-library.github.io/hcmut-library/**
 
 Đây là dự án của sinh viên, không phải trang chính thức của Trường Đại học Bách khoa - ĐHQG-HCM.
 
@@ -22,8 +22,8 @@ Máy chỉ cảnh báo khi thấy MSSV, email, số điện thoại trong file, 
 
 Có ba cách. Chi tiết từng bước nằm trong [CONTRIBUTING.md](CONTRIBUTING.md).
 
-1. **Gửi file qua trang web, không cần tài khoản GitHub.** Mở [Gửi tài liệu](https://bk-study-library.github.io/library/gui-tai-lieu/), điền form, chọn file. Worker kiểm form và cất file vào kho riêng. Một bot mở Pull Request, rồi bài đi qua phần Duyệt bài bên dưới.
-2. **Thêm link qua form issue.** Dùng form [Thêm link](https://github.com/bk-study-library/library/issues/new?template=them-link.yml). Người duyệt đọc và tự mở Pull Request.
+1. **Gửi file qua trang web, không cần tài khoản GitHub.** Mở [Gửi tài liệu](https://bk-study-library.github.io/hcmut-library/gui-tai-lieu/), điền form, chọn file. Worker kiểm form và cất file vào kho riêng. Một bot mở Pull Request, rồi bài đi qua phần Duyệt bài bên dưới.
+2. **Thêm link qua form issue.** Dùng form [Thêm link](https://github.com/bk-study-library/hcmut-library/issues/new?template=them-link.yml). Người duyệt đọc và tự mở Pull Request.
 3. **Pull Request, nếu bạn dùng Git.** Thêm `courses/<ID>/items/<id>.json` và file `.md` nhỏ (dưới 1 MB) nếu có. File khác gửi qua cách 1.
 
 Không gửi file qua issue: file đính kèm trên repo công khai thành công khai ngay, trước khi có người duyệt.
@@ -37,11 +37,11 @@ Người duyệt là sinh viên đã học qua môn, làm tình nguyện; danh s
 3. Workflow `phat-hanh-file` đưa file lên GitHub pre-release `files-HKxxx`.
 4. Pull Request bị đóng thì `don-kho` dọn file chờ duyệt.
 
-Danh sách kiểm và luồng đầy đủ: [CONTRIBUTING.md](CONTRIBUTING.md). Muốn làm người duyệt: form [Đăng ký duyệt bài](https://github.com/bk-study-library/library/issues/new?template=dang-ky-duyet.yml).
+Danh sách kiểm và luồng đầy đủ: [CONTRIBUTING.md](CONTRIBUTING.md). Muốn làm người duyệt: form [Đăng ký duyệt bài](https://github.com/bk-study-library/hcmut-library/issues/new?template=dang-ky-duyet.yml).
 
 ## Gỡ tài liệu
 
-Tác giả, chủ bản quyền, người có thông tin cá nhân trong tài liệu hoặc người đã gửi đều có thể yêu cầu gỡ bằng form [Yêu cầu gỡ](https://github.com/bk-study-library/library/issues/new?template=yeu-cau-go.yml). Mục tiêu xử lý: 1 ngày làm việc. Mục đã gỡ vẫn giữ `id` và lý do. Xem [TAKEDOWN.md](TAKEDOWN.md).
+Tác giả, chủ bản quyền, người có thông tin cá nhân trong tài liệu hoặc người đã gửi đều có thể yêu cầu gỡ bằng form [Yêu cầu gỡ](https://github.com/bk-study-library/hcmut-library/issues/new?template=yeu-cau-go.yml). Mục tiêu xử lý: 1 ngày làm việc. Mục đã gỡ vẫn giữ `id` và lý do. Xem [TAKEDOWN.md](TAKEDOWN.md).
 
 ## Dữ liệu cho app và công cụ khác
 
