@@ -203,6 +203,13 @@ export function validateFailureReason(output) {
   ].join('\n');
 }
 
+// Link xem file cho người duyệt từ reviewBase của catalog/site.json (bản tin cậy). Chỉ nhận https.
+export function reviewUrl(site, code) {
+  const base = String(site?.reviewBase ?? '').replace(/\/+$/, '');
+  if (!/^https:\/\/[A-Za-z0-9.-]+(:\d+)?$/.test(base)) return '';
+  return `${base}/xem-duyet/${code}`;
+}
+
 // Release đã có file cùng tên khác nội dung thì thêm 6 ký tự đầu sha256 trước đuôi.
 export function releaseName(name, sha256, existingAssets) {
   const prev = existingAssets.get(name);
@@ -370,6 +377,7 @@ function apply(a) {
   const report = renderReport({
     code: info.code, virus: null, metadataRemoved: r.metadataRemoved, hasText: r.hasText, pii: r.pii,
     piiChecked: r.piiChecked, url: next.files[0].url,
+    reviewUrl: reviewUrl(readJson(path.join(TOOL_ROOT, 'catalog', 'site.json')), info.code),
   });
   done(report, { virus: '', quarantine: next.files[0].quarantine, clean: cleanFile });
 }

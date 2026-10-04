@@ -5,7 +5,7 @@ name: phat-hanh-file
 #
 #   phat-hanh  (pull_request_target closed, đã merge)  tải bản đã làm sạch từ kho cách ly R2,
 #              kiểm sha256 và kích thước theo mục tài liệu, đưa lên Release (pre-release nếu
-#              chưa có), rồi xóa pending/, clean/ và khóa sha/ trong kho.
+#              chưa có), rồi xóa pending/, clean/, mã xem bài token/ và khóa sha/ trong kho.
 #              Sách tham khảo không file (locate ghi light=true) thì không có gì để phát hành
 #              hay dọn: các bước sau đều bỏ qua.
 #   go-file    (push vào main, đổi courses/**/items/*.json)  mục vừa chuyển sang removed thì
@@ -151,6 +151,7 @@ jobs:
           endpoint="https://${R2_ACCOUNT_ID}.r2.cloudflarestorage.com"
           aws s3 rm "s3://$R2_BUCKET/pending/$CODE/" --recursive --endpoint-url "$endpoint" --only-show-errors
           aws s3 rm "s3://$R2_BUCKET/clean/$CODE/" --recursive --endpoint-url "$endpoint" --only-show-errors
+          aws s3 rm "s3://$R2_BUCKET/token/$CODE" --endpoint-url "$endpoint" --only-show-errors
           if [ -n "$SHA" ]; then
             aws s3 rm "s3://$R2_BUCKET/sha/$SHA" --endpoint-url "$endpoint" --only-show-errors
           fi

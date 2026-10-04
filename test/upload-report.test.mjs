@@ -84,3 +84,12 @@ test('báo cáo nói rõ chưa kiểm thông tin cá nhân khi loại file khôn
   assert.ok(!/Chưa kiểm/.test(renderReport(clean)));
   assert.ok(!BANNED.test(out));
 });
+
+test('báo cáo có link xem file cho người duyệt khi có reviewUrl, báo cáo virus thì không', () => {
+  const reviewUrl = 'https://upload.example.org/xem-duyet/Abc123XYZ0';
+  const out = renderReport({ ...clean, reviewUrl });
+  assert.ok(out.includes(`Xem file (người duyệt): ${reviewUrl}`));
+  assert.ok(!BANNED.test(out));
+  assert.ok(!renderReport(clean).includes('Xem file'));
+  assert.ok(!renderReport({ ...clean, virus: 'Win.Test', reviewUrl }).includes(reviewUrl));
+});

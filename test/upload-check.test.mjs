@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import {
   applyCheck, quarantineInfo, pickItemFile, piiFromPages, removedTags, findReportComment, failureReport, githubOutput,
-  releaseName, validateResult, locateInfo, bookReport, validateFailureReason,
+  releaseName, validateResult, locateInfo, bookReport, validateFailureReason, reviewUrl,
 } from '../scripts/upload/check.mjs';
 import { releaseAssetUrl } from '../scripts/upload/term.mjs';
 import { REPORT_MARKER } from '../scripts/upload/report.mjs';
@@ -237,4 +237,19 @@ test('applyCheck giữ uploadSha256 của file gốc khi thay sha256 bằng bả
   assert.equal(out.files[0].sha256, SHA);
   assert.equal(out.files[0].uploadSha256, OLD_SHA);
   assert.deepEqual(validate(itemSchema, out), []);
+});
+
+test('reviewUrl dựng link xem file từ reviewBase, chỉ nhận https không có đường dẫn', () => {
+  assert.equal(reviewUrl({ reviewBase: 'https://upload.example.org' }, 'Abc123XYZ0'), 'https://upload.example.org/xem-duyet/Abc123XYZ0');
+  assert.equal(reviewUrl({ reviewBase: 'https://upload.example.org/' }, 'Abc123XYZ0'), 'https://upload.example.org/xem-duyet/Abc123XYZ0');
+  for (const reviewBase of [undefined, '', 'http://upload.example.org', 'javascript:alert(1)', 'https://a.example/x', 'https://a.example?x=1']) {
+    assert.equal(reviewUrl({ reviewBase }, 'Abc123XYZ0'), '');
+  }
+  assert.equal(reviewUrl(null, 'Abc123XYZ0'), '');
+});
+
+test('catalog/site.json có reviewBase là https', () => {
+  const site = JSON.parse(readFileSync(new URL('../catalog/site.json', import.meta.url), 'utf8'));
+  assert.equal(site.reviewBase, 'https://upload.xerozsoft.com');
+  assert.equal(reviewUrl(site, 'Abc123XYZ0'), 'https://upload.xerozsoft.com/xem-duyet/Abc123XYZ0');
 });
