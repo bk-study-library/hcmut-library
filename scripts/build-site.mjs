@@ -36,6 +36,8 @@ function readSiteConfig(root) {
     uploadEndpoint: String(cfg.uploadEndpoint || ''),
     turnstileSiteKey: String(cfg.turnstileSiteKey || ''),
     bookSources: Array.isArray(cfg.bookSources) ? cfg.bookSources : [],
+    // Số mục hiện sẵn mỗi nhóm tài liệu; phần còn lại gập trong "Xem thêm" để trang môn nhẹ khi có nhiều bài.
+    itemsPerGroup: Number.isInteger(cfg.itemsPerGroup) && cfg.itemsPerGroup > 0 ? cfg.itemsPerGroup : Infinity,
   };
 }
 
@@ -340,7 +342,7 @@ export function buildSite({ root = TOOL_ROOT, out = path.join(TOOL_ROOT, 'site')
 </section>
 <section class="search" role="search" aria-labelledby="search-label">
   <label id="search-label" for="q">${esc(t.searchLabel)}</label>
-  <input id="q" type="search" autocomplete="off" spellcheck="false" placeholder="${esc(t.searchPlaceholder)}" aria-describedby="q-hint" disabled>
+  <input id="q" type="search" autocomplete="off" spellcheck="false" placeholder="${esc(t.searchPlaceholder)}" aria-describedby="q-hint">
   <p id="q-hint" class="muted">${esc(t.searchHint)}</p>
   <noscript><p class="note">${esc(t.searchNoJs)}</p></noscript>
   <p id="q-status" class="muted" aria-live="polite"></p>
@@ -460,7 +462,13 @@ ${courseTable(t, f.courses, root, t.facultyCourses)}`;
       const groups = TYPE_ORDER.map((type) => {
         const list = c.items.filter((i) => i.type === type).sort((a, b) => Number(!!a.removed) - Number(!!b.removed) || a.title.localeCompare(b.title));
         if (!list.length) return '';
-        return `<section class="group"><h3>${esc(TYPES[type][lang])}</h3><ul class="items">${list.map((i) => renderItem(t, i, siteCfg)).join('')}</ul></section>`;
+        const n = siteCfg.itemsPerGroup;
+        const shown = list.slice(0, n).map((i) => renderItem(t, i, siteCfg)).join('');
+        const rest = list.slice(n);
+        const more = rest.length
+          ? `<details class="more-items"><summary>${esc(t.moreItems(rest.length))}</summary><ul class="items">${rest.map((i) => renderItem(t, i, siteCfg)).join('')}</ul></details>`
+          : '';
+        return `<section class="group"><h3>${esc(TYPES[type][lang])} <span class="muted small">(${list.length})</span></h3><ul class="items">${shown}</ul>${more}</section>`;
       }).join('');
       const name = t.lang === 'en' && c.nameEn ? c.nameEn : c.name;
       const retired =

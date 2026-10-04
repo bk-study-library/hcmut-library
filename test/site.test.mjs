@@ -259,3 +259,25 @@ test('trang môn: mục sách tham khảo có nút tra sách', () => {
   assert.match(html, /href="https:\/\/openlibrary\.org\/isbn\/9780134549897"/);
   assert.match(html, /Tra trên Open Library/);
 });
+
+test('trang môn: nhóm nhiều tài liệu chỉ hiện số mục theo itemsPerGroup, còn lại gập', () => {
+  const dir = copyFixture();
+  fs.writeFileSync(path.join(dir, 'catalog', 'site.json'), JSON.stringify({ uploadEndpoint: '', turnstileSiteKey: 'K', itemsPerGroup: 2 }));
+  for (let i = 1; i <= 4; i++) {
+    fs.writeFileSync(path.join(dir, 'courses', 'EE1009', 'items', `link-${i}.json`), JSON.stringify({
+      id: `link-${i}`, course: 'EE1009', type: 'link', title: `Link ${i}`, lang: 'vi', license: 'CC-BY-4.0', origin: 'link',
+      url: `https://example.org/${i}`, added: '2026-10-04', removed: false,
+    }));
+  }
+  const outDir = fs.mkdtempSync(path.join(os.tmpdir(), 'bk-lib-site-more-'));
+  buildSite({ root: dir, out: outDir });
+  const html = fs.readFileSync(path.join(outDir, 'course', 'EE1009', 'index.html'), 'utf8');
+  assert.match(html, /<details class="more-items"><summary>Xem thêm 2 tài liệu<\/summary>/);
+});
+
+test('trang chủ: ô tìm không bị khóa, danh sách môn chỉ tải khi dùng', () => {
+  const html = read('index.html');
+  assert.doesNotMatch(html, /<input id="q"[^>]*disabled/);
+  const js = fs.readFileSync(path.join(path.dirname(fileURLToPath(import.meta.url)), '..', 'site-src', 'assets', 'search.js'), 'utf8');
+  assert.match(js, /pointerenter/);
+});
