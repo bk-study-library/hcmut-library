@@ -1,0 +1,209 @@
+// Xem file chờ duyệt: người duyệt (/xem-duyet/<mã>, sau Cloudflare Access) và người gửi
+// (/xem/<mã>?k=<mã bí mật>). File trong kho cách ly không bao giờ công khai: mọi đường đều kiểm
+// quyền trước khi đọc R2. Không ghi log mã bí mật, IP hay tên file.
+import { SITE_URL } from '../../scripts/lib/labels.mjs';
+
+export const CODE = /^[A-Za-z0-9]{10}$/;
+// 32 byte base64url không đệm: 43 ký tự.
+const TOKEN = /^[A-Za-z0-9_-]{43}$/;
+const TOKEN_BYTES = 32;
+const STATUS_TTL_SECONDS = 60;
+// Chỉ các loại này mở thẳng trong trình duyệt; loại khác luôn tải về.
+const INLINE_EXT = new Set(['.pdf', '.png', '.jpg']);
+
+export const VIEW_MESSAGES = {
+  notFoundTitle: 'Không tìm thấy',
+  notFound: 'Không tìm thấy trang này. Kiểm tra lại link bạn nhận được.',
+  forbiddenTitle: 'Không có quyền',
+  forbidden: 'Bạn không có quyền xem trang này. Đăng nhập bằng tài khoản GitHub thuộc nhóm duyệt bài rồi thử lại.',
+  unconfiguredTitle: 'Chưa cài đặt',
+  unconfigured: 'Trang xem file cho người duyệt chưa được cài đặt. Thử lại sau.',
+  failedTitle: 'Có lỗi',
+  failed: 'Chưa đọc được dữ liệu. Thử lại sau ít phút.',
+  method: 'Không hỗ trợ cách gọi này.',
+  pendingTitle: 'File chưa quét virus xong',
+  pending: 'Máy chưa quét virus xong cho file này. Chỉ tải về khi cần xem ngay, và mở bằng máy có phần mềm diệt virus.',
+  pendingButton: 'Tải file chưa quét',
+  statusTitle: (code) => `Bài gửi ${code}`,
+  open: 'Đang chờ duyệt.',
+  merged: 'Đã đăng.',
+  mergedLink: 'Xem trang môn',
+  closed: 'Không được nhận. Bài đã đóng mà không đăng.',
+  unknown: 'Chưa đọc được trạng thái bài. Thử lại sau ít phút.',
+  fileButton: 'Xem file',
+  noFile: 'File không còn trong kho chờ duyệt.',
+  secret: 'Link này là bí mật, chỉ bạn có. Đừng chia sẻ cho người khác. Link hết hạn khi file chờ duyệt bị xóa.',
+};
+
+const esc = (s) =>
+  String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+
+// Bảng màu giống site (site-src/assets), sáng tối theo hệ thống.
+const CSS = [
+  ':root{color-scheme:light dark;--bg:#fafafa;--surface:#fff;--text:#242424;--muted:#616161;--border:#e0e0e0;',
+  '--accent:#0f6cbd;--accent-text:#fff;--warn:#8a3707;--warn-soft:#fdf6f3}',
+  '@media (prefers-color-scheme:dark){:root{--bg:#1f1f1f;--surface:#292929;--text:#fff;--muted:#c7c7c7;--border:#3d3d3d;',
+  '--accent:#479ef5;--accent-text:#0a0a0a;--warn:#f4bfab;--warn-soft:#3b1f14}}',
+  'body{margin:0;background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,-apple-system,Roboto,"Noto Sans",Arial,sans-serif;line-height:1.5}',
+  'main{max-width:40rem;margin:2rem auto;padding:1.5rem 16px;background:var(--surface);border:1px solid var(--border);border-radius:6px}',
+  'h1{font-size:1.4rem;margin:0 0 1rem}a{color:var(--accent)}.muted{color:var(--muted)}',
+  '.warn{color:var(--warn);background:var(--warn-soft);padding:.75rem;border-radius:6px}',
+  '.btn{display:inline-block;padding:.5rem 1rem;border-radius:6px;background:var(--accent);color:var(--accent-text);text-decoration:none}',
+].join('');
+
+const SECURITY_HEADERS = {
+  'X-Content-Type-Options': 'nosniff',
+  'Cache-Control': 'private, no-store',
+  'Referrer-Policy': 'no-referrer',
+};
+
+export function htmlPage(status, title, body, extra = {}) {
+  const html = `<!doctype html><html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex"><title>${esc(title)}</title><style>${CSS}</style></head><body><main><h1>${esc(title)}</h1>${body}</main></body></html>`;
+  return new Response(html, {
+    status,
+    headers: {
+      'Content-Type': 'text/html; charset=utf-8',
+      'Content-Security-Policy': "default-src 'none'; style-src 'unsafe-inline'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'",
+      'X-Robots-Tag': 'noindex',
+      ...SECURITY_HEADERS,
+      ...extra,
+    },
+  });
+}
+
+const para = (text, cls) => `<p${cls ? ` class="${cls}"` : ''}>${esc(text)}</p>`;
+export const notFoundPage = () => htmlPage(404, VIEW_MESSAGES.notFoundTitle, para(VIEW_MESSAGES.notFound));
+export const forbiddenPage = () => htmlPage(403, VIEW_MESSAGES.forbiddenTitle, para(VIEW_MESSAGES.forbidden));
+export const unconfiguredPage = () => htmlPage(503, VIEW_MESSAGES.unconfiguredTitle, para(VIEW_MESSAGES.unconfigured));
+export const failedPage = () => htmlPage(502, VIEW_MESSAGES.failedTitle, para(VIEW_MESSAGES.failed));
+export const methodPage = () => htmlPage(405, VIEW_MESSAGES.failedTitle, para(VIEW_MESSAGES.method), { Allow: 'GET' });
+
+// ---------- Mã bí mật của người gửi ----------
+
+function base64Url(bytes) {
+  let bin = '';
+  for (const b of bytes) bin += String.fromCharCode(b);
+  return btoa(bin).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+}
+
+async function sha256Hex(text) {
+  const d = new Uint8Array(await crypto.subtle.digest('SHA-256', new TextEncoder().encode(text)));
+  return Array.from(d, (b) => b.toString(16).padStart(2, '0')).join('');
+}
+
+// So hai chuỗi cùng độ dài trong thời gian không phụ thuộc vị trí ký tự khác.
+function sameText(a, b) {
+  if (a.length !== b.length) return false;
+  let diff = 0;
+  for (let i = 0; i < a.length; i += 1) diff |= a.charCodeAt(i) ^ b.charCodeAt(i);
+  return diff === 0;
+}
+
+export const tokenKey = (code) => `token/${code}`;
+
+// Tạo mã bí mật mới: trả mã (chỉ gửi cho người gửi) và sha256 của mã (lưu vào R2).
+export async function newToken(random) {
+  const token = base64Url(random(TOKEN_BYTES));
+  return { token, hash: await sha256Hex(token) };
+}
+
+// Đọc token/<mã>: trả siêu dữ liệu (môn) khi mã bí mật đúng, null khi sai, thiếu hay không có bài.
+export async function checkToken(r2, code, k) {
+  if (!CODE.test(code) || typeof k !== 'string' || !TOKEN.test(k)) return null;
+  const obj = await r2.get(tokenKey(code));
+  if (!obj) return null;
+  const stored = (await obj.text()).trim();
+  const ok = sameText(await sha256Hex(k), stored);
+  return ok ? { course: obj.customMetadata?.course ?? '' } : null;
+}
+
+// ---------- File trong kho cách ly ----------
+
+// Ưu tiên bản đã làm sạch; chưa có thì bản gốc chưa quét. Trả { key, name, clean } hoặc null.
+export async function locateFile(r2, code) {
+  for (const [prefix, clean] of [[`clean/${code}/`, true], [`pending/${code}/`, false]]) {
+    const list = await r2.list({ prefix, limit: 1 });
+    const obj = list.objects?.[0];
+    if (obj) return { key: obj.key, name: obj.key.slice(prefix.length), clean };
+  }
+  return null;
+}
+
+const extOf = (name) => {
+  const dot = name.lastIndexOf('.');
+  return dot < 0 ? '' : name.slice(dot).toLowerCase();
+};
+
+// Header trả file: chặn chạy nội dung (sandbox), không đoán loại, không lưu cache, không lộ link qua Referer.
+export function fileHeaders(name, policy, { forceDownload = false } = {}) {
+  const ext = extOf(name);
+  const mime = policy?.extensions?.[ext]?.mime ?? 'application/octet-stream';
+  const inline = !forceDownload && INLINE_EXT.has(ext);
+  return {
+    'Content-Type': mime,
+    'Content-Disposition': `${inline ? 'inline' : 'attachment'}; filename*=UTF-8''${encodeURIComponent(name)}`,
+    'Content-Security-Policy': 'sandbox',
+    ...SECURITY_HEADERS,
+  };
+}
+
+// Trả file của bài. Bản chưa quét: trang cảnh báo kèm nút tải (download=true thì tải, luôn dạng attachment).
+export async function serveFile(r2, code, { policy, download, downloadHref }) {
+  const found = await locateFile(r2, code);
+  if (!found) return notFoundPage();
+  if (!found.clean && !download) {
+    const body = `${para(VIEW_MESSAGES.pending, 'warn')}<p><a class="btn" href="${esc(downloadHref)}">${esc(VIEW_MESSAGES.pendingButton)}</a></p>`;
+    return htmlPage(200, VIEW_MESSAGES.pendingTitle, body);
+  }
+  const obj = await r2.get(found.key);
+  if (!obj) return notFoundPage();
+  const headers = fileHeaders(found.name, policy, { forceDownload: !found.clean });
+  headers['Content-Length'] = String(obj.size);
+  return new Response(obj.body, { status: 200, headers });
+}
+
+// ---------- Trạng thái bài ----------
+
+export function statusOf(pr) {
+  if (!pr) return 'unknown';
+  if (pr.merged) return 'merged';
+  return pr.state === 'open' ? 'open' : 'closed';
+}
+
+// Trạng thái từ PR có nhánh upload/<mã>, giữ trong Cache API 60 giây. Lỗi GitHub thì 'unknown', không lưu.
+export async function loadStatus({ repo, code, cache, github }) {
+  const key = `https://status.internal/${encodeURIComponent(repo)}/${code}`;
+  if (cache) {
+    const hit = await cache.match(key);
+    if (hit) return (await hit.json()).status;
+  }
+  let status;
+  try {
+    status = statusOf(await (await github()).findPr(`upload/${code}`));
+  } catch {
+    return 'unknown';
+  }
+  if (cache && status !== 'unknown') {
+    await cache.put(
+      key,
+      new Response(JSON.stringify({ status }), {
+        headers: { 'content-type': 'application/json', 'cache-control': `max-age=${STATUS_TTL_SECONDS}` },
+      }),
+    );
+  }
+  return status;
+}
+
+export function statusPage({ code, status, course, fileHref }) {
+  const m = VIEW_MESSAGES;
+  const parts = [];
+  if (status === 'merged') {
+    const href = course ? `${SITE_URL}course/${encodeURIComponent(course)}/` : SITE_URL;
+    parts.push(`<p>${esc(m.merged)} <a href="${esc(href)}">${esc(m.mergedLink)}</a></p>`);
+  } else {
+    parts.push(para(m[status] ?? m.unknown));
+  }
+  parts.push(fileHref ? `<p><a class="btn" href="${esc(fileHref)}">${esc(m.fileButton)}</a></p>` : para(m.noFile, 'muted'));
+  parts.push(para(m.secret, 'muted'));
+  return htmlPage(200, m.statusTitle(code), parts.join(''));
+}

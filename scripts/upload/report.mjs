@@ -20,7 +20,8 @@ function mask(s) {
 }
 
 // piiChecked false: loại file này không đọc được chữ nên chưa tìm thông tin cá nhân.
-export function renderReport({ code, virus, metadataRemoved = [], hasText, pii = [], url, piiChecked = true }) {
+// reviewUrl: link xem file cho người duyệt (sau Cloudflare Access); không có thì bỏ dòng này.
+export function renderReport({ code, virus, metadataRemoved = [], hasText, pii = [], url, piiChecked = true, reviewUrl }) {
   const out = [REPORT_MARKER, `## Kết quả kiểm file ${code}`, ''];
 
   if (virus) {
@@ -42,6 +43,7 @@ export function renderReport({ code, virus, metadataRemoved = [], hasText, pii =
     out.push('', 'Cảnh báo: có thể có thông tin cá nhân. Người duyệt sẽ kiểm tra lại, chưa có gì bị chặn.', '');
     for (const p of pii) out.push(`- ${p.label}, trang ${p.page}: ${mask(p.match)}`);
   }
+  if (reviewUrl) out.push('', `Xem file (người duyệt): ${reviewUrl}`);
   out.push('', 'Sau khi người duyệt gộp bài, file được đăng tại:', url);
   return out.join('\n') + '\n';
 }

@@ -5,6 +5,22 @@ import { loadCatalog } from './catalog.mjs';
 import { slugify, fileName, uniqueId } from '../../scripts/upload/naming.mjs';
 import { buildItem } from '../../scripts/upload/item.mjs';
 import { formatSize } from '../../scripts/lib/labels.mjs';
+import { accessConfigured, verifyAccessJwt } from './access.mjs';
+import {
+  CODE,
+  checkToken,
+  failedPage,
+  forbiddenPage,
+  loadStatus,
+  locateFile,
+  methodPage,
+  newToken,
+  notFoundPage,
+  serveFile,
+  statusPage,
+  tokenKey,
+  unconfiguredPage,
+} from './view.mjs';
 
 const TURNSTILE_URL = 'https://challenges.cloudflare.com/turnstile/v0/siteverify';
 // Phần thêm của multipart ngoài file: ranh giới, tên ô, các ô chữ.
@@ -151,7 +167,7 @@ function titleText(value) {
     .trim();
 }
 
-function prBody(form, code, file) {
+function prBody(form, code, file, viewBase) {
   const rows = [];
   for (const [key, label] of PR_FIELDS) if (form[key]) rows.push([label, form[key]]);
   if (form.book) {
@@ -168,6 +184,7 @@ function prBody(form, code, file) {
       '',
       `File nằm trong kho cách ly tại \`${file.quarantine}\`. CI sẽ kiểm file và ghi kết quả vào PR này.`,
     );
+    if (viewBase) lines.push('', `Xem file (người duyệt): ${viewBase}/xem-duyet/${code}`);
   }
   return `${lines.join('\n')}\n`;
 }
@@ -177,9 +194,10 @@ function logFailure(step, err) {
   console.error(JSON.stringify({ event: 'submit_failed', step, status: err instanceof GitHubError ? err.status : null, error: err?.name ?? 'Error' }));
 }
 
-async function handleSubmit(req, env, deps, cors) {
+// Client GitHub tạo khi cần lần đầu, dùng lại trong cùng request.
+function githubFactory(env, deps) {
   let ghPromise;
-  const github = () => {
+  return () => {
     ghPromise ??= installationToken({
       appId: env.GH_APP_ID,
       pkcs8Pem: env.GH_APP_PRIVATE_KEY,
@@ -188,6 +206,22 @@ async function handleSubmit(req, env, deps, cors) {
     }).then((token) => new GitHub({ repo: env.REPO, token, fetch: deps.fetch }));
     return ghPromise;
   };
+}
+
+const catalogFor = (env, deps, github) =>
+  loadCatalog({
+    repo: env.REPO,
+    branch: env.BRANCH,
+    ttl: Number(env.CATALOG_TTL_SECONDS) || 0,
+    cache: deps.cache(),
+    github,
+  });
+
+// Gốc địa chỉ xem file (không có / cuối), rỗng thì không tạo link xem.
+const reviewBase = (env) => String(env.REVIEW_BASE ?? '').replace(/\/+$/, '');
+
+async function handleSubmit(req, env, deps, cors) {
+  const github = githubFactory(env, deps);
   const fail = (step, err) => {
     logFailure(step, err);
     return reply(err instanceof GitHubError ? 502 : 500, { ok: false, error: MESSAGES.failed }, cors);
@@ -200,13 +234,7 @@ async function handleSubmit(req, env, deps, cors) {
   // Danh mục cần trước khi đọc body: giới hạn kích thước lấy từ policy.json.
   let catalog;
   try {
-    catalog = await loadCatalog({
-      repo: env.REPO,
-      branch: env.BRANCH,
-      ttl: Number(env.CATALOG_TTL_SECONDS) || 0,
-      cache: deps.cache(),
-      github,
-    });
+    catalog = await catalogFor(env, deps, github);
   } catch (err) {
     logFailure('catalog', err);
     return reply(502, { ok: false, error: MESSAGES.failed }, cors);
@@ -259,24 +287,31 @@ async function handleSubmit(req, env, deps, cors) {
   const today = new Date(deps.now() + VN_OFFSET_MS).toISOString().slice(0, 10);
   const itemText = `${JSON.stringify({ $schema: ITEM_SCHEMA, ...buildItem(form, stored, today, id) }, null, 2)}\n`;
   const prTitle = `Tài liệu mới: ${course.code} ${titleText(form.title)}`;
-  const prText = prBody(form, code, stored);
+  const base = reviewBase(env);
+  const prText = prBody(form, code, stored, base);
+  // Mã bí mật cho link xem bài của người gửi; R2 chỉ giữ sha256 của mã.
+  const view = base ? await newToken(deps.random) : null;
 
   const keys = [];
   const cleanup = async () => {
     if (keys.length) await env.QUARANTINE.delete(keys).catch((e) => logFailure('cleanup', e));
   };
-  if (stored) {
-    try {
+  try {
+    if (stored) {
       // Trùng tài liệu đang chờ duyệt.
       if (await env.QUARANTINE.head(shaKey)) return reply(409, { ok: false, error: MESSAGES.pending }, cors);
       await env.QUARANTINE.put(stored.quarantine, bytes, { httpMetadata: { contentType: stored.mime } });
       keys.push(stored.quarantine);
       await env.QUARANTINE.put(shaKey, code);
       keys.push(shaKey);
-    } catch (err) {
-      await cleanup();
-      return fail('store', err);
     }
+    if (view) {
+      await env.QUARANTINE.put(tokenKey(code), view.hash, { customMetadata: { course: course.id } });
+      keys.push(tokenKey(code));
+    }
+  } catch (err) {
+    await cleanup();
+    return fail('store', err);
   }
 
   const branch = `upload/${code}`;
@@ -295,6 +330,7 @@ async function handleSubmit(req, env, deps, cors) {
     await gh.addLabels(pr.number, [LABEL]);
     const out = { ok: true, code };
     if (env.PUBLIC_PR_LINKS === 'true') out.pr = pr.html_url;
+    if (view) out.viewUrl = `${base}/xem/${code}?k=${view.token}`;
     return reply(201, out, cors);
   } catch (err) {
     // Dọn hết để không còn file hay nhánh mồ côi; xóa nhánh cũng đóng PR nếu đã mở.
@@ -304,6 +340,69 @@ async function handleSubmit(req, env, deps, cors) {
       await gh.deleteBranch(branch).catch((e) => logFailure('cleanup', e));
     }
     return fail(step, err);
+  }
+}
+
+// Người duyệt: JWT của Cloudflare Access phải hợp lệ; thiếu cấu hình thì đóng (503).
+async function handleReview(req, env, deps, code) {
+  if (!accessConfigured(env)) return unconfiguredPage();
+  const ok = await verifyAccessJwt(req.headers.get('Cf-Access-Jwt-Assertion'), {
+    team: env.ACCESS_TEAM_DOMAIN,
+    aud: env.ACCESS_AUD,
+    fetch: deps.fetch,
+    cache: deps.cache(),
+    now: deps.now,
+  });
+  if (!ok) return forbiddenPage();
+  // Kiểm quyền trước mã bài, để người ngoài không dò được mã qua 404.
+  if (!CODE.test(code)) return notFoundPage();
+  const url = new URL(req.url);
+  const { policy } = await catalogFor(env, deps, githubFactory(env, deps));
+  return serveFile(env.QUARANTINE, code, {
+    policy,
+    download: url.searchParams.get('tai') === '1',
+    downloadHref: `/xem-duyet/${code}?tai=1`,
+  });
+}
+
+// Người gửi: mã bí mật sai hay thiếu thì 404 như không có bài.
+async function handleOwner(req, env, deps, code, wantFile) {
+  const url = new URL(req.url);
+  const k = url.searchParams.get('k');
+  const owner = await checkToken(env.QUARANTINE, code, k);
+  if (!owner) return notFoundPage();
+  const kq = `k=${encodeURIComponent(k)}`;
+  const github = githubFactory(env, deps);
+  if (wantFile) {
+    const { policy } = await catalogFor(env, deps, github);
+    return serveFile(env.QUARANTINE, code, {
+      policy,
+      download: url.searchParams.get('tai') === '1',
+      downloadHref: `/xem/${code}/file?${kq}&tai=1`,
+    });
+  }
+  const [status, file] = await Promise.all([
+    loadStatus({ repo: env.REPO, code, cache: deps.cache(), github }),
+    locateFile(env.QUARANTINE, code),
+  ]);
+  return statusPage({ code, status, course: owner.course, fileHref: file ? `/xem/${code}/file?${kq}` : null });
+}
+
+const REVIEW_PATH = /^\/xem-duyet\/([^/]+)$/;
+const OWNER_PATH = /^\/xem\/([^/]+)(\/file)?$/;
+
+async function handleView(req, env, deps, path) {
+  if (req.method !== 'GET') return methodPage();
+  const review = REVIEW_PATH.exec(path);
+  const owner = review ? null : OWNER_PATH.exec(path);
+  const code = (review ?? owner)?.[1] ?? '';
+  try {
+    if (review) return await handleReview(req, env, deps, code);
+    if (!CODE.test(code)) return notFoundPage();
+    return await handleOwner(req, env, deps, code, Boolean(owner[2]));
+  } catch (err) {
+    logFailure('view', err);
+    return failedPage();
   }
 }
 
@@ -318,6 +417,7 @@ export function createHandler(deps = {}) {
     async fetch(req, env) {
       const url = new URL(req.url);
       const cors = corsHeaders(req, env);
+      if (REVIEW_PATH.test(url.pathname) || OWNER_PATH.test(url.pathname)) return handleView(req, env, d, url.pathname);
       if (url.pathname !== '/submit') return reply(404, { ok: false, error: MESSAGES.notFound }, cors);
       if (req.method === 'OPTIONS') {
         return new Response(null, {

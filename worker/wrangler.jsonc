@@ -10,6 +10,12 @@
     "head_sampling_rate": 1,
     "logs": { "enabled": true, "invocation_logs": false }
   },
+  // Tên miền riêng: Cloudflare Access chỉ bảo vệ được /xem-duyet/* trên tên miền thuộc tài khoản.
+  // workers.dev vẫn bật trong lúc chuyển; ở đó /xem-duyet/* không qua Access nhưng Worker vẫn tự kiểm JWT.
+  "routes": [
+    { "pattern": "upload.xerozsoft.com", "custom_domain": true }
+  ],
+  "workers_dev": true,
   // Giá trị có thể đổi khi chuyển repo hay tên miền. Khóa bí mật nhập bằng wrangler secret put:
   // TURNSTILE_SECRET, GH_APP_ID, GH_APP_PRIVATE_KEY, GH_INSTALLATION_ID.
   "vars": {
@@ -18,7 +24,14 @@
     "ALLOWED_ORIGINS": "https://bk-study-library.github.io",
     "CATALOG_TTL_SECONDS": "300",
     // "true" khi repo public: trả link PR cho người gửi theo dõi bài.
-    "PUBLIC_PR_LINKS": "true"
+    "PUBLIC_PR_LINKS": "true",
+    // Gốc địa chỉ xem file: link cho người duyệt (/xem-duyet/<mã>) và người gửi (/xem/<mã>?k=...).
+    // Để trống thì không tạo link xem bài.
+    "REVIEW_BASE": "https://upload.xerozsoft.com",
+    // Cloudflare Access cho /xem-duyet/*: tên miền team (dạng <team>.cloudflareaccess.com) và
+    // Application Audience (AUD). Để trống thì /xem-duyet/* trả 503.
+    "ACCESS_TEAM_DOMAIN": "tktq40.cloudflareaccess.com",
+    "ACCESS_AUD": "d9150868f1e48b3f2e36ffcf80e20b05fb1fb83bdc067f95ef75829ad1c021ee"
   },
   // Kho cách ly: file chờ duyệt, riêng tư.
   "r2_buckets": [

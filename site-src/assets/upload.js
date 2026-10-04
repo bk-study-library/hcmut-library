@@ -219,6 +219,16 @@
         var body = res.body;
         if (res.ok && body && body.ok && typeof body.code === 'string') {
           statusBox.textContent = msg.done + ' ' + body.code + '. ' + msg.waiting;
+          // Link xem bài (có mã bí mật) chỉ hiện một lần; chỉ nhận địa chỉ https.
+          if (typeof body.viewUrl === 'string' && /^https:\/\//.test(body.viewUrl)) {
+            var view = document.createElement('a');
+            view.href = body.viewUrl;
+            view.rel = 'noopener noreferrer';
+            view.textContent = body.viewUrl;
+            statusBox.appendChild(document.createTextNode(' ' + msg.viewLink + ': '));
+            statusBox.appendChild(view);
+            statusBox.appendChild(document.createTextNode('. ' + msg.viewSave));
+          }
           statusBox.hidden = false;
           resetForm();
           statusBox.scrollIntoView({ block: 'nearest' });
