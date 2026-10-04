@@ -176,7 +176,8 @@ test('assets/courses.json: có ngữ cảnh môn trùng tên, không có url, de
   assert.ok(data.courses.every((c) => !('url' in c) && !('detail' in c)));
   assert.match(fs.readFileSync(path.join(out, 'assets', 'search.js'), 'utf8'), /assets\/courses\.json/);
   assert.match(fs.readFileSync(path.join(out, 'assets', 'upload.js'), 'utf8'), /assets\/courses\.json/);
-  assert.match(read('index.html'), /"groupMin":3/);
+  // Ngưỡng gộp lấy từ catalog/site.json (sameNameGroupMin).
+  assert.match(read('index.html'), /"groupMin":2/);
   // v1 không đổi: không có ctx.
   assert.ok(JSON.parse(read('v1/index.json')).courses.every((c) => !('ctx' in c)));
 });

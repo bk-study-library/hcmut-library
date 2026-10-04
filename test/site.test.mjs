@@ -175,6 +175,26 @@ test('trang Gửi tài liệu: thêm môn mới lấy mẫu mã từ schema, gi�
   assert.equal(cfg0.newCourse.nearSpan, 0);
 });
 
+test('trang Gửi tài liệu: ô môn mời tìm theo tên, gộp môn cùng tên theo site.json', () => {
+  const html = buildWithSite({ uploadEndpoint: '', turnstileSiteKey: 'K', sameNameGroupMin: 2, sameNameChipsMax: 4 });
+  assert.match(html, /<label for="course-q">Môn học \(gõ tên môn, ví dụ Giải tích 2\)<\/label>/);
+  const ph = html.match(/id="course-q"[^>]*placeholder="([^"]+)"/)[1];
+  assert.ok(ph.indexOf('Giải tích 2') >= 0 && ph.indexOf('Giải tích 2') < ph.indexOf('MT1005'), ph);
+  assert.match(html, /Nên tìm theo tên môn, vì mã có thể đổi qua các khóa\./);
+  const cfg = JSON.parse(html.match(/id="upload-config">([^<]*)</)[1]);
+  assert.deepEqual(cfg.sameName, { groupMin: 2, chipsMax: 4 });
+  assert.equal(cfg.msg.sameNameCount, 'mã, theo ngành hoặc khóa');
+  // Thiếu cấu hình thì dùng mặc định như ô tìm trang chủ.
+  const cfg0 = JSON.parse(buildWithSite({ uploadEndpoint: '', turnstileSiteKey: 'K' }).match(/id="upload-config">([^<]*)</)[1]);
+  assert.deepEqual(cfg0.sameName, { groupMin: 3, chipsMax: 4 });
+});
+
+test('catalog/site.json thật: gộp từ 2 môn cùng tên, hiện tối đa 4 mã', () => {
+  const site = JSON.parse(fs.readFileSync(path.join(TOOL_ROOT, 'catalog', 'site.json'), 'utf8'));
+  assert.equal(site.sameNameGroupMin, 2);
+  assert.equal(site.sameNameChipsMax, 4);
+});
+
 test('trang môn tiếng Anh trỏ tới form tiếng Việt', () => {
   assert.match(read('en/course/EE1009/index.html'), /href="\.\.\/\.\.\/\.\.\/gui-tai-lieu\/\?course=EE1009"/);
 });

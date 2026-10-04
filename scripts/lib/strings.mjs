@@ -178,6 +178,8 @@ export const S = {
       noMatch: 'Không có môn nào khớp.',
       loadFail: 'Không tải được danh sách môn. Tải lại trang để thử lại.',
       maybe: 'Có phải môn này?',
+      // Dòng gộp môn cùng tên: "<số> mã, theo ngành hoặc khóa"; mở ra để chọn đúng mã theo ngành.
+      sameNameCount: 'mã, theo ngành hoặc khóa',
       newCodeEmpty: 'Chưa có mã môn.',
       newCodePattern: 'Mã môn chưa đúng dạng, ví dụ EE5429.',
       newNameEmpty: 'Chưa có tên môn.',

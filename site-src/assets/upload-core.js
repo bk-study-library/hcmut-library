@@ -80,7 +80,69 @@
     return { code: code, name: name, errors: errors, existing: existing };
   }
 
+  // Khóa so tên: cùng cách với search.js và scripts/lib/course-context.mjs (chữ hoa, khoảng trắng).
+  function nameKey(s) {
+    return String(s || '')
+      .normalize('NFC')
+      .toLowerCase()
+      .replace(/\s+/g, ' ')
+      .trim();
+  }
+
+  // Gộp kết quả tìm môn cùng tên (một tên, nhiều mã theo ngành hoặc khóa) như ô tìm trang chủ: tên có từ
+  // min môn trong kết quả thành một dòng { group }, đặt ở chỗ môn xếp đầu của nhóm. Môn khớp đúng mã hay
+  // mã cũ (điểm dưới 1) luôn đứng riêng { hit }.
+  function groupHits(hits, byId, min) {
+    var single = function (h) {
+      return h.score < 1;
+    };
+    var count = {};
+    hits.forEach(function (h) {
+      if (!single(h)) {
+        var k = nameKey(byId[h.id].name);
+        count[k] = (count[k] || 0) + 1;
+      }
+    });
+    var rows = [];
+    var at = {};
+    hits.forEach(function (h) {
+      var k = nameKey(byId[h.id].name);
+      if (single(h) || count[k] < min) {
+        rows.push({ hit: h });
+        return;
+      }
+      if (!(k in at)) {
+        at[k] = rows.length;
+        rows.push({ group: [] });
+      }
+      rows[at[k]].group.push(h);
+    });
+    return rows;
+  }
+
+  // Môn khớp đúng mã hay mã cũ (điểm 0 của search-core) khi chỉ có một môn như vậy; không có thì null.
+  function exactCode(hits, byId) {
+    var exact = hits.filter(function (h) {
+      return h.score === 0;
+    });
+    return exact.length === 1 ? byId[exact[0].id] : null;
+  }
+
+  // Mã hiện trên dòng gộp: tối đa max mã, phần còn lại chỉ ghi số (+N).
+  function codeChips(courses, max) {
+    return {
+      codes: courses.slice(0, max).map(function (c) {
+        return c.code;
+      }),
+      more: Math.max(0, courses.length - max),
+    };
+  }
+
   root.BkUpload = {
+    nameKey: nameKey,
+    groupHits: groupHits,
+    exactCode: exactCode,
+    codeChips: codeChips,
     normCode: normCode,
     looksLikeCode: looksLikeCode,
     findCourse: findCourse,
