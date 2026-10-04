@@ -388,3 +388,45 @@ main h1, main h2, main p, main li { overflow-wrap: break-word; }
 #q-docs-status { margin: 0 0 4px; }
 .results .doc-title { font-weight: 600; }
 .results .doc-desc { flex-basis: 100%; font-size: 13px; }
+
+/* Ngành: một dòng mỗi ngành (tên, nhãn loại, các khóa) ở trang chủ và trang khoa */
+.majors { list-style: none; margin: 0 0 12px; padding: 0; }
+.major-row { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; padding: 8px 4px; border-top: 1px solid var(--border); }
+.major-row:first-child { border-top: 0; }
+.major-head { display: inline-flex; flex-wrap: wrap; align-items: baseline; gap: 4px 6px; }
+.major-head .tag { margin-left: 0; }
+/* Tên ngành là phần tử flex nên không còn là link nội dòng: đệm cho vùng bấm đủ 24 px. */
+.major-name { font-weight: 600; padding: 2px 0; }
+.prog-fac > h3 { margin: 12px 4px 4px; font-size: 15px; }
+.prog-empty { margin: 4px 0 10px; }
+.prog-empty > summary { cursor: pointer; color: var(--muted); padding: 4px; min-height: 24px; }
+.prog-empty > summary:focus-visible, .sem-rest > summary:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+.tags { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0 0; }
+.tags .tag { margin-left: 0; }
+
+/* Bộ chọn loại chương trình và khóa: link dạng chip */
+.pickers { display: grid; gap: 8px; margin: 12px 0 0; }
+.pick-row { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; }
+.pick-label { font-size: 13px; color: var(--muted); min-width: 120px; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip {
+  display: inline-flex;
+  align-items: center;
+  min-height: 32px;
+  padding: 4px 12px;
+  border: 1px solid var(--border-strong);
+  border-radius: 4px;
+  background: var(--surface);
+  color: var(--text);
+  text-decoration: none;
+  font-variant-numeric: tabular-nums;
+}
+.chip:hover { background: var(--surface-2); color: var(--text); }
+.chip[aria-current] { border-color: var(--accent); background: var(--accent-soft); color: var(--text); font-weight: 600; }
+
+/* Lộ trình theo học kỳ */
+.sem { margin-top: 20px; scroll-margin-top: 16px; }
+.sem h3 { margin: 0 0 8px; }
+.sem-rest { margin-top: 8px; }
+.sem-rest > summary { cursor: pointer; font-weight: 600; padding: 4px 0; min-height: 24px; }
+.sem-rest > .table-wrap { margin-top: 8px; }

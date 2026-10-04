@@ -94,7 +94,10 @@
         return { p: p, head: p.folded === phrase ? 0 : at === 0 ? 1 : at > 0 ? 2 : 3 };
       })
       .sort(function (a, b) {
-        return a.head - b.head || (b.p.courses ? 1 : 0) - (a.p.courses ? 1 : 0) || (b.p.year || '').localeCompare(a.p.year || '') || a.p.name.localeCompare(b.p.name);
+        // Cùng mức khớp thì ngành đứng trước các chương trình theo khóa của nó.
+        var am = a.p.kind === 'major' ? 0 : 1;
+        var bm = b.p.kind === 'major' ? 0 : 1;
+        return a.head - b.head || am - bm || (b.p.courses ? 1 : 0) - (a.p.courses ? 1 : 0) || (b.p.year || '').localeCompare(a.p.year || '') || a.p.name.localeCompare(b.p.name);
       })
       .map(function (x) {
         return x.p;
@@ -108,7 +111,8 @@
     hits.slice(0, PROG_MAX).forEach(function (p) {
       var li = document.createElement('li');
       var a = document.createElement('a');
-      a.href = root + prefix + 'program/' + encodeURIComponent(p.code) + '/';
+      var isMajor = p.kind === 'major';
+      a.href = root + prefix + (isMajor ? 'major/' + encodeURIComponent(p.key) : 'program/' + encodeURIComponent(p.code)) + '/';
       var name = document.createElement('span');
       var label = en && p.nameEn ? p.nameEn : p.name;
       // Tên đã ghi năm khóa thì không ghi lại.
@@ -116,8 +120,13 @@
       var meta = document.createElement('span');
       meta.className = 'muted';
       var parts = [facultyName[p.faculty] || p.faculty];
-      if (p.variant) parts.push(p.variant);
-      parts.push(p.courses ? (en ? p.courses + ' courses' : p.courses + ' môn') : en ? 'no course list yet' : 'chưa có danh sách môn');
+      if (isMajor) {
+        parts.push((en ? 'Major ' : 'Ngành, mã ') + p.code);
+        parts.push(en ? p.programs + (p.programs === 1 ? ' program' : ' programs') : p.programs + ' chương trình');
+      } else {
+        if (p.variant) parts.push(p.variant);
+        parts.push(p.courses ? (en ? p.courses + ' courses' : p.courses + ' môn') : en ? 'no course list yet' : 'chưa có danh sách môn');
+      }
       meta.textContent = parts.join(', ');
       a.appendChild(name);
       a.appendChild(meta);
@@ -310,8 +319,9 @@
       .then(function (res) {
         docs = window.BkDocs && docBox && Array.isArray(res[2]) ? window.BkDocs.prepare(res[2], { types: ds.types, examKinds: ds.examKinds }) : null;
         programs = (Array.isArray(res[1]) ? res[1] : []).map(function (p) {
-          var text = [p.name, p.nameEn, p.variant, p.year, p.code.replace(/_/g, ' ')].filter(Boolean).join(' ');
-          return { code: p.code, name: p.name, nameEn: p.nameEn, year: p.year, variant: p.variant, faculty: p.faculty, courses: p.courses, words: window.BkSearch.fold(text).split(' '), folded: window.BkSearch.fold(en && p.nameEn ? p.nameEn : p.name) };
+          // Chương trình gắn ngành tìm được theo tên ngành (majorName) và mã ngành (major).
+          var text = [p.name, p.nameEn, p.majorName, p.major, p.variant, p.year, p.code.replace(/[_+]/g, ' ')].filter(Boolean).join(' ');
+          return { kind: p.kind, key: p.key, code: p.code, name: p.name, nameEn: p.nameEn, year: p.year, variant: p.variant, faculty: p.faculty, courses: p.courses, programs: p.programs, words: window.BkSearch.fold(text).split(' '), folded: window.BkSearch.fold(en && p.nameEn ? p.nameEn : p.name) };
         });
         load(res[0]);
       })
