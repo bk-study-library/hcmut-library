@@ -99,6 +99,9 @@ const PRIVATE_SOURCES = new Set(['seed-mybk-kdi-2019']);
 
 export function importResearch(research, outRoot, { date, faculties, log = () => {} }) {
   const facKeys = new Set(faculties.faculties.map((f) => f.key));
+  // Khóa khoa cũ (movedTo trong faculties.json) đổi sang khoa đang dùng.
+  const moved = new Map(faculties.faculties.filter((f) => f.movedTo).map((f) => [f.key, f.movedTo]));
+  const current = (key) => moved.get(key) || key;
   const facByPrefix = (code) => {
     for (const h of faculties.prefixes) if (new RegExp(h.pattern).test(code)) return h.faculty;
     return 'unknown';
@@ -153,7 +156,7 @@ export function importResearch(research, outRoot, { date, faculties, log = () =>
     const name = clean(r.name_vi || r.name_en);
     const nameEn = r.name_vi && r.name_en && clean(r.name_en).length >= 3 ? clean(r.name_en) : null;
     const owner = r.faculty_owner?.faculty;
-    const faculty = owner && facKeys.has(owner) ? owner : facByPrefix(r.code);
+    const faculty = current(owner && facKeys.has(owner) ? owner : facByPrefix(r.code));
     const notes = ['Nhập từ nguồn công khai (truy cập 03/10/2026).'];
     if (!r.name_vi) notes.push('Nguồn chỉ có tên tiếng Anh.');
     if (r.credits == null) notes.push('Nguồn chưa ghi số tín chỉ.');
@@ -173,7 +176,7 @@ export function importResearch(research, outRoot, { date, faculties, log = () =>
       aliases: [],
       status: retiredHint(r) ? 'retired' : 'active',
       programs: [],
-      parts: faculty === 'gdtc-qp' ? [] : inferParts(name),
+      parts: owner === 'gdtc-qp' ? [] : inferParts(name),
       related: [],
       note: notes.join(' '),
       updated: date,
@@ -278,7 +281,7 @@ export function importResearch(research, outRoot, { date, faculties, log = () =>
     else if (!p.source_url && (p.sources || []).includes('hcmut-ctdt-index')) note = 'Có trong danh mục CTĐT của trường nhưng chưa có file CTĐT.';
     else if (!hasCourses) note = 'Có file CTĐT nhưng chưa tách được danh sách môn.';
     if (!hasCourses) report.programsEmpty++;
-    const faculty = p.faculty && facKeys.has(p.faculty) ? p.faculty : 'unknown';
+    const faculty = p.faculty && facKeys.has(p.faculty) ? current(p.faculty) : 'unknown';
     const src = sourceUrl(p);
     // Trường người duyệt ghi tay (listed, ctdtUrl, planUrl) giữ nguyên khi nhập lại.
     const kept = keptProgramFields(path.join(programsDir, `${code}.json`));

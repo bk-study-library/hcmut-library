@@ -12,9 +12,9 @@
     { "key": "fce", "name": { "vi": "Khoa Kỹ thuật Xây dựng", "en": "Faculty of Civil Engineering" } },
     { "key": "fenr", "name": { "vi": "Khoa Môi trường và Tài nguyên", "en": "Faculty of Environment and Natural Resources" } },
     { "key": "sim", "name": { "vi": "Khoa Quản lý Công nghiệp", "en": "School of Industrial Management" } },
-    { "key": "flc", "name": { "vi": "Trung tâm Ngoại ngữ", "en": "Foreign Language Center" }, "note": "Môn của đơn vị này (tiền tố LA) nằm trong Môn chung toàn trường (khóa chung). Giữ khóa để link cũ không hỏng." },
-    { "key": "llct", "name": { "vi": "Lý luận chính trị (chưa xác định đơn vị)", "en": "Political theory (unit not identified)" }, "note": "Môn của đơn vị này (tiền tố SP) nằm trong Môn chung toàn trường (khóa chung). Giữ khóa để link cũ không hỏng." },
-    { "key": "gdtc-qp", "name": { "vi": "Giáo dục thể chất và Quốc phòng (chưa xác định đơn vị)", "en": "Physical education and military training (unit not identified)" }, "note": "Môn của đơn vị này (tiền tố PE, MI) nằm trong Môn chung toàn trường (khóa chung). Giữ khóa để link cũ không hỏng." },
+    { "key": "flc", "name": { "vi": "Trung tâm Ngoại ngữ", "en": "Foreign Language Center" }, "note": "Môn của đơn vị này (tiền tố LA) nằm trong Môn chung toàn trường (khóa chung). Giữ khóa để link cũ không hỏng.", "movedTo": "chung" },
+    { "key": "llct", "name": { "vi": "Lý luận chính trị (chưa xác định đơn vị)", "en": "Political theory (unit not identified)" }, "note": "Môn của đơn vị này (tiền tố SP) nằm trong Môn chung toàn trường (khóa chung). Giữ khóa để link cũ không hỏng.", "movedTo": "chung" },
+    { "key": "gdtc-qp", "name": { "vi": "Giáo dục thể chất và Quốc phòng (chưa xác định đơn vị)", "en": "Physical education and military training (unit not identified)" }, "note": "Môn của đơn vị này (tiền tố PE, MI) nằm trong Môn chung toàn trường (khóa chung). Giữ khóa để link cũ không hỏng.", "movedTo": "chung" },
     { "key": "chung", "name": { "vi": "Môn chung toàn trường", "en": "University-wide requirements" }, "note": "Môn và điều kiện tốt nghiệp chung cho mọi ngành, không thuộc riêng khoa nào: Toán, Vật lý đại cương, ngoại ngữ, lý luận chính trị, giáo dục thể chất và quốc phòng, kỹ năng bổ trợ, hoạt động sinh viên, điều kiện ngoại ngữ, chứng chỉ giáo dục thể chất. Chưa xác minh đơn vị quản lý." },
     { "key": "unknown", "name": { "vi": "Chưa xác định", "en": "Unassigned" }, "note": "Môn có tiền tố chưa xác minh. Chuyển sang khoa đúng khi đã kiểm bằng nguồn công khai." }
   ],

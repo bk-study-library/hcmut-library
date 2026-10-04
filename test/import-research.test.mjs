@@ -111,7 +111,8 @@ test('nhập research: mã dùng lại, mã cũ đã ngừng, môn tương đư�
   assert.deepEqual(legacy.aliases, []);
   assert.equal(legacy.status, 'active');
   assert.equal(legacy.faculty, 'unknown');
-  assert.equal(readJson(dir, 'catalog/courses/SP1007.json').faculty, 'llct');
+  // Nguồn ghi khóa cũ llct: đổi sang khoa đang dùng theo movedTo.
+  assert.equal(readJson(dir, 'catalog/courses/SP1007.json').faculty, 'chung');
 });
 
 test('nhập research: giữ listed, ctdtUrl, planUrl ghi tay; không nhập bản MyBK', () => {

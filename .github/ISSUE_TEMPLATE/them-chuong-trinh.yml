@@ -25,9 +25,6 @@ body:
         - "Khoa Kỹ thuật Xây dựng"
         - "Khoa Môi trường và Tài nguyên"
         - "Khoa Quản lý Công nghiệp"
-        - "Trung tâm Ngoại ngữ"
-        - "Lý luận chính trị (chưa xác định đơn vị)"
-        - "Giáo dục thể chất và Quốc phòng (chưa xác định đơn vị)"
         - "Môn chung toàn trường"
         - "Chưa xác định"
     validations: { required: true }

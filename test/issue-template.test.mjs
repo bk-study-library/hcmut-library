@@ -22,9 +22,9 @@ function dropdownOptions(yml, id) {
   return opts;
 }
 
-test('form Thêm chương trình: danh sách khoa khớp catalog/faculties.json', () => {
+test('form Thêm chương trình: danh sách khoa khớp catalog/faculties.json, bỏ khóa cũ (movedTo)', () => {
   const faculties = JSON.parse(fs.readFileSync(path.join(TOOL_ROOT, 'catalog', 'faculties.json'), 'utf8'));
-  assert.deepEqual(dropdownOptions(fs.readFileSync(TPL, 'utf8'), 'khoa'), faculties.faculties.map((f) => f.name.vi));
+  assert.deepEqual(dropdownOptions(fs.readFileSync(TPL, 'utf8'), 'khoa'), faculties.faculties.filter((f) => !f.movedTo).map((f) => f.name.vi));
 });
 
 test('form Thêm chương trình: có các ô ngành, khóa, link, file, ghi chú; trang web điền sẵn đúng id', () => {
