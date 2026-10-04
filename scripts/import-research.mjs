@@ -18,7 +18,7 @@
 // - status retired chỉ khi status_hints ghi rõ retired; "possibly retired" vẫn để active.
 // - Mỗi bản ghi chương trình thành một file catalog/programs/<mã>.json, kể cả khi chưa có danh sách môn.
 // - Chạy lại cho cùng kết quả: updated chỉ đổi khi nội dung đổi. Trường ghi tay listed, ctdtUrl,
-//   planUrl của chương trình được giữ; bản chép từ MyBK có listed: false.
+//   planUrl của chương trình được giữ. Bản chép từ MyBK (dữ liệu riêng của sinh viên) không nhập.
 
 import fs from 'node:fs';
 import path from 'node:path';
@@ -95,6 +95,8 @@ function sortedJson(o) {
   return JSON.stringify(o, null, 2) + '\n';
 }
 
+const PRIVATE_SOURCES = new Set(['seed-mybk-kdi-2019']);
+
 export function importResearch(research, outRoot, { date, faculties, log = () => {} }) {
   const facKeys = new Set(faculties.faculties.map((f) => f.key));
   const facByPrefix = (code) => {
@@ -128,8 +130,11 @@ export function importResearch(research, outRoot, { date, faculties, log = () =>
     return r ? r.id : code;
   };
 
-  const rc = research.courses.courses;
-  const rp = research.programs.programs;
+  // Bản chép từ MyBK là dữ liệu học tập riêng của một sinh viên (môn đã chọn, mã khối nội bộ):
+  // không bao giờ nhập. Môn chỉ có nguồn này cũng bỏ.
+  const isPrivate = (x) => (x.sources || []).length > 0 && x.sources.every((s) => PRIVATE_SOURCES.has(s));
+  const rc = research.courses.courses.filter((c) => !isPrivate(c));
+  const rp = research.programs.programs.filter((p) => !(p.sources || []).some((s) => PRIVATE_SOURCES.has(s)));
   const registry = research.programs.meta?.sources || {};
   const byCode = new Map(rc.map((c) => [c.code, c]));
 
@@ -271,7 +276,6 @@ export function importResearch(research, outRoot, { date, faculties, log = () =>
     let note = null;
     if (p.id.startsWith('hcmut:admissions')) note = `Ngành tuyển sinh ${year}, mã tuyển sinh ${p.admission_code_2026}. Chưa có danh sách môn công khai.`;
     else if (!p.source_url && (p.sources || []).includes('hcmut-ctdt-index')) note = 'Có trong danh mục CTĐT của trường nhưng chưa có file CTĐT.';
-    else if ((p.sources || []).includes('seed-mybk-kdi-2019')) note = 'Nhập từ bản MyBK do sinh viên cung cấp, đã đối chiếu với CTĐT công khai cùng khóa.';
     else if (!hasCourses) note = 'Có file CTĐT nhưng chưa tách được danh sách môn.';
     if (!hasCourses) report.programsEmpty++;
     const faculty = p.faculty && facKeys.has(p.faculty) ? p.faculty : 'unknown';
@@ -279,7 +283,7 @@ export function importResearch(research, outRoot, { date, faculties, log = () =>
     // Trường người duyệt ghi tay (listed, ctdtUrl, planUrl) giữ nguyên khi nhập lại.
     const kept = keptProgramFields(path.join(programsDir, `${code}.json`));
     // Bản chép từ MyBK là nguồn nháp: có trang riêng nhưng không hiện trong danh sách chương trình.
-    const listed = 'listed' in kept ? kept.listed : (p.sources || []).includes('seed-mybk-kdi-2019') ? false : undefined;
+    const listed = 'listed' in kept ? kept.listed : undefined;
     programs.push({
       $schema: '../../schema/program.schema.json',
       code,

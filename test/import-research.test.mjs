@@ -114,7 +114,7 @@ test('nhập research: mã dùng lại, mã cũ đã ngừng, môn tương đư�
   assert.equal(readJson(dir, 'catalog/courses/SP1007.json').faculty, 'llct');
 });
 
-test('nhập research: giữ listed, ctdtUrl, planUrl ghi tay; bản MyBK có listed false', () => {
+test('nhập research: giữ listed, ctdtUrl, planUrl ghi tay; không nhập bản MyBK', () => {
   const dir = freshRoot();
   importFixture(dir);
   const code = 'GEOPET_KY_THUAT_DIA_CHAT_2023';
@@ -135,7 +135,7 @@ test('nhập research: giữ listed, ctdtUrl, planUrl ghi tay; bản MyBK có li
   assert.equal(again.ctdtUrl, 'https://drive.google.com/file/d/ctdt/view');
   assert.equal(again.planUrl, 'https://drive.google.com/file/d/plan/view');
   assert.equal(again.listed, false);
-  assert.equal(readJson(dir, 'catalog/programs/DEE_KY_THUAT_DIEN_2019_MYBK_SEED.json').listed, false);
+  assert.ok(!fs.existsSync(path.join(dir, 'catalog/programs/DEE_KY_THUAT_DIEN_2019_MYBK_SEED.json')));
   const r = run(['--root', dir, '--write', '--quiet']);
   assert.deepEqual(r.repo.errors, []);
 });
@@ -164,12 +164,12 @@ test('nhập research hai lần: không đổi file nào', () => {
   assert.deepEqual(snap(dir), before);
 });
 
-test('danh mục thật: 739 môn, 195 chương trình, không lỗi, không cảnh báo', () => {
+test('danh mục thật: 725 môn, 194 chương trình, không lỗi, không cảnh báo', () => {
   const repo = loadRepo(TOOL_ROOT);
   assert.deepEqual(repo.errors, []);
   assert.deepEqual(repo.warnings, []);
-  assert.equal(repo.courses.size, 739);
-  assert.equal(repo.programs.size, 195);
+  assert.equal(repo.courses.size, 725);
+  assert.equal(repo.programs.size, 194);
   const empty = [...repo.programs.values()].filter((p) => !p.blocks.some((b) => b.courses.length));
   assert.equal(empty.length, 100);
   for (const p of repo.programs.values()) assert.match(p.code, /^[A-Z0-9_]+$/);
@@ -194,28 +194,25 @@ test('danh mục thật: GE4169, GE3239, GE4165 tách theo khóa giống nhau', 
   }
 });
 
-test('danh mục thật: seed MyBK không liệt kê, 14 môn chỉ có trong seed vẫn thuộc một chương trình', () => {
+test('danh mục thật: không có chương trình hay mã khối nào chép từ MyBK', () => {
   const repo = loadRepo(TOOL_ROOT);
-  const seed = repo.programs.get('DEE_KY_THUAT_DIEN_2019_MYBK_SEED');
-  assert.equal(seed.listed, false);
-  const listed = [...repo.programs.values()].filter((p) => p.listed !== false);
-  assert.equal(listed.length, 194);
-  const inListed = new Set(listed.flatMap((p) => p.blocks.flatMap((b) => b.courses)));
-  const seedOnly = [...new Set(seed.blocks.flatMap((b) => b.courses))].filter((id) => !inListed.has(id)).sort();
-  assert.deepEqual(seedOnly, ['007401', '008001', '400400', '604046', 'CCGDTC', 'EE2409', 'EE2411', 'EE2413', 'ENG_GC', 'MT1023', 'PE1023', 'PH1013', 'SP1019', 'SP1041']);
-  for (const id of seedOnly) assert.ok(repo.courses.get(id).programs.some((x) => x.program === seed.code), id);
+  for (const p of repo.programs.values()) {
+    assert.ok(!/MYBK/i.test(p.code), p.code);
+    for (const b of p.blocks) assert.ok(!/mybk/i.test(b.name), `${p.code} ${b.name}`);
+  }
+  for (const c of repo.courses.values()) assert.ok(!c.programs.some((x) => /MYBK/i.test(x.program)), c.id);
 });
 
 test('danh mục thật: điều kiện tốt nghiệp chung thuộc Môn chung toàn trường, khớp quy tắc tiền tố chưa xác minh', () => {
   const repo = loadRepo(TOOL_ROOT);
   const shared = repo.faculties.faculties.find((f) => f.key === 'chung');
   assert.equal(shared.name.vi, 'Môn chung toàn trường');
-  for (const id of ['ENG_GC', 'SA4001', 'CCGDTC']) {
+  for (const id of ['SA4001']) {
     assert.equal(repo.courses.get(id).faculty, 'chung', id);
     const rule = repo.faculties.prefixes.find((h) => new RegExp(h.pattern).test(id));
     assert.ok(rule, id);
     assert.equal(rule.faculty, 'chung', id);
     assert.equal(rule.verified, false, id);
   }
-  for (const code of ['FRA_GC', 'ENG_GC_600', 'SA4003']) assert.equal(repo.faculties.prefixes.find((h) => new RegExp(h.pattern).test(code))?.faculty, 'chung', code);
+  for (const code of ['FRA_GC', 'ENG_GC', 'ENG_GC_600', 'CCGDTC', 'SA4003']) assert.equal(repo.faculties.prefixes.find((h) => new RegExp(h.pattern).test(code))?.faculty, 'chung', code);
 });
