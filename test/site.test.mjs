@@ -160,3 +160,75 @@ test('trang Gửi tài liệu: maxlength và loại kiểm tra lấy từ policy
   assert.match(html, /name="title" type="text" maxlength="200"/);
   assert.match(html, /<option value="ck">Cuối kỳ<\/option>/);
 });
+
+test('thanh điều hướng: Trang chủ, Gửi tài liệu, Duyệt bài, Gỡ tài liệu, rồi GitHub và ngôn ngữ; không còn Đóng góp', () => {
+  const nav = (html) => html.match(/<nav class="nav"[\s\S]*?<\/nav>/)[0];
+  const labels = (html) => [...nav(html).matchAll(/<a [^>]*>([^<]+)<\/a>/g)].map((m) => m[1]);
+  assert.deepEqual(labels(read('index.html')), ['Trang chủ', 'Gửi tài liệu', 'Duyệt bài', 'Gỡ tài liệu', 'GitHub', 'English']);
+  assert.deepEqual(labels(read('en/index.html')), ['Home', 'Send material', 'Review', 'Takedown', 'GitHub', 'Tiếng Việt']);
+  assert.match(nav(read('en/review/index.html')), /href="\.\.\/\.\.\/gui-tai-lieu\/"/);
+  assert.match(nav(read('gui-tai-lieu/index.html')), /href="\.\.\/gui-tai-lieu\/" aria-current="page"/);
+  assert.match(nav(read('review/index.html')), /href="\.\.\/review\/" aria-current="page"/);
+  assert.doesNotMatch(nav(read('contribute/index.html')), /aria-current/);
+  // Trang hướng dẫn đóng góp vẫn tới được từ trang chủ và trang Gửi tài liệu.
+  assert.match(read('index.html'), /href="\.\/contribute\/"/);
+  assert.match(read('en/index.html'), /href="\.\.\/en\/contribute\/"/);
+  assert.match(read('gui-tai-lieu/index.html'), /href="\.\.\/contribute\/"/);
+});
+
+// Dựng site từ bản sao fixture có thêm: một chương trình chưa có danh sách môn, một khoa chưa có dữ liệu.
+const out3 = (() => {
+  const dir = copyFixture();
+  editJson(dir, 'catalog/faculties.json', (f) => {
+    f.faculties.push({ key: 'fx', name: { vi: 'Khoa Thử Rỗng', en: 'Empty Test Faculty' } });
+  });
+  fs.writeFileSync(
+    path.join(dir, 'catalog', 'programs', 'EE_TS_108_2026.json'),
+    JSON.stringify({ code: 'EE_TS_108_2026', name: 'Ngành tuyển sinh thử', faculty: 'EE', year: '2026', variant: 'Dạy và học bằng tiếng Anh', note: 'Chưa có danh sách môn công khai.', source: 'https://example.test/ctdt', blocks: [], updated: '2026-10-01' }),
+  );
+  const o = fs.mkdtempSync(path.join(os.tmpdir(), 'bk-lib-site-prog-'));
+  buildSite({ root: dir, out: o });
+  return o;
+})();
+const read3 = (p) => fs.readFileSync(path.join(out3, p), 'utf8');
+
+test('trang khoa: chương trình theo khóa mới nhất trước, có số môn, nút thêm chương trình điền sẵn khoa', () => {
+  const html = read3('faculty/EE/index.html');
+  assert.ok(html.indexOf('Khóa 2026') < html.indexOf('Khóa 2019'));
+  assert.match(html, /Chương trình thử<\/a> <span class="muted small">1 môn<\/span>/);
+  assert.match(html, /Ngành tuyển sinh thử<\/a> <span class="tag">Dạy và học bằng tiếng Anh<\/span> <span class="muted small">chưa có danh sách môn<\/span>/);
+  assert.match(html, /issues\/new\?template=them-chuong-trinh\.yml&amp;khoa=Khoa\+%C4%90i%E1%BB%87n\+-\+%C4%90i%E1%BB%87n\+t%E1%BB%AD"[^>]*>Thêm chương trình đào tạo</);
+  assert.match(html, /<th scope="row"><a href="\.\.\/\.\.\/course\/EE1009\/">EE1009<\/a>/);
+  assert.match(read3('en/faculty/EE/index.html'), /Cohort 2026/);
+});
+
+test('trang khoa chưa có dữ liệu: có thông báo, vẫn có nút thêm chương trình', () => {
+  const html = read3('faculty/fx/index.html');
+  assert.match(html, /Khoa này chưa có môn và chương trình nào trong thư viện\./);
+  assert.match(html, /Khoa này chưa có chương trình nào\. Bạn có thể gửi CTĐT của khóa mình\./);
+  assert.match(html, /Chưa có môn nào\./);
+  assert.match(html, /template=them-chuong-trinh\.yml&amp;khoa=Khoa\+Th%E1%BB%AD\+R%E1%BB%97ng/);
+  assert.match(read3('index.html'), /<strong>Khoa Thử Rỗng<\/strong><span class="muted">Chưa có dữ liệu<\/span>/);
+});
+
+test('trang chương trình chưa có danh sách môn: thông báo, nút gửi CTĐT điền sẵn khoa, ngành, khóa', () => {
+  const html = read3('program/EE_TS_108_2026/index.html');
+  assert.match(html, /<h1>Ngành tuyển sinh thử \(2026\)<\/h1>/);
+  assert.match(html, /Chưa có danh sách môn\. Bạn có thể gửi CTĐT của khóa mình\./);
+  assert.match(html, /template=them-chuong-trinh\.yml&amp;khoa=[^"]+&amp;nganh=Ng%C3%A0nh\+tuy%E1%BB%83n\+sinh\+th%E1%BB%AD&amp;khoa-hoc=2026"/);
+  assert.match(html, /<a href="https:\/\/example\.test\/ctdt" rel="noopener">Xem CTĐT chính thức<\/a>/);
+  assert.doesNotMatch(html, /<table/);
+  assert.match(read3('en/program/EE_TS_108_2026/index.html'), /No course list yet/);
+});
+
+test('trang chủ: chương trình gộp theo khoa trong khối đóng mở, có nút thêm chương trình', () => {
+  const html = read3('index.html');
+  assert.equal((html.match(/<details class="prog-fac">/g) || []).length, 3);
+  assert.match(html, /<summary><span class="prog-fac-name">Khoa Điện - Điện tử<\/span> <span class="muted small">2 chương trình<\/span><\/summary>/);
+  assert.match(html, /Chương trình thử \(2019\)<\/a>/);
+  assert.match(html, /template=them-chuong-trinh\.yml"/);
+});
+
+test('bảng môn: môn chưa có tài liệu ghi "chưa có"', () => {
+  assert.match(read3('faculty/unknown/index.html'), /<td class="num"><span class="muted">chưa có<\/span><\/td>/);
+});
