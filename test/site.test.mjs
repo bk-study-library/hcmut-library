@@ -216,7 +216,11 @@ test('trang chương trình chưa có danh sách môn: thông báo, nút gửi C
   assert.match(html, /<h1>Ngành tuyển sinh thử \(2026\)<\/h1>/);
   assert.match(html, /Chưa có danh sách môn\. Bạn có thể gửi CTĐT của khóa mình\./);
   assert.match(html, /template=them-chuong-trinh\.yml&amp;khoa=[^"]+&amp;nganh=Ng%C3%A0nh\+tuy%E1%BB%83n\+sinh\+th%E1%BB%AD&amp;khoa-hoc=2026"/);
-  assert.match(html, /<a href="https:\/\/example\.test\/ctdt" rel="noopener">Xem CTĐT chính thức<\/a>/);
+  // Ghi chú, rồi một hàng nút: gửi CTĐT (nút chính) và link CTĐT chính thức dạng nút.
+  assert.match(html, /<\/div><p class="actions"><a class="btn primary" href="[^"]+" rel="noopener">Thêm chương trình đào tạo<\/a><a class="btn" href="https:\/\/example\.test\/ctdt" rel="noopener">Xem CTĐT chính thức<\/a><\/p>/);
+  // Dòng meta đọc tự nhiên: "Mã ..., khoa, ..., chưa có danh sách môn", không ghi "0 môn".
+  assert.match(html, /<p class="muted">Mã EE_TS_108_2026, <a href="\.\.\/\.\.\/faculty\/EE\/">Khoa Điện - Điện tử<\/a>, Dạy và học bằng tiếng Anh, chưa có danh sách môn<\/p>/);
+  assert.doesNotMatch(html, /0 môn/);
   assert.doesNotMatch(html, /<table/);
   assert.match(read3('en/program/EE_TS_108_2026/index.html'), /No course list yet/);
 });
@@ -280,4 +284,110 @@ test('trang chủ: ô tìm không bị khóa, danh sách môn chỉ tải khi d�
   assert.doesNotMatch(html, /<input id="q"[^>]*disabled/);
   const js = fs.readFileSync(path.join(path.dirname(fileURLToPath(import.meta.url)), '..', 'site-src', 'assets', 'search.js'), 'utf8');
   assert.match(js, /pointerenter/);
+});
+
+// Dựng site có đủ loại file để kiểm hàng nút của mục tài liệu.
+const out4 = (() => {
+  const dir = copyFixture();
+  fs.writeFileSync(path.join(dir, 'catalog', 'site.json'), JSON.stringify({ uploadEndpoint: '', turnstileSiteKey: 'K', reviewBase: 'https://up.example/' }));
+  const rel = (name) => `https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261/${name}`;
+  const item = (id, name, size, sha) => ({
+    id, course: 'EE1009', type: 'summary', title: `Mục ${id}`, lang: 'vi', license: 'CC-BY-SA-4.0', origin: 'self-made',
+    files: [{ name, size, sha256: sha.repeat(64), url: rel(name) }], added: '2026-10-04', removed: false,
+  });
+  for (const [id, name, sha] of [['co-pdf', 'EE1009_summary_co-pdf.pdf', '2'], ['co-docx', 'EE1009_summary_co-docx.docx', '3'], ['co-zip', 'EE1009_summary_co-zip.zip', '4']]) {
+    fs.writeFileSync(path.join(dir, 'courses', 'EE1009', 'items', `${id}.json`), JSON.stringify(item(id, name, 2 * 1024 * 1024, sha)));
+  }
+  const o = fs.mkdtempSync(path.join(os.tmpdir(), 'bk-lib-site-btn-'));
+  buildSite({ root: dir, out: o });
+  return o;
+})();
+const read4 = (p) => fs.readFileSync(path.join(out4, p), 'utf8');
+const itemHtml = (html, id) => {
+  const m = html.match(new RegExp(`<li class="item[^"]*" id="${id}">[\\s\\S]*?</li>`));
+  assert.ok(m, id);
+  return m[0];
+};
+const buttons = (li) => [...li.matchAll(/<a class="([^"]+)" href="([^"]+)"[^>]*>([^<]+)<\/a>/g)].map((m) => ({ cls: m[1], href: m[2].replace(/&amp;/g, '&'), label: m[3] }));
+
+test('mục có file PDF: Xem trước, Tải xuống (cỡ), Yêu cầu gỡ theo đúng thứ tự', () => {
+  const li = itemHtml(read4('course/EE1009/index.html'), 'co-pdf');
+  const b = buttons(li);
+  assert.deepEqual(b.map((x) => [x.cls, x.label]), [['btn', 'Xem trước'], ['btn', 'Tải xuống (2.0 MB)'], ['btn subtle', 'Yêu cầu gỡ']]);
+  const url = 'https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261/EE1009_summary_co-pdf.pdf';
+  assert.equal(b[0].href, `https://up.example/xem-truoc?u=${encodeURIComponent(url)}`);
+  assert.match(li, /target="_blank" rel="noopener">Xem trước/);
+  assert.equal(b[1].href, url);
+  // Nút xếp sau mô tả và dòng meta; không còn danh sách link trần.
+  assert.ok(li.indexOf('class="meta"') < li.indexOf('class="actions"'));
+  assert.doesNotMatch(li, /class="files"/);
+});
+
+test('Yêu cầu gỡ: mở form yeu-cau-go.yml điền sẵn link mục (ô item) và id mục', () => {
+  const take = new URL(buttons(itemHtml(read4('course/EE1009/index.html'), 'co-pdf')).at(-1).href);
+  assert.equal(take.origin + take.pathname, 'https://github.com/bk-study-library/hcmut-library/issues/new');
+  assert.equal(take.searchParams.get('template'), 'yeu-cau-go.yml');
+  assert.equal(take.searchParams.get('item'), 'https://bk-study-library.github.io/hcmut-library/course/EE1009/#co-pdf');
+  assert.match(take.searchParams.get('title'), /co-pdf/);
+  // Ô item có thật trong form.
+  const form = fs.readFileSync(path.join(path.dirname(fileURLToPath(import.meta.url)), '..', '.github', 'ISSUE_TEMPLATE', 'yeu-cau-go.yml'), 'utf8');
+  assert.match(form, /^\s+id: item$/m);
+  // Bản tiếng Anh trỏ về trang môn tiếng Anh.
+  const en = new URL(buttons(itemHtml(read4('en/course/EE1009/index.html'), 'co-pdf')).at(-1).href);
+  assert.equal(en.searchParams.get('item'), 'https://bk-study-library.github.io/hcmut-library/en/course/EE1009/#co-pdf');
+});
+
+test('mục docx, zip: không có nút Xem trước', () => {
+  const html = read4('course/EE1009/index.html');
+  for (const id of ['co-docx', 'co-zip']) {
+    assert.deepEqual(buttons(itemHtml(html, id)).map((x) => x.label), ['Tải xuống (2.0 MB)', 'Yêu cầu gỡ'], id);
+  }
+});
+
+test('mục Markdown trong git: xem trước qua link files/ của site, tải từ files/ cùng site', () => {
+  const li = itemHtml(read4('course/EE1009/index.html'), 'tom-tat-c1');
+  const b = buttons(li);
+  assert.deepEqual(b.map((x) => x.label), ['Xem trước', 'Tải xuống (82 B)', 'Yêu cầu gỡ']);
+  assert.equal(b[0].href, `https://up.example/xem-truoc?u=${encodeURIComponent('https://bk-study-library.github.io/hcmut-library/files/EE1009/tom-tat-c1.md')}`);
+  assert.equal(b[1].href, '../../files/EE1009/tom-tat-c1.md');
+  assert.match(li, /download="tom-tat-c1\.md"/);
+});
+
+test('file Release không theo dạng files-HK<xxx>: không có nút Xem trước', () => {
+  const li = itemHtml(read('course/EE1009/index.html'), 'prelab-2-tham-khao');
+  assert.deepEqual(buttons(li).map((x) => x.label), ['Tải xuống (117 KB)', 'Yêu cầu gỡ']);
+});
+
+test('mục link: Mở link rồi Yêu cầu gỡ; mục đã gỡ: không có nút', () => {
+  const html = read('course/EE1010/index.html');
+  assert.deepEqual(buttons(itemHtml(html, 'link-doi-tac')).map((x) => [x.cls, x.label]), [['btn', 'Mở link'], ['btn subtle', 'Yêu cầu gỡ']]);
+  const gone = itemHtml(html, 'go-bo');
+  assert.deepEqual(buttons(gone), []);
+  assert.doesNotMatch(gone, /class="actions"/);
+  assert.match(gone, /Người gửi rút lại/);
+});
+
+test('site.json không có reviewBase thì không có nút Xem trước', () => {
+  const dir = copyFixture();
+  fs.writeFileSync(path.join(dir, 'catalog', 'site.json'), JSON.stringify({ uploadEndpoint: '', turnstileSiteKey: 'K' }));
+  const o = fs.mkdtempSync(path.join(os.tmpdir(), 'bk-lib-site-nopv-'));
+  buildSite({ root: dir, out: o });
+  assert.doesNotMatch(itemHtml(fs.readFileSync(path.join(o, 'course', 'EE1009', 'index.html'), 'utf8'), 'tom-tat-c1'), /xem-truoc/);
+});
+
+test('danh sách xem trước: chỉ Release files-HK<xxx> và .md của site, tên an toàn', async () => {
+  const { previewTarget } = await import('../scripts/lib/preview.mjs');
+  const o = { repo: 'a/b', site: 'https://s.example/lib/' };
+  assert.ok(previewTarget('https://github.com/a/b/releases/download/files-HK261/x.pdf', o));
+  assert.ok(previewTarget('https://s.example/lib/files/MT1005/x.md', o));
+  for (const bad of [
+    'https://github.com/a/b/releases/download/files-HK261/x.docx',
+    'https://github.com/a/b/releases/download/files-HK261/../x.pdf',
+    'https://github.com/a/b/releases/download/files-HK26/x.pdf',
+    'https://github.com/a/c/releases/download/files-HK261/x.pdf',
+    'https://s.example/lib/files/MT1005/x.pdf',
+    'https://s.example/lib/files/MT1005/sub/x.md',
+    'https://s.example/lib/files/MT1005/%2e%2e/x.md',
+    'javascript:alert(1)//x.pdf',
+  ]) assert.equal(previewTarget(bad, o), null, bad);
 });
