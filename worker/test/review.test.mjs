@@ -177,6 +177,8 @@ describe('trang duyệt và Hoàn tất duyệt', () => {
     const fetch = fakeGitHub();
     expect((await decide(fetch, { 'd-chuong-1': 'keep', 'd-chuong-2': 'keep' }, {})).status).toBe(403);
     expect((await decide(fetch, { 'd-chuong-1': 'keep', 'd-chuong-2': 'keep' }, { Origin: 'https://la.example' })).status).toBe(403);
+    expect((await decide(fetch, { 'd-chuong-1': 'keep', 'd-chuong-2': 'keep' }, { Origin: 'null', 'Sec-Fetch-Site': 'cross-site' })).status).toBe(403);
+    expect((await decide(fetch, { 'd-chuong-1': 'keep', 'd-chuong-2': 'keep' }, { Origin: 'null' })).status).toBe(403);
     const res = await call(`/xem-duyet/${CODE}/duyet`, { fetch, method: 'POST', headers: { Origin: ORIGIN }, body: new URLSearchParams({}) });
     expect(res.status).toBe(403);
     expect(fetch.writes).toEqual([]);
@@ -309,5 +311,14 @@ describe('cron sweep', () => {
     expect(await stored()).not.toBeNull();
     await sweep(envFor(), deps(fakeGitHub({ state: 'closed' })));
     expect(await stored()).toBeNull();
+  });
+});
+
+describe('form từ trang duyệt có Referrer-Policy no-referrer', () => {
+  it('Origin null kèm Sec-Fetch-Site same-origin: nhận', async () => {
+    const fetch = fakeGitHub();
+    const res = await decide(fetch, { 'd-chuong-1': 'keep', 'd-chuong-2': 'keep' }, { Origin: 'null', 'Sec-Fetch-Site': 'same-origin' });
+    expect(res.status).toBe(200);
+    expect(fetch.writes.some((w) => w.path.endsWith('/pulls/7/merge'))).toBe(true);
   });
 });
