@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generated": "2026-10-04",
+  "generated": "2026-10-05",
   "courses": [
     {"id":"IU1001","code":"IU1001","status":"active","ids":[]},
     {"id":"IU1003","code":"IU1003","status":"active","ids":[]},
@@ -3712,7 +3712,7 @@
     {"id":"LA4017","code":"LA4017","status":"active","ids":[]},
     {"id":"MI1003","code":"MI1003","status":"active","ids":[]},
     {"id":"MT1003","code":"MT1003","status":"active","ids":["quiz-gioi-han-dao-ham","tom-tat-gioi-han-dao-ham"]},
-    {"id":"MT1005","code":"MT1005","status":"active","ids":["bang-cong-thuc-giai-tich-2","vi-du-openstax-calculus-volume-3"]},
+    {"id":"MT1005","code":"MT1005","status":"active","ids":["bang-cong-thuc-giai-tich-2","de-giua-ki-hk232-ma-de-3331","de-giua-ki-hk232-ma-de-3332","de-giua-ki-hk232-ma-de-3333","de-giua-ki-hk232-ma-de-3334","vi-du-openstax-calculus-volume-3"]},
     {"id":"MT1007","code":"MT1007","status":"active","ids":["ghi-chu-ma-tran-he-phuong-trinh","vi-du-mit-ocw-18-06sc-linear-algebra"]},
     {"id":"MT1009","code":"MT1009","status":"active","ids":[]},
     {"id":"MT1011","code":"MT1011","status":"active","ids":[]},
@@ -3808,6 +3808,14 @@
     "cf6e7ca888ae2d759080d096d407de5d9be42b59e062e532f3293636c0c2e21e",
     "c7ce30ea2d1d701335549b8e0456bc7e2a9cb3525f8077e4af6d023bf40c791c",
     "2c9957c28b94671f4a5a8af3c67dfb12b2902872fbfe038bbd8c742fdfaf31c7",
+    "8ec29d05e35162de04f845de0df2e5d98aac08c90db5b7de55d93de7ae441265",
+    "7a2272efbf70f2046ccc04a29ffd77b91f5321ca4ab15d1b201597246c13b05a",
+    "a0482428dccd64de8ff3f3fac5d09774d2b6b16c330ba3e51ba44ff461cdeb96",
+    "f139ae1fa8f766063a63651f703a4012d542b6d06a786e4ae47c40fba89029a8",
+    "1bbaa7e17df2ee3fe1c85388b0232ad706aaaf51fb5ac628949c32da2960ad63",
+    "d49478cc6a01a0fb648eb644f9103a01f4bb6bfc1c3b15fada64578d01ecba2c",
+    "ed0b61bb17ac1dbc3b8e823323832ff974f71fe43620c4c90dbd1eafc09de922",
+    "17bdf9c6f70afbdcc863f92cb82ee5da9637986aa8257dc39002c7a037e1fe9a",
     "bbc70c2e617c40ca844acbd4ad402c9f6e30b1cd1af2f0cb5b756605df9101ed"
   ],
   "blocked": []

@@ -1,13 +1,13 @@
 {
   "version": 1,
   "repo": "bk-study-library/hcmut-library",
-  "generated": "2026-10-04",
+  "generated": "2026-10-05",
   "counts": {
     "faculties": 16,
     "courses": 3796,
     "programs": 838,
     "majors": 140,
-    "items": 11
+    "items": 15
   },
   "faculties": [
     {
@@ -69255,6 +69255,106 @@
               "example": true,
               "added": "2026-10-03",
               "removed": false
+            },
+            {
+              "id": "de-giua-ki-hk232-ma-de-3331",
+              "course": "MT1005",
+              "type": "exam-past",
+              "title": "Đề giữa kì hk232 - Mã đề 3331",
+              "lang": "vi",
+              "license": "CC-BY-SA-4.0",
+              "origin": "self-made",
+              "added": "2026-10-05",
+              "removed": false,
+              "description": "Có đáp án",
+              "term": "HK232",
+              "examKind": "gk",
+              "files": [
+                {
+                  "name": "MT1005_exam-past_de-giua-ki-hk232-ma-de-3331_HK232.pdf",
+                  "size": 326846,
+                  "sha256": "8ec29d05e35162de04f845de0df2e5d98aac08c90db5b7de55d93de7ae441265",
+                  "mime": "application/pdf",
+                  "quarantine": "clean/1MSUo4YBK3/MT1005_exam-past_de-giua-ki-hk232-ma-de-3331_HK232.pdf",
+                  "uploadSha256": "7a2272efbf70f2046ccc04a29ffd77b91f5321ca4ab15d1b201597246c13b05a",
+                  "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/MT1005_exam-past_de-giua-ki-hk232-ma-de-3331_HK232.pdf"
+                }
+              ]
+            },
+            {
+              "id": "de-giua-ki-hk232-ma-de-3332",
+              "course": "MT1005",
+              "type": "exam-past",
+              "title": "Đề giữa kì hk232 - Mã đề 3332",
+              "lang": "vi",
+              "license": "CC-BY-SA-4.0",
+              "origin": "self-made",
+              "added": "2026-10-05",
+              "removed": false,
+              "description": "Có đáp án",
+              "term": "HK232",
+              "examKind": "gk",
+              "files": [
+                {
+                  "name": "MT1005_exam-past_de-giua-ki-hk232-ma-de-3332_HK232.pdf",
+                  "size": 326798,
+                  "sha256": "a0482428dccd64de8ff3f3fac5d09774d2b6b16c330ba3e51ba44ff461cdeb96",
+                  "mime": "application/pdf",
+                  "quarantine": "clean/1MSUo4YBK3/MT1005_exam-past_de-giua-ki-hk232-ma-de-3332_HK232.pdf",
+                  "uploadSha256": "f139ae1fa8f766063a63651f703a4012d542b6d06a786e4ae47c40fba89029a8",
+                  "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/MT1005_exam-past_de-giua-ki-hk232-ma-de-3332_HK232.pdf"
+                }
+              ]
+            },
+            {
+              "id": "de-giua-ki-hk232-ma-de-3333",
+              "course": "MT1005",
+              "type": "exam-past",
+              "title": "Đề giữa kì hk232 - Mã đề 3333",
+              "lang": "vi",
+              "license": "CC-BY-SA-4.0",
+              "origin": "self-made",
+              "added": "2026-10-05",
+              "removed": false,
+              "description": "Có đáp án",
+              "term": "HK232",
+              "examKind": "gk",
+              "files": [
+                {
+                  "name": "MT1005_exam-past_de-giua-ki-hk232-ma-de-3333_HK232.pdf",
+                  "size": 326751,
+                  "sha256": "1bbaa7e17df2ee3fe1c85388b0232ad706aaaf51fb5ac628949c32da2960ad63",
+                  "mime": "application/pdf",
+                  "quarantine": "clean/1MSUo4YBK3/MT1005_exam-past_de-giua-ki-hk232-ma-de-3333_HK232.pdf",
+                  "uploadSha256": "d49478cc6a01a0fb648eb644f9103a01f4bb6bfc1c3b15fada64578d01ecba2c",
+                  "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/MT1005_exam-past_de-giua-ki-hk232-ma-de-3333_HK232.pdf"
+                }
+              ]
+            },
+            {
+              "id": "de-giua-ki-hk232-ma-de-3334",
+              "course": "MT1005",
+              "type": "exam-past",
+              "title": "Đề giữa kì hk232 - Mã đề 3334",
+              "lang": "vi",
+              "license": "CC-BY-SA-4.0",
+              "origin": "self-made",
+              "added": "2026-10-05",
+              "removed": false,
+              "description": "Có đáp án",
+              "term": "HK232",
+              "examKind": "gk",
+              "files": [
+                {
+                  "name": "MT1005_exam-past_de-giua-ki-hk232-ma-de-3334_HK232.pdf",
+                  "size": 326684,
+                  "sha256": "ed0b61bb17ac1dbc3b8e823323832ff974f71fe43620c4c90dbd1eafc09de922",
+                  "mime": "application/pdf",
+                  "quarantine": "clean/1MSUo4YBK3/MT1005_exam-past_de-giua-ki-hk232-ma-de-3334_HK232.pdf",
+                  "uploadSha256": "17bdf9c6f70afbdcc863f92cb82ee5da9637986aa8257dc39002c7a037e1fe9a",
+                  "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/MT1005_exam-past_de-giua-ki-hk232-ma-de-3334_HK232.pdf"
+                }
+              ]
             },
             {
               "id": "vi-du-openstax-calculus-volume-3",
