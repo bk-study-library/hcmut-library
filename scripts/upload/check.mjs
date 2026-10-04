@@ -29,10 +29,12 @@ import path from 'node:path';
 import crypto from 'node:crypto';
 import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
-import { parseClamscan, renderReport, REPORT_MARKER } from './report.mjs';
+import { parseClamscan, renderReport, REPORT_MARKER, WARNINGS, needsManualReview, fenced } from './report.mjs';
 import { termFor, releaseTag, releaseAssetUrl } from './term.mjs';
+import { cleanOffice, readZip, zipFindings, pdfActiveContent, splitPdfText, imageLeftovers } from './sanitize.mjs';
 import { scanText, PII_PATTERNS, TOOL_ROOT } from '../lib/repo.mjs';
 import { loadPolicy } from '../lib/policy.mjs';
+import { extensionsFor } from '../lib/extensions.mjs';
 
 const QUARANTINE = /^(pending|clean)\/([A-Za-z0-9]{10})\/([^/]+)$/;
 const BRANCH = /^upload\/([A-Za-z0-9]{10})$/;
@@ -42,7 +44,9 @@ const SAFE_NAME = /^[A-Za-z0-9_-][A-Za-z0-9._-]*\.[A-Za-z0-9]+$/;
 const SHA256 = /^[0-9a-f]{64}$/;
 // Cùng bộ ký tự tên virus với parseClamscan.
 const SIGNATURE = /^[\w.\-/:]+$/;
-const TAG = /^[A-Za-z0-9_-]{1,64}$/;
+// Tên siêu dữ liệu đã xóa: thẻ exiftool (Author) hoặc phần trong file Office (docProps/core.xml:creator).
+const TAG = /^[A-Za-z0-9_./:-]{1,96}$/;
+const MAX_TAGS = 500;
 const PII_LABELS = new Set(PII_PATTERNS.map((p) => p.label));
 // Nhóm exiftool mô tả chính file hoặc công cụ, không phải siêu dữ liệu trong file.
 const NOT_METADATA = new Set(['SourceFile', 'ExifTool', 'File', 'System', 'Composite']);
@@ -148,18 +152,29 @@ export function validateResult(r, info) {
   if (!(Number.isInteger(r.size) && r.size > 0)) fail('size');
   if (![true, false, null].includes(r.hasText)) fail('hasText');
   if (typeof r.piiChecked !== 'boolean') fail('piiChecked');
-  if (!Array.isArray(r.metadataRemoved) || !r.metadataRemoved.every((t) => typeof t === 'string' && TAG.test(t))) fail('metadataRemoved');
+  if (!Array.isArray(r.metadataRemoved) || r.metadataRemoved.length > MAX_TAGS || !r.metadataRemoved.every((t) => typeof t === 'string' && TAG.test(t))) fail('metadataRemoved');
   const piiOk = (p) => p && PII_LABELS.has(p.label) && Number.isInteger(p.page) && p.page > 0
     && typeof p.match === 'string' && p.match.length > 0 && p.match.length <= 200;
   if (!Array.isArray(r.pii) || !r.pii.every(piiOk)) fail('pii');
+  // Trường thêm sau: thiếu thì coi như rỗng. Cảnh báo chỉ nhận mã đã biết (câu chữ do report.mjs giữ).
+  const unscannable = r.unscannable ?? null;
+  if (unscannable !== null && !(typeof unscannable === 'string' && SIGNATURE.test(unscannable))) fail('unscannable');
+  const warnings = r.warnings ?? [];
+  if (!Array.isArray(warnings) || warnings.length > 50 || !warnings.every((w) => typeof w === 'string' && Object.hasOwn(WARNINGS, w))) fail('warnings');
+  const pageCount = (v) => v === undefined || v === null || (Number.isInteger(v) && v >= 0);
+  if (!pageCount(r.textPages) || !pageCount(r.totalPages)) fail('textPages');
   return {
     code: r.code,
     name: r.name,
     virus: null,
+    unscannable,
+    warnings: [...new Set(warnings)],
     metadataRemoved: [...r.metadataRemoved],
     hasText: r.hasText,
     piiChecked: r.piiChecked,
     pii: r.pii.map((p) => ({ label: p.label, page: p.page, match: p.match })),
+    textPages: r.textPages ?? null,
+    totalPages: r.totalPages ?? null,
     size: r.size,
     sha256: r.sha256,
   };
@@ -171,9 +186,12 @@ export function findReportComment(comments) {
   return c ? c.id : null;
 }
 
+// reason gồm chữ chưa tin (stderr của công cụ, nội dung artifact loi-*): luôn nằm trong khối code
+// có rào dài hơn mọi đoạn backtick trong chữ, có giới hạn độ dài, nên không thành link hay nhắc tên.
+export const FAILURE_REASON_MAX = 2000;
 export function failureReport({ reason, runUrl }) {
   const out = [REPORT_MARKER, '## Kết quả kiểm file', '', 'Không kiểm được file. Người duyệt xem nhật ký của lần chạy để xử lý.'];
-  if (reason && reason.trim()) out.push('', reason.trim().slice(0, 2000));
+  if (reason && reason.trim()) out.push('', fenced(reason.trim(), FAILURE_REASON_MAX));
   out.push('', runUrl);
   return out.join('\n') + '\n';
 }
@@ -246,11 +264,15 @@ function args(argv) {
   return out;
 }
 
-// Chạy công cụ ngoài, trả stdout; mã thoát ngoài ok thì báo lỗi.
+// Thời gian tối đa cho mỗi lần chạy công cụ (policy.scan.toolTimeoutSeconds).
+let toolTimeoutMs = 0;
+
+// Chạy công cụ ngoài, trả stdout; mã thoát ngoài ok hay chạy quá giờ thì báo lỗi.
 function tool(cmd, argv, ok = [0]) {
-  const r = spawnSync(cmd, argv, { encoding: 'utf8', maxBuffer: 256 * 1024 * 1024 });
+  const r = spawnSync(cmd, argv, { encoding: 'utf8', maxBuffer: 256 * 1024 * 1024, timeout: toolTimeoutMs || undefined, killSignal: 'SIGKILL' });
   if (r.error) throw new Error(`Không chạy được ${cmd}: ${r.error.message}`);
-  if (!ok.includes(r.status)) throw new Error(`${cmd} lỗi (mã ${r.status}): ${String(r.stderr).trim()}`);
+  if (r.signal) throw new Error(`${cmd} bị dừng (${r.signal}), có thể do chạy quá ${toolTimeoutMs / 1000} giây.`);
+  if (!ok.includes(r.status)) throw new Error(`${cmd} lỗi (mã ${r.status}): ${String(r.stderr).trim().slice(0, 1000)}`);
   return { stdout: r.stdout, status: r.status };
 }
 
@@ -283,14 +305,41 @@ function cleanPdf(src, dest) {
   return removedTags(before, exifJson(dest));
 }
 
-function pdfPages(p) {
+// Chữ của tối đa maxPages trang đầu, một lần chạy pdftotext (trang cách nhau bằng \f).
+function pdfText(p, maxPages) {
   const m = /^Pages:\s+(\d+)/m.exec(tool('pdfinfo', [p]).stdout);
   if (!m) throw new Error('Không đọc được số trang của PDF.');
-  const pages = [];
-  for (let i = 1; i <= Number(m[1]); i++) {
-    pages.push(tool('pdftotext', ['-f', String(i), '-l', String(i), '-enc', 'UTF-8', p, '-']).stdout);
+  const total = Number(m[1]);
+  const last = Math.min(total, maxPages);
+  if (last < 1) return { pages: [], total };
+  const out = tool('pdftotext', ['-f', '1', '-l', String(last), '-enc', 'UTF-8', p, '-']).stdout;
+  return { pages: splitPdfText(out, last), total };
+}
+
+// JavaScript, Launch, OpenAction, file đính kèm: qpdf viết lại không có object stream để mọi từ điển
+// nằm ở dạng chữ, rồi tìm khóa ngoài phần stream.
+function pdfWarnings(p) {
+  const flat = `${p}.flat.pdf`;
+  tool('qpdf', ['--object-streams=disable', '--stream-data=preserve', p, flat], [0, 3]);
+  try {
+    return pdfActiveContent(fs.readFileSync(flat, 'latin1'));
+  } finally {
+    fs.rmSync(flat, { force: true });
   }
-  return pages;
+}
+
+// Ảnh: exiftool xóa mọi siêu dữ liệu, rồi ghi lại hướng ảnh (Orientation) nếu có để ảnh không bị
+// xoay. Đọc lại; còn sót thẻ nào thì dừng (không đưa ảnh chưa sạch lên).
+function cleanImage(src, dest) {
+  fs.copyFileSync(src, dest);
+  const before = exifJson(dest);
+  const orientation = tool('exiftool', ['-s3', '-n', '-EXIF:Orientation', dest]).stdout.trim();
+  tool('exiftool', ['-all=', '-overwrite_original', dest]);
+  if (/^[2-8]$/.test(orientation)) tool('exiftool', ['-n', `-EXIF:Orientation=${orientation}`, '-overwrite_original', dest]);
+  const after = exifJson(dest);
+  const left = imageLeftovers(after);
+  if (left.length) throw new Error(`Không xóa hết được siêu dữ liệu của ảnh: ${left.join(', ')}.`);
+  return removedTags(before, after);
 }
 
 // Tên và sha256 các file đã có trên Release; Release chưa có thì rỗng.
@@ -315,17 +364,41 @@ function locate(a) {
   return out;
 }
 
+// Giới hạn khi quét, từ policy.scan.
+function scanLimits(policy) {
+  const s = policy.scan || {};
+  const posInt = (v, key) => {
+    if (!Number.isInteger(v) || v <= 0) throw new Error(`catalog/policy.json: scan.${key} phải là số nguyên dương.`);
+    return v;
+  };
+  return {
+    pdfTextMaxPages: posInt(s.pdfTextMaxPages, 'pdfTextMaxPages'),
+    toolTimeoutSeconds: posInt(s.toolTimeoutSeconds, 'toolTimeoutSeconds'),
+    zipMaxUncompressedBytes: posInt(s.zipMaxUncompressedBytes, 'zipMaxUncompressedBytes'),
+    zipAllowedInside: Array.isArray(s.zipAllowedInside) ? s.zipAllowedInside.map((x) => String(x).toLowerCase()) : [],
+  };
+}
+
+const OFFICE = new Set(['.docx', '.pptx', '.xlsx']);
+const IMAGES = new Set(['.png', '.jpg']);
+
 function scan(a) {
   const policy = loadPolicy(TOOL_ROOT);
-  const info = quarantineInfo(readJson(a.item));
+  const limits = scanLimits(policy);
+  toolTimeoutMs = limits.toolTimeoutSeconds * 1000;
+  const item = readJson(a.item);
+  const info = quarantineInfo(item);
   const ext = path.extname(info.name).toLowerCase();
   if (!policy.extensions[ext]) throw new Error(`Không nhận đuôi ${ext}.`);
+  if (!extensionsFor(policy, item.type).includes(ext)) throw new Error(`Không nhận đuôi ${ext} cho loại ${item.type}.`);
   const src = path.join(a.dir, info.name);
   if (sha256File(src) !== info.sha256) throw new Error('File trong kho cách ly khác sha256 ghi trong mục.');
   fs.mkdirSync(a.out, { recursive: true });
   const write = (r) => fs.writeFileSync(path.join(a.out, 'result.json'), JSON.stringify(r));
 
-  const av = tool('clamscan', ['--no-summary', src], [0, 1, 2]);
+  // Quét cả bên trong file nén; file mã hóa hay vượt giới hạn quét thì ClamAV báo Heuristics.Encrypted
+  // hay Heuristics.Limits.Exceeded thay vì coi là sạch.
+  const av = tool('clamscan', ['--no-summary', '--scan-archive=yes', '--alert-encrypted=yes', '--alert-exceeds-max=yes', src], [0, 1, 2]);
   const verdict = parseClamscan(av.stdout, av.status);
   if (verdict.infected) return write({ code: info.code, name: info.name, virus: verdict.signature });
 
@@ -336,16 +409,38 @@ function scan(a) {
   let hasText = null;
   let pii = [];
   let piiChecked = true;
+  let textPages = null;
+  let totalPages = null;
+  const warnings = [];
   if (ext === '.pdf') {
     metadataRemoved = cleanPdf(src, cleanFile);
-    ({ hasText, pii } = piiFromPages(pdfPages(cleanFile)));
+    warnings.push(...pdfWarnings(cleanFile));
+    const text = pdfText(cleanFile, limits.pdfTextMaxPages);
+    ({ hasText, pii } = piiFromPages(text.pages));
+    textPages = text.pages.length;
+    totalPages = text.total;
+  } else if (IMAGES.has(ext)) {
+    metadataRemoved = cleanImage(src, cleanFile);
+    piiChecked = false;
+  } else if (OFFICE.has(ext)) {
+    const r = cleanOffice(fs.readFileSync(src));
+    fs.writeFileSync(cleanFile, r.buf);
+    metadataRemoved = r.removed;
+    warnings.push(...r.warnings);
+    piiChecked = false;
+  } else if (ext === '.zip') {
+    fs.copyFileSync(src, cleanFile);
+    const zip = readZip(fs.readFileSync(cleanFile));
+    warnings.push(...zipFindings(zip.entries, { allowed: limits.zipAllowedInside, maxUncompressed: limits.zipMaxUncompressedBytes }));
+    piiChecked = false;
   } else {
     fs.copyFileSync(src, cleanFile);
     if (ext === '.md' || ext === '.json') ({ pii } = piiFromPages([fs.readFileSync(cleanFile, 'utf8')]));
     else piiChecked = false;
   }
   write({
-    code: info.code, name: info.name, virus: null, metadataRemoved, hasText, piiChecked, pii,
+    code: info.code, name: info.name, virus: null, unscannable: verdict.unscannable ?? null, warnings: [...new Set(warnings)],
+    metadataRemoved, hasText, piiChecked, pii, textPages, totalPages,
     size: fs.statSync(cleanFile).size, sha256: sha256File(cleanFile),
   });
 }
@@ -359,7 +454,7 @@ function apply(a) {
     fs.writeFileSync(a.report, report);
     writeOutputs(a['output-file'], values);
   };
-  if (r.virus) return done(renderReport({ code: info.code, virus: r.virus }), { virus: r.virus, quarantine: '', clean: '' });
+  if (r.virus) return done(renderReport({ code: info.code, virus: r.virus }), { virus: r.virus, quarantine: '', clean: '', manual: 'false' });
 
   // Không tin con số trong kết quả: tính lại trên chính file sẽ đưa lên kho.
   const cleanFile = path.join(a['clean-dir'], info.name);
@@ -376,10 +471,12 @@ function apply(a) {
   fs.writeFileSync(a.item, `${JSON.stringify(next, null, 2)}\n`);
   const report = renderReport({
     code: info.code, virus: null, metadataRemoved: r.metadataRemoved, hasText: r.hasText, pii: r.pii,
-    piiChecked: r.piiChecked, url: next.files[0].url,
+    piiChecked: r.piiChecked, url: next.files[0].url, unscannable: r.unscannable, warnings: r.warnings,
+    textPages: r.textPages, totalPages: r.totalPages,
     reviewUrl: reviewUrl(readJson(path.join(TOOL_ROOT, 'catalog', 'site.json')), info.code),
   });
-  done(report, { virus: '', quarantine: next.files[0].quarantine, clean: cleanFile });
+  // manual=true: workflow gắn nhãn can-xem-tay. Tính lại từ mã cảnh báo, không lấy cờ từ job scan.
+  done(report, { virus: '', quarantine: next.files[0].quarantine, clean: cleanFile, manual: String(needsManualReview(r)) });
 }
 
 async function comment(a) {
