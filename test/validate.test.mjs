@@ -2,7 +2,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
-import { loadRepo, buildIndex, serializeIndex, scanText } from '../scripts/lib/repo.mjs';
+import { loadRepo, TOOL_ROOT, buildIndex, serializeIndex, scanText } from '../scripts/lib/repo.mjs';
 import { run } from '../scripts/validate.mjs';
 import { syncReadmes } from '../scripts/lib/readme.mjs';
 import { copyFixture, editJson, writeJson, codes, FIXTURES } from './helpers.mjs';
@@ -101,10 +101,8 @@ test('file .md trong git: size và sha256 phải khớp nội dung', () => {
   assert.deepEqual(errorsAfter((d) => fs.appendFileSync(path.join(d, 'courses', 'EE1009', 'files', 'tom-tat-c1.md'), 'thêm\n')), ['FILE_PATH']);
 });
 
-test('prelab tham khảo cần gradedAfter và chỉ đăng sau ngày đó', () => {
-  assert.deepEqual(errorsAfter((d) => editJson(d, PRELAB, (it) => { delete it.gradedAfter; })), ['PRELAB_GRADED']);
-  assert.deepEqual(errorsAfter((d) => editJson(d, PRELAB, (it) => { it.added = '2026-01-10'; })), ['PRELAB_GRADED']);
-  assert.deepEqual(errorsAfter((d) => editJson(d, PRELAB, (it) => { it.gradedAfter = '2099-01-01'; it.added = '2099-01-02'; })), ['PRELAB_GRADED']);
+test('prelab tham khảo không cần gradedAfter', () => {
+  assert.deepEqual(errorsAfter((d) => editJson(d, PRELAB, (it) => { delete it.gradedAfter; })), []);
 });
 
 test('tự soạn phải dùng CC BY-SA 4.0 (hoặc CC BY 4.0, CC0)', () => {
@@ -182,4 +180,73 @@ test('README môn giữ nguyên phần Mẹo học khi sinh lại', () => {
   const out = fs.readFileSync(p, 'utf8');
   assert.ok(out.includes(tip));
   assert.ok(out.includes('| Tín chỉ | 4 |'));
+});
+
+test('giới hạn dung lượng trong thông báo lấy từ policy.json', () => {
+  const dir = copyFixture();
+  const pol = JSON.parse(fs.readFileSync(path.join(TOOL_ROOT, 'catalog', 'policy.json'), 'utf8'));
+  writeJson(dir, 'catalog/policy.json', { ...pol, maxFileBytes: 5 * 1024 * 1024 });
+  editJson(dir, PRELAB, (it) => { it.files[0].size = 6 * 1024 * 1024; });
+  const e = loadRepo(dir).errors.find((x) => x.code === 'FILE_SIZE');
+  assert.match(e.msg, /quá 5 MB/);
+});
+
+test('policy.json thiếu khóa thì báo SCHEMA, không ném lỗi', () => {
+  const dir = copyFixture();
+  const pol = JSON.parse(fs.readFileSync(path.join(TOOL_ROOT, 'catalog', 'policy.json'), 'utf8'));
+  delete pol.terms;
+  writeJson(dir, 'catalog/policy.json', pol);
+  const e = loadRepo(dir).errors.find((x) => x.code === 'SCHEMA' && x.file === 'catalog/policy.json');
+  assert.match(e.msg, /terms/);
+});
+
+const BOOK = { title: 'Giải tích 1', authors: ['Nguyễn Văn A'], year: 2020, publisher: 'NXB ĐHQG', isbn: '9780306406157' };
+const bookItem = (extra = {}) => ({
+  id: 'sach-giai-tich', course: 'EE1009', type: 'book-ref', title: 'Giải tích 1', lang: 'vi', license: 'CC0-1.0', origin: 'partner:vi-du',
+  book: BOOK, added: '2026-10-01', removed: false, ...extra,
+});
+
+test('book-ref: cần book, không có files hay url; loại khác không có book', () => {
+  const put = (d, it) => writeJson(d, 'courses/EE1009/items/sach-giai-tich.json', it);
+  const noBook = bookItem();
+  delete noBook.book;
+  assert.deepEqual(errorsAfter((d) => put(d, noBook)), ['ITEM_BOOK']);
+  const withFiles = bookItem({ files: [{ name: 'a.pdf', size: 10, sha256: 'b'.repeat(64) }] });
+  assert.ok(errorsAfter((d) => put(d, withFiles)).includes('ITEM_BOOK'));
+  assert.ok(errorsAfter((d) => put(d, bookItem({ url: 'https://example.org/' }))).includes('ITEM_BOOK'));
+  assert.deepEqual(errorsAfter((d) => editJson(d, ITEM, (it) => { it.book = BOOK; })), ['ITEM_BOOK']);
+});
+
+test('schema: isbn sai định dạng và quarantine sai dạng', () => {
+  assert.deepEqual(errorsAfter((d) => writeJson(d, 'courses/EE1009/items/sach-giai-tich.json', bookItem({ book: { ...BOOK, isbn: '12-3' } }))), ['SCHEMA']);
+  assert.deepEqual(errorsAfter((d) => editJson(d, ITEM, (it) => { it.files[0].quarantine = 'bad/path'; })), ['SCHEMA']);
+});
+
+test('book-ref: book cần ít nhất một tác giả không rỗng', () => {
+  for (const authors of [[], ['  ']]) {
+    assert.ok(errorsAfter((d) => writeJson(d, 'courses/EE1009/items/sach-giai-tich.json', bookItem({ book: { ...BOOK, authors } }))).includes('ITEM_BOOK'));
+  }
+});
+
+test('ISBN không bị quét như số điện thoại, tên sách vẫn bị quét', () => {
+  const put = (book) => (d) => writeJson(d, 'courses/EE1009/items/sach-giai-tich.json', bookItem({ book: { ...BOOK, ...book } }));
+  assert.deepEqual(errorsAfter(put({ isbn: '0912345678' })), []);
+  assert.deepEqual(errorsAfter(put({ title: 'Sách 0912345678' })), ['PII_PHONE']);
+});
+
+test('mẫu thông tin cá nhân dùng chung: repo.mjs xuất lại đúng pii.mjs', async () => {
+  const pii = await import('../scripts/lib/pii.mjs');
+  const repo = await import('../scripts/lib/repo.mjs');
+  assert.equal(repo.scanText, pii.scanText);
+  assert.equal(repo.PII_PATTERNS, pii.PII_PATTERNS);
+  // Chữ người gửi không được bỏ qua bằng "pii-ok".
+  assert.equal(pii.scanText('an@hcmut.edu.vn pii-ok').length, 0);
+  assert.equal(pii.scanText('an@hcmut.edu.vn pii-ok', { skipMarked: false })[0].code, 'PII_EMAIL');
+});
+
+test('uploadSha256 hợp lệ trong schema và không bị quét như số điện thoại', () => {
+  // Chuỗi hex có đoạn giống số điện thoại.
+  const hex = '0912345678' + 'a'.repeat(54);
+  assert.deepEqual(errorsAfter((d) => editJson(d, ITEM, (it) => { it.files[0].uploadSha256 = hex; })), []);
+  assert.deepEqual(errorsAfter((d) => editJson(d, ITEM, (it) => { it.files[0].uploadSha256 = 'x'; })), ['SCHEMA']);
 });

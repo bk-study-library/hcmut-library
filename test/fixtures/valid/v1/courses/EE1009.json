@@ -18,6 +18,7 @@
       "files": [
         {
           "name": "prelab-2.pdf",
+          "mime": "application/pdf",
           "size": 120000,
           "sha256": "1111111111111111111111111111111111111111111111111111111111111111",
           "urls": [
@@ -42,6 +43,7 @@
       "files": [
         {
           "name": "tom-tat-c1.md",
+          "mime": "text/markdown",
           "size": 82,
           "sha256": "48d99f80b7d4df1cbe9be9cf80651255170eddc91ed973193c1c5ea0ba4f932d",
           "urls": [

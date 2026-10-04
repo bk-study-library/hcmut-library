@@ -283,3 +283,34 @@ tr.retired td, tr.retired th { color: var(--muted); }
 @media print {
   .top, .foot, .search, .contribute, .cta-row { display: none; }
 }
+
+/* Form gửi tài liệu */
+.upload { max-width: 640px; }
+.upload fieldset { border: 0; margin: 0; padding: 0; min-width: 0; }
+.upload .field { margin: 0 0 18px; }
+.upload label { display: block; font-weight: 600; margin: 10px 0 4px; }
+.upload .field > label:first-child { margin-top: 0; }
+.upload input[type="text"], .upload input[type="search"], .upload select, .upload textarea, .upload input[type="file"] {
+  width: 100%;
+  font: inherit;
+  padding: 8px 10px;
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius);
+}
+.upload input:focus-visible, .upload select:focus-visible, .upload textarea:focus-visible, .upload summary:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+.upload label.check { display: flex; gap: 8px; align-items: flex-start; font-weight: 400; margin: 8px 0; }
+.upload label.check input { margin-top: 4px; }
+.upload .book { border: 1px solid var(--border); border-radius: var(--radius); padding: 12px 14px; }
+.upload .book[hidden] { display: none; }
+.upload .more { border: 1px solid var(--border); border-radius: var(--radius); padding: 10px 14px; }
+.upload .more summary { cursor: pointer; font-weight: 600; }
+.upload .muted, .upload .err { margin: 4px 0 0; }
+.upload .err { color: var(--warn); font-weight: 600; }
+.upload .err:empty { display: none; }
+.upload .pick { list-style: none; margin: 4px 0 0; padding: 0; }
+.upload .pick button { display: flex; gap: 8px; width: 100%; text-align: left; font: inherit; color: var(--text); background: var(--surface); border: 1px solid var(--border); border-top: 0; padding: 8px 10px; cursor: pointer; }
+.upload .pick li:first-child button { border-top: 1px solid var(--border); }
+.upload .pick button:hover, .upload .pick button:focus-visible { background: var(--surface-2); }
+.upload fieldset:disabled { opacity: 0.6; }

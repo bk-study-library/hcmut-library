@@ -1,4 +1,21 @@
 {
-  "openTypes": ["summary", "notes", "cheatsheet", "quiz-pack", "tips", "link"],
-  "note": "Loại tài liệu đang nhận. Các loại khác có trong hợp đồng v1 nhưng chỉ mở khi có người duyệt thứ hai và quy định riêng (liêm chính học thuật)."
+  "openTypes": ["summary", "notes", "cheatsheet", "quiz-pack", "tips", "link", "exercise-solution", "exam-solution", "exam-past", "prelab-template", "prelab-reference", "lab-report-reference", "project-reference", "book-ref"],
+  "note": "Cấu hình chung: loại tài liệu nhận, giới hạn file, đuôi file và học kỳ.",
+  "maxFileBytes": 20971520,
+  "maxMdInGitBytes": 1048576,
+  "extensions": {
+    ".pdf": { "mime": "application/pdf", "magic": "25504446" },
+    ".md": { "mime": "text/markdown" },
+    ".docx": { "mime": "application/vnd.openxmlformats-officedocument.wordprocessingml.document", "magic": "504b0304" },
+    ".pptx": { "mime": "application/vnd.openxmlformats-officedocument.presentationml.presentation", "magic": "504b0304" },
+    ".xlsx": { "mime": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "magic": "504b0304" },
+    ".zip": { "mime": "application/zip", "magic": "504b0304" },
+    ".png": { "mime": "image/png", "magic": "89504e47" },
+    ".jpg": { "mime": "image/jpeg", "magic": "ffd8ff" },
+    ".json": { "mime": "application/json" }
+  },
+  "fields": { "titleMax": 200, "descriptionMax": 1000, "chapterMax": 20, "teacherMax": 80, "displayNameMax": 80, "bookTitleMax": 200, "bookAuthorMax": 80, "bookPublisherMax": 120, "textTotalMax": 8192, "examKinds": ["gk", "ck", "quiz", "kt"] },
+  "quizExtensions": [".json", ".md", ".zip"],
+  "selfMadeLicenses": ["CC-BY-SA-4.0", "CC-BY-4.0", "CC0-1.0"],
+  "terms": { "HK1": [9, 10, 11, 12, 1], "HK2": [2, 3, 4, 5, 6], "HK3": [7, 8] }
 }

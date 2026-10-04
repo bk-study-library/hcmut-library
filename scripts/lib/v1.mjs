@@ -10,6 +10,7 @@
 // - Mục đã gỡ chỉ còn id, type, removed, removedReason, added; bên đọc xóa bản lưu của mục đó.
 // Mô tả cho người đọc: docs/v1.md.
 
+import path from 'node:path';
 import { SITE_URL, RAW_URL } from './labels.mjs';
 
 export const SCHEMA_VERSION = 1;
@@ -35,9 +36,17 @@ function fileUrls(courseId, f, site) {
   return [];
 }
 
-const ITEM_FIELDS = ['id', 'type', 'title', 'description', 'lang', 'term', 'teacher', 'examKind', 'chapter', 'lab', 'license', 'origin', 'source', 'authors', 'added', 'example'];
+const ITEM_FIELDS = ['id', 'type', 'title', 'description', 'lang', 'term', 'teacher', 'examKind', 'chapter', 'lab', 'license', 'origin', 'source', 'authors', 'added', 'example', 'book'];
 
-function v1Item(it, site) {
+// mime của file: ưu tiên giá trị ghi trong item, không có thì theo đuôi trong policy.
+function fileMime(f, extensions) {
+  if (f.mime) return f.mime;
+  const ext = path.extname(f.name).toLowerCase();
+  if (!extensions[ext]) throw new Error(`Không suy ra được mime của ${f.name}: đuôi ${ext || '(trống)'} không có trong catalog/policy.json`);
+  return extensions[ext].mime;
+}
+
+function v1Item(it, site, extensions) {
   if (it.removed) return { id: it.id, type: it.type, removed: true, removedReason: it.removedReason, added: it.added };
   const out = {};
   for (const k of ITEM_FIELDS) {
@@ -51,7 +60,9 @@ function v1Item(it, site) {
     out.url = it.url;
     return out;
   }
-  const files = (it.files || []).map((f) => ({ name: f.name, size: f.size, sha256: f.sha256, urls: fileUrls(it.course, f, site) }));
+  if (it.type === 'book-ref') return out;
+  // quarantine là chỗ chứa nội bộ, không bao giờ chép sang v1.
+  const files = (it.files || []).map((f) => ({ name: f.name, mime: fileMime(f, extensions), size: f.size, sha256: f.sha256, urls: fileUrls(it.course, f, site) }));
   // Mục có file chưa tải lên chỗ nào thì chưa đưa ra ngoài.
   if (!files.length || files.some((f) => !f.urls.length)) return null;
   out.files = files;
@@ -73,7 +84,7 @@ export function buildV1(repo, { site = SITE_URL } = {}) {
     const items = (itemsOf.get(c.id) || [])
       .slice()
       .sort((a, b) => a.id.localeCompare(b.id))
-      .map((it) => v1Item(it, site))
+      .map((it) => v1Item(it, site, repo.policy.extensions))
       .filter(Boolean);
     const live = items.filter((i) => !i.removed).length;
     counts.courses++;

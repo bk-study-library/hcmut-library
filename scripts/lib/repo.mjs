@@ -6,16 +6,10 @@ import path from 'node:path';
 import crypto from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 import { validate } from './schema.mjs';
+import { loadPolicy, missingKeys } from './policy.mjs';
+import { PII_PATTERNS, scanText } from './pii.mjs';
 
 export const TOOL_ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '..');
-
-export const LIMITS = {
-  maxFileBytes: 20 * 1024 * 1024,
-  maxMdInGitBytes: 1024 * 1024,
-  allowedExt: ['.pdf', '.md', '.docx', '.pptx', '.xlsx', '.zip', '.png', '.jpg', '.json'],
-  quizExt: ['.json', '.md', '.zip'],
-  selfMadeLicenses: ['CC-BY-SA-4.0', 'CC-BY-4.0', 'CC0-1.0'],
-};
 
 const SKIP_DIRS = new Set(['.git', 'node_modules', 'site']);
 
@@ -37,36 +31,20 @@ function sha256File(p) {
   return crypto.createHash('sha256').update(fs.readFileSync(p)).digest('hex');
 }
 
-function today() {
-  return new Date().toISOString().slice(0, 10);
+function fmtSize(n) {
+  return n >= 1024 * 1024 ? `${+(n / 1024 / 1024).toFixed(1)} MB` : `${+(n / 1024).toFixed(1)} KB`;
 }
 
 // ---------- Quét thông tin cá nhân ----------
 
-// MSSV Bách Khoa: 7 chữ số, hai số đầu là khóa (ví dụ 19..., 21...).
-// Số điện thoại Việt Nam: 0 hoặc +84, rồi 9 chữ số (cho phép cách bằng dấu cách, chấm, gạch).
-export const PII_PATTERNS = [
-  { code: 'PII_STUDENT_ID', label: 'MSSV 7 chữ số', re: /(?<![\p{L}\p{N}.,])[12]\d{6}(?![\p{L}\p{N}])/gu },
-  { code: 'PII_EMAIL', label: 'email', re: /[A-Za-z0-9._%+-]+@[A-Za-z0-9-]+(?:\.[A-Za-z0-9-]+)*\.[A-Za-z]{2,}/g },
-  { code: 'PII_PHONE', label: 'số điện thoại', re: /(?<![\p{N}.,])(?:\+84[ .-]?|0)[235789]\d(?:[ .-]?\d){7}(?!\p{N})/gu },
-];
+// Mẫu nằm ở pii.mjs (JS chuẩn) để Worker dùng chung.
+export { PII_PATTERNS, scanText };
 
-// Dòng có chú thích "pii-ok" được bỏ qua (dùng khi chắc chắn không phải thông tin cá nhân).
-export function scanText(text) {
-  const hits = [];
-  text.split(/\r?\n/).forEach((line, i) => {
-    if (line.includes('pii-ok')) return;
-    for (const p of PII_PATTERNS) {
-      for (const m of line.matchAll(p.re)) hits.push({ code: p.code, label: p.label, line: i + 1, match: m[0] });
-    }
-  });
-  return hits;
-}
-
-// Trong JSON chỉ quét giá trị chuỗi, bỏ url và sha256 (URL hay có dãy số dài).
+// Trong JSON chỉ quét giá trị chuỗi, bỏ url, mã băm và ISBN (dãy số dài theo mẫu cố định).
+const NOT_TEXT = new Set(['url', 'sha256', 'uploadSha256', 'isbn', '$schema']);
 function jsonStrings(v, key, out) {
   if (typeof v === 'string') {
-    if (key !== 'url' && key !== 'sha256' && key !== '$schema') out.push(v);
+    if (!NOT_TEXT.has(key)) out.push(v);
   } else if (Array.isArray(v)) v.forEach((x) => jsonStrings(x, key, out));
   else if (v && typeof v === 'object') for (const [k, x] of Object.entries(v)) jsonStrings(x, k, out);
   return out;
@@ -91,6 +69,22 @@ export function loadRepo(root) {
   };
   const check = (schema, data, p) => {
     for (const m of validate(schema, data)) err('SCHEMA', rel(root, p), m);
+  };
+
+  // Chính sách: đọc và parse một lần. Thiếu khóa thì báo SCHEMA và dùng bản của công cụ cho giới hạn.
+  const policyPath = path.join(root, 'catalog', 'policy.json');
+  const localPolicy = fs.existsSync(policyPath) ? readJson(policyPath) : null;
+  if (localPolicy) {
+    const miss = missingKeys(localPolicy);
+    if (miss.length) err('SCHEMA', 'catalog/policy.json', `thiếu khóa: ${miss.join(', ')}`);
+  }
+  const policy = localPolicy && !missingKeys(localPolicy).length ? localPolicy : loadPolicy(TOOL_ROOT);
+  const LIMITS = {
+    maxFileBytes: policy.maxFileBytes,
+    maxMdInGitBytes: policy.maxMdInGitBytes,
+    allowedExt: Object.keys(policy.extensions),
+    quizExt: policy.quizExtensions,
+    selfMadeLicenses: policy.selfMadeLicenses,
   };
 
   // Khoa
@@ -132,14 +126,12 @@ export function loadRepo(root) {
   const partnerNames = new Set(partners.map((p) => p.name));
 
   // Chính sách: loại tài liệu đang nhận. Không có file thì nhận mọi loại trong schema.
-  const policyPath = path.join(root, 'catalog', 'policy.json');
   let openTypes = null;
-  if (fs.existsSync(policyPath)) {
-    const pol = readJson(policyPath);
-    if (pol && !Array.isArray(pol.openTypes)) err('SCHEMA', 'catalog/policy.json', 'cần {"openTypes": [...]}');
-    else if (pol) {
-      openTypes = new Set(pol.openTypes);
-      for (const t of pol.openTypes) {
+  if (localPolicy) {
+    if (!Array.isArray(localPolicy.openTypes)) err('SCHEMA', 'catalog/policy.json', 'openTypes phải là mảng');
+    else {
+      openTypes = new Set(localPolicy.openTypes);
+      for (const t of localPolicy.openTypes) {
         if (!schemas.item.properties.type.enum.includes(t)) err('SCHEMA', 'catalog/policy.json', `loại lạ trong openTypes: ${t}`);
       }
     }
@@ -233,7 +225,6 @@ export function loadRepo(root) {
   const items = [];
   const coursesDir = path.join(root, 'courses');
   const shaSeen = new Map();
-  const now = today();
   if (fs.existsSync(coursesDir)) {
     for (const dirName of fs.readdirSync(coursesDir).sort()) {
       const cdir = path.join(coursesDir, dirName);
@@ -260,7 +251,14 @@ export function loadRepo(root) {
         if (origin.startsWith('partner:') && !partnerNames.has(origin.slice(8))) {
           err('PARTNER_UNKNOWN', f, `đối tác "${origin.slice(8)}" chưa có trong catalog/partners.json`);
         }
-        if (it.type === 'link') {
+        if (it.type === 'book-ref') {
+          // Sách tham khảo chỉ ghi tên: có book, không có file hay url.
+          if (!it.removed && !it.book) err('ITEM_BOOK', f, 'book-ref cần trường book');
+          if (it.book && !(it.book.authors || []).some((a) => typeof a === 'string' && a.trim())) err('ITEM_BOOK', f, 'book cần ít nhất một tác giả');
+          if (it.url) err('ITEM_BOOK', f, 'book-ref không có url');
+          if (it.files && it.files.length) err('ITEM_BOOK', f, 'book-ref không có files');
+          if (origin === 'link') err('ITEM_BOOK', f, 'origin link chỉ dùng cho type link');
+        } else if (it.type === 'link') {
           if (!it.url) err('ITEM_LINK', f, 'link cần trường url');
           if (it.files && it.files.length) err('ITEM_LINK', f, 'link không có files');
           if (origin === 'self-made') err('ITEM_LINK', f, 'link có origin là link hoặc partner:<tên>');
@@ -269,15 +267,9 @@ export function loadRepo(root) {
           if (origin === 'link') err('ITEM_FILES', f, 'origin link chỉ dùng cho type link');
           if (!it.removed && !(it.files && it.files.length)) err('ITEM_FILES', f, 'cần ít nhất một file');
         }
+        if (it.book && it.type !== 'book-ref') err('ITEM_BOOK', f, 'chỉ type book-ref mới có book');
         if (origin === 'self-made' && !LIMITS.selfMadeLicenses.includes(it.license)) {
           err('ITEM_LICENSE', f, `tài liệu tự soạn dùng ${LIMITS.selfMadeLicenses.join(', ')}, gặp ${it.license}`);
-        }
-        if (it.type === 'prelab-reference') {
-          if (!it.gradedAfter) err('PRELAB_GRADED', f, 'prelab-reference cần gradedAfter (ngày hết hạn chấm)');
-          else {
-            if (it.added && it.added <= it.gradedAfter) err('PRELAB_GRADED', f, `added ${it.added} phải sau gradedAfter ${it.gradedAfter}`);
-            if (!it.removed && now <= it.gradedAfter) err('PRELAB_GRADED', f, `chưa tới ngày được đăng (sau ${it.gradedAfter})`);
-          }
         }
         if (it.removed && !it.removedReason) err('REMOVED_REASON', f, 'removed: true cần removedReason');
         if (!it.removed && it.removedReason) warn('REMOVED_REASON', f, 'có removedReason nhưng removed là false');
@@ -286,7 +278,7 @@ export function loadRepo(root) {
           const ext = path.extname(file.name || '').toLowerCase();
           if (!LIMITS.allowedExt.includes(ext)) err('FILE_TYPE', f, `files[${i}] ${file.name}: không nhận đuôi ${ext || '(trống)'}`);
           if (it.type === 'quiz-pack' && !LIMITS.quizExt.includes(ext)) err('FILE_TYPE', f, `gói quiz dùng Study Pack v1 (${LIMITS.quizExt.join(' ')})`);
-          if (file.size > LIMITS.maxFileBytes) err('FILE_SIZE', f, `files[${i}] ${file.name}: ${file.size} byte, quá 20 MB`);
+          if (file.size > LIMITS.maxFileBytes) err('FILE_SIZE', f, `files[${i}] ${file.name}: ${file.size} byte, quá ${fmtSize(LIMITS.maxFileBytes)}`);
           if (file.path) {
             const abs = path.join(cdir, file.path);
             if (!fs.existsSync(abs)) err('FILE_PATH', f, `không thấy ${rel(root, abs)}`);
@@ -311,26 +303,26 @@ export function loadRepo(root) {
   }
 
   // Quét file trên đĩa: kích thước, loại file trong git, thông tin cá nhân.
-  scanDisk(root, root, err);
+  scanDisk(root, root, err, LIMITS);
   for (const c of courses.values()) {
     for (const s of jsonStrings(c, '', [])) for (const h of scanText(s)) err(h.code, c._file, `có thể là ${h.label}: "${h.match}"`);
   }
 
-  return { root, faculties, partners, courses, programs, items, errors, warnings };
+  return { root, policy, faculties, partners, courses, programs, items, errors, warnings };
 }
 
-function scanDisk(root, dir, err) {
+function scanDisk(root, dir, err, LIMITS) {
   for (const ent of fs.readdirSync(dir, { withFileTypes: true })) {
     if (SKIP_DIRS.has(ent.name)) continue;
     const p = path.join(dir, ent.name);
     const r = rel(root, p);
     if (ent.isDirectory()) {
       if (r === 'test/fixtures') continue;
-      scanDisk(root, p, err);
+      scanDisk(root, p, err, LIMITS);
       continue;
     }
     const size = fs.statSync(p).size;
-    if (size > LIMITS.maxFileBytes) err('FILE_SIZE', r, `${size} byte, quá 20 MB`);
+    if (size > LIMITS.maxFileBytes) err('FILE_SIZE', r, `${size} byte, quá ${fmtSize(LIMITS.maxFileBytes)}`);
     if (r.startsWith('courses/')) {
       const parts = r.split('/');
       const okLayout =
@@ -338,7 +330,7 @@ function scanDisk(root, dir, err) {
         (parts.length === 4 && parts[2] === 'items' && parts[3].endsWith('.json')) ||
         (parts.length === 4 && parts[2] === 'files' && parts[3].endsWith('.md'));
       if (!okLayout) err('GIT_FILE_TYPE', r, 'trong git chỉ có README.md, items/*.json và files/*.md; file khác đưa lên Release');
-      if (parts[2] === 'files' && size > LIMITS.maxMdInGitBytes) err('FILE_SIZE', r, 'file .md trong git tối đa 1 MB');
+      if (parts[2] === 'files' && size > LIMITS.maxMdInGitBytes) err('FILE_SIZE', r, `file .md trong git tối đa ${fmtSize(LIMITS.maxMdInGitBytes)}`);
       if (r.endsWith('.md')) {
         for (const h of scanText(fs.readFileSync(p, 'utf8'))) err(h.code, `${r}:${h.line}`, `có thể là ${h.label}: "${h.match}"`);
       }

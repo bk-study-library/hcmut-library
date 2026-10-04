@@ -1,0 +1,31 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "bk-study-library-upload",
+  "main": "src/index.mjs",
+  "compatibility_date": "2026-10-01",
+  // Tắt nhật ký mỗi lượt gọi vì nó ghi cả IP người gửi (spec: IP không ghi log).
+  // Vẫn giữ console.error của Worker, chỉ chứa bước và mã lỗi.
+  "observability": {
+    "enabled": true,
+    "head_sampling_rate": 1,
+    "logs": { "enabled": true, "invocation_logs": false }
+  },
+  // Giá trị có thể đổi khi chuyển repo hay tên miền. Khóa bí mật nhập bằng wrangler secret put:
+  // TURNSTILE_SECRET, GH_APP_ID, GH_APP_PRIVATE_KEY, GH_INSTALLATION_ID.
+  "vars": {
+    "REPO": "bk-study-library/bk-study-library",
+    "BRANCH": "main",
+    "ALLOWED_ORIGINS": "https://bk-study-library.github.io",
+    "CATALOG_TTL_SECONDS": "300",
+    // "false" khi repo còn private: không trả link PR cho người gửi.
+    "PUBLIC_PR_LINKS": "false"
+  },
+  // Kho cách ly: file chờ duyệt, riêng tư.
+  "r2_buckets": [
+    { "binding": "QUARANTINE", "bucket_name": "bk-lib-quarantine" }
+  ],
+  // Giới hạn số lần gửi theo IP: 5 lần mỗi 60 giây.
+  "ratelimits": [
+    { "name": "SUBMIT_LIMIT", "namespace_id": "1001", "simple": { "limit": 5, "period": 60 } }
+  ]
+}
