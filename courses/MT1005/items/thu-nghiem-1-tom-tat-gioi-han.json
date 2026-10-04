@@ -14,11 +14,12 @@
   "files": [
     {
       "name": "MT1005_summary_thu-nghiem-1-tom-tat-gioi-han_HK261.pdf",
-      "size": 709,
-      "sha256": "3b225e4508c7226a9dfb0a1495fb63f505b40cc1d1b2eae2e1a65162cc76c785",
+      "size": 1296,
+      "sha256": "e9a537c0a540acaa5ce358296167a1dd74b6dc629fe5683984c55ac0347ed080",
       "mime": "application/pdf",
-      "quarantine": "pending/8BaTBS0yez/MT1005_summary_thu-nghiem-1-tom-tat-gioi-han_HK261.pdf",
-      "uploadSha256": "3b225e4508c7226a9dfb0a1495fb63f505b40cc1d1b2eae2e1a65162cc76c785"
+      "quarantine": "clean/8BaTBS0yez/MT1005_summary_thu-nghiem-1-tom-tat-gioi-han_HK261.pdf",
+      "uploadSha256": "3b225e4508c7226a9dfb0a1495fb63f505b40cc1d1b2eae2e1a65162cc76c785",
+      "url": "https://github.com/bk-study-library/bk-study-library/releases/download/files-HK261/MT1005_summary_thu-nghiem-1-tom-tat-gioi-han_HK261.pdf"
     }
   ]
 }

@@ -14,6 +14,10 @@
 
 ## Tài liệu
 
+### Tóm tắt
+
+- **Thu nghiem 1: tom tat gioi han** (HK261, vi, CC-BY-SA-4.0): [MT1005_summary_thu-nghiem-1-tom-tat-gioi-han_HK261.pdf, 1 KB](https://github.com/bk-study-library/bk-study-library/releases/download/files-HK261/MT1005_summary_thu-nghiem-1-tom-tat-gioi-han_HK261.pdf)
+
 ### Bảng công thức
 
 - **[Mẫu] Bảng công thức Giải tích 2** (ví dụ minh họa) (vi, CC-BY-SA-4.0, BK Study Library): [bang-cong-thuc-giai-tich-2.md, 3 KB](files/bang-cong-thuc-giai-tich-2.md)
