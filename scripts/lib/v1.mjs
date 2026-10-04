@@ -100,6 +100,9 @@ export function buildV1(repo, { site = SITE_URL } = {}) {
     row.status = c.status;
     if (c.replacedBy) row.replacedBy = c.replacedBy;
     row.items = live;
+    // Tên giảng viên ghi trong các mục còn hiệu lực, để tìm môn theo giảng viên.
+    const teachers = uniq(items.filter((i) => !i.removed && i.teacher).map((i) => i.teacher)).sort((a, b) => a.localeCompare(b, 'vi'));
+    if (teachers.length) row.teachers = teachers;
     row.url = `${site}course/${encodeURIComponent(c.id)}/`;
     row.detail = `courses/${c.id}.json`;
     return row;

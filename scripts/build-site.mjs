@@ -285,6 +285,7 @@ function renderItem(t, it, site, root) {
   const meta = [];
   if (it.term) meta.push(`${t.term} ${it.term}`);
   if (it.lab != null) meta.push(t.labNo(it.lab));
+  if (it.teacher) meta.push(`${t.teacher}: ${it.teacher}`);
   meta.push(it.lang === 'vi' ? 'Tiếng Việt' : it.lang === 'en' ? 'English' : it.lang);
   meta.push(`${t.license}: ${it.license}`);
   if (it.source) meta.push(`${t.source}: ${it.source}`);
@@ -407,7 +408,10 @@ export function buildSite({ root = TOOL_ROOT, out = path.join(TOOL_ROOT, 'site')
 </section>
 <section class="search" role="search" aria-labelledby="search-label">
   <label id="search-label" for="q">${esc(t.searchLabel)}</label>
-  <input id="q" type="search" autocomplete="off" spellcheck="false" placeholder="${esc(t.searchPlaceholder)}" aria-describedby="q-hint">
+  <div class="search-row">
+    <input id="q" type="search" autocomplete="off" spellcheck="false" placeholder="${esc(t.searchPlaceholder)}" aria-describedby="q-hint">
+    <select id="q-fac" aria-label="${esc(t.facultyFilter)}"><option value="">${esc(t.allFaculties)}</option>${index.faculties.filter((f) => f.courses.length).map((f) => `<option value="${esc(f.key)}">${esc(facultyName(t, f))}</option>`).join('')}</select>
+  </div>
   <p id="q-hint" class="muted">${esc(t.searchHint)}</p>
   <noscript><p class="note">${esc(t.searchNoJs)}</p></noscript>
   <p id="q-status" class="muted" aria-live="polite"></p>
@@ -427,7 +431,7 @@ export function buildSite({ root = TOOL_ROOT, out = path.join(TOOL_ROOT, 'site')
   <div class="panel"><p>${esc(t.contributeCta)}</p><p class="actions"><a class="btn primary" href="${root}gui-tai-lieu/">${esc(t.contributeBtn)}</a><a class="btn subtle" href="${root}${P('contribute/')}">${esc(t.contributeGuide)}</a></p></div>
   <div class="panel"><p>${esc(t.reviewCta)}</p><p><a class="btn" href="${root}${P('review/')}">${esc(t.reviewBtn)}</a></p></div>
 </section>
-<script type="application/json" id="search-strings">${JSON.stringify({ results: [t.results(0), t.results(1), t.results(2)], lang })}</script>
+<script type="application/json" id="search-strings">${JSON.stringify({ results: [t.results(0), t.results(1), t.results(2)], teacher: t.teacher, lang })}</script>
 <script src="${root}assets/search-core.js" defer></script>
 <script src="${root}assets/search.js" defer></script>`;
       write(here, finish(layout({ t, path: here, title: '', body, alt: 'index.html' }), t));
@@ -515,6 +519,8 @@ ${courseTable(t, f.courses, root, t.facultyCourses)}`;
       if (c.replacedBy) rows.push([t.replacedBy, cLink(c.replacedBy)]);
       if (c.replaces && c.replaces.length) rows.push([t.replaces, c.replaces.map(cLink).join(', ')]);
       if (c.related.length) rows.push([t.related, c.related.map(cLink).join('<br>')]);
+      const teachers = [...new Set(c.items.filter((i) => !i.removed && i.teacher).map((i) => i.teacher))].sort((a, b) => a.localeCompare(b, 'vi'));
+      if (teachers.length) rows.push([t.teachersOfCourse, esc(teachers.join(', '))]);
       if (c.programs.length) {
         const lines = c.programs.map((pg) => {
           const pr = progByCode.get(pg.program);
