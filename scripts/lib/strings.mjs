@@ -15,7 +15,7 @@ export const S = {
       'Tài liệu học tập do sinh viên chia sẻ: tóm tắt, ghi chú, đề, lời giải, gói quiz, cùng link tới tài liệu mở. Xếp theo mã môn, đọc ngay trên trình duyệt, không cần cài app.',
     homeRules:
       'Thư viện nhận mọi tài liệu học tập sinh viên muốn chia sẻ. Chỉ không đăng file sách có bản quyền; sách thì ghi tên.',
-    searchLabel: 'Tìm môn theo mã, tên môn hoặc tên giảng viên',
+    searchLabel: 'Tìm môn hoặc chương trình theo mã, tên môn, tên ngành, tên giảng viên',
     searchPlaceholder: 'Ví dụ: MT1005, giai tich, mach dien',
     searchHint: 'Gõ không dấu cũng được. Tìm cả mã môn cũ. Chọn khoa để chỉ tìm trong khoa đó.',
     facultyFilter: 'Khoa',
@@ -153,7 +153,7 @@ export const S = {
       'Study material shared by students: summaries, notes, exams, solutions, quiz packs, plus links to open resources. Sorted by course code, works in the browser, no app to install.',
     homeRules:
       'The library accepts any study material students want to share. Only copyrighted book files are not posted; books are listed by title.',
-    searchLabel: 'Search courses by code, name or lecturer',
+    searchLabel: 'Search courses or programs by code, course name, major or lecturer',
     searchPlaceholder: 'For example: MT1005, giai tich, circuits',
     searchHint: 'Vietnamese without diacritics works too. Old course codes are included. Pick a faculty to search only within it.',
     facultyFilter: 'Faculty',
