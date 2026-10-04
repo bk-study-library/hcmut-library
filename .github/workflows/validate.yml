@@ -22,8 +22,36 @@ jobs:
           node-version: 24
       - name: Test (validator, importer, site generator)
         run: npm test
+      # Commit đầu của bot trên nhánh upload/ chưa có file sinh ra (bot không chạy build được);
+      # kiem-file dựng lại rồi commit "kiem-file: ...", lúc đó validate chạy lại đầy đủ.
+      # Chỉ commit đó được bỏ qua lỗi file cũ; mọi kiểm tra khác vẫn chạy.
+      - name: Commit đầu của bot?
+        id: bot
+        if: github.event_name == 'pull_request'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+          HEAD_REF: ${{ github.event.pull_request.head.ref }}
+          HEAD_REPO: ${{ github.event.pull_request.head.repo.full_name }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+          AUTHOR: ${{ github.event.pull_request.user.login }}
+          BOT_LOGIN: ${{ vars.BOT_LOGIN }}
+        run: |
+          allow=false
+          if [ "$HEAD_REPO" = "$REPO" ] && [ -n "$BOT_LOGIN" ] && [ "$AUTHOR" = "$BOT_LOGIN" ]; then
+            case "$HEAD_REF" in
+              upload/*)
+                msg=$(gh api "repos/$REPO/commits/$HEAD_SHA" --jq .commit.message)
+                case "$msg" in kiem-file:*) ;; *) allow=true ;; esac
+                ;;
+            esac
+          fi
+          echo "allow=$allow" >> "$GITHUB_OUTPUT"
       - name: Validate catalog and items, check generated files are current
-        run: npm run validate
+        env:
+          ALLOW_STALE: ${{ steps.bot.outputs.allow }}
+        run: |
+          if [ "$ALLOW_STALE" = "true" ]; then npm run validate -- --allow-stale; else npm run validate; fi
       - name: Build the site (smoke test)
         run: npm run site -- --out "$RUNNER_TEMP/site"
 
