@@ -28,6 +28,8 @@
     // Gốc địa chỉ xem file: link cho người duyệt (/xem-duyet/<mã>) và người gửi (/xem/<mã>?k=...).
     // Để trống thì không tạo link xem bài.
     "REVIEW_BASE": "https://upload.xerozsoft.com",
+    // Gốc web thư viện (có / cuối): /xem-truoc chỉ nhận file .md nằm ở <SITE_BASE>files/<ID môn>/.
+    "SITE_BASE": "https://bk-study-library.github.io/hcmut-library/",
     // Cloudflare Access cho /xem-duyet/*: tên miền team (dạng <team>.cloudflareaccess.com) và
     // Application Audience (AUD). Để trống thì /xem-duyet/* trả 503.
     "ACCESS_TEAM_DOMAIN": "tktq40.cloudflareaccess.com",
