@@ -2,7 +2,7 @@
   "$schema": "../../schema/course.schema.json",
   "id": "EE3205",
   "code": "EE3205",
-  "name": "Mạch điện tử nâng caox",
+  "name": "Mạch điện tử nâng cao",
   "nameEn": "Advanced Electronic Circuits",
   "credits": 3,
   "faculty": "dee",
@@ -10,8 +10,43 @@
   "status": "active",
   "programs": [
     {
+      "program": "DEE_THIET_KE_VI_MACH_2023",
+      "block": "K04",
+      "required": false
+    },
+    {
       "program": "DEE_THIET_KE_VI_MACH_2024",
-      "block": "K06",
+      "block": "K10",
+      "required": true
+    },
+    {
+      "program": "DEE_THIET_KE_VI_MACH_2024_CNTN",
+      "block": "K10",
+      "required": true
+    },
+    {
+      "program": "DEE_THIET_KE_VI_MACH_2025_CNTN",
+      "block": "K10",
+      "required": true
+    },
+    {
+      "program": "DEE_THIET_KE_VI_MACH_2025_CTTA",
+      "block": "K11",
+      "required": true
+    },
+    {
+      "program": "DEE_THIET_KE_VI_MACH_2026",
+      "block": "K11",
+      "required": true
+    },
+    {
+      "program": "DEE_THIET_KE_VI_MACH_2026_CNTN",
+      "block": "K11",
+      "required": true
+    },
+    {
+      "program": "DEE_TS_258_2026_TA",
+      "block": "K11",
       "required": true
     }
   ],
@@ -19,6 +54,7 @@
     "theory"
   ],
   "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/EE3205",
   "note": "Nhập từ nguồn công khai (truy cập 03/10/2026).",
   "updated": "2026-10-04"
 }

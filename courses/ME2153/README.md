@@ -1,15 +1,16 @@
-# ME2153 Thực hành
+# ME2153 Thực hành quản lý dự án
 
 <!-- File này do "npm run build" sinh từ catalog/courses/ME2153.json và items/. Chỉ sửa phần Mẹo học, giữa hai dòng meo-hoc. -->
 
 | Mục | Thông tin |
 |---|---|
 | Mã môn | ME2153 |
-| Tên | Thực hành / Pro ject |
+| Tên | Thực hành quản lý dự án / Project Management Practice |
 | Tín chỉ | 2 |
 | Khoa | Khoa Cơ khí |
 | Phần | Lý thuyết |
 | Trạng thái | Đang dạy |
+| Sổ tay HCMUT | [Trang môn trên Sổ tay HCMUT](https://hcmut.edu.vn/study/handbook/subject/ME2153) |
 
 ## Tài liệu
 

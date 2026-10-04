@@ -1,0 +1,80 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "EN3213",
+  "code": "EN3213",
+  "name": "Tối ưu hóa và Quy hoạch thực nghiệm",
+  "nameEn": "Optimization and Experimental Planning",
+  "credits": 3,
+  "faculty": "fenr",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "FENR_KINH_TE_TAI_NGUYEN_THIEN_NHIEN_2025",
+      "block": "K14",
+      "required": false
+    },
+    {
+      "program": "FENR_KINH_TE_TAI_NGUYEN_THIEN_NHIEN_2025_CTTA",
+      "block": "K14",
+      "required": false
+    },
+    {
+      "program": "FENR_KINH_TE_TAI_NGUYEN_THIEN_NHIEN_2026",
+      "block": "K14",
+      "required": false
+    },
+    {
+      "program": "FENR_KINH_TE_TAI_NGUYEN_THIEN_NHIEN_2026_CTTA",
+      "block": "K14",
+      "required": false
+    },
+    {
+      "program": "FENR_KY_THUAT_MOI_TRUONG_2024",
+      "block": "K11",
+      "required": false
+    },
+    {
+      "program": "FENR_KY_THUAT_MOI_TRUONG_2024_CNTN",
+      "block": "K11",
+      "required": false
+    },
+    {
+      "program": "FENR_KY_THUAT_MOI_TRUONG_2024_CTTA",
+      "block": "K12",
+      "required": false
+    },
+    {
+      "program": "FENR_KY_THUAT_MOI_TRUONG_2025_CNTN",
+      "block": "K11",
+      "required": false
+    },
+    {
+      "program": "FENR_KY_THUAT_MOI_TRUONG_2025_CTTA",
+      "block": "K12",
+      "required": false
+    },
+    {
+      "program": "FENR_KY_THUAT_MOI_TRUONG_2026",
+      "block": "K12",
+      "required": false
+    },
+    {
+      "program": "FENR_KY_THUAT_MOI_TRUONG_2026_CNTN",
+      "block": "K12",
+      "required": false
+    },
+    {
+      "program": "FENR_KY_THUAT_MOI_TRUONG_2026_CTTA",
+      "block": "K12",
+      "required": false
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/EN3213",
+  "note": "Nhập từ CTĐT chính thức (Sổ tay HCMUT, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

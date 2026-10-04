@@ -10,48 +10,68 @@
   "status": "active",
   "programs": [
     {
-      "program": "FME_KY_THUAT_CO_DIEN_TU_2021",
-      "block": "K04",
-      "required": false
-    },
-    {
-      "program": "FME_KY_THUAT_CO_DIEN_TU_2023",
-      "block": "K12",
-      "required": false
-    },
-    {
-      "program": "FME_KY_THUAT_CO_DIEN_TU_2022",
-      "block": "K12",
+      "program": "FME_KY_THUAT_CO_DIEN_TU_2019",
+      "block": "K08",
       "required": false
     },
     {
       "program": "FME_KY_THUAT_CO_DIEN_TU_2020",
-      "block": "K04",
+      "block": "K07",
       "required": false
     },
     {
-      "program": "FME_KY_THUAT_CO_KHI_2023",
-      "block": "K11",
-      "required": true
+      "program": "FME_KY_THUAT_CO_DIEN_TU_2021",
+      "block": "K07",
+      "required": false
+    },
+    {
+      "program": "FME_KY_THUAT_CO_DIEN_TU_2021_PFIEV",
+      "block": "K10",
+      "required": false
+    },
+    {
+      "program": "FME_KY_THUAT_CO_DIEN_TU_2022",
+      "block": "K07",
+      "required": false
+    },
+    {
+      "program": "FME_KY_THUAT_CO_DIEN_TU_2022_PFIEV",
+      "block": "K10",
+      "required": false
+    },
+    {
+      "program": "FME_KY_THUAT_CO_DIEN_TU_2023",
+      "block": "K07",
+      "required": false
+    },
+    {
+      "program": "FME_KY_THUAT_CO_DIEN_TU_2023_PFIEV",
+      "block": "K10",
+      "required": false
+    },
+    {
+      "program": "FME_KY_THUAT_CO_KHI_2019",
+      "block": "K07",
+      "required": false
     },
     {
       "program": "FME_KY_THUAT_CO_KHI_2020",
-      "block": "K03",
+      "block": "K07",
+      "required": false
+    },
+    {
+      "program": "FME_KY_THUAT_CO_KHI_2021",
+      "block": "K07",
       "required": false
     },
     {
       "program": "FME_KY_THUAT_CO_KHI_2022",
-      "block": "K11",
-      "required": true
+      "block": "K07",
+      "required": false
     },
     {
-      "program": "FME_KY_THUAT_CO_KHI_2021",
-      "block": "K11",
-      "required": true
-    },
-    {
-      "program": "FME_KY_THUAT_CO_KHI_2019",
-      "block": "K03",
+      "program": "FME_KY_THUAT_CO_KHI_2023",
+      "block": "K07",
       "required": false
     }
   ],
@@ -59,6 +79,7 @@
     "theory"
   ],
   "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/ME3001",
   "note": "Nhập từ nguồn công khai (truy cập 03/10/2026).",
   "updated": "2026-10-04"
 }

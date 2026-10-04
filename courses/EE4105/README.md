@@ -1,15 +1,16 @@
-# EE4105 Kỹ thuật điện)
+# EE4105 Thực tập ngoài trường (KT Điện tử- Viễn thông & Kỹ thuật điện)
 
 <!-- File này do "npm run build" sinh từ catalog/courses/EE4105.json và items/. Chỉ sửa phần Mẹo học, giữa hai dòng meo-hoc. -->
 
 | Mục | Thông tin |
 |---|---|
 | Mã môn | EE4105 |
-| Tên | Kỹ thuật điện) / Internship |
+| Tên | Thực tập ngoài trường (KT Điện tử- Viễn thông & Kỹ thuật điện) / Internship |
 | Tín chỉ | 2 |
 | Khoa | Khoa Điện - Điện tử |
 | Phần | Lý thuyết |
 | Trạng thái | Đang dạy |
+| Sổ tay HCMUT | [Trang môn trên Sổ tay HCMUT](https://hcmut.edu.vn/study/handbook/subject/EE4105) |
 
 ## Tài liệu
 

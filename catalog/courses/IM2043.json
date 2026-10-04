@@ -1,0 +1,27 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "IM2043",
+  "code": "IM2043",
+  "name": "Thực tập ngoài trường 1",
+  "credits": 2,
+  "faculty": "sim",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "SIM_QUAN_LY_CONG_NGHIEP_2026",
+      "block": "K11",
+      "required": true
+    },
+    {
+      "program": "SIM_QUAN_LY_CONG_NGHIEP_2026_CTTA",
+      "block": "K11",
+      "required": true
+    }
+  ],
+  "parts": [],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/IM2043",
+  "note": "Nhập từ CTĐT chính thức (Sổ tay HCMUT, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

@@ -2,7 +2,7 @@
   "$schema": "../../schema/course.schema.json",
   "id": "ME4347",
   "code": "ME4347",
-  "name": "Đồ án tốt nghiệp (kt dệt)",
+  "name": "Đồ án Tốt nghiệp (Kỹ thuật Dệt)",
   "nameEn": "Capstone Project",
   "credits": 4,
   "faculty": "fme",
@@ -11,27 +11,32 @@
   "programs": [
     {
       "program": "FME_KY_THUAT_DET_2019",
-      "block": "K02",
+      "block": "K08",
       "required": false
     },
     {
       "program": "FME_KY_THUAT_DET_2020",
-      "block": "K02",
+      "block": "K08",
+      "required": false
+    },
+    {
+      "program": "FME_KY_THUAT_DET_2021",
+      "block": "K08",
       "required": false
     },
     {
       "program": "FME_KY_THUAT_DET_2022",
-      "block": "K11",
-      "required": true
-    },
-    {
-      "program": "FME_KY_THUAT_DET_2021",
-      "block": "K11",
-      "required": true
+      "block": "K08",
+      "required": false
     },
     {
       "program": "FME_KY_THUAT_DET_2023",
-      "block": "K11",
+      "block": "K08",
+      "required": false
+    },
+    {
+      "program": "FME_KY_THUAT_DET_2024",
+      "block": "K14",
       "required": true
     }
   ],
@@ -39,6 +44,7 @@
     "project"
   ],
   "related": [],
-  "note": "Nhập từ nguồn công khai (truy cập 03/10/2026).",
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/ME4347",
+  "note": "Nhập từ nguồn công khai (truy cập 03/10/2026). Tên trong Kế hoạch giảng dạy: Đồ án tốt nghiệp (kt dệt).",
   "updated": "2026-10-04"
 }

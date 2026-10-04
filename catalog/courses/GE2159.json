@@ -1,0 +1,24 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "GE2159",
+  "code": "GE2159",
+  "name": "Kiến tập doanh nghiệp và định hướng nghề nghiệp",
+  "credits": 2,
+  "faculty": "geopet",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "GEOPET_TS_151_2026",
+      "block": "K09",
+      "required": true
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/GE2159",
+  "note": "Nhập từ CTĐT chính thức (Sổ tay HCMUT, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

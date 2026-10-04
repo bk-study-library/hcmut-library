@@ -1,0 +1,377 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "ENG_GE_2",
+  "code": "ENG_GE_2",
+  "name": "Đ/kiện tiếng Anh tốt nghiệp ĐH CTTA/CTTT, tiêu chuẩn, CTTN, PFIEV, VLVH",
+  "credits": 0,
+  "faculty": "chung",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "CHE_CONG_NGHE_SINH_HOC_2024_CTTA",
+      "block": "K19",
+      "required": true
+    },
+    {
+      "program": "CHE_CONG_NGHE_SINH_HOC_2025_CTTA",
+      "block": "K20",
+      "required": true
+    },
+    {
+      "program": "CHE_CONG_NGHE_THUC_PHAM_2024_CTTA",
+      "block": "K19",
+      "required": true
+    },
+    {
+      "program": "CHE_CONG_NGHE_THUC_PHAM_2025_CTTA",
+      "block": "K19",
+      "required": true
+    },
+    {
+      "program": "CHE_KY_THUAT_HOA_HOC_2024_CTTA",
+      "block": "K24",
+      "required": true
+    },
+    {
+      "program": "CHE_KY_THUAT_HOA_HOC_2025_CTTA",
+      "block": "K24",
+      "required": true
+    },
+    {
+      "program": "CHE_KY_THUAT_HOA_HOC_2026_CTTA",
+      "block": "K24",
+      "required": true
+    },
+    {
+      "program": "CHE_TS_218_2026_TA",
+      "block": "K22",
+      "required": true
+    },
+    {
+      "program": "CHE_TS_219_2026_TA",
+      "block": "K19",
+      "required": true
+    },
+    {
+      "program": "CSE_KHOA_HOC_MAY_TINH_2024_CTTA",
+      "block": "K29",
+      "required": true
+    },
+    {
+      "program": "CSE_KHOA_HOC_MAY_TINH_2025_CTTA",
+      "block": "K29",
+      "required": true
+    },
+    {
+      "program": "CSE_KHOA_HOC_MAY_TINH_2026_CTTA",
+      "block": "K29",
+      "required": true
+    },
+    {
+      "program": "CSE_TS_251_2026_TA",
+      "block": "K21",
+      "required": true
+    },
+    {
+      "program": "DEE_KY_THUAT_DIEN_2025_CTTA",
+      "block": "K20",
+      "required": true
+    },
+    {
+      "program": "DEE_KY_THUAT_DIEN_2026_CTTA",
+      "block": "K20",
+      "required": true
+    },
+    {
+      "program": "DEE_KY_THUAT_DIEN_DIEN_TU_TT_2024_CTTT",
+      "block": "K25",
+      "required": true
+    },
+    {
+      "program": "DEE_KY_THUAT_DIEN_DIEN_TU_TT_2025_CTTT",
+      "block": "K25",
+      "required": true
+    },
+    {
+      "program": "DEE_KY_THUAT_DIEN_DIEN_TU_TT_2026_CTTT",
+      "block": "K25",
+      "required": true
+    },
+    {
+      "program": "DEE_KY_THUAT_DIEU_KHIEN_VA_TU_DONG_HOA_2026_CTTA",
+      "block": "K19",
+      "required": true
+    },
+    {
+      "program": "DEE_THIET_KE_VI_MACH_2025_CTTA",
+      "block": "K19",
+      "required": true
+    },
+    {
+      "program": "DEE_TS_258_2026_TA",
+      "block": "K19",
+      "required": true
+    },
+    {
+      "program": "FAS_TS_256_2026_TA",
+      "block": "K19",
+      "required": true
+    },
+    {
+      "program": "FAS_VAT_LY_KY_THUAT_2024_CTTA",
+      "block": "K24",
+      "required": true
+    },
+    {
+      "program": "FAS_VAT_LY_KY_THUAT_2025_CTTA",
+      "block": "K24",
+      "required": true
+    },
+    {
+      "program": "FAS_VAT_LY_KY_THUAT_2026_CTTA",
+      "block": "K20",
+      "required": true
+    },
+    {
+      "program": "FCE_KIEN_TRUC_2024_CTTA",
+      "block": "K22",
+      "required": true
+    },
+    {
+      "program": "FCE_KIEN_TRUC_2025_CTTA",
+      "block": "K22",
+      "required": true
+    },
+    {
+      "program": "FCE_KIEN_TRUC_2026_CTTA",
+      "block": "K23",
+      "required": true
+    },
+    {
+      "program": "FCE_KY_THUAT_XAY_DUNG_2024_CTTA",
+      "block": "K19",
+      "required": true
+    },
+    {
+      "program": "FCE_KY_THUAT_XAY_DUNG_2025_CTTA",
+      "block": "K19",
+      "required": true
+    },
+    {
+      "program": "FCE_KY_THUAT_XAY_DUNG_2026_CTTA",
+      "block": "K19",
+      "required": true
+    },
+    {
+      "program": "FCE_KY_THUAT_XAY_DUNG_CONG_TRINH_GIAO_THONG_2024_CTTA",
+      "block": "K19",
+      "required": true
+    },
+    {
+      "program": "FCE_KY_THUAT_XAY_DUNG_CONG_TRINH_GIAO_THONG_2026_CTTA",
+      "block": "K22",
+      "required": true
+    },
+    {
+      "program": "FENR_KINH_TE_TAI_NGUYEN_THIEN_NHIEN_2025_CTTA",
+      "block": "K22",
+      "required": true
+    },
+    {
+      "program": "FENR_KINH_TE_TAI_NGUYEN_THIEN_NHIEN_2026_CTTA",
+      "block": "K22",
+      "required": true
+    },
+    {
+      "program": "FENR_KY_THUAT_MOI_TRUONG_2024_CTTA",
+      "block": "K19",
+      "required": true
+    },
+    {
+      "program": "FENR_KY_THUAT_MOI_TRUONG_2025_CTTA",
+      "block": "K19",
+      "required": true
+    },
+    {
+      "program": "FENR_KY_THUAT_MOI_TRUONG_2026_CTTA",
+      "block": "K19",
+      "required": true
+    },
+    {
+      "program": "FENR_QUAN_LY_TAI_NGUYEN_VA_MOI_TRUONG_2024_CTTA",
+      "block": "K19",
+      "required": true
+    },
+    {
+      "program": "FENR_QUAN_LY_TAI_NGUYEN_VA_MOI_TRUONG_2025_CTTA",
+      "block": "K19",
+      "required": true
+    },
+    {
+      "program": "FENR_QUAN_LY_TAI_NGUYEN_VA_MOI_TRUONG_2026_CTTA",
+      "block": "K22",
+      "required": true
+    },
+    {
+      "program": "FME_KY_THUAT_CO_DIEN_TU_2024_CTTA",
+      "block": "K22",
+      "required": true
+    },
+    {
+      "program": "FME_KY_THUAT_CO_DIEN_TU_2025_CTTA",
+      "block": "K22",
+      "required": true
+    },
+    {
+      "program": "FME_KY_THUAT_CO_KHI_2024_CTTA",
+      "block": "K19",
+      "required": true
+    },
+    {
+      "program": "FME_KY_THUAT_CO_KHI_2025_CTTA",
+      "block": "K19",
+      "required": true
+    },
+    {
+      "program": "FME_TS_209_2026_TA",
+      "block": "K19",
+      "required": true
+    },
+    {
+      "program": "FME_TS_210_2026_TA",
+      "block": "K22",
+      "required": true
+    },
+    {
+      "program": "FME_TS_228_2026_TA",
+      "block": "K22",
+      "required": true
+    },
+    {
+      "program": "FMT_KY_THUAT_VAT_LIEU_2024_CTTA",
+      "block": "K38",
+      "required": true
+    },
+    {
+      "program": "FMT_KY_THUAT_VAT_LIEU_2025_CTTA",
+      "block": "K38",
+      "required": true
+    },
+    {
+      "program": "FMT_TS_229_2026_TA",
+      "block": "K28",
+      "required": true
+    },
+    {
+      "program": "FTE_KY_THUAT_HANG_KHONG_2024_CTTA",
+      "block": "K19",
+      "required": true
+    },
+    {
+      "program": "FTE_KY_THUAT_HANG_KHONG_2025_CTTA",
+      "block": "K19",
+      "required": true
+    },
+    {
+      "program": "FTE_KY_THUAT_O_TO_2024_CTTA",
+      "block": "K19",
+      "required": true
+    },
+    {
+      "program": "FTE_KY_THUAT_O_TO_2025_CTTA",
+      "block": "K19",
+      "required": true
+    },
+    {
+      "program": "FTE_KY_THUAT_PHUONG_TIEN_KHONG_NGUOI_LAI_2027_CTTA",
+      "block": "K19",
+      "required": true
+    },
+    {
+      "program": "FTE_TS_242_2026_TA",
+      "block": "K22",
+      "required": true
+    },
+    {
+      "program": "FTE_TS_245_2026_TA",
+      "block": "K20",
+      "required": true
+    },
+    {
+      "program": "FTE_TS_252_2026_TA",
+      "block": "K21",
+      "required": true
+    },
+    {
+      "program": "GEOPET_KY_THUAT_DAU_KHI_2024_CTTA",
+      "block": "K20",
+      "required": true
+    },
+    {
+      "program": "GEOPET_KY_THUAT_DAU_KHI_2025_CTTA",
+      "block": "K20",
+      "required": true
+    },
+    {
+      "program": "GEOPET_TS_220_2026_TA",
+      "block": "K20",
+      "required": true
+    },
+    {
+      "program": "SIM_KY_THUAT_HE_THONG_CONG_NGHIEP_2024_CTTA",
+      "block": "K19",
+      "required": true
+    },
+    {
+      "program": "SIM_KY_THUAT_HE_THONG_CONG_NGHIEP_2025_CTTA",
+      "block": "K19",
+      "required": true
+    },
+    {
+      "program": "SIM_LOGISTICS_VA_QUAN_LY_CHUOI_CUNG_UNG_2024_CTTA",
+      "block": "K19",
+      "required": true
+    },
+    {
+      "program": "SIM_LOGISTICS_VA_QUAN_LY_CHUOI_CUNG_UNG_2025_CTTA",
+      "block": "K19",
+      "required": true
+    },
+    {
+      "program": "SIM_QUAN_LY_CONG_NGHIEP_2024_CTTA",
+      "block": "K24",
+      "required": true
+    },
+    {
+      "program": "SIM_QUAN_LY_CONG_NGHIEP_2025_CTTA",
+      "block": "K24",
+      "required": true
+    },
+    {
+      "program": "SIM_QUAN_LY_CONG_NGHIEP_2026_CTTA",
+      "block": "K22",
+      "required": true
+    },
+    {
+      "program": "SIM_QUAN_TRI_KINH_DOANH_2025_CTTA",
+      "block": "K23",
+      "required": true
+    },
+    {
+      "program": "SIM_QUAN_TRI_KINH_DOANH_2026_CTTA",
+      "block": "K22",
+      "required": true
+    },
+    {
+      "program": "UNKNOWN_TS_259_2026_TA",
+      "block": "K19",
+      "required": true
+    }
+  ],
+  "parts": [],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/ENG_GE_2",
+  "note": "Nhập từ CTĐT chính thức (Sổ tay HCMUT, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

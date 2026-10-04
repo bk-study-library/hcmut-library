@@ -5,8 +5,198 @@
   "nameEn": "Petroleum Engineering",
   "faculty": "geopet",
   "year": "2023",
+  "major": "7520604",
+  "type": "CQ",
+  "level": "dai-hoc",
+  "note": "Sổ tay không có năm này cho ngành và loại chương trình này. Danh sách môn lấy từ Kế hoạch giảng dạy (PDF), khối là học kỳ chứ không phải khối kiến thức; tên khối kiến thức, bắt buộc hay tự chọn chưa có.",
   "source": "https://drive.google.com/file/d/13FoJIoMy4tczba_63PaVsQ5N8ViTqpGc/view",
-  "note": "Có file CTĐT nhưng chưa tách được danh sách môn.",
-  "blocks": [],
+  "ctdtUrl": "https://drive.google.com/file/d/1obBmuELq7VFDKX2WEth7bvGyn0ysYrnw/view",
+  "planUrl": "https://drive.google.com/file/d/13FoJIoMy4tczba_63PaVsQ5N8ViTqpGc/view",
+  "blocks": [
+    {
+      "id": "K01",
+      "name": "Học kỳ 1",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "LA1003",
+        "MT1003",
+        "PH1003",
+        "CH1003",
+        "GE1001"
+      ],
+      "semesters": {
+        "LA1003": 1,
+        "MT1003": 1,
+        "PH1003": 1,
+        "CH1003": 1,
+        "GE1001": 1
+      }
+    },
+    {
+      "id": "K02",
+      "name": "Học kỳ 2",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "LA1005",
+        "MT1005",
+        "MT1007",
+        "PH1007",
+        "GE1013",
+        "GE1015",
+        "MI1003"
+      ],
+      "semesters": {
+        "LA1005": 2,
+        "MT1005": 2,
+        "MT1007": 2,
+        "PH1007": 2,
+        "GE1013": 2,
+        "GE1015": 2,
+        "MI1003": 2
+      }
+    },
+    {
+      "id": "K03",
+      "name": "Học kỳ 3",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "LA1007",
+        "SP1031",
+        "GE2051",
+        "GE2001",
+        "GE1023",
+        "GE2053"
+      ],
+      "semesters": {
+        "LA1007": 3,
+        "SP1031": 3,
+        "GE2051": 3,
+        "GE2001": 3,
+        "GE1023": 3,
+        "GE2053": 3
+      }
+    },
+    {
+      "id": "K04",
+      "name": "Học kỳ 4",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "LA1009",
+        "MT2013",
+        "SP1033",
+        "GE2061",
+        "GE2063",
+        "GE2055"
+      ],
+      "semesters": {
+        "LA1009": 4,
+        "MT2013": 4,
+        "SP1033": 4,
+        "GE2061": 4,
+        "GE2063": 4,
+        "GE2055": 4
+      }
+    },
+    {
+      "id": "K05",
+      "name": "Học kỳ 5",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "SP1035",
+        "GE3017",
+        "GE3219",
+        "GE3215",
+        "GE2049",
+        "GE2059",
+        "GE2057"
+      ],
+      "semesters": {
+        "SP1035": 5,
+        "GE3017": 5,
+        "GE3219": 5,
+        "GE3215": 5,
+        "GE2049": 5,
+        "GE2059": 5,
+        "GE2057": 5
+      }
+    },
+    {
+      "id": "K06",
+      "name": "Học kỳ 6",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "GE1025",
+        "SP1039",
+        "GE3217",
+        "GE3105",
+        "GE3345"
+      ],
+      "semesters": {
+        "GE1025": 6,
+        "SP1039": 6,
+        "GE3217": 6,
+        "GE3105": 6,
+        "GE3345": 6
+      }
+    },
+    {
+      "id": "K07",
+      "name": "Học kỳ 7",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "SP1037",
+        "GE4091",
+        "GE4145",
+        "GE4141",
+        "GE3221",
+        "GE3223"
+      ],
+      "semesters": {
+        "SP1037": 7,
+        "GE4091": 7,
+        "GE4145": 7,
+        "GE4141": 7,
+        "GE3221": 7,
+        "GE3223": 7
+      }
+    },
+    {
+      "id": "K08",
+      "name": "Học kỳ 8",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "SP1007",
+        "GE4153",
+        "GE4347",
+        "GE4147",
+        "GE4149",
+        "GE4151"
+      ],
+      "semesters": {
+        "SP1007": 8,
+        "GE4153": 8,
+        "GE4347": 8,
+        "GE4147": 8,
+        "GE4149": 8,
+        "GE4151": 8
+      }
+    }
+  ],
   "updated": "2026-10-04"
 }

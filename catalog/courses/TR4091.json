@@ -1,0 +1,70 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "TR4091",
+  "code": "TR4091",
+  "name": "Đồ án Chuyên ngành",
+  "nameEn": "Project",
+  "credits": 2,
+  "faculty": "fte",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "FTE_KY_THUAT_O_TO_2019",
+      "block": "K07",
+      "required": false
+    },
+    {
+      "program": "FTE_KY_THUAT_O_TO_2020",
+      "block": "K07",
+      "required": false
+    },
+    {
+      "program": "FTE_KY_THUAT_O_TO_2021",
+      "block": "K07",
+      "required": false
+    },
+    {
+      "program": "FTE_KY_THUAT_O_TO_2022",
+      "block": "K07",
+      "required": false
+    },
+    {
+      "program": "FTE_KY_THUAT_O_TO_2023",
+      "block": "K07",
+      "required": false
+    },
+    {
+      "program": "FTE_KY_THUAT_O_TO_2024",
+      "block": "K14",
+      "required": true
+    },
+    {
+      "program": "FTE_KY_THUAT_O_TO_2024_CTTA",
+      "block": "K15",
+      "required": true
+    },
+    {
+      "program": "FTE_KY_THUAT_O_TO_2025_CTTA",
+      "block": "K15",
+      "required": true
+    },
+    {
+      "program": "FTE_TS_142_2026",
+      "block": "K18",
+      "required": true
+    },
+    {
+      "program": "FTE_TS_242_2026_TA",
+      "block": "K18",
+      "required": true
+    }
+  ],
+  "parts": [
+    "project"
+  ],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/TR4091",
+  "note": "Nhập từ CTĐT chính thức (Sổ tay HCMUT, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

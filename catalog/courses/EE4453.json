@@ -1,0 +1,50 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "EE4453",
+  "code": "EE4453",
+  "name": "Thiết kế Vi mạch Tương tự",
+  "nameEn": "Analog IC Design",
+  "credits": 3,
+  "faculty": "dee",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "DEE_KY_THUAT_DIEN_DIEN_TU_TT_2021_CTTT_VI_MACH_HE_THONG_PHAN_CUNG",
+      "block": "K07",
+      "required": false
+    },
+    {
+      "program": "DEE_KY_THUAT_DIEN_DIEN_TU_TT_2022_CTTT_VI_MACH_HE_THONG_PHAN_CUNG",
+      "block": "K07",
+      "required": false
+    },
+    {
+      "program": "DEE_KY_THUAT_DIEN_DIEN_TU_TT_2023_CTTT_VI_MACH_HE_THONG_PHAN_CUNG",
+      "block": "K07",
+      "required": false
+    },
+    {
+      "program": "DEE_KY_THUAT_DIEN_DIEN_TU_TT_2024_CTTT",
+      "block": "K19",
+      "required": false
+    },
+    {
+      "program": "DEE_KY_THUAT_DIEN_DIEN_TU_TT_2025_CTTT",
+      "block": "K19",
+      "required": false
+    },
+    {
+      "program": "DEE_KY_THUAT_DIEN_DIEN_TU_TT_2026_CTTT",
+      "block": "K19",
+      "required": false
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/EE4453",
+  "note": "Nhập từ CTĐT chính thức (Sổ tay HCMUT, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

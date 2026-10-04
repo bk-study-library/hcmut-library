@@ -1,0 +1,19 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "ME3811",
+  "code": "ME3811",
+  "name": "Đồ án Thiết kế Cơ khí",
+  "nameEn": "Mechanical Design Project",
+  "credits": 1,
+  "faculty": "fme",
+  "aliases": [],
+  "status": "active",
+  "programs": [],
+  "parts": [
+    "project"
+  ],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/ME3811",
+  "note": "Nhập từ Kế hoạch giảng dạy (PDF của trường, truy cập 04/10/2026). Tên lấy từ PDF. Chờ người duyệt xác nhận.",
+  "updated": "2026-10-04"
+}

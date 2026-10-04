@@ -11,29 +11,30 @@
   "programs": [
     {
       "program": "FME_CONG_NGHE_DET_MAY_2022",
-      "block": "K09",
-      "required": true
-    },
-    {
-      "program": "FME_KY_THUAT_DET_2022",
-      "block": "K09",
-      "required": true
+      "block": "K04",
+      "required": false
     },
     {
       "program": "FME_CONG_NGHE_DET_MAY_2023",
-      "block": "K09",
-      "required": true
+      "block": "K04",
+      "required": false
+    },
+    {
+      "program": "FME_KY_THUAT_DET_2022",
+      "block": "K04",
+      "required": false
     },
     {
       "program": "FME_KY_THUAT_DET_2023",
-      "block": "K09",
-      "required": true
+      "block": "K04",
+      "required": false
     }
   ],
   "parts": [
     "theory"
   ],
   "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/ME2167",
   "note": "Nhập từ nguồn công khai (truy cập 03/10/2026).",
   "updated": "2026-10-04"
 }

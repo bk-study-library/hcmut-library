@@ -2,8 +2,8 @@
   "$schema": "../../schema/course.schema.json",
   "id": "GE1015",
   "code": "GE1015",
-  "name": "Health, Safety and Environment in the Oil and Gas",
-  "nameEn": "Industry",
+  "name": "Sức khỏe, an toàn và môi trường trong ngành dầu khí",
+  "nameEn": "Health, Safety and Environment in the Oil and Gas Industry",
   "credits": 3,
   "faculty": "geopet",
   "aliases": [],
@@ -11,19 +11,25 @@
   "programs": [
     {
       "program": "GEOPET_KY_THUAT_DAU_KHI_2021",
-      "block": "K07",
-      "required": true
+      "block": "K08",
+      "required": false
     },
     {
       "program": "GEOPET_KY_THUAT_DAU_KHI_2022",
-      "block": "K07",
-      "required": true
+      "block": "K08",
+      "required": false
+    },
+    {
+      "program": "GEOPET_KY_THUAT_DAU_KHI_2023",
+      "block": "K02",
+      "required": false
     }
   ],
   "parts": [
     "theory"
   ],
   "related": [],
-  "note": "Nhập từ nguồn công khai (truy cập 03/10/2026).",
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/GE1015",
+  "note": "Nhập từ nguồn công khai (truy cập 03/10/2026). Tên lấy từ Kế hoạch giảng dạy (PDF của trường). Chờ người duyệt xác nhận.",
   "updated": "2026-10-04"
 }

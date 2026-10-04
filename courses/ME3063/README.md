@@ -1,15 +1,16 @@
-# ME3063 Cô ng nghệ dệt kim
+# ME3063 Công nghệ Dệt kim
 
 <!-- File này do "npm run build" sinh từ catalog/courses/ME3063.json và items/. Chỉ sửa phần Mẹo học, giữa hai dòng meo-hoc. -->
 
 | Mục | Thông tin |
 |---|---|
 | Mã môn | ME3063 |
-| Tên | Cô ng nghệ dệt kim / kim Knitting Technology |
+| Tên | Công nghệ Dệt kim / Knitting Technology |
 | Tín chỉ | 3 |
 | Khoa | Khoa Cơ khí |
 | Phần | Lý thuyết |
 | Trạng thái | Đang dạy |
+| Sổ tay HCMUT | [Trang môn trên Sổ tay HCMUT](https://hcmut.edu.vn/study/handbook/subject/ME3063) |
 
 ## Tài liệu
 

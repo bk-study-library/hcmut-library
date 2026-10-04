@@ -1,15 +1,16 @@
-# ME4103 Đồ án thiết kế hệ thố ng Logistics
+# ME4103 Đồ án Thiết kế Hệ thống Logistics
 
 <!-- File này do "npm run build" sinh từ catalog/courses/ME4103.json và items/. Chỉ sửa phần Mẹo học, giữa hai dòng meo-hoc. -->
 
 | Mục | Thông tin |
 |---|---|
 | Mã môn | ME4103 |
-| Tên | Đồ án thiết kế hệ thố ng Logistics / Logistics System Design Project |
+| Tên | Đồ án Thiết kế Hệ thống Logistics / Logistics System Design Project |
 | Tín chỉ | 2 |
 | Khoa | Khoa Cơ khí |
 | Phần | Đồ án |
 | Trạng thái | Đang dạy |
+| Sổ tay HCMUT | [Trang môn trên Sổ tay HCMUT](https://hcmut.edu.vn/study/handbook/subject/ME4103) |
 
 ## Tài liệu
 

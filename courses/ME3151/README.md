@@ -5,11 +5,12 @@
 | Mục | Thông tin |
 |---|---|
 | Mã môn | ME3151 |
-| Tên | Đồ án thiết kế - hướng thiết bị lạnh / Design Project - Ref rigeration Equipment Orientation |
+| Tên | Đồ án thiết kế - hướng thiết bị lạnh / Design Project - Refrigeration Equipment Orientation |
 | Tín chỉ | 2 |
 | Khoa | Khoa Cơ khí |
 | Phần | Đồ án |
 | Trạng thái | Đang dạy |
+| Sổ tay HCMUT | [Trang môn trên Sổ tay HCMUT](https://hcmut.edu.vn/study/handbook/subject/ME3151) |
 
 ## Tài liệu
 

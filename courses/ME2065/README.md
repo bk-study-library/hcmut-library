@@ -5,11 +5,12 @@
 | Mục | Thông tin |
 |---|---|
 | Mã môn | ME2065 |
-| Tên | Công nghệ may 1 / may 1 Clothing Technology 1 |
+| Tên | Công nghệ may 1 / Clothing Technology 1 |
 | Tín chỉ | 3 |
 | Khoa | Khoa Cơ khí |
 | Phần | Lý thuyết |
 | Trạng thái | Đang dạy |
+| Sổ tay HCMUT | [Trang môn trên Sổ tay HCMUT](https://hcmut.edu.vn/study/handbook/subject/ME2065) |
 
 ## Tài liệu
 

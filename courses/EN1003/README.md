@@ -10,6 +10,7 @@
 | Khoa | Khoa Môi trường và Tài nguyên |
 | Phần | Lý thuyết |
 | Trạng thái | Đang dạy |
+| Sổ tay HCMUT | [Trang môn trên Sổ tay HCMUT](https://hcmut.edu.vn/study/handbook/subject/EN1003) |
 
 ## Tài liệu
 

@@ -1,15 +1,16 @@
-# EE4207 thuật điều khiển và Tự động hóa)
+# EE4207 Đồ án tốt nghiệp (KT Điện tử- Viễn thông & Kỹ thuật điều khiển và Tự động hóa)
 
 <!-- File này do "npm run build" sinh từ catalog/courses/EE4207.json và items/. Chỉ sửa phần Mẹo học, giữa hai dòng meo-hoc. -->
 
 | Mục | Thông tin |
 |---|---|
 | Mã môn | EE4207 |
-| Tên | thuật điều khiển và Tự động hóa) / Capstone Project |
+| Tên | Đồ án tốt nghiệp (KT Điện tử- Viễn thông & Kỹ thuật điều khiển và Tự động hóa) / Capstone Project |
 | Tín chỉ | 4 |
 | Khoa | Khoa Điện - Điện tử |
 | Phần | Lý thuyết |
 | Trạng thái | Đang dạy |
+| Sổ tay HCMUT | [Trang môn trên Sổ tay HCMUT](https://hcmut.edu.vn/study/handbook/subject/EE4207) |
 
 ## Tài liệu
 

@@ -10,6 +10,7 @@
 | Khoa | Khoa Kỹ thuật Địa chất và Dầu khí |
 | Phần | Lý thuyết |
 | Trạng thái | Đang dạy |
+| Sổ tay HCMUT | [Trang môn trên Sổ tay HCMUT](https://hcmut.edu.vn/study/handbook/subject/GE2063) |
 | Môn liên quan | [GE3181](../GE3181/README.md) Công nghệ khoan dầu khí + thực tập |
 
 ## Tài liệu

@@ -7,9 +7,10 @@
 | Mã môn | SP1033 |
 | Tên | Kinh tế chính trị Mác - Lênin / Marxist - Leninist Political Economy |
 | Tín chỉ | 2 |
-| Khoa | Lý luận chính trị (chưa xác định đơn vị) |
+| Khoa | Môn chung toàn trường |
 | Phần | Lý thuyết |
 | Trạng thái | Đang dạy |
+| Sổ tay HCMUT | [Trang môn trên Sổ tay HCMUT](https://hcmut.edu.vn/study/handbook/subject/SP1033) |
 
 ## Tài liệu
 

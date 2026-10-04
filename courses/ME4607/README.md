@@ -5,11 +5,12 @@
 | Mục | Thông tin |
 |---|---|
 | Mã môn | ME4607 |
-| Tên | Phân tích và thiết kế hệ thống thông tin quản lý / Analysis and Design of Management Information System KT |
+| Tên | Phân tích và thiết kế hệ thống thông tin quản lý / Analysis and Design of Management Information System |
 | Tín chỉ | 3 |
 | Khoa | Khoa Cơ khí |
 | Phần | Lý thuyết |
 | Trạng thái | Đang dạy |
+| Sổ tay HCMUT | [Trang môn trên Sổ tay HCMUT](https://hcmut.edu.vn/study/handbook/subject/ME4607) |
 
 ## Tài liệu
 

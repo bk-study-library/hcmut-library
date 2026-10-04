@@ -7,9 +7,10 @@
 | Mã môn | LA1011 |
 | Tên | Pháp văn 1 / French 1 |
 | Tín chỉ | 2 |
-| Khoa | Trung tâm Ngoại ngữ |
+| Khoa | Môn chung toàn trường |
 | Phần | Lý thuyết |
 | Trạng thái | Đang dạy |
+| Sổ tay HCMUT | [Trang môn trên Sổ tay HCMUT](https://hcmut.edu.vn/study/handbook/subject/LA1011) |
 
 ## Tài liệu
 

@@ -1,0 +1,58 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "SP1045",
+  "code": "SP1045",
+  "name": "Kỹ năng xã hội I (kỹ năng sáng tạo)",
+  "nameEn": "Skill of Innovators",
+  "credits": 0,
+  "faculty": "chung",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "DEE_KY_THUAT_DIEN_DIEN_TU_TT_2022_CTTT_HE_THONG_NANG_LUONG",
+      "block": "K01",
+      "required": false
+    },
+    {
+      "program": "DEE_KY_THUAT_DIEN_DIEN_TU_TT_2022_CTTT_HE_THONG_VIEN_THONG",
+      "block": "K01",
+      "required": false
+    },
+    {
+      "program": "DEE_KY_THUAT_DIEN_DIEN_TU_TT_2022_CTTT_KY_THUAT_DIEU_KHIEN_VA_TU_DONG_HOA",
+      "block": "K01",
+      "required": false
+    },
+    {
+      "program": "DEE_KY_THUAT_DIEN_DIEN_TU_TT_2022_CTTT_VI_MACH_HE_THONG_PHAN_CUNG",
+      "block": "K01",
+      "required": false
+    },
+    {
+      "program": "DEE_KY_THUAT_DIEN_DIEN_TU_TT_2023_CTTT_HE_THONG_NANG_LUONG",
+      "block": "K01",
+      "required": false
+    },
+    {
+      "program": "DEE_KY_THUAT_DIEN_DIEN_TU_TT_2023_CTTT_HE_THONG_VIEN_THONG",
+      "block": "K01",
+      "required": false
+    },
+    {
+      "program": "DEE_KY_THUAT_DIEN_DIEN_TU_TT_2023_CTTT_KY_THUAT_DIEU_KHIEN_VA_TU_DONG_HOA",
+      "block": "K01",
+      "required": false
+    },
+    {
+      "program": "DEE_KY_THUAT_DIEN_DIEN_TU_TT_2023_CTTT_VI_MACH_HE_THONG_PHAN_CUNG",
+      "block": "K01",
+      "required": false
+    }
+  ],
+  "parts": [],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/SP1045",
+  "note": "Nhập từ Kế hoạch giảng dạy (PDF của trường, truy cập 04/10/2026). Tên lấy từ PDF. Chờ người duyệt xác nhận.",
+  "updated": "2026-10-04"
+}

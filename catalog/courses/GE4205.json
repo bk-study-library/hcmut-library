@@ -13,17 +13,13 @@
       "program": "GEOPET_KY_THUAT_DIA_CHAT_2024",
       "block": "K13",
       "required": false
-    },
-    {
-      "program": "GEOPET_KY_THUAT_DIA_CHAT_2023",
-      "block": "K15",
-      "required": true
     }
   ],
   "parts": [
     "theory"
   ],
   "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/GE4205",
   "note": "Nhập từ nguồn công khai (truy cập 03/10/2026).",
   "updated": "2026-10-04"
 }

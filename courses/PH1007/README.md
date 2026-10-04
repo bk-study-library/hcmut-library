@@ -7,9 +7,10 @@
 | Mã môn | PH1007 |
 | Tên | Thí nghiệm vật lý / General Physics Labs |
 | Tín chỉ | 1 |
-| Khoa | Khoa Khoa học Ứng dụng |
+| Khoa | Môn chung toàn trường |
 | Phần | Thí nghiệm |
 | Trạng thái | Đang dạy |
+| Sổ tay HCMUT | [Trang môn trên Sổ tay HCMUT](https://hcmut.edu.vn/study/handbook/subject/PH1007) |
 
 ## Tài liệu
 

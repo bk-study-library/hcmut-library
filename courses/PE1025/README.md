@@ -7,9 +7,10 @@
 | Mã môn | PE1025 |
 | Tên | Điền kinh (Học phần 1) / AThletics |
 | Tín chỉ | 0 |
-| Khoa | Giáo dục thể chất và Quốc phòng (chưa xác định đơn vị) |
+| Khoa | Môn chung toàn trường |
 | Phần | chưa ghi |
 | Trạng thái | Đang dạy |
+| Sổ tay HCMUT | [Trang môn trên Sổ tay HCMUT](https://hcmut.edu.vn/study/handbook/subject/PE1025) |
 
 ## Tài liệu
 

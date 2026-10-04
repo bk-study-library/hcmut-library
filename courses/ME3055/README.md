@@ -1,15 +1,16 @@
-# ME3055 Cô ng nghệ sợi 2
+# ME3055 Công nghệ sợi 2
 
 <!-- File này do "npm run build" sinh từ catalog/courses/ME3055.json và items/. Chỉ sửa phần Mẹo học, giữa hai dòng meo-hoc. -->
 
 | Mục | Thông tin |
 |---|---|
 | Mã môn | ME3055 |
-| Tên | Cô ng nghệ sợi 2 / Spinning Technology 2 |
+| Tên | Công nghệ sợi 2 / Spinning Technology 2 |
 | Tín chỉ | 4 |
 | Khoa | Khoa Cơ khí |
 | Phần | Lý thuyết |
 | Trạng thái | Đang dạy |
+| Sổ tay HCMUT | [Trang môn trên Sổ tay HCMUT](https://hcmut.edu.vn/study/handbook/subject/ME3055) |
 
 ## Tài liệu
 

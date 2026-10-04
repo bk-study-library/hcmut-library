@@ -1,0 +1,255 @@
+{
+  "$schema": "../../schema/program.schema.json",
+  "code": "FMT_VAT_LIEU_POLYMER_VA_COMPOSITE_PFIEV_2022_PFIEV",
+  "name": "Vật liệu Polymer và Composite (PFIEV)",
+  "nameEn": "Polymer and Composite Materials (PFIEV)",
+  "faculty": "fmt",
+  "year": "2022",
+  "major": "75203PC",
+  "type": "PFIEV",
+  "level": "dai-hoc",
+  "variant": "PFIEV (kỹ sư Việt Pháp)",
+  "note": "Sổ tay không có năm này cho ngành và loại chương trình này. Danh sách môn lấy từ Kế hoạch giảng dạy (PDF), khối là học kỳ chứ không phải khối kiến thức; tên khối kiến thức, bắt buộc hay tự chọn chưa có.",
+  "source": "https://drive.google.com/file/d/11-V-VI9jKM0ENIJHzU0r-qZb3MdIWATk/view",
+  "ctdtUrl": "https://drive.google.com/file/d/1mypG76j7dauflJPCSV5gW-iIIj2R-FZ-/view",
+  "planUrl": "https://drive.google.com/file/d/11-V-VI9jKM0ENIJHzU0r-qZb3MdIWATk/view",
+  "blocks": [
+    {
+      "id": "K01",
+      "name": "Học kỳ 1",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "CH1003",
+        "LA1011",
+        "LA1003",
+        "MT1011",
+        "MT1015",
+        "MA1001"
+      ],
+      "semesters": {
+        "CH1003": 1,
+        "LA1011": 1,
+        "LA1003": 1,
+        "MT1011": 1,
+        "MT1015": 1,
+        "MA1001": 1
+      }
+    },
+    {
+      "id": "K02",
+      "name": "Học kỳ 2",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "EN1003",
+        "LA1013",
+        "PH1009",
+        "LA1005",
+        "MT1013",
+        "SP1007",
+        "MI1003"
+      ],
+      "semesters": {
+        "EN1003": 2,
+        "LA1013": 2,
+        "PH1009": 2,
+        "LA1005": 2,
+        "MT1013": 2,
+        "SP1007": 2,
+        "MI1003": 2
+      }
+    },
+    {
+      "id": "K03",
+      "name": "Học kỳ 3",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "PH2005",
+        "PH2007",
+        "MT2007",
+        "LA1015",
+        "LA1007",
+        "MT2009"
+      ],
+      "semesters": {
+        "PH2005": 3,
+        "PH2007": 3,
+        "MT2007": 3,
+        "LA1015": 3,
+        "LA1007": 3,
+        "MT2009": 3
+      }
+    },
+    {
+      "id": "K04",
+      "name": "Học kỳ 4",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "SP1031",
+        "LA1017",
+        "EE2031",
+        "AS2049",
+        "MT2011",
+        "LA1009",
+        "MA2119"
+      ],
+      "semesters": {
+        "SP1031": 4,
+        "LA1017": 4,
+        "EE2031": 4,
+        "AS2049": 4,
+        "MT2011": 4,
+        "LA1009": 4,
+        "MA2119": 4
+      }
+    },
+    {
+      "id": "K05",
+      "name": "Học kỳ 5",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "CI1003",
+        "SP1033",
+        "LA3021",
+        "MA2037",
+        "MA2039"
+      ],
+      "semesters": {
+        "CI1003": 5,
+        "SP1033": 5,
+        "LA3021": 5,
+        "MA2037": 5,
+        "MA2039": 5
+      }
+    },
+    {
+      "id": "K06",
+      "name": "Học kỳ 6",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "SP1035",
+        "LA3023",
+        "MA1003",
+        "MA2007",
+        "MA3121",
+        "IM1021",
+        "MA3395"
+      ],
+      "semesters": {
+        "SP1035": 6,
+        "LA3023": 6,
+        "MA1003": 6,
+        "MA2007": 6,
+        "MA3121": 6,
+        "IM1021": 6,
+        "MA3395": 6
+      }
+    },
+    {
+      "id": "K07",
+      "name": "Học kỳ 7",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "SP1039",
+        "MA2015",
+        "MA3123",
+        "MA2035",
+        "MA4157",
+        "MA3019"
+      ],
+      "semesters": {
+        "SP1039": 7,
+        "MA2015": 7,
+        "MA3123": 7,
+        "MA2035": 7,
+        "MA4157": 7,
+        "MA3019": 7
+      }
+    },
+    {
+      "id": "K08",
+      "name": "Học kỳ 8",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "SP1037",
+        "MA4069",
+        "MA4067",
+        "MA4153",
+        "MA4085",
+        "MA4163",
+        "MA4165",
+        "MA4169",
+        "MA4159",
+        "MA4161",
+        "MA4167",
+        "MA4395"
+      ],
+      "semesters": {
+        "SP1037": 8,
+        "MA4069": 8,
+        "MA4067": 8,
+        "MA4153": 8,
+        "MA4085": 8,
+        "MA4163": 8,
+        "MA4165": 8,
+        "MA4169": 8,
+        "MA4159": 8,
+        "MA4161": 8,
+        "MA4167": 8,
+        "MA4395": 8
+      }
+    },
+    {
+      "id": "K09",
+      "name": "Học kỳ 9",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "MA5007",
+        "MA4155",
+        "MA5015",
+        "MA4079",
+        "MA5019"
+      ],
+      "semesters": {
+        "MA5007": 9,
+        "MA4155": 9,
+        "MA5015": 9,
+        "MA4079": 9,
+        "MA5019": 9
+      }
+    },
+    {
+      "id": "K10",
+      "name": "Học kỳ 10",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "MA5027",
+        "MA5025"
+      ],
+      "semesters": {
+        "MA5027": 10,
+        "MA5025": 10
+      }
+    }
+  ],
+  "updated": "2026-10-04"
+}

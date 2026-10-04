@@ -5,180 +5,209 @@
   "nameEn": "Petroleum Engineering",
   "faculty": "geopet",
   "year": "2021",
-  "source": "https://drive.google.com/file/d/1I3_WV2kfTnxczepF2Ls6DyAUZ1zJg7up/view",
+  "major": "7520604",
+  "type": "CQ",
+  "level": "dai-hoc",
+  "note": "Sổ tay không có năm này cho ngành và loại chương trình này. Danh sách môn lấy từ Kế hoạch giảng dạy (PDF), khối là học kỳ chứ không phải khối kiến thức; tên khối kiến thức, bắt buộc hay tự chọn chưa có.",
+  "source": "https://drive.google.com/file/d/1_tJRuZwHlYJD3nHWht3TBjnqrsNUWDFF/view",
+  "ctdtUrl": "https://drive.google.com/file/d/1I3_WV2kfTnxczepF2Ls6DyAUZ1zJg7up/view",
+  "planUrl": "https://drive.google.com/file/d/1_tJRuZwHlYJD3nHWht3TBjnqrsNUWDFF/view",
   "blocks": [
     {
       "id": "K01",
-      "name": "Toán (Mathematics)",
-      "group": "1. Kiến thức giáo dục đại cương (General Knowledge )",
-      "required": true,
+      "name": "Học kỳ 1",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
       "courses": [
+        "LA1003",
         "MT1003",
-        "MT1005",
-        "MT1007",
-        "MT2013"
-      ]
+        "PH1003",
+        "CH1003",
+        "GE1001"
+      ],
+      "semesters": {
+        "LA1003": 1,
+        "MT1003": 1,
+        "PH1003": 1,
+        "CH1003": 1,
+        "GE1001": 1
+      }
     },
     {
       "id": "K02",
-      "name": "Khoa học tự nhiên (Science)",
-      "group": "1. Kiến thức giáo dục đại cương (General Knowledge )",
-      "required": true,
+      "name": "Học kỳ 2",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
       "courses": [
-        "CH1003",
-        "PH1003",
-        "PH1007"
-      ]
+        "LA1005",
+        "MT1007",
+        "PH1007",
+        "MT1005",
+        "GE1011",
+        "GE1013",
+        "MI1003"
+      ],
+      "semesters": {
+        "LA1005": 2,
+        "MT1007": 2,
+        "PH1007": 2,
+        "MT1005": 2,
+        "GE1011": 2,
+        "GE1013": 2,
+        "MI1003": 2
+      }
     },
     {
       "id": "K03",
-      "name": "Toán và KH tự nhiên khác (Other Mathematics and Science)",
-      "group": "1. Kiến thức giáo dục đại cương (General Knowledge )",
-      "required": true,
+      "name": "Học kỳ 3",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
       "courses": [
-        "GE1013",
-        "MT1009"
-      ]
+        "LA1007",
+        "MT1009",
+        "GE2033",
+        "GE2043",
+        "GE2035",
+        "SP1031"
+      ],
+      "semesters": {
+        "LA1007": 3,
+        "MT1009": 3,
+        "GE2033": 3,
+        "GE2043": 3,
+        "GE2035": 3,
+        "SP1031": 3
+      }
     },
     {
       "id": "K04",
-      "name": "Kinh tế- Chính trị- Xã hội- Luật (Economics - Politics - Sociology - Law)",
-      "group": "1. Kiến thức giáo dục đại cương (General Knowledge )",
-      "required": true,
+      "name": "Học kỳ 4",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
       "courses": [
-        "SP1007",
-        "SP1031",
+        "LA1009",
+        "MT2013",
+        "GE2041",
+        "CH2089",
         "SP1033",
-        "SP1035",
-        "SP1037",
-        "SP1039"
-      ]
+        "GE2011",
+        "GE2001",
+        "GE2045"
+      ],
+      "semesters": {
+        "LA1009": 4,
+        "MT2013": 4,
+        "GE2041": 4,
+        "CH2089": 4,
+        "SP1033": 4,
+        "GE2011": 4,
+        "GE2001": 4,
+        "GE2045": 4
+      }
     },
     {
       "id": "K05",
-      "name": "Nhập môn (Introduction to Engineering)",
-      "group": "1. Kiến thức giáo dục đại cương (General Knowledge )",
-      "required": true,
+      "name": "Học kỳ 5",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
       "courses": [
-        "GE1001"
-      ]
+        "GE3181",
+        "GE3213",
+        "SP1035",
+        "GE3167",
+        "GE3179",
+        "GE3163",
+        "GE3045"
+      ],
+      "semesters": {
+        "GE3181": 5,
+        "GE3213": 5,
+        "SP1035": 5,
+        "GE3167": 5,
+        "GE3179": 5,
+        "GE3163": 5,
+        "GE3045": 5
+      }
     },
     {
       "id": "K06",
-      "name": "Quản lý (Management for Engineers)",
-      "group": "1. Kiến thức giáo dục đại cương (General Knowledge )",
-      "required": true,
+      "name": "Học kỳ 6",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
       "courses": [
-        "GE1021"
-      ]
+        "GE3017",
+        "SP1039",
+        "GE3209",
+        "GE3211",
+        "GE3345",
+        "GE1021",
+        "GE3175",
+        "GE3185",
+        "GE3199",
+        "GE3177",
+        "GE3183",
+        "GE3165"
+      ],
+      "semesters": {
+        "GE3017": 6,
+        "SP1039": 6,
+        "GE3209": 6,
+        "GE3211": 6,
+        "GE3345": 6,
+        "GE1021": 6,
+        "GE3175": 6,
+        "GE3185": 6,
+        "GE3199": 6,
+        "GE3177": 6,
+        "GE3183": 6,
+        "GE3165": 6
+      }
     },
     {
       "id": "K07",
-      "name": "Sức khỏe, an toàn và môi trường trong ngành dầu khí",
-      "group": "1. Kiến thức giáo dục đại cương (General Knowledge )",
-      "required": true,
+      "name": "Học kỳ 7",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
       "courses": [
-        "GE1015"
-      ]
+        "GE3105",
+        "GE3015",
+        "GE4091",
+        "SP1037",
+        "GE4141"
+      ],
+      "semesters": {
+        "GE3105": 7,
+        "GE3015": 7,
+        "GE4091": 7,
+        "SP1037": 7,
+        "GE4141": 7
+      }
     },
     {
       "id": "K08",
-      "name": "Ngoại ngữ (Foreign Language)",
-      "group": "1. Kiến thức giáo dục đại cương (General Knowledge )",
-      "required": true,
-      "courses": [
-        "LA1003",
-        "LA1005",
-        "LA1007",
-        "LA1009"
-      ]
-    },
-    {
-      "id": "K09",
-      "name": "Cơ sở ngành (Core)",
-      "group": "2. Kiến thức giáo dục chuyên nghiệp (Professional Knowledge )",
-      "required": true,
-      "courses": [
-        "CH2089",
-        "GE1011",
-        "GE2033",
-        "GE2035",
-        "GE2041",
-        "GE2043"
-      ]
-    },
-    {
-      "id": "K10",
-      "name": "Nhóm tự chọn A (chọn 3 tín chỉ trong các học phần sau)",
-      "group": "Cơ sở ngành (Core)",
+      "name": "Học kỳ 8",
+      "kind": "khac",
       "required": false,
+      "requiredUnknown": true,
       "courses": [
-        "GE2001",
-        "GE2011",
-        "GE2045"
-      ]
-    },
-    {
-      "id": "K11",
-      "name": "Chuyên ngành (Speciality)",
-      "group": "2. Kiến thức giáo dục chuyên nghiệp (Professional Knowledge )",
-      "required": true,
-      "courses": [
-        "GE3015",
-        "GE3017",
-        "GE3105",
-        "GE3181",
-        "GE3209",
-        "GE3211",
-        "GE3213",
-        "GE4091",
-        "GE4093"
-      ]
-    },
-    {
-      "id": "K12",
-      "name": "Nhóm tự chọn B (chọn 6 tín chỉ trong các học phần sau)",
-      "group": "Chuyên ngành (Speciality)",
-      "required": false,
-      "courses": [
-        "GE3045",
-        "GE3163",
-        "GE3167",
-        "GE3179"
-      ]
-    },
-    {
-      "id": "K13",
-      "name": "Trầm tích học và nhịp địa tầng",
-      "group": "2. Kiến thức giáo dục chuyên nghiệp (Professional Knowledge )",
-      "required": true,
-      "courses": [
-        "GE3165",
-        "GE3175"
-      ]
-    },
-    {
-      "id": "K14",
-      "name": "Phương pháp tìm kiếm thăm dò thẩm lượng dầu khí",
-      "group": "2. Kiến thức giáo dục chuyên nghiệp (Professional Knowledge )",
-      "required": true,
-      "courses": [
-        "GE3177",
-        "GE3183",
-        "GE3185",
-        "GE3199"
-      ]
-    },
-    {
-      "id": "K15",
-      "name": "Tốt nghiệp (Graduation)",
-      "group": "2. Kiến thức giáo dục chuyên nghiệp (Professional Knowledge )",
-      "required": true,
-      "courses": [
-        "GE3345",
-        "GE4141",
+        "GE1015",
+        "GE4093",
+        "SP1007",
         "GE4347"
-      ]
+      ],
+      "semesters": {
+        "GE1015": 8,
+        "GE4093": 8,
+        "SP1007": 8,
+        "GE4347": 8
+      }
     }
   ],
   "updated": "2026-10-04"

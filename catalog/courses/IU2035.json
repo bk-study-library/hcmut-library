@@ -11,7 +11,12 @@
   "programs": [
     {
       "program": "FME_BAO_DUONG_CONG_NGHIEP_2024",
-      "block": "K10",
+      "block": "K08",
+      "required": true
+    },
+    {
+      "program": "FME_TS_141_2026",
+      "block": "K09",
       "required": true
     }
   ],
@@ -19,6 +24,7 @@
     "theory"
   ],
   "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/IU2035",
   "note": "Nhập từ nguồn công khai (truy cập 03/10/2026).",
   "updated": "2026-10-04"
 }

@@ -1,0 +1,75 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "CO4041",
+  "code": "CO4041",
+  "name": "Đồ án môn học Kỹ thuật Máy tính",
+  "nameEn": "Computer Engineering Project",
+  "credits": 2,
+  "faculty": "cse",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "CSE_KY_THUAT_MAY_TINH_2019",
+      "block": "K07",
+      "required": false
+    },
+    {
+      "program": "CSE_KY_THUAT_MAY_TINH_2020",
+      "block": "K15",
+      "required": true
+    },
+    {
+      "program": "CSE_KY_THUAT_MAY_TINH_2020",
+      "block": "K27",
+      "required": false
+    },
+    {
+      "program": "CSE_KY_THUAT_MAY_TINH_2021",
+      "block": "K27",
+      "required": false
+    },
+    {
+      "program": "CSE_KY_THUAT_MAY_TINH_2022",
+      "block": "K07",
+      "required": false
+    },
+    {
+      "program": "CSE_KY_THUAT_MAY_TINH_2023",
+      "block": "K27",
+      "required": false
+    },
+    {
+      "program": "CSE_KY_THUAT_MAY_TINH_2024",
+      "block": "K21",
+      "required": true
+    },
+    {
+      "program": "CSE_KY_THUAT_MAY_TINH_2024_CNTN",
+      "block": "K22",
+      "required": true
+    },
+    {
+      "program": "CSE_KY_THUAT_MAY_TINH_2025_CNTN",
+      "block": "K22",
+      "required": true
+    },
+    {
+      "program": "CSE_KY_THUAT_MAY_TINH_2026",
+      "block": "K22",
+      "required": true
+    },
+    {
+      "program": "CSE_KY_THUAT_MAY_TINH_2026_CNTN",
+      "block": "K23",
+      "required": true
+    }
+  ],
+  "parts": [
+    "project"
+  ],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/CO4041",
+  "note": "Nhập từ CTĐT chính thức (Sổ tay HCMUT, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

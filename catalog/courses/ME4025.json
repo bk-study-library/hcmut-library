@@ -3,47 +3,68 @@
   "id": "ME4025",
   "code": "ME4025",
   "name": "Quản lý tồn kho trong chuỗi cung ứng",
-  "nameEn": "The Warehouse & Inventory Management KT",
+  "nameEn": "Inventory Management in Supply Chain",
   "credits": 3,
   "faculty": "fme",
   "aliases": [],
   "status": "active",
   "programs": [
     {
+      "program": "FME_LOGISTICS_VA_QUAN_LY_CHUOI_CUNG_UNG_2019",
+      "block": "K07",
+      "required": false
+    },
+    {
       "program": "FME_LOGISTICS_VA_QUAN_LY_CHUOI_CUNG_UNG_2020",
-      "block": "K02",
+      "block": "K07",
       "required": false
     },
     {
       "program": "FME_LOGISTICS_VA_QUAN_LY_CHUOI_CUNG_UNG_2021",
-      "block": "K11",
-      "required": true
+      "block": "K07",
+      "required": false
+    },
+    {
+      "program": "FME_LOGISTICS_VA_QUAN_LY_CHUOI_CUNG_UNG_2022",
+      "block": "K07",
+      "required": false
+    },
+    {
+      "program": "FME_LOGISTICS_VA_QUAN_LY_CHUOI_CUNG_UNG_2023",
+      "block": "K07",
+      "required": false
     },
     {
       "program": "FME_LOGISTICS_VA_QUAN_LY_CHUOI_CUNG_UNG_2024",
+      "block": "K10",
+      "required": true
+    },
+    {
+      "program": "FME_TS_228_2026_TA",
       "block": "K13",
       "required": true
     },
     {
-      "program": "FME_LOGISTICS_VA_QUAN_LY_CHUOI_CUNG_UNG_2023",
+      "program": "SIM_LOGISTICS_VA_QUAN_LY_CHUOI_CUNG_UNG_2024_CTTA",
       "block": "K11",
       "required": true
     },
     {
-      "program": "FME_LOGISTICS_VA_QUAN_LY_CHUOI_CUNG_UNG_2022",
+      "program": "SIM_LOGISTICS_VA_QUAN_LY_CHUOI_CUNG_UNG_2025_CTTA",
       "block": "K11",
       "required": true
     },
     {
-      "program": "FME_LOGISTICS_VA_QUAN_LY_CHUOI_CUNG_UNG_2019",
-      "block": "K02",
-      "required": false
+      "program": "SIM_LOGISTICS_VA_QUAN_LY_CHUOI_CUNG_UNG_2026",
+      "block": "K13",
+      "required": true
     }
   ],
   "parts": [
     "theory"
   ],
   "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/ME4025",
   "note": "Nhập từ nguồn công khai (truy cập 03/10/2026).",
   "updated": "2026-10-04"
 }

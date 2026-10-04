@@ -1,0 +1,55 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "CI4139",
+  "code": "CI4139",
+  "name": "Thiết kế Công nghệ Sản xuất và Lắp đặt Cấu kiện Bê tông đúc sẵn",
+  "nameEn": "Design of Production Technology and Installation of Precast Concrete",
+  "credits": 3,
+  "faculty": "fce",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "FCE_CONG_NGHE_KY_THUAT_VAT_LIEU_XAY_DUNG_2019",
+      "block": "K07",
+      "required": false
+    },
+    {
+      "program": "FCE_CONG_NGHE_KY_THUAT_VAT_LIEU_XAY_DUNG_2020",
+      "block": "K07",
+      "required": false
+    },
+    {
+      "program": "FCE_CONG_NGHE_KY_THUAT_VAT_LIEU_XAY_DUNG_2021",
+      "block": "K07",
+      "required": false
+    },
+    {
+      "program": "FCE_CONG_NGHE_KY_THUAT_VAT_LIEU_XAY_DUNG_2022",
+      "block": "K07",
+      "required": false
+    },
+    {
+      "program": "FCE_CONG_NGHE_KY_THUAT_VAT_LIEU_XAY_DUNG_2023",
+      "block": "K07",
+      "required": false
+    },
+    {
+      "program": "FCE_CONG_NGHE_KY_THUAT_VAT_LIEU_XAY_DUNG_2024",
+      "block": "K10",
+      "required": true
+    },
+    {
+      "program": "FCE_CONG_NGHE_KY_THUAT_VAT_LIEU_XAY_DUNG_2026",
+      "block": "K11",
+      "required": true
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/CI4139",
+  "note": "Nhập từ CTĐT chính thức (Sổ tay HCMUT, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

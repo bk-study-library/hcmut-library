@@ -1,15 +1,16 @@
-# GE3207 nghiệp khác
+# GE3207 Công nghệ chế biến dầu khí phục vụ cho các ngành công nghiệp khác
 
 <!-- File này do "npm run build" sinh từ catalog/courses/GE3207.json và items/. Chỉ sửa phần Mẹo học, giữa hai dòng meo-hoc. -->
 
 | Mục | Thông tin |
 |---|---|
 | Mã môn | GE3207 |
-| Tên | nghiệp khác / Petroleum Rafinery Technology to Create Input Products for |
+| Tên | Công nghệ chế biến dầu khí phục vụ cho các ngành công nghiệp khác / Petroleum Rafinery Technology to Create Input Products for |
 | Tín chỉ | 3 |
 | Khoa | Khoa Kỹ thuật Địa chất và Dầu khí |
 | Phần | Lý thuyết |
 | Trạng thái | Đang dạy |
+| Sổ tay HCMUT | [Trang môn trên Sổ tay HCMUT](https://hcmut.edu.vn/study/handbook/subject/GE3207) |
 
 ## Tài liệu
 

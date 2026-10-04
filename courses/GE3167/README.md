@@ -10,6 +10,7 @@
 | Khoa | Khoa Kỹ thuật Địa chất và Dầu khí |
 | Phần | Lý thuyết |
 | Trạng thái | Đang dạy |
+| Sổ tay HCMUT | [Trang môn trên Sổ tay HCMUT](https://hcmut.edu.vn/study/handbook/subject/GE3167) |
 | Mã, tên cũ | GE4011 Công nghệ xử lí dầu khí |
 | Thay cho | [GE4011](../GE4011/README.md) |
 

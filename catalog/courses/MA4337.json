@@ -1,0 +1,19 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "MA4337",
+  "code": "MA4337",
+  "name": "Đồ án Ngành",
+  "nameEn": "Project",
+  "credits": 2,
+  "faculty": "fmt",
+  "aliases": [],
+  "status": "active",
+  "programs": [],
+  "parts": [
+    "project"
+  ],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/MA4337",
+  "note": "Nhập từ Kế hoạch giảng dạy (PDF của trường, truy cập 04/10/2026). Tên lấy từ PDF. Chờ người duyệt xác nhận.",
+  "updated": "2026-10-04"
+}

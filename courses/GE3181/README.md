@@ -10,6 +10,7 @@
 | Khoa | Khoa Kỹ thuật Địa chất và Dầu khí |
 | Phần | Lý thuyết |
 | Trạng thái | Đang dạy |
+| Sổ tay HCMUT | [Trang môn trên Sổ tay HCMUT](https://hcmut.edu.vn/study/handbook/subject/GE3181) |
 | Mã, tên cũ | GE3009 Công nghệ khoan dầu khí |
 | Thay cho | [GE3009](../GE3009/README.md) |
 | Môn liên quan | [GE2063](../GE2063/README.md) Kỹ thuật khoan dầu khí |

@@ -1,15 +1,16 @@
-# ME2157 Kiểm so át và quản lý chất lượng
+# ME2157 Kiểm soát và quản lý chất lượng
 
 <!-- File này do "npm run build" sinh từ catalog/courses/ME2157.json và items/. Chỉ sửa phần Mẹo học, giữa hai dòng meo-hoc. -->
 
 | Mục | Thông tin |
 |---|---|
 | Mã môn | ME2157 |
-| Tên | Kiểm so át và quản lý chất lượng / Quality Management and Control |
+| Tên | Kiểm soát và quản lý chất lượng / Quality Management and Control |
 | Tín chỉ | 3 |
 | Khoa | Khoa Cơ khí |
 | Phần | Lý thuyết |
 | Trạng thái | Đang dạy |
+| Sổ tay HCMUT | [Trang môn trên Sổ tay HCMUT](https://hcmut.edu.vn/study/handbook/subject/ME2157) |
 
 ## Tài liệu
 

@@ -1,0 +1,39 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "IM4331",
+  "code": "IM4331",
+  "name": "Khóa luận Tốt nghiệp",
+  "credits": 4,
+  "faculty": "sim",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "SIM_QUAN_TRI_KINH_DOANH_2025",
+      "block": "K19",
+      "required": true
+    },
+    {
+      "program": "SIM_QUAN_TRI_KINH_DOANH_2025_CTTA",
+      "block": "K19",
+      "required": true
+    },
+    {
+      "program": "SIM_QUAN_TRI_KINH_DOANH_2026_CTTA",
+      "block": "K18",
+      "required": true
+    },
+    {
+      "program": "SIM_TS_153_2026",
+      "block": "K18",
+      "required": true
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/IM4331",
+  "note": "Nhập từ CTĐT chính thức (Sổ tay HCMUT, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

@@ -1,0 +1,90 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "TR2033",
+  "code": "TR2033",
+  "name": "Kỹ thuật Chế tạo",
+  "nameEn": "Manufacturing Engineering",
+  "credits": 3,
+  "faculty": "fte",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "FTE_KY_THUAT_TAU_THUY_2019",
+      "block": "K03",
+      "required": false
+    },
+    {
+      "program": "FTE_KY_THUAT_TAU_THUY_2020",
+      "block": "K03",
+      "required": false
+    },
+    {
+      "program": "FTE_KY_THUAT_TAU_THUY_2021",
+      "block": "K03",
+      "required": false
+    },
+    {
+      "program": "FTE_KY_THUAT_TAU_THUY_2022",
+      "block": "K03",
+      "required": false
+    },
+    {
+      "program": "FTE_KY_THUAT_TAU_THUY_2023",
+      "block": "K03",
+      "required": false
+    },
+    {
+      "program": "FTE_KY_THUAT_TAU_THUY_2024",
+      "block": "K08",
+      "required": true
+    },
+    {
+      "program": "FTE_KY_THUAT_TAU_THUY_2026",
+      "block": "K09",
+      "required": true
+    },
+    {
+      "program": "FTE_KY_THUAT_TAU_THUY_HANG_KHONG_SN_2019_SN",
+      "block": "K03",
+      "required": false
+    },
+    {
+      "program": "FTE_KY_THUAT_TAU_THUY_HANG_KHONG_SN_2020_SN",
+      "block": "K03",
+      "required": false
+    },
+    {
+      "program": "FTE_KY_THUAT_TAU_THUY_HANG_KHONG_SN_2021_SN",
+      "block": "K03",
+      "required": false
+    },
+    {
+      "program": "FTE_KY_THUAT_TAU_THUY_HANG_KHONG_SN_2022_SN",
+      "block": "K03",
+      "required": false
+    },
+    {
+      "program": "FTE_KY_THUAT_TAU_THUY_HANG_KHONG_SN_2023_SN",
+      "block": "K03",
+      "required": false
+    },
+    {
+      "program": "FTE_KY_THUAT_TAU_THUY_HANG_KHONG_SN_2024_SN",
+      "block": "K08",
+      "required": true
+    },
+    {
+      "program": "FTE_KY_THUAT_TAU_THUY_HANG_KHONG_SN_2026_SN",
+      "block": "K09",
+      "required": true
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/TR2033",
+  "note": "Nhập từ CTĐT chính thức (Sổ tay HCMUT, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

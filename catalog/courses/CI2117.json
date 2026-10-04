@@ -1,0 +1,29 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "CI2117",
+  "code": "CI2117",
+  "name": "Đồ án kiến trúc cảnh quan",
+  "credits": 2,
+  "faculty": "fce",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "FCE_KIEN_TRUC_2019",
+      "block": "K08",
+      "required": false
+    },
+    {
+      "program": "FCE_KIEN_TRUC_2020",
+      "block": "K08",
+      "required": false
+    }
+  ],
+  "parts": [
+    "project"
+  ],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/CI2117",
+  "note": "Nhập từ Kế hoạch giảng dạy (PDF của trường, truy cập 04/10/2026). Tên lấy từ PDF. Chờ người duyệt xác nhận.",
+  "updated": "2026-10-04"
+}

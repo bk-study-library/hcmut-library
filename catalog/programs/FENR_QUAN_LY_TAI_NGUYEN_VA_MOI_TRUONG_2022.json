@@ -1,0 +1,242 @@
+{
+  "$schema": "../../schema/program.schema.json",
+  "code": "FENR_QUAN_LY_TAI_NGUYEN_VA_MOI_TRUONG_2022",
+  "name": "Quản lý Tài nguyên và Môi trường",
+  "nameEn": "Natural Resources and Environmental Management",
+  "faculty": "fenr",
+  "year": "2022",
+  "major": "7850101",
+  "type": "CQ",
+  "level": "dai-hoc",
+  "note": "Sổ tay không có năm này cho ngành và loại chương trình này. Danh sách môn lấy từ Kế hoạch giảng dạy (PDF), khối là học kỳ chứ không phải khối kiến thức; tên khối kiến thức, bắt buộc hay tự chọn chưa có.",
+  "source": "https://drive.google.com/file/d/1_UMV_39KxJaG2iAkbAFYJA3HBnnP4MtH/view",
+  "ctdtUrl": "https://drive.google.com/file/d/1BOT7VMovpeJ9k1rqmWWmBagsosPLi3EQ/view",
+  "planUrl": "https://drive.google.com/file/d/1_UMV_39KxJaG2iAkbAFYJA3HBnnP4MtH/view",
+  "blocks": [
+    {
+      "id": "K01",
+      "name": "Học kỳ 1",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "LA1003",
+        "EN1001",
+        "MT1003",
+        "MT1007",
+        "PH1003",
+        "PH1007"
+      ],
+      "semesters": {
+        "LA1003": 1,
+        "EN1001": 1,
+        "MT1003": 1,
+        "MT1007": 1,
+        "PH1003": 1,
+        "PH1007": 1
+      }
+    },
+    {
+      "id": "K02",
+      "name": "Học kỳ 2",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "LA1005",
+        "MT1005",
+        "CH1003",
+        "EN1015",
+        "CI1003",
+        "MI1003"
+      ],
+      "semesters": {
+        "LA1005": 2,
+        "MT1005": 2,
+        "CH1003": 2,
+        "EN1015": 2,
+        "CI1003": 2,
+        "MI1003": 2
+      }
+    },
+    {
+      "id": "K03",
+      "name": "Học kỳ 3",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "LA1007",
+        "SP1007",
+        "CH2009",
+        "MT2013",
+        "EN1005",
+        "EN2031"
+      ],
+      "semesters": {
+        "LA1007": 3,
+        "SP1007": 3,
+        "CH2009": 3,
+        "MT2013": 3,
+        "EN1005": 3,
+        "EN2031": 3
+      }
+    },
+    {
+      "id": "K04",
+      "name": "Học kỳ 4",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "LA1009",
+        "SP1031",
+        "EN2033",
+        "EN2045",
+        "EN2003",
+        "EN2047",
+        "EN2049",
+        "EN2051",
+        "CI2001",
+        "CI2003",
+        "CI2121",
+        "EN2053"
+      ],
+      "semesters": {
+        "LA1009": 4,
+        "SP1031": 4,
+        "EN2033": 4,
+        "EN2045": 4,
+        "EN2003": 4,
+        "EN2047": 4,
+        "EN2049": 4,
+        "EN2051": 4,
+        "CI2001": 4,
+        "CI2003": 4,
+        "CI2121": 4,
+        "EN2053": 4
+      }
+    },
+    {
+      "id": "K05",
+      "name": "Học kỳ 5",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "SP1033",
+        "EN3205",
+        "EN3069",
+        "EN3207",
+        "EN3073",
+        "EN2039",
+        "IM1027",
+        "IM1025",
+        "IM1021"
+      ],
+      "semesters": {
+        "SP1033": 5,
+        "EN3205": 5,
+        "EN3069": 5,
+        "EN3207": 5,
+        "EN3073": 5,
+        "EN2039": 5,
+        "IM1027": 5,
+        "IM1025": 5,
+        "IM1021": 5
+      }
+    },
+    {
+      "id": "K06",
+      "name": "Học kỳ 6",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "SP1035",
+        "EN3041",
+        "EN3047",
+        "EN3003",
+        "EN3335",
+        "EN3083",
+        "EN3087",
+        "EN3089",
+        "EN3091",
+        "EN3093",
+        "EN3079",
+        "EN3097",
+        "EN3099",
+        "EN3119",
+        "EN3121",
+        "EN3101",
+        "EN3103",
+        "EN3105",
+        "EN3107",
+        "EN3109",
+        "EN3127",
+        "EN3209"
+      ],
+      "semesters": {
+        "SP1035": 6,
+        "EN3041": 6,
+        "EN3047": 6,
+        "EN3003": 6,
+        "EN3335": 6,
+        "EN3083": 6,
+        "EN3087": 6,
+        "EN3089": 6,
+        "EN3091": 6,
+        "EN3093": 6,
+        "EN3079": 6,
+        "EN3097": 6,
+        "EN3099": 6,
+        "EN3119": 6,
+        "EN3121": 6,
+        "EN3101": 6,
+        "EN3103": 6,
+        "EN3105": 6,
+        "EN3107": 6,
+        "EN3109": 6,
+        "EN3127": 6,
+        "EN3209": 6
+      }
+    },
+    {
+      "id": "K07",
+      "name": "Học kỳ 7",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "SP1039",
+        "EN3039",
+        "EN3211",
+        "EN4023"
+      ],
+      "semesters": {
+        "SP1039": 7,
+        "EN3039": 7,
+        "EN3211": 7,
+        "EN4023": 7
+      }
+    },
+    {
+      "id": "K08",
+      "name": "Học kỳ 8",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "SP1037",
+        "EN4025",
+        "EN4337"
+      ],
+      "semesters": {
+        "SP1037": 8,
+        "EN4025": 8,
+        "EN4337": 8
+      }
+    }
+  ],
+  "updated": "2026-10-04"
+}

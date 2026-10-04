@@ -1,0 +1,19 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "EN2057",
+  "code": "EN2057",
+  "name": "Đồ án môn học Hóa học trong Kỹ thuật và Khoa học Môi trường",
+  "nameEn": "Project of Chemistry for Environmental Engineering and Science",
+  "credits": 1,
+  "faculty": "fenr",
+  "aliases": [],
+  "status": "active",
+  "programs": [],
+  "parts": [
+    "project"
+  ],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/EN2057",
+  "note": "Nhập từ Kế hoạch giảng dạy (PDF của trường, truy cập 04/10/2026). Tên lấy từ PDF. Chờ người duyệt xác nhận.",
+  "updated": "2026-10-04"
+}

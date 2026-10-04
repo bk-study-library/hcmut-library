@@ -1,15 +1,16 @@
-# EE3201 Cơ sở thiết kế vi mạchx
+# EE3201 Cơ sở thiết kế vi mạch
 
 <!-- File này do "npm run build" sinh từ catalog/courses/EE3201.json và items/. Chỉ sửa phần Mẹo học, giữa hai dòng meo-hoc. -->
 
 | Mục | Thông tin |
 |---|---|
 | Mã môn | EE3201 |
-| Tên | Cơ sở thiết kế vi mạchx / Introduction to IC Design |
+| Tên | Cơ sở thiết kế vi mạch / Introduction to IC Design |
 | Tín chỉ | 3 |
 | Khoa | Khoa Điện - Điện tử |
 | Phần | Lý thuyết |
 | Trạng thái | Đang dạy |
+| Sổ tay HCMUT | [Trang môn trên Sổ tay HCMUT](https://hcmut.edu.vn/study/handbook/subject/EE3201) |
 
 ## Tài liệu
 

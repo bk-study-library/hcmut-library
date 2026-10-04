@@ -1,0 +1,222 @@
+{
+  "$schema": "../../schema/program.schema.json",
+  "code": "DEE_KY_THUAT_DIEN_DIEN_TU_TT_2022_CTTT_HE_THONG_NANG_LUONG",
+  "name": "Kỹ thuật điện - điện tử (TT), chuyên ngành Hệ thống Năng lượng",
+  "nameEn": "Electrical - Electronics Engineering, Hệ thống Năng lượng",
+  "faculty": "dee",
+  "year": "2022",
+  "major": "75202TT",
+  "type": "CTTT",
+  "track": "Hệ thống Năng lượng",
+  "level": "dai-hoc",
+  "variant": "Chương trình tiên tiến",
+  "note": "Sổ tay không có năm này cho ngành và loại chương trình này. Danh sách môn lấy từ Kế hoạch giảng dạy (PDF), khối là học kỳ chứ không phải khối kiến thức; tên khối kiến thức, bắt buộc hay tự chọn chưa có.",
+  "source": "https://drive.google.com/file/d/1BeH7kGWKWoXsgARKpVaIwsVVVFF5IvoJ/view",
+  "ctdtUrl": "https://drive.google.com/file/d/1HkdmY-7kqEnL0GuImwdP-ehFM47_sVbP/view",
+  "planUrl": "https://drive.google.com/file/d/1BeH7kGWKWoXsgARKpVaIwsVVVFF5IvoJ/view",
+  "blocks": [
+    {
+      "id": "K01",
+      "name": "Học kỳ 1",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "SP1041",
+        "EE1025",
+        "MT1019",
+        "EE1029",
+        "PH1011",
+        "SP1007",
+        "SP1013",
+        "SP1015",
+        "SP1017",
+        "SP1019",
+        "SP1021",
+        "SP1023",
+        "SP1025",
+        "SP1027",
+        "SP1045"
+      ],
+      "semesters": {
+        "SP1041": 1,
+        "EE1025": 1,
+        "MT1019": 1,
+        "EE1029": 1,
+        "PH1011": 1,
+        "SP1007": 1,
+        "SP1013": 1,
+        "SP1015": 1,
+        "SP1017": 1,
+        "SP1019": 1,
+        "SP1021": 1,
+        "SP1023": 1,
+        "SP1025": 1,
+        "SP1027": 1,
+        "SP1045": 1
+      }
+    },
+    {
+      "id": "K02",
+      "name": "Học kỳ 2",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "MT1021",
+        "MT1023",
+        "PH1013",
+        "MT1007",
+        "CH1015",
+        "MI1003"
+      ],
+      "semesters": {
+        "MT1021": 2,
+        "MT1023": 2,
+        "PH1013": 2,
+        "MT1007": 2,
+        "CH1015": 2,
+        "MI1003": 2
+      }
+    },
+    {
+      "id": "K03",
+      "name": "Học kỳ 3",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "EE2401",
+        "EE2417",
+        "EE2405",
+        "EE2407",
+        "SP1031"
+      ],
+      "semesters": {
+        "EE2401": 3,
+        "EE2417": 3,
+        "EE2405": 3,
+        "EE2407": 3,
+        "SP1031": 3
+      }
+    },
+    {
+      "id": "K04",
+      "name": "Học kỳ 4",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "MT2015",
+        "EE2411",
+        "EE2415",
+        "EE2409",
+        "EE2419"
+      ],
+      "semesters": {
+        "MT2015": 4,
+        "EE2411": 4,
+        "EE2415": 4,
+        "EE2409": 4,
+        "EE2419": 4
+      }
+    },
+    {
+      "id": "K05",
+      "name": "Học kỳ 5",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "EE3413",
+        "SP1033",
+        "EE2015",
+        "EE3401",
+        "EE3403",
+        "EE3405",
+        "EE3407",
+        "EE3411"
+      ],
+      "semesters": {
+        "EE3413": 5,
+        "SP1033": 5,
+        "EE2015": 5,
+        "EE3401": 5,
+        "EE3403": 5,
+        "EE3405": 5,
+        "EE3407": 5,
+        "EE3411": 5
+      }
+    },
+    {
+      "id": "K06",
+      "name": "Học kỳ 6",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "EE3419",
+        "EE3421",
+        "SP1035",
+        "EE2421",
+        "EE3375"
+      ],
+      "semesters": {
+        "EE3419": 6,
+        "EE3421": 6,
+        "SP1035": 6,
+        "EE2421": 6,
+        "EE3375": 6
+      }
+    },
+    {
+      "id": "K07",
+      "name": "Học kỳ 7",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "EE4413",
+        "SP1039",
+        "EE4405",
+        "EE4425",
+        "EE4427",
+        "EE4429",
+        "EE4431",
+        "IM1013",
+        "IM3063",
+        "IM1019"
+      ],
+      "semesters": {
+        "EE4413": 7,
+        "SP1039": 7,
+        "EE4405": 7,
+        "EE4425": 7,
+        "EE4427": 7,
+        "EE4429": 7,
+        "EE4431": 7,
+        "IM1013": 7,
+        "IM3063": 7,
+        "IM1019": 7
+      }
+    },
+    {
+      "id": "K08",
+      "name": "Học kỳ 8",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "EN1003",
+        "SP1037",
+        "EE4377"
+      ],
+      "semesters": {
+        "EN1003": 8,
+        "SP1037": 8,
+        "EE4377": 8
+      }
+    }
+  ],
+  "updated": "2026-10-04"
+}

@@ -1,15 +1,16 @@
-# IU3091 Industrial Tribology and Lubrication
+# IU3091 Kỹ thuật Bôi trơn Công nghiệp
 
 <!-- File này do "npm run build" sinh từ catalog/courses/IU3091.json và items/. Chỉ sửa phần Mẹo học, giữa hai dòng meo-hoc. -->
 
 | Mục | Thông tin |
 |---|---|
 | Mã môn | IU3091 |
-| Tên | Industrial Tribology and Lubrication |
+| Tên | Kỹ thuật Bôi trơn Công nghiệp / Industrial Tribology and Lubrication |
 | Tín chỉ | 3 |
 | Khoa | Khoa Cơ khí |
 | Phần | Lý thuyết |
 | Trạng thái | Đang dạy |
+| Sổ tay HCMUT | [Trang môn trên Sổ tay HCMUT](https://hcmut.edu.vn/study/handbook/subject/IU3091) |
 
 ## Tài liệu
 

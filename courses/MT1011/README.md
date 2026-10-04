@@ -5,11 +5,12 @@
 | Mục | Thông tin |
 |---|---|
 | Mã môn | MT1011 |
-| Tên | Giải tích 1 / Calculus1 |
+| Tên | Giải tích 1 / Calculus 1 |
 | Tín chỉ | 4 |
-| Khoa | Khoa Khoa học Ứng dụng |
+| Khoa | Môn chung toàn trường |
 | Phần | Lý thuyết |
 | Trạng thái | Đang dạy |
+| Sổ tay HCMUT | [Trang môn trên Sổ tay HCMUT](https://hcmut.edu.vn/study/handbook/subject/MT1011) |
 
 ## Tài liệu
 

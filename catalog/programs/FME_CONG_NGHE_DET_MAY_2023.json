@@ -5,143 +5,199 @@
   "nameEn": "Textile, Clothing Technology",
   "faculty": "fme",
   "year": "2023",
-  "source": "https://drive.google.com/file/d/127C6M_GY2Xvm0Dt-n-fGFj-CWoQoJwQM/view",
+  "major": "7540204",
+  "type": "CQ",
+  "level": "dai-hoc",
+  "note": "Sổ tay không có năm này cho ngành và loại chương trình này. Danh sách môn lấy từ Kế hoạch giảng dạy (PDF), khối là học kỳ chứ không phải khối kiến thức; tên khối kiến thức, bắt buộc hay tự chọn chưa có.",
+  "source": "https://drive.google.com/file/d/1Tc_o9DFM2qXim8WblIcuHPnjAFJKxbv6/view",
+  "ctdtUrl": "https://drive.google.com/file/d/127C6M_GY2Xvm0Dt-n-fGFj-CWoQoJwQM/view",
+  "planUrl": "https://drive.google.com/file/d/1Tc_o9DFM2qXim8WblIcuHPnjAFJKxbv6/view",
   "blocks": [
     {
       "id": "K01",
-      "name": "Toán (Mathem atics)",
-      "group": "1. Kiến thức giáo dục đại cương (General Knowledge )",
-      "required": true,
+      "name": "Học kỳ 1",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
       "courses": [
+        "LA1003",
         "MT1003",
-        "MT1005",
-        "MT1007",
-        "MT2013"
-      ]
+        "PH1003",
+        "CH1003",
+        "ME1001"
+      ],
+      "semesters": {
+        "LA1003": 1,
+        "MT1003": 1,
+        "PH1003": 1,
+        "CH1003": 1,
+        "ME1001": 1
+      }
     },
     {
       "id": "K02",
-      "name": "Khoa học tự nhiên (Science)",
-      "group": "1. Kiến thức giáo dục đại cương (General Knowledge )",
-      "required": true,
+      "name": "Học kỳ 2",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
       "courses": [
-        "CH1003",
-        "PH1003",
-        "PH1007"
-      ]
+        "LA1005",
+        "MT1005",
+        "MT1007",
+        "PH1005",
+        "PH1007",
+        "ME1003",
+        "MI1003"
+      ],
+      "semesters": {
+        "LA1005": 2,
+        "MT1005": 2,
+        "MT1007": 2,
+        "PH1005": 2,
+        "PH1007": 2,
+        "ME1003": 2,
+        "MI1003": 2
+      }
     },
     {
       "id": "K03",
-      "name": "Toán và KH tự nhiên khác (Other Mathem atics and Science)",
-      "group": "1. Kiến thức giáo dục đại cương (General Knowledge )",
-      "required": true,
+      "name": "Học kỳ 3",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
       "courses": [
+        "LA1007",
         "MT1009",
-        "PH1005"
-      ]
+        "SP1031",
+        "ME2103",
+        "ME2107",
+        "ME2065"
+      ],
+      "semesters": {
+        "LA1007": 3,
+        "MT1009": 3,
+        "SP1031": 3,
+        "ME2103": 3,
+        "ME2107": 3,
+        "ME2065": 3
+      }
     },
     {
       "id": "K04",
-      "name": "Kinh tế- Chính trị- Xã hội- Luật (Econom ics - Politics - Sociology - Law)",
-      "group": "1. Kiến thức giáo dục đại cương (General Knowledge )",
-      "required": true,
+      "name": "Học kỳ 4",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
       "courses": [
-        "SP1007",
-        "SP1031",
+        "LA1009",
+        "MT2013",
         "SP1033",
-        "SP1035",
-        "SP1037",
-        "SP1039"
-      ]
+        "ME2163",
+        "ME2167",
+        "ME2101"
+      ],
+      "semesters": {
+        "LA1009": 4,
+        "MT2013": 4,
+        "SP1033": 4,
+        "ME2163": 4,
+        "ME2167": 4,
+        "ME2101": 4
+      }
     },
     {
       "id": "K05",
-      "name": "Nhập m ôn (Introduction to Engineering)",
-      "group": "1. Kiến thức giáo dục đại cương (General Knowledge )",
-      "required": true,
+      "name": "Học kỳ 5",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
       "courses": [
-        "ME1001"
-      ]
+        "SP1035",
+        "ME2133",
+        "ME3285",
+        "ME3137",
+        "ME3287"
+      ],
+      "semesters": {
+        "SP1035": 5,
+        "ME2133": 5,
+        "ME3285": 5,
+        "ME3137": 5,
+        "ME3287": 5
+      }
     },
     {
       "id": "K06",
-      "name": "17 Nhóm Quản lý (chọn 3 tín chỉ trong các học phần sau)",
-      "group": "Nhập m ôn (Introduction to Engineering)",
+      "name": "Học kỳ 6",
+      "kind": "khac",
       "required": false,
+      "requiredUnknown": true,
       "courses": [
+        "SP1039",
+        "ME3115",
+        "ME3289",
+        "ME3133",
+        "ME3291",
         "IM1013",
         "IM1023",
         "IM1025",
         "IM1027",
         "IM3001"
-      ]
+      ],
+      "semesters": {
+        "SP1039": 6,
+        "ME3115": 6,
+        "ME3289": 6,
+        "ME3133": 6,
+        "ME3291": 6,
+        "IM1013": 6,
+        "IM1023": 6,
+        "IM1025": 6,
+        "IM1027": 6,
+        "IM3001": 6
+      }
     },
     {
       "id": "K07",
-      "name": "Môi trường và phát triển bền vững trong dệt may",
-      "group": "1. Kiến thức giáo dục đại cương (General Knowledge )",
-      "required": true,
+      "name": "Học kỳ 7",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
       "courses": [
-        "ME1017"
-      ]
+        "SP1037",
+        "ME3175",
+        "ME3095",
+        "ME3105",
+        "ME3177",
+        "ME4121"
+      ],
+      "semesters": {
+        "SP1037": 7,
+        "ME3175": 7,
+        "ME3095": 7,
+        "ME3105": 7,
+        "ME3177": 7,
+        "ME4121": 7
+      }
     },
     {
       "id": "K08",
-      "name": "Ngoại ngữ (Foreign Language)",
-      "group": "1. Kiến thức giáo dục đại cương (General Knowledge )",
-      "required": true,
+      "name": "Học kỳ 8",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
       "courses": [
-        "LA1003",
-        "LA1005",
-        "LA1007",
-        "LA1009"
-      ]
-    },
-    {
-      "id": "K09",
-      "name": "Cơ sở ngành (Core)",
-      "group": "2. Kiến thức giáo dục chuyên nghiệp (Professional Knowledge )",
-      "required": true,
-      "courses": [
-        "ME1003",
-        "ME2065",
-        "ME2101",
-        "ME2103",
-        "ME2107",
-        "ME2133",
-        "ME2163",
-        "ME2167",
+        "SP1007",
+        "ME1017",
+        "ME4357",
         "ME2169"
-      ]
-    },
-    {
-      "id": "K10",
-      "name": "Chuyên ngành (Speciality)",
-      "group": "2. Kiến thức giáo dục chuyên nghiệp (Professional Knowledge )",
-      "required": true,
-      "courses": [
-        "ME3095",
-        "ME3105",
-        "ME3115",
-        "ME3137",
-        "ME3175",
-        "ME3177",
-        "ME3285",
-        "ME3287",
-        "ME3289",
-        "ME3291"
-      ]
-    },
-    {
-      "id": "K11",
-      "name": "Tốt nghiệp (Graduation)",
-      "group": "2. Kiến thức giáo dục chuyên nghiệp (Professional Knowledge )",
-      "required": true,
-      "courses": [
-        "ME3133",
-        "ME4121",
-        "ME4357"
-      ]
+      ],
+      "semesters": {
+        "SP1007": 8,
+        "ME1017": 8,
+        "ME4357": 8,
+        "ME2169": 8
+      }
     }
   ],
   "updated": "2026-10-04"

@@ -1,0 +1,195 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "CH1001",
+  "code": "CH1001",
+  "name": "Nhập môn về Kỹ thuật",
+  "nameEn": "Introduction To Engineering",
+  "credits": 3,
+  "faculty": "che",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "CHE_CONG_NGHE_SINH_HOC_2019",
+      "block": "K01",
+      "required": false
+    },
+    {
+      "program": "CHE_CONG_NGHE_SINH_HOC_2020",
+      "block": "K01",
+      "required": false
+    },
+    {
+      "program": "CHE_CONG_NGHE_SINH_HOC_2021",
+      "block": "K01",
+      "required": false
+    },
+    {
+      "program": "CHE_CONG_NGHE_SINH_HOC_2022",
+      "block": "K01",
+      "required": false
+    },
+    {
+      "program": "CHE_CONG_NGHE_SINH_HOC_2023",
+      "block": "K01",
+      "required": false
+    },
+    {
+      "program": "CHE_CONG_NGHE_SINH_HOC_2024",
+      "block": "K04",
+      "required": true
+    },
+    {
+      "program": "CHE_CONG_NGHE_SINH_HOC_2024_CTTA",
+      "block": "K04",
+      "required": true
+    },
+    {
+      "program": "CHE_CONG_NGHE_SINH_HOC_2025_CTTA",
+      "block": "K04",
+      "required": true
+    },
+    {
+      "program": "CHE_CONG_NGHE_SINH_HOC_2026",
+      "block": "K04",
+      "required": true
+    },
+    {
+      "program": "CHE_CONG_NGHE_THUC_PHAM_2019",
+      "block": "K01",
+      "required": false
+    },
+    {
+      "program": "CHE_CONG_NGHE_THUC_PHAM_2020",
+      "block": "K01",
+      "required": false
+    },
+    {
+      "program": "CHE_CONG_NGHE_THUC_PHAM_2021",
+      "block": "K01",
+      "required": false
+    },
+    {
+      "program": "CHE_CONG_NGHE_THUC_PHAM_2022",
+      "block": "K01",
+      "required": false
+    },
+    {
+      "program": "CHE_CONG_NGHE_THUC_PHAM_2023",
+      "block": "K01",
+      "required": false
+    },
+    {
+      "program": "CHE_CONG_NGHE_THUC_PHAM_2024",
+      "block": "K04",
+      "required": true
+    },
+    {
+      "program": "CHE_CONG_NGHE_THUC_PHAM_2024_CNTN",
+      "block": "K04",
+      "required": true
+    },
+    {
+      "program": "CHE_CONG_NGHE_THUC_PHAM_2024_CTTA",
+      "block": "K04",
+      "required": true
+    },
+    {
+      "program": "CHE_CONG_NGHE_THUC_PHAM_2025_CNTN",
+      "block": "K04",
+      "required": true
+    },
+    {
+      "program": "CHE_CONG_NGHE_THUC_PHAM_2025_CTTA",
+      "block": "K04",
+      "required": true
+    },
+    {
+      "program": "CHE_CONG_NGHE_THUC_PHAM_2026",
+      "block": "K04",
+      "required": true
+    },
+    {
+      "program": "CHE_CONG_NGHE_THUC_PHAM_2026_CNTN",
+      "block": "K04",
+      "required": true
+    },
+    {
+      "program": "CHE_KY_THUAT_HOA_HOC_2019",
+      "block": "K01",
+      "required": false
+    },
+    {
+      "program": "CHE_KY_THUAT_HOA_HOC_2020",
+      "block": "K01",
+      "required": false
+    },
+    {
+      "program": "CHE_KY_THUAT_HOA_HOC_2021",
+      "block": "K01",
+      "required": false
+    },
+    {
+      "program": "CHE_KY_THUAT_HOA_HOC_2022",
+      "block": "K01",
+      "required": false
+    },
+    {
+      "program": "CHE_KY_THUAT_HOA_HOC_2023",
+      "block": "K01",
+      "required": false
+    },
+    {
+      "program": "CHE_KY_THUAT_HOA_HOC_2024",
+      "block": "K04",
+      "required": true
+    },
+    {
+      "program": "CHE_KY_THUAT_HOA_HOC_2024_CTTA",
+      "block": "K04",
+      "required": true
+    },
+    {
+      "program": "CHE_KY_THUAT_HOA_HOC_2025_CNTN",
+      "block": "K04",
+      "required": true
+    },
+    {
+      "program": "CHE_KY_THUAT_HOA_HOC_2025_CTTA",
+      "block": "K04",
+      "required": true
+    },
+    {
+      "program": "CHE_KY_THUAT_HOA_HOC_2026",
+      "block": "K04",
+      "required": true
+    },
+    {
+      "program": "CHE_KY_THUAT_HOA_HOC_2026_CNTN",
+      "block": "K04",
+      "required": true
+    },
+    {
+      "program": "CHE_KY_THUAT_HOA_HOC_2026_CTTA",
+      "block": "K04",
+      "required": true
+    },
+    {
+      "program": "CHE_TS_218_2026_TA",
+      "block": "K04",
+      "required": true
+    },
+    {
+      "program": "CHE_TS_219_2026_TA",
+      "block": "K04",
+      "required": true
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/CH1001",
+  "note": "Nhập từ CTĐT chính thức (Sổ tay HCMUT, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

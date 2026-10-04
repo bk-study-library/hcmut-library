@@ -1,0 +1,30 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "AS3177",
+  "code": "AS3177",
+  "name": "Giới thiệu ngôn ngữ lập trình",
+  "nameEn": "Fortran Introduction to Fortran",
+  "credits": 3,
+  "faculty": "fas",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "FAS_VAT_LY_KY_THUAT_2022",
+      "block": "K06",
+      "required": false
+    },
+    {
+      "program": "FAS_VAT_LY_KY_THUAT_2023",
+      "block": "K06",
+      "required": false
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/AS3177",
+  "note": "Nhập từ Kế hoạch giảng dạy (PDF của trường, truy cập 04/10/2026). Tên lấy từ PDF. Chờ người duyệt xác nhận. Tên trong Kế hoạch giảng dạy: Giới thiệu ngôn ngữ lập trình Fortran Introduction to Fortran.",
+  "updated": "2026-10-04"
+}

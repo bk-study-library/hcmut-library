@@ -5,11 +5,12 @@
 | Mục | Thông tin |
 |---|---|
 | Mã môn | GE4039 |
-| Tên | Đồ án môn học khảo sát - thăm dò và các phương pháp tính trữ lượng / Course Project on Prospecting-Exploration and Reserves |
+| Tên | Đồ án môn học khảo sát - thăm dò và các phương pháp tính trữ lượng / Course Project on Prospecting-Exploration and Reserves Calculating Methods of Minerals |
 | Tín chỉ | 1 |
 | Khoa | Khoa Kỹ thuật Địa chất và Dầu khí |
 | Phần | Đồ án |
 | Trạng thái | Đang dạy |
+| Sổ tay HCMUT | [Trang môn trên Sổ tay HCMUT](https://hcmut.edu.vn/study/handbook/subject/GE4039) |
 | Mã, tên cũ | GE3065 Ô nhiễm đất, nước và các phương pháp xử lý |
 | Thay cho | [GE3065](../GE3065/README.md) |
 

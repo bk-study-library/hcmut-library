@@ -1,0 +1,85 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "CI3265",
+  "code": "CI3265",
+  "name": "Kỹ thuật Hạ tầng Đô thị",
+  "nameEn": "Urban Infrastructure Engineering",
+  "credits": 3,
+  "faculty": "fce",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "FCE_KIEN_TRUC_7580101X_2021",
+      "block": "K08",
+      "required": false
+    },
+    {
+      "program": "FCE_KIEN_TRUC_7580101X_2024",
+      "block": "K24",
+      "required": false
+    },
+    {
+      "program": "FCE_KIEN_TRUC_7580101X_2024",
+      "block": "K28",
+      "required": false
+    },
+    {
+      "program": "FCE_KIEN_TRUC_7580101X_2024",
+      "block": "K29",
+      "required": false
+    },
+    {
+      "program": "FCE_KIEN_TRUC_7580101X_2024",
+      "block": "K30",
+      "required": false
+    },
+    {
+      "program": "FCE_KY_THUAT_CO_SO_HA_TANG_2019",
+      "block": "K06",
+      "required": false
+    },
+    {
+      "program": "FCE_KY_THUAT_CO_SO_HA_TANG_2020",
+      "block": "K06",
+      "required": false
+    },
+    {
+      "program": "FCE_KY_THUAT_CO_SO_HA_TANG_2021",
+      "block": "K06",
+      "required": false
+    },
+    {
+      "program": "FCE_KY_THUAT_CO_SO_HA_TANG_2022",
+      "block": "K06",
+      "required": false
+    },
+    {
+      "program": "FCE_KY_THUAT_CO_SO_HA_TANG_2023",
+      "block": "K06",
+      "required": false
+    },
+    {
+      "program": "FCE_KY_THUAT_CO_SO_HA_TANG_2024",
+      "block": "K10",
+      "required": true
+    },
+    {
+      "program": "FCE_KY_THUAT_CO_SO_HA_TANG_2026",
+      "block": "K11",
+      "required": true
+    },
+    {
+      "program": "FTE_KY_THUAT_GIAO_THONG_THONG_MINH_2027",
+      "block": "K12",
+      "required": false
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/CI3265",
+  "note": "Nhập từ CTĐT chính thức (Sổ tay HCMUT, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

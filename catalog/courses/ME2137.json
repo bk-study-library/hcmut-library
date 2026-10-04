@@ -3,27 +3,28 @@
   "id": "ME2137",
   "code": "ME2137",
   "name": "Thực hành tự động hóa thiết kế (CAD)",
-  "nameEn": "Labs of",
+  "nameEn": "Labs of CAD",
   "credits": 1,
   "faculty": "fme",
   "aliases": [],
   "status": "active",
   "programs": [
     {
-      "program": "FME_KY_THUAT_CO_KHI_2023",
-      "block": "K10",
-      "required": true
+      "program": "FME_KY_THUAT_CO_KHI_2022",
+      "block": "K05",
+      "required": false
     },
     {
-      "program": "FME_KY_THUAT_CO_KHI_2022",
-      "block": "K10",
-      "required": true
+      "program": "FME_KY_THUAT_CO_KHI_2023",
+      "block": "K05",
+      "required": false
     }
   ],
   "parts": [
     "theory"
   ],
   "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/ME2137",
   "note": "Nhập từ nguồn công khai (truy cập 03/10/2026).",
   "updated": "2026-10-04"
 }

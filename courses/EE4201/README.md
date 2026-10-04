@@ -1,15 +1,16 @@
-# EE4201 Đồ án tốt nghiệp (Kỹ thuật điện & KT Điện tử- Viễn th ôn g)
+# EE4201 Đồ án tốt nghiệp (Kỹ thuật điện & KT Điện tử- Viễn thông)
 
 <!-- File này do "npm run build" sinh từ catalog/courses/EE4201.json và items/. Chỉ sửa phần Mẹo học, giữa hai dòng meo-hoc. -->
 
 | Mục | Thông tin |
 |---|---|
 | Mã môn | EE4201 |
-| Tên | Đồ án tốt nghiệp (Kỹ thuật điện & KT Điện tử- Viễn th ôn g) / Capstone Project |
+| Tên | Đồ án tốt nghiệp (Kỹ thuật điện & KT Điện tử- Viễn thông) / Capstone Project |
 | Tín chỉ | 4 |
 | Khoa | Khoa Điện - Điện tử |
 | Phần | Đồ án |
 | Trạng thái | Đang dạy |
+| Sổ tay HCMUT | [Trang môn trên Sổ tay HCMUT](https://hcmut.edu.vn/study/handbook/subject/EE4201) |
 
 ## Tài liệu
 

@@ -1,0 +1,729 @@
+{
+  "$schema": "../../schema/program.schema.json",
+  "code": "FCE_KIEN_TRUC_7580101X_2021",
+  "name": "Kiến trúc",
+  "nameEn": "Architecture",
+  "faculty": "fce",
+  "year": "2021",
+  "major": "7580101x",
+  "type": "CQ",
+  "level": "dai-hoc",
+  "degree": "cu-nhan",
+  "totalCredits": 132,
+  "note": "Mã ngành trên Sổ tay là biến thể 7580101x; liên kết PDF lấy theo mã 7580101.",
+  "source": "https://hcmut.edu.vn/study/handbook/course/undergraduate/7580101x?program=CQ",
+  "ctdtUrl": "https://drive.google.com/file/d/1eTtGW7wXC8OH-SSZstsoKc8Q91v1ndPA/view",
+  "planUrl": "https://drive.google.com/file/d/10tUt0GpnJx5nacjpXlZxpYeh6DPn5eVc/view",
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/undergraduate/7580101x?program=CQ",
+  "blocks": [
+    {
+      "id": "K01",
+      "name": "A.2. KINH TẾ, CHÍNH TRỊ, XÃ HỘI, LUẬT",
+      "group": "A. KHỐI KIẾN THỨC CHUNG",
+      "kind": "ly-luan-chinh-tri",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "SP1007",
+        "SP1031",
+        "SP1033",
+        "SP1035",
+        "SP1039",
+        "SP1037",
+        "EN1003"
+      ],
+      "semesters": {
+        "SP1007": 3,
+        "SP1031": 4,
+        "SP1033": 5,
+        "SP1035": 6,
+        "SP1039": 7,
+        "SP1037": 8,
+        "EN1003": 8
+      }
+    },
+    {
+      "id": "K02",
+      "name": "5. KHỐI CƠ SỞ NGÀNH",
+      "kind": "co-so-nganh",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "CI1065",
+        "CI1067",
+        "CI2099",
+        "CI2097",
+        "CI2101",
+        "CI2103",
+        "CI2105",
+        "CI3271",
+        "CI3275",
+        "CI3285",
+        "CI2111",
+        "CI4209",
+        "CI4205",
+        "CI3293",
+        "CI2123",
+        "CI3277",
+        "CI3151",
+        "CI4149"
+      ],
+      "semesters": {
+        "CI1065": 1,
+        "CI1067": 2,
+        "CI2099": 3,
+        "CI2097": 3,
+        "CI2101": 3,
+        "CI2103": 4,
+        "CI2105": 4,
+        "CI3285": 5,
+        "CI2111": 5,
+        "CI4209": 8,
+        "CI4205": 7,
+        "CI3293": 6,
+        "CI2123": 6
+      }
+    },
+    {
+      "id": "K03",
+      "name": "A1. KHỐI CƠ SỞ KIẾN TRÚC",
+      "group": "A. KHỐI KIẾN THỨC CHUNG",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": []
+    },
+    {
+      "id": "K04",
+      "name": "6. KHỐI CHUYÊN NGÀNH",
+      "kind": "chuyen-nganh",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "CI2107",
+        "CI3273",
+        "CI3279",
+        "CI4177",
+        "CI4179",
+        "CI4235"
+      ],
+      "semesters": {
+        "CI2107": 4,
+        "CI3273": 5,
+        "CI4177": 7,
+        "CI4235": 7
+      }
+    },
+    {
+      "id": "K05",
+      "name": "6.1. KHỐI CHUYÊN NGÀNH",
+      "group": "6. KHỐI CHUYÊN NGÀNH",
+      "kind": "chuyen-nganh",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": []
+    },
+    {
+      "id": "K06",
+      "name": "B. KHỐI KIẾN THỨC CƠ SỞ VÀ NGÀNH",
+      "kind": "nganh",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": []
+    },
+    {
+      "id": "K07",
+      "name": "C. KHỐI KIẾN THỨC TỰ CHỌN A (CHỌN 1 TRONG CÁC MÔN HỌC SAU)",
+      "kind": "khac",
+      "required": false,
+      "courses": [
+        "IM1031",
+        "ME1019",
+        "CI3289",
+        "CI3291"
+      ],
+      "semesters": {
+        "CI3289": 5,
+        "CI3291": 5
+      }
+    },
+    {
+      "id": "K08",
+      "name": "D. KHỐI KIẾN THỨC TỰ CHỌN TỰ DO (CHỌN 9 TÍN CHỈ)",
+      "kind": "tu-chon-tu-do",
+      "required": false,
+      "courses": [
+        "EN2047",
+        "EN2049",
+        "EN3023",
+        "EN3229",
+        "CI2143",
+        "CI2045",
+        "CI3013",
+        "EN3239",
+        "IM4037",
+        "CI3301",
+        "CI3265",
+        "CI4129"
+      ]
+    },
+    {
+      "id": "K09",
+      "name": "E. KHỐI KIẾN THỨC TỐT NGHIỆP",
+      "kind": "tot-nghiep",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "CI3485",
+        "CI4179",
+        "CI3249",
+        "CI4487"
+      ],
+      "semesters": {
+        "CI3485": 6,
+        "CI3249": 8,
+        "CI4487": 8
+      }
+    },
+    {
+      "id": "K10",
+      "name": "7. KHỐI TỰ CHỌN A",
+      "kind": "tu-chon-nganh",
+      "required": false,
+      "courses": [
+        "IM1031",
+        "CI3289",
+        "ME1019",
+        "CI3219",
+        "CI2037",
+        "CI3233",
+        "CI3043",
+        "CI2041",
+        "CI4125",
+        "CI2047",
+        "CI2073",
+        "CI4129",
+        "CI3291",
+        "CI4183",
+        "CI2033"
+      ],
+      "semesters": {
+        "CI3289": 5,
+        "CI3291": 5
+      }
+    },
+    {
+      "id": "K11",
+      "name": "A.6. NHẬP MÔN KIẾN TRÚC",
+      "group": "A. KHỐI KIẾN THỨC CHUNG",
+      "kind": "giao-duc-chung",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "CI1065",
+        "CI1067",
+        "CI2009",
+        "CI2101",
+        "CI2097",
+        "CI2105",
+        "CI2103",
+        "CI3285",
+        "CI2111",
+        "CI3293",
+        "CI2113",
+        "CI2115"
+      ],
+      "semesters": {
+        "CI1065": 1,
+        "CI1067": 2,
+        "CI2101": 3,
+        "CI2097": 3,
+        "CI2105": 4,
+        "CI2103": 4,
+        "CI3285": 5,
+        "CI2111": 5,
+        "CI3293": 6,
+        "CI2115": 7
+      }
+    },
+    {
+      "id": "K12",
+      "name": "B.1. CƠ SỞ NGÀNH",
+      "group": "B. KHỐI KIẾN THỨC CƠ SỞ VÀ NGÀNH",
+      "kind": "co-so-nganh",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "CI1067",
+        "CI2097",
+        "CI2099",
+        "CI2101",
+        "CI2103",
+        "CI2107",
+        "CI2125",
+        "CI2105",
+        "CI2111",
+        "CI3273",
+        "CI3297",
+        "CI3293",
+        "CI2123",
+        "CI4179",
+        "CI3249",
+        "CI2115"
+      ],
+      "semesters": {
+        "CI1067": 2,
+        "CI2097": 3,
+        "CI2099": 3,
+        "CI2101": 3,
+        "CI2103": 4,
+        "CI2107": 4,
+        "CI2105": 4,
+        "CI2111": 5,
+        "CI3273": 5,
+        "CI3293": 6,
+        "CI2123": 6,
+        "CI3249": 8,
+        "CI2115": 7
+      }
+    },
+    {
+      "id": "K13",
+      "name": "5.1.1. KHỐI CS KIẾN TRÚC",
+      "group": "5. KHỐI CƠ SỞ NGÀNH > 5.1. KHỐI CƠ SỞ CHUYÊN NGÀNH",
+      "kind": "co-so-nganh",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "CI3285",
+        "CI3279",
+        "CI4177",
+        "CI3269",
+        "CI3163"
+      ],
+      "semesters": {
+        "CI3285": 5,
+        "CI4177": 7,
+        "CI3269": 7,
+        "CI3163": 8
+      }
+    },
+    {
+      "id": "K14",
+      "name": "5.1. KHỐI CƠ SỞ CHUYÊN NGÀNH",
+      "group": "5. KHỐI CƠ SỞ NGÀNH",
+      "kind": "chuyen-nganh",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": []
+    },
+    {
+      "id": "K15",
+      "name": "5.1.2. KHỐI CS KIẾN TRÚC CẢNH QUAN",
+      "group": "5. KHỐI CƠ SỞ NGÀNH > 5.1. KHỐI CƠ SỞ CHUYÊN NGÀNH",
+      "kind": "co-so-nganh",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "CI3287",
+        "CI4205",
+        "CI4209"
+      ],
+      "semesters": {
+        "CI3287": 5,
+        "CI4205": 7,
+        "CI4209": 8
+      }
+    },
+    {
+      "id": "K16",
+      "name": "6.1.2. KHỐI CHUYÊN NGÀNH KIẾN TRÚC CẢNH QUAN",
+      "group": "6. KHỐI CHUYÊN NGÀNH > 6.1. KHỐI CHUYÊN NGÀNH",
+      "kind": "chuyen-nganh",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "CI4207",
+        "CI3295"
+      ],
+      "semesters": {
+        "CI4207": 7,
+        "CI3295": 6
+      }
+    },
+    {
+      "id": "K17",
+      "name": "6.1.1. KHỐI CN KIẾN TRÚC",
+      "group": "6. KHỐI CHUYÊN NGÀNH > 6.1. KHỐI CHUYÊN NGÀNH",
+      "kind": "chuyen-nganh",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "CI3279",
+        "CI4177"
+      ],
+      "semesters": {
+        "CI4177": 7
+      }
+    },
+    {
+      "id": "K18",
+      "name": "B.1.1. CÁC MÔN BẮT BUỘC CHUYÊN NGÀNH",
+      "group": "B. KHỐI KIẾN THỨC CƠ SỞ VÀ NGÀNH > B.1. CƠ SỞ NGÀNH",
+      "kind": "chuyen-nganh",
+      "required": true,
+      "courses": [
+        "CI3285",
+        "CI3279",
+        "CI3269",
+        "CI4177",
+        "CI4235",
+        "CI3163"
+      ],
+      "semesters": {
+        "CI3285": 5,
+        "CI3269": 7,
+        "CI4177": 7,
+        "CI4235": 7,
+        "CI3163": 8
+      }
+    },
+    {
+      "id": "K19",
+      "name": "B.2. KHỐI KIẾN THỨC CHUYÊN NGÀNH KIẾN TRÚC (CHỌN ĐÚNG MÔN CHUYÊN NGÀNH THEO HỌC KỲ)",
+      "group": "B. KHỐI KIẾN THỨC CƠ SỞ VÀ NGÀNH",
+      "kind": "chuyen-nganh",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "CI3285",
+        "CI3279",
+        "CI3299",
+        "CI3269",
+        "CI4177",
+        "CI3163"
+      ],
+      "semesters": {
+        "CI3285": 5,
+        "CI3299": 6,
+        "CI3269": 7,
+        "CI4177": 7,
+        "CI3163": 8
+      }
+    },
+    {
+      "id": "K20",
+      "name": "B.2.1. CÁC MÔN BẮT BUỘC CHUYÊN NGÀNH",
+      "group": "B. KHỐI KIẾN THỨC CƠ SỞ VÀ NGÀNH > B.2. KHỐI KIẾN THỨC CHUYÊN NGÀNH KIẾN TRÚC (CHỌN ĐÚNG MÔN CHUYÊN NGÀNH THEO HỌC KỲ)",
+      "kind": "chuyen-nganh",
+      "required": true,
+      "courses": [
+        "CI3287",
+        "CI3295",
+        "CI4205",
+        "CI4207",
+        "CI4235",
+        "CI4209"
+      ],
+      "semesters": {
+        "CI3287": 5,
+        "CI3295": 6,
+        "CI4205": 7,
+        "CI4207": 7,
+        "CI4235": 7,
+        "CI4209": 8
+      }
+    },
+    {
+      "id": "K21",
+      "name": "B.3. KHỐI KIẾN THỨC CHUYÊN NGÀNH KIẾN TRÚC CẢNH QUAN (CHỌN ĐÚNG MÔN CHUYÊN NGÀNH THEO HỌC KỲ)",
+      "group": "B. KHỐI KIẾN THỨC CƠ SỞ VÀ NGÀNH",
+      "kind": "chuyen-nganh",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "CI3287",
+        "CI3295",
+        "CI4205",
+        "CI4207",
+        "CI4209"
+      ],
+      "semesters": {
+        "CI3287": 5,
+        "CI3295": 6,
+        "CI4205": 7,
+        "CI4207": 7,
+        "CI4209": 8
+      }
+    },
+    {
+      "id": "K22",
+      "name": "B.1.2. TỰ CHỌN NHÓM A (CHỌN MỘT TRONG TRONG CÁC HỌC PHẦN SAU)",
+      "group": "B. KHỐI KIẾN THỨC CƠ SỞ VÀ NGÀNH > B.1. CƠ SỞ NGÀNH",
+      "kind": "tu-chon-nganh",
+      "required": false,
+      "courses": [
+        "IM1031",
+        "ME1019",
+        "CI3289",
+        "CI3291",
+        "CI3243",
+        "CI4201",
+        "CI4161"
+      ],
+      "semesters": {
+        "CI3289": 5,
+        "CI3291": 5
+      }
+    },
+    {
+      "id": "K23",
+      "name": "B.1.3. TỰ CHỌN NHÓM B (CHỌN MỘT TRONG SỐ CÁC HỌC PHẦN SAU)",
+      "group": "B. KHỐI KIẾN THỨC CƠ SỞ VÀ NGÀNH > B.1. CƠ SỞ NGÀNH",
+      "kind": "tu-chon-nganh",
+      "required": false,
+      "courses": [
+        "CI3289",
+        "CI3291",
+        "IM1031",
+        "ME1019"
+      ],
+      "semesters": {
+        "CI3289": 5,
+        "CI3291": 5
+      }
+    },
+    {
+      "id": "K24",
+      "name": "B.2.2. TỰ CHỌN NHÓM A",
+      "group": "B. KHỐI KIẾN THỨC CƠ SỞ VÀ NGÀNH > B.2. KHỐI KIẾN THỨC CHUYÊN NGÀNH KIẾN TRÚC (CHỌN ĐÚNG MÔN CHUYÊN NGÀNH THEO HỌC KỲ)",
+      "kind": "chuyen-nganh",
+      "required": false,
+      "courses": [
+        "CI3013",
+        "CI3301",
+        "CI4197",
+        "CI4161"
+      ]
+    },
+    {
+      "id": "K25",
+      "name": "B.2.3. TỰ CHỌN NHÓM B (CHỌN 3TC TRONG SỐ CÁC HỌC PHẦN SAU)",
+      "group": "B. KHỐI KIẾN THỨC CƠ SỞ VÀ NGÀNH > B.2. KHỐI KIẾN THỨC CHUYÊN NGÀNH KIẾN TRÚC (CHỌN ĐÚNG MÔN CHUYÊN NGÀNH THEO HỌC KỲ)",
+      "kind": "chuyen-nganh",
+      "required": false,
+      "courses": [
+        "CI3289",
+        "CI3291",
+        "IM1031",
+        "ME1019"
+      ],
+      "semesters": {
+        "CI3289": 5,
+        "CI3291": 5
+      }
+    },
+    {
+      "id": "K26",
+      "name": "A.1. TOÁN VÀ KHOA HỌC TỰ NHIÊN",
+      "group": "A. KHỐI KIẾN THỨC CHUNG",
+      "kind": "toan-khtn",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "MT1003",
+        "MT1007",
+        "PH1003",
+        "PH1007",
+        "MT1005",
+        "CH1003",
+        "MT2013",
+        "MT1009",
+        "CI1069"
+      ],
+      "semesters": {
+        "MT1003": 1,
+        "MT1007": 1,
+        "PH1003": 1,
+        "PH1007": 1,
+        "MT1005": 2,
+        "CH1003": 2,
+        "MT2013": 3,
+        "MT1009": 4,
+        "CI1069": 2
+      }
+    },
+    {
+      "id": "K27",
+      "name": "A.4. GIÁO DỤC QUỐC PHÒNG",
+      "group": "A. KHỐI KIẾN THỨC CHUNG",
+      "kind": "quoc-phong",
+      "required": true,
+      "courses": [
+        "MI1003"
+      ],
+      "semesters": {
+        "MI1003": 2
+      }
+    },
+    {
+      "id": "K28",
+      "name": "4. KHỐI GIÁO DỤC THỂ CHẤT",
+      "kind": "the-chat",
+      "required": false,
+      "courses": [
+        "PE1003",
+        "PE1005",
+        "PE1007"
+      ]
+    },
+    {
+      "id": "K29",
+      "name": "A.3. GIÁO DỤC THỂ CHẤT",
+      "group": "A. KHỐI KIẾN THỨC CHUNG",
+      "kind": "the-chat",
+      "required": false,
+      "courses": [
+        "PE1003",
+        "PE1005",
+        "PE1007"
+      ]
+    },
+    {
+      "id": "K30",
+      "name": "3. KHỐI NGOẠI NGỮ",
+      "kind": "ngoai-ngu",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "LA1003",
+        "LA1005",
+        "LA1007",
+        "LA1009"
+      ],
+      "semesters": {
+        "LA1003": 1,
+        "LA1005": 2,
+        "LA1007": 3,
+        "LA1009": 4
+      }
+    },
+    {
+      "id": "K31",
+      "name": "A.5. NGOẠI NGỮ",
+      "group": "A. KHỐI KIẾN THỨC CHUNG",
+      "kind": "ngoai-ngu",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "LA1003",
+        "LA1005",
+        "LA1007",
+        "LA1009"
+      ],
+      "semesters": {
+        "LA1003": 1,
+        "LA1005": 2,
+        "LA1007": 3,
+        "LA1009": 4
+      }
+    },
+    {
+      "id": "K32",
+      "name": "1. CÁC MÔN TOÁN & KHOA HỌC TỰ NHIÊN KHÁC",
+      "kind": "toan-khtn",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "MT1003",
+        "MT1005",
+        "MT1007",
+        "MT2013",
+        "MT1009",
+        "PH1003",
+        "PH1007",
+        "CH1003",
+        "PH1005",
+        "CI1069"
+      ],
+      "semesters": {
+        "MT1003": 1,
+        "MT1005": 2,
+        "MT1007": 1,
+        "MT2013": 3,
+        "MT1009": 4,
+        "PH1003": 1,
+        "PH1007": 1,
+        "CH1003": 2,
+        "CI1069": 2
+      }
+    },
+    {
+      "id": "K33",
+      "name": "2. KHỐI GIÁO DỤC CHUNG",
+      "kind": "giao-duc-chung",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "MI1003",
+        "SP1007",
+        "SP1031",
+        "SP1033",
+        "SP1035",
+        "SP1037",
+        "EN1003",
+        "SP1039"
+      ],
+      "semesters": {
+        "MI1003": 2,
+        "SP1007": 3,
+        "SP1031": 4,
+        "SP1033": 5,
+        "SP1035": 6,
+        "SP1037": 8,
+        "EN1003": 8,
+        "SP1039": 7
+      }
+    },
+    {
+      "id": "K34",
+      "name": "A. KHỐI KIẾN THỨC CHUNG",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": []
+    },
+    {
+      "id": "K35",
+      "name": "8. KHỐI TỰ CHỌN B",
+      "kind": "tu-chon-nganh",
+      "required": false,
+      "courses": [
+        "CI3289",
+        "CI3291"
+      ],
+      "semesters": {
+        "CI3289": 5,
+        "CI3291": 5
+      }
+    },
+    {
+      "id": "K36",
+      "name": "9. KHỐI THỰC TẬP & LUẬN VĂN TỐT NGHIỆP",
+      "kind": "tot-nghiep",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "CI3485",
+        "CI3249",
+        "CI4487"
+      ],
+      "semesters": {
+        "CI3485": 6,
+        "CI3249": 8,
+        "CI4487": 8
+      }
+    }
+  ],
+  "updated": "2026-10-04"
+}

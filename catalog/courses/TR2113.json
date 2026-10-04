@@ -1,0 +1,19 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "TR2113",
+  "code": "TR2113",
+  "name": "An toàn lao động, con người và môi trường trong lĩnh vực đường",
+  "nameEn": "Railway Safety",
+  "credits": 3,
+  "faculty": "fte",
+  "aliases": [],
+  "status": "active",
+  "programs": [],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/TR2113",
+  "note": "Nhập từ Kế hoạch giảng dạy (PDF của trường, truy cập 04/10/2026). Tên lấy từ PDF. Chờ người duyệt xác nhận.",
+  "updated": "2026-10-04"
+}

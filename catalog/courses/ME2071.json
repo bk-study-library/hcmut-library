@@ -10,23 +10,78 @@
   "status": "active",
   "programs": [
     {
+      "program": "FME_KY_THUAT_CO_DIEN_TU_2019",
+      "block": "K06",
+      "required": false
+    },
+    {
+      "program": "FME_KY_THUAT_CO_DIEN_TU_2021_PFIEV",
+      "block": "K07",
+      "required": false
+    },
+    {
+      "program": "FME_KY_THUAT_CO_KHI_2019",
+      "block": "K06",
+      "required": false
+    },
+    {
       "program": "FME_KY_THUAT_CO_KHI_2020",
-      "block": "K03",
+      "block": "K06",
+      "required": false
+    },
+    {
+      "program": "FME_KY_THUAT_CO_KHI_2021",
+      "block": "K06",
       "required": false
     },
     {
       "program": "FME_KY_THUAT_CO_KHI_2024",
+      "block": "K08",
+      "required": true
+    },
+    {
+      "program": "FME_KY_THUAT_CO_KHI_2024_CNTN",
+      "block": "K08",
+      "required": true
+    },
+    {
+      "program": "FME_KY_THUAT_CO_KHI_2024_CTTA",
+      "block": "K09",
+      "required": true
+    },
+    {
+      "program": "FME_KY_THUAT_CO_KHI_2025_CNTN",
+      "block": "K08",
+      "required": true
+    },
+    {
+      "program": "FME_KY_THUAT_CO_KHI_2025_CTTA",
+      "block": "K09",
+      "required": true
+    },
+    {
+      "program": "FME_KY_THUAT_CO_KHI_2026_CNTN",
+      "block": "K09",
+      "required": true
+    },
+    {
+      "program": "FME_TS_109_2026",
+      "block": "K09",
+      "required": true
+    },
+    {
+      "program": "FME_TS_209_2026_TA",
+      "block": "K09",
+      "required": true
+    },
+    {
+      "program": "FTE_TS_152_2026",
       "block": "K12",
-      "required": true
+      "required": false
     },
     {
-      "program": "FME_KY_THUAT_CO_KHI_2021",
-      "block": "K11",
-      "required": true
-    },
-    {
-      "program": "FME_KY_THUAT_CO_KHI_2019",
-      "block": "K03",
+      "program": "FTE_TS_252_2026_TA",
+      "block": "K12",
       "required": false
     }
   ],
@@ -34,6 +89,7 @@
     "theory"
   ],
   "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/ME2071",
   "note": "Nhập từ nguồn công khai (truy cập 03/10/2026).",
   "updated": "2026-10-04"
 }

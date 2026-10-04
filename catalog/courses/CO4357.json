@@ -1,0 +1,40 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "CO4357",
+  "code": "CO4357",
+  "name": "Đồ án tốt nghiệp (Công nghệ Thông tin)",
+  "nameEn": "Capstone Project",
+  "credits": 4,
+  "faculty": "cse",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "CSE_CONG_NGHE_THONG_TIN_VUA_LAM_VUA_HOC_2020_VLVH",
+      "block": "K08",
+      "required": false
+    },
+    {
+      "program": "CSE_CONG_NGHE_THONG_TIN_VUA_LAM_VUA_HOC_2021_VLVH",
+      "block": "K08",
+      "required": false
+    },
+    {
+      "program": "CSE_CONG_NGHE_THONG_TIN_VUA_LAM_VUA_HOC_2022_VLVH",
+      "block": "K08",
+      "required": false
+    },
+    {
+      "program": "CSE_CONG_NGHE_THONG_TIN_VUA_LAM_VUA_HOC_2023_VLVH",
+      "block": "K08",
+      "required": false
+    }
+  ],
+  "parts": [
+    "project"
+  ],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/CO4357",
+  "note": "Nhập từ Kế hoạch giảng dạy (PDF của trường, truy cập 04/10/2026). Tên lấy từ PDF. Chờ người duyệt xác nhận.",
+  "updated": "2026-10-04"
+}

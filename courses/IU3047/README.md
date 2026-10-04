@@ -1,15 +1,16 @@
-# IU3047 Project 1
+# IU3047 Đồ án 1
 
 <!-- File này do "npm run build" sinh từ catalog/courses/IU3047.json và items/. Chỉ sửa phần Mẹo học, giữa hai dòng meo-hoc. -->
 
 | Mục | Thông tin |
 |---|---|
 | Mã môn | IU3047 |
-| Tên | Project 1 |
+| Tên | Đồ án 1 / Project 1 |
 | Tín chỉ | 1 |
 | Khoa | Khoa Cơ khí |
 | Phần | Lý thuyết |
 | Trạng thái | Đang dạy |
+| Sổ tay HCMUT | [Trang môn trên Sổ tay HCMUT](https://hcmut.edu.vn/study/handbook/subject/IU3047) |
 
 ## Tài liệu
 

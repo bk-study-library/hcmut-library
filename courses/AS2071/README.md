@@ -10,6 +10,7 @@
 | Khoa | Khoa Khoa học Ứng dụng |
 | Phần | Lý thuyết |
 | Trạng thái | Đang dạy |
+| Sổ tay HCMUT | [Trang môn trên Sổ tay HCMUT](https://hcmut.edu.vn/study/handbook/subject/AS2071) |
 
 ## Tài liệu
 

@@ -5,11 +5,12 @@
 | Mục | Thông tin |
 |---|---|
 | Mã môn | ME3231 |
-| Tên | Kỹ thuật mô hình hóa và mô phỏng / Modelling & Simulation Engineering KT |
+| Tên | Kỹ thuật mô hình hóa và mô phỏng / Modelling & Simulation Engineering |
 | Tín chỉ | 3 |
 | Khoa | Khoa Cơ khí |
 | Phần | Lý thuyết |
 | Trạng thái | Đang dạy |
+| Sổ tay HCMUT | [Trang môn trên Sổ tay HCMUT](https://hcmut.edu.vn/study/handbook/subject/ME3231) |
 
 ## Tài liệu
 

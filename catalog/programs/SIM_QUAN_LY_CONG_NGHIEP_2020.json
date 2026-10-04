@@ -1,0 +1,249 @@
+{
+  "$schema": "../../schema/program.schema.json",
+  "code": "SIM_QUAN_LY_CONG_NGHIEP_2020",
+  "name": "Quản lý Công nghiệp",
+  "nameEn": "Industrial Management",
+  "faculty": "sim",
+  "year": "2020",
+  "major": "7510601",
+  "type": "CQ",
+  "level": "dai-hoc",
+  "totalCredits": 130,
+  "note": "Sổ tay không có năm này cho ngành và loại chương trình này. Danh sách môn lấy từ Kế hoạch giảng dạy (PDF), khối là học kỳ chứ không phải khối kiến thức; tên khối kiến thức, bắt buộc hay tự chọn chưa có.",
+  "source": "https://drive.google.com/file/d/19Jt58w4A0s3Lg5jCj89zMrom9xG65yjH/view",
+  "ctdtUrl": "https://drive.google.com/file/d/1sxF0s_jlhTxiSDyL-OapFCd-fTZ5b1_a/view",
+  "planUrl": "https://drive.google.com/file/d/19Jt58w4A0s3Lg5jCj89zMrom9xG65yjH/view",
+  "blocks": [
+    {
+      "id": "K01",
+      "name": "Học kỳ 1",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "LA1003",
+        "MI1003",
+        "PE1003",
+        "MT1007",
+        "IM1001",
+        "IM1007",
+        "IM1019",
+        "IM1003"
+      ],
+      "semesters": {
+        "LA1003": 1,
+        "MI1003": 1,
+        "PE1003": 1,
+        "MT1007": 1,
+        "IM1001": 1,
+        "IM1007": 1,
+        "IM1019": 1,
+        "IM1003": 1
+      }
+    },
+    {
+      "id": "K02",
+      "name": "Học kỳ 2",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "LA1005",
+        "PE1005",
+        "MT1017",
+        "IM1017",
+        "IM1009",
+        "IM1015",
+        "IM1029"
+      ],
+      "semesters": {
+        "LA1005": 2,
+        "PE1005": 2,
+        "MT1017": 2,
+        "IM1017": 2,
+        "IM1009": 2,
+        "IM1015": 2,
+        "IM1029": 2
+      }
+    },
+    {
+      "id": "K03",
+      "name": "Học kỳ 3",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "LA1007",
+        "SP1031",
+        "PE1007",
+        "IM2019",
+        "IM2017",
+        "IM1011",
+        "CH1003",
+        "PH1003",
+        "CH1011",
+        "MT1009",
+        "EN1015",
+        "EN1003"
+      ],
+      "semesters": {
+        "LA1007": 3,
+        "SP1031": 3,
+        "PE1007": 3,
+        "IM2019": 3,
+        "IM2017": 3,
+        "IM1011": 3,
+        "CH1003": 3,
+        "PH1003": 3,
+        "CH1011": 3,
+        "MT1009": 3,
+        "EN1015": 3,
+        "EN1003": 3
+      }
+    },
+    {
+      "id": "K04",
+      "name": "Học kỳ 4",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "LA1009",
+        "SP1033",
+        "IM2031",
+        "IM2033",
+        "IM2035",
+        "IM2029"
+      ],
+      "semesters": {
+        "LA1009": 4,
+        "SP1033": 4,
+        "IM2031": 4,
+        "IM2033": 4,
+        "IM2035": 4,
+        "IM2029": 4
+      }
+    },
+    {
+      "id": "K05",
+      "name": "Học kỳ 5",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "SP1035",
+        "IM3047",
+        "IM3087",
+        "IM3063",
+        "IM3029",
+        "IM3075",
+        "IM3055",
+        "IM3023",
+        "CO1003",
+        "CO2013",
+        "EN3087",
+        "EN3099",
+        "GE1013",
+        "CH3389"
+      ],
+      "semesters": {
+        "SP1035": 5,
+        "IM3047": 5,
+        "IM3087": 5,
+        "IM3063": 5,
+        "IM3029": 5,
+        "IM3075": 5,
+        "IM3055": 5,
+        "IM3023": 5,
+        "CO1003": 5,
+        "CO2013": 5,
+        "EN3087": 5,
+        "EN3099": 5,
+        "GE1013": 5,
+        "CH3389": 5
+      }
+    },
+    {
+      "id": "K06",
+      "name": "Học kỳ 6",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "SP1039",
+        "IM3059",
+        "IM3325",
+        "IM3021",
+        "IM3073",
+        "IM3077",
+        "IM3081",
+        "IM3083",
+        "IM3085",
+        "IM3041"
+      ],
+      "semesters": {
+        "SP1039": 6,
+        "IM3059": 6,
+        "IM3325": 6,
+        "IM3021": 6,
+        "IM3073": 6,
+        "IM3077": 6,
+        "IM3081": 6,
+        "IM3083": 6,
+        "IM3085": 6,
+        "IM3041": 6
+      }
+    },
+    {
+      "id": "K07",
+      "name": "Học kỳ 7",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "SP1037",
+        "IM3051",
+        "IM4001",
+        "IM4033",
+        "IM4003",
+        "IM4035",
+        "IM3035",
+        "IM3033",
+        "IM4007",
+        "IM3009",
+        "IM4019"
+      ],
+      "semesters": {
+        "SP1037": 7,
+        "IM3051": 7,
+        "IM4001": 7,
+        "IM4033": 7,
+        "IM4003": 7,
+        "IM4035": 7,
+        "IM3035": 7,
+        "IM3033": 7,
+        "IM4007": 7,
+        "IM3009": 7,
+        "IM4019": 7
+      }
+    },
+    {
+      "id": "K08",
+      "name": "Học kỳ 8",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "SP1007",
+        "IM3107",
+        "IM4327"
+      ],
+      "semesters": {
+        "SP1007": 8,
+        "IM3107": 8,
+        "IM4327": 8
+      }
+    }
+  ],
+  "updated": "2026-10-04"
+}

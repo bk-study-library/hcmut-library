@@ -10,18 +10,33 @@
   "status": "active",
   "programs": [
     {
-      "program": "FME_KY_THUAT_NHIET_2024",
-      "block": "K18",
-      "required": true
+      "program": "FAS_TS_156_2026",
+      "block": "K05",
+      "required": false
     },
     {
-      "program": "FME_KY_THUAT_NHIET_2023",
+      "program": "FAS_TS_256_2026_TA",
       "block": "K12",
       "required": false
     },
     {
       "program": "FME_KY_THUAT_NHIET_2023",
-      "block": "K14",
+      "block": "K07",
+      "required": false
+    },
+    {
+      "program": "FME_KY_THUAT_NHIET_2024",
+      "block": "K13",
+      "required": false
+    },
+    {
+      "program": "FME_KY_THUAT_NHIET_2024",
+      "block": "K15",
+      "required": false
+    },
+    {
+      "program": "FME_KY_THUAT_NHIET_2026",
+      "block": "K12",
       "required": false
     }
   ],
@@ -29,6 +44,7 @@
     "theory"
   ],
   "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/ME4305",
   "note": "Nhập từ nguồn công khai (truy cập 03/10/2026).",
   "updated": "2026-10-04"
 }

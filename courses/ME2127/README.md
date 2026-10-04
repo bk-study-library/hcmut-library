@@ -5,11 +5,12 @@
 | Mục | Thông tin |
 |---|---|
 | Mã môn | ME2127 |
-| Tên | Công nghệ dệt thoi / thoi Weaving Technology |
+| Tên | Công nghệ dệt thoi / Weaving Technology |
 | Tín chỉ | 3 |
 | Khoa | Khoa Cơ khí |
 | Phần | Lý thuyết |
 | Trạng thái | Đang dạy |
+| Sổ tay HCMUT | [Trang môn trên Sổ tay HCMUT](https://hcmut.edu.vn/study/handbook/subject/ME2127) |
 
 ## Tài liệu
 

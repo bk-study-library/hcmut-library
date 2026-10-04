@@ -1,15 +1,16 @@
-# IU3117 Electrical Technology
+# IU3117 Công nghệ Điện trong công nghiệp
 
 <!-- File này do "npm run build" sinh từ catalog/courses/IU3117.json và items/. Chỉ sửa phần Mẹo học, giữa hai dòng meo-hoc. -->
 
 | Mục | Thông tin |
 |---|---|
 | Mã môn | IU3117 |
-| Tên | Electrical Technology / Đồ án 1 |
+| Tên | Công nghệ Điện trong công nghiệp / Electrical Technology |
 | Tín chỉ | 3 |
 | Khoa | Khoa Cơ khí |
 | Phần | Lý thuyết |
 | Trạng thái | Đang dạy |
+| Sổ tay HCMUT | [Trang môn trên Sổ tay HCMUT](https://hcmut.edu.vn/study/handbook/subject/IU3117) |
 
 ## Tài liệu
 

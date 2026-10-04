@@ -10,6 +10,7 @@
 | Khoa | Khoa Kỹ thuật Địa chất và Dầu khí |
 | Phần | Lý thuyết |
 | Trạng thái | Đang dạy |
+| Sổ tay HCMUT | [Trang môn trên Sổ tay HCMUT](https://hcmut.edu.vn/study/handbook/subject/GE4069) |
 | Mã, tên cũ | GE3111 Địa chất động lực công trình |
 | Thay cho | [GE3111](../GE3111/README.md) |
 

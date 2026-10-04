@@ -3,7 +3,7 @@
   "id": "ME4105",
   "code": "ME4105",
   "name": "CAD-CAM trong dệt may",
-  "nameEn": "may Application of CAD-CAM in Textiles",
+  "nameEn": "Application of CAD-CAM in Textiles",
   "credits": 3,
   "faculty": "fme",
   "aliases": [],
@@ -11,39 +11,40 @@
   "programs": [
     {
       "program": "FME_CONG_NGHE_DET_MAY_2019",
-      "block": "K01",
-      "required": true
-    },
-    {
-      "program": "FME_KY_THUAT_DET_2019",
-      "block": "K01",
-      "required": true
-    },
-    {
-      "program": "FME_KY_THUAT_DET_2020",
-      "block": "K01",
-      "required": true
-    },
-    {
-      "program": "FME_CONG_NGHE_DET_MAY_2021",
-      "block": "K09",
-      "required": true
+      "block": "K07",
+      "required": false
     },
     {
       "program": "FME_CONG_NGHE_DET_MAY_2020",
-      "block": "K01",
-      "required": true
+      "block": "K07",
+      "required": false
+    },
+    {
+      "program": "FME_CONG_NGHE_DET_MAY_2021",
+      "block": "K07",
+      "required": false
+    },
+    {
+      "program": "FME_KY_THUAT_DET_2019",
+      "block": "K07",
+      "required": false
+    },
+    {
+      "program": "FME_KY_THUAT_DET_2020",
+      "block": "K07",
+      "required": false
     },
     {
       "program": "FME_KY_THUAT_DET_2021",
-      "block": "K09",
-      "required": true
+      "block": "K07",
+      "required": false
     }
   ],
   "parts": [
     "theory"
   ],
   "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/ME4105",
   "note": "Nhập từ nguồn công khai (truy cập 03/10/2026).",
   "updated": "2026-10-04"
 }

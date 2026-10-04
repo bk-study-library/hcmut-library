@@ -1,0 +1,730 @@
+{
+  "$schema": "../../schema/program.schema.json",
+  "code": "FMT_KY_THUAT_VAT_LIEU_2024",
+  "name": "Kỹ thuật Vật liệu",
+  "nameEn": "Materials Engineering",
+  "faculty": "fmt",
+  "year": "2024",
+  "major": "7520309",
+  "type": "CQ",
+  "level": "dai-hoc",
+  "degree": "cu-nhan",
+  "totalCredits": 132,
+  "source": "https://hcmut.edu.vn/study/handbook/course/undergraduate/7520309?program=CQ",
+  "ctdtUrl": "https://drive.google.com/file/d/1z-RyMRkU6UcNSLkF7TTbkBPcLfj-QpzY/view",
+  "planUrl": "https://drive.google.com/file/d/1i1M_5A1a7FJiw6dbHDbLM3FNMo6l6ay6/view",
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/undergraduate/7520309?program=CQ",
+  "blocks": [
+    {
+      "id": "K01",
+      "name": "A.1. TOÁN",
+      "group": "A. TOÁN & KHOA HỌC TỰ NHIÊN",
+      "kind": "toan-khtn",
+      "required": true,
+      "creditsNeed": 15,
+      "courses": [
+        "MT1003",
+        "MT1005",
+        "MT1007",
+        "MT2013"
+      ],
+      "semesters": {
+        "MT1003": 1,
+        "MT1005": 2,
+        "MT1007": 1,
+        "MT2013": 3
+      }
+    },
+    {
+      "id": "K02",
+      "name": "A.2. KHOA HỌC TỰ NHIÊN",
+      "group": "A. TOÁN & KHOA HỌC TỰ NHIÊN",
+      "kind": "toan-khtn",
+      "required": true,
+      "creditsNeed": 15,
+      "courses": [
+        "PH1003",
+        "PH1005",
+        "PH1007",
+        "CH1003",
+        "CH2009"
+      ],
+      "semesters": {
+        "PH1003": 1,
+        "PH1005": 2,
+        "PH1007": 1,
+        "CH1003": 2,
+        "CH2009": 3
+      }
+    },
+    {
+      "id": "K03",
+      "name": "B.1. KINH TẾ - CHÍNH TRỊ - XÃ HỘI - LUẬT",
+      "group": "B. GIÁO DỤC CHUNG",
+      "kind": "ly-luan-chinh-tri",
+      "required": true,
+      "creditsNeed": 13,
+      "courses": [
+        "SP1007",
+        "SP1031",
+        "SP1033",
+        "SP1035",
+        "SP1039",
+        "SP1037"
+      ],
+      "semesters": {
+        "SP1007": 3,
+        "SP1031": 4,
+        "SP1033": 5,
+        "SP1035": 6,
+        "SP1039": 7,
+        "SP1037": 8
+      }
+    },
+    {
+      "id": "K04",
+      "name": "B.2. NHẬP MÔN",
+      "group": "B. GIÁO DỤC CHUNG",
+      "kind": "giao-duc-chung",
+      "required": true,
+      "creditsNeed": 3,
+      "courses": [
+        "MA1001"
+      ],
+      "semesters": {
+        "MA1001": 1
+      }
+    },
+    {
+      "id": "K05",
+      "name": "B.3.1. KIẾN THỨC QUẢN LÝ/ KHỞI NGHIỆP",
+      "group": "B. GIÁO DỤC CHUNG > B.3. KIẾN THỨC QUẢN LÝ/ KHỞI NGHIỆP",
+      "kind": "giao-duc-chung",
+      "required": false,
+      "creditsNeed": 3,
+      "courses": [
+        "IM1013",
+        "IM1027",
+        "IM3001",
+        "IM1021",
+        "IM1025",
+        "IM1023",
+        "ME1019",
+        "IM1031"
+      ],
+      "semesters": {
+        "IM1013": 8,
+        "IM1027": 8,
+        "IM3001": 8,
+        "IM1021": 8,
+        "IM1025": 8,
+        "IM1023": 8,
+        "ME1019": 8,
+        "IM1031": 8
+      }
+    },
+    {
+      "id": "K06",
+      "name": "B.4. KIẾN THỨC VỀ CON NGƯỜI VÀ MÔI TRƯỜNG/KỸ NĂNG NGHỀ NGHIỆP CHUYÊN NGHIỆP",
+      "group": "B. GIÁO DỤC CHUNG",
+      "kind": "giao-duc-chung",
+      "required": true,
+      "creditsNeed": 3,
+      "courses": [
+        "MA4123"
+      ],
+      "semesters": {
+        "MA4123": 8
+      }
+    },
+    {
+      "id": "K07",
+      "name": "B.5. NGOẠI NGỮ",
+      "group": "B. GIÁO DỤC CHUNG",
+      "kind": "ngoai-ngu",
+      "required": true,
+      "creditsNeed": 8,
+      "courses": [
+        "LA1003",
+        "LA1005",
+        "LA1007",
+        "LA1009"
+      ],
+      "semesters": {
+        "LA1003": 1,
+        "LA1005": 2,
+        "LA1007": 3,
+        "LA1009": 4
+      }
+    },
+    {
+      "id": "K08",
+      "name": "C.1. BẮT BUỘC CƠ SỞ NGÀNH",
+      "group": "C. CƠ SỞ NGÀNH",
+      "kind": "co-so-nganh",
+      "required": true,
+      "creditsNeed": 30,
+      "courses": [
+        "CI1003",
+        "MA1003",
+        "MA2033",
+        "MA2035",
+        "MA2037",
+        "MA2043",
+        "MA2121",
+        "MA3101",
+        "MA3083",
+        "MA4065"
+      ],
+      "semesters": {
+        "CI1003": 2,
+        "MA1003": 3,
+        "MA2033": 3,
+        "MA2035": 4,
+        "MA2037": 4,
+        "MA2043": 4,
+        "MA2121": 4,
+        "MA3101": 5,
+        "MA3083": 6,
+        "MA4065": 7
+      }
+    },
+    {
+      "id": "K09",
+      "name": "C.2. TỰ CHỌN CƠ SỞ NGÀNH",
+      "group": "C. CƠ SỞ NGÀNH",
+      "kind": "co-so-nganh",
+      "required": false,
+      "creditsNeed": 0,
+      "courses": []
+    },
+    {
+      "id": "K10",
+      "name": "D.1.1. BẮT BUỘC NGÀNH",
+      "group": "D. NGÀNH/CHUYÊN NGÀNH > D.1. NGÀNH",
+      "kind": "nganh",
+      "required": true,
+      "creditsNeed": 0,
+      "courses": []
+    },
+    {
+      "id": "K11",
+      "name": "D.1.2. TỰ CHỌN NGÀNH",
+      "group": "D. NGÀNH/CHUYÊN NGÀNH > D.1. NGÀNH",
+      "kind": "tu-chon-nganh",
+      "required": false,
+      "creditsNeed": 0,
+      "courses": []
+    },
+    {
+      "id": "K12",
+      "name": "D.2.1.1. BẮT BUỘC CHUYÊN NGÀNH",
+      "group": "D. NGÀNH/CHUYÊN NGÀNH > D.2. CHUYÊN NGÀNH > D.2.1. CHUYÊN NGÀNH (Kỹ thuật Vật liệu)",
+      "kind": "chuyen-nganh",
+      "required": true,
+      "creditsNeed": 9,
+      "courses": [
+        "MA3161",
+        "MA3163",
+        "MA3159"
+      ],
+      "semesters": {
+        "MA3161": 5,
+        "MA3163": 5,
+        "MA3159": 5
+      }
+    },
+    {
+      "id": "K13",
+      "name": "D.2.1.1.1. BẮT BUỘC CHUYÊN NGÀNH",
+      "group": "D. NGÀNH/CHUYÊN NGÀNH > D.2. CHUYÊN NGÀNH > D.2.1. CHUYÊN NGÀNH (Kỹ thuật Vật liệu)",
+      "kind": "chuyen-nganh",
+      "required": true,
+      "creditsNeed": 6,
+      "courses": [
+        "MA3165",
+        "MA3171"
+      ],
+      "semesters": {
+        "MA3165": 6,
+        "MA3171": 6
+      }
+    },
+    {
+      "id": "K14",
+      "name": "D.2.1.1.2. BẮT BUỘC CHUYÊN NGÀNH",
+      "group": "D. NGÀNH/CHUYÊN NGÀNH > D.2. CHUYÊN NGÀNH > D.2.1. CHUYÊN NGÀNH (Kỹ thuật Vật liệu)",
+      "kind": "chuyen-nganh",
+      "required": true,
+      "creditsNeed": 7,
+      "courses": [
+        "MA4181",
+        "MA4183"
+      ],
+      "semesters": {
+        "MA4181": 7,
+        "MA4183": 7
+      }
+    },
+    {
+      "id": "K15",
+      "name": "D.2.1.2. TỰ CHỌN CHUYÊN NGÀNH",
+      "group": "D. NGÀNH/CHUYÊN NGÀNH > D.2. CHUYÊN NGÀNH > D.2.1. CHUYÊN NGÀNH (Kỹ thuật Vật liệu)",
+      "kind": "chuyen-nganh",
+      "required": false,
+      "creditsNeed": 3,
+      "courses": [
+        "MA4185",
+        "MA4187",
+        "MA4189",
+        "MA4191"
+      ],
+      "semesters": {
+        "MA4185": 7,
+        "MA4187": 7,
+        "MA4189": 7,
+        "MA4191": 7
+      }
+    },
+    {
+      "id": "K16",
+      "name": "D.2.2.1. BẮT BUỘC CHUYÊN NGÀNH",
+      "group": "D. NGÀNH/CHUYÊN NGÀNH > D.2. CHUYÊN NGÀNH > D.2.2. CHUYÊN NGÀNH (Kỹ thuật Vật liệu Kim loại)",
+      "kind": "chuyen-nganh",
+      "required": true,
+      "creditsNeed": 10,
+      "courses": [
+        "MA3103",
+        "MA3105",
+        "MA3107"
+      ],
+      "semesters": {
+        "MA3103": 5,
+        "MA3105": 5,
+        "MA3107": 5
+      }
+    },
+    {
+      "id": "K17",
+      "name": "D.2.2.1.1. BẮT BUỘC CHUYÊN NGÀNH",
+      "group": "D. NGÀNH/CHUYÊN NGÀNH > D.2. CHUYÊN NGÀNH > D.2.2. CHUYÊN NGÀNH (Kỹ thuật Vật liệu Kim loại)",
+      "kind": "chuyen-nganh",
+      "required": true,
+      "creditsNeed": 5,
+      "courses": [
+        "MA3095",
+        "MA3109"
+      ],
+      "semesters": {
+        "MA3095": 6,
+        "MA3109": 6
+      }
+    },
+    {
+      "id": "K18",
+      "name": "D.2.2.1.2. BẮT BUỘC CHUYÊN NGÀNH",
+      "group": "D. NGÀNH/CHUYÊN NGÀNH > D.2. CHUYÊN NGÀNH > D.2.2. CHUYÊN NGÀNH (Kỹ thuật Vật liệu Kim loại)",
+      "kind": "chuyen-nganh",
+      "required": true,
+      "creditsNeed": 7,
+      "courses": [
+        "MA4103",
+        "MA4125"
+      ],
+      "semesters": {
+        "MA4103": 7,
+        "MA4125": 7
+      }
+    },
+    {
+      "id": "K19",
+      "name": "D.2.2.2. TỰ CHỌN CHUYÊN NGÀNH",
+      "group": "D. NGÀNH/CHUYÊN NGÀNH > D.2. CHUYÊN NGÀNH > D.2.2. CHUYÊN NGÀNH (Kỹ thuật Vật liệu Kim loại)",
+      "kind": "chuyen-nganh",
+      "required": false,
+      "creditsNeed": 3,
+      "courses": [
+        "MA4127",
+        "MA3097",
+        "MA4105",
+        "MA4107",
+        "MA4129",
+        "MA3021",
+        "MA4109",
+        "MA4047",
+        "MA4131",
+        "MA4133",
+        "MA4179"
+      ],
+      "semesters": {
+        "MA4127": 7,
+        "MA3097": 7,
+        "MA4105": 7,
+        "MA4107": 7,
+        "MA4129": 7,
+        "MA3021": 7,
+        "MA4109": 7,
+        "MA4047": 7,
+        "MA4131": 7,
+        "MA4133": 7,
+        "MA4179": 7
+      }
+    },
+    {
+      "id": "K20",
+      "name": "D.2.3.1. BẮT BUỘC CHUYÊN NGÀNH",
+      "group": "D. NGÀNH/CHUYÊN NGÀNH > D.2. CHUYÊN NGÀNH > D.2.3. CHUYÊN NGÀNH (Kỹ thuật Vật liệu Năng lượng)",
+      "kind": "chuyen-nganh",
+      "required": true,
+      "creditsNeed": 9,
+      "courses": [
+        "MA2013",
+        "MA2011",
+        "MA3007"
+      ],
+      "semesters": {
+        "MA2013": 5,
+        "MA2011": 5,
+        "MA3007": 5
+      }
+    },
+    {
+      "id": "K21",
+      "name": "D.2.3.1.1. BẮT BUỘC CHUYÊN NGÀNH",
+      "group": "D. NGÀNH/CHUYÊN NGÀNH > D.2. CHUYÊN NGÀNH > D.2.3. CHUYÊN NGÀNH (Kỹ thuật Vật liệu Năng lượng)",
+      "kind": "chuyen-nganh",
+      "required": true,
+      "creditsNeed": 6,
+      "courses": [
+        "MA3011",
+        "MA3149",
+        "MA3099"
+      ],
+      "semesters": {
+        "MA3011": 6,
+        "MA3149": 6,
+        "MA3099": 6
+      }
+    },
+    {
+      "id": "K22",
+      "name": "D.2.3.1.2. BẮT BUỘC CHUYÊN NGÀNH",
+      "group": "D. NGÀNH/CHUYÊN NGÀNH > D.2. CHUYÊN NGÀNH > D.2.3. CHUYÊN NGÀNH (Kỹ thuật Vật liệu Năng lượng)",
+      "kind": "chuyen-nganh",
+      "required": true,
+      "creditsNeed": 7,
+      "courses": [
+        "MA3031",
+        "MA4111",
+        "MA4113"
+      ],
+      "semesters": {
+        "MA3031": 7,
+        "MA4111": 7,
+        "MA4113": 7
+      }
+    },
+    {
+      "id": "K23",
+      "name": "D.2.3.2. TỰ CHỌN CHUYÊN NGÀNH",
+      "group": "D. NGÀNH/CHUYÊN NGÀNH > D.2. CHUYÊN NGÀNH > D.2.3. CHUYÊN NGÀNH (Kỹ thuật Vật liệu Năng lượng)",
+      "kind": "chuyen-nganh",
+      "required": false,
+      "creditsNeed": 3,
+      "courses": [
+        "MA3091",
+        "MA4115",
+        "MA4117",
+        "MA4119",
+        "MA4121"
+      ],
+      "semesters": {
+        "MA3091": 7,
+        "MA4115": 7,
+        "MA4117": 7,
+        "MA4119": 7,
+        "MA4121": 7
+      }
+    },
+    {
+      "id": "K24",
+      "name": "D.2.4.1. BẮT BUỘC CHUYÊN NGÀNH",
+      "group": "D. NGÀNH/CHUYÊN NGÀNH > D.2. CHUYÊN NGÀNH > D.2.4. CHUYÊN NGÀNH (Kỹ thuật Vật liệu Polyme)",
+      "kind": "chuyen-nganh",
+      "required": true,
+      "creditsNeed": 8,
+      "courses": [
+        "MA2007",
+        "MA2015",
+        "MA3121",
+        "MA3123"
+      ],
+      "semesters": {
+        "MA2007": 5,
+        "MA2015": 5,
+        "MA3121": 5,
+        "MA3123": 5
+      }
+    },
+    {
+      "id": "K25",
+      "name": "D.2.4.1.1. BẮT BUỘC CHUYÊN NGÀNH",
+      "group": "D. NGÀNH/CHUYÊN NGÀNH > D.2. CHUYÊN NGÀNH > D.2.4. CHUYÊN NGÀNH (Kỹ thuật Vật liệu Polyme)",
+      "kind": "chuyen-nganh",
+      "required": true,
+      "creditsNeed": 7,
+      "courses": [
+        "MA3009",
+        "MA3019"
+      ],
+      "semesters": {
+        "MA3009": 6,
+        "MA3019": 6
+      }
+    },
+    {
+      "id": "K26",
+      "name": "D.2.4.1.2. BẮT BUỘC CHUYÊN NGÀNH",
+      "group": "D. NGÀNH/CHUYÊN NGÀNH > D.2. CHUYÊN NGÀNH > D.2.4. CHUYÊN NGÀNH (Kỹ thuật Vật liệu Polyme)",
+      "kind": "chuyen-nganh",
+      "required": true,
+      "creditsNeed": 7,
+      "courses": [
+        "MA4067",
+        "MA4069"
+      ],
+      "semesters": {
+        "MA4067": 7,
+        "MA4069": 7
+      }
+    },
+    {
+      "id": "K27",
+      "name": "D.2.4.2. TỰ CHỌN CHUYÊN NGÀNH",
+      "group": "D. NGÀNH/CHUYÊN NGÀNH > D.2. CHUYÊN NGÀNH > D.2.4. CHUYÊN NGÀNH (Kỹ thuật Vật liệu Polyme)",
+      "kind": "chuyen-nganh",
+      "required": false,
+      "creditsNeed": 3,
+      "courses": [
+        "MA4079",
+        "MA4081",
+        "MA4083",
+        "MA4085"
+      ],
+      "semesters": {
+        "MA4079": 7,
+        "MA4081": 7,
+        "MA4083": 7,
+        "MA4085": 7
+      }
+    },
+    {
+      "id": "K28",
+      "name": "D.2.5.1. BẮT BUỘC CHUYÊN NGÀNH",
+      "group": "D. NGÀNH/CHUYÊN NGÀNH > D.2. CHUYÊN NGÀNH > D.2.5. CHUYÊN NGÀNH (Kỹ thuật Vật liệu Silicat)",
+      "kind": "chuyen-nganh",
+      "required": true,
+      "creditsNeed": 9,
+      "courses": [
+        "MA3167",
+        "MA3169",
+        "MA3089"
+      ],
+      "semesters": {
+        "MA3167": 5,
+        "MA3169": 5,
+        "MA3089": 5
+      }
+    },
+    {
+      "id": "K29",
+      "name": "D.2.5.1.1. BẮT BUỘC CHUYÊN NGÀNH",
+      "group": "D. NGÀNH/CHUYÊN NGÀNH > D.2. CHUYÊN NGÀNH > D.2.5. CHUYÊN NGÀNH (Kỹ thuật Vật liệu Silicat)",
+      "kind": "chuyen-nganh",
+      "required": true,
+      "creditsNeed": 7,
+      "courses": [
+        "MA3093",
+        "MA3035",
+        "MA3039"
+      ],
+      "semesters": {
+        "MA3093": 6,
+        "MA3035": 6,
+        "MA3039": 6
+      }
+    },
+    {
+      "id": "K30",
+      "name": "D.2.5.1.2. BẮT BUỘC CHUYÊN NGÀNH",
+      "group": "D. NGÀNH/CHUYÊN NGÀNH > D.2. CHUYÊN NGÀNH > D.2.5. CHUYÊN NGÀNH (Kỹ thuật Vật liệu Silicat)",
+      "kind": "chuyen-nganh",
+      "required": true,
+      "creditsNeed": 6,
+      "courses": [
+        "MA3051",
+        "MA4087"
+      ],
+      "semesters": {
+        "MA3051": 7,
+        "MA4087": 7
+      }
+    },
+    {
+      "id": "K31",
+      "name": "D.2.5.2. TỰ CHỌN CHUYÊN NGÀNH",
+      "group": "D. NGÀNH/CHUYÊN NGÀNH > D.2. CHUYÊN NGÀNH > D.2.5. CHUYÊN NGÀNH (Kỹ thuật Vật liệu Silicat)",
+      "kind": "chuyen-nganh",
+      "required": false,
+      "creditsNeed": 3,
+      "courses": [
+        "MA2005",
+        "MA4025",
+        "MA4033",
+        "MA4089",
+        "MA4091",
+        "MA4093",
+        "MA4095",
+        "MA4097",
+        "MA4177"
+      ],
+      "semesters": {
+        "MA2005": 7,
+        "MA4025": 7,
+        "MA4033": 7,
+        "MA4089": 7,
+        "MA4091": 7,
+        "MA4093": 7,
+        "MA4095": 7,
+        "MA4097": 7,
+        "MA4177": 7
+      }
+    },
+    {
+      "id": "K32",
+      "name": "E. TỰ CHỌN (KHÁC)/TỰ DO",
+      "kind": "tu-chon-tu-do",
+      "required": false,
+      "creditsNeed": 9,
+      "courses": []
+    },
+    {
+      "id": "K33",
+      "name": "F. HỌC PHẦN TỐT NGHIỆP",
+      "kind": "tot-nghiep",
+      "required": true,
+      "creditsNeed": 8,
+      "courses": [
+        "MA3325",
+        "MA4071",
+        "MA4327"
+      ],
+      "semesters": {
+        "MA3325": 6,
+        "MA4071": 7,
+        "MA4327": 8
+      }
+    },
+    {
+      "id": "K34",
+      "name": "G. GIÁO DỤC QUỐC PHÒNG",
+      "kind": "quoc-phong",
+      "required": true,
+      "creditsNeed": 0,
+      "courses": [
+        "MI1003"
+      ],
+      "semesters": {
+        "MI1003": 2
+      }
+    },
+    {
+      "id": "K35",
+      "name": "H.1. GIÁO DỤC THỂ CHẤT HỌC PHẦN 1",
+      "group": "H. GIÁO DỤC THỂ CHẤT",
+      "kind": "the-chat",
+      "required": false,
+      "coursesNeed": 1,
+      "courses": [
+        "PE1009",
+        "PE1011",
+        "PE1013",
+        "PE1015",
+        "PE1017",
+        "PE1019",
+        "PE1021",
+        "PE1023",
+        "PE1025",
+        "PE1027",
+        "PE1053",
+        "PE1057",
+        "PE1061",
+        "PE1001"
+      ],
+      "semesters": {
+        "PE1009": 1,
+        "PE1011": 1,
+        "PE1013": 1,
+        "PE1015": 1,
+        "PE1017": 1,
+        "PE1019": 1,
+        "PE1021": 1,
+        "PE1025": 1,
+        "PE1027": 1,
+        "PE1053": 1,
+        "PE1057": 1,
+        "PE1061": 1
+      }
+    },
+    {
+      "id": "K36",
+      "name": "H.2. GIÁO DỤC THỂ CHẤT HỌC PHẦN 2",
+      "group": "H. GIÁO DỤC THỂ CHẤT",
+      "kind": "the-chat",
+      "required": false,
+      "coursesNeed": 1,
+      "courses": [
+        "PE1033",
+        "PE1035",
+        "PE1037",
+        "PE1039",
+        "PE1041",
+        "PE1043",
+        "PE1045",
+        "PE1047",
+        "PE1049",
+        "PE1051",
+        "PE1055",
+        "PE1059",
+        "PE1063",
+        "PE1002"
+      ],
+      "semesters": {
+        "PE1033": 2,
+        "PE1035": 2,
+        "PE1037": 2,
+        "PE1039": 2,
+        "PE1041": 2,
+        "PE1043": 2,
+        "PE1045": 2,
+        "PE1049": 2,
+        "PE1051": 2,
+        "PE1055": 2,
+        "PE1059": 2,
+        "PE1063": 2
+      }
+    },
+    {
+      "id": "K37",
+      "name": "I. ĐIỀU KIỆN TỐT NGHIỆP",
+      "kind": "dieu-kien-tot-nghiep",
+      "required": true,
+      "coursesNeed": 0,
+      "courses": [
+        "SA4001",
+        "ENG_GC_600"
+      ]
+    }
+  ],
+  "updated": "2026-10-04"
+}

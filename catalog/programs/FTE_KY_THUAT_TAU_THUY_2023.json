@@ -1,0 +1,200 @@
+{
+  "$schema": "../../schema/program.schema.json",
+  "code": "FTE_KY_THUAT_TAU_THUY_2023",
+  "name": "Kỹ thuật Tàu thủy",
+  "nameEn": "Naval Architecture and Marine Engineering",
+  "faculty": "fte",
+  "year": "2023",
+  "major": "7520122",
+  "type": "CQ",
+  "level": "dai-hoc",
+  "note": "Sổ tay không có năm này cho ngành và loại chương trình này. Danh sách môn lấy từ Kế hoạch giảng dạy (PDF), khối là học kỳ chứ không phải khối kiến thức; tên khối kiến thức, bắt buộc hay tự chọn chưa có.",
+  "source": "https://drive.google.com/file/d/1xqKCSfx7ZcsnuTfGFtZpaHzJ4HOgvUXn/view",
+  "ctdtUrl": "https://drive.google.com/file/d/1bmKLmfEuZq-CZ8aXRoM_vTQACFtrh25d/view",
+  "planUrl": "https://drive.google.com/file/d/1xqKCSfx7ZcsnuTfGFtZpaHzJ4HOgvUXn/view",
+  "blocks": [
+    {
+      "id": "K01",
+      "name": "Học kỳ 1",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "LA1003",
+        "MT1003",
+        "PH1003",
+        "MT1007",
+        "PH1007",
+        "TR1001"
+      ],
+      "semesters": {
+        "LA1003": 1,
+        "MT1003": 1,
+        "PH1003": 1,
+        "MT1007": 1,
+        "PH1007": 1,
+        "TR1001": 1
+      }
+    },
+    {
+      "id": "K02",
+      "name": "Học kỳ 2",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "LA1005",
+        "MT1005",
+        "CH1003",
+        "PH1005",
+        "TR1003",
+        "MI1003"
+      ],
+      "semesters": {
+        "LA1005": 2,
+        "MT1005": 2,
+        "CH1003": 2,
+        "PH1005": 2,
+        "TR1003": 2,
+        "MI1003": 2
+      }
+    },
+    {
+      "id": "K03",
+      "name": "Học kỳ 3",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "LA1007",
+        "MT2013",
+        "SP1007",
+        "CO1003",
+        "TR1005",
+        "TR2033"
+      ],
+      "semesters": {
+        "LA1007": 3,
+        "MT2013": 3,
+        "SP1007": 3,
+        "CO1003": 3,
+        "TR1005": 3,
+        "TR2033": 3
+      }
+    },
+    {
+      "id": "K04",
+      "name": "Học kỳ 4",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "LA1009",
+        "MT1009",
+        "SP1031",
+        "TR2035",
+        "ME2013",
+        "EE2011"
+      ],
+      "semesters": {
+        "LA1009": 4,
+        "MT1009": 4,
+        "SP1031": 4,
+        "TR2035": 4,
+        "ME2013": 4,
+        "EE2011": 4
+      }
+    },
+    {
+      "id": "K05",
+      "name": "Học kỳ 5",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "SP1033",
+        "TR2037",
+        "TR2017",
+        "IM1025",
+        "IM3001",
+        "IM1027",
+        "TR3061",
+        "TR3085",
+        "TR3133",
+        "TR3019",
+        "TR3053",
+        "TR3027"
+      ],
+      "semesters": {
+        "SP1033": 5,
+        "TR2037": 5,
+        "TR2017": 5,
+        "IM1025": 5,
+        "IM3001": 5,
+        "IM1027": 5,
+        "TR3061": 5,
+        "TR3085": 5,
+        "TR3133": 5,
+        "TR3019": 5,
+        "TR3053": 5,
+        "TR3027": 5
+      }
+    },
+    {
+      "id": "K06",
+      "name": "Học kỳ 6",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "SP1035",
+        "TR3037",
+        "TR3005",
+        "TR3057",
+        "TR3355"
+      ],
+      "semesters": {
+        "SP1035": 6,
+        "TR3037": 6,
+        "TR3005": 6,
+        "TR3057": 6,
+        "TR3355": 6
+      }
+    },
+    {
+      "id": "K07",
+      "name": "Học kỳ 7",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "SP1039",
+        "TR3017",
+        "TR4093"
+      ],
+      "semesters": {
+        "SP1039": 7,
+        "TR3017": 7,
+        "TR4093": 7
+      }
+    },
+    {
+      "id": "K08",
+      "name": "Học kỳ 8",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "SP1037",
+        "EN1003",
+        "TR4357"
+      ],
+      "semesters": {
+        "SP1037": 8,
+        "EN1003": 8,
+        "TR4357": 8
+      }
+    }
+  ],
+  "updated": "2026-10-04"
+}

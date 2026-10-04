@@ -3,45 +3,45 @@
   "id": "ME2065",
   "code": "ME2065",
   "name": "Công nghệ may 1",
-  "nameEn": "may 1 Clothing Technology 1",
+  "nameEn": "Clothing Technology 1",
   "credits": 3,
   "faculty": "fme",
   "aliases": [],
   "status": "active",
   "programs": [
     {
-      "program": "FME_CONG_NGHE_DET_MAY_2024",
-      "block": "K12",
-      "required": true
-    },
-    {
       "program": "FME_CONG_NGHE_DET_MAY_2019",
-      "block": "K01",
-      "required": true
-    },
-    {
-      "program": "FME_CONG_NGHE_DET_MAY_2022",
-      "block": "K09",
-      "required": true
-    },
-    {
-      "program": "FME_CONG_NGHE_DET_MAY_2023",
-      "block": "K09",
-      "required": true
-    },
-    {
-      "program": "FME_CONG_NGHE_DET_MAY_2021",
-      "block": "K09",
-      "required": true
+      "block": "K03",
+      "required": false
     },
     {
       "program": "FME_CONG_NGHE_DET_MAY_2020",
-      "block": "K01",
+      "block": "K03",
+      "required": false
+    },
+    {
+      "program": "FME_CONG_NGHE_DET_MAY_2021",
+      "block": "K03",
+      "required": false
+    },
+    {
+      "program": "FME_CONG_NGHE_DET_MAY_2022",
+      "block": "K03",
+      "required": false
+    },
+    {
+      "program": "FME_CONG_NGHE_DET_MAY_2023",
+      "block": "K03",
+      "required": false
+    },
+    {
+      "program": "FME_CONG_NGHE_DET_MAY_2024",
+      "block": "K08",
       "required": true
     },
     {
-      "program": "FME_KY_THUAT_DET_2024",
-      "block": "K12",
+      "program": "FME_CONG_NGHE_DET_MAY_2026",
+      "block": "K09",
       "required": true
     }
   ],
@@ -49,6 +49,7 @@
     "theory"
   ],
   "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/ME2065",
   "note": "Nhập từ nguồn công khai (truy cập 03/10/2026).",
   "updated": "2026-10-04"
 }

@@ -1,15 +1,16 @@
-# ME2141 Kỹ th uật dự báo
+# ME2141 Kỹ thuật dự báo
 
 <!-- File này do "npm run build" sinh từ catalog/courses/ME2141.json và items/. Chỉ sửa phần Mẹo học, giữa hai dòng meo-hoc. -->
 
 | Mục | Thông tin |
 |---|---|
 | Mã môn | ME2141 |
-| Tên | Kỹ th uật dự báo / Forecasting Engineering |
+| Tên | Kỹ thuật dự báo / Forecasting Engineering |
 | Tín chỉ | 3 |
 | Khoa | Khoa Cơ khí |
 | Phần | Lý thuyết |
 | Trạng thái | Đang dạy |
+| Sổ tay HCMUT | [Trang môn trên Sổ tay HCMUT](https://hcmut.edu.vn/study/handbook/subject/ME2141) |
 
 ## Tài liệu
 

@@ -1,0 +1,48 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "CI3455",
+  "code": "CI3455",
+  "name": "Thực tập Ngoài trường",
+  "nameEn": "Internship",
+  "credits": 2,
+  "faculty": "fce",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "FCE_KY_THUAT_TRAC_DIA_BAN_DO_2019",
+      "block": "K06",
+      "required": false
+    },
+    {
+      "program": "FCE_KY_THUAT_TRAC_DIA_BAN_DO_2020",
+      "block": "K06",
+      "required": false
+    },
+    {
+      "program": "FCE_KY_THUAT_TRAC_DIA_BAN_DO_2021",
+      "block": "K06",
+      "required": false
+    },
+    {
+      "program": "FCE_KY_THUAT_TRAC_DIA_BAN_DO_2022",
+      "block": "K06",
+      "required": false
+    },
+    {
+      "program": "FCE_KY_THUAT_TRAC_DIA_BAN_DO_2023",
+      "block": "K06",
+      "required": false
+    },
+    {
+      "program": "FCE_KY_THUAT_TRAC_DIA_BAN_DO_2024",
+      "block": "K14",
+      "required": true
+    }
+  ],
+  "parts": [],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/CI3455",
+  "note": "Nhập từ CTĐT chính thức (Sổ tay HCMUT, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

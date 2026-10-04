@@ -1,15 +1,16 @@
-# EE3203 Kiến trúc máy tínhx
+# EE3203 Kiến trúc máy tính
 
 <!-- File này do "npm run build" sinh từ catalog/courses/EE3203.json và items/. Chỉ sửa phần Mẹo học, giữa hai dòng meo-hoc. -->
 
 | Mục | Thông tin |
 |---|---|
 | Mã môn | EE3203 |
-| Tên | Kiến trúc máy tínhx / Computer Organization & Design |
+| Tên | Kiến trúc máy tính / Computer Organization & Design |
 | Tín chỉ | 3 |
 | Khoa | Khoa Điện - Điện tử |
 | Phần | Lý thuyết |
 | Trạng thái | Đang dạy |
+| Sổ tay HCMUT | [Trang môn trên Sổ tay HCMUT](https://hcmut.edu.vn/study/handbook/subject/EE3203) |
 
 ## Tài liệu
 

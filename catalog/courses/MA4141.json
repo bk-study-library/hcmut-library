@@ -1,0 +1,50 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "MA4141",
+  "code": "MA4141",
+  "name": "Công nghệ Điện hóa",
+  "nameEn": "Electrochemical Technologies",
+  "credits": 3,
+  "faculty": "fmt",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "FMT_KY_THUAT_CO_KHI_2024_PFIEV",
+      "block": "K11",
+      "required": true
+    },
+    {
+      "program": "FMT_VAT_LIEU_VA_NANG_LUONG_PFIEV_2021_PFIEV",
+      "block": "K07",
+      "required": false
+    },
+    {
+      "program": "FMT_VAT_LIEU_VA_NANG_LUONG_PFIEV_2022_PFIEV",
+      "block": "K07",
+      "required": false
+    },
+    {
+      "program": "FMT_VAT_LIEU_VA_NANG_LUONG_PFIEV_2023_PFIEV",
+      "block": "K07",
+      "required": false
+    },
+    {
+      "program": "FMT_VAT_LIEU_VA_NANG_LUONG_PFIEV_2024_PFIEV",
+      "block": "K11",
+      "required": true
+    },
+    {
+      "program": "FMT_VAT_LIEU_VA_NANG_LUONG_PFIEV_2026_PFIEV",
+      "block": "K12",
+      "required": true
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/MA4141",
+  "note": "Nhập từ CTĐT chính thức (Sổ tay HCMUT, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

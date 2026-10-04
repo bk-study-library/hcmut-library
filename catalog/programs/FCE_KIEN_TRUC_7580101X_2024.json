@@ -1,0 +1,829 @@
+{
+  "$schema": "../../schema/program.schema.json",
+  "code": "FCE_KIEN_TRUC_7580101X_2024",
+  "name": "Kiến trúc",
+  "nameEn": "Architecture",
+  "faculty": "fce",
+  "year": "2024",
+  "major": "7580101x",
+  "type": "CQ",
+  "level": "dai-hoc",
+  "degree": "cu-nhan",
+  "totalCredits": 132,
+  "note": "Mã ngành trên Sổ tay là biến thể 7580101x; liên kết PDF lấy theo mã 7580101.",
+  "source": "https://hcmut.edu.vn/study/handbook/course/undergraduate/7580101x?program=CQ",
+  "ctdtUrl": "https://drive.google.com/file/d/1qepYS7k0YfulR_Gxk_4qcOLfAbW7bNIH/view",
+  "planUrl": "https://drive.google.com/file/d/1Meny665urOFs1UWMuzHQXK4IeSV_BKB2/view",
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/undergraduate/7580101x?program=CQ",
+  "blocks": [
+    {
+      "id": "K01",
+      "name": "I.1. TOÁN VÀ KHOA HỌC TỰ NHIÊN",
+      "group": "I. CÁC MÔN GIÁO DỤC CHUNG",
+      "kind": "toan-khtn",
+      "required": false,
+      "creditsNeed": 0,
+      "courses": [
+        "MT1003",
+        "MT1007",
+        "PH1003",
+        "MT1005",
+        "PH1005",
+        "CI1069",
+        "MT2013",
+        "CH1003",
+        "PH1007",
+        "MT1009"
+      ],
+      "semesters": {
+        "MT1003": 1,
+        "MT1007": 1,
+        "PH1003": 1,
+        "MT1005": 2,
+        "CI1069": 2,
+        "MT2013": 3,
+        "CH1003": 2,
+        "PH1007": 1,
+        "MT1009": 4
+      }
+    },
+    {
+      "id": "K02",
+      "name": "I.2.1. KINH TẾ, CHÍNH TRỊ, XÃ HỘI, LUẬT",
+      "group": "I. CÁC MÔN GIÁO DỤC CHUNG > I.2. GIÁO DỤC CHUNG",
+      "kind": "ly-luan-chinh-tri",
+      "required": false,
+      "creditsNeed": 0,
+      "courses": [
+        "SP1007",
+        "SP1031",
+        "SP1033",
+        "SP1035",
+        "SP1039",
+        "SP1037"
+      ],
+      "semesters": {
+        "SP1007": 3,
+        "SP1031": 4,
+        "SP1033": 5,
+        "SP1035": 6,
+        "SP1039": 7,
+        "SP1037": 8
+      }
+    },
+    {
+      "id": "K03",
+      "name": "B. CÁC MÔN BẮT BUỘC",
+      "kind": "khac",
+      "required": true,
+      "creditsNeed": 0,
+      "courses": []
+    },
+    {
+      "id": "K04",
+      "name": "II.1. NGÀNH KIẾN TRÚC",
+      "group": "II. CÁC MÔN HỌC NGÀNH/ CHUYÊN NGÀNH",
+      "kind": "nganh",
+      "required": true,
+      "creditsNeed": 0,
+      "courses": []
+    },
+    {
+      "id": "K05",
+      "name": "II.1.1. CÁC MÔN BẮT BUỘC NGÀNH KIẾN TRÚC",
+      "group": "II. CÁC MÔN HỌC NGÀNH/ CHUYÊN NGÀNH > II.1. NGÀNH KIẾN TRÚC",
+      "kind": "nganh",
+      "required": true,
+      "creditsNeed": 0,
+      "courses": [
+        "CI1067",
+        "CI2097",
+        "CI2111",
+        "CI2101",
+        "CI2105",
+        "CI2103",
+        "CI2107",
+        "CI2099",
+        "CI3273",
+        "CI3293",
+        "CI2123",
+        "CI2115",
+        "CI3249"
+      ],
+      "semesters": {
+        "CI1067": 2,
+        "CI2097": 3,
+        "CI2111": 3,
+        "CI2101": 3,
+        "CI2105": 4,
+        "CI2103": 4,
+        "CI2107": 4,
+        "CI2099": 5,
+        "CI3273": 5,
+        "CI3293": 5,
+        "CI2123": 5,
+        "CI2115": 5,
+        "CI3249": 5
+      }
+    },
+    {
+      "id": "K06",
+      "name": "II. CÁC MÔN HỌC NGÀNH/ CHUYÊN NGÀNH",
+      "kind": "chuyen-nganh",
+      "required": true,
+      "creditsNeed": 0,
+      "courses": []
+    },
+    {
+      "id": "K07",
+      "name": "II.2.1. CÁC MÔN CHUYÊN NGÀNH KIẾN TRÚC NHÓM 1",
+      "group": "II. CÁC MÔN HỌC NGÀNH/ CHUYÊN NGÀNH > II.2. CHUYÊN NGÀNH KIẾN TRÚC",
+      "kind": "chuyen-nganh",
+      "required": false,
+      "creditsNeed": 0,
+      "courses": [
+        "CI3285",
+        "CI3279",
+        "CI3269",
+        "CI4177",
+        "CI3163",
+        "CI1065",
+        "CI1067",
+        "CI2097",
+        "CI2111",
+        "CI2101",
+        "CI2105",
+        "CI2103",
+        "CI2107",
+        "CI2099",
+        "CI3273",
+        "CI3293",
+        "CI2123",
+        "CI2115",
+        "CI3249",
+        "CI3485",
+        "CI4235"
+      ],
+      "semesters": {
+        "CI3285": 5,
+        "CI3279": 5,
+        "CI3269": 5,
+        "CI4177": 5,
+        "CI3163": 5,
+        "CI1065": 1,
+        "CI1067": 2,
+        "CI2097": 3,
+        "CI2111": 3,
+        "CI2101": 3,
+        "CI2105": 4,
+        "CI2103": 4,
+        "CI2107": 4,
+        "CI2099": 5,
+        "CI3273": 5,
+        "CI3293": 5,
+        "CI2123": 5,
+        "CI2115": 5,
+        "CI3249": 5,
+        "CI3485": 5,
+        "CI4235": 5
+      }
+    },
+    {
+      "id": "K08",
+      "name": "II.3.1. CÁC MÔN CHUYÊN NGÀNH KIẾN TRÚC CẢNH QUAN NHÓM 1",
+      "group": "II. CÁC MÔN HỌC NGÀNH/ CHUYÊN NGÀNH > II.3. CHUYÊN NGÀNH KIẾN TRÚC CẢNH QUAN",
+      "kind": "chuyen-nganh",
+      "required": false,
+      "creditsNeed": 0,
+      "courses": [
+        "CI3287",
+        "CI3295",
+        "CI4205",
+        "CI4207",
+        "CI4209",
+        "CI1065",
+        "CI1067",
+        "CI2097",
+        "CI2111",
+        "CI2101",
+        "CI2105",
+        "CI2103",
+        "CI2107",
+        "CI2099",
+        "CI3273",
+        "CI3293",
+        "CI2123",
+        "CI2115",
+        "CI3249",
+        "CI3485",
+        "CI4235",
+        "CI4219",
+        "CI3279"
+      ],
+      "semesters": {
+        "CI3287": 5,
+        "CI3295": 5,
+        "CI4205": 5,
+        "CI4207": 5,
+        "CI4209": 5,
+        "CI1065": 1,
+        "CI1067": 2,
+        "CI2097": 3,
+        "CI2111": 3,
+        "CI2101": 3,
+        "CI2105": 4,
+        "CI2103": 4,
+        "CI2107": 4,
+        "CI2099": 5,
+        "CI3273": 5,
+        "CI3293": 5,
+        "CI2123": 5,
+        "CI2115": 5,
+        "CI3249": 5,
+        "CI3485": 5,
+        "CI4235": 5,
+        "CI4219": 5,
+        "CI3279": 5
+      }
+    },
+    {
+      "id": "K09",
+      "name": "A.3.2.1. GIÁO DỤC THỂ CHẤT 1",
+      "kind": "the-chat",
+      "required": false,
+      "creditsNeed": 0,
+      "courses": [
+        "PE1011",
+        "PE1057",
+        "PE1061",
+        "PE1013",
+        "PE1015",
+        "PE1017",
+        "PE1019",
+        "PE1021",
+        "PE1025",
+        "PE1027",
+        "PE1053",
+        "PE1001"
+      ],
+      "semesters": {
+        "PE1011": 1,
+        "PE1057": 1,
+        "PE1061": 1,
+        "PE1013": 1,
+        "PE1015": 1,
+        "PE1017": 1,
+        "PE1019": 1,
+        "PE1021": 1,
+        "PE1025": 1,
+        "PE1027": 1,
+        "PE1053": 1
+      }
+    },
+    {
+      "id": "K10",
+      "name": "A.3.2.2. GIÁO DỤC THỂ CHẤT 2",
+      "kind": "the-chat",
+      "required": false,
+      "creditsNeed": 0,
+      "courses": [
+        "PE1035",
+        "PE1059",
+        "PE1063",
+        "PE1037",
+        "PE1039",
+        "PE1041",
+        "PE1043",
+        "PE1045",
+        "PE1049",
+        "PE1051",
+        "PE1055",
+        "PE1002"
+      ],
+      "semesters": {
+        "PE1035": 2,
+        "PE1059": 2,
+        "PE1063": 2,
+        "PE1037": 2,
+        "PE1039": 2,
+        "PE1041": 2,
+        "PE1043": 2,
+        "PE1045": 2,
+        "PE1049": 2,
+        "PE1051": 2,
+        "PE1055": 2
+      }
+    },
+    {
+      "id": "K11",
+      "name": "B.3. KIẾN THỨC TỐT NGHIỆP",
+      "group": "B. CÁC MÔN BẮT BUỘC",
+      "kind": "tot-nghiep",
+      "required": false,
+      "creditsNeed": 0,
+      "courses": [
+        "CI3485",
+        "CI4487",
+        "CI3249"
+      ],
+      "semesters": {
+        "CI3485": 5,
+        "CI4487": 8,
+        "CI3249": 5
+      }
+    },
+    {
+      "id": "K12",
+      "name": "III. TỐT NGHIỆP",
+      "kind": "tot-nghiep",
+      "required": false,
+      "creditsNeed": 0,
+      "courses": [
+        "CI3485",
+        "CI4235",
+        "CI4487"
+      ],
+      "semesters": {
+        "CI3485": 5,
+        "CI4235": 5,
+        "CI4487": 8
+      }
+    },
+    {
+      "id": "K13",
+      "name": "A.3.4.2. CON NGƯỜI VÀ MÔI TRƯỜNG",
+      "kind": "giao-duc-chung",
+      "required": false,
+      "creditsNeed": 0,
+      "courses": [
+        "EN1003"
+      ],
+      "semesters": {
+        "EN1003": 8
+      }
+    },
+    {
+      "id": "K14",
+      "name": "I.2.5. NHẬP MÔN KIẾN TRÚC",
+      "group": "I. CÁC MÔN GIÁO DỤC CHUNG > I.2. GIÁO DỤC CHUNG",
+      "kind": "giao-duc-chung",
+      "required": false,
+      "creditsNeed": 0,
+      "courses": [
+        "CI1065"
+      ],
+      "semesters": {
+        "CI1065": 1
+      }
+    },
+    {
+      "id": "K15",
+      "name": "II.2. CHUYÊN NGÀNH KIẾN TRÚC",
+      "group": "II. CÁC MÔN HỌC NGÀNH/ CHUYÊN NGÀNH",
+      "kind": "chuyen-nganh",
+      "required": true,
+      "creditsNeed": 0,
+      "courses": []
+    },
+    {
+      "id": "K16",
+      "name": "II.2.2. CÁC MÔN CHUYÊN NGÀNH KIẾN TRÚC NHÓM 2",
+      "group": "II. CÁC MÔN HỌC NGÀNH/ CHUYÊN NGÀNH > II.2. CHUYÊN NGÀNH KIẾN TRÚC",
+      "kind": "chuyen-nganh",
+      "required": false,
+      "creditsNeed": 0,
+      "courses": [
+        "CI3279",
+        "CI3285"
+      ],
+      "semesters": {
+        "CI3279": 5,
+        "CI3285": 5
+      }
+    },
+    {
+      "id": "K17",
+      "name": "II.2.3. CÁC MÔN CHUYÊN NGÀNH KIẾN TRÚC NHÓM 3",
+      "group": "II. CÁC MÔN HỌC NGÀNH/ CHUYÊN NGÀNH > II.2. CHUYÊN NGÀNH KIẾN TRÚC",
+      "kind": "chuyen-nganh",
+      "required": false,
+      "creditsNeed": 0,
+      "courses": [
+        "CI3269",
+        "CI4177"
+      ],
+      "semesters": {
+        "CI3269": 5,
+        "CI4177": 5
+      }
+    },
+    {
+      "id": "K18",
+      "name": "II.2.4. CÁC MÔN CHUYÊN NGÀNH KIẾN TRÚC NHÓM 4",
+      "group": "II. CÁC MÔN HỌC NGÀNH/ CHUYÊN NGÀNH > II.2. CHUYÊN NGÀNH KIẾN TRÚC",
+      "kind": "chuyen-nganh",
+      "required": false,
+      "creditsNeed": 0,
+      "courses": [
+        "CI3163"
+      ],
+      "semesters": {
+        "CI3163": 5
+      }
+    },
+    {
+      "id": "K19",
+      "name": "II.3. CHUYÊN NGÀNH KIẾN TRÚC CẢNH QUAN",
+      "group": "II. CÁC MÔN HỌC NGÀNH/ CHUYÊN NGÀNH",
+      "kind": "chuyen-nganh",
+      "required": true,
+      "creditsNeed": 0,
+      "courses": []
+    },
+    {
+      "id": "K20",
+      "name": "II.3.2. CÁC MÔN CHUYÊN NGÀNH KIẾN TRÚC CẢNH QUAN NHÓM 2",
+      "group": "II. CÁC MÔN HỌC NGÀNH/ CHUYÊN NGÀNH > II.3. CHUYÊN NGÀNH KIẾN TRÚC CẢNH QUAN",
+      "kind": "chuyen-nganh",
+      "required": false,
+      "creditsNeed": 0,
+      "courses": [
+        "CI3295"
+      ],
+      "semesters": {
+        "CI3295": 5
+      }
+    },
+    {
+      "id": "K21",
+      "name": "II.3.3. CÁC MÔN CHUYÊN NGÀNH KIẾN TRÚC CẢNH QUAN NHÓM 3",
+      "group": "II. CÁC MÔN HỌC NGÀNH/ CHUYÊN NGÀNH > II.3. CHUYÊN NGÀNH KIẾN TRÚC CẢNH QUAN",
+      "kind": "chuyen-nganh",
+      "required": false,
+      "creditsNeed": 0,
+      "courses": [
+        "CI4205",
+        "CI4207"
+      ],
+      "semesters": {
+        "CI4205": 5,
+        "CI4207": 5
+      }
+    },
+    {
+      "id": "K22",
+      "name": "II.3.4. CÁC MÔN CHUYÊN NGÀNH KIẾN TRÚC CẢNH QUAN NHÓM 4",
+      "group": "II. CÁC MÔN HỌC NGÀNH/ CHUYÊN NGÀNH > II.3. CHUYÊN NGÀNH KIẾN TRÚC CẢNH QUAN",
+      "kind": "chuyen-nganh",
+      "required": false,
+      "creditsNeed": 0,
+      "courses": [
+        "CI4209"
+      ],
+      "semesters": {
+        "CI4209": 5
+      }
+    },
+    {
+      "id": "K23",
+      "name": "B.4. NHÓM TỰ CHỌN",
+      "group": "B. CÁC MÔN BẮT BUỘC",
+      "kind": "khac",
+      "required": false,
+      "creditsNeed": 0,
+      "courses": []
+    },
+    {
+      "id": "K24",
+      "name": "B.4.2. TỰ CHỌN NHÓM B",
+      "group": "B. CÁC MÔN BẮT BUỘC > B.4. NHÓM TỰ CHỌN",
+      "kind": "tu-chon-nganh",
+      "required": false,
+      "creditsNeed": 0,
+      "courses": [
+        "CI2041",
+        "CI3285",
+        "CI3291",
+        "CI4129",
+        "CI4125",
+        "CI3013",
+        "CI3265",
+        "CI2139",
+        "CI4189",
+        "CI3301",
+        "CI2143",
+        "CI2045",
+        "CI3287",
+        "CI3295",
+        "IM1031"
+      ],
+      "semesters": {
+        "CI3285": 5,
+        "CI3291": 5,
+        "CI4129": 7,
+        "CI3013": 6,
+        "CI3265": 7,
+        "CI3301": 6,
+        "CI2143": 5,
+        "CI2045": 5,
+        "CI3287": 5,
+        "CI3295": 5,
+        "IM1031": 5
+      }
+    },
+    {
+      "id": "K25",
+      "name": "B.4.4. NHÓM TỰ CHỌN A",
+      "group": "B. CÁC MÔN BẮT BUỘC > B.4. NHÓM TỰ CHỌN",
+      "kind": "khac",
+      "required": false,
+      "creditsNeed": 0,
+      "courses": []
+    },
+    {
+      "id": "K26",
+      "name": "II.1.2. CÁC MÔN TỰ CHỌN TỰ DO (CHỌN 3 TC)",
+      "group": "II. CÁC MÔN HỌC NGÀNH/ CHUYÊN NGÀNH > II.1. NGÀNH KIẾN TRÚC",
+      "kind": "tu-chon-tu-do",
+      "required": false,
+      "creditsNeed": 0,
+      "courses": [
+        "CI2143",
+        "CI2045"
+      ],
+      "semesters": {
+        "CI2143": 5,
+        "CI2045": 5
+      }
+    },
+    {
+      "id": "K27",
+      "name": "II.1.3. CÁC MÔN TỰ CHỌN NHÓM B2 (CHỌN 3 TC)",
+      "group": "II. CÁC MÔN HỌC NGÀNH/ CHUYÊN NGÀNH > II.1. NGÀNH KIẾN TRÚC",
+      "kind": "chuyen-nganh",
+      "required": false,
+      "creditsNeed": 0,
+      "courses": [
+        "CI3301",
+        "CI3013"
+      ],
+      "semesters": {
+        "CI3301": 6,
+        "CI3013": 6
+      }
+    },
+    {
+      "id": "K28",
+      "name": "II.1.4. CÁC MÔN TỰ CHỌN NHÓM B3 (CHỌN 3 TC)",
+      "group": "II. CÁC MÔN HỌC NGÀNH/ CHUYÊN NGÀNH > II.1. NGÀNH KIẾN TRÚC",
+      "kind": "chuyen-nganh",
+      "required": false,
+      "creditsNeed": 0,
+      "courses": [
+        "CI3265",
+        "CI4129"
+      ],
+      "semesters": {
+        "CI3265": 7,
+        "CI4129": 7
+      }
+    },
+    {
+      "id": "K29",
+      "name": "II.2.5. TỰ CHỌN NHÓM B (CHỌN 3 TC)",
+      "group": "II. CÁC MÔN HỌC NGÀNH/ CHUYÊN NGÀNH > II.2. CHUYÊN NGÀNH KIẾN TRÚC",
+      "kind": "chuyen-nganh",
+      "required": false,
+      "creditsNeed": 0,
+      "courses": [
+        "CI2143",
+        "CI2045",
+        "CI3301",
+        "CI3013",
+        "CI3265",
+        "CI4129",
+        "CI4205",
+        "CI4189",
+        "CI4209",
+        "IM1031",
+        "ME1019",
+        "CI3289",
+        "CI3291"
+      ],
+      "semesters": {
+        "CI2143": 5,
+        "CI2045": 5,
+        "CI3301": 6,
+        "CI3013": 6,
+        "CI3265": 7,
+        "CI4129": 7,
+        "CI4205": 5,
+        "CI4209": 5,
+        "IM1031": 5,
+        "ME1019": 5,
+        "CI3289": 5,
+        "CI3291": 5
+      }
+    },
+    {
+      "id": "K30",
+      "name": "II.3.5. TỰ CHỌN NHÓM B (CHỌN 3 TC)",
+      "group": "II. CÁC MÔN HỌC NGÀNH/ CHUYÊN NGÀNH > II.3. CHUYÊN NGÀNH KIẾN TRÚC CẢNH QUAN",
+      "kind": "chuyen-nganh",
+      "required": false,
+      "creditsNeed": 0,
+      "courses": [
+        "CI2143",
+        "CI2045",
+        "CI3301",
+        "CI3013",
+        "CI3265",
+        "CI4129",
+        "CI3269",
+        "CI3163",
+        "CI3287",
+        "CI3295",
+        "CI4207",
+        "CI2145"
+      ],
+      "semesters": {
+        "CI2143": 5,
+        "CI2045": 5,
+        "CI3301": 6,
+        "CI3013": 6,
+        "CI3265": 7,
+        "CI4129": 7,
+        "CI3269": 5,
+        "CI3163": 5,
+        "CI3287": 5,
+        "CI3295": 5,
+        "CI4207": 5
+      }
+    },
+    {
+      "id": "K31",
+      "name": "I.2.3. GIÁO DỤC QUỐC PHÒNG",
+      "group": "I. CÁC MÔN GIÁO DỤC CHUNG > I.2. GIÁO DỤC CHUNG",
+      "kind": "quoc-phong",
+      "required": true,
+      "creditsNeed": 0,
+      "courses": [
+        "MI1003"
+      ],
+      "semesters": {
+        "MI1003": 2
+      }
+    },
+    {
+      "id": "K32",
+      "name": "IV. ĐIỀU KIỆN TỐT NGHIỆP",
+      "kind": "dieu-kien-tot-nghiep",
+      "required": true,
+      "creditsNeed": 0,
+      "courses": [
+        "SA4001",
+        "ENG_GC"
+      ]
+    },
+    {
+      "id": "K33",
+      "name": "I.2.2. GIÁO DỤC THỂ CHẤT",
+      "group": "I. CÁC MÔN GIÁO DỤC CHUNG > I.2. GIÁO DỤC CHUNG",
+      "kind": "the-chat",
+      "required": true,
+      "creditsNeed": 0,
+      "courses": []
+    },
+    {
+      "id": "K34",
+      "name": "A.3.4.1. TIẾNG ANH",
+      "kind": "ngoai-ngu",
+      "required": false,
+      "creditsNeed": 0,
+      "courses": [
+        "LA1003",
+        "LA1005",
+        "LA1007",
+        "LA1009"
+      ],
+      "semesters": {
+        "LA1003": 1,
+        "LA1005": 2,
+        "LA1007": 3,
+        "LA1009": 4
+      }
+    },
+    {
+      "id": "K35",
+      "name": "I. CÁC MÔN GIÁO DỤC CHUNG",
+      "kind": "giao-duc-chung",
+      "required": true,
+      "creditsNeed": 0,
+      "courses": []
+    },
+    {
+      "id": "K36",
+      "name": "I.2. GIÁO DỤC CHUNG",
+      "group": "I. CÁC MÔN GIÁO DỤC CHUNG",
+      "kind": "giao-duc-chung",
+      "required": true,
+      "creditsNeed": 0,
+      "courses": []
+    },
+    {
+      "id": "K37",
+      "name": "I.2.4. GIÁO DỤC CHUNG KHÁC",
+      "group": "I. CÁC MÔN GIÁO DỤC CHUNG > I.2. GIÁO DỤC CHUNG",
+      "kind": "giao-duc-chung",
+      "required": true,
+      "creditsNeed": 0,
+      "courses": []
+    },
+    {
+      "id": "K38",
+      "name": "A.3.4.3. CÁC MÔN TỰ CHỌN NHÓM A (CHỌN 3 TC)",
+      "kind": "tu-chon-nganh",
+      "required": false,
+      "creditsNeed": 0,
+      "courses": [
+        "IM1031",
+        "ME1019",
+        "CI3289",
+        "CI3291"
+      ],
+      "semesters": {
+        "IM1031": 5,
+        "ME1019": 5,
+        "CI3289": 5,
+        "CI3291": 5
+      }
+    },
+    {
+      "id": "K39",
+      "name": "A.3.7. CÁC MÔN TỰ CHỌN NHÓM A (CHỌN 3 TC)",
+      "kind": "tu-chon-nganh",
+      "required": false,
+      "creditsNeed": 0,
+      "courses": []
+    },
+    {
+      "id": "K40",
+      "name": "B.1.2. CÁC MÔN TỰ CHỌN NHÓM A (CHỌN 3 TC)",
+      "group": "B. CÁC MÔN BẮT BUỘC",
+      "kind": "tu-chon-nganh",
+      "required": false,
+      "creditsNeed": 0,
+      "courses": [
+        "CI3269",
+        "CI3163",
+        "CI4161",
+        "IM1031",
+        "ME1019",
+        "CI3289",
+        "CI3291"
+      ],
+      "semesters": {
+        "CI3269": 5,
+        "CI3163": 5,
+        "IM1031": 5,
+        "ME1019": 5,
+        "CI3289": 5,
+        "CI3291": 5
+      }
+    },
+    {
+      "id": "K41",
+      "name": "B.2.2. CÁC MÔN TỰ CHỌN NHÓM A (CHỌN 3 TC)",
+      "group": "B. CÁC MÔN BẮT BUỘC",
+      "kind": "tu-chon-nganh",
+      "required": false,
+      "creditsNeed": 0,
+      "courses": [
+        "IM1031",
+        "ME1019",
+        "CI3289",
+        "CI3219",
+        "CI3287",
+        "CI3295",
+        "CI4207",
+        "CI4219",
+        "CI3285",
+        "CI3279",
+        "CI4177"
+      ],
+      "semesters": {
+        "IM1031": 5,
+        "ME1019": 5,
+        "CI3289": 5,
+        "CI3287": 5,
+        "CI3295": 5,
+        "CI4207": 5,
+        "CI4219": 5,
+        "CI3285": 5,
+        "CI3279": 5,
+        "CI4177": 5
+      }
+    }
+  ],
+  "updated": "2026-10-04"
+}

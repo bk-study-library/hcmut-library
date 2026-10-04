@@ -1,0 +1,34 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "TR3411",
+  "code": "TR3411",
+  "name": "Máy bay không người lái",
+  "credits": 3,
+  "faculty": "fte",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "FTE_KY_THUAT_HANG_KHONG_2026",
+      "block": "K13",
+      "required": false
+    },
+    {
+      "program": "FTE_KY_THUAT_TAU_THUY_HANG_KHONG_SN_2026_SN",
+      "block": "K13",
+      "required": false
+    },
+    {
+      "program": "FTE_TS_245_2026_TA",
+      "block": "K13",
+      "required": false
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/TR3411",
+  "note": "Nhập từ CTĐT chính thức (Sổ tay HCMUT, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

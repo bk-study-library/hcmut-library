@@ -1,0 +1,19 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "IM3113",
+  "code": "IM3113",
+  "name": "Trí tuệ nhân tạo trong kinh doanh",
+  "nameEn": "Artificial Intelligence for Business",
+  "credits": 3,
+  "faculty": "sim",
+  "aliases": [],
+  "status": "active",
+  "programs": [],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/IM3113",
+  "note": "Nhập từ Kế hoạch giảng dạy (PDF của trường, truy cập 04/10/2026). Tên lấy từ PDF. Chờ người duyệt xác nhận.",
+  "updated": "2026-10-04"
+}

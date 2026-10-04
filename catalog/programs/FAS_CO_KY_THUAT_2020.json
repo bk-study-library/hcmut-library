@@ -1,0 +1,245 @@
+{
+  "$schema": "../../schema/program.schema.json",
+  "code": "FAS_CO_KY_THUAT_2020",
+  "name": "Cơ Kỹ thuật",
+  "nameEn": "Engineering Mechanics",
+  "faculty": "fas",
+  "year": "2020",
+  "major": "7520101",
+  "type": "CQ",
+  "level": "dai-hoc",
+  "totalCredits": 129,
+  "note": "Sổ tay không có năm này cho ngành và loại chương trình này. Danh sách môn lấy từ Kế hoạch giảng dạy (PDF), khối là học kỳ chứ không phải khối kiến thức; tên khối kiến thức, bắt buộc hay tự chọn chưa có.",
+  "source": "https://drive.google.com/file/d/1395A-bI7Yyq_494ucCXN7iySD7zoOT1X/view",
+  "ctdtUrl": "https://drive.google.com/file/d/1_BAHS82fa6pCnqe5l4haCrRRu4Fpcpg9/view",
+  "planUrl": "https://drive.google.com/file/d/1395A-bI7Yyq_494ucCXN7iySD7zoOT1X/view",
+  "blocks": [
+    {
+      "id": "K01",
+      "name": "Học kỳ 1",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "LA1003",
+        "AS1001",
+        "MT1003",
+        "PH1003",
+        "CH1003",
+        "MI1003",
+        "PE1003"
+      ],
+      "semesters": {
+        "LA1003": 1,
+        "AS1001": 1,
+        "MT1003": 1,
+        "PH1003": 1,
+        "CH1003": 1,
+        "MI1003": 1,
+        "PE1003": 1
+      }
+    },
+    {
+      "id": "K02",
+      "name": "Học kỳ 2",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "LA1005",
+        "MT1005",
+        "PH1005",
+        "PH1007",
+        "MT1007",
+        "CI1003",
+        "PE1005"
+      ],
+      "semesters": {
+        "LA1005": 2,
+        "MT1005": 2,
+        "PH1005": 2,
+        "PH1007": 2,
+        "MT1007": 2,
+        "CI1003": 2,
+        "PE1005": 2
+      }
+    },
+    {
+      "id": "K03",
+      "name": "Học kỳ 3",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "LA1007",
+        "MT1009",
+        "AS1003",
+        "PE1007",
+        "SP1031",
+        "AS2013",
+        "ME1003"
+      ],
+      "semesters": {
+        "LA1007": 3,
+        "MT1009": 3,
+        "AS1003": 3,
+        "PE1007": 3,
+        "SP1031": 3,
+        "AS2013": 3,
+        "ME1003": 3
+      }
+    },
+    {
+      "id": "K04",
+      "name": "Học kỳ 4",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "LA1009",
+        "MT2013",
+        "CI2003",
+        "AS2011",
+        "EE2011",
+        "SP1033"
+      ],
+      "semesters": {
+        "LA1009": 4,
+        "MT2013": 4,
+        "CI2003": 4,
+        "AS2011": 4,
+        "EE2011": 4,
+        "SP1033": 4
+      }
+    },
+    {
+      "id": "K05",
+      "name": "Học kỳ 5",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "SP1035",
+        "AS2021",
+        "AS3147",
+        "MA3077",
+        "AS2015",
+        "AS2003",
+        "CO1003"
+      ],
+      "semesters": {
+        "SP1035": 5,
+        "AS2021": 5,
+        "AS3147": 5,
+        "MA3077": 5,
+        "AS2015": 5,
+        "AS2003": 5,
+        "CO1003": 5
+      }
+    },
+    {
+      "id": "K06",
+      "name": "Học kỳ 6",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "SP1039",
+        "AS2031",
+        "AS3061",
+        "AS3015",
+        "AS3011",
+        "AS3335",
+        "AS3021",
+        "AS3027",
+        "ME3237",
+        "AS3039",
+        "AS3001",
+        "AS3085",
+        "AS3093",
+        "CI3171",
+        "AS3097",
+        "CO2013",
+        "EE1009",
+        "EE2019",
+        "AS3019",
+        "AS2005",
+        "AS3013",
+        "AS3149",
+        "AS3035",
+        "AS3003",
+        "ME2013"
+      ],
+      "semesters": {
+        "SP1039": 6,
+        "AS2031": 6,
+        "AS3061": 6,
+        "AS3015": 6,
+        "AS3011": 6,
+        "AS3335": 6,
+        "AS3021": 6,
+        "AS3027": 6,
+        "ME3237": 6,
+        "AS3039": 6,
+        "AS3001": 6,
+        "AS3085": 6,
+        "AS3093": 6,
+        "CI3171": 6,
+        "AS3097": 6,
+        "CO2013": 6,
+        "EE1009": 6,
+        "EE2019": 6,
+        "AS3019": 6,
+        "AS2005": 6,
+        "AS3013": 6,
+        "AS3149": 6,
+        "AS3035": 6,
+        "AS3003": 6,
+        "ME2013": 6
+      }
+    },
+    {
+      "id": "K07",
+      "name": "Học kỳ 7",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "SP1037",
+        "AS3029",
+        "AS3031",
+        "AS4007"
+      ],
+      "semesters": {
+        "SP1037": 7,
+        "AS3029": 7,
+        "AS3031": 7,
+        "AS4007": 7
+      }
+    },
+    {
+      "id": "K08",
+      "name": "Học kỳ 8",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "SP1007",
+        "EN1003",
+        "AS4337",
+        "IM1021",
+        "IM1013",
+        "IM1023"
+      ],
+      "semesters": {
+        "SP1007": 8,
+        "EN1003": 8,
+        "AS4337": 8,
+        "IM1021": 8,
+        "IM1013": 8,
+        "IM1023": 8
+      }
+    }
+  ],
+  "updated": "2026-10-04"
+}

@@ -5,11 +5,12 @@
 | Mục | Thông tin |
 |---|---|
 | Mã môn | ME3253 |
-| Tên | Hoạch định mặt bằng / Facility Planning KT |
+| Tên | Hoạch định mặt bằng / Facility Planning |
 | Tín chỉ | 3 |
 | Khoa | Khoa Cơ khí |
 | Phần | Lý thuyết |
 | Trạng thái | Đang dạy |
+| Sổ tay HCMUT | [Trang môn trên Sổ tay HCMUT](https://hcmut.edu.vn/study/handbook/subject/ME3253) |
 
 ## Tài liệu
 

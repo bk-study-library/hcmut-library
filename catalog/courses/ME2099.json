@@ -10,33 +10,98 @@
   "status": "active",
   "programs": [
     {
-      "program": "FME_KY_THUAT_NHIET_2020",
-      "block": "K01",
-      "required": true
+      "program": "FENR_KY_THUAT_MOI_TRUONG_2020",
+      "block": "K04",
+      "required": false
     },
     {
-      "program": "FME_KY_THUAT_NHIET_2021",
+      "program": "FENR_KY_THUAT_MOI_TRUONG_2021",
+      "block": "K04",
+      "required": false
+    },
+    {
+      "program": "FENR_KY_THUAT_MOI_TRUONG_2022",
+      "block": "K04",
+      "required": false
+    },
+    {
+      "program": "FENR_KY_THUAT_MOI_TRUONG_2023",
+      "block": "K04",
+      "required": false
+    },
+    {
+      "program": "FENR_KY_THUAT_MOI_TRUONG_2024",
       "block": "K09",
-      "required": true
+      "required": false
     },
     {
-      "program": "FME_KY_THUAT_NHIET_2022",
+      "program": "FENR_KY_THUAT_MOI_TRUONG_2024_CNTN",
       "block": "K09",
-      "required": true
+      "required": false
     },
     {
-      "program": "FME_KY_THUAT_NHIET_2024",
-      "block": "K12",
-      "required": true
+      "program": "FENR_KY_THUAT_MOI_TRUONG_2024_CTTA",
+      "block": "K10",
+      "required": false
     },
     {
-      "program": "FME_KY_THUAT_NHIET_2023",
+      "program": "FENR_KY_THUAT_MOI_TRUONG_2025_CNTN",
       "block": "K09",
-      "required": true
+      "required": false
+    },
+    {
+      "program": "FENR_KY_THUAT_MOI_TRUONG_2025_CTTA",
+      "block": "K10",
+      "required": false
+    },
+    {
+      "program": "FENR_KY_THUAT_MOI_TRUONG_2026",
+      "block": "K10",
+      "required": false
+    },
+    {
+      "program": "FENR_KY_THUAT_MOI_TRUONG_2026_CNTN",
+      "block": "K10",
+      "required": false
+    },
+    {
+      "program": "FENR_KY_THUAT_MOI_TRUONG_2026_CTTA",
+      "block": "K10",
+      "required": false
     },
     {
       "program": "FME_KY_THUAT_NHIET_2019",
-      "block": "K01",
+      "block": "K04",
+      "required": false
+    },
+    {
+      "program": "FME_KY_THUAT_NHIET_2020",
+      "block": "K04",
+      "required": false
+    },
+    {
+      "program": "FME_KY_THUAT_NHIET_2021",
+      "block": "K04",
+      "required": false
+    },
+    {
+      "program": "FME_KY_THUAT_NHIET_2022",
+      "block": "K04",
+      "required": false
+    },
+    {
+      "program": "FME_KY_THUAT_NHIET_2023",
+      "block": "K04",
+      "required": false
+    },
+    {
+      "program": "FME_KY_THUAT_NHIET_2024",
+      "block": "K08",
+      "required": true
+    },
+    {
+      "program": "FME_KY_THUAT_NHIET_2026",
+      "block": "K09",
       "required": true
     }
   ],
@@ -44,6 +109,7 @@
     "theory"
   ],
   "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/ME2099",
   "note": "Nhập từ nguồn công khai (truy cập 03/10/2026).",
   "updated": "2026-10-04"
 }

@@ -10,6 +10,7 @@
 | Khoa | Khoa Kỹ thuật Địa chất và Dầu khí |
 | Phần | Đồ án |
 | Trạng thái | Đang dạy |
+| Sổ tay HCMUT | [Trang môn trên Sổ tay HCMUT](https://hcmut.edu.vn/study/handbook/subject/GE3149) |
 | Mã, tên cũ | GE3021 Bê tông cốt thép |
 | Thay cho | [GE3021](../GE3021/README.md) |
 

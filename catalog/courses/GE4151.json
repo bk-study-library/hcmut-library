@@ -10,8 +10,43 @@
   "status": "active",
   "programs": [
     {
+      "program": "FENR_KINH_TE_TAI_NGUYEN_THIEN_NHIEN_2025",
+      "block": "K16",
+      "required": false
+    },
+    {
+      "program": "FENR_KINH_TE_TAI_NGUYEN_THIEN_NHIEN_2025_CTTA",
+      "block": "K16",
+      "required": false
+    },
+    {
+      "program": "FENR_KINH_TE_TAI_NGUYEN_THIEN_NHIEN_2026",
+      "block": "K16",
+      "required": false
+    },
+    {
+      "program": "FENR_KINH_TE_TAI_NGUYEN_THIEN_NHIEN_2026_CTTA",
+      "block": "K16",
+      "required": false
+    },
+    {
+      "program": "GEOPET_KY_THUAT_DAU_KHI_2023",
+      "block": "K08",
+      "required": false
+    },
+    {
       "program": "GEOPET_KY_THUAT_DAU_KHI_2024",
       "block": "K12",
+      "required": false
+    },
+    {
+      "program": "GEOPET_KY_THUAT_DAU_KHI_2024_CTTA",
+      "block": "K13",
+      "required": false
+    },
+    {
+      "program": "GEOPET_KY_THUAT_DAU_KHI_2025_CTTA",
+      "block": "K13",
       "required": false
     }
   ],
@@ -19,6 +54,7 @@
     "theory"
   ],
   "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/GE4151",
   "note": "Nhập từ nguồn công khai (truy cập 03/10/2026).",
   "updated": "2026-10-04"
 }

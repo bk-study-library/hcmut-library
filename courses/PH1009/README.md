@@ -5,11 +5,12 @@
 | Mục | Thông tin |
 |---|---|
 | Mã môn | PH1009 |
-| Tên | Vật lý 1 / General Physics1 |
+| Tên | Vật lý 1 / General Physics 1 |
 | Tín chỉ | 4 |
-| Khoa | Khoa Khoa học Ứng dụng |
+| Khoa | Môn chung toàn trường |
 | Phần | Lý thuyết |
 | Trạng thái | Đang dạy |
+| Sổ tay HCMUT | [Trang môn trên Sổ tay HCMUT](https://hcmut.edu.vn/study/handbook/subject/PH1009) |
 
 ## Tài liệu
 

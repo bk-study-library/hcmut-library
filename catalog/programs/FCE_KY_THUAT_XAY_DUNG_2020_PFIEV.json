@@ -1,0 +1,364 @@
+{
+  "$schema": "../../schema/program.schema.json",
+  "code": "FCE_KY_THUAT_XAY_DUNG_2020_PFIEV",
+  "name": "Kỹ thuật Xây dựng",
+  "nameEn": "Civil Engineering",
+  "faculty": "fce",
+  "year": "2020",
+  "major": "7580201",
+  "type": "PFIEV",
+  "level": "dai-hoc",
+  "degree": "ky-su",
+  "totalCredits": 163,
+  "variant": "PFIEV (kỹ sư Việt Pháp)",
+  "note": "Chưa gán được học kỳ đề xuất cho chương trình này.",
+  "source": "https://hcmut.edu.vn/study/handbook/course/undergraduate/7580201?program=PFIEV",
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/undergraduate/7580201?program=PFIEV",
+  "blocks": [
+    {
+      "id": "K01",
+      "name": "A.1.1. TOÁN",
+      "group": "A. CÁC MÔN BẮT BUỘC > A.1. TOÁN & KHOA HỌC TỰ NHIÊN",
+      "kind": "toan-khtn",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "MT1011",
+        "MT1015",
+        "MT1013",
+        "MT2009",
+        "MT2007"
+      ]
+    },
+    {
+      "id": "K02",
+      "name": "A.2.4. NHẬP MÔN",
+      "group": "A. CÁC MÔN BẮT BUỘC > A.2. GIÁO DỤC CHUNG",
+      "kind": "giao-duc-chung",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "CI1001"
+      ]
+    },
+    {
+      "id": "K03",
+      "name": "A.1.2. KHOA HỌC TỰ NHIÊN",
+      "group": "A. CÁC MÔN BẮT BUỘC > A.1. TOÁN & KHOA HỌC TỰ NHIÊN",
+      "kind": "toan-khtn",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "PH1009",
+        "PH2007",
+        "CH1003",
+        "PH2005",
+        "AS2049"
+      ]
+    },
+    {
+      "id": "K04",
+      "name": "A.2.1. KINH TẾ - CHÍNH TRỊ - XÃ HỘI - LUẬT",
+      "group": "A. CÁC MÔN BẮT BUỘC > A.2. GIÁO DỤC CHUNG",
+      "kind": "ly-luan-chinh-tri",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "SP1039",
+        "SP1007",
+        "SP1031",
+        "SP1033",
+        "SP1035",
+        "SP1037"
+      ]
+    },
+    {
+      "id": "K05",
+      "name": "A.2.2. GIÁO DỤC CHUNG KHÁC",
+      "group": "A. CÁC MÔN BẮT BUỘC > A.2. GIÁO DỤC CHUNG",
+      "kind": "giao-duc-chung",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": []
+    },
+    {
+      "id": "K06",
+      "name": "A.2.2.3. GIÁO DỤC CHUNG KHÁC",
+      "group": "A. CÁC MÔN BẮT BUỘC > A.2. GIÁO DỤC CHUNG > A.2.2. GIÁO DỤC CHUNG KHÁC",
+      "kind": "giao-duc-chung",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "EN1003"
+      ]
+    },
+    {
+      "id": "K07",
+      "name": "A.3. CƠ SỞ NGÀNH/NGÀNH/CHUYÊN NGÀNH",
+      "group": "A. CÁC MÔN BẮT BUỘC",
+      "kind": "chuyen-nganh",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": []
+    },
+    {
+      "id": "K08",
+      "name": "A.3.1. CƠ SỞ NGÀNH/NGÀNH/CHUYÊN NGÀNH",
+      "group": "A. CÁC MÔN BẮT BUỘC > A.3. CƠ SỞ NGÀNH/NGÀNH/CHUYÊN NGÀNH",
+      "kind": "chuyen-nganh",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": []
+    },
+    {
+      "id": "K09",
+      "name": "A.3.1.1. CƠ SỞ NGÀNH",
+      "group": "A. CÁC MÔN BẮT BUỘC > A.3. CƠ SỞ NGÀNH/NGÀNH/CHUYÊN NGÀNH > A.3.1. CƠ SỞ NGÀNH/NGÀNH/CHUYÊN NGÀNH",
+      "kind": "co-so-nganh",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "CI2119",
+        "CI1033",
+        "CI2003",
+        "CI2095",
+        "CI2007",
+        "CI2137",
+        "CI2135",
+        "CI2131",
+        "CI2127",
+        "CI2129",
+        "CI2153",
+        "EE2031"
+      ]
+    },
+    {
+      "id": "K10",
+      "name": "A.3.1.3. CHUYÊN NGÀNH - PBL",
+      "group": "A. CÁC MÔN BẮT BUỘC > A.3. CƠ SỞ NGÀNH/NGÀNH/CHUYÊN NGÀNH > A.3.1. CƠ SỞ NGÀNH/NGÀNH/CHUYÊN NGÀNH",
+      "kind": "chuyen-nganh",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "CI5013",
+        "CI4211",
+        "CI5035"
+      ]
+    },
+    {
+      "id": "K11",
+      "name": "A.3.3. NHÓM TỰ CHỌN (CHỌN 21 TÍN CHỈ)",
+      "group": "A. CÁC MÔN BẮT BUỘC > A.3. CƠ SỞ NGÀNH/NGÀNH/CHUYÊN NGÀNH",
+      "kind": "chuyen-nganh",
+      "required": false,
+      "courses": []
+    },
+    {
+      "id": "K12",
+      "name": "A.3.1.2. CHUYÊN NGÀNH",
+      "group": "A. CÁC MÔN BẮT BUỘC > A.3. CƠ SỞ NGÀNH/NGÀNH/CHUYÊN NGÀNH > A.3.1. CƠ SỞ NGÀNH/NGÀNH/CHUYÊN NGÀNH",
+      "kind": "chuyen-nganh",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "CI3241",
+        "CI5003",
+        "CI5009",
+        "CI4203"
+      ]
+    },
+    {
+      "id": "K13",
+      "name": "A.3.3.1. TỰ CHỌN NHÓM A - CHUYÊN NGÀNH (CHỌN 3 TÍN CHỈ TRONG CÁC HỌC PHẦN SAU)",
+      "group": "A. CÁC MÔN BẮT BUỘC > A.3. CƠ SỞ NGÀNH/NGÀNH/CHUYÊN NGÀNH > A.3.3. NHÓM TỰ CHỌN (CHỌN 21 TÍN CHỈ)",
+      "kind": "chuyen-nganh",
+      "required": false,
+      "courses": [
+        "CI4193",
+        "CI4195"
+      ]
+    },
+    {
+      "id": "K14",
+      "name": "A.3.3.2. TỰ CHỌN NHÓM B - CHUYÊN NGÀNH PBL (CHỌN 3 TÍN CHỈ TRONG CÁC HỌC PHẦN SAU)",
+      "group": "A. CÁC MÔN BẮT BUỘC > A.3. CƠ SỞ NGÀNH/NGÀNH/CHUYÊN NGÀNH > A.3.3. NHÓM TỰ CHỌN (CHỌN 21 TÍN CHỈ)",
+      "kind": "chuyen-nganh",
+      "required": false,
+      "courses": [
+        "CI5007",
+        "CI5033"
+      ]
+    },
+    {
+      "id": "K15",
+      "name": "A.3.3.3. TỰ CHỌN NHÓM C - CHUYÊN NGÀNH PBL (CHỌN 3 TÍN CHỈ TRONG CÁC HỌC PHẦN SAU)",
+      "group": "A. CÁC MÔN BẮT BUỘC > A.3. CƠ SỞ NGÀNH/NGÀNH/CHUYÊN NGÀNH > A.3.3. NHÓM TỰ CHỌN (CHỌN 21 TÍN CHỈ)",
+      "kind": "chuyen-nganh",
+      "required": false,
+      "courses": [
+        "CI5011",
+        "CI5037"
+      ]
+    },
+    {
+      "id": "K16",
+      "name": "A.3.2. TỐT NGHIỆP BẬC KỸ SƯ",
+      "group": "A. CÁC MÔN BẮT BUỘC > A.3. CƠ SỞ NGÀNH/NGÀNH/CHUYÊN NGÀNH",
+      "kind": "tot-nghiep",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": []
+    },
+    {
+      "id": "K17",
+      "name": "A.3.2.1. THỰC TẬP & ĐỒ ÁN",
+      "group": "A. CÁC MÔN BẮT BUỘC > A.3. CƠ SỞ NGÀNH/NGÀNH/CHUYÊN NGÀNH > A.3.2. TỐT NGHIỆP BẬC KỸ SƯ",
+      "kind": "tot-nghiep",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "CI3395",
+        "CI5001",
+        "CI4395"
+      ]
+    },
+    {
+      "id": "K18",
+      "name": "A.3.3.5. TỰ CHỌN TỰ DO (CHỌN 9 TÍN CHỈ)",
+      "group": "A. CÁC MÔN BẮT BUỘC > A.3. CƠ SỞ NGÀNH/NGÀNH/CHUYÊN NGÀNH > A.3.3. NHÓM TỰ CHỌN (CHỌN 21 TÍN CHỈ)",
+      "kind": "tu-chon-tu-do",
+      "required": false,
+      "courses": []
+    },
+    {
+      "id": "K19",
+      "name": "C. CHỨNG CHỈ GIÁO DỤC THỂ CHẤT",
+      "kind": "the-chat",
+      "required": true,
+      "courses": [
+        "CCGDTC"
+      ]
+    },
+    {
+      "id": "K20",
+      "name": "D. CHỨNG CHỈ GIÁO DỤC QUỐC PHÒNG",
+      "kind": "quoc-phong",
+      "required": true,
+      "courses": [
+        "MI1003"
+      ]
+    },
+    {
+      "id": "K21",
+      "name": "B . ĐIỀU KIỆN TỐT NGHIỆP",
+      "kind": "dieu-kien-tot-nghiep",
+      "required": true,
+      "courses": [
+        "SA4001",
+        "ENG_GT_700",
+        "FRA_GC"
+      ]
+    },
+    {
+      "id": "K22",
+      "name": "A. CÁC MÔN BẮT BUỘC",
+      "kind": "khac",
+      "required": true,
+      "courses": []
+    },
+    {
+      "id": "K23",
+      "name": "A.1. TOÁN & KHOA HỌC TỰ NHIÊN",
+      "group": "A. CÁC MÔN BẮT BUỘC",
+      "kind": "toan-khtn",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": []
+    },
+    {
+      "id": "K24",
+      "name": "A.1.3. CÁC MÔN TOÁN VÀ KHOA HỌC TỰ NHIÊN KHÁC",
+      "group": "A. CÁC MÔN BẮT BUỘC > A.1. TOÁN & KHOA HỌC TỰ NHIÊN",
+      "kind": "toan-khtn",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "MT2011"
+      ]
+    },
+    {
+      "id": "K25",
+      "name": "A.2. GIÁO DỤC CHUNG",
+      "group": "A. CÁC MÔN BẮT BUỘC",
+      "kind": "giao-duc-chung",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": []
+    },
+    {
+      "id": "K26",
+      "name": "A.2.2.2. GIÁO DỤC QUỐC PHÒNG",
+      "group": "A. CÁC MÔN BẮT BUỘC > A.2. GIÁO DỤC CHUNG > A.2.2. GIÁO DỤC CHUNG KHÁC",
+      "kind": "quoc-phong",
+      "required": true,
+      "courses": [
+        "MI1003"
+      ]
+    },
+    {
+      "id": "K27",
+      "name": "A.2.2.1. GIÁO DỤC THỂ CHẤT",
+      "group": "A. CÁC MÔN BẮT BUỘC > A.2. GIÁO DỤC CHUNG > A.2.2. GIÁO DỤC CHUNG KHÁC",
+      "kind": "the-chat",
+      "required": false,
+      "courses": [
+        "PE1003",
+        "PE1005",
+        "PE1007"
+      ]
+    },
+    {
+      "id": "K28",
+      "name": "A.3.2.2. ĐỒ ÁN TỐT NGHIỆP",
+      "group": "A. CÁC MÔN BẮT BUỘC > A.3. CƠ SỞ NGÀNH/NGÀNH/CHUYÊN NGÀNH > A.3.2. TỐT NGHIỆP BẬC KỸ SƯ",
+      "kind": "tot-nghiep",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "CI5027"
+      ]
+    },
+    {
+      "id": "K29",
+      "name": "A.2.3. NGOẠI NGỮ",
+      "group": "A. CÁC MÔN BẮT BUỘC > A.2. GIÁO DỤC CHUNG",
+      "kind": "ngoai-ngu",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "LA1003",
+        "LA1005",
+        "LA1007",
+        "LA1009",
+        "LA1011",
+        "LA1013",
+        "LA1015",
+        "LA1017",
+        "LA3021",
+        "LA3023"
+      ]
+    },
+    {
+      "id": "K30",
+      "name": "A.3.3.4. TỰ CHỌN QUẢN LÝ (CHỌN 3 TÍN CHỈ TRONG CÁC HỌC PHẦN SAU)",
+      "group": "A. CÁC MÔN BẮT BUỘC > A.3. CƠ SỞ NGÀNH/NGÀNH/CHUYÊN NGÀNH > A.3.3. NHÓM TỰ CHỌN (CHỌN 21 TÍN CHỈ)",
+      "kind": "giao-duc-chung",
+      "required": false,
+      "courses": [
+        "CI4181",
+        "CI4183"
+      ]
+    }
+  ],
+  "updated": "2026-10-04"
+}

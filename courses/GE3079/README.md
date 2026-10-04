@@ -10,6 +10,7 @@
 | Khoa | Khoa Kỹ thuật Địa chất và Dầu khí |
 | Phần | Lý thuyết |
 | Trạng thái | Đang dạy |
+| Sổ tay HCMUT | [Trang môn trên Sổ tay HCMUT](https://hcmut.edu.vn/study/handbook/subject/GE3079) |
 | Môn liên quan | [GE3203](../GE3203/README.md) ứng dụng GIS và viễn thám trong quản lý tài nguyên |
 
 ## Tài liệu

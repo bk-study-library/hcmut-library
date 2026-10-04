@@ -10,6 +10,7 @@
 | Khoa | Khoa Kỹ thuật Địa chất và Dầu khí |
 | Phần | Lý thuyết |
 | Trạng thái | Đang dạy |
+| Sổ tay HCMUT | [Trang môn trên Sổ tay HCMUT](https://hcmut.edu.vn/study/handbook/subject/GE3213) |
 | Môn liên quan | [GE3141](../GE3141/README.md) Địa thống kê, [GE3215](../GE3215/README.md) Địa thống kê ứng dụng |
 
 ## Tài liệu

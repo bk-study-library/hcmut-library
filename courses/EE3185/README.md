@@ -1,15 +1,16 @@
-# EE3185 Đồ án 1 (Kt điều khiển và tự động hóa)
+# EE3185 Đồ án 1 (Kỹ thuật Điều khiển và Tự động hóa)
 
 <!-- File này do "npm run build" sinh từ catalog/courses/EE3185.json và items/. Chỉ sửa phần Mẹo học, giữa hai dòng meo-hoc. -->
 
 | Mục | Thông tin |
 |---|---|
 | Mã môn | EE3185 |
-| Tên | Đồ án 1 (Kt điều khiển và tự động hóa) / Project 1 |
+| Tên | Đồ án 1 (Kỹ thuật Điều khiển và Tự động hóa) / Project 1 |
 | Tín chỉ | 1 |
 | Khoa | Khoa Điện - Điện tử |
 | Phần | Đồ án |
 | Trạng thái | Đang dạy |
+| Sổ tay HCMUT | [Trang môn trên Sổ tay HCMUT](https://hcmut.edu.vn/study/handbook/subject/EE3185) |
 
 ## Tài liệu
 

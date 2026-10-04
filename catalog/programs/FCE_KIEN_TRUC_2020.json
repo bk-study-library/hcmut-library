@@ -1,0 +1,205 @@
+{
+  "$schema": "../../schema/program.schema.json",
+  "code": "FCE_KIEN_TRUC_2020",
+  "name": "Kiến trúc",
+  "nameEn": "Architecture",
+  "faculty": "fce",
+  "year": "2020",
+  "major": "7580101",
+  "type": "CQ",
+  "level": "dai-hoc",
+  "totalCredits": 132,
+  "note": "Sổ tay không có năm này cho ngành và loại chương trình này. Danh sách môn lấy từ Kế hoạch giảng dạy (PDF), khối là học kỳ chứ không phải khối kiến thức; tên khối kiến thức, bắt buộc hay tự chọn chưa có.",
+  "source": "https://drive.google.com/file/d/1G1SQtXd6JRr0RMeqOYEyh59MFYrGBaz5/view",
+  "ctdtUrl": "https://drive.google.com/file/d/1QMnkixj4v7g-57vyZq6VOL9hSGgoV8gW/view",
+  "planUrl": "https://drive.google.com/file/d/1G1SQtXd6JRr0RMeqOYEyh59MFYrGBaz5/view",
+  "blocks": [
+    {
+      "id": "K01",
+      "name": "Học kỳ 1",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "MI1003",
+        "MT1003",
+        "LA1003",
+        "PE1003",
+        "PH1003",
+        "PH1007",
+        "MT1007",
+        "CI1065"
+      ],
+      "semesters": {
+        "MI1003": 1,
+        "MT1003": 1,
+        "LA1003": 1,
+        "PE1003": 1,
+        "PH1003": 1,
+        "PH1007": 1,
+        "MT1007": 1,
+        "CI1065": 1
+      }
+    },
+    {
+      "id": "K02",
+      "name": "Học kỳ 2",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "PE1005",
+        "MT1005",
+        "LA1005",
+        "CH1003",
+        "CI1069",
+        "CI1067"
+      ],
+      "semesters": {
+        "PE1005": 2,
+        "MT1005": 2,
+        "LA1005": 2,
+        "CH1003": 2,
+        "CI1069": 2,
+        "CI1067": 2
+      }
+    },
+    {
+      "id": "K03",
+      "name": "Học kỳ 3",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "PE1007",
+        "MT2013",
+        "LA1007",
+        "SP1007",
+        "CI2097",
+        "CI2099",
+        "CI2101"
+      ],
+      "semesters": {
+        "PE1007": 3,
+        "MT2013": 3,
+        "LA1007": 3,
+        "SP1007": 3,
+        "CI2097": 3,
+        "CI2099": 3,
+        "CI2101": 3
+      }
+    },
+    {
+      "id": "K04",
+      "name": "Học kỳ 4",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "MT1009",
+        "SP1031",
+        "LA1009",
+        "CI2103",
+        "CI2105",
+        "CI2107"
+      ],
+      "semesters": {
+        "MT1009": 4,
+        "SP1031": 4,
+        "LA1009": 4,
+        "CI2103": 4,
+        "CI2105": 4,
+        "CI2107": 4
+      }
+    },
+    {
+      "id": "K05",
+      "name": "Học kỳ 5",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "SP1033",
+        "CI3269",
+        "CI3271",
+        "CI3249",
+        "CI3273"
+      ],
+      "semesters": {
+        "SP1033": 5,
+        "CI3269": 5,
+        "CI3271": 5,
+        "CI3249": 5,
+        "CI3273": 5
+      }
+    },
+    {
+      "id": "K06",
+      "name": "Học kỳ 6",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "SP1035",
+        "CI2111",
+        "CI2113",
+        "CI3151",
+        "CI3279",
+        "CI3485"
+      ],
+      "semesters": {
+        "SP1035": 6,
+        "CI2111": 6,
+        "CI2113": 6,
+        "CI3151": 6,
+        "CI3279": 6,
+        "CI3485": 6
+      }
+    },
+    {
+      "id": "K07",
+      "name": "Học kỳ 7",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "SP1039",
+        "CI3163",
+        "CI2115",
+        "CI4177",
+        "CI4179"
+      ],
+      "semesters": {
+        "SP1039": 7,
+        "CI3163": 7,
+        "CI2115": 7,
+        "CI4177": 7,
+        "CI4179": 7
+      }
+    },
+    {
+      "id": "K08",
+      "name": "Học kỳ 8",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "SP1037",
+        "EN1003",
+        "CI2117",
+        "CI4487",
+        "CI4181",
+        "CI4183"
+      ],
+      "semesters": {
+        "SP1037": 8,
+        "EN1003": 8,
+        "CI2117": 8,
+        "CI4487": 8,
+        "CI4181": 8,
+        "CI4183": 8
+      }
+    }
+  ],
+  "updated": "2026-10-04"
+}

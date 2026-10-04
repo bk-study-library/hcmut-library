@@ -1,0 +1,100 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "CI4235",
+  "code": "CI4235",
+  "name": "Đồ án chuyên ngành",
+  "nameEn": "Project",
+  "credits": 2,
+  "faculty": "fce",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "FCE_KIEN_TRUC_2021",
+      "block": "K07",
+      "required": false
+    },
+    {
+      "program": "FCE_KIEN_TRUC_2022",
+      "block": "K07",
+      "required": false
+    },
+    {
+      "program": "FCE_KIEN_TRUC_2023",
+      "block": "K07",
+      "required": false
+    },
+    {
+      "program": "FCE_KIEN_TRUC_2024",
+      "block": "K17",
+      "required": true
+    },
+    {
+      "program": "FCE_KIEN_TRUC_2024_CTTA",
+      "block": "K18",
+      "required": true
+    },
+    {
+      "program": "FCE_KIEN_TRUC_2025_CTTA",
+      "block": "K18",
+      "required": true
+    },
+    {
+      "program": "FCE_KIEN_TRUC_2026",
+      "block": "K19",
+      "required": true
+    },
+    {
+      "program": "FCE_KIEN_TRUC_2026_CTTA",
+      "block": "K19",
+      "required": true
+    },
+    {
+      "program": "FCE_KIEN_TRUC_7580101X_2021",
+      "block": "K04",
+      "required": false
+    },
+    {
+      "program": "FCE_KIEN_TRUC_7580101X_2021",
+      "block": "K18",
+      "required": true
+    },
+    {
+      "program": "FCE_KIEN_TRUC_7580101X_2021",
+      "block": "K20",
+      "required": true
+    },
+    {
+      "program": "FCE_KIEN_TRUC_7580101X_2022",
+      "block": "K06",
+      "required": true
+    },
+    {
+      "program": "FCE_KIEN_TRUC_7580101X_2022",
+      "block": "K08",
+      "required": true
+    },
+    {
+      "program": "FCE_KIEN_TRUC_7580101X_2024",
+      "block": "K07",
+      "required": false
+    },
+    {
+      "program": "FCE_KIEN_TRUC_7580101X_2024",
+      "block": "K08",
+      "required": false
+    },
+    {
+      "program": "FCE_KIEN_TRUC_7580101X_2024",
+      "block": "K12",
+      "required": false
+    }
+  ],
+  "parts": [
+    "project"
+  ],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/CI4235",
+  "note": "Nhập từ CTĐT chính thức (Sổ tay HCMUT, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

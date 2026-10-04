@@ -19,38 +19,28 @@
   ],
   "programs": [
     {
+      "program": "GEOPET_KY_THUAT_DAU_KHI_GEOPET_COURSE_LIST",
+      "block": "K07",
+      "required": false
+    },
+    {
+      "program": "GEOPET_KY_THUAT_DAU_KHI_2019",
+      "block": "K05",
+      "required": false
+    },
+    {
+      "program": "GEOPET_KY_THUAT_DAU_KHI_2020",
+      "block": "K05",
+      "required": false
+    },
+    {
       "program": "GEOPET_KY_THUAT_DAU_KHI_2021",
-      "block": "K12",
-      "required": false
-    },
-    {
-      "program": "GEOPET_KY_THUAT_DAU_KHI_2020",
-      "block": "K04",
-      "required": false
-    },
-    {
-      "program": "GEOPET_KY_THUAT_DAU_KHI_2020",
-      "block": "K08",
+      "block": "K05",
       "required": false
     },
     {
       "program": "GEOPET_KY_THUAT_DAU_KHI_2022",
-      "block": "K12",
-      "required": false
-    },
-    {
-      "program": "GEOPET_KY_THUAT_DAU_KHI_2019",
-      "block": "K04",
-      "required": false
-    },
-    {
-      "program": "GEOPET_KY_THUAT_DAU_KHI_2019",
-      "block": "K08",
-      "required": false
-    },
-    {
-      "program": "GEOPET_KY_THUAT_DAU_KHI_GEOPET_COURSE_LIST",
-      "block": "K07",
+      "block": "K05",
       "required": false
     }
   ],
@@ -58,6 +48,7 @@
     "theory"
   ],
   "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/GE3163",
   "note": "Nhập từ nguồn công khai (truy cập 03/10/2026).",
   "updated": "2026-10-04"
 }

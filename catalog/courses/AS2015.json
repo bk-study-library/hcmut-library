@@ -1,0 +1,35 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "AS2015",
+  "code": "AS2015",
+  "name": "Thực tập cơ kỹ thuật 1",
+  "nameEn": "Engineering Mechanics Workshop 1",
+  "credits": 1,
+  "faculty": "fas",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "FAS_CO_KY_THUAT_2019",
+      "block": "K05",
+      "required": false
+    },
+    {
+      "program": "FAS_CO_KY_THUAT_2020",
+      "block": "K05",
+      "required": false
+    },
+    {
+      "program": "FAS_CO_KY_THUAT_2021",
+      "block": "K05",
+      "required": false
+    }
+  ],
+  "parts": [
+    "lab"
+  ],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/AS2015",
+  "note": "Nhập từ Kế hoạch giảng dạy (PDF của trường, truy cập 04/10/2026). Tên lấy từ PDF. Chờ người duyệt xác nhận.",
+  "updated": "2026-10-04"
+}

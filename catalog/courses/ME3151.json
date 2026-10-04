@@ -3,67 +3,48 @@
   "id": "ME3151",
   "code": "ME3151",
   "name": "Đồ án thiết kế - hướng thiết bị lạnh",
-  "nameEn": "Design Project - Ref rigeration Equipment Orientation",
+  "nameEn": "Design Project - Refrigeration Equipment Orientation",
   "credits": 2,
   "faculty": "fme",
   "aliases": [],
   "status": "active",
   "programs": [
     {
-      "program": "FME_KY_THUAT_NHIET_2020",
-      "block": "K02",
+      "program": "FME_KY_THUAT_NHIET_2019",
+      "block": "K06",
       "required": false
     },
     {
       "program": "FME_KY_THUAT_NHIET_2020",
-      "block": "K03",
+      "block": "K06",
       "required": false
     },
     {
       "program": "FME_KY_THUAT_NHIET_2021",
-      "block": "K11",
-      "required": false
-    },
-    {
-      "program": "FME_KY_THUAT_NHIET_2021",
-      "block": "K14",
+      "block": "K06",
       "required": false
     },
     {
       "program": "FME_KY_THUAT_NHIET_2022",
-      "block": "K11",
+      "block": "K06",
       "required": false
     },
     {
-      "program": "FME_KY_THUAT_NHIET_2022",
-      "block": "K14",
+      "program": "FME_KY_THUAT_NHIET_2023",
+      "block": "K06",
       "required": false
     },
     {
       "program": "FME_KY_THUAT_NHIET_2024",
-      "block": "K16",
+      "block": "K14",
       "required": true
-    },
-    {
-      "program": "FME_KY_THUAT_NHIET_2023",
-      "block": "K11",
-      "required": false
-    },
-    {
-      "program": "FME_KY_THUAT_NHIET_2019",
-      "block": "K02",
-      "required": false
-    },
-    {
-      "program": "FME_KY_THUAT_NHIET_2019",
-      "block": "K03",
-      "required": false
     }
   ],
   "parts": [
     "project"
   ],
   "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/ME3151",
   "note": "Nhập từ nguồn công khai (truy cập 03/10/2026).",
   "updated": "2026-10-04"
 }

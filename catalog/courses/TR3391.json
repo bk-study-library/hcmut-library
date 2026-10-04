@@ -1,0 +1,17 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "TR3391",
+  "code": "TR3391",
+  "name": "Thực tập ngoài trường",
+  "nameEn": "Intership",
+  "credits": 2,
+  "faculty": "fte",
+  "aliases": [],
+  "status": "active",
+  "programs": [],
+  "parts": [],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/TR3391",
+  "note": "Nhập từ Kế hoạch giảng dạy (PDF của trường, truy cập 04/10/2026). Tên lấy từ PDF. Chờ người duyệt xác nhận.",
+  "updated": "2026-10-04"
+}

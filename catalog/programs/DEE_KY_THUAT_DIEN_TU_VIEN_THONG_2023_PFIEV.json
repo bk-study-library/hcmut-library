@@ -1,0 +1,271 @@
+{
+  "$schema": "../../schema/program.schema.json",
+  "code": "DEE_KY_THUAT_DIEN_TU_VIEN_THONG_2023_PFIEV",
+  "name": "Kỹ thuật Điện tử - Viễn thông",
+  "nameEn": "Electronics - Telecommunications Engineering",
+  "faculty": "dee",
+  "year": "2023",
+  "major": "7520207",
+  "type": "PFIEV",
+  "level": "dai-hoc",
+  "variant": "PFIEV (kỹ sư Việt Pháp)",
+  "note": "Sổ tay không có năm này cho ngành và loại chương trình này. Danh sách môn lấy từ Kế hoạch giảng dạy (PDF), khối là học kỳ chứ không phải khối kiến thức; tên khối kiến thức, bắt buộc hay tự chọn chưa có.",
+  "source": "https://drive.google.com/file/d/1bytpt6c5iv2zOGRHsDqw9Gbl2zi1nMDz/view",
+  "ctdtUrl": "https://drive.google.com/file/d/1CBX__Z9DxrlKDTXmnBxZxUrNpgA5rvaM/view",
+  "planUrl": "https://drive.google.com/file/d/1bytpt6c5iv2zOGRHsDqw9Gbl2zi1nMDz/view",
+  "blocks": [
+    {
+      "id": "K01",
+      "name": "Học kỳ 1",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "CH1003",
+        "LA1011",
+        "LA1003",
+        "MT1011",
+        "MT1015",
+        "PE1003",
+        "EE1001"
+      ],
+      "semesters": {
+        "CH1003": 1,
+        "LA1011": 1,
+        "LA1003": 1,
+        "MT1011": 1,
+        "MT1015": 1,
+        "PE1003": 1,
+        "EE1001": 1
+      }
+    },
+    {
+      "id": "K02",
+      "name": "Học kỳ 2",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "EN1003",
+        "LA1013",
+        "PH1009",
+        "LA1005",
+        "MT1013",
+        "SP1007",
+        "PE1005",
+        "MI1003"
+      ],
+      "semesters": {
+        "EN1003": 2,
+        "LA1013": 2,
+        "PH1009": 2,
+        "LA1005": 2,
+        "MT1013": 2,
+        "SP1007": 2,
+        "PE1005": 2,
+        "MI1003": 2
+      }
+    },
+    {
+      "id": "K03",
+      "name": "Học kỳ 3",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "PH2005",
+        "PH2007",
+        "MT2007",
+        "LA1015",
+        "LA1007",
+        "MT2009"
+      ],
+      "semesters": {
+        "PH2005": 3,
+        "PH2007": 3,
+        "MT2007": 3,
+        "LA1015": 3,
+        "LA1007": 3,
+        "MT2009": 3
+      }
+    },
+    {
+      "id": "K04",
+      "name": "Học kỳ 4",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "SP1031",
+        "LA1017",
+        "EE2031",
+        "AS2047",
+        "MT2011",
+        "LA1009",
+        "EE2109"
+      ],
+      "semesters": {
+        "SP1031": 4,
+        "LA1017": 4,
+        "EE2031": 4,
+        "AS2047": 4,
+        "MT2011": 4,
+        "LA1009": 4,
+        "EE2109": 4
+      }
+    },
+    {
+      "id": "K05",
+      "name": "Học kỳ 5",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "CI1003",
+        "SP1033",
+        "LA3021",
+        "EE2003",
+        "EE1009",
+        "IM1021"
+      ],
+      "semesters": {
+        "CI1003": 5,
+        "SP1033": 5,
+        "LA3021": 5,
+        "EE2003": 5,
+        "EE1009": 5,
+        "IM1021": 5
+      }
+    },
+    {
+      "id": "K06",
+      "name": "Học kỳ 6",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "SP1035",
+        "LA3023",
+        "EE3189",
+        "EE2039",
+        "EE2009",
+        "EE3385"
+      ],
+      "semesters": {
+        "SP1035": 6,
+        "LA3023": 6,
+        "EE3189": 6,
+        "EE2039": 6,
+        "EE2009": 6,
+        "EE3385": 6
+      }
+    },
+    {
+      "id": "K07",
+      "name": "Học kỳ 7",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "SP1039",
+        "EE2005",
+        "EE4051",
+        "EE4053"
+      ],
+      "semesters": {
+        "SP1039": 7,
+        "EE2005": 7,
+        "EE4051": 7,
+        "EE4053": 7
+      }
+    },
+    {
+      "id": "K08",
+      "name": "Học kỳ 8",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "SP1037",
+        "EE2015",
+        "EE3015",
+        "EE3019",
+        "EE4057",
+        "EE4385"
+      ],
+      "semesters": {
+        "SP1037": 8,
+        "EE2015": 8,
+        "EE3015": 8,
+        "EE3019": 8,
+        "EE4057": 8,
+        "EE4385": 8
+      }
+    },
+    {
+      "id": "K09",
+      "name": "Học kỳ 9",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "EE5001",
+        "EE5013",
+        "EE5015",
+        "EE5019",
+        "EE3127",
+        "EE4067",
+        "EE3085",
+        "EE3035",
+        "EE3125",
+        "EE3031",
+        "EE3037",
+        "EE3041",
+        "EE3043",
+        "EE3111",
+        "EE3117",
+        "EE3121",
+        "EE3129",
+        "EE3167",
+        "EE3169",
+        "EE3177"
+      ],
+      "semesters": {
+        "EE5001": 9,
+        "EE5013": 9,
+        "EE5015": 9,
+        "EE5019": 9,
+        "EE3127": 9,
+        "EE4067": 9,
+        "EE3085": 9,
+        "EE3035": 9,
+        "EE3125": 9,
+        "EE3031": 9,
+        "EE3037": 9,
+        "EE3041": 9,
+        "EE3043": 9,
+        "EE3111": 9,
+        "EE3117": 9,
+        "EE3121": 9,
+        "EE3129": 9,
+        "EE3167": 9,
+        "EE3169": 9,
+        "EE3177": 9
+      }
+    },
+    {
+      "id": "K10",
+      "name": "Học kỳ 10",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "EE5017"
+      ],
+      "semesters": {
+        "EE5017": 10
+      }
+    }
+  ],
+  "updated": "2026-10-04"
+}

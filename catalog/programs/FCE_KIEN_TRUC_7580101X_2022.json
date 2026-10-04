@@ -1,0 +1,305 @@
+{
+  "$schema": "../../schema/program.schema.json",
+  "code": "FCE_KIEN_TRUC_7580101X_2022",
+  "name": "Kiến trúc",
+  "nameEn": "Architecture",
+  "faculty": "fce",
+  "year": "2022",
+  "major": "7580101x",
+  "type": "CQ",
+  "level": "dai-hoc",
+  "degree": "cu-nhan",
+  "totalCredits": 132,
+  "note": "Mã ngành trên Sổ tay là biến thể 7580101x; liên kết PDF lấy theo mã 7580101.",
+  "source": "https://hcmut.edu.vn/study/handbook/course/undergraduate/7580101x?program=CQ",
+  "ctdtUrl": "https://drive.google.com/file/d/18K536MKiLhqGFmaOeKN4W4kQd5n4aQFY/view",
+  "planUrl": "https://drive.google.com/file/d/1SbaY4KviQh243AVmScaUek3hz3bjTnzE/view",
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/undergraduate/7580101x?program=CQ",
+  "blocks": [
+    {
+      "id": "K01",
+      "name": "A.2. KINH TẾ, CHÍNH TRỊ, XÃ HỘI, LUẬT",
+      "group": "A. CÁC MÔN BẮT BUỘC",
+      "kind": "ly-luan-chinh-tri",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "SP1007",
+        "SP1031",
+        "SP1033",
+        "SP1035",
+        "SP1039",
+        "SP1037",
+        "EN1003"
+      ],
+      "semesters": {
+        "SP1007": 3,
+        "SP1031": 4,
+        "SP1033": 5,
+        "SP1035": 6,
+        "SP1039": 7,
+        "SP1037": 8,
+        "EN1003": 8
+      }
+    },
+    {
+      "id": "K02",
+      "name": "B. CÁC MÔN CHUYÊN NGÀNH",
+      "kind": "chuyen-nganh",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": []
+    },
+    {
+      "id": "K03",
+      "name": "C. TỐT NGHIỆP",
+      "kind": "tot-nghiep",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "CI3485",
+        "CI3249",
+        "CI4487"
+      ],
+      "semesters": {
+        "CI3485": 6,
+        "CI3249": 8,
+        "CI4487": 8
+      }
+    },
+    {
+      "id": "K04",
+      "name": "A.6. CƠ SỞ NGÀNH KIẾN TRÚC",
+      "group": "A. CÁC MÔN BẮT BUỘC",
+      "kind": "co-so-nganh",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "CI1065",
+        "CI1067",
+        "CI2009",
+        "CI2101",
+        "CI2097",
+        "CI2105",
+        "CI2103",
+        "CI2111",
+        "CI3293",
+        "CI2113",
+        "CI2115"
+      ],
+      "semesters": {
+        "CI1065": 1,
+        "CI1067": 2,
+        "CI2101": 3,
+        "CI2097": 3,
+        "CI2105": 4,
+        "CI2103": 4,
+        "CI2111": 5,
+        "CI3293": 6,
+        "CI2115": 7
+      }
+    },
+    {
+      "id": "K05",
+      "name": "B.1. KIẾN TRÚC",
+      "group": "B. CÁC MÔN CHUYÊN NGÀNH",
+      "kind": "chuyen-nganh",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": []
+    },
+    {
+      "id": "K06",
+      "name": "B.1.1. CÁC MÔN BẮT BUỘC",
+      "group": "B. CÁC MÔN CHUYÊN NGÀNH > B.1. KIẾN TRÚC",
+      "kind": "chuyen-nganh",
+      "required": true,
+      "courses": [
+        "CI3285",
+        "CI3279",
+        "CI3269",
+        "CI4177",
+        "CI4235",
+        "CI3163"
+      ],
+      "semesters": {
+        "CI3285": 5,
+        "CI3269": 7,
+        "CI4177": 7,
+        "CI4235": 7,
+        "CI3163": 8
+      }
+    },
+    {
+      "id": "K07",
+      "name": "B.2. KIẾN TRÚC CẢNH QUAN",
+      "group": "B. CÁC MÔN CHUYÊN NGÀNH",
+      "kind": "chuyen-nganh",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": []
+    },
+    {
+      "id": "K08",
+      "name": "B.2.1. CÁC MÔN BẮT BUỘC",
+      "group": "B. CÁC MÔN CHUYÊN NGÀNH > B.2. KIẾN TRÚC CẢNH QUAN",
+      "kind": "chuyen-nganh",
+      "required": true,
+      "courses": [
+        "CI3287",
+        "CI3295",
+        "CI4205",
+        "CI4207",
+        "CI4235",
+        "CI4209"
+      ],
+      "semesters": {
+        "CI3287": 5,
+        "CI3295": 6,
+        "CI4205": 7,
+        "CI4207": 7,
+        "CI4235": 7,
+        "CI4209": 8
+      }
+    },
+    {
+      "id": "K09",
+      "name": "B.1.2. TỰ CHỌN NHÓM A",
+      "group": "B. CÁC MÔN CHUYÊN NGÀNH > B.1. KIẾN TRÚC",
+      "kind": "chuyen-nganh",
+      "required": false,
+      "courses": [
+        "CI3243",
+        "CI4201",
+        "CI4161"
+      ]
+    },
+    {
+      "id": "K10",
+      "name": "B.1.3. TỰ CHỌN NHÓM B",
+      "group": "B. CÁC MÔN CHUYÊN NGÀNH > B.1. KIẾN TRÚC",
+      "kind": "chuyen-nganh",
+      "required": false,
+      "courses": [
+        "CI3289",
+        "CI3291",
+        "IM1031",
+        "ME1019"
+      ],
+      "semesters": {
+        "CI3289": 5,
+        "CI3291": 5
+      }
+    },
+    {
+      "id": "K11",
+      "name": "B.2.2. TỰ CHỌN NHÓM A",
+      "group": "B. CÁC MÔN CHUYÊN NGÀNH > B.2. KIẾN TRÚC CẢNH QUAN",
+      "kind": "chuyen-nganh",
+      "required": false,
+      "courses": [
+        "CI3013",
+        "CI3301",
+        "CI4146"
+      ]
+    },
+    {
+      "id": "K12",
+      "name": "B.2.3. TỰ CHỌN NHÓM B",
+      "group": "B. CÁC MÔN CHUYÊN NGÀNH > B.2. KIẾN TRÚC CẢNH QUAN",
+      "kind": "chuyen-nganh",
+      "required": false,
+      "courses": [
+        "CI3289",
+        "CI3291"
+      ],
+      "semesters": {
+        "CI3289": 5,
+        "CI3291": 5
+      }
+    },
+    {
+      "id": "K13",
+      "name": "A.1. TOÁN VÀ KHOA HỌC TỰ NHIÊN",
+      "group": "A. CÁC MÔN BẮT BUỘC",
+      "kind": "toan-khtn",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "MT1003",
+        "MT1007",
+        "PH1003",
+        "PH1007",
+        "MT1005",
+        "CH1003",
+        "MT2013",
+        "MT1009",
+        "CI1069"
+      ],
+      "semesters": {
+        "MT1003": 1,
+        "MT1007": 1,
+        "PH1003": 1,
+        "PH1007": 1,
+        "MT1005": 2,
+        "CH1003": 2,
+        "MT2013": 3,
+        "MT1009": 4,
+        "CI1069": 2
+      }
+    },
+    {
+      "id": "K14",
+      "name": "A.4. GIÁO DỤC QUỐC PHÒNG",
+      "group": "A. CÁC MÔN BẮT BUỘC",
+      "kind": "quoc-phong",
+      "required": true,
+      "courses": [
+        "MI1003"
+      ],
+      "semesters": {
+        "MI1003": 2
+      }
+    },
+    {
+      "id": "K15",
+      "name": "A.3. GIÁO DỤC THỂ CHẤT",
+      "group": "A. CÁC MÔN BẮT BUỘC",
+      "kind": "the-chat",
+      "required": false,
+      "courses": [
+        "PE1003",
+        "PE1005",
+        "PE1007"
+      ]
+    },
+    {
+      "id": "K16",
+      "name": "A.5. NGOẠI NGỮ",
+      "group": "A. CÁC MÔN BẮT BUỘC",
+      "kind": "ngoai-ngu",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "LA1003",
+        "LA1005",
+        "LA1007",
+        "LA1009"
+      ],
+      "semesters": {
+        "LA1003": 1,
+        "LA1005": 2,
+        "LA1007": 3,
+        "LA1009": 4
+      }
+    },
+    {
+      "id": "K17",
+      "name": "A. CÁC MÔN BẮT BUỘC",
+      "kind": "khac",
+      "required": true,
+      "courses": []
+    }
+  ],
+  "updated": "2026-10-04"
+}

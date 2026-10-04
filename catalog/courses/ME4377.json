@@ -10,14 +10,29 @@
   "status": "active",
   "programs": [
     {
+      "program": "FME_LOGISTICS_VA_QUAN_LY_CHUOI_CUNG_UNG_2019",
+      "block": "K08",
+      "required": false
+    },
+    {
       "program": "FME_LOGISTICS_VA_QUAN_LY_CHUOI_CUNG_UNG_2020",
-      "block": "K02",
+      "block": "K08",
       "required": false
     },
     {
       "program": "FME_LOGISTICS_VA_QUAN_LY_CHUOI_CUNG_UNG_2021",
-      "block": "K13",
-      "required": true
+      "block": "K08",
+      "required": false
+    },
+    {
+      "program": "FME_LOGISTICS_VA_QUAN_LY_CHUOI_CUNG_UNG_2022",
+      "block": "K08",
+      "required": false
+    },
+    {
+      "program": "FME_LOGISTICS_VA_QUAN_LY_CHUOI_CUNG_UNG_2023",
+      "block": "K08",
+      "required": false
     },
     {
       "program": "FME_LOGISTICS_VA_QUAN_LY_CHUOI_CUNG_UNG_2024",
@@ -25,25 +40,21 @@
       "required": true
     },
     {
-      "program": "FME_LOGISTICS_VA_QUAN_LY_CHUOI_CUNG_UNG_2023",
-      "block": "K13",
+      "program": "SIM_LOGISTICS_VA_QUAN_LY_CHUOI_CUNG_UNG_2024_CTTA",
+      "block": "K15",
       "required": true
     },
     {
-      "program": "FME_LOGISTICS_VA_QUAN_LY_CHUOI_CUNG_UNG_2022",
-      "block": "K13",
+      "program": "SIM_LOGISTICS_VA_QUAN_LY_CHUOI_CUNG_UNG_2025_CTTA",
+      "block": "K15",
       "required": true
-    },
-    {
-      "program": "FME_LOGISTICS_VA_QUAN_LY_CHUOI_CUNG_UNG_2019",
-      "block": "K02",
-      "required": false
     }
   ],
   "parts": [
     "project"
   ],
   "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/ME4377",
   "note": "Nhập từ nguồn công khai (truy cập 03/10/2026).",
   "updated": "2026-10-04"
 }

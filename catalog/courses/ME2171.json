@@ -2,8 +2,8 @@
   "$schema": "../../schema/course.schema.json",
   "id": "ME2171",
   "code": "ME2171",
-  "name": "Cô ng nghệ may mặc",
-  "nameEn": "Gar ment",
+  "name": "Công nghệ may mặc",
+  "nameEn": "Garment and Clothoing Technology",
   "credits": 3,
   "faculty": "fme",
   "aliases": [],
@@ -11,11 +11,21 @@
   "programs": [
     {
       "program": "FME_KY_THUAT_DET_2022",
-      "block": "K09",
-      "required": true
+      "block": "K04",
+      "required": false
     },
     {
       "program": "FME_KY_THUAT_DET_2023",
+      "block": "K04",
+      "required": false
+    },
+    {
+      "program": "FME_KY_THUAT_DET_2024",
+      "block": "K08",
+      "required": true
+    },
+    {
+      "program": "FME_KY_THUAT_DET_2026",
       "block": "K09",
       "required": true
     }
@@ -24,6 +34,7 @@
     "theory"
   ],
   "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/ME2171",
   "note": "Nhập từ nguồn công khai (truy cập 03/10/2026).",
   "updated": "2026-10-04"
 }

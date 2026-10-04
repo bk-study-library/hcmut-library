@@ -1,0 +1,496 @@
+{
+  "$schema": "../../schema/program.schema.json",
+  "code": "CSE_KY_THUAT_MAY_TINH_2021",
+  "name": "Kỹ thuật Máy tính",
+  "nameEn": "Computer Engineering",
+  "faculty": "cse",
+  "year": "2021",
+  "major": "7480106",
+  "type": "CQ",
+  "level": "dai-hoc",
+  "degree": "cu-nhan",
+  "totalCredits": 128,
+  "source": "https://hcmut.edu.vn/study/handbook/course/undergraduate/7480106?program=CQ",
+  "ctdtUrl": "https://drive.google.com/file/d/150_LQYmQhx2FCbcyavfJnEvT5ugtN6TR/view",
+  "planUrl": "https://drive.google.com/file/d/1mrxH-VEC9woP3F_LH0KiSYNU4cmgAoka/view",
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/undergraduate/7480106?program=CQ",
+  "blocks": [
+    {
+      "id": "K01",
+      "name": "A2. CHÍNH TRỊ,KINH TẾ,VĂN HÓA,XÃ HỘI",
+      "group": "A. CÁC MÔN BẮT BUỘC",
+      "kind": "ly-luan-chinh-tri",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "SP1007",
+        "SP1031",
+        "SP1033",
+        "SP1035",
+        "SP1037",
+        "SP1039"
+      ],
+      "semesters": {
+        "SP1007": 8,
+        "SP1031": 3,
+        "SP1033": 4,
+        "SP1035": 5,
+        "SP1037": 7,
+        "SP1039": 6
+      }
+    },
+    {
+      "id": "K02",
+      "name": "A. CÁC MÔN BẮT BUỘC",
+      "kind": "khac",
+      "required": true,
+      "courses": []
+    },
+    {
+      "id": "K03",
+      "name": "A3. NHẬP MÔN, CON NGƯỜI VÀ MÔI TRƯỜNG",
+      "group": "A. CÁC MÔN BẮT BUỘC",
+      "kind": "giao-duc-chung",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "CO1005",
+        "CO2001"
+      ],
+      "semesters": {
+        "CO1005": 1,
+        "CO2001": 6
+      }
+    },
+    {
+      "id": "K04",
+      "name": "A4. NGOẠI NGỮ",
+      "group": "A. CÁC MÔN BẮT BUỘC",
+      "kind": "ngoai-ngu",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "LA1003",
+        "LA1005",
+        "LA1007",
+        "LA1009"
+      ],
+      "semesters": {
+        "LA1003": 1,
+        "LA1005": 2,
+        "LA1007": 3,
+        "LA1009": 4
+      }
+    },
+    {
+      "id": "K05",
+      "name": "A5. CƠ SỞ NGÀNH",
+      "group": "A. CÁC MÔN BẮT BUỘC",
+      "kind": "co-so-nganh",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "CO1023",
+        "CO1025",
+        "CO1027",
+        "CO2003",
+        "CO2007",
+        "CO2037"
+      ],
+      "semesters": {
+        "CO1023": 1,
+        "CO1025": 2,
+        "CO1027": 2,
+        "CO2003": 4,
+        "CO2007": 4,
+        "CO2037": 3
+      }
+    },
+    {
+      "id": "K06",
+      "name": "A6. GIÁO DỤC THỂ CHẤT",
+      "group": "A. CÁC MÔN BẮT BUỘC",
+      "kind": "the-chat",
+      "required": false,
+      "courses": [
+        "PE1003",
+        "PE1005"
+      ],
+      "semesters": {
+        "PE1003": 1,
+        "PE1005": 2
+      }
+    },
+    {
+      "id": "K07",
+      "name": "A7. GIÁO DỤC QUỐC PHÒNG",
+      "group": "A. CÁC MÔN BẮT BUỘC",
+      "kind": "quoc-phong",
+      "required": true,
+      "courses": [
+        "MI1003"
+      ],
+      "semesters": {
+        "MI1003": 2
+      }
+    },
+    {
+      "id": "K08",
+      "name": "B. CÁC MÔN THUỘC CHUYÊN NGÀNH",
+      "kind": "chuyen-nganh",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": []
+    },
+    {
+      "id": "K09",
+      "name": "B1. CHUYÊN NGÀNH: HỆ THỐNG TÍNH TOÁN HIỆN ĐẠI",
+      "group": "B. CÁC MÔN THUỘC CHUYÊN NGÀNH",
+      "kind": "chuyen-nganh",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": []
+    },
+    {
+      "id": "K10",
+      "name": "B1.1. CÁC MÔN BẮT BUỘC",
+      "group": "B. CÁC MÔN THUỘC CHUYÊN NGÀNH > B1. CHUYÊN NGÀNH: HỆ THỐNG TÍNH TOÁN HIỆN ĐẠI",
+      "kind": "chuyen-nganh",
+      "required": true,
+      "courses": [
+        "CO2017",
+        "CO3001",
+        "CO3007",
+        "CO3009",
+        "CO3053",
+        "CO3091",
+        "CO3093",
+        "CO3097"
+      ],
+      "semesters": {
+        "CO2017": 5,
+        "CO3001": 6,
+        "CO3007": 7,
+        "CO3009": 5,
+        "CO3053": 7,
+        "CO3091": 5,
+        "CO3093": 6,
+        "CO3097": 6
+      }
+    },
+    {
+      "id": "K11",
+      "name": "B1.2. CÁC MÔN TỰ CHỌN NHÓM A",
+      "group": "B. CÁC MÔN THUỘC CHUYÊN NGÀNH > B1. CHUYÊN NGÀNH: HỆ THỐNG TÍNH TOÁN HIỆN ĐẠI",
+      "kind": "chuyen-nganh",
+      "required": false,
+      "courses": [
+        "CO3107",
+        "CO3109",
+        "CO3111"
+      ],
+      "semesters": {
+        "CO3107": 6,
+        "CO3109": 6,
+        "CO3111": 6
+      }
+    },
+    {
+      "id": "K12",
+      "name": "B1.3. CÁC MÔN TỰ CHỌN NHÓM B",
+      "group": "B. CÁC MÔN THUỘC CHUYÊN NGÀNH > B1. CHUYÊN NGÀNH: HỆ THỐNG TÍNH TOÁN HIỆN ĐẠI",
+      "kind": "chuyen-nganh",
+      "required": false,
+      "courses": [
+        "CO2035",
+        "CO3035",
+        "CO3071",
+        "CO3117"
+      ],
+      "semesters": {
+        "CO2035": 5,
+        "CO3035": 5,
+        "CO3071": 5,
+        "CO3117": 5
+      }
+    },
+    {
+      "id": "K13",
+      "name": "B1.4. CÁC MÔN TỰ CHỌN NHÓM C",
+      "group": "B. CÁC MÔN THUỘC CHUYÊN NGÀNH > B1. CHUYÊN NGÀNH: HỆ THỐNG TÍNH TOÁN HIỆN ĐẠI",
+      "kind": "chuyen-nganh",
+      "required": false,
+      "courses": [
+        "IM1013",
+        "IM1023",
+        "IM1025",
+        "IM1027",
+        "IM3001"
+      ],
+      "semesters": {
+        "IM1013": 8,
+        "IM1023": 8,
+        "IM1025": 8,
+        "IM1027": 8,
+        "IM3001": 8
+      }
+    },
+    {
+      "id": "K14",
+      "name": "B2. CHUYÊN NGÀNH: INTERNET VẠN VẬT VÀ AN NINH MẠNG",
+      "group": "B. CÁC MÔN THUỘC CHUYÊN NGÀNH",
+      "kind": "chuyen-nganh",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": []
+    },
+    {
+      "id": "K15",
+      "name": "B2.1. CÁC MÔN BẮT BUỘC",
+      "group": "B. CÁC MÔN THUỘC CHUYÊN NGÀNH > B2. CHUYÊN NGÀNH: INTERNET VẠN VẬT VÀ AN NINH MẠNG",
+      "kind": "chuyen-nganh",
+      "required": true,
+      "courses": [
+        "CO2017",
+        "CO3001",
+        "CO3007",
+        "CO3009",
+        "CO3053",
+        "CO3091",
+        "CO3097",
+        "CO3093"
+      ],
+      "semesters": {
+        "CO2017": 5,
+        "CO3001": 6,
+        "CO3007": 7,
+        "CO3009": 5,
+        "CO3053": 7,
+        "CO3091": 5,
+        "CO3097": 6,
+        "CO3093": 6
+      }
+    },
+    {
+      "id": "K16",
+      "name": "B2.2. CÁC MÔN TỰ CHỌN NHÓM A",
+      "group": "B. CÁC MÔN THUỘC CHUYÊN NGÀNH > B2. CHUYÊN NGÀNH: INTERNET VẠN VẬT VÀ AN NINH MẠNG",
+      "kind": "chuyen-nganh",
+      "required": false,
+      "courses": [
+        "CO3107",
+        "CO3109",
+        "CO3111"
+      ],
+      "semesters": {
+        "CO3107": 6,
+        "CO3109": 6,
+        "CO3111": 6
+      }
+    },
+    {
+      "id": "K17",
+      "name": "B2.3. CÁC MÔN TỰ CHỌN NHÓM B",
+      "group": "B. CÁC MÔN THUỘC CHUYÊN NGÀNH > B2. CHUYÊN NGÀNH: INTERNET VẠN VẬT VÀ AN NINH MẠNG",
+      "kind": "chuyen-nganh",
+      "required": false,
+      "courses": [
+        "CO2035",
+        "CO3037",
+        "CO3049",
+        "CO3069"
+      ],
+      "semesters": {
+        "CO2035": 5,
+        "CO3037": 5,
+        "CO3049": 5,
+        "CO3069": 5
+      }
+    },
+    {
+      "id": "K18",
+      "name": "B2.4. CÁC MÔN TỰ CHỌN NHÓM C",
+      "group": "B. CÁC MÔN THUỘC CHUYÊN NGÀNH > B2. CHUYÊN NGÀNH: INTERNET VẠN VẬT VÀ AN NINH MẠNG",
+      "kind": "chuyen-nganh",
+      "required": false,
+      "courses": [
+        "IM1013",
+        "IM1023",
+        "IM1025",
+        "IM1027",
+        "IM3001"
+      ],
+      "semesters": {
+        "IM1013": 8,
+        "IM1023": 8,
+        "IM1025": 8,
+        "IM1027": 8,
+        "IM3001": 8
+      }
+    },
+    {
+      "id": "K19",
+      "name": "B3. CHUYÊN NGÀNH: KỸ THUẬT MÁY TÍNH",
+      "group": "B. CÁC MÔN THUỘC CHUYÊN NGÀNH",
+      "kind": "chuyen-nganh",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": []
+    },
+    {
+      "id": "K20",
+      "name": "B3.1. CÁC MÔN BẮT BUỘC",
+      "group": "B. CÁC MÔN THUỘC CHUYÊN NGÀNH > B3. CHUYÊN NGÀNH: KỸ THUẬT MÁY TÍNH",
+      "kind": "chuyen-nganh",
+      "required": true,
+      "courses": [
+        "CO2017",
+        "CO3001",
+        "CO3007",
+        "CO3009",
+        "CO3053",
+        "CO3091",
+        "CO3093",
+        "CO3097"
+      ],
+      "semesters": {
+        "CO2017": 5,
+        "CO3001": 6,
+        "CO3007": 7,
+        "CO3009": 5,
+        "CO3053": 7,
+        "CO3091": 5,
+        "CO3093": 6,
+        "CO3097": 6
+      }
+    },
+    {
+      "id": "K21",
+      "name": "B3.2. CÁC MÔN TỰ CHỌN NHÓM A",
+      "group": "B. CÁC MÔN THUỘC CHUYÊN NGÀNH > B3. CHUYÊN NGÀNH: KỸ THUẬT MÁY TÍNH",
+      "kind": "chuyen-nganh",
+      "required": false,
+      "courses": [
+        "CO3107",
+        "CO3109",
+        "CO3111"
+      ],
+      "semesters": {
+        "CO3107": 6,
+        "CO3109": 6,
+        "CO3111": 6
+      }
+    },
+    {
+      "id": "K22",
+      "name": "B3.3. CÁC MÔN TỰ CHỌN NHÓM B",
+      "group": "B. CÁC MÔN THUỘC CHUYÊN NGÀNH > B3. CHUYÊN NGÀNH: KỸ THUẬT MÁY TÍNH",
+      "kind": "chuyen-nganh",
+      "required": false,
+      "courses": [
+        "CO2035",
+        "CO3035",
+        "CO3037",
+        "CO3049",
+        "CO3069",
+        "CO3071",
+        "CO3117"
+      ],
+      "semesters": {
+        "CO2035": 5,
+        "CO3035": 5,
+        "CO3037": 5,
+        "CO3049": 5,
+        "CO3069": 5,
+        "CO3071": 5,
+        "CO3117": 5
+      }
+    },
+    {
+      "id": "K23",
+      "name": "B3.4. CÁC MÔN TỰ CHỌN NHÓM C",
+      "group": "B. CÁC MÔN THUỘC CHUYÊN NGÀNH > B3. CHUYÊN NGÀNH: KỸ THUẬT MÁY TÍNH",
+      "kind": "chuyen-nganh",
+      "required": false,
+      "courses": [
+        "IM1013",
+        "IM1023",
+        "IM1025",
+        "IM1027",
+        "IM3001"
+      ],
+      "semesters": {
+        "IM1013": 8,
+        "IM1023": 8,
+        "IM1025": 8,
+        "IM1027": 8,
+        "IM3001": 8
+      }
+    },
+    {
+      "id": "K24",
+      "name": "C. TỰ CHỌN TỰ DO",
+      "kind": "tu-chon-tu-do",
+      "required": false,
+      "courses": []
+    },
+    {
+      "id": "K25",
+      "name": "E. ĐIỀU KIỆN TỐT NGHIỆP",
+      "kind": "dieu-kien-tot-nghiep",
+      "required": true,
+      "courses": [
+        "SA4001",
+        "ENG_GC"
+      ]
+    },
+    {
+      "id": "K26",
+      "name": "A1. TOÁN VÀ KHOA HỌC TỰ NHIÊN",
+      "group": "A. CÁC MÔN BẮT BUỘC",
+      "kind": "toan-khtn",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "MT1003",
+        "MT1005",
+        "MT1007",
+        "MT2013",
+        "CH1003",
+        "PH1003",
+        "PH1007",
+        "CO1007",
+        "CO2011"
+      ],
+      "semesters": {
+        "MT1003": 1,
+        "MT1005": 2,
+        "MT1007": 2,
+        "MT2013": 4,
+        "CH1003": 3,
+        "PH1003": 1,
+        "PH1007": 2,
+        "CO1007": 3,
+        "CO2011": 5
+      }
+    },
+    {
+      "id": "K27",
+      "name": "D. HỌC PHẦN TỐT NGHIỆP",
+      "kind": "tot-nghiep",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "CO3345",
+        "CO4041",
+        "CO4347"
+      ],
+      "semesters": {
+        "CO3345": 6,
+        "CO4041": 7,
+        "CO4347": 8
+      }
+    }
+  ],
+  "updated": "2026-10-04"
+}

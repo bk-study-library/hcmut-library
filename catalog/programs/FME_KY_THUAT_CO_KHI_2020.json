@@ -5,87 +5,208 @@
   "nameEn": "Mechanical Engineering",
   "faculty": "fme",
   "year": "2020",
-  "source": "https://drive.google.com/file/d/1-HkmMbqIRNo3B4AVGyBk70MRLh14O-Hl/view",
+  "major": "7520103",
+  "type": "CQ",
+  "level": "dai-hoc",
+  "totalCredits": 132,
+  "note": "Sổ tay không có năm này cho ngành và loại chương trình này. Danh sách môn lấy từ Kế hoạch giảng dạy (PDF), khối là học kỳ chứ không phải khối kiến thức; tên khối kiến thức, bắt buộc hay tự chọn chưa có.",
+  "source": "https://drive.google.com/file/d/1oLUTILI7wiFB4omaN10UzCurQhdZQt9h/view",
+  "ctdtUrl": "https://drive.google.com/file/d/1-HkmMbqIRNo3B4AVGyBk70MRLh14O-Hl/view",
+  "planUrl": "https://drive.google.com/file/d/1oLUTILI7wiFB4omaN10UzCurQhdZQt9h/view",
   "blocks": [
     {
       "id": "K01",
-      "name": "I. Các môn bắt buộc (Compulsary Courses) 95",
-      "required": true,
+      "name": "Học kỳ 1",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
       "courses": [
         "MT1003",
-        "MT1005",
-        "MT1007",
-        "MT2013",
-        "CH1003",
         "PH1003",
-        "PH1007",
-        "ME2091",
-        "PH1005",
-        "SP1007",
-        "SP1031",
-        "SP1033",
-        "SP1035",
-        "SP1037",
-        "SP1039",
+        "CH1003",
         "ME1001",
-        "ME2019",
         "LA1003",
-        "LA1005",
-        "LA1007",
-        "LA1009",
-        "CI2001",
-        "CI2003",
-        "CO1003",
-        "ME1013",
-        "ME1015",
-        "ME2005"
-      ]
+        "MI1003",
+        "PE1003",
+        "SP1031"
+      ],
+      "semesters": {
+        "MT1003": 1,
+        "PH1003": 1,
+        "CH1003": 1,
+        "ME1001": 1,
+        "LA1003": 1,
+        "MI1003": 1,
+        "PE1003": 1,
+        "SP1031": 1
+      }
     },
     {
       "id": "K02",
-      "name": "Machinery",
-      "group": "I. Các môn bắt buộc (Compulsary Courses) 95",
-      "required": true,
+      "name": "Học kỳ 2",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
       "courses": [
-        "ME2007",
-        "ME2009",
-        "ME2013",
-        "ME2087",
-        "ME2089",
-        "ME2117",
-        "ME3139",
-        "ME3141"
-      ]
+        "PH1007",
+        "MT1007",
+        "MT1005",
+        "PH1005",
+        "LA1005",
+        "PE1005",
+        "ME1015",
+        "SP1033"
+      ],
+      "semesters": {
+        "PH1007": 2,
+        "MT1007": 2,
+        "MT1005": 2,
+        "PH1005": 2,
+        "LA1005": 2,
+        "PE1005": 2,
+        "ME1015": 2,
+        "SP1033": 2
+      }
     },
     {
       "id": "K03",
-      "name": "2 Group) A (Tối thiểu 3 TC) 3 Quản lý",
-      "group": "II. Các môn bắt buộc và tự chọn của chuyên ngành 37",
+      "name": "Học kỳ 3",
+      "kind": "khac",
       "required": false,
+      "requiredUnknown": true,
       "courses": [
-        "ME2015",
-        "ME2071",
-        "ME3001",
-        "ME3003",
-        "ME3143",
-        "ME4063",
-        "ME3135",
-        "ME4061",
-        "ME4387"
-      ]
+        "ME2091",
+        "LA1007",
+        "PE1007",
+        "CI2001",
+        "ME1013",
+        "ME2089",
+        "SP1035"
+      ],
+      "semesters": {
+        "ME2091": 3,
+        "LA1007": 3,
+        "PE1007": 3,
+        "CI2001": 3,
+        "ME1013": 3,
+        "ME2089": 3,
+        "SP1035": 3
+      }
     },
     {
       "id": "K04",
-      "name": "Các môn tự chọn nhóm (Elective Courses - Group) A",
-      "group": "II. Các môn bắt buộc và tự chọn của chuyên ngành 37",
+      "name": "Học kỳ 4",
+      "kind": "khac",
       "required": false,
+      "requiredUnknown": true,
       "courses": [
+        "MT2013",
+        "LA1009",
+        "ME2007",
+        "ME2087",
+        "ME2015",
+        "ME2117",
+        "SP1039",
+        "SP1007"
+      ],
+      "semesters": {
+        "MT2013": 4,
+        "LA1009": 4,
+        "ME2007": 4,
+        "ME2087": 4,
+        "ME2015": 4,
+        "ME2117": 4,
+        "SP1039": 4,
+        "SP1007": 4
+      }
+    },
+    {
+      "id": "K05",
+      "name": "Học kỳ 5",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "ME3139",
+        "ME2005",
+        "ME3141",
+        "ME3003",
         "IM1013",
+        "IM3001",
+        "IM1027",
         "IM1023",
         "IM1025",
-        "IM1027",
-        "IM3001"
-      ]
+        "SP1037"
+      ],
+      "semesters": {
+        "ME3139": 5,
+        "ME2005": 5,
+        "ME3141": 5,
+        "ME3003": 5,
+        "IM1013": 5,
+        "IM3001": 5,
+        "IM1027": 5,
+        "IM1023": 5,
+        "IM1025": 5,
+        "SP1037": 5
+      }
+    },
+    {
+      "id": "K06",
+      "name": "Học kỳ 6",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "CI2003",
+        "ME2013",
+        "ME2071",
+        "ME3143",
+        "ME3135"
+      ],
+      "semesters": {
+        "CI2003": 6,
+        "ME2013": 6,
+        "ME2071": 6,
+        "ME3143": 6,
+        "ME3135": 6
+      }
+    },
+    {
+      "id": "K07",
+      "name": "Học kỳ 7",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "ME4061",
+        "ME2009",
+        "ME3001",
+        "CO1003"
+      ],
+      "semesters": {
+        "ME4061": 7,
+        "ME2009": 7,
+        "ME3001": 7,
+        "CO1003": 7
+      }
+    },
+    {
+      "id": "K08",
+      "name": "Học kỳ 8",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "ME4387",
+        "ME2019",
+        "ME4063"
+      ],
+      "semesters": {
+        "ME4387": 8,
+        "ME2019": 8,
+        "ME4063": 8
+      }
     }
   ],
   "updated": "2026-10-04"

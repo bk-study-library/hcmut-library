@@ -1,15 +1,16 @@
-# ME3051 Cô ng nghệ dệt tho i
+# ME3051 Công nghệ Dệt thoi
 
 <!-- File này do "npm run build" sinh từ catalog/courses/ME3051.json và items/. Chỉ sửa phần Mẹo học, giữa hai dòng meo-hoc. -->
 
 | Mục | Thông tin |
 |---|---|
 | Mã môn | ME3051 |
-| Tên | Cô ng nghệ dệt tho i / Weavi ng |
+| Tên | Công nghệ Dệt thoi / Weaving Technology |
 | Tín chỉ | 3 |
 | Khoa | Khoa Cơ khí |
 | Phần | Lý thuyết |
 | Trạng thái | Đang dạy |
+| Sổ tay HCMUT | [Trang môn trên Sổ tay HCMUT](https://hcmut.edu.vn/study/handbook/subject/ME3051) |
 
 ## Tài liệu
 

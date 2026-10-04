@@ -10,18 +10,28 @@
   "status": "active",
   "programs": [
     {
-      "program": "FME_LOGISTICS_VA_QUAN_LY_CHUOI_CUNG_UNG_2024",
-      "block": "K12",
-      "required": true
+      "program": "FME_LOGISTICS_VA_QUAN_LY_CHUOI_CUNG_UNG_2022",
+      "block": "K05",
+      "required": false
     },
     {
       "program": "FME_LOGISTICS_VA_QUAN_LY_CHUOI_CUNG_UNG_2023",
-      "block": "K10",
+      "block": "K05",
+      "required": false
+    },
+    {
+      "program": "FME_LOGISTICS_VA_QUAN_LY_CHUOI_CUNG_UNG_2024",
+      "block": "K08",
       "required": true
     },
     {
-      "program": "FME_LOGISTICS_VA_QUAN_LY_CHUOI_CUNG_UNG_2022",
-      "block": "K10",
+      "program": "SIM_LOGISTICS_VA_QUAN_LY_CHUOI_CUNG_UNG_2024_CTTA",
+      "block": "K09",
+      "required": true
+    },
+    {
+      "program": "SIM_LOGISTICS_VA_QUAN_LY_CHUOI_CUNG_UNG_2025_CTTA",
+      "block": "K09",
       "required": true
     }
   ],
@@ -29,6 +39,7 @@
     "theory"
   ],
   "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/ME2151",
   "note": "Nhập từ nguồn công khai (truy cập 03/10/2026).",
   "updated": "2026-10-04"
 }

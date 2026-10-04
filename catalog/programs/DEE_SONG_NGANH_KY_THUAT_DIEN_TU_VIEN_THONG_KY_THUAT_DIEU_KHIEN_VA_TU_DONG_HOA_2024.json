@@ -4,8 +4,60 @@
   "name": "Song ngành: Kỹ thuật Điện tử - Viễn thông - Kỹ thuật Điều khiển và Tự động hóa",
   "faculty": "dee",
   "year": "2024",
-  "source": "https://hcmut.edu.vn/home/giao-dien/chuong-trinh-dao-tao/all",
-  "note": "Có trong danh mục CTĐT của trường nhưng chưa có file CTĐT.",
-  "blocks": [],
+  "major": "7520207+7520216",
+  "type": "SN",
+  "level": "dai-hoc",
+  "variant": "Song ngành",
+  "note": "Sổ tay không có năm này cho ngành và loại chương trình này. Danh sách môn lấy từ Kế hoạch giảng dạy (PDF), khối là học kỳ chứ không phải khối kiến thức; tên khối kiến thức, bắt buộc hay tự chọn chưa có.",
+  "source": "https://drive.google.com/file/d/1UaJa5jYq1spe9fwEoCImN2cgTHypliqG/view",
+  "planUrl": "https://drive.google.com/file/d/1UaJa5jYq1spe9fwEoCImN2cgTHypliqG/view",
+  "blocks": [
+    {
+      "id": "K01",
+      "name": "Học kỳ 1",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "LA1003",
+        "MT1007",
+        "MT1003",
+        "PH1003",
+        "PH1007",
+        "EE1001"
+      ],
+      "semesters": {
+        "LA1003": 1,
+        "MT1007": 1,
+        "MT1003": 1,
+        "PH1003": 1,
+        "PH1007": 1,
+        "EE1001": 1
+      }
+    },
+    {
+      "id": "K02",
+      "name": "Học kỳ 2",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "LA1005",
+        "MT1005",
+        "EE1007",
+        "MT1009",
+        "CH1003",
+        "MI1003"
+      ],
+      "semesters": {
+        "LA1005": 2,
+        "MT1005": 2,
+        "EE1007": 2,
+        "MT1009": 2,
+        "CH1003": 2,
+        "MI1003": 2
+      }
+    }
+  ],
   "updated": "2026-10-04"
 }

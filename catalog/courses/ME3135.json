@@ -10,13 +10,28 @@
   "status": "active",
   "programs": [
     {
-      "program": "FME_KY_THUAT_CO_KHI_2023",
-      "block": "K12",
-      "required": true
+      "program": "FME_KY_THUAT_CO_KHI_2019",
+      "block": "K06",
+      "required": false
     },
     {
       "program": "FME_KY_THUAT_CO_KHI_2020",
-      "block": "K03",
+      "block": "K06",
+      "required": false
+    },
+    {
+      "program": "FME_KY_THUAT_CO_KHI_2021",
+      "block": "K06",
+      "required": false
+    },
+    {
+      "program": "FME_KY_THUAT_CO_KHI_2022",
+      "block": "K06",
+      "required": false
+    },
+    {
+      "program": "FME_KY_THUAT_CO_KHI_2023",
+      "block": "K06",
       "required": false
     },
     {
@@ -25,23 +40,29 @@
       "required": true
     },
     {
-      "program": "FME_KY_THUAT_CO_KHI_2022",
-      "block": "K12",
+      "program": "FME_KY_THUAT_CO_KHI_2024_CNTN",
+      "block": "K15",
       "required": true
     },
     {
-      "program": "FME_KY_THUAT_CO_KHI_2021",
-      "block": "K12",
+      "program": "FME_KY_THUAT_CO_KHI_2024_CTTA",
+      "block": "K15",
       "required": true
     },
     {
-      "program": "FME_KY_THUAT_CO_KHI_2019",
-      "block": "K03",
-      "required": false
+      "program": "FME_KY_THUAT_CO_KHI_2025_CNTN",
+      "block": "K15",
+      "required": true
+    },
+    {
+      "program": "FME_KY_THUAT_CO_KHI_2025_CTTA",
+      "block": "K15",
+      "required": true
     }
   ],
   "parts": [],
   "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/ME3135",
   "note": "Nhập từ nguồn công khai (truy cập 03/10/2026).",
   "updated": "2026-10-04"
 }

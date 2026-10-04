@@ -1,15 +1,16 @@
-# ME4367 Đồ án tốt nghiệp (kt hệ thống cn)
+# ME4367 Đồ án Tốt nghiệp (Kỹ thuật Hệ thống Công nghiệp)
 
 <!-- File này do "npm run build" sinh từ catalog/courses/ME4367.json và items/. Chỉ sửa phần Mẹo học, giữa hai dòng meo-hoc. -->
 
 | Mục | Thông tin |
 |---|---|
 | Mã môn | ME4367 |
-| Tên | Đồ án tốt nghiệp (kt hệ thống cn) / Industrial Engineering Capstone Project |
+| Tên | Đồ án Tốt nghiệp (Kỹ thuật Hệ thống Công nghiệp) / Industrial Engineering Capstone Project |
 | Tín chỉ | 4 |
 | Khoa | Khoa Cơ khí |
 | Phần | Đồ án |
 | Trạng thái | Đang dạy |
+| Sổ tay HCMUT | [Trang môn trên Sổ tay HCMUT](https://hcmut.edu.vn/study/handbook/subject/ME4367) |
 
 ## Tài liệu
 

@@ -1,0 +1,44 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "MA4187",
+  "code": "MA4187",
+  "name": "Vật liệu và công nghệ in 3D",
+  "credits": 3,
+  "faculty": "fmt",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "FMT_KY_THUAT_VAT_LIEU_2024",
+      "block": "K15",
+      "required": false
+    },
+    {
+      "program": "FMT_KY_THUAT_VAT_LIEU_2024_CTTA",
+      "block": "K16",
+      "required": false
+    },
+    {
+      "program": "FMT_KY_THUAT_VAT_LIEU_2025_CTTA",
+      "block": "K16",
+      "required": false
+    },
+    {
+      "program": "FTE_TS_152_2026",
+      "block": "K12",
+      "required": false
+    },
+    {
+      "program": "FTE_TS_252_2026_TA",
+      "block": "K12",
+      "required": false
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/MA4187",
+  "note": "Nhập từ CTĐT chính thức (Sổ tay HCMUT, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

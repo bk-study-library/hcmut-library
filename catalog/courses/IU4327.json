@@ -10,40 +10,41 @@
   "status": "active",
   "programs": [
     {
+      "program": "FME_BAO_DUONG_CONG_NGHIEP_2019",
+      "block": "K08",
+      "required": false
+    },
+    {
       "program": "FME_BAO_DUONG_CONG_NGHIEP_2020",
-      "block": "K02",
+      "block": "K08",
+      "required": false
+    },
+    {
+      "program": "FME_BAO_DUONG_CONG_NGHIEP_2021",
+      "block": "K08",
+      "required": false
+    },
+    {
+      "program": "FME_BAO_DUONG_CONG_NGHIEP_2022",
+      "block": "K08",
+      "required": false
+    },
+    {
+      "program": "FME_BAO_DUONG_CONG_NGHIEP_2023",
+      "block": "K08",
       "required": false
     },
     {
       "program": "FME_BAO_DUONG_CONG_NGHIEP_2024",
-      "block": "K13",
+      "block": "K14",
       "required": true
-    },
-    {
-      "program": "FME_BAO_DUONG_CONG_NGHIEP_2023",
-      "block": "K11",
-      "required": true
-    },
-    {
-      "program": "FME_BAO_DUONG_CONG_NGHIEP_2022",
-      "block": "K11",
-      "required": true
-    },
-    {
-      "program": "FME_BAO_DUONG_CONG_NGHIEP_2021",
-      "block": "K11",
-      "required": true
-    },
-    {
-      "program": "FME_BAO_DUONG_CONG_NGHIEP_2019",
-      "block": "K02",
-      "required": false
     }
   ],
   "parts": [
     "project"
   ],
   "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/IU4327",
   "note": "Nhập từ nguồn công khai (truy cập 03/10/2026).",
   "updated": "2026-10-04"
 }

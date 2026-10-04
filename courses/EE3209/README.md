@@ -5,11 +5,12 @@
 | Mục | Thông tin |
 |---|---|
 | Mã môn | EE3209 |
-| Tên | Thực tập ngoài trường (Thiết kế vi mạch) |
+| Tên | Thực tập ngoài trường (Thiết kế vi mạch) / Internship |
 | Tín chỉ | 2 |
 | Khoa | Khoa Điện - Điện tử |
 | Phần | chưa ghi |
 | Trạng thái | Đang dạy |
+| Sổ tay HCMUT | [Trang môn trên Sổ tay HCMUT](https://hcmut.edu.vn/study/handbook/subject/EE3209) |
 
 ## Tài liệu
 

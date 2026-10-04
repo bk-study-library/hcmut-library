@@ -1,0 +1,19 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "EN2059",
+  "code": "EN2059",
+  "name": "Đồ án môn học Quá trình Hóa học và Hóa lý trong Kỹ thuật Môi trường",
+  "nameEn": "Project of Physico-Chemical and Chemical Processes for Environmental Engineering",
+  "credits": 1,
+  "faculty": "fenr",
+  "aliases": [],
+  "status": "active",
+  "programs": [],
+  "parts": [
+    "project"
+  ],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/EN2059",
+  "note": "Nhập từ Kế hoạch giảng dạy (PDF của trường, truy cập 04/10/2026). Tên lấy từ PDF. Chờ người duyệt xác nhận.",
+  "updated": "2026-10-04"
+}

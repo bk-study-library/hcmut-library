@@ -2,10 +2,208 @@
   "$schema": "../../schema/program.schema.json",
   "code": "FME_KY_THUAT_CO_DIEN_TU_2019",
   "name": "Kỹ thuật Cơ điện tử",
+  "nameEn": "Mechatronic Engineering",
   "faculty": "fme",
   "year": "2019",
-  "source": "https://drive.google.com/file/d/1yt0Dh6AsoJ2wzILWNqmh_Ftx3WULbz3s/view",
-  "note": "Có file CTĐT nhưng chưa tách được danh sách môn.",
-  "blocks": [],
+  "major": "7520114",
+  "type": "CQ",
+  "level": "dai-hoc",
+  "totalCredits": 130,
+  "note": "Sổ tay không có năm này cho ngành và loại chương trình này. Danh sách môn lấy từ Kế hoạch giảng dạy (PDF), khối là học kỳ chứ không phải khối kiến thức; tên khối kiến thức, bắt buộc hay tự chọn chưa có.",
+  "source": "https://drive.google.com/file/d/1Z0sowohjk9q3-MDLK1oZ4-RTxWcnpnVK/view",
+  "ctdtUrl": "https://drive.google.com/file/d/1yt0Dh6AsoJ2wzILWNqmh_Ftx3WULbz3s/view",
+  "planUrl": "https://drive.google.com/file/d/1Z0sowohjk9q3-MDLK1oZ4-RTxWcnpnVK/view",
+  "blocks": [
+    {
+      "id": "K01",
+      "name": "Học kỳ 1",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "LA1003",
+        "CH1003",
+        "MT1003",
+        "PH1003",
+        "MI1003",
+        "PE1003",
+        "ME1001",
+        "SP1031"
+      ],
+      "semesters": {
+        "LA1003": 1,
+        "CH1003": 1,
+        "MT1003": 1,
+        "PH1003": 1,
+        "MI1003": 1,
+        "PE1003": 1,
+        "ME1001": 1,
+        "SP1031": 1
+      }
+    },
+    {
+      "id": "K02",
+      "name": "Học kỳ 2",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "LA1005",
+        "MT1005",
+        "PH1005",
+        "PH1007",
+        "PE1005",
+        "MT1007",
+        "ME1013",
+        "SP1033"
+      ],
+      "semesters": {
+        "LA1005": 2,
+        "MT1005": 2,
+        "PH1005": 2,
+        "PH1007": 2,
+        "PE1005": 2,
+        "MT1007": 2,
+        "ME1013": 2,
+        "SP1033": 2
+      }
+    },
+    {
+      "id": "K03",
+      "name": "Học kỳ 3",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "LA1007",
+        "ME2091",
+        "PE1007",
+        "ME1015",
+        "CO1003",
+        "ME2087",
+        "SP1035",
+        "ME2019"
+      ],
+      "semesters": {
+        "LA1007": 3,
+        "ME2091": 3,
+        "PE1007": 3,
+        "ME1015": 3,
+        "CO1003": 3,
+        "ME2087": 3,
+        "SP1035": 3,
+        "ME2019": 3
+      }
+    },
+    {
+      "id": "K04",
+      "name": "Học kỳ 4",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "LA1009",
+        "CI2001",
+        "MT2013",
+        "ME2089",
+        "ME2115",
+        "SP1039",
+        "SP1007"
+      ],
+      "semesters": {
+        "LA1009": 4,
+        "CI2001": 4,
+        "MT2013": 4,
+        "ME2089": 4,
+        "ME2115": 4,
+        "SP1039": 4,
+        "SP1007": 4
+      }
+    },
+    {
+      "id": "K05",
+      "name": "Học kỳ 5",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "ME2005",
+        "ME2007",
+        "ME2009",
+        "ME3145",
+        "SP1037",
+        "IM1013",
+        "IM3001",
+        "IM1027",
+        "IM1023",
+        "IM1025"
+      ],
+      "semesters": {
+        "ME2005": 5,
+        "ME2007": 5,
+        "ME2009": 5,
+        "ME3145": 5,
+        "SP1037": 5,
+        "IM1013": 5,
+        "IM3001": 5,
+        "IM1027": 5,
+        "IM1023": 5,
+        "IM1025": 5
+      }
+    },
+    {
+      "id": "K06",
+      "name": "Học kỳ 6",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "ME3123",
+        "ME3007",
+        "ME3011",
+        "ME3005",
+        "ME2071"
+      ],
+      "semesters": {
+        "ME3123": 6,
+        "ME3007": 6,
+        "ME3011": 6,
+        "ME3005": 6,
+        "ME2071": 6
+      }
+    },
+    {
+      "id": "K07",
+      "name": "Học kỳ 7",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "ME3013",
+        "ME3015",
+        "ME4071"
+      ],
+      "semesters": {
+        "ME3013": 7,
+        "ME3015": 7,
+        "ME4071": 7
+      }
+    },
+    {
+      "id": "K08",
+      "name": "Học kỳ 8",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "ME3001",
+        "ME4327"
+      ],
+      "semesters": {
+        "ME3001": 8,
+        "ME4327": 8
+      }
+    }
+  ],
   "updated": "2026-10-04"
 }

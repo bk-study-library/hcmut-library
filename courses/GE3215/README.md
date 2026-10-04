@@ -6,10 +6,11 @@
 |---|---|
 | Mã môn | GE3215 |
 | Tên | Địa thống kê ứng dụng / Applied Geostatistics |
-| Tín chỉ | undefined |
+| Tín chỉ | 3 |
 | Khoa | Khoa Kỹ thuật Địa chất và Dầu khí |
 | Phần | Lý thuyết |
 | Trạng thái | Đang dạy |
+| Sổ tay HCMUT | [Trang môn trên Sổ tay HCMUT](https://hcmut.edu.vn/study/handbook/subject/GE3215) |
 | Môn liên quan | [GE3141](../GE3141/README.md) Địa thống kê, [GE3213](../GE3213/README.md) Địa thống kê ứng dụng trong kỹ thuật dầu khí |
 
 ## Tài liệu

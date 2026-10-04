@@ -1,0 +1,55 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "MA3165",
+  "code": "MA3165",
+  "name": "Vật liệu kim loaị và các quá trình công nghệ",
+  "nameEn": "Metallic materials and processes",
+  "credits": 3,
+  "faculty": "fmt",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "FMT_KY_THUAT_VAT_LIEU_2024",
+      "block": "K13",
+      "required": true
+    },
+    {
+      "program": "FMT_KY_THUAT_VAT_LIEU_2024_CTTA",
+      "block": "K14",
+      "required": true
+    },
+    {
+      "program": "FMT_KY_THUAT_VAT_LIEU_2025_CTTA",
+      "block": "K14",
+      "required": true
+    },
+    {
+      "program": "FMT_KY_THUAT_VAT_LIEU_2026",
+      "block": "K13",
+      "required": true
+    },
+    {
+      "program": "FMT_TS_229_2026_TA",
+      "block": "K13",
+      "required": true
+    },
+    {
+      "program": "FTE_TS_152_2026",
+      "block": "K12",
+      "required": false
+    },
+    {
+      "program": "FTE_TS_252_2026_TA",
+      "block": "K12",
+      "required": false
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/MA3165",
+  "note": "Nhập từ CTĐT chính thức (Sổ tay HCMUT, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

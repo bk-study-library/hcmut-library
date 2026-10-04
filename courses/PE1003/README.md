@@ -7,9 +7,10 @@
 | Mã môn | PE1003 |
 | Tên | Giáo dục thể chất 1 / Physical Education 1 |
 | Tín chỉ | 0 |
-| Khoa | Giáo dục thể chất và Quốc phòng (chưa xác định đơn vị) |
+| Khoa | Môn chung toàn trường |
 | Phần | chưa ghi |
 | Trạng thái | Đang dạy |
+| Sổ tay HCMUT | [Trang môn trên Sổ tay HCMUT](https://hcmut.edu.vn/study/handbook/subject/PE1003) |
 
 ## Tài liệu
 

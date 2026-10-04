@@ -3,14 +3,50 @@
   "id": "EE4345",
   "code": "EE4345",
   "name": "Đồ án 2 (Thiết kế vi mạch)",
+  "nameEn": "Project 2",
   "credits": 2,
   "faculty": "dee",
   "aliases": [],
   "status": "active",
   "programs": [
     {
+      "program": "DEE_THIET_KE_VI_MACH_2023",
+      "block": "K16",
+      "required": false
+    },
+    {
       "program": "DEE_THIET_KE_VI_MACH_2024",
-      "block": "K07",
+      "block": "K14",
+      "required": true
+    },
+    {
+      "program": "DEE_THIET_KE_VI_MACH_2024_CNTN",
+      "block": "K15",
+      "required": true
+    },
+    {
+      "program": "DEE_THIET_KE_VI_MACH_2025_CNTN",
+      "block": "K15",
+      "required": true
+    },
+    {
+      "program": "DEE_THIET_KE_VI_MACH_2025_CTTA",
+      "block": "K15",
+      "required": true
+    },
+    {
+      "program": "DEE_THIET_KE_VI_MACH_2026",
+      "block": "K15",
+      "required": true
+    },
+    {
+      "program": "DEE_THIET_KE_VI_MACH_2026_CNTN",
+      "block": "K16",
+      "required": true
+    },
+    {
+      "program": "DEE_TS_258_2026_TA",
+      "block": "K15",
       "required": true
     }
   ],
@@ -18,6 +54,7 @@
     "project"
   ],
   "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/EE4345",
   "note": "Nhập từ nguồn công khai (truy cập 03/10/2026).",
   "updated": "2026-10-04"
 }

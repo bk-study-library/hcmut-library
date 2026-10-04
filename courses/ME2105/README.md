@@ -5,11 +5,12 @@
 | Mục | Thông tin |
 |---|---|
 | Mã môn | ME2105 |
-| Tên | Công nghệ may 2 / may 2 Clothing Technology 2 |
+| Tên | Công nghệ may 2 / Clothing Technology 2 |
 | Tín chỉ | 3 |
 | Khoa | Khoa Cơ khí |
 | Phần | Lý thuyết |
 | Trạng thái | Đang dạy |
+| Sổ tay HCMUT | [Trang môn trên Sổ tay HCMUT](https://hcmut.edu.vn/study/handbook/subject/ME2105) |
 
 ## Tài liệu
 

@@ -10,18 +10,18 @@
   "status": "active",
   "programs": [
     {
-      "program": "GEOPET_KY_THUAT_DAU_KHI_2020",
+      "program": "GEOPET_KY_THUAT_DAU_KHI_GEOPET_COURSE_LIST",
       "block": "K09",
       "required": false
     },
     {
       "program": "GEOPET_KY_THUAT_DAU_KHI_2019",
-      "block": "K09",
+      "block": "K06",
       "required": false
     },
     {
-      "program": "GEOPET_KY_THUAT_DAU_KHI_GEOPET_COURSE_LIST",
-      "block": "K09",
+      "program": "GEOPET_KY_THUAT_DAU_KHI_2020",
+      "block": "K06",
       "required": false
     }
   ],
@@ -29,6 +29,7 @@
     "theory"
   ],
   "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/GE3187",
   "note": "Nhập từ nguồn công khai (truy cập 03/10/2026).",
   "updated": "2026-10-04"
 }

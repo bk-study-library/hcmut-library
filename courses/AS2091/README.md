@@ -1,0 +1,34 @@
+# AS2091 Thực tập ngoài trường KTHN 1
+
+<!-- File này do "npm run build" sinh từ catalog/courses/AS2091.json và items/. Chỉ sửa phần Mẹo học, giữa hai dòng meo-hoc. -->
+
+| Mục | Thông tin |
+|---|---|
+| Mã môn | AS2091 |
+| Tên | Thực tập ngoài trường KTHN 1 |
+| Tín chỉ | 2 |
+| Khoa | Khoa Khoa học Ứng dụng |
+| Phần | chưa ghi |
+| Trạng thái | Đang dạy |
+| Sổ tay HCMUT | [Trang môn trên Sổ tay HCMUT](https://hcmut.edu.vn/study/handbook/subject/AS2091) |
+
+## Tài liệu
+
+Chưa có tài liệu.
+
+## Link
+
+Chưa có link.
+
+## Mẹo học
+
+<!-- meo-hoc:start -->
+Chưa có mẹo. Bạn có kinh nghiệm học môn này? Mở Pull Request sửa đoạn này.
+<!-- meo-hoc:end -->
+
+## Đóng góp
+
+- Gửi file, không cần tài khoản GitHub: [mở trang Gửi tài liệu](https://bk-study-library.github.io/hcmut-library/gui-tai-lieu/?course=AS2091).
+- Thêm link tới tài liệu công khai: [mở form Thêm link](https://github.com/bk-study-library/hcmut-library/issues/new?template=them-link.yml&course=AS2091).
+- Sửa tên, mã môn: [mở form Sửa danh mục môn](https://github.com/bk-study-library/hcmut-library/issues/new?template=sua-danh-muc.yml&course=AS2091).
+- Quy định: [CONTRIBUTING.md](https://github.com/bk-study-library/hcmut-library/blob/main/CONTRIBUTING.md). Gỡ tài liệu: [TAKEDOWN.md](https://github.com/bk-study-library/hcmut-library/blob/main/TAKEDOWN.md).

@@ -11,12 +11,13 @@
   "programs": [
     {
       "program": "GEOPET_DIA_KY_THUAT_XAY_DUNG_2024",
-      "block": "K10",
+      "block": "K14",
       "required": true
     }
   ],
   "parts": [],
   "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/GE3373",
   "note": "Nhập từ nguồn công khai (truy cập 03/10/2026).",
   "updated": "2026-10-04"
 }

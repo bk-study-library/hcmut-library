@@ -5,11 +5,12 @@
 | Mục | Thông tin |
 |---|---|
 | Mã môn | ME4111 |
-| Tên | Kiểm định và đánh giá chất lượng hàng dệt may / may Audit and Assessment of textiles products |
+| Tên | Kiểm định và đánh giá chất lượng hàng dệt may / Audit and Assessment of textiles products |
 | Tín chỉ | 3 |
 | Khoa | Khoa Cơ khí |
 | Phần | Lý thuyết |
 | Trạng thái | Đang dạy |
+| Sổ tay HCMUT | [Trang môn trên Sổ tay HCMUT](https://hcmut.edu.vn/study/handbook/subject/ME4111) |
 
 ## Tài liệu
 

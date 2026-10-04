@@ -5,11 +5,12 @@
 | Mục | Thông tin |
 |---|---|
 | Mã môn | ME3171 |
-| Tên | Cấu trúc vải / Fabri c Con st ru ct i on |
+| Tên | Cấu trúc vải / Fabric Construction |
 | Tín chỉ | 4 |
 | Khoa | Khoa Cơ khí |
 | Phần | Lý thuyết |
 | Trạng thái | Đang dạy |
+| Sổ tay HCMUT | [Trang môn trên Sổ tay HCMUT](https://hcmut.edu.vn/study/handbook/subject/ME3171) |
 
 ## Tài liệu
 

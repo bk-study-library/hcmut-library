@@ -5,11 +5,12 @@
 | Mục | Thông tin |
 |---|---|
 | Mã môn | ME4615 |
-| Tên | Sản xuất tinh gọn / Lean Production KT |
+| Tên | Sản xuất tinh gọn / Lean Production |
 | Tín chỉ | 3 |
 | Khoa | Khoa Cơ khí |
 | Phần | Lý thuyết |
 | Trạng thái | Đang dạy |
+| Sổ tay HCMUT | [Trang môn trên Sổ tay HCMUT](https://hcmut.edu.vn/study/handbook/subject/ME4615) |
 
 ## Tài liệu
 

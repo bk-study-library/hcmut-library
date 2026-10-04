@@ -1,15 +1,16 @@
-# ME4101 Đồ án thiết kế hệ thố ng công nghiệp
+# ME4101 Đồ án Thiết kế Hệ thống Công nghiệp
 
 <!-- File này do "npm run build" sinh từ catalog/courses/ME4101.json và items/. Chỉ sửa phần Mẹo học, giữa hai dòng meo-hoc. -->
 
 | Mục | Thông tin |
 |---|---|
 | Mã môn | ME4101 |
-| Tên | Đồ án thiết kế hệ thố ng công nghiệp / Industrial System Designing Project |
+| Tên | Đồ án Thiết kế Hệ thống Công nghiệp / Industrial System Designing Project |
 | Tín chỉ | 2 |
 | Khoa | Khoa Cơ khí |
 | Phần | Đồ án |
 | Trạng thái | Đang dạy |
+| Sổ tay HCMUT | [Trang môn trên Sổ tay HCMUT](https://hcmut.edu.vn/study/handbook/subject/ME4101) |
 
 ## Tài liệu
 

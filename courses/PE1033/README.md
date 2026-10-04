@@ -7,9 +7,10 @@
 | Mã môn | PE1033 |
 | Tên | Bóng đá (Học phần 2) / Football |
 | Tín chỉ | 0 |
-| Khoa | Giáo dục thể chất và Quốc phòng (chưa xác định đơn vị) |
+| Khoa | Môn chung toàn trường |
 | Phần | chưa ghi |
 | Trạng thái | Đang dạy |
+| Sổ tay HCMUT | [Trang môn trên Sổ tay HCMUT](https://hcmut.edu.vn/study/handbook/subject/PE1033) |
 
 ## Tài liệu
 

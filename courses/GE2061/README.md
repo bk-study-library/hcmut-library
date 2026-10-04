@@ -10,6 +10,7 @@
 | Khoa | Khoa Kỹ thuật Địa chất và Dầu khí |
 | Phần | Lý thuyết |
 | Trạng thái | Đang dạy |
+| Sổ tay HCMUT | [Trang môn trên Sổ tay HCMUT](https://hcmut.edu.vn/study/handbook/subject/GE2061) |
 | Môn liên quan | [GE3165](../GE3165/README.md) Trầm tích học và nhịp địa tầng |
 
 ## Tài liệu

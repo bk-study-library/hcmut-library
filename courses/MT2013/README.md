@@ -7,9 +7,10 @@
 | Mã môn | MT2013 |
 | Tên | Xác suất và thống kê / Probability and Statistics |
 | Tín chỉ | 4 |
-| Khoa | Khoa Khoa học Ứng dụng |
+| Khoa | Môn chung toàn trường |
 | Phần | Lý thuyết |
 | Trạng thái | Đang dạy |
+| Sổ tay HCMUT | [Trang môn trên Sổ tay HCMUT](https://hcmut.edu.vn/study/handbook/subject/MT2013) |
 
 ## Tài liệu
 

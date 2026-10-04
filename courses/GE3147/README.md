@@ -10,6 +10,7 @@
 | Khoa | Khoa Kỹ thuật Địa chất và Dầu khí |
 | Phần | Lý thuyết |
 | Trạng thái | Đang dạy |
+| Sổ tay HCMUT | [Trang môn trên Sổ tay HCMUT](https://hcmut.edu.vn/study/handbook/subject/GE3147) |
 | Mã, tên cũ | GE3007 Địa hóa môi trường |
 | Thay cho | [GE3007](../GE3007/README.md) |
 

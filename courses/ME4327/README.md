@@ -1,15 +1,16 @@
-# ME4327 Đồ án tốt nghiệp (cdt)
+# ME4327 Đồ án Tốt nghiệp (Cơ điện tử)
 
 <!-- File này do "npm run build" sinh từ catalog/courses/ME4327.json và items/. Chỉ sửa phần Mẹo học, giữa hai dòng meo-hoc. -->
 
 | Mục | Thông tin |
 |---|---|
 | Mã môn | ME4327 |
-| Tên | Đồ án tốt nghiệp (cdt) / Capstone Project |
+| Tên | Đồ án Tốt nghiệp (Cơ điện tử) / Capstone Project |
 | Tín chỉ | 4 |
 | Khoa | Khoa Cơ khí |
 | Phần | Đồ án |
 | Trạng thái | Đang dạy |
+| Sổ tay HCMUT | [Trang môn trên Sổ tay HCMUT](https://hcmut.edu.vn/study/handbook/subject/ME4327) |
 
 ## Tài liệu
 

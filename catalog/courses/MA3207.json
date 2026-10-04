@@ -1,0 +1,29 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "MA3207",
+  "code": "MA3207",
+  "name": "Quy trình chế tạo bán dẫn và kỹ thuật tích hợp",
+  "credits": 3,
+  "faculty": "fmt",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "UNKNOWN_TS_159_2026",
+      "block": "K12",
+      "required": false
+    },
+    {
+      "program": "UNKNOWN_TS_259_2026_TA",
+      "block": "K12",
+      "required": false
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/MA3207",
+  "note": "Nhập từ CTĐT chính thức (Sổ tay HCMUT, truy cập 04/10/2026). Tên trong Kế hoạch giảng dạy: AQpupy ltircìanthio cnhsế tạo bán dẫn và kỹ thuật tích.",
+  "updated": "2026-10-04"
+}

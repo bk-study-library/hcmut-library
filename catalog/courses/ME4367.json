@@ -2,7 +2,7 @@
   "$schema": "../../schema/course.schema.json",
   "id": "ME4367",
   "code": "ME4367",
-  "name": "Đồ án tốt nghiệp (kt hệ thống cn)",
+  "name": "Đồ án Tốt nghiệp (Kỹ thuật Hệ thống Công nghiệp)",
   "nameEn": "Industrial Engineering Capstone Project",
   "credits": 4,
   "faculty": "fme",
@@ -10,8 +10,28 @@
   "status": "active",
   "programs": [
     {
+      "program": "FME_KY_THUAT_HE_THONG_CONG_NGHIEP_2019",
+      "block": "K08",
+      "required": false
+    },
+    {
       "program": "FME_KY_THUAT_HE_THONG_CONG_NGHIEP_2020",
-      "block": "K02",
+      "block": "K08",
+      "required": false
+    },
+    {
+      "program": "FME_KY_THUAT_HE_THONG_CONG_NGHIEP_2021",
+      "block": "K08",
+      "required": false
+    },
+    {
+      "program": "FME_KY_THUAT_HE_THONG_CONG_NGHIEP_2022",
+      "block": "K08",
+      "required": false
+    },
+    {
+      "program": "FME_KY_THUAT_HE_THONG_CONG_NGHIEP_2023",
+      "block": "K08",
       "required": false
     },
     {
@@ -20,30 +40,31 @@
       "required": true
     },
     {
-      "program": "FME_KY_THUAT_HE_THONG_CONG_NGHIEP_2023",
-      "block": "K13",
+      "program": "SIM_KY_THUAT_HE_THONG_CONG_NGHIEP_2024_CNTN",
+      "block": "K15",
       "required": true
     },
     {
-      "program": "FME_KY_THUAT_HE_THONG_CONG_NGHIEP_2022",
-      "block": "K13",
+      "program": "SIM_KY_THUAT_HE_THONG_CONG_NGHIEP_2024_CTTA",
+      "block": "K15",
       "required": true
     },
     {
-      "program": "FME_KY_THUAT_HE_THONG_CONG_NGHIEP_2021",
-      "block": "K13",
+      "program": "SIM_KY_THUAT_HE_THONG_CONG_NGHIEP_2025_CNTN",
+      "block": "K15",
       "required": true
     },
     {
-      "program": "FME_KY_THUAT_HE_THONG_CONG_NGHIEP_2019",
-      "block": "K02",
-      "required": false
+      "program": "SIM_KY_THUAT_HE_THONG_CONG_NGHIEP_2025_CTTA",
+      "block": "K15",
+      "required": true
     }
   ],
   "parts": [
     "project"
   ],
   "related": [],
-  "note": "Nhập từ nguồn công khai (truy cập 03/10/2026). Tên khác trong CTĐT: Đồ án Tốt nghiệp (Kỹ thuật Hệ thống Công nghiệp) (2024). Chờ người duyệt xác nhận.",
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/ME4367",
+  "note": "Nhập từ nguồn công khai (truy cập 03/10/2026). Tên khác trong CTĐT: Đồ án Tốt nghiệp (Kỹ thuật Hệ thống Công nghiệp) (2024). Chờ người duyệt xác nhận. Tên trong Kế hoạch giảng dạy: Đồ án tốt nghiệp (kt hệ thống cn).",
   "updated": "2026-10-04"
 }

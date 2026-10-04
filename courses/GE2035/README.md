@@ -10,6 +10,7 @@
 | Khoa | Khoa Kỹ thuật Địa chất và Dầu khí |
 | Phần | Lý thuyết |
 | Trạng thái | Đang dạy |
+| Sổ tay HCMUT | [Trang môn trên Sổ tay HCMUT](https://hcmut.edu.vn/study/handbook/subject/GE2035) |
 | Mã, tên cũ | GE2003 Địa chất kiến trúc và đo vẽ bản đồ địa chất; GE2005 Thực tập địa chất kiến trúc |
 | Thay cho | [GE2003](../GE2003/README.md), [GE2005](../GE2005/README.md) |
 | Môn liên quan | [GE2059](../GE2059/README.md) Địa chất kiến trúc và các phương pháp địa chấn, [GE3045](../GE3045/README.md) Phương pháp minh giải tài liệu địa chấn |

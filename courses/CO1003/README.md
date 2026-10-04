@@ -10,6 +10,7 @@
 | Khoa | Khoa Khoa học và Kỹ thuật Máy tính |
 | Phần | Lý thuyết |
 | Trạng thái | Đang dạy |
+| Sổ tay HCMUT | [Trang môn trên Sổ tay HCMUT](https://hcmut.edu.vn/study/handbook/subject/CO1003) |
 
 ## Tài liệu
 

@@ -10,63 +10,43 @@
   "status": "active",
   "programs": [
     {
-      "program": "FME_KY_THUAT_NHIET_2020",
-      "block": "K03",
+      "program": "FME_KY_THUAT_NHIET_2019",
+      "block": "K07",
       "required": false
     },
     {
       "program": "FME_KY_THUAT_NHIET_2020",
-      "block": "K04",
+      "block": "K07",
       "required": false
     },
     {
       "program": "FME_KY_THUAT_NHIET_2021",
-      "block": "K12",
-      "required": false
-    },
-    {
-      "program": "FME_KY_THUAT_NHIET_2021",
-      "block": "K15",
+      "block": "K07",
       "required": false
     },
     {
       "program": "FME_KY_THUAT_NHIET_2022",
-      "block": "K12",
+      "block": "K07",
       "required": false
     },
     {
-      "program": "FME_KY_THUAT_NHIET_2022",
+      "program": "FME_KY_THUAT_NHIET_2023",
+      "block": "K07",
+      "required": false
+    },
+    {
+      "program": "FME_KY_THUAT_NHIET_2024",
+      "block": "K13",
+      "required": false
+    },
+    {
+      "program": "FME_KY_THUAT_NHIET_2024",
       "block": "K15",
       "required": false
     },
     {
-      "program": "FME_KY_THUAT_NHIET_2024",
-      "block": "K18",
-      "required": true
-    },
-    {
-      "program": "FME_KY_THUAT_NHIET_2024",
-      "block": "K19",
-      "required": true
-    },
-    {
-      "program": "FME_KY_THUAT_NHIET_2023",
+      "program": "FME_KY_THUAT_NHIET_2026",
       "block": "K12",
-      "required": false
-    },
-    {
-      "program": "FME_KY_THUAT_NHIET_2023",
-      "block": "K14",
-      "required": false
-    },
-    {
-      "program": "FME_KY_THUAT_NHIET_2019",
-      "block": "K03",
-      "required": false
-    },
-    {
-      "program": "FME_KY_THUAT_NHIET_2019",
-      "block": "K04",
       "required": false
     }
   ],
@@ -74,6 +54,7 @@
     "theory"
   ],
   "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/ME4083",
   "note": "Nhập từ nguồn công khai (truy cập 03/10/2026).",
   "updated": "2026-10-04"
 }

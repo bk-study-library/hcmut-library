@@ -10,33 +10,28 @@
   "status": "active",
   "programs": [
     {
-      "program": "GEOPET_KY_THUAT_DIA_CHAT_2022",
-      "block": "K14",
-      "required": true
-    },
-    {
-      "program": "GEOPET_KY_THUAT_DIA_CHAT_2022",
-      "block": "K20",
-      "required": false
-    },
-    {
-      "program": "GEOPET_KY_THUAT_DIA_CHAT_2021",
-      "block": "K15",
-      "required": true
-    },
-    {
-      "program": "GEOPET_KY_THUAT_DIA_CHAT_2021",
-      "block": "K22",
+      "program": "GEOPET_KY_THUAT_DIA_CHAT_2019",
+      "block": "K08",
       "required": false
     },
     {
       "program": "GEOPET_KY_THUAT_DIA_CHAT_2020",
-      "block": "K05",
+      "block": "K08",
       "required": false
     },
     {
-      "program": "GEOPET_KY_THUAT_DIA_CHAT_2019",
-      "block": "K05",
+      "program": "GEOPET_KY_THUAT_DIA_CHAT_2021",
+      "block": "K08",
+      "required": false
+    },
+    {
+      "program": "GEOPET_KY_THUAT_DIA_CHAT_2022",
+      "block": "K08",
+      "required": false
+    },
+    {
+      "program": "GEOPET_KY_THUAT_DIA_CHAT_2023",
+      "block": "K08",
       "required": false
     }
   ],
@@ -44,6 +39,7 @@
     "project"
   ],
   "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/GE4111",
   "note": "Nhập từ nguồn công khai (truy cập 03/10/2026).",
   "updated": "2026-10-04"
 }

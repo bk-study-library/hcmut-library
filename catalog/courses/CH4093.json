@@ -1,0 +1,44 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "CH4093",
+  "code": "CH4093",
+  "name": "Độc chất học công nghiệp ứng dụng 3 Applied Industrial Toxicology Chuyên ngành Công nghệ Mỹ phẩm (Major of",
+  "credits": 3,
+  "faculty": "che",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "CHE_KY_THUAT_HOA_HOC_2019",
+      "block": "K07",
+      "required": false
+    },
+    {
+      "program": "CHE_KY_THUAT_HOA_HOC_2020",
+      "block": "K07",
+      "required": false
+    },
+    {
+      "program": "CHE_KY_THUAT_HOA_HOC_2021",
+      "block": "K07",
+      "required": false
+    },
+    {
+      "program": "CHE_KY_THUAT_HOA_HOC_2022",
+      "block": "K07",
+      "required": false
+    },
+    {
+      "program": "CHE_KY_THUAT_HOA_HOC_2023",
+      "block": "K07",
+      "required": false
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/CH4093",
+  "note": "Nhập từ Kế hoạch giảng dạy (PDF của trường, truy cập 04/10/2026). Tên lấy từ PDF. Chờ người duyệt xác nhận. Tên lấy từ PDF có vẻ bị cắt cuối. Tên trong Kế hoạch giảng dạy: Độc chất học công nghiệp ứng dụng; Độc chất học công nghiệp ứng dụng Applied Industrial Toxicology.",
+  "updated": "2026-10-04"
+}

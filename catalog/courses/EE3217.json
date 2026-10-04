@@ -10,8 +10,53 @@
   "status": "active",
   "programs": [
     {
+      "program": "DEE_THIET_KE_VI_MACH_2023",
+      "block": "K05",
+      "required": false
+    },
+    {
       "program": "DEE_THIET_KE_VI_MACH_2024",
-      "block": "K08",
+      "block": "K11",
+      "required": false
+    },
+    {
+      "program": "DEE_THIET_KE_VI_MACH_2024_CNTN",
+      "block": "K11",
+      "required": false
+    },
+    {
+      "program": "DEE_THIET_KE_VI_MACH_2025_CNTN",
+      "block": "K11",
+      "required": false
+    },
+    {
+      "program": "DEE_THIET_KE_VI_MACH_2025_CTTA",
+      "block": "K12",
+      "required": false
+    },
+    {
+      "program": "DEE_THIET_KE_VI_MACH_2026",
+      "block": "K12",
+      "required": false
+    },
+    {
+      "program": "DEE_THIET_KE_VI_MACH_2026_CNTN",
+      "block": "K12",
+      "required": false
+    },
+    {
+      "program": "DEE_TS_258_2026_TA",
+      "block": "K12",
+      "required": false
+    },
+    {
+      "program": "UNKNOWN_TS_159_2026",
+      "block": "K12",
+      "required": false
+    },
+    {
+      "program": "UNKNOWN_TS_259_2026_TA",
+      "block": "K12",
       "required": false
     }
   ],
@@ -19,6 +64,7 @@
     "theory"
   ],
   "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/EE3217",
   "note": "Nhập từ nguồn công khai (truy cập 03/10/2026).",
   "updated": "2026-10-04"
 }

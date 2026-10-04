@@ -1,15 +1,16 @@
-# EE5011 Hệ thống năng lượng xanh (
+# EE5011 Hệ thống Năng lượng xanh (PBL)
 
 <!-- File này do "npm run build" sinh từ catalog/courses/EE5011.json và items/. Chỉ sửa phần Mẹo học, giữa hai dòng meo-hoc. -->
 
 | Mục | Thông tin |
 |---|---|
 | Mã môn | EE5011 |
-| Tên | Hệ thống năng lượng xanh ( / PBL)Green Power and Energy System |
+| Tên | Hệ thống Năng lượng xanh (PBL) / Green Power and Energy System |
 | Tín chỉ | 3 |
 | Khoa | Khoa Điện - Điện tử |
 | Phần | Lý thuyết |
 | Trạng thái | Đang dạy |
+| Sổ tay HCMUT | [Trang môn trên Sổ tay HCMUT](https://hcmut.edu.vn/study/handbook/subject/EE5011) |
 
 ## Tài liệu
 

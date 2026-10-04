@@ -1,0 +1,32 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "AS3367",
+  "code": "AS3367",
+  "name": "Thực tập ngoài trường CKT 2",
+  "credits": 4,
+  "faculty": "fas",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "FAS_CO_KY_THUAT_2026_CNTN",
+      "block": "K18",
+      "required": true
+    },
+    {
+      "program": "FAS_TS_138_2026",
+      "block": "K17",
+      "required": true
+    },
+    {
+      "program": "FAS_TS_268_2026_NB",
+      "block": "K17",
+      "required": true
+    }
+  ],
+  "parts": [],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/AS3367",
+  "note": "Nhập từ CTĐT chính thức (Sổ tay HCMUT, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

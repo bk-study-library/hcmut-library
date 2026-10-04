@@ -1,0 +1,62 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "EE203E",
+  "code": "EE203E",
+  "name": "Vi xử lý (Mở rộng)",
+  "credits": 0,
+  "faculty": "dee",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "DEE_KY_THUAT_DIEN_2024_CNTN",
+      "block": "K13",
+      "required": false
+    },
+    {
+      "program": "DEE_KY_THUAT_DIEN_2025_CNTN",
+      "block": "K13",
+      "required": false
+    },
+    {
+      "program": "DEE_KY_THUAT_DIEN_2026_CNTN",
+      "block": "K14",
+      "required": false
+    },
+    {
+      "program": "DEE_KY_THUAT_DIEU_KHIEN_VA_TU_DONG_HOA_2024_CNTN",
+      "block": "K13",
+      "required": false
+    },
+    {
+      "program": "DEE_KY_THUAT_DIEU_KHIEN_VA_TU_DONG_HOA_2025_CNTN",
+      "block": "K13",
+      "required": false
+    },
+    {
+      "program": "DEE_KY_THUAT_DIEU_KHIEN_VA_TU_DONG_HOA_2026_CNTN",
+      "block": "K14",
+      "required": false
+    },
+    {
+      "program": "DEE_THIET_KE_VI_MACH_2024_CNTN",
+      "block": "K13",
+      "required": false
+    },
+    {
+      "program": "DEE_THIET_KE_VI_MACH_2025_CNTN",
+      "block": "K13",
+      "required": false
+    },
+    {
+      "program": "DEE_THIET_KE_VI_MACH_2026_CNTN",
+      "block": "K14",
+      "required": false
+    }
+  ],
+  "parts": [],
+  "related": [],
+  "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/EE203E",
+  "note": "Nhập từ CTĐT chính thức (Sổ tay HCMUT, truy cập 04/10/2026).",
+  "updated": "2026-10-04"
+}

@@ -1,15 +1,16 @@
-# ME2171 Cô ng nghệ may mặc
+# ME2171 Công nghệ may mặc
 
 <!-- File này do "npm run build" sinh từ catalog/courses/ME2171.json và items/. Chỉ sửa phần Mẹo học, giữa hai dòng meo-hoc. -->
 
 | Mục | Thông tin |
 |---|---|
 | Mã môn | ME2171 |
-| Tên | Cô ng nghệ may mặc / Gar ment |
+| Tên | Công nghệ may mặc / Garment and Clothoing Technology |
 | Tín chỉ | 3 |
 | Khoa | Khoa Cơ khí |
 | Phần | Lý thuyết |
 | Trạng thái | Đang dạy |
+| Sổ tay HCMUT | [Trang môn trên Sổ tay HCMUT](https://hcmut.edu.vn/study/handbook/subject/ME2171) |
 
 ## Tài liệu
 

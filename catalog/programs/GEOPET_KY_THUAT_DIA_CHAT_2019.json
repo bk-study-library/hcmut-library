@@ -5,143 +5,238 @@
   "nameEn": "Geological Engineering",
   "faculty": "geopet",
   "year": "2019",
-  "source": "https://drive.google.com/file/d/1BUWk1aVcsiWdSKmx6y2Qn24J7LreT4d5/view",
+  "major": "7520501",
+  "type": "CQ",
+  "level": "dai-hoc",
+  "totalCredits": 129,
+  "note": "Sổ tay không có năm này cho ngành và loại chương trình này. Danh sách môn lấy từ Kế hoạch giảng dạy (PDF), khối là học kỳ chứ không phải khối kiến thức; tên khối kiến thức, bắt buộc hay tự chọn chưa có.",
+  "source": "https://drive.google.com/file/d/1Rlv46eoSoi9GbaKq3UpGU2dhGdStXmKZ/view",
+  "ctdtUrl": "https://drive.google.com/file/d/1BUWk1aVcsiWdSKmx6y2Qn24J7LreT4d5/view",
+  "planUrl": "https://drive.google.com/file/d/1Rlv46eoSoi9GbaKq3UpGU2dhGdStXmKZ/view",
   "blocks": [
     {
       "id": "K01",
-      "name": "I. Các môn bắt buộc (Compulsary Courses) 94",
-      "required": true,
+      "name": "Học kỳ 1",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
       "courses": [
-        "MT1003",
-        "MT1005",
-        "MT1007",
-        "MT2013",
-        "CH1003",
-        "PH1003",
-        "PH1007",
-        "GE1013",
-        "MT1009",
-        "SP1007",
-        "SP1031",
-        "SP1033",
-        "SP1035",
-        "SP1037",
-        "SP1039",
-        "GE1001",
-        "GE3161",
-        "GE2029",
         "LA1003",
-        "LA1005",
-        "LA1007",
-        "LA1009",
-        "AS2001",
-        "GE1011",
-        "GE2031",
-        "GE2033",
-        "GE2035",
-        "GE2037",
-        "GE2043",
-        "GE3013",
-        "GE3139",
-        "GE3141",
-        "GE4033",
-        "GE4069"
-      ]
+        "MT1003",
+        "PH1003",
+        "CH1003",
+        "GE1001",
+        "MI1003",
+        "PE1003"
+      ],
+      "semesters": {
+        "LA1003": 1,
+        "MT1003": 1,
+        "PH1003": 1,
+        "CH1003": 1,
+        "GE1001": 1,
+        "MI1003": 1,
+        "PE1003": 1
+      }
     },
     {
       "id": "K02",
-      "name": "3 thiểu 5 TC) 5 Chuyên ngành",
-      "group": "II. Các môn bắt buộc và tự chọn của chuyên ngành",
+      "name": "Học kỳ 2",
+      "kind": "khac",
       "required": false,
+      "requiredUnknown": true,
       "courses": [
-        "GE2021",
-        "GE3137",
-        "GE3335",
-        "GE4143",
-        "GE4337"
-      ]
+        "LA1005",
+        "MT1007",
+        "PH1007",
+        "MT1005",
+        "GE1011",
+        "GE1013",
+        "PE1005"
+      ],
+      "semesters": {
+        "LA1005": 2,
+        "MT1007": 2,
+        "PH1007": 2,
+        "MT1005": 2,
+        "GE1011": 2,
+        "GE1013": 2,
+        "PE1005": 2
+      }
     },
     {
       "id": "K03",
-      "name": "Các môn tự chọn nhóm (Elective Courses - Group) A",
-      "group": "II. Các môn bắt buộc và tự chọn của chuyên ngành",
+      "name": "Học kỳ 3",
+      "kind": "khac",
       "required": false,
+      "requiredUnknown": true,
       "courses": [
-        "GE3061",
-        "GE3089",
-        "GE3143",
-        "GE3145",
-        "GE3147",
-        "GE3149",
-        "GE3151",
-        "GE3153",
-        "GE3193",
-        "GE3195",
-        "GE3197",
-        "GE3201",
-        "GE3203"
-      ]
+        "LA1007",
+        "MT1009",
+        "GE2033",
+        "GE2043",
+        "GE2035",
+        "PE1007",
+        "SP1031"
+      ],
+      "semesters": {
+        "LA1007": 3,
+        "MT1009": 3,
+        "GE2033": 3,
+        "GE2043": 3,
+        "GE2035": 3,
+        "PE1007": 3,
+        "SP1031": 3
+      }
     },
     {
       "id": "K04",
-      "name": "Thực tập kỹ thuật phân tích các chỉ tiêu của môi trường địa",
-      "group": "II. Các môn bắt buộc và tự chọn của chuyên ngành",
+      "name": "Học kỳ 4",
+      "kind": "khac",
       "required": false,
+      "requiredUnknown": true,
       "courses": [
-        "GE3037",
-        "GE4029"
-      ]
+        "LA1009",
+        "AS2001",
+        "MT2013",
+        "SP1033",
+        "GE2037",
+        "GE2021"
+      ],
+      "semesters": {
+        "LA1009": 4,
+        "AS2001": 4,
+        "MT2013": 4,
+        "SP1033": 4,
+        "GE2037": 4,
+        "GE2021": 4
+      }
     },
     {
       "id": "K05",
-      "name": "Đồ án môn học khảo sát - thăm dò và các phương pháp tính",
-      "group": "II. Các môn bắt buộc và tự chọn của chuyên ngành",
+      "name": "Học kỳ 5",
+      "kind": "khac",
       "required": false,
+      "requiredUnknown": true,
       "courses": [
-        "GE4039",
+        "SP1035",
+        "GE3137",
+        "GE3013",
+        "GE3139",
+        "GE2031",
+        "GE3147",
+        "GE3151",
+        "GE3145",
+        "GE3061",
+        "GE3149",
+        "GE3197",
+        "GE3089",
+        "GE3143",
+        "GE3153",
+        "GE3193",
+        "GE3195",
+        "GE3201",
+        "GE3203"
+      ],
+      "semesters": {
+        "SP1035": 5,
+        "GE3137": 5,
+        "GE3013": 5,
+        "GE3139": 5,
+        "GE2031": 5,
+        "GE3147": 5,
+        "GE3151": 5,
+        "GE3145": 5,
+        "GE3061": 5,
+        "GE3149": 5,
+        "GE3197": 5,
+        "GE3089": 5,
+        "GE3143": 5,
+        "GE3153": 5,
+        "GE3193": 5,
+        "GE3195": 5,
+        "GE3201": 5,
+        "GE3203": 5
+      }
+    },
+    {
+      "id": "K06",
+      "name": "Học kỳ 6",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "GE3141",
+        "SP1039",
+        "GE2029",
+        "GE3161",
+        "GE3335"
+      ],
+      "semesters": {
+        "GE3141": 6,
+        "SP1039": 6,
+        "GE2029": 6,
+        "GE3161": 6,
+        "GE3335": 6
+      }
+    },
+    {
+      "id": "K07",
+      "name": "Học kỳ 7",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "SP1037",
+        "GE4069",
+        "GE4033",
+        "GE4143"
+      ],
+      "semesters": {
+        "SP1037": 7,
+        "GE4069": 7,
+        "GE4033": 7,
+        "GE4143": 7
+      }
+    },
+    {
+      "id": "K08",
+      "name": "Học kỳ 8",
+      "kind": "khac",
+      "required": false,
+      "requiredUnknown": true,
+      "courses": [
+        "SP1007",
+        "GE4337",
         "GE4079",
+        "GE3037",
+        "GE4039",
+        "GE4111",
+        "GE4113",
+        "GE4029",
         "GE4081",
         "GE4085",
         "GE4087",
         "GE4089",
         "GE4105",
-        "GE4107",
-        "GE4111",
-        "GE4113"
-      ]
-    },
-    {
-      "id": "K06",
-      "name": "3 thiểu 2 TC) 2 Chuyên ngành",
-      "group": "II. Các môn bắt buộc và tự chọn của chuyên ngành",
-      "required": false,
-      "courses": [
-        "GE2021",
-        "GE3137",
-        "GE3147",
-        "GE3151",
-        "GE4079",
-        "GE3335",
-        "GE4143",
-        "GE4337",
-        "GE3089",
-        "GE3143",
-        "GE4029",
-        "GE3153",
-        "GE3203",
-        "GE4085"
-      ]
-    },
-    {
-      "id": "K07",
-      "name": "III. Chứng chỉ (Certification)",
-      "required": false,
-      "courses": [
-        "MI1003",
-        "PE1003",
-        "PE1005",
-        "PE1007"
-      ]
+        "GE4107"
+      ],
+      "semesters": {
+        "SP1007": 8,
+        "GE4337": 8,
+        "GE4079": 8,
+        "GE3037": 8,
+        "GE4039": 8,
+        "GE4111": 8,
+        "GE4113": 8,
+        "GE4029": 8,
+        "GE4081": 8,
+        "GE4085": 8,
+        "GE4087": 8,
+        "GE4089": 8,
+        "GE4105": 8,
+        "GE4107": 8
+      }
     }
   ],
   "updated": "2026-10-04"
