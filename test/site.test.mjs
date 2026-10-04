@@ -530,3 +530,36 @@ test('trang khoa Môn chung toàn trường có ghi chú riêng', () => {
   assert.match(fs.readFileSync(path.join(o, 'faculty/chung/index.html'), 'utf8'), /<p class="note">Môn và điều kiện tốt nghiệp áp dụng cho mọi ngành/);
   assert.doesNotMatch(fs.readFileSync(path.join(o, 'faculty/EE/index.html'), 'utf8'), /áp dụng cho mọi ngành/);
 });
+
+test('nhãn bấm được: khối trên trang môn trỏ tới đúng khối trên trang chương trình', () => {
+  const course = read('course/EE1009/index.html');
+  const m = course.match(/href="([^"]*program\/TEST_2019\/)#(khoi-[a-z0-9-]+)"/);
+  assert.ok(m, 'trang môn có link tới khối');
+  assert.match(read('program/TEST_2019/index.html'), new RegExp(`<section class="block" id="${m[2]}"`));
+  assert.match(course, /<section class="group" id="loai-[a-z-]+"/);
+});
+
+test('ô tìm trang chủ: có danh sách chương trình, chỉ gồm chương trình được liệt kê', () => {
+  const progs = JSON.parse(read('assets/programs.json'));
+  assert.ok(progs.some((p) => p.code === 'TEST_2019'));
+  for (const p of progs) {
+    assert.deepEqual(Object.keys(p).filter((k) => !['code', 'name', 'nameEn', 'year', 'variant', 'faculty', 'courses'].includes(k)), []);
+    assert.equal(typeof p.courses, 'number');
+  }
+  const home = read('index.html');
+  assert.match(home, /id="q-prog" hidden/);
+  assert.ok(home.indexOf('id="q-prog"') < home.indexOf('id="q-status"'));
+});
+
+test('tên giảng viên trên tài liệu mở ô tìm ở trang chủ', () => {
+  const dir = copyFixture();
+  const itemsDir = path.join(dir, 'courses', 'EE1009', 'items');
+  const f = fs.readdirSync(itemsDir).find((x) => x.endsWith('.json'));
+  editJson(dir, `courses/EE1009/items/${f}`, (it) => {
+    if (!it.removed) it.teacher = 'Nguyễn Văn Thử';
+  });
+  const o = fs.mkdtempSync(path.join(os.tmpdir(), 'bk-lib-site-gv-'));
+  buildSite({ root: dir, out: o });
+  const html = fs.readFileSync(path.join(o, 'course/EE1009/index.html'), 'utf8');
+  if (html.includes('Nguyễn Văn Thử')) assert.match(html, /href="\.\.\/\.\.\/\?q=Nguy%E1%BB%85n%20V%C4%83n%20Th%E1%BB%AD">Nguyễn Văn Thử<\/a>/);
+});

@@ -226,6 +226,11 @@ function courseTable(t, courses, root, caption) {
     .join('')}</tbody></table></div>`;
 }
 
+// Neo tới một khối trên trang chương trình, dùng cho link từ trang môn.
+function blockAnchor(id) {
+  return `khoi-${String(id).toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
+}
+
 function facultyName(t, f) {
   return f ? f.name[t.lang] || f.name.vi : '';
 }
@@ -308,7 +313,8 @@ function renderItem(t, it, site, root) {
   const meta = [];
   if (it.term) meta.push(`${t.term} ${it.term}`);
   if (it.lab != null) meta.push(t.labNo(it.lab));
-  if (it.teacher) meta.push(`${t.teacher}: ${it.teacher}`);
+  // Tên giảng viên mở ô tìm ở trang chủ để ra các môn khác có tài liệu của cùng người.
+  if (it.teacher) meta.push({ html: `${esc(t.teacher)}: <a href="${root}${pagePath(t.lang, '')}?q=${encodeURIComponent(it.teacher)}">${esc(it.teacher)}</a>` });
   meta.push(it.lang === 'vi' ? 'Tiếng Việt' : it.lang === 'en' ? 'English' : it.lang);
   meta.push(`${t.license}: ${it.license}`);
   if (it.source) meta.push(`${t.source}: ${it.source}`);
@@ -346,7 +352,7 @@ function renderItem(t, it, site, root) {
     actions = row(buttons);
   }
   const note = it.type === 'prelab-reference' ? `<p class="note">${esc(t.prelabRefNote)}</p>` : '';
-  return `<li class="item${it.removed ? ' is-removed' : ''}" id="${esc(it.id)}"><h4>${esc(it.title)} ${badges}</h4>${it.description ? `<p>${esc(it.description)}</p>` : ''}<p class="meta">${esc(meta.join(', '))}. ${esc(authors)}</p>${note}${extra}${actions}</li>`;
+  return `<li class="item${it.removed ? ' is-removed' : ''}" id="${esc(it.id)}"><h4>${esc(it.title)} ${badges}</h4>${it.description ? `<p>${esc(it.description)}</p>` : ''}<p class="meta">${meta.map((m) => (typeof m === 'string' ? esc(m) : m.html)).join(', ')}. ${esc(authors)}</p>${note}${extra}${actions}</li>`;
 }
 
 export function buildSite({ root = TOOL_ROOT, out = path.join(TOOL_ROOT, 'site'), base = '/hcmut-library/' } = {}) {
@@ -391,6 +397,21 @@ export function buildSite({ root = TOOL_ROOT, out = path.join(TOOL_ROOT, 'site')
   const progByCode = new Map(index.programs.map((p) => [p.code, p]));
   const listedPrograms = index.programs.filter(isListed);
   const totalItems = index.counts.items;
+  // Danh sách chương trình cho ô tìm ở trang chủ (chỉ web dùng, không thuộc hợp đồng v1).
+  write(
+    'assets/programs.json',
+    JSON.stringify(
+      listedPrograms.map((p) => {
+        const row = { code: p.code, name: p.name };
+        if (p.nameEn) row.nameEn = p.nameEn;
+        if (p.year) row.year = p.year;
+        if (p.variant) row.variant = p.variant;
+        row.faculty = p.faculty;
+        row.courses = programCourseCount(p);
+        return row;
+      }),
+    ) + '\n',
+  );
   GENERATED = index.generated;
   const finish = (html) => html;
 
@@ -438,6 +459,10 @@ export function buildSite({ root = TOOL_ROOT, out = path.join(TOOL_ROOT, 'site')
   </div>
   <p id="q-hint" class="muted">${esc(t.searchHint)}</p>
   <noscript><p class="note">${esc(t.searchNoJs)}</p></noscript>
+  <div id="q-prog" hidden>
+    <h2 class="results-head">${esc(t.programsTitle)}</h2>
+    <ul id="q-prog-list" class="results"></ul>
+  </div>
   <p id="q-status" class="muted" aria-live="polite"></p>
   <ul id="q-results" class="results"></ul>
 </section>
@@ -494,7 +519,7 @@ ${courseTable(t, f.courses, root, t.facultyCourses)}`;
         .map((b) => {
           const list = b.courses.map((id) => allCourses.get(id)).filter(Boolean);
           const meta = [b.required ? t.required : t.elective, b.creditsNeed ? t.blockCredits(b.creditsNeed) : null].filter(Boolean).join(', ');
-          return `<section class="block"><h2>${esc(b.name)} <span class="muted small">${esc(meta)}</span></h2>${b.group ? `<p class="muted small">${esc(b.group)}</p>` : ''}${courseTable(t, list, root, b.name)}</section>`;
+          return `<section class="block" id="${blockAnchor(b.id)}"><h2>${esc(b.name)} <span class="muted small">${esc(meta)}</span></h2>${b.group ? `<p class="muted small">${esc(b.group)}</p>` : ''}${courseTable(t, list, root, b.name)}</section>`;
         })
         .join('');
       const pname = programName(t, p);
@@ -562,7 +587,9 @@ ${courseTable(t, f.courses, root, t.facultyCourses)}`;
           const b = pr && pr.blocks.find((x) => x.id === pg.block);
           const label = pr ? (pr.year ? `${programName(t, pr)} (${pr.year})` : programName(t, pr)) : pg.program;
           const draft = pr && !isListed(pr) ? ` <span class="tag">${esc(t.programDraftTag)}</span>` : '';
-          return `<a href="${root}${P(`program/${pg.program}/`)}">${esc(label)}</a>${draft}${b ? `, ${esc(b.name)}` : ''}, ${esc(pg.required ? t.required : t.elective)}`;
+          const href = `${root}${P(`program/${pg.program}/`)}`;
+          const where = `${b ? `${b.name}, ` : ''}${pg.required ? t.required : t.elective}`;
+          return `<a href="${href}">${esc(label)}</a>${draft}, ${b ? `<a href="${href}#${blockAnchor(b.id)}">${esc(where)}</a>` : esc(where)}`;
         });
         // Môn chung (Giải tích, Vật lý...) thuộc vài chục chương trình: gói lại cho gọn.
         const progCount = new Set(c.programs.map((x) => x.program)).size;
@@ -577,7 +604,7 @@ ${courseTable(t, f.courses, root, t.facultyCourses)}`;
         const more = rest.length
           ? `<details class="more-items"><summary>${esc(t.moreItems(rest.length))}</summary><ul class="items">${rest.map((i) => renderItem(t, i, siteCfg, root)).join('')}</ul></details>`
           : '';
-        return `<section class="group"><h3>${esc(TYPES[type][lang])} <span class="muted small">(${list.length})</span></h3><ul class="items">${shown}</ul>${more}</section>`;
+        return `<section class="group" id="loai-${type}"><h3>${esc(TYPES[type][lang])} <span class="muted small">(${list.length})</span></h3><ul class="items">${shown}</ul>${more}</section>`;
       }).join('');
       const name = t.lang === 'en' && c.nameEn ? c.nameEn : c.name;
       const retired =
