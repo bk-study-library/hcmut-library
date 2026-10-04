@@ -328,3 +328,15 @@ h4 .tag:first-child, .tag + .tag { margin-left: 6px; }
 main.wrap:has(> .prose) { max-width: 792px; }
 .hero, .search { margin-left: auto; margin-right: auto; }
 .upload { max-width: none; }
+
+/* Chương trình gộp theo khoa (trang chủ) */
+.prog-groups { border-top: 1px solid var(--border); margin: 8px 0 12px; }
+.prog-fac { border-bottom: 1px solid var(--border); }
+.prog-fac summary { cursor: pointer; padding: 10px 4px; display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 8px; }
+.prog-fac summary:hover { background: var(--surface-2); }
+.prog-fac summary:focus-visible, .facts summary:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+.prog-fac-name { font-weight: 600; }
+.prog-fac > .list, .prog-fac > p { margin: 0 0 10px; }
+.prog-fac > p.muted { padding: 0 4px; }
+.facts summary { cursor: pointer; }
+.block p.small { margin: -4px 0 8px; }
