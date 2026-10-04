@@ -1,5 +1,11 @@
 blank_issues_enabled: false
 contact_links:
+  - name: Đề xuất tính năng / Feature ideas
+    url: https://github.com/bk-study-library/hcmut-library/discussions/categories/ideas
+    about: Đề xuất và bình chọn tính năng ở mục Thảo luận, không mở issue. / Suggest and vote on features in Discussions.
+  - name: Hỏi đáp / Questions
+    url: https://github.com/bk-study-library/hcmut-library/discussions/categories/q-a
+    about: Hỏi cách dùng thư viện, cách gửi tài liệu. / Ask how to use the library.
   - name: Gửi tài liệu / Send material
     url: https://bk-study-library.github.io/hcmut-library/gui-tai-lieu/
     about: Gửi file qua trang web, không cần tài khoản GitHub. / Send files through the web page, no GitHub account needed.
