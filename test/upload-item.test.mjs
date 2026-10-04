@@ -43,3 +43,15 @@ test('buildItem giữ sha256 của file gốc trong uploadSha256', () => {
   assert.deepEqual(validate(itemSchema, item), []);
   assert.equal('uploadSha256' in buildItem(base, file, '2026-10-03', 'tom-tat').files[0], false);
 });
+
+test('buildItem bỏ danh xưng, học hàm trước tên giảng viên', async () => {
+  const { normalizeTeacher } = await import('../scripts/upload/item.mjs');
+  assert.equal(normalizeTeacher('Thầy  Nguyễn Văn A'), 'Nguyễn Văn A');
+  assert.equal(normalizeTeacher('PGS.TS. Lê Thị B'), 'Lê Thị B');
+  assert.equal(normalizeTeacher('ThS.Phạm D'), 'Phạm D');
+  // Không cắt nhầm tên bắt đầu bằng các chữ đó, và không để trống.
+  assert.equal(normalizeTeacher('Ksor H Mon'), 'Ksor H Mon');
+  assert.equal(normalizeTeacher('Cô'), 'Cô');
+  const item = buildItem({ ...base, teacher: 'Cô Trần Thị C' }, file, '2026-10-03', 'tom-tat');
+  assert.equal(item.teacher, 'Trần Thị C');
+});

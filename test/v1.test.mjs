@@ -170,3 +170,20 @@ test('v1: đuôi file không có trong policy thì ném lỗi nêu tên file', (
   it.files = [{ name: 'a.xyz', size: 10, sha256: 'a'.repeat(64), url: 'https://example.org/a.xyz' }];
   assert.throws(() => buildV1(repo), /a\.xyz.*\.xyz/);
 });
+
+test('v1: teachers của môn lấy từ mục chưa gỡ, không trùng, vắng khi không có', () => {
+  const repo = loadRepo(copyFixture());
+  const live = repo.items.filter((x) => !x.removed);
+  const course = live[0].course;
+  const mine = repo.items.filter((x) => x.course === course);
+  for (const it of mine) delete it.teacher;
+  const before = buildV1(repo).index.courses.find((c) => c.id === course);
+  assert.equal('teachers' in before, false);
+  const liveMine = mine.filter((x) => !x.removed);
+  liveMine[0].teacher = 'Trần B';
+  if (liveMine[1]) liveMine[1].teacher = 'Trần B';
+  const gone = mine.find((x) => x.removed);
+  if (gone) gone.teacher = 'Người Đã Gỡ';
+  const row = buildV1(repo).index.courses.find((c) => c.id === course);
+  assert.deepEqual(row.teachers, ['Trần B']);
+});

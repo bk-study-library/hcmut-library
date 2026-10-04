@@ -32,3 +32,24 @@ test('mọi id trong bộ câu tìm có trong index', () => {
   const known = new Set(index.courses.map((c) => c.id));
   for (const c of spec.cases) for (const id of [c.top, ...(c.in || [])].filter(Boolean)) assert.ok(known.has(id), id);
 });
+
+test('tìm theo tên giảng viên và lọc theo khoa', () => {
+  const mini = {
+    courses: [
+      { id: 'MT1005', code: 'MT1005', name: 'Giải tích 2', faculty: 'fas', aliases: [], oldNames: [], status: 'active', items: 3, teachers: ['Nguyễn Văn An'] },
+      { id: 'EE2033', code: 'EE2033', name: 'Mạch điện', faculty: 'eee', aliases: [], oldNames: [], status: 'active', items: 1, teachers: ['Lê Thị Bình'] },
+      { id: 'EE1009', code: 'EE1009', name: 'Nhập môn', faculty: 'eee', aliases: [], oldNames: [], status: 'active', items: 5 },
+    ],
+  };
+  const m = BkSearch.prepare(mini);
+  // Kết quả tạo trong vm context khác realm: so qua JSON.
+  const plain = (x) => JSON.parse(JSON.stringify(x));
+  const byTeacher = BkSearch.search(m, 'nguyen van an');
+  assert.deepEqual(plain(byTeacher.map((h) => [h.id, h.teacher])), [['MT1005', 'Nguyễn Văn An']]);
+  assert.deepEqual(plain(BkSearch.search(m, 'le thi binh').map((h) => h.id)), ['EE2033']);
+  // Tên môn khớp thì không gắn teacher, và đứng trước kết quả theo giảng viên.
+  assert.equal(BkSearch.search(m, 'mach dien')[0].teacher, undefined);
+  assert.equal(BkSearch.search(m, 'nguyen van an', { faculty: 'eee' }).length, 0);
+  assert.deepEqual(plain(BkSearch.list(m, { faculty: 'eee' }).map((h) => h.id)), ['EE1009', 'EE2033']);
+  assert.equal(BkSearch.list(m).length, 3);
+});

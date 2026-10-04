@@ -62,6 +62,21 @@
   <p class="err" data-err="license" role="alert"></p>
 </div>
 
+<div class="field">
+  <label for="teacher">Giảng viên (không bắt buộc)</label>
+  <input id="teacher" name="teacher" type="text" list="teacher-list" autocomplete="off" maxlength="{{upload:teacherMax}}" aria-describedby="teacher-hint">
+  <datalist id="teacher-list"></datalist>
+  <p id="teacher-hint" class="muted">Ghi họ tên như trên thời khóa biểu, không cần Thầy, Cô hay học hàm. Môn đã có tên giảng viên thì chọn trong gợi ý để các bạn tìm được.</p>
+  <p class="err" data-err="teacher" role="alert"></p>
+</div>
+
+<div class="field">
+  <label for="displayName">Tên hiển thị của bạn (không bắt buộc)</label>
+  <input id="displayName" name="displayName" type="text" maxlength="{{upload:displayNameMax}}" aria-describedby="name-hint">
+  <p id="name-hint" class="muted">Điền nếu bạn muốn được ghi tên ở tài liệu. Để trống thì bài hiện là Ẩn danh. Không cần email.</p>
+  <p class="err" data-err="displayName" role="alert"></p>
+</div>
+
 <details class="field more">
   <summary>Thông tin thêm (không bắt buộc)</summary>
   <label for="description">Mô tả</label>
@@ -80,13 +95,6 @@
 {{upload:examKinds}}
   </select>
   <p class="err" data-err="examKind" role="alert"></p>
-  <label for="teacher">Giảng viên</label>
-  <input id="teacher" name="teacher" type="text" maxlength="{{upload:teacherMax}}">
-  <p class="err" data-err="teacher" role="alert"></p>
-  <label for="displayName">Tên hiển thị của bạn</label>
-  <input id="displayName" name="displayName" type="text" maxlength="{{upload:displayNameMax}}" aria-describedby="name-hint">
-  <p id="name-hint" class="muted">Để trống thì bài hiện là Ẩn danh. Không cần email.</p>
-  <p class="err" data-err="displayName" role="alert"></p>
 </details>
 
 <div class="field checks">
