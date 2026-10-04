@@ -7,11 +7,12 @@ export const SITE_URL = 'https://bk-study-library.github.io/hcmut-library/';
 export const RAW_URL = `https://raw.githubusercontent.com/${REPO}/main/`;
 
 export const TYPE_ORDER = [
-  'summary', 'notes', 'cheatsheet', 'quiz-pack', 'tips', 'exercise-solution', 'exam-past', 'exam-solution',
+  'lecture-slides', 'summary', 'notes', 'cheatsheet', 'quiz-pack', 'tips', 'exercise-solution', 'exam-past', 'exam-solution',
   'prelab-template', 'prelab-reference', 'lab-report-reference', 'project-reference', 'book-ref', 'link',
 ];
 
 export const TYPES = {
+  'lecture-slides': { vi: 'Slide bài giảng', en: 'Lecture slides' },
   summary: { vi: 'Tóm tắt', en: 'Summaries' },
   notes: { vi: 'Ghi chú', en: 'Notes' },
   cheatsheet: { vi: 'Bảng công thức', en: 'Cheat sheets' },
