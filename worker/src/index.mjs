@@ -6,6 +6,7 @@ import { slugify, fileName, uniqueId } from '../../scripts/upload/naming.mjs';
 import { buildItem } from '../../scripts/upload/item.mjs';
 import { formatSize } from '../../scripts/lib/labels.mjs';
 import { accessConfigured, verifyAccessJwt } from './access.mjs';
+import { handlePreview } from './preview.mjs';
 import {
   CODE,
   checkToken,
@@ -390,6 +391,7 @@ async function handleOwner(req, env, deps, code, wantFile) {
 
 const REVIEW_PATH = /^\/xem-duyet\/([^/]+)$/;
 const OWNER_PATH = /^\/xem\/([^/]+)(\/file)?$/;
+const PREVIEW_PATH = '/xem-truoc';
 
 async function handleView(req, env, deps, path) {
   if (req.method !== 'GET') return methodPage();
@@ -417,6 +419,7 @@ export function createHandler(deps = {}) {
     async fetch(req, env) {
       const url = new URL(req.url);
       const cors = corsHeaders(req, env);
+      if (url.pathname === PREVIEW_PATH) return handlePreview(req, env, d);
       if (REVIEW_PATH.test(url.pathname) || OWNER_PATH.test(url.pathname)) return handleView(req, env, d, url.pathname);
       if (url.pathname !== '/submit') return reply(404, { ok: false, error: MESSAGES.notFound }, cors);
       if (req.method === 'OPTIONS') {
