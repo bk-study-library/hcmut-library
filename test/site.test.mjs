@@ -8,7 +8,7 @@ import { buildSite } from '../scripts/build-site.mjs';
 import { FIXTURES, copyFixture, editJson } from './helpers.mjs';
 
 const out = fs.mkdtempSync(path.join(os.tmpdir(), 'bk-lib-site-'));
-const result = buildSite({ root: path.join(FIXTURES, 'valid'), out, base: '/library/' });
+const result = buildSite({ root: path.join(FIXTURES, 'valid'), out, base: '/hcmut-library/' });
 const read = (p) => fs.readFileSync(path.join(out, p), 'utf8');
 
 function allHtml(dir = out, acc = []) {
@@ -65,8 +65,8 @@ test('mã cũ chuyển hướng tới ID cố định', () => {
 
 test('404 dùng đường dẫn tuyệt đối theo base', () => {
   const html = read('404.html');
-  assert.match(html, /href="\/library\/assets\/site\.css"/);
-  assert.match(html, /href="\/library\/en\/"/);
+  assert.match(html, /href="\/hcmut-library\/assets\/site\.css"/);
+  assert.match(html, /href="\/hcmut-library\/en\/"/);
 });
 
 test('không tải gì từ máy chủ khác: không CDN, không font ngoài, không theo dõi', () => {

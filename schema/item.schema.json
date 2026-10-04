@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://github.com/bk-study-library/library/schema/item.schema.json",
+  "$id": "https://github.com/bk-study-library/hcmut-library/schema/item.schema.json",
   "title": "Item",
   "description": "Một tài liệu hoặc link của một môn. / One resource or link for a course.",
   "type": "object",

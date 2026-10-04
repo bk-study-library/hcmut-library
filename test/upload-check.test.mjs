@@ -10,7 +10,7 @@ import { REPORT_MARKER } from '../scripts/upload/report.mjs';
 import { validate } from '../scripts/lib/schema.mjs';
 
 const itemSchema = JSON.parse(readFileSync(new URL('../schema/item.schema.json', import.meta.url), 'utf8'));
-const REPO = 'bk-study-library/library';
+const REPO = 'bk-study-library/hcmut-library';
 const NAME = 'MT1005_summary_tom-tat.pdf';
 const OLD_SHA = 'a'.repeat(64);
 const SHA = 'b1c2d3' + 'e'.repeat(58);

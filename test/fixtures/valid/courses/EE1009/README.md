@@ -22,7 +22,7 @@
 
 ### Prelab tham khảo
 
-- **Prelab bài 2 (tham khảo)** (HK251, bài 2, vi, CC-BY-SA-4.0): [prelab-2.pdf, 117 KB](https://github.com/bk-study-library/library/releases/download/files-EE1009/prelab-2.pdf)
+- **Prelab bài 2 (tham khảo)** (HK251, bài 2, vi, CC-BY-SA-4.0): [prelab-2.pdf, 117 KB](https://github.com/bk-study-library/hcmut-library/releases/download/files-EE1009/prelab-2.pdf)
 
 ## Link
 
@@ -36,7 +36,7 @@ Chưa có mẹo. Bạn có kinh nghiệm học môn này? Mở Pull Request sử
 
 ## Đóng góp
 
-- Gửi file, không cần tài khoản GitHub: [mở trang Gửi tài liệu](https://bk-study-library.github.io/library/gui-tai-lieu/?course=EE1009).
-- Thêm link tới tài liệu công khai: [mở form Thêm link](https://github.com/bk-study-library/library/issues/new?template=them-link.yml&course=EE1009).
-- Sửa tên, mã môn: [mở form Sửa danh mục môn](https://github.com/bk-study-library/library/issues/new?template=sua-danh-muc.yml&course=EE1009).
-- Quy định: [CONTRIBUTING.md](https://github.com/bk-study-library/library/blob/main/CONTRIBUTING.md). Gỡ tài liệu: [TAKEDOWN.md](https://github.com/bk-study-library/library/blob/main/TAKEDOWN.md).
+- Gửi file, không cần tài khoản GitHub: [mở trang Gửi tài liệu](https://bk-study-library.github.io/hcmut-library/gui-tai-lieu/?course=EE1009).
+- Thêm link tới tài liệu công khai: [mở form Thêm link](https://github.com/bk-study-library/hcmut-library/issues/new?template=them-link.yml&course=EE1009).
+- Sửa tên, mã môn: [mở form Sửa danh mục môn](https://github.com/bk-study-library/hcmut-library/issues/new?template=sua-danh-muc.yml&course=EE1009).
+- Quy định: [CONTRIBUTING.md](https://github.com/bk-study-library/hcmut-library/blob/main/CONTRIBUTING.md). Gỡ tài liệu: [TAKEDOWN.md](https://github.com/bk-study-library/hcmut-library/blob/main/TAKEDOWN.md).

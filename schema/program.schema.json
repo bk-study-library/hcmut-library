@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://github.com/bk-study-library/library/schema/program.schema.json",
+  "$id": "https://github.com/bk-study-library/hcmut-library/schema/program.schema.json",
   "title": "Program",
   "description": "Một chương trình đào tạo (CTĐT): khối kiến thức và ID môn. Không chứa điểm. / One curriculum: blocks and course IDs. No grades.",
   "type": "object",

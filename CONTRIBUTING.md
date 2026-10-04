@@ -24,7 +24,7 @@ Một số điều cần nhớ:
 
 ### 1. Gửi file qua trang web (khuyên dùng, không cần tài khoản GitHub)
 
-1. Mở [Gửi tài liệu](https://bk-study-library.github.io/library/gui-tai-lieu/), hoặc bấm **Gửi tài liệu** trên trang môn để form chọn sẵn môn.
+1. Mở [Gửi tài liệu](https://bk-study-library.github.io/hcmut-library/gui-tai-lieu/), hoặc bấm **Gửi tài liệu** trên trang môn để form chọn sẵn môn.
 2. Chọn môn, loại tài liệu, nhập tiêu đề, chọn file. Nhiều file thì nén thành một file .zip.
 3. Chọn giấy phép, đánh dấu ba ô cam kết, qua bước xác minh Turnstile của Cloudflare.
 4. Bấm **Gửi tài liệu**. Trang hiện mã bài. Hãy lưu mã này để hỏi về bài của bạn.
@@ -41,7 +41,7 @@ Bạn nhập tên hiển thị thì tên đó hiện công khai cùng bài; bỏ
 
 ### 2. Thêm link qua form issue (cần tài khoản GitHub)
 
-Chỉ có link, không có file: mở form [Thêm link](https://github.com/bk-study-library/library/issues/new?template=them-link.yml) (hoặc bấm **Thêm link** trên trang môn). Ghi mã môn, link, tiêu đề, giấy phép của nguồn. Không thêm link tới file sách có bản quyền. Issue này chưa có tự động hóa: người duyệt đọc rồi tự mở Pull Request thêm mục `link`.
+Chỉ có link, không có file: mở form [Thêm link](https://github.com/bk-study-library/hcmut-library/issues/new?template=them-link.yml) (hoặc bấm **Thêm link** trên trang môn). Ghi mã môn, link, tiêu đề, giấy phép của nguồn. Không thêm link tới file sách có bản quyền. Issue này chưa có tự động hóa: người duyệt đọc rồi tự mở Pull Request thêm mục `link`.
 
 ### 3. Pull Request (nếu bạn dùng Git)
 
@@ -52,7 +52,7 @@ Chỉ có link, không có file: mở form [Thêm link](https://github.com/bk-st
 
 ## Sửa danh mục môn
 
-Mở form [Sửa danh mục môn](https://github.com/bk-study-library/library/issues/new?template=sua-danh-muc.yml) hoặc gửi PR sửa `catalog/courses/<ID>.json`.
+Mở form [Sửa danh mục môn](https://github.com/bk-study-library/hcmut-library/issues/new?template=sua-danh-muc.yml) hoặc gửi PR sửa `catalog/courses/<ID>.json`.
 
 - ID của môn không bao giờ đổi.
 - Môn đổi tên hoặc đổi mã thì giữ ID, thêm mã và tên cũ vào `aliases`.
@@ -62,7 +62,7 @@ Mở form [Sửa danh mục môn](https://github.com/bk-study-library/library/is
 
 ## Thêm chương trình đào tạo
 
-Khoa của bạn chưa có chương trình, hoặc chương trình chưa có danh sách môn: mở form [Thêm chương trình đào tạo](https://github.com/bk-study-library/library/issues/new?template=them-chuong-trinh.yml), hoặc bấm **Thêm chương trình đào tạo** trên trang khoa, trang chương trình hay mục Chương trình đào tạo ở trang chủ để form chọn sẵn khoa.
+Khoa của bạn chưa có chương trình, hoặc chương trình chưa có danh sách môn: mở form [Thêm chương trình đào tạo](https://github.com/bk-study-library/hcmut-library/issues/new?template=them-chuong-trinh.yml), hoặc bấm **Thêm chương trình đào tạo** trên trang khoa, trang chương trình hay mục Chương trình đào tạo ở trang chủ để form chọn sẵn khoa.
 
 - Ghi khoa, tên ngành như trong CTĐT, khóa (năm vào trường).
 - Gửi link CTĐT chính thức của trường hoặc của khoa. Không có link thì đính kèm file PDF CTĐT; CTĐT là văn bản công khai nên gửi qua issue được.
@@ -71,7 +71,7 @@ Khoa của bạn chưa có chương trình, hoặc chương trình chưa có dan
 
 ## Duyệt bài
 
-Người duyệt là sinh viên đã học qua môn, làm tình nguyện. Danh sách người duyệt nằm trong [.github/CODEOWNERS](.github/CODEOWNERS). Hiện tại là người duy trì repo. Muốn tham gia, mở form [Đăng ký duyệt bài](https://github.com/bk-study-library/library/issues/new?template=dang-ky-duyet.yml).
+Người duyệt là sinh viên đã học qua môn, làm tình nguyện. Danh sách người duyệt nằm trong [.github/CODEOWNERS](.github/CODEOWNERS). Hiện tại là người duy trì repo. Muốn tham gia, mở form [Đăng ký duyệt bài](https://github.com/bk-study-library/hcmut-library/issues/new?template=dang-ky-duyet.yml).
 
 ### Luồng duyệt
 

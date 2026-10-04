@@ -1,10 +1,10 @@
 blank_issues_enabled: false
 contact_links:
   - name: Gửi tài liệu / Send material
-    url: https://bk-study-library.github.io/library/gui-tai-lieu/
+    url: https://bk-study-library.github.io/hcmut-library/gui-tai-lieu/
     about: Gửi file qua trang web, không cần tài khoản GitHub. / Send files through the web page, no GitHub account needed.
   - name: Xem thư viện / Browse the library
-    url: https://bk-study-library.github.io/library/
+    url: https://bk-study-library.github.io/hcmut-library/
     about: Tìm tài liệu theo mã môn. / Find material by course code.
   - name: BK Study Desk (app)
     url: https://github.com/xeroz369/bk-study-desk
