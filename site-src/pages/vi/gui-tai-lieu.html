@@ -7,10 +7,10 @@
 <legend class="sr">Form gửi tài liệu</legend>
 
 <div class="field">
-  <label for="course-q">Môn học</label>
-  <input id="course-q" type="search" autocomplete="off" spellcheck="false" placeholder="Gõ mã hoặc tên môn, ví dụ MT1005 hay giai tich" aria-describedby="course-hint" disabled>
+  <label for="course-q">Môn học (gõ tên môn, ví dụ Giải tích 2)</label>
+  <input id="course-q" type="search" autocomplete="off" spellcheck="false" placeholder="Ví dụ Giải tích 2, giai tich 2 hay MT1005" aria-describedby="course-hint" disabled>
   <input type="hidden" name="course" id="course-id">
-  <p id="course-hint" class="muted">Chọn một môn trong danh sách hiện ra.</p>
+  <p id="course-hint" class="muted">Nên tìm theo tên môn, vì mã có thể đổi qua các khóa.</p>
   <ul id="course-results" class="pick"></ul>
   <p class="err" data-err="course" role="alert"></p>
   <p id="new-course-offer" class="new-offer" hidden>Môn chưa có trong thư viện? <button class="btn subtle" type="button" id="new-course-open" aria-controls="new-course-box" aria-expanded="false">Thêm môn mới</button></p>

@@ -57,6 +57,8 @@ function readSiteConfig(root) {
     programTypeOrder: Array.isArray(cfg.programTypeOrder) ? cfg.programTypeOrder.map(String) : Object.keys(PROGRAM_TYPES),
     // Ô tìm trang chủ: từ bấy nhiêu môn cùng tên trong kết quả thì gộp thành một dòng mở ra được.
     sameNameGroupMin: Number.isInteger(cfg.sameNameGroupMin) && cfg.sameNameGroupMin >= 2 ? cfg.sameNameGroupMin : 3,
+    // Dòng gộp môn cùng tên: hiện tối đa bấy nhiêu mã, phần còn lại ghi +N.
+    sameNameChipsMax: Number.isInteger(cfg.sameNameChipsMax) && cfg.sameNameChipsMax > 0 ? cfg.sameNameChipsMax : 4,
     // Form Gửi tài liệu: gợi ý môn có mã lệch tối đa bấy nhiêu số trước khi cho thêm môn mới. 0 là không gợi ý.
     nearCodeSpan: Number.isInteger(cfg.nearCodeSpan) && cfg.nearCodeSpan > 0 ? cfg.nearCodeSpan : 0,
   };
@@ -193,6 +195,8 @@ function uploadPage({ policy, site, root, raw, t }) {
     },
     // Môn mới gửi kèm bài: mẫu mã từ schema, giới hạn tên từ policy, khoảng gợi ý mã gần từ site.json.
     newCourse: { codePattern: courseCodePattern(), nameMax: policy.fields.courseNameMax, nearSpan: site.nearCodeSpan },
+    // Môn cùng tên gộp thành một dòng, cùng ngưỡng với ô tìm trang chủ.
+    sameName: { groupMin: site.sameNameGroupMin, chipsMax: site.sameNameChipsMax },
   };
   // api.js của Cloudflare Turnstile là script ngoài duy nhất của site: chống bot gửi tự động vào form,
   // nên chỉ nạp ở trang này và chỉ khi form đã mở.

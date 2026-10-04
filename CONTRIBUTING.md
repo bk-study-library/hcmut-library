@@ -26,7 +26,7 @@ Một số điều cần nhớ:
 ### 1. Gửi file qua trang web (khuyên dùng, không cần tài khoản GitHub)
 
 1. Mở [Gửi tài liệu](https://bk-study-library.github.io/hcmut-library/gui-tai-lieu/), hoặc bấm **Gửi tài liệu** trên trang môn để form chọn sẵn môn.
-2. Chọn môn, loại tài liệu, nhập tiêu đề, chọn file. File .zip chỉ nhận cho loại Gói quiz; loại khác thì gửi từng file, hoặc gộp thành một file PDF.
+2. Tìm môn theo tên (mã có thể đổi qua các khóa). Môn có nhiều mã cùng tên (ví dụ Đồ án tốt nghiệp) hiện thành một dòng; bấm vào để chọn đúng mã theo ngành hoặc khóa. Chọn loại tài liệu, nhập tiêu đề, chọn file. File .zip chỉ nhận cho loại Gói quiz; loại khác thì gửi từng file, hoặc gộp thành một file PDF.
 3. Chọn giấy phép, đánh dấu ba ô cam kết, qua bước xác minh Turnstile của Cloudflare.
 4. Bấm **Gửi tài liệu**. Trang hiện mã bài. Hãy lưu mã này để hỏi về bài của bạn.
 
