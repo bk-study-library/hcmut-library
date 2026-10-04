@@ -20,7 +20,8 @@ Form không bắt nhập email. Những gì form gửi đi:
 
 Địa chỉ IP của bạn:
 
-- Worker nhận bài dùng IP chỉ để giới hạn số lần gửi theo IP, qua tính năng Rate Limiting của Cloudflare. Ngưỡng đặt trong cấu hình Worker (`worker/wrangler.jsonc`). Worker không lưu IP vào kho, vào PR hay vào nhật ký, và nhật ký từng lượt gọi của Worker đã tắt.
+- Worker nhận bài dùng IP chỉ để giới hạn số lần gửi, qua tính năng Rate Limiting của Cloudflare. Khóa giới hạn là địa chỉ IPv4, hoặc 64 bit đầu của địa chỉ IPv6 (cả dải /64 tính chung). Ngưỡng đặt trong cấu hình Worker (`worker/wrangler.jsonc`). Worker không lưu IP vào kho, vào PR hay vào nhật ký, và nhật ký từng lượt gọi của Worker đã tắt.
+- Ngoài ra thư viện có trần chung số bài nhận mỗi ngày (`SUBMIT_DAILY_CAP`). Kho riêng chỉ giữ một con số đếm cho mỗi ngày, không gắn với IP hay người gửi.
 - Cloudflare, với vai trò nhà cung cấp hạ tầng, vẫn nhìn thấy IP khi xử lý yêu cầu. Chính sách của Cloudflare áp dụng cho phần đó.
 
 ## File chờ duyệt
@@ -29,7 +30,12 @@ Form không bắt nhập email. Những gì form gửi đi:
 - Khi PR được merge, bản đã làm sạch được đưa lên Release công khai và file trong kho bị xóa. Khi PR bị đóng, file trong kho bị xóa.
 - Bài bị bỏ quên: luật vòng đời của kho xóa mọi file sau 30 ngày.
 - Người duyệt xem file chờ duyệt qua một trang riêng, đăng nhập bằng tài khoản GitHub qua Cloudflare Access. Chỉ thành viên nhóm duyệt bài (org `bk-study-library` trên GitHub) vào được. Cloudflare Access xử lý thông tin đăng nhập của người duyệt theo chính sách của Cloudflare.
-- Với PDF, máy xóa siêu dữ liệu (Author, Creator, Producer, XMP) khỏi bản được đăng. Bản gốc chỉ nằm trong kho riêng cho tới khi bị xóa như trên.
+- Máy xóa siêu dữ liệu khỏi bản được đăng, và comment kết quả kiểm liệt kê các trường đã xóa:
+  - PDF: Author, Creator, Producer, XMP và các trường khác của tài liệu. Ảnh nằm bên trong PDF (ví dụ trang scan) giữ nguyên siêu dữ liệu của chính ảnh đó.
+  - Ảnh .png, .jpg: mọi siêu dữ liệu (vị trí GPS, máy chụp, giờ chụp, tên tác giả), chỉ giữ hướng xoay ảnh. Còn sót thì máy không đăng file.
+  - File Office (.docx, .pptx, .xlsx): người tạo, người sửa cuối, giờ tạo, công ty, đường dẫn mẫu và thuộc tính riêng; tên người viết trong bình luận và sửa đổi có theo dõi. Nội dung bình luận vẫn còn, hãy tự xóa trước khi gửi.
+  - File .zip của gói quiz: không sửa bên trong. Ảnh trong .zip giữ siêu dữ liệu, máy chỉ cảnh báo.
+- Bản gốc chỉ nằm trong kho riêng cho tới khi bị xóa như trên.
 - Máy quét virus và quét thông tin cá nhân (MSSV, email, số điện thoại) trong file. Thông tin cá nhân trong file chỉ bị cảnh báo trong PR, không bị chặn: người gửi và người duyệt tự quyết có xóa không. Hãy tự xóa phần này trước khi gửi.
 - Các ô chữ của form (tiêu đề, mô tả, chương, giảng viên, tên hiển thị, thông tin sách) hiện công khai, nên form từ chối bài có MSSV, email hay số điện thoại trong các ô này.
 
@@ -43,12 +49,15 @@ Sau khi gửi, trang Gửi tài liệu hiện một link xem bài riêng của b
 
 ## Những gì công khai khi repo public
 
-Mỗi bài gửi tạo một Pull Request. Khi repo public, PR đó công khai, gồm:
+Mỗi bài gửi tạo một Pull Request, công khai ngay khi gửi, trước khi người duyệt xem:
 
-- các trường trong bảng thông tin (môn, loại, tiêu đề, mô tả, chương, học kỳ, giảng viên, tên hiển thị nếu có, giấy phép);
-- mã bài, giá trị `sha256` và kích thước của file (cả `sha256` của file gốc, dùng để chặn gửi trùng);
+- tiêu đề và nội dung PR chỉ có mã bài, mã môn, loại tài liệu, kích thước và `sha256` của file, link cho người duyệt. Không có chữ bạn nhập;
+- **file mục tài liệu** (`courses/<môn>/items/<id>.json`) trong tab Files changed của PR và trên nhánh `upload/<mã bài>` có đủ các ô bạn nhập: tiêu đề, mô tả, chương, học kỳ, giảng viên, tên hiển thị nếu có, thông tin sách, giấy phép. Tên file mục lấy từ tiêu đề (bỏ dấu). Ai mở PR đều đọc được phần này, kể cả trước khi duyệt. Commit của bot không chứa chữ bạn nhập;
+- giá trị `sha256` của file gốc trong file mục (dùng để chặn gửi trùng);
 - comment kết quả kiểm của máy, có thể gồm loại thông tin cá nhân tìm thấy và số trang;
 - người mở PR là bot của thư viện, không phải bạn. Thư viện không ghi tài khoản hay email của bạn vào PR.
+
+PR bị đóng vẫn còn trên GitHub (trang PR và commit theo mã). Vì vậy hãy chỉ nhập những gì bạn muốn công khai. Người duyệt đóng ngay PR có chữ xúc phạm, quảng cáo hay link lạ; xóa hẳn một PR cần nhờ GitHub Support.
 
 PR chỉ chứa những gì sẽ được đăng cùng kết quả kiểm. Sau khi merge, thông tin tài liệu và file nằm trong lịch sử repo và trên Release, và có thể đã được người khác sao chép.
 
