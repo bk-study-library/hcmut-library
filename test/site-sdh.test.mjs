@@ -70,7 +70,7 @@ test('trang ngành sau đại học: tên kèm bậc, bộ chọn loại và kh�
   assert.match(html, /<h2 id="h-road">Khối kiến thức<\/h2><p class="muted">Theo chương trình Khóa 2025, Ứng dụng\./);
   assert.doesNotMatch(html, /Lộ trình theo học kỳ|id="hoc-ky-/);
   assert.match(html, /<h3>A\.1\. Bắt buộc Đa ngành, tổng quát <span class="muted small">bắt buộc, cần 3 tín chỉ<\/span><\/h3><p class="muted small">A\. Đa ngành Tổng quát \(General Interdisciplinary Knowledge\), cần 9 tín chỉ<\/p>/);
-  assert.match(html, /<a class="btn" href="https:\/\/drive\.google\.com\/file\/d\/ths-ck-ud\/view" target="_blank" rel="noopener">Xem CTĐT gốc/);
+  assert.match(html, /<a class="btn" href="https:\/\/drive\.google\.com\/file\/d\/ths-ck-ud\/view" target="_blank" rel="noopener">PDF chương trình đào tạo/);
   assert.match(mainOf(read('en/major/8520103/index.html')), /<h1>Mechanical Engineering \(Master\)<\/h1>/);
   assert.match(read('major/8520103/index.html'), /<title>Thạc sĩ Kỹ thuật cơ khí \| BK Study Library<\/title>/);
 });
@@ -79,7 +79,7 @@ test('trang chương trình sau đại học: CTĐT không ghi mã môn thì ghi
   const k22 = mainOf(read('program/FME_THAC_SI_KY_THUAT_CO_KHI_2022/index.html'));
   assert.match(k22, /<h1>Thạc sĩ Kỹ thuật cơ khí \(2022\)<\/h1>/);
   assert.match(k22, /Thạc sĩ, 60 tín chỉ, chưa có danh sách mã môn<\/p>/);
-  assert.match(k22, /<div class="note" role="note"><p>CTĐT chính thức của khóa này không ghi mã môn, nên thư viện chưa có danh sách mã môn\. Xem danh sách môn trong PDF của trường\.<\/p><\/div><p class="actions"><a class="btn primary" href="https:\/\/drive\.google\.com\/file\/d\/ths-ck-2022\/view" target="_blank" rel="noopener">Xem CTĐT gốc \(PDF của trường\)<\/a><a class="btn subtle" href="[^"]*them-chuong-trinh\.yml/);
+  assert.match(k22, /<div class="note" role="note"><p>Chương trình đào tạo của khóa này không ghi mã môn\. Xem danh sách môn trong PDF của trường\.<\/p><\/div><p class="actions"><a class="btn primary" href="https:\/\/drive\.google\.com\/file\/d\/ths-ck-2022\/view" target="_blank" rel="noopener">PDF chương trình đào tạo<\/a><a class="btn subtle" href="[^"]*them-chuong-trinh\.yml/);
   const ud = mainOf(read('program/FME_THAC_SI_KY_THUAT_CO_KHI_2025_UD/index.html'));
   assert.match(ud, /<a class="tag" href="\.\.\/\.\.\/\?q=UD">Thạc sĩ định hướng ứng dụng<\/a>, Thạc sĩ, 60 tín chỉ, 9 môn<\/p>/);
   assert.doesNotMatch(ud, /Thạc sĩ, Thạc sĩ/);

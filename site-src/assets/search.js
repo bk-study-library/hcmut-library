@@ -1,4 +1,4 @@
-// Ô tìm trên trang chủ: môn (v1/index.json, search-core.js, cùng logic với app BK Study Desk),
+// Ô tìm trên trang chủ: môn (assets/courses.json, bản gọn của v1/index.json; search-core.js, cùng logic với app BK Study Desk),
 // chương trình (assets/programs.json) và tài liệu (assets/items.json, search-docs.js), kèm lọc theo
 // khoa, loại tài liệu, học kỳ, kỳ thi. Câu tìm và bộ lọc nằm trên địa chỉ trang (?q=, ?khoa=, ?loai=,
 // ?hk=, ?ky=) để link chia sẻ được. Chạy hoàn toàn trên máy người xem, không gửi chữ gõ đi đâu.
@@ -38,9 +38,13 @@
   var ds = strings.docs || {};
   var DOC_MAX = ds.max || 10;
   var MAX = 30;
+  // Từ bấy nhiêu môn cùng tên trong kết quả thì gộp thành một dòng (sameNameGroupMin trong site.json).
+  var GROUP_MIN = strings.groupMin || 3;
   var idx = null;
   var byId = {};
   var facultyName = {};
+  // Khóa tên của từng môn, tính một lần khi nạp: cùng cách so với scripts/lib/course-context.mjs.
+  var nameKeyOf = {};
 
   function countText(n) {
     if (n === 0) return strings.results[0];
@@ -49,7 +53,7 @@
   }
 
   function moreText(n) {
-    return en ? 'Showing the first 30; ' + n + ' more. Type more to narrow down.' : 'Hiện 30 môn đầu, còn ' + n + ' môn nữa. Gõ thêm để thu hẹp.';
+    return en ? n + ' more not shown. Type more to narrow down.' : 'Còn ' + n + ' môn nữa. Gõ thêm để thu hẹp.';
   }
 
   function facultyText(n, key) {
@@ -68,12 +72,26 @@
     return en && c.nameEn ? c.nameEn : c.name;
   }
 
+  // Ngữ cảnh của môn trùng tên (ngành), có trong assets/courses.json; bản v1 không có thì để trống.
+  function contextOf(c) {
+    return (en && c.ctxEn) || c.ctx || '';
+  }
+
+  function nameKey(s) {
+    return String(s || '')
+      .normalize('NFC')
+      .toLowerCase()
+      .replace(/\s+/g, ' ')
+      .trim();
+  }
+
   function load(index) {
     index.faculties.forEach(function (f) {
       facultyName[f.key] = (en ? f.name.en : f.name.vi) || f.name.vi;
     });
     index.courses.forEach(function (c) {
       byId[c.id] = c;
+      nameKeyOf[c.id] = nameKey(c.name);
     });
     idx = window.BkSearch.prepare(index);
     input.disabled = false;
@@ -258,52 +276,125 @@
       return;
     }
     var opts = { limit: 10000, faculty: fac || undefined };
-    var hits;
-    if (input.value.trim()) {
-      hits = window.BkSearch.search(idx, input.value, opts);
-      status.textContent = countText(hits.length) + (hits.length > MAX ? '. ' + moreText(hits.length - MAX) : '');
-    } else {
-      hits = window.BkSearch.list(idx, opts);
-      status.textContent = facultyText(hits.length, fac) + (hits.length > MAX ? ' ' + (en ? 'Showing the first 30. Type to narrow down.' : 'Hiện 30 môn đầu, gõ tên môn để thu hẹp.') : '');
-    }
-    // Môn trùng tên (Đồ án tốt nghiệp, Thực tập ngoài trường) phân biệt bằng mã môn và tên khoa;
-    // v1 không có danh sách chương trình nên chưa hiện được ngành.
-    hits.slice(0, MAX).forEach(function (h) {
-      var c = byId[h.id];
-      var li = document.createElement('li');
-      var a = document.createElement('a');
-      a.href = root + prefix + 'course/' + encodeURIComponent(c.id) + '/';
-      var code = document.createElement('span');
-      code.className = 'code';
-      code.textContent = c.code;
-      var name = document.createElement('span');
-      name.textContent = displayName(c);
-      var meta = document.createElement('span');
-      meta.className = 'muted';
-      // Đã lọc theo khoa thì không lặp tên khoa ở từng dòng.
-      var parts = fac ? [] : [facultyName[c.faculty] || c.faculty];
-      // Mã bị trường dùng lại cho môn khác: hai môn cùng mã, ID kèm năm khóa phân biệt.
-      if (c.id !== c.code) parts.push('ID ' + c.id);
-      if (c.status === 'retired') parts.push(en ? 'retired' : 'đã ngừng');
-      if (c.items) parts.push(en ? c.items + ' items' : c.items + ' tài liệu');
-      if (h.teacher) parts.push(strings.teacher + ': ' + h.teacher);
-      meta.textContent = parts.join(', ');
-      a.appendChild(code);
-      a.appendChild(name);
-      a.appendChild(meta);
-      // Môn có ở sau đại học: nhãn nhỏ ghi bậc, đặt cuối dòng.
-      var lv = (c.levels || []).filter(function (l) {
-        return LEVELS[l];
-      });
-      if (lv.length) {
-        var tag = document.createElement('span');
-        tag.className = 'tag';
-        tag.textContent = lv.map(levelText).join(', ');
-        a.appendChild(tag);
-      }
-      li.appendChild(a);
-      list.appendChild(li);
+    var query = input.value.trim();
+    var hits = query ? window.BkSearch.search(idx, input.value, opts) : window.BkSearch.list(idx, opts);
+    var rows = groupHits(hits, !!query);
+    var shown = rows.slice(0, MAX);
+    var hidden = hits.length - shown.reduce(function (n, r) { return n + (r.group ? r.group.length : 1); }, 0);
+    if (query) status.textContent = countText(hits.length) + (hidden > 0 ? '. ' + moreText(hidden) : '');
+    else status.textContent = facultyText(hits.length, fac) + (hidden > 0 ? ' ' + (en ? 'Type to narrow down.' : 'Gõ tên môn để thu hẹp.') : '');
+    shown.forEach(function (r) {
+      list.appendChild(r.group ? groupLi(r.group, fac) : courseLi(r.hit, fac, false));
     });
+  }
+
+  // Gộp môn cùng tên (Đồ án tốt nghiệp có vài chục mã, mỗi ngành một mã): tên nào có từ GROUP_MIN môn trong
+  // kết quả thì thành một dòng mở ra được, đặt ở chỗ môn xếp đầu của nhóm. Khi gõ, môn khớp đúng mã hay mã cũ
+  // (điểm dưới 1) luôn đứng riêng để gõ mã là thấy ngay môn đó.
+  function groupHits(hits, typed) {
+    var single = function (h) {
+      return typed && h.score < 1;
+    };
+    var count = {};
+    hits.forEach(function (h) {
+      if (!single(h)) count[nameKeyOf[h.id]] = (count[nameKeyOf[h.id]] || 0) + 1;
+    });
+    var rows = [];
+    var at = {};
+    hits.forEach(function (h) {
+      var k = nameKeyOf[h.id];
+      if (single(h) || count[k] < GROUP_MIN) {
+        rows.push({ hit: h });
+        return;
+      }
+      if (!(k in at)) {
+        at[k] = rows.length;
+        rows.push({ group: [] });
+      }
+      rows[at[k]].group.push(h);
+    });
+    return rows;
+  }
+
+  // Một dòng môn. inGroup: dòng trong nhóm cùng tên, chỗ tên ghi ngữ cảnh (ngành) thay cho tên lặp lại.
+  function courseLi(h, fac, inGroup) {
+    var c = byId[h.id];
+    var ctx = contextOf(c);
+    var li = document.createElement('li');
+    var a = document.createElement('a');
+    a.href = root + prefix + 'course/' + encodeURIComponent(c.id) + '/';
+    var code = document.createElement('span');
+    code.className = 'code';
+    code.textContent = c.code;
+    var name = document.createElement('span');
+    name.textContent = inGroup ? ctx || facultyName[c.faculty] || c.faculty : displayName(c);
+    var meta = document.createElement('span');
+    meta.className = 'muted';
+    // Môn trùng tên ghi ngữ cảnh thay cho tên khoa; đã lọc theo khoa thì không lặp tên khoa ở từng dòng.
+    var parts = inGroup ? [] : ctx ? [ctx] : fac ? [] : [facultyName[c.faculty] || c.faculty];
+    // Mã bị trường dùng lại cho môn khác: hai môn cùng mã, ID kèm năm khóa phân biệt.
+    if (c.id !== c.code) parts.push('ID ' + c.id);
+    if (c.status === 'retired') parts.push(en ? 'retired' : 'đã ngừng');
+    if (c.items) parts.push(en ? c.items + ' items' : c.items + ' tài liệu');
+    if (h.teacher) parts.push(strings.teacher + ': ' + h.teacher);
+    meta.textContent = parts.join(', ');
+    a.appendChild(code);
+    a.appendChild(name);
+    a.appendChild(meta);
+    // Môn có ở sau đại học: nhãn nhỏ ghi bậc, đặt cuối dòng.
+    var lv = (c.levels || []).filter(function (l) {
+      return LEVELS[l];
+    });
+    if (lv.length) {
+      var tag = document.createElement('span');
+      tag.className = 'tag';
+      tag.textContent = lv.map(levelText).join(', ');
+      a.appendChild(tag);
+    }
+    li.appendChild(a);
+    return li;
+  }
+
+  // Dòng gộp: "Đồ án tốt nghiệp, 50 môn theo ngành", mở ra là danh sách mã kèm ngành.
+  // Trong nhóm: môn có tài liệu trước, rồi theo ngữ cảnh.
+  function groupLi(group, fac) {
+    // Tên hiện là cách viết gặp nhiều nhất trong nhóm ("Đồ án tốt nghiệp" hơn "Đồ án Tốt nghiệp").
+    var seen = {};
+    var title = '';
+    group.forEach(function (h) {
+      var n = displayName(byId[h.id]);
+      seen[n] = (seen[n] || 0) + 1;
+      if (!title || seen[n] > seen[title]) title = n;
+    });
+    var li = document.createElement('li');
+    li.className = 'same-name';
+    var box = document.createElement('details');
+    // summary giữ dấu mở, đóng mặc định của trình duyệt để thấy ngay dòng này mở ra được.
+    var sum = document.createElement('summary');
+    var name = document.createElement('span');
+    name.className = 'same-name-title';
+    name.textContent = title;
+    var meta = document.createElement('span');
+    meta.className = 'muted';
+    meta.textContent = en ? group.length + ' courses by major' : group.length + ' môn theo ngành';
+    sum.appendChild(name);
+    sum.appendChild(meta);
+    box.appendChild(sum);
+    var inner = document.createElement('ul');
+    inner.className = 'results';
+    group
+      .slice()
+      .sort(function (a, b) {
+        var ca = byId[a.id];
+        var cb = byId[b.id];
+        return (cb.items || 0) - (ca.items || 0) || (contextOf(ca) || '').localeCompare(contextOf(cb) || '') || (ca.code < cb.code ? -1 : 1);
+      })
+      .forEach(function (h) {
+        inner.appendChild(courseLi(h, fac, true));
+      });
+    box.appendChild(inner);
+    li.appendChild(box);
+    return li;
   }
 
   var timer = null;
@@ -335,7 +426,11 @@
             return [];
           })
         : Promise.resolve([]);
-    Promise.all([getJson(root + 'v1/index.json'), progs, items])
+    // Danh sách môn: bản gọn của web (có ngữ cảnh môn trùng tên); thiếu thì dùng v1/index.json.
+    var courses = getJson(root + 'assets/courses.json').catch(function () {
+      return getJson(root + 'v1/index.json');
+    });
+    Promise.all([courses, progs, items])
       .then(function (res) {
         docs = window.BkDocs && docBox && Array.isArray(res[2]) ? window.BkDocs.prepare(res[2], { types: ds.types, examKinds: ds.examKinds }) : null;
         programs = (Array.isArray(res[1]) ? res[1] : []).map(function (p) {
@@ -393,5 +488,20 @@
   } catch (e) {
     // Địa chỉ lạ: bỏ qua.
   }
-  if (input.value || (facSel && facSel.value) || hasDocFilter()) ensureIndex();
+  if (input.value || (facSel && facSel.value) || hasDocFilter()) {
+    // Mở trang với câu tìm sẵn: giữ chỗ cho kết quả (CSS .search.from-url) để phần bên dưới không nhảy khi
+    // kết quả hiện ra; bỏ giữ chỗ khi bạn gõ hay đổi bộ lọc.
+    var box = input.closest ? input.closest('.search') : null;
+    if (box && box.classList) {
+      box.classList.add('from-url');
+      var release = function () {
+        box.classList.remove('from-url');
+      };
+      input.addEventListener('input', release, { once: true });
+      selects.forEach(function (s) {
+        s.addEventListener('change', release, { once: true });
+      });
+    }
+    ensureIndex();
+  }
 })();

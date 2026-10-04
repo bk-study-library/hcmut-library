@@ -22,7 +22,12 @@
             "required": ["vi", "en"],
             "properties": { "vi": { "type": "string", "minLength": 1 }, "en": { "type": "string", "minLength": 1 } }
           },
-          "note": { "type": "string" }
+          "note": { "type": "string" },
+          "movedTo": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "description": "Khóa cũ chỉ giữ để link không hỏng: không có môn, chương trình, ngành; không hiện trong danh sách khoa; trang khoa chuyển tới khoa này. / Legacy key kept for old links only."
+          }
         }
       }
     },

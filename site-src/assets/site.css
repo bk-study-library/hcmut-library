@@ -202,6 +202,8 @@ h4 { font-size: 15px; margin: 0 0 4px; font-weight: 600; }
 .results a > .tag { margin-left: 0; align-self: center; }
 .results-head { font-size: 15px; margin: 12px 0 4px; }
 #q-prog + #q-status { margin-top: 16px; }
+#q-status { min-height: 1.55em; }
+.search.from-url #q-out { min-height: 80vh; }
 /* Đích của link tới khối (trang chương trình) hoặc nhóm loại (trang môn) */
 .block:target, .group:target { outline: 2px solid var(--accent); outline-offset: 6px; border-radius: var(--radius); }
 .block, .group { scroll-margin-top: 16px; }
@@ -273,6 +275,7 @@ tr.retired td, tr.retired th { color: var(--muted); }
   border: 1px solid var(--border-strong);
   color: var(--muted);
   vertical-align: 1px;
+  margin-left: 6px;
 }
 .tag.accent { border-color: var(--accent); color: var(--accent); }
 .tag.warn { border-color: var(--warn); color: var(--warn); }
@@ -287,7 +290,6 @@ tr.retired td, tr.retired th { color: var(--muted); }
 .item { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 12px 14px; }
 .item p { margin: 4px 0; }
 .item .meta { font-size: 13px; color: var(--muted); }
-.item.is-removed { opacity: 0.75; }
 /* Hàng nút của mục: Xem trước, Tải xuống, Yêu cầu gỡ. */
 .item .actions { margin: 12px 0 0; }
 /* Mở từ link có #<id mục> (ví dụ link trong form Yêu cầu gỡ): viền nhấn để thấy ngay mục nào. */
@@ -320,7 +322,6 @@ tr.retired td, tr.retired th { color: var(--muted); }
 }
 
 /* Form gửi tài liệu */
-.upload { max-width: 640px; }
 .upload fieldset { border: 0; margin: 0; padding: 0; min-width: 0; }
 .upload .field { margin: 0 0 18px; }
 .upload label { display: block; font-weight: 600; margin: 10px 0 4px; }
@@ -335,32 +336,26 @@ tr.retired td, tr.retired th { color: var(--muted); }
   border-radius: var(--radius);
 }
 .upload input:focus-visible, .upload select:focus-visible, .upload textarea:focus-visible, .upload summary:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
-.upload label.check { display: flex; gap: 8px; align-items: flex-start; font-weight: 400; margin: 8px 0; }
+.upload label.check { display: flex; gap: 8px; align-items: flex-start; font-weight: 400; margin: 8px 0; min-height: 24px; padding: 2px 0; }
 
 .upload .book { border: 1px solid var(--border); border-radius: var(--radius); padding: 12px 14px; }
 .upload .book[hidden] { display: none; }
 .upload .more { border: 1px solid var(--border); border-radius: var(--radius); padding: 10px 14px; }
-.upload .more summary { cursor: pointer; font-weight: 600; }
+.upload .more summary { cursor: pointer; font-weight: 600; padding: 4px 0; }
 .upload .muted, .upload .err { margin: 4px 0 0; }
 .upload .err { color: var(--warn); font-weight: 600; }
 .upload .err:empty { display: none; }
 .upload .pick { list-style: none; margin: 4px 0 0; padding: 0; }
-.upload .pick button { display: flex; gap: 8px; width: 100%; text-align: left; font: inherit; color: var(--text); background: var(--surface); border: 1px solid var(--border); border-top: 0; padding: 8px 10px; cursor: pointer; }
+.upload .pick button { display: flex; flex-wrap: wrap; gap: 4px 8px; width: 100%; text-align: left; font: inherit; color: var(--text); background: var(--surface); border: 1px solid var(--border); border-top: 0; padding: 8px 10px; cursor: pointer; }
 .upload .pick li:first-child button { border-top: 1px solid var(--border); }
 .upload .pick button:hover, .upload .pick button:focus-visible { background: var(--surface-2); }
 .upload fieldset:disabled { opacity: 0.6; }
 .upload label.check input { width: 18px; height: 18px; flex: none; margin-top: 2px; accent-color: var(--accent); }
-.upload .more summary { padding: 4px 0; }
 /* Nhãn đứng cạnh nhau hoặc cạnh tiêu đề luôn có khoảng cách. */
-.tag { margin-left: 6px; }
-h4 .tag:first-child, .tag + .tag { margin-left: 6px; }
-.item.is-removed { opacity: 1; }
 .item.is-removed h4, .item.is-removed .meta { color: var(--muted); }
-.upload label.check { min-height: 24px; padding: 2px 0; }
 /* Trang chủ yếu là chữ: thu khung về đúng cột đọc để cả đường dẫn, tiêu đề, nội dung nằm giữa trang. */
 main.wrap:has(> .prose) { max-width: 792px; }
 .hero, .search { margin-left: auto; margin-right: auto; }
-.upload { max-width: none; }
 
 /* Chương trình gộp theo khoa (trang chủ) */
 .prog-groups { border-top: 1px solid var(--border); margin: 8px 0 12px; }
@@ -371,9 +366,8 @@ main.wrap:has(> .prose) { max-width: 792px; }
 .prog-fac-name { font-weight: 600; }
 .prog-fac > .list, .prog-fac > p { margin: 0 0 10px; }
 .prog-fac > p.muted { padding: 0 4px; }
-.facts summary { cursor: pointer; }
 .block p.small { margin: -4px 0 8px; }
-.facts summary { padding: 6px 0; }
+.facts summary { cursor: pointer; padding: 6px 0; }
 /* Mã chương trình và tên dài không có khoảng trắng: xuống dòng thay vì làm trang cuộn ngang. */
 main h1, main h2, main p, main li { overflow-wrap: break-word; }
 .more-items { margin-top: 10px; }
@@ -437,3 +431,14 @@ main h1, main h2, main p, main li { overflow-wrap: break-word; }
 a.tag { display: inline-flex; align-items: center; min-height: 24px; padding: 0 8px; text-decoration: none; vertical-align: baseline; }
 a.tag:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-soft); }
 a.tag:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+
+/* Môn trùng tên: ngữ cảnh (ngành) dưới tên ở trang môn và bảng môn; dòng gộp ở ô tìm trang chủ */
+.subtitle { margin: -4px 0 12px; font-size: 17px; color: var(--muted); }
+.twins { margin: 0 0 12px; }
+td .sub { display: block; font-size: 13px; color: var(--muted); }
+.results .same-name > details > summary { cursor: pointer; padding: 8px 4px; min-height: 24px; }
+.results .same-name > details > summary:hover { background: var(--surface-2); }
+.results .same-name > details > summary:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+.same-name-title { margin-right: 12px; }
+.results .same-name .results { margin: 0 0 8px 16px; border-left: 2px solid var(--border); }
+.results .same-name .results li:last-child { border-bottom: 0; }

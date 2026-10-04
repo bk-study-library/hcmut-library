@@ -17,6 +17,7 @@ import { S } from './lib/strings.mjs';
 import { buildV1, serializeV1 } from './lib/v1.mjs';
 import { loadPolicy } from './lib/policy.mjs';
 import { extensionsFor, restrictedExtensions } from './lib/extensions.mjs';
+import { sameNameGroups, courseContexts } from './lib/course-context.mjs';
 
 const SRC = path.join(TOOL_ROOT, 'site-src');
 let GENERATED = null;
@@ -54,6 +55,8 @@ function readSiteConfig(root) {
     sharedFaculty: typeof cfg.sharedFaculty === 'string' ? cfg.sharedFaculty : '',
     // Thứ tự loại chương trình trên badge, bộ chọn loại; loại đầu là loại chính của ngành.
     programTypeOrder: Array.isArray(cfg.programTypeOrder) ? cfg.programTypeOrder.map(String) : Object.keys(PROGRAM_TYPES),
+    // Ô tìm trang chủ: từ bấy nhiêu môn cùng tên trong kết quả thì gộp thành một dòng mở ra được.
+    sameNameGroupMin: Number.isInteger(cfg.sameNameGroupMin) && cfg.sameNameGroupMin >= 2 ? cfg.sameNameGroupMin : 3,
   };
 }
 
@@ -96,6 +99,32 @@ export function docIndex(items, courses, { descriptionMax = 200 } = {}) {
     rows.push(row);
   }
   return rows.sort((a, b) => b.added.localeCompare(a.added) || a.course.localeCompare(b.course) || a.id.localeCompare(b.id));
+}
+
+// Danh sách môn cho ô tìm trang chủ và form Gửi tài liệu (chỉ web dùng, không thuộc hợp đồng v1): cùng dạng
+// với v1/index.json (search-core.js đọc được như nhau) nhưng bỏ trường ô tìm không dùng (url, detail, credits,
+// replacedBy), bỏ giá trị mặc định (aliases, oldNames rỗng; status active), để tải nhẹ hơn. Môn trùng tên có
+// thêm ctx (ngữ cảnh tiếng Việt) và ctxEn (tiếng Anh, khi khác ctx).
+export function searchCourses(v1Index, contexts = { vi: new Map(), en: new Map() }) {
+  return {
+    faculties: v1Index.faculties,
+    courses: v1Index.courses.map((c) => {
+      const row = { id: c.id, code: c.code, name: c.name };
+      if (c.nameEn) row.nameEn = c.nameEn;
+      row.faculty = c.faculty;
+      if (c.levels) row.levels = c.levels;
+      if (c.aliases && c.aliases.length) row.aliases = c.aliases;
+      if (c.oldNames && c.oldNames.length) row.oldNames = c.oldNames;
+      if (c.status !== 'active') row.status = c.status;
+      if (c.items) row.items = c.items;
+      if (c.teachers) row.teachers = c.teachers;
+      const vi = contexts.vi.get(c.id);
+      const en = contexts.en.get(c.id);
+      if (vi) row.ctx = vi;
+      if (en && en !== vi) row.ctxEn = en;
+      return row;
+    }),
+  };
 }
 
 // sitemap.xml: địa chỉ tuyệt đối, xếp theo chữ; lastmod là ngày dữ liệu của trang nếu có.
@@ -211,6 +240,14 @@ export function cspFor({ upload = '' } = {}) {
 
 const cspMeta = (opts) => `<meta http-equiv="Content-Security-Policy" content="${esc(cspFor(opts))}">`;
 
+// Trang chuyển hướng ngắn (mã môn cũ, khóa khoa cũ): chuyển ngay, có link cho trình duyệt tắt chuyển hướng.
+function redirectPage(write, here, target, canonical, lang, t, label, title = label) {
+  write(
+    here,
+    `<!doctype html><html lang="${lang}"><head><meta charset="utf-8">${cspMeta()}<meta http-equiv="refresh" content="0; url=${target}"><link rel="canonical" href="${esc(canonical)}"><title>${esc(title)}</title></head><body><p>${esc(t.redirecting)} <a href="${target}">${esc(label)}</a>.</p></body></html>\n`,
+  );
+}
+
 // Đường dẫn trang, tính từ gốc site, không có "/" đầu. Bản tiếng Anh nằm dưới en/.
 const pagePath = (lang, p) => (lang === 'en' ? `en/${p}` : p);
 
@@ -323,16 +360,21 @@ function itemsCountOf(course) {
   return course.items.filter((i) => !i.removed).length;
 }
 
-function courseRow(t, c, root) {
+// ctx: ngữ cảnh của môn trùng tên (ngành), ghi thành dòng phụ dưới tên. Trang ngành, chương trình không cần.
+function courseRow(t, c, root, ctx) {
   const href = `${root}${pagePath(t.lang, `course/${c.id}/`)}`;
   const n = itemsCountOf(c);
-  return `<tr${c.status === 'retired' ? ' class="retired"' : ''}><th scope="row"><a href="${href}">${esc(c.code)}</a></th><td><a href="${href}">${esc(t.lang === 'en' && c.nameEn ? c.nameEn : c.name)}</a>${c.status === 'retired' ? ` <span class="tag">${esc(STATUS.retired[t.lang])}</span>` : ''}</td><td class="num">${c.credits ?? ''}</td><td class="num">${n || `<span class="muted">${esc(t.noMaterial)}</span>`}</td></tr>`;
+  const sub = ctx && ctx.get(c.id) ? `<span class="sub">${esc(ctx.get(c.id))}</span>` : '';
+  return `<tr${c.status === 'retired' ? ' class="retired"' : ''}><th scope="row"><a href="${href}">${esc(c.code)}</a></th><td><a href="${href}">${esc(t.lang === 'en' && c.nameEn ? c.nameEn : c.name)}</a>${c.status === 'retired' ? ` <span class="tag">${esc(STATUS.retired[t.lang])}</span>` : ''}${sub}</td><td class="num">${c.credits ?? ''}</td><td class="num">${n || `<span class="muted">${esc(t.noMaterial)}</span>`}</td></tr>`;
 }
 
-function courseTable(t, courses, root, caption) {
+// Bảng dài (vài trăm môn ở trang khoa): trình duyệt bỏ qua phần ngoài màn hình khi vẽ (CSS .table-wrap.long).
+const LONG_TABLE = 60;
+
+function courseTable(t, courses, root, caption, ctx = null) {
   if (!courses.length) return `<p class="muted">${esc(t.noCourses)}</p>`;
-  return `<div class="table-wrap"><table><caption class="sr">${esc(caption)}</caption><thead><tr><th scope="col">${esc(t.code)}</th><th scope="col">${esc(t.name)}</th><th scope="col" class="num">${esc(t.credits)}</th><th scope="col" class="num">${esc(t.materials)}</th></tr></thead><tbody>${courses
-    .map((c) => courseRow(t, c, root))
+  return `<div class="table-wrap${courses.length > LONG_TABLE ? ' long' : ''}"><table><caption class="sr">${esc(caption)}</caption><thead><tr><th scope="col">${esc(t.code)}</th><th scope="col">${esc(t.name)}</th><th scope="col" class="num">${esc(t.credits)}</th><th scope="col" class="num">${esc(t.materials)}</th></tr></thead><tbody>${courses
+    .map((c) => courseRow(t, c, root, ctx))
     .join('')}</tbody></table></div>`;
 }
 
@@ -658,7 +700,8 @@ export function buildSite({ root = TOOL_ROOT, out = path.join(TOOL_ROOT, 'site')
   write('index.min.json', min);
   write('.nojekyll', '');
   // Dữ liệu cho app và ô tìm kiếm: cùng nội dung với v1/ trong repo.
-  for (const [p, content] of serializeV1(buildV1(repo))) write(`v1/${p}`, content);
+  const v1 = buildV1(repo);
+  for (const [p, content] of serializeV1(v1)) write(`v1/${p}`, content);
   // File .md nhỏ nằm trong git: phục vụ ở files/<ID>/<tên>, khớp urls trong v1.
   for (const it of repo.items) {
     if (it.removed) continue;
@@ -701,6 +744,17 @@ export function buildSite({ root = TOOL_ROOT, out = path.join(TOOL_ROOT, 'site')
     return { filled: list.filter((p) => programCourseCount(p)), empty: list.filter((p) => !programCourseCount(p)) };
   };
   const shared = siteCfg.sharedFaculty;
+  // Khóa khoa cũ chỉ giữ cho link (movedTo trong faculties.json): không vào danh sách nào, trang khoa chuyển hướng.
+  const movedTo = new Map(repo.faculties.faculties.filter((f) => f.movedTo).map((f) => [f.key, f.movedTo]));
+  const faculties = index.faculties.filter((f) => !movedTo.has(f.key));
+  // Môn trùng tên: ngữ cảnh ngắn (ngành, hoặc khoa) theo từng ngôn ngữ, và số môn cùng tên.
+  const nameGroups = sameNameGroups(allCourses.values());
+  const sameNameOf = new Map();
+  for (const ids of nameGroups.values()) for (const id of ids) sameNameOf.set(id, ids);
+  const contexts = Object.fromEntries(
+    ['vi', 'en'].map((lang) => [lang, courseContexts({ courses: allCourses, programs: progByCode, majors: majorByCode, faculties: facByKey, t: S[lang], listed: isListed, groups: nameGroups })]),
+  );
+  write('assets/courses.json', JSON.stringify(searchCourses(v1.index, contexts)) + '\n');
   // Danh sách chương trình cho ô tìm ở trang chủ (chỉ web dùng, không thuộc hợp đồng v1).
   // Ngành là dòng kind: "major" (link tới trang ngành, key là đoạn đường dẫn); chương trình gắn ngành ghi
   // major và majorName để tìm tên ngành hay mã ngành ra cả chương trình.
@@ -751,35 +805,38 @@ export function buildSite({ root = TOOL_ROOT, out = path.join(TOOL_ROOT, 'site')
       const here = P('index.html');
       const root = relPrefix(here);
       const progsOf = (key) => ugPrograms.filter((p) => p.faculty === key);
-      const facList = index.faculties
+      const facList = faculties
         .map((f) => {
           const np = progsOf(f.key).length;
+          const ni = f.courses.reduce((n, c) => n + itemsCountOf(c), 0);
           const stats =
             f.courses.length || np
-              ? [t.coursesCount(f.courses.length), t.itemsCount(f.courses.reduce((n, c) => n + itemsCountOf(c), 0)), np ? t.programsCount(np) : null].filter(Boolean).join(', ')
+              ? [t.coursesCount(f.courses.length), ni ? t.itemsCount(ni) : null, np ? t.programsCount(np) : null].filter(Boolean).join(', ')
               : t.noData;
           return `<li><a class="card" href="${root}${P(`faculty/${f.key}/`)}"><strong>${esc(facultyName(t, f))}</strong><span class="muted">${esc(stats)}</span></a></li>`;
         })
         .join('');
       // Gộp theo khoa, mỗi khoa một khối đóng mở; trong khoa là từng ngành (một dòng, kèm các khóa),
       // rồi chương trình chưa gắn ngành, cuối cùng là chương trình chưa có danh sách môn (gập lại).
-      const progList = `<div class="prog-groups">${index.faculties
+      // Khoa chưa có ngành, chương trình nào (Môn chung toàn trường, Chưa xác định) không có dòng ở đây.
+      const progList = `<div class="prog-groups">${faculties
         .map((f) => {
           const ms = majorsOfFaculty(f.key);
           const { filled, empty } = loosePrograms(f.key);
+          if (!ms.length && !filled.length && !empty.length) return '';
           const li = (p) => programLi(t, p, `${root}${P(`program/${p.code}/`)}`, { withYear: true, root });
           const parts = [];
           if (ms.length) parts.push(majorList(t, ms, progsOfMajor, root, P, typeOrder));
           if (filled.length) parts.push(`${ms.length ? `<h3>${esc(t.otherPrograms)}</h3>` : ''}<ul class="list">${filled.map(li).join('')}</ul>`);
           if (empty.length) parts.push(`<details class="prog-empty"><summary>${esc(t.emptyPrograms(empty.length))}</summary><ul class="list">${empty.map(li).join('')}</ul></details>`);
-          const inner = parts.length ? parts.join('') : `<p class="muted">${esc(t.facultyNoPrograms)}</p>`;
+          const inner = parts.join('');
           const stats = [ms.length ? t.majorsCount(ms.length) : null, t.programsCount(progsOf(f.key).length)].filter(Boolean).join(', ');
           return `<details class="prog-fac"><summary><span class="prog-fac-name">${esc(facultyName(t, f))}</span> <span class="muted small">${esc(stats)}</span></summary>${inner}<p><a class="btn subtle" href="${esc(addProgramUrl(f))}" rel="noopener">${esc(t.addProgram)}</a></p></details>`;
         })
         .join('')}</div>`;
       // Sau đại học: mỗi bậc một khối đóng mở, trong bậc là ngành theo khoa.
       const pgList = POSTGRAD_LEVELS.map((level) => {
-        const byFac = index.faculties.map((f) => [f, majorsOfFaculty(f.key, level)]).filter(([, ms]) => ms.length);
+        const byFac = faculties.map((f) => [f, majorsOfFaculty(f.key, level)]).filter(([, ms]) => ms.length);
         if (!byFac.length) return '';
         const n = pgPrograms.filter((p) => p.level === level).length;
         const inner = byFac.map(([f, ms]) => `<h3>${esc(facultyName(t, f))}</h3>${majorList(t, ms, progsOfMajor, root, P, typeOrder)}`).join('');
@@ -818,18 +875,18 @@ export function buildSite({ root = TOOL_ROOT, out = path.join(TOOL_ROOT, 'site')
 <section class="hero">
   <h1>${esc(t.homeTitle)}</h1>
   <p class="lead">${esc(t.homeIntro)}</p>
-  <p>${esc(t.homeRules)}</p>
   <p class="muted">${esc(t.stats(index.counts.courses, totalItems))}</p>
 </section>
 <section class="search" role="search" aria-labelledby="search-label">
   <label id="search-label" for="q">${esc(t.searchLabel)}</label>
   <div class="search-row">
     <input id="q" type="search" autocomplete="off" spellcheck="false" placeholder="${esc(t.searchPlaceholder)}" aria-describedby="q-hint">
-    <select id="q-fac" aria-label="${esc(t.facultyFilter)}"><option value="">${esc(t.allFaculties)}</option>${index.faculties.filter((f) => f.courses.length).map((f) => `<option value="${esc(f.key)}">${esc(facultyName(t, f))}</option>`).join('')}</select>
+    <select id="q-fac" aria-label="${esc(t.facultyFilter)}"><option value="">${esc(t.allFaculties)}</option>${faculties.filter((f) => f.courses.length).map((f) => `<option value="${esc(f.key)}">${esc(facultyName(t, f))}</option>`).join('')}</select>
   </div>
   ${docFilters}
   <p id="q-hint" class="muted">${esc(t.searchHint)}</p>
   <noscript><p class="note">${esc(t.searchNoJs)}</p></noscript>
+  <div id="q-out">
   <div id="q-prog" hidden>
     <h2 class="results-head">${esc(t.programsTitle)}</h2>
     <ul id="q-prog-list" class="results"></ul>
@@ -841,6 +898,7 @@ export function buildSite({ root = TOOL_ROOT, out = path.join(TOOL_ROOT, 'site')
   </div>` : ''}
   <p id="q-status" class="muted" aria-live="polite"></p>
   <ul id="q-results" class="results"></ul>
+  </div>
 </section>
 <section aria-labelledby="h-fac">
   <h2 id="h-fac">${esc(t.browseFaculty)}</h2>
@@ -854,10 +912,10 @@ export function buildSite({ root = TOOL_ROOT, out = path.join(TOOL_ROOT, 'site')
 </section>
 ${pgSection}
 <section class="cta-row">
-  <div class="panel"><p>${esc(t.contributeCta)}</p><p class="actions"><a class="btn primary" href="${root}gui-tai-lieu/">${esc(t.contributeBtn)}</a><a class="btn subtle" href="${root}${P('contribute/')}">${esc(t.contributeGuide)}</a></p></div>
+  <div class="panel"><p>${esc(t.contributeCta)}</p><p class="muted small">${esc(t.homeRules)}</p><p class="actions"><a class="btn primary" href="${root}gui-tai-lieu/">${esc(t.contributeBtn)}</a><a class="btn subtle" href="${root}${P('contribute/')}">${esc(t.contributeGuide)}</a></p></div>
   <div class="panel"><p>${esc(t.reviewCta)}</p><p><a class="btn" href="${root}${P('review/')}">${esc(t.reviewBtn)}</a></p></div>
 </section>
-<script type="application/json" id="search-strings">${jsonInScript({ results: [t.results(0), t.results(1), t.results(2)], teacher: t.teacher, lang, docs: docStrings, levels: Object.fromEntries(POSTGRAD_LEVELS.map((l) => [l, [LEVELS[l][lang], LEVELS[l][t.other]]])) })}</script>
+<script type="application/json" id="search-strings">${jsonInScript({ results: [t.results(0), t.results(1), t.results(2)], teacher: t.teacher, lang, groupMin: siteCfg.sameNameGroupMin, docs: docStrings, levels: Object.fromEntries(POSTGRAD_LEVELS.map((l) => [l, [LEVELS[l][lang], LEVELS[l][t.other]]])) })}</script>
 <script src="${root}assets/search-core.js" defer></script>
 <script src="${root}assets/search-docs.js" defer></script>
 <script src="${root}assets/search.js" defer></script>`;
@@ -865,10 +923,17 @@ ${pgSection}
       listPage(here, index.generated);
     }
 
+    // Khóa khoa cũ: trang chuyển hướng ngắn tới khoa mới, không vào sitemap.
+    for (const [key, to] of movedTo) {
+      const target = facByKey.get(to);
+      redirectPage(write, P(`faculty/${key}/index.html`), `../${to}/`, absUrl(P(`faculty/${to}/`)), lang, t, facultyName(t, target));
+    }
+
     // Trang khoa
-    for (const f of index.faculties) {
+    for (const f of faculties) {
       const here = P(`faculty/${f.key}/index.html`);
       const root = relPrefix(here);
+      const ctx = contexts[lang];
       const progs = ugPrograms.filter((p) => p.faculty === f.key);
       const ms = majorsOfFaculty(f.key);
       // Bậc đại học là mặc định: bảng môn của khoa không gồm môn chỉ có ở sau đại học.
@@ -881,7 +946,7 @@ ${pgSection}
           ? `<section aria-labelledby="h-sdh">
 <h2 id="h-sdh">${esc(t.postgradTitle)}</h2>
 ${pgMajors.map(([level, list]) => `<h3>${esc(LEVELS[level][lang])}</h3>\n<p class="muted">${esc([t.majorsCount(list.length), t.programsCount(pgProgs.filter((p) => p.level === level).length)].join(', '))}</p>\n${majorList(t, list, progsOfMajor, root, P, typeOrder)}`).join('\n')}
-${pgCourses.length ? `<details class="prog-empty"><summary>${esc(t.postgradCourses)} (${esc(t.coursesCount(pgCourses.length))})</summary><p class="muted small">${esc(t.postgradCoursesNote)}</p>${courseTable(t, pgCourses, root, t.postgradCourses)}</details>` : ''}
+${pgCourses.length ? `<details class="prog-empty"><summary>${esc(t.postgradCourses)} (${esc(t.coursesCount(pgCourses.length))})</summary><p class="muted small">${esc(t.postgradCoursesNote)}</p>${courseTable(t, pgCourses, root, t.postgradCourses, ctx)}</details>` : ''}
 </section>`
           : '';
       const loose = loosePrograms(f.key);
@@ -897,23 +962,27 @@ ${pgCourses.length ? `<details class="prog-empty"><summary>${esc(t.postgradCours
             .sort((a, b) => a.id.localeCompare(b.id))
         : [];
       const emptyFac = !progs.length && !f.courses.length && !ms.length && !pgBlock;
-      const otherBlock = looseCount || !ms.length
-        ? `<h2>${esc(ms.length ? t.otherPrograms : t.facultyPrograms)}</h2>
-<p class="muted">${esc(t.programsCount(looseCount))}</p>
-${loose.filled.length ? programsByYear(t, loose.filled, hrefOf, root) : ''}${loose.empty.length ? `<details class="prog-empty"><summary>${esc(t.emptyPrograms(loose.empty.length))}</summary>${programsByYear(t, loose.empty, hrefOf, root)}</details>` : ''}${looseCount ? '' : `<p class="muted">${esc(t.facultyNoPrograms)}</p>`}`
-        : '';
+      // Môn chung toàn trường và nhóm Chưa xác định không quản lý chương trình nào: không có phần chương trình.
+      const ownsPrograms = f.key !== shared && f.key !== 'unknown';
+      const addBtn = (cls) => `<p class="actions"><a class="${cls}" href="${esc(addProgramUrl(f))}" rel="noopener">${esc(t.addProgram)}</a></p>`;
+      let programBlock = '';
+      if (looseCount) {
+        // Chỉ có chương trình chưa có danh sách môn: dòng gập đã ghi số, không ghi lại.
+        programBlock = `<h2>${esc(ms.length ? t.otherPrograms : t.facultyPrograms)}</h2>
+${loose.filled.length ? `<p class="muted">${esc(t.programsCount(looseCount))}</p>` : ''}
+${loose.filled.length ? programsByYear(t, loose.filled, hrefOf, root) : ''}${loose.empty.length ? `<details class="prog-empty"><summary>${esc(t.emptyPrograms(loose.empty.length))}</summary>${programsByYear(t, loose.empty, hrefOf, root)}</details>` : ''}
+${addBtn('btn')}`;
+      } else if (ms.length) programBlock = addBtn('btn');
+      else if (ownsPrograms && !emptyFac) programBlock = `<h2>${esc(t.facultyPrograms)}</h2>\n<div class="note" role="note"><p>${esc(t.facultyNoPrograms)}</p></div>\n${addBtn('btn primary')}`;
       const body = `
 <h1>${esc(facultyName(t, f))}</h1>
-${f.key === 'unknown' ? `<p class="note">${esc(lang === 'vi' ? 'Môn có tiền tố mã chưa xác minh. Khi biết đúng khoa, mở form Sửa danh mục môn.' : 'Courses whose code prefix is not verified yet. If you know the right faculty, open the Fix course details form.')}</p>` : ''}
-${shared && f.key === shared ? `<p class="note">${esc(t.facultySharedNote)}</p>` : ''}
-${emptyFac ? `<div class="note" role="note"><p>${esc(t.facultyEmpty)}${sharedLink ? ` ${esc(t.facultyEmptyShared)} ${sharedLink}.` : ''}</p></div>` : ''}
+${f.key === 'unknown' ? `<div class="note" role="note"><p>${esc(t.facultyUnknownNote)}</p></div>` : ''}
+${shared && f.key === shared ? `<div class="note" role="note"><p>${esc(t.facultySharedNote)}</p></div>` : ''}
+${emptyFac ? `<div class="note" role="note"><p>${esc(t.facultyEmpty)}${sharedLink ? ` ${esc(t.facultyEmptyShared)} ${sharedLink}.` : ''}</p></div>${ownsPrograms ? addBtn('btn primary') : ''}` : ''}
 ${ms.length ? `<h2>${esc(t.facultyMajors)}</h2>\n<p class="muted">${esc(t.majorsCount(ms.length))}</p>\n${majorList(t, ms, progsOfMajor, root, P, typeOrder)}` : ''}
-${otherBlock}
-<p class="actions"><a class="btn" href="${esc(addProgramUrl(f))}" rel="noopener">${esc(t.addProgram)}</a></p>
-<h2>${esc(t.facultyCourses)}</h2>
-<p class="muted">${esc(t.coursesCount(ugCourses.length))}</p>
-${courseTable(t, ugCourses, root, t.facultyCourses)}
-${sharedUsed.length ? `<h2>${esc(t.facultySharedCourses)}</h2>\n<p class="muted">${esc(t.coursesCount(sharedUsed.length))}. ${esc(t.facultySharedCoursesNote)} ${sharedLink}.</p>\n${courseTable(t, sharedUsed, root, t.facultySharedCourses)}` : ''}
+${programBlock}
+${ugCourses.length ? `<h2>${esc(t.facultyCourses)}</h2>\n<p class="muted">${esc(t.coursesCount(ugCourses.length))}</p>\n${courseTable(t, ugCourses, root, t.facultyCourses, ctx)}` : ''}
+${sharedUsed.length ? `<h2>${esc(t.facultySharedCourses)}</h2>\n<p class="muted">${esc(t.coursesCount(sharedUsed.length))}. ${esc(t.facultySharedCoursesNote)} ${sharedLink}.</p>\n${courseTable(t, sharedUsed, root, t.facultySharedCourses, ctx)}` : ''}
 ${pgBlock}`;
       write(
         here,
@@ -1155,8 +1224,17 @@ ${main ? `<section aria-labelledby="h-progs"><h2 id="h-progs">${esc(t.programsOf
         c.status === 'retired'
           ? `<div class="note warn" role="note"><p>${esc(t.retiredNotice)}${c.replacedBy ? ` ${esc(t.retiredSee)}: ${cLink(c.replacedBy)}.` : ''}</p></div>`
           : '';
+      // Môn trùng tên: ngữ cảnh (ngành) ngay dưới tên, kèm link tìm mọi môn cùng tên ở trang chủ.
+      const ctx = contexts[lang].get(c.id) || '';
+      const twins = (sameNameOf.get(c.id) || []).length - 1;
+      const twinsHtml =
+        twins > 0
+          ? `<p class="muted small twins">${esc(t.sameName(twins))} <a href="${root}${P('')}?q=${encodeURIComponent(c.name)}">${esc(t.sameNameLink)}</a></p>`
+          : '';
       const body = `
 <h1><span class="code">${esc(c.code)}</span> ${esc(name)}</h1>
+${ctx ? `<p class="subtitle">${esc(ctx)}</p>` : ''}
+${twinsHtml}
 ${retired}
 <dl class="facts">${rows.map(([k, v]) => `<div><dt>${esc(k)}</dt><dd>${v}</dd></div>`).join('')}</dl>
 <h2>${esc(t.materials)}</h2>
@@ -1173,7 +1251,7 @@ ${groups || `<p class="muted">${esc(t.noItems)}</p>`}
       const crumbs = [['', t.nav.home], ...(fac ? [[`faculty/${fac.key}/`, facultyName(t, fac)]] : []), ['', c.code]];
       write(
         here,
-        finish(layout({ t, path: here, title: `${c.code} ${name}`, description: t.courseDescription(c.code, name, itemsCountOf(c)), body, crumbs, alt: `course/${c.id}/index.html` }), t),
+        finish(layout({ t, path: here, title: `${c.code} ${name}${ctx ? ` (${ctx})` : ''}`, description: t.courseDescription(c.code, ctx ? `${name} (${ctx})` : name, itemsCountOf(c)), body, crumbs, alt: `course/${c.id}/index.html` }), t),
       );
       listPage(here, latest([c.updated, ...c.items.flatMap((i) => [i.added, i.updated])]));
     }
@@ -1182,12 +1260,7 @@ ${groups || `<p class="muted">${esc(t.noItems)}</p>`}
     for (const c of allCourses.values()) {
       for (const code of new Set([c.code, ...c.aliases.map((a) => a.code)])) {
         if (code === c.id || allCourses.has(code)) continue;
-        const here = P(`course/${code}/index.html`);
-        const target = `../${c.id}/`;
-        write(
-          here,
-          `<!doctype html><html lang="${lang}"><head><meta charset="utf-8">${cspMeta()}<meta http-equiv="refresh" content="0; url=${target}"><link rel="canonical" href="${esc(absUrl(P(`course/${c.id}/`)))}"><title>${esc(c.code)}</title></head><body><p>${esc(t.redirecting)} <a href="${target}">${esc(c.code)} ${esc(c.name)}</a>.</p></body></html>\n`,
-        );
+        redirectPage(write, P(`course/${code}/index.html`), `../${c.id}/`, absUrl(P(`course/${c.id}/`)), lang, t, `${c.code} ${c.name}`, c.code);
       }
     }
 

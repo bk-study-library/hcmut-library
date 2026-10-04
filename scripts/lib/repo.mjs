@@ -139,7 +139,14 @@ export function loadRepo(root) {
     }
   }
   const facultyKeys = new Set(faculties.faculties.map((f) => f.key));
+  // Khóa cũ (movedTo) trỏ tới một khoa đang dùng, không trỏ tiếp tới khóa cũ khác.
+  const movedKeys = new Set(faculties.faculties.filter((f) => f.movedTo).map((f) => f.key));
+  for (const f of faculties.faculties) {
+    if (f.movedTo && (!facultyKeys.has(f.movedTo) || movedKeys.has(f.movedTo))) err('FACULTY_MISSING', 'catalog/faculties.json', `khoa ${f.key}: movedTo "${f.movedTo}" phải là khoa đang dùng`);
+  }
+  const movedErr = (file, key, what) => err('FACULTY_MOVED', file, `${what} ghi khoa "${key}", khóa này đã chuyển sang "${faculties.faculties.find((f) => f.key === key).movedTo}"`);
   for (const p of faculties.prefixes) {
+    if (movedKeys.has(p.faculty)) movedErr('catalog/faculties.json', p.faculty, `tiền tố ${p.pattern}`);
     if (!facultyKeys.has(p.faculty)) err('FACULTY_MISSING', 'catalog/faculties.json', `tiền tố ${p.pattern} trỏ tới khoa lạ "${p.faculty}"`);
     try {
       new RegExp(p.pattern);
@@ -213,6 +220,7 @@ export function loadRepo(root) {
         if (majors.has(x.code)) err('DUP_ID', 'catalog/majors.json', `trùng mã ngành ${x.code}`);
         majors.set(x.code, x);
         if (!facultyKeys.has(x.faculty)) err('FACULTY_MISSING', 'catalog/majors.json', `ngành ${x.code}: khoa "${x.faculty}" không có trong faculties.json`);
+        else if (movedKeys.has(x.faculty)) movedErr('catalog/majors.json', x.faculty, `ngành ${x.code}`);
       }
       // Mã phụ (aliases) không trùng mã ngành nào, và chỉ thuộc một ngành.
       const aliasOwner = new Map();
@@ -273,6 +281,7 @@ export function loadRepo(root) {
   for (const c of courses.values()) {
     const f = c._file;
     if (c.faculty && !facultyKeys.has(c.faculty)) err('FACULTY_MISSING', f, `khoa "${c.faculty}" không có trong faculties.json`);
+    else if (movedKeys.has(c.faculty)) movedErr(f, c.faculty, 'môn');
     for (const h of faculties.prefixes) {
       if (h.verified && new RegExp(h.pattern).test(c.code) && h.faculty !== c.faculty) {
         warn('FACULTY_PREFIX', f, `mã ${c.code} khớp tiền tố ${h.pattern} của khoa ${h.faculty} nhưng ghi khoa ${c.faculty}`);
@@ -310,6 +319,7 @@ export function loadRepo(root) {
   }
   for (const pr of programs.values()) {
     if (!facultyKeys.has(pr.faculty)) err('FACULTY_MISSING', pr._file, `khoa "${pr.faculty}" không có trong faculties.json`);
+    else if (movedKeys.has(pr.faculty)) movedErr(pr._file, pr.faculty, 'chương trình');
     const level = pr.level || DEFAULT_LEVEL;
     for (const b of pr.blocks) {
       for (const id of b.courses) {
