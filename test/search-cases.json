@@ -44,7 +44,7 @@
     { "q": "vẽ kỹ thuật", "in": ["CI1003", "GE3243", "IU1003", "IU1015", "ME2089"], "within": 5 },
     { "q": "vẽ kỹ", "top": "CI1003" },
     { "q": "ve ky thuat co khi", "top": "ME2089" },
-    { "q": "nhập môn về kỹ thuật", "in": ["400400", "EE1001", "GE1001", "IU1001", "ME1001"], "within": 5 },
+    { "q": "nhập môn về kỹ thuật", "in": ["EE1001", "GE1001", "IU1001", "ME1001"], "within": 4 },
     { "q": "hoa dai cuong", "top": "CH1003" },
     { "q": "ME2007", "top": "ME2007" },
     { "q": "chi tiet may", "top": "ME2007" },

@@ -63,11 +63,6 @@
       "program": "DEE_KY_THUAT_DIEN_2023",
       "block": "K11",
       "required": true
-    },
-    {
-      "program": "DEE_KY_THUAT_DIEN_2019_MYBK_SEED",
-      "block": "K10",
-      "required": false
     }
   ],
   "parts": [

@@ -4,8 +4,8 @@
   "generated": "2026-10-04",
   "counts": {
     "faculties": 16,
-    "courses": 739,
-    "programs": 195,
+    "courses": 725,
+    "programs": 194,
     "items": 9
   },
   "faculties": [
@@ -12105,11 +12105,6 @@
               "program": "DEE_CHUYEN_NGANH_KY_THUAT_DIEN_TU_VIEN_THONG_2023_DEE_FILE_SYSTEM",
               "block": "K04",
               "required": true
-            },
-            {
-              "program": "DEE_KY_THUAT_DIEN_2019_MYBK_SEED",
-              "block": "K06",
-              "required": false
             }
           ],
           "parts": [
@@ -12343,11 +12338,6 @@
               "program": "DEE_CHUYEN_NGANH_KY_THUAT_DIEN_TU_VIEN_THONG_2023_DEE_FILE_SYSTEM",
               "block": "K01",
               "required": true
-            },
-            {
-              "program": "DEE_KY_THUAT_DIEN_2019_MYBK_SEED",
-              "block": "K01",
-              "required": false
             }
           ],
           "parts": [
@@ -12537,11 +12527,6 @@
               "program": "DEE_CHUYEN_NGANH_KY_THUAT_DIEN_TU_VIEN_THONG_2023_DEE_FILE_SYSTEM",
               "block": "K06",
               "required": true
-            },
-            {
-              "program": "DEE_KY_THUAT_DIEN_2019_MYBK_SEED",
-              "block": "K09",
-              "required": false
             }
           ],
           "parts": [
@@ -12696,11 +12681,6 @@
               "program": "DEE_CHUYEN_NGANH_KY_THUAT_DIEN_TU_VIEN_THONG_2023_DEE_FILE_SYSTEM",
               "block": "K06",
               "required": true
-            },
-            {
-              "program": "DEE_KY_THUAT_DIEN_2019_MYBK_SEED",
-              "block": "K09",
-              "required": false
             }
           ],
           "parts": [
@@ -13024,11 +13004,6 @@
               "program": "DEE_CHUYEN_NGANH_KY_THUAT_DIEN_TU_VIEN_THONG_2023_DEE_FILE_SYSTEM",
               "block": "K06",
               "required": true
-            },
-            {
-              "program": "DEE_KY_THUAT_DIEN_2019_MYBK_SEED",
-              "block": "K09",
-              "required": false
             }
           ],
           "parts": [
@@ -13297,11 +13272,6 @@
               "program": "DEE_CTDT_PFIEV_CHUYEN_NGANH_HE_THONG_NANG_LUONG_DIEN_2023_DEE_FILE_SYSTEM",
               "block": "K07",
               "required": true
-            },
-            {
-              "program": "DEE_KY_THUAT_DIEN_2019_MYBK_SEED",
-              "block": "K09",
-              "required": false
             }
           ],
           "parts": [
@@ -13451,11 +13421,6 @@
               "program": "DEE_CTDT_PFIEV_CHUYEN_NGANH_HE_THONG_NANG_LUONG_DIEN_2023_DEE_FILE_SYSTEM",
               "block": "K07",
               "required": true
-            },
-            {
-              "program": "DEE_KY_THUAT_DIEN_2019_MYBK_SEED",
-              "block": "K09",
-              "required": false
             }
           ],
           "parts": [
@@ -13600,11 +13565,6 @@
               "program": "DEE_CHUYEN_NGANH_KY_THUAT_DIEU_KHIEN_VA_TU_DONG_HOA_2023_DEE_FILE_SYSTEM",
               "block": "K06",
               "required": true
-            },
-            {
-              "program": "DEE_KY_THUAT_DIEN_2019_MYBK_SEED",
-              "block": "K09",
-              "required": false
             }
           ],
           "parts": [
@@ -13789,11 +13749,6 @@
               "program": "DEE_CHUYEN_NGANH_KY_THUAT_DIEN_TU_VIEN_THONG_2023_DEE_FILE_SYSTEM",
               "block": "K06",
               "required": true
-            },
-            {
-              "program": "DEE_KY_THUAT_DIEN_2019_MYBK_SEED",
-              "block": "K09",
-              "required": false
             }
           ],
           "parts": [
@@ -13978,11 +13933,6 @@
               "program": "DEE_CHUYEN_NGANH_KY_THUAT_DIEN_TU_VIEN_THONG_2023_DEE_FILE_SYSTEM",
               "block": "K06",
               "required": true
-            },
-            {
-              "program": "DEE_KY_THUAT_DIEN_2019_MYBK_SEED",
-              "block": "K09",
-              "required": false
             }
           ],
           "parts": [
@@ -14191,11 +14141,6 @@
               "program": "DEE_CHUYEN_NGANH_KY_THUAT_DIEN_TU_VIEN_THONG_2023_DEE_FILE_SYSTEM",
               "block": "K06",
               "required": true
-            },
-            {
-              "program": "DEE_KY_THUAT_DIEN_2019_MYBK_SEED",
-              "block": "K09",
-              "required": false
             }
           ],
           "parts": [
@@ -14436,11 +14381,6 @@
               "program": "DEE_CHUYEN_NGANH_KY_THUAT_DIEN_TU_VIEN_THONG_2023_DEE_FILE_SYSTEM",
               "block": "K06",
               "required": true
-            },
-            {
-              "program": "DEE_KY_THUAT_DIEN_2019_MYBK_SEED",
-              "block": "K09",
-              "required": false
             }
           ],
           "parts": [
@@ -14625,11 +14565,6 @@
               "program": "DEE_CHUYEN_NGANH_KY_THUAT_DIEN_TU_VIEN_THONG_2023_DEE_FILE_SYSTEM",
               "block": "K06",
               "required": true
-            },
-            {
-              "program": "DEE_KY_THUAT_DIEN_2019_MYBK_SEED",
-              "block": "K09",
-              "required": false
             }
           ],
           "parts": [
@@ -15058,75 +14993,6 @@
           "items": []
         },
         {
-          "id": "EE2409",
-          "code": "EE2409",
-          "name": "Cơ sở Trường điện từ",
-          "credits": 3,
-          "faculty": "dee",
-          "aliases": [],
-          "status": "active",
-          "programs": [
-            {
-              "program": "DEE_KY_THUAT_DIEN_2019_MYBK_SEED",
-              "block": "K16",
-              "required": false
-            }
-          ],
-          "parts": [
-            "theory"
-          ],
-          "related": [],
-          "note": "Nhập từ nguồn công khai (truy cập 03/10/2026).",
-          "updated": "2026-10-04",
-          "items": []
-        },
-        {
-          "id": "EE2411",
-          "code": "EE2411",
-          "name": "Linh kiện Bán dẫn",
-          "credits": 3,
-          "faculty": "dee",
-          "aliases": [],
-          "status": "active",
-          "programs": [
-            {
-              "program": "DEE_KY_THUAT_DIEN_2019_MYBK_SEED",
-              "block": "K16",
-              "required": false
-            }
-          ],
-          "parts": [
-            "theory"
-          ],
-          "related": [],
-          "note": "Nhập từ nguồn công khai (truy cập 03/10/2026).",
-          "updated": "2026-10-04",
-          "items": []
-        },
-        {
-          "id": "EE2413",
-          "code": "EE2413",
-          "name": "Thí nghiệm Kỹ thuật số",
-          "credits": 2,
-          "faculty": "dee",
-          "aliases": [],
-          "status": "active",
-          "programs": [
-            {
-              "program": "DEE_KY_THUAT_DIEN_2019_MYBK_SEED",
-              "block": "K16",
-              "required": false
-            }
-          ],
-          "parts": [
-            "lab"
-          ],
-          "related": [],
-          "note": "Nhập từ nguồn công khai (truy cập 03/10/2026).",
-          "updated": "2026-10-04",
-          "items": []
-        },
-        {
           "id": "EE3001",
           "code": "EE3001",
           "name": "Hệ thống cung cấp điện",
@@ -15195,11 +15061,6 @@
               "program": "DEE_KY_THUAT_DIEN_2024",
               "block": "K06",
               "required": true
-            },
-            {
-              "program": "DEE_KY_THUAT_DIEN_2019_MYBK_SEED",
-              "block": "K10",
-              "required": false
             }
           ],
           "parts": [
@@ -15566,11 +15427,6 @@
               "program": "DEE_CTDT_PFIEV_CHUYEN_NGANH_HE_THONG_NANG_LUONG_DIEN_2023_DEE_FILE_SYSTEM",
               "block": "K11",
               "required": true
-            },
-            {
-              "program": "DEE_KY_THUAT_DIEN_2019_MYBK_SEED",
-              "block": "K10",
-              "required": false
             }
           ],
           "parts": [
@@ -15764,11 +15620,6 @@
               "program": "DEE_CTDT_PFIEV_CHUYEN_NGANH_HE_THONG_NANG_LUONG_DIEN_2023_DEE_FILE_SYSTEM",
               "block": "K07",
               "required": true
-            },
-            {
-              "program": "DEE_KY_THUAT_DIEN_2019_MYBK_SEED",
-              "block": "K10",
-              "required": false
             }
           ],
           "parts": [
@@ -16164,11 +16015,6 @@
               "program": "DEE_CHUYEN_NGANH_KY_THUAT_DIEU_KHIEN_VA_TU_DONG_HOA_2023_DEE_FILE_SYSTEM",
               "block": "K06",
               "required": true
-            },
-            {
-              "program": "DEE_KY_THUAT_DIEN_2019_MYBK_SEED",
-              "block": "K09",
-              "required": false
             }
           ],
           "parts": [
@@ -16362,11 +16208,6 @@
               "program": "DEE_KY_THUAT_DIEN_2023",
               "block": "K11",
               "required": true
-            },
-            {
-              "program": "DEE_KY_THUAT_DIEN_2019_MYBK_SEED",
-              "block": "K10",
-              "required": false
             }
           ],
           "parts": [
@@ -17980,11 +17821,6 @@
               "program": "DEE_CTDT_PFIEV_CHUYEN_NGANH_HE_THONG_NANG_LUONG_DIEN_2023_DEE_FILE_SYSTEM",
               "block": "K11",
               "required": true
-            },
-            {
-              "program": "DEE_KY_THUAT_DIEN_2019_MYBK_SEED",
-              "block": "K11",
-              "required": false
             }
           ],
           "parts": [
@@ -18064,11 +17900,6 @@
               "program": "DEE_KY_THUAT_DIEN_2024",
               "block": "K08",
               "required": false
-            },
-            {
-              "program": "DEE_KY_THUAT_DIEN_2019_MYBK_SEED",
-              "block": "K11",
-              "required": false
             }
           ],
           "parts": [
@@ -18147,11 +17978,6 @@
             {
               "program": "DEE_KY_THUAT_DIEN_2024",
               "block": "K08",
-              "required": false
-            },
-            {
-              "program": "DEE_KY_THUAT_DIEN_2019_MYBK_SEED",
-              "block": "K11",
               "required": false
             }
           ],
@@ -18237,11 +18063,6 @@
               "program": "DEE_CTDT_PFIEV_CHUYEN_NGANH_HE_THONG_NANG_LUONG_DIEN_2023_DEE_FILE_SYSTEM",
               "block": "K11",
               "required": true
-            },
-            {
-              "program": "DEE_KY_THUAT_DIEN_2019_MYBK_SEED",
-              "block": "K11",
-              "required": false
             }
           ],
           "parts": [
@@ -18320,11 +18141,6 @@
             {
               "program": "DEE_KY_THUAT_DIEN_2024",
               "block": "K08",
-              "required": false
-            },
-            {
-              "program": "DEE_KY_THUAT_DIEN_2019_MYBK_SEED",
-              "block": "K11",
               "required": false
             }
           ],
@@ -18410,11 +18226,6 @@
               "program": "DEE_CTDT_PFIEV_CHUYEN_NGANH_HE_THONG_NANG_LUONG_DIEN_2023_DEE_FILE_SYSTEM",
               "block": "K11",
               "required": true
-            },
-            {
-              "program": "DEE_KY_THUAT_DIEN_2019_MYBK_SEED",
-              "block": "K10",
-              "required": false
             }
           ],
           "parts": [
@@ -18494,11 +18305,6 @@
               "program": "DEE_KY_THUAT_DIEN_2024",
               "block": "K08",
               "required": false
-            },
-            {
-              "program": "DEE_KY_THUAT_DIEN_2019_MYBK_SEED",
-              "block": "K11",
-              "required": false
             }
           ],
           "parts": [
@@ -18577,11 +18383,6 @@
             {
               "program": "DEE_KY_THUAT_DIEN_2024",
               "block": "K08",
-              "required": false
-            },
-            {
-              "program": "DEE_KY_THUAT_DIEN_2019_MYBK_SEED",
-              "block": "K11",
               "required": false
             }
           ],
@@ -19375,11 +19176,6 @@
               "program": "DEE_KY_THUAT_DIEN_2024",
               "block": "K08",
               "required": false
-            },
-            {
-              "program": "DEE_KY_THUAT_DIEN_2019_MYBK_SEED",
-              "block": "K11",
-              "required": false
             }
           ],
           "parts": [
@@ -19458,11 +19254,6 @@
             {
               "program": "DEE_KY_THUAT_DIEN_2024",
               "block": "K08",
-              "required": false
-            },
-            {
-              "program": "DEE_KY_THUAT_DIEN_2019_MYBK_SEED",
-              "block": "K11",
               "required": false
             }
           ],
@@ -19543,11 +19334,6 @@
               "program": "DEE_KY_THUAT_DIEN_2024",
               "block": "K08",
               "required": false
-            },
-            {
-              "program": "DEE_KY_THUAT_DIEN_2019_MYBK_SEED",
-              "block": "K11",
-              "required": false
             }
           ],
           "parts": [
@@ -19626,11 +19412,6 @@
             {
               "program": "DEE_KY_THUAT_DIEN_2024",
               "block": "K08",
-              "required": false
-            },
-            {
-              "program": "DEE_KY_THUAT_DIEN_2019_MYBK_SEED",
-              "block": "K11",
               "required": false
             }
           ],
@@ -19711,11 +19492,6 @@
               "program": "DEE_KY_THUAT_DIEN_2024",
               "block": "K08",
               "required": false
-            },
-            {
-              "program": "DEE_KY_THUAT_DIEN_2019_MYBK_SEED",
-              "block": "K11",
-              "required": false
             }
           ],
           "parts": [
@@ -19794,11 +19570,6 @@
             {
               "program": "DEE_KY_THUAT_DIEN_2024",
               "block": "K08",
-              "required": false
-            },
-            {
-              "program": "DEE_KY_THUAT_DIEN_2019_MYBK_SEED",
-              "block": "K11",
               "required": false
             }
           ],
@@ -20221,11 +19992,6 @@
               "program": "DEE_KY_THUAT_DIEN_2024",
               "block": "K08",
               "required": false
-            },
-            {
-              "program": "DEE_KY_THUAT_DIEN_2019_MYBK_SEED",
-              "block": "K11",
-              "required": false
             }
           ],
           "parts": [
@@ -20587,11 +20353,6 @@
               "program": "DEE_KY_THUAT_DIEN_2024",
               "block": "K08",
               "required": false
-            },
-            {
-              "program": "DEE_KY_THUAT_DIEN_2019_MYBK_SEED",
-              "block": "K11",
-              "required": false
             }
           ],
           "parts": [
@@ -20641,11 +20402,6 @@
               "program": "DEE_KY_THUAT_DIEN_2024",
               "block": "K05",
               "required": true
-            },
-            {
-              "program": "DEE_KY_THUAT_DIEN_2019_MYBK_SEED",
-              "block": "K09",
-              "required": false
             }
           ],
           "parts": [
@@ -21208,11 +20964,6 @@
               "program": "DEE_KY_THUAT_DIEN_2024",
               "block": "K07",
               "required": true
-            },
-            {
-              "program": "DEE_KY_THUAT_DIEN_2019_MYBK_SEED",
-              "block": "K14",
-              "required": false
             }
           ],
           "parts": [],
@@ -21386,11 +21137,6 @@
               "program": "DEE_KY_THUAT_DIEN_2024",
               "block": "K07",
               "required": true
-            },
-            {
-              "program": "DEE_KY_THUAT_DIEN_2019_MYBK_SEED",
-              "block": "K14",
-              "required": false
             }
           ],
           "parts": [
@@ -22153,11 +21899,6 @@
               "program": "DEE_KY_THUAT_DIEN_2024",
               "block": "K07",
               "required": true
-            },
-            {
-              "program": "DEE_KY_THUAT_DIEN_2019_MYBK_SEED",
-              "block": "K14",
-              "required": false
             }
           ],
           "parts": [
@@ -23040,11 +22781,6 @@
               "required": true
             },
             {
-              "program": "DEE_KY_THUAT_DIEN_2019_MYBK_SEED",
-              "block": "K02",
-              "required": false
-            },
-            {
               "program": "GEOPET_KY_THUAT_DAU_KHI_GEOPET_COURSE_LIST",
               "block": "K01",
               "required": true
@@ -23582,11 +23318,6 @@
               "required": true
             },
             {
-              "program": "DEE_KY_THUAT_DIEN_2019_MYBK_SEED",
-              "block": "K02",
-              "required": false
-            },
-            {
               "program": "GEOPET_KY_THUAT_DAU_KHI_GEOPET_COURSE_LIST",
               "block": "K02",
               "required": true
@@ -24117,11 +23848,6 @@
               "required": true
             },
             {
-              "program": "DEE_KY_THUAT_DIEN_2019_MYBK_SEED",
-              "block": "K02",
-              "required": false
-            },
-            {
               "program": "GEOPET_KY_THUAT_DAU_KHI_GEOPET_COURSE_LIST",
               "block": "K02",
               "required": true
@@ -24550,11 +24276,6 @@
               "required": true
             },
             {
-              "program": "DEE_KY_THUAT_DIEN_2019_MYBK_SEED",
-              "block": "K01",
-              "required": false
-            },
-            {
               "program": "GEOPET_KY_THUAT_DAU_KHI_GEOPET_COURSE_LIST",
               "block": "K03",
               "required": true
@@ -24632,29 +24353,6 @@
               "program": "DEE_CTDT_PFIEV_CHUYEN_NGANH_HE_THONG_NANG_LUONG_DIEN_2023_DEE_FILE_SYSTEM",
               "block": "K01",
               "required": true
-            }
-          ],
-          "parts": [
-            "theory"
-          ],
-          "related": [],
-          "note": "Nhập từ nguồn công khai (truy cập 03/10/2026).",
-          "updated": "2026-10-04",
-          "items": []
-        },
-        {
-          "id": "MT1023",
-          "code": "MT1023",
-          "name": "Cơ sở Phương trình Vi phân",
-          "credits": 3,
-          "faculty": "fas",
-          "aliases": [],
-          "status": "active",
-          "programs": [
-            {
-              "program": "DEE_KY_THUAT_DIEN_2019_MYBK_SEED",
-              "block": "K16",
-              "required": false
             }
           ],
           "parts": [
@@ -25208,11 +24906,6 @@
               "required": true
             },
             {
-              "program": "DEE_KY_THUAT_DIEN_2019_MYBK_SEED",
-              "block": "K02",
-              "required": false
-            },
-            {
               "program": "GEOPET_KY_THUAT_DAU_KHI_GEOPET_COURSE_LIST",
               "block": "K04",
               "required": true
@@ -25695,11 +25388,6 @@
               "program": "DEE_CHUYEN_NGANH_KY_THUAT_DIEN_TU_VIEN_THONG_2023_DEE_FILE_SYSTEM",
               "block": "K01",
               "required": true
-            },
-            {
-              "program": "DEE_KY_THUAT_DIEN_2019_MYBK_SEED",
-              "block": "K03",
-              "required": false
             },
             {
               "program": "GEOPET_KY_THUAT_DAU_KHI_GEOPET_COURSE_LIST",
@@ -26430,11 +26118,6 @@
               "required": true
             },
             {
-              "program": "DEE_KY_THUAT_DIEN_2019_MYBK_SEED",
-              "block": "K03",
-              "required": false
-            },
-            {
               "program": "GEOPET_KY_THUAT_DAU_KHI_GEOPET_COURSE_LIST",
               "block": "K02",
               "required": true
@@ -26462,29 +26145,6 @@
               "program": "DEE_CTDT_PFIEV_CHUYEN_NGANH_HE_THONG_NANG_LUONG_DIEN_2023_DEE_FILE_SYSTEM",
               "block": "K02",
               "required": true
-            }
-          ],
-          "parts": [
-            "theory"
-          ],
-          "related": [],
-          "note": "Nhập từ nguồn công khai (truy cập 03/10/2026).",
-          "updated": "2026-10-04",
-          "items": []
-        },
-        {
-          "id": "PH1013",
-          "code": "PH1013",
-          "name": "Vật lý - Nhiệt, Lượng tử",
-          "credits": 3,
-          "faculty": "fas",
-          "aliases": [],
-          "status": "active",
-          "programs": [
-            {
-              "program": "DEE_KY_THUAT_DIEN_2019_MYBK_SEED",
-              "block": "K16",
-              "required": false
             }
           ],
           "parts": [
@@ -34490,11 +34150,6 @@
               "required": true
             },
             {
-              "program": "DEE_KY_THUAT_DIEN_2019_MYBK_SEED",
-              "block": "K03",
-              "required": false
-            },
-            {
               "program": "GEOPET_KY_THUAT_DAU_KHI_GEOPET_COURSE_LIST",
               "block": "K01",
               "required": true
@@ -35024,11 +34679,6 @@
               "program": "DEE_CHUYEN_NGANH_KY_THUAT_DIEN_TU_VIEN_THONG_2023_DEE_FILE_SYSTEM",
               "block": "K03",
               "required": true
-            },
-            {
-              "program": "DEE_KY_THUAT_DIEN_2019_MYBK_SEED",
-              "block": "K08",
-              "required": false
             }
           ],
           "parts": [
@@ -35356,11 +35006,6 @@
             {
               "program": "DEE_CHUYEN_NGANH_KY_THUAT_DIEN_TU_VIEN_THONG_2023_DEE_FILE_SYSTEM",
               "block": "K10",
-              "required": false
-            },
-            {
-              "program": "DEE_KY_THUAT_DIEN_2019_MYBK_SEED",
-              "block": "K07",
               "required": false
             }
           ],
@@ -35707,11 +35352,6 @@
               "required": false
             },
             {
-              "program": "DEE_KY_THUAT_DIEN_2019_MYBK_SEED",
-              "block": "K07",
-              "required": false
-            },
-            {
               "program": "GEOPET_KY_THUAT_DAU_KHI_GEOPET_COURSE_LIST",
               "block": "K13",
               "required": false
@@ -36019,11 +35659,6 @@
               "program": "DEE_CHUYEN_NGANH_KY_THUAT_DIEN_TU_VIEN_THONG_2023_DEE_FILE_SYSTEM",
               "block": "K10",
               "required": false
-            },
-            {
-              "program": "DEE_KY_THUAT_DIEN_2019_MYBK_SEED",
-              "block": "K07",
-              "required": false
             }
           ],
           "parts": [
@@ -36292,11 +35927,6 @@
             {
               "program": "DEE_CHUYEN_NGANH_KY_THUAT_DIEN_TU_VIEN_THONG_2023_DEE_FILE_SYSTEM",
               "block": "K10",
-              "required": false
-            },
-            {
-              "program": "DEE_KY_THUAT_DIEN_2019_MYBK_SEED",
-              "block": "K07",
               "required": false
             },
             {
@@ -36693,11 +36323,6 @@
             {
               "program": "DEE_CHUYEN_NGANH_KY_THUAT_DIEN_TU_VIEN_THONG_2023_DEE_FILE_SYSTEM",
               "block": "K10",
-              "required": false
-            },
-            {
-              "program": "DEE_KY_THUAT_DIEN_2019_MYBK_SEED",
-              "block": "K07",
               "required": false
             }
           ],
@@ -37233,11 +36858,6 @@
               "required": true
             },
             {
-              "program": "DEE_KY_THUAT_DIEN_2019_MYBK_SEED",
-              "block": "K05",
-              "required": false
-            },
-            {
               "program": "GEOPET_KY_THUAT_DAU_KHI_GEOPET_COURSE_LIST",
               "block": "K01",
               "required": true
@@ -37725,11 +37345,6 @@
               "program": "DEE_CHUYEN_NGANH_KY_THUAT_DIEN_TU_VIEN_THONG_2023_DEE_FILE_SYSTEM",
               "block": "K05",
               "required": true
-            },
-            {
-              "program": "DEE_KY_THUAT_DIEN_2019_MYBK_SEED",
-              "block": "K05",
-              "required": false
             },
             {
               "program": "GEOPET_KY_THUAT_DAU_KHI_GEOPET_COURSE_LIST",
@@ -38221,11 +37836,6 @@
               "required": true
             },
             {
-              "program": "DEE_KY_THUAT_DIEN_2019_MYBK_SEED",
-              "block": "K05",
-              "required": false
-            },
-            {
               "program": "GEOPET_KY_THUAT_DAU_KHI_GEOPET_COURSE_LIST",
               "block": "K03",
               "required": true
@@ -38713,11 +38323,6 @@
               "program": "DEE_CHUYEN_NGANH_KY_THUAT_DIEN_TU_VIEN_THONG_2023_DEE_FILE_SYSTEM",
               "block": "K05",
               "required": true
-            },
-            {
-              "program": "DEE_KY_THUAT_DIEN_2019_MYBK_SEED",
-              "block": "K05",
-              "required": false
             },
             {
               "program": "GEOPET_KY_THUAT_DAU_KHI_GEOPET_COURSE_LIST",
@@ -39362,37 +38967,9 @@
               "required": true
             },
             {
-              "program": "DEE_KY_THUAT_DIEN_2019_MYBK_SEED",
-              "block": "K04",
-              "required": false
-            },
-            {
               "program": "GEOPET_KY_THUAT_DAU_KHI_GEOPET_COURSE_LIST",
               "block": "K12",
               "required": true
-            }
-          ],
-          "parts": [
-            "theory"
-          ],
-          "related": [],
-          "note": "Nhập từ nguồn công khai (truy cập 03/10/2026).",
-          "updated": "2026-10-04",
-          "items": []
-        },
-        {
-          "id": "SP1019",
-          "code": "SP1019",
-          "name": "Kỹ năng Xã hội D (Nhiếp Ảnh)",
-          "credits": 0,
-          "faculty": "llct",
-          "aliases": [],
-          "status": "active",
-          "programs": [
-            {
-              "program": "DEE_KY_THUAT_DIEN_2019_MYBK_SEED",
-              "block": "K16",
-              "required": false
             }
           ],
           "parts": [
@@ -39877,11 +39454,6 @@
               "program": "DEE_CHUYEN_NGANH_KY_THUAT_DIEN_TU_VIEN_THONG_2023_DEE_FILE_SYSTEM",
               "block": "K02",
               "required": true
-            },
-            {
-              "program": "DEE_KY_THUAT_DIEN_2019_MYBK_SEED",
-              "block": "K04",
-              "required": false
             },
             {
               "program": "GEOPET_KY_THUAT_DAU_KHI_GEOPET_COURSE_LIST",
@@ -40373,11 +39945,6 @@
               "required": true
             },
             {
-              "program": "DEE_KY_THUAT_DIEN_2019_MYBK_SEED",
-              "block": "K04",
-              "required": false
-            },
-            {
               "program": "GEOPET_KY_THUAT_DAU_KHI_GEOPET_COURSE_LIST",
               "block": "K04",
               "required": true
@@ -40865,11 +40432,6 @@
               "program": "DEE_CHUYEN_NGANH_KY_THUAT_DIEN_TU_VIEN_THONG_2023_DEE_FILE_SYSTEM",
               "block": "K02",
               "required": true
-            },
-            {
-              "program": "DEE_KY_THUAT_DIEN_2019_MYBK_SEED",
-              "block": "K04",
-              "required": false
             },
             {
               "program": "GEOPET_KY_THUAT_DAU_KHI_GEOPET_COURSE_LIST",
@@ -41361,11 +40923,6 @@
               "required": true
             },
             {
-              "program": "DEE_KY_THUAT_DIEN_2019_MYBK_SEED",
-              "block": "K04",
-              "required": false
-            },
-            {
               "program": "GEOPET_KY_THUAT_DAU_KHI_GEOPET_COURSE_LIST",
               "block": "K10",
               "required": true
@@ -41855,37 +41412,9 @@
               "required": true
             },
             {
-              "program": "DEE_KY_THUAT_DIEN_2019_MYBK_SEED",
-              "block": "K04",
-              "required": false
-            },
-            {
               "program": "GEOPET_KY_THUAT_DAU_KHI_GEOPET_COURSE_LIST",
               "block": "K08",
               "required": true
-            }
-          ],
-          "parts": [
-            "theory"
-          ],
-          "related": [],
-          "note": "Nhập từ nguồn công khai (truy cập 03/10/2026).",
-          "updated": "2026-10-04",
-          "items": []
-        },
-        {
-          "id": "SP1041",
-          "code": "SP1041",
-          "name": "Kỹ năng mềm",
-          "credits": 0,
-          "faculty": "llct",
-          "aliases": [],
-          "status": "active",
-          "programs": [
-            {
-              "program": "DEE_KY_THUAT_DIEN_2019_MYBK_SEED",
-              "block": "K16",
-              "required": false
             }
           ],
           "parts": [
@@ -42066,11 +41595,6 @@
               "required": false
             },
             {
-              "program": "DEE_KY_THUAT_DIEN_2019_MYBK_SEED",
-              "block": "K13",
-              "required": false
-            },
-            {
               "program": "GEOPET_KY_THUAT_DAU_KHI_GEOPET_COURSE_LIST",
               "block": "K01",
               "required": true
@@ -42165,11 +41689,6 @@
             {
               "program": "DEE_CHUYEN_NGANH_KY_THUAT_DIEN_TU_VIEN_THONG_2023_DEE_FILE_SYSTEM",
               "block": "K11",
-              "required": false
-            },
-            {
-              "program": "DEE_KY_THUAT_DIEN_2019_MYBK_SEED",
-              "block": "K16",
               "required": false
             },
             {
@@ -42270,11 +41789,6 @@
               "required": false
             },
             {
-              "program": "DEE_KY_THUAT_DIEN_2019_MYBK_SEED",
-              "block": "K16",
-              "required": false
-            },
-            {
               "program": "GEOPET_KY_THUAT_DAU_KHI_GEOPET_COURSE_LIST",
               "block": "K02",
               "required": true
@@ -42354,11 +41868,6 @@
             {
               "program": "DEE_KY_THUAT_DIEU_KHIEN_VA_TU_DONG_HOA_2019",
               "block": "K05",
-              "required": false
-            },
-            {
-              "program": "DEE_KY_THUAT_DIEN_2019_MYBK_SEED",
-              "block": "K16",
               "required": false
             },
             {
@@ -42548,11 +42057,6 @@
             {
               "program": "DEE_KY_THUAT_DIEN_TU_VIEN_THONG_2024",
               "block": "K12",
-              "required": false
-            },
-            {
-              "program": "DEE_KY_THUAT_DIEN_2019_MYBK_SEED",
-              "block": "K16",
               "required": false
             }
           ],
@@ -43023,27 +42527,6 @@
           "items": []
         },
         {
-          "id": "PE1023",
-          "code": "PE1023",
-          "name": "Võ (Vovinam, Karate, Taewondo) (Học phần 1)",
-          "credits": 0,
-          "faculty": "gdtc-qp",
-          "aliases": [],
-          "status": "active",
-          "programs": [
-            {
-              "program": "DEE_KY_THUAT_DIEN_2019_MYBK_SEED",
-              "block": "K16",
-              "required": false
-            }
-          ],
-          "parts": [],
-          "related": [],
-          "note": "Nhập từ nguồn công khai (truy cập 03/10/2026).",
-          "updated": "2026-10-04",
-          "items": []
-        },
-        {
           "id": "PE1025",
           "code": "PE1025",
           "name": "Điền kinh (Học phần 1)",
@@ -43126,11 +42609,6 @@
             {
               "program": "DEE_KY_THUAT_DIEN_TU_VIEN_THONG_2024",
               "block": "K12",
-              "required": false
-            },
-            {
-              "program": "DEE_KY_THUAT_DIEN_2019_MYBK_SEED",
-              "block": "K16",
               "required": false
             }
           ],
@@ -44622,48 +44100,6 @@
       },
       "courses": [
         {
-          "id": "CCGDTC",
-          "code": "CCGDTC",
-          "name": "Chứng chỉ Giáo Dục Thể Chất",
-          "credits": 0,
-          "faculty": "chung",
-          "aliases": [],
-          "status": "active",
-          "programs": [
-            {
-              "program": "DEE_KY_THUAT_DIEN_2019_MYBK_SEED",
-              "block": "K12",
-              "required": false
-            }
-          ],
-          "parts": [],
-          "related": [],
-          "note": "Nhập từ nguồn công khai (truy cập 03/10/2026). Điều kiện chung cho mọi ngành, không thuộc riêng khoa nào; đơn vị quản lý chưa xác minh.",
-          "updated": "2026-10-04",
-          "items": []
-        },
-        {
-          "id": "ENG_GC",
-          "code": "ENG_GC",
-          "name": "Đ/kiện tiếng Anh tốt nghiệp ĐH tiêu chuẩn, VLVH",
-          "credits": 0,
-          "faculty": "chung",
-          "aliases": [],
-          "status": "active",
-          "programs": [
-            {
-              "program": "DEE_KY_THUAT_DIEN_2019_MYBK_SEED",
-              "block": "K15",
-              "required": false
-            }
-          ],
-          "parts": [],
-          "related": [],
-          "note": "Nhập từ nguồn công khai (truy cập 03/10/2026). Điều kiện chung cho mọi ngành, không thuộc riêng khoa nào; đơn vị quản lý chưa xác minh.",
-          "updated": "2026-10-04",
-          "items": []
-        },
-        {
           "id": "SA4001",
           "code": "SA4001",
           "name": "Hoạt động sinh viên",
@@ -44742,11 +44178,6 @@
               "program": "DEE_KY_THUAT_DIEN_TU_VIEN_THONG_2024",
               "block": "K14",
               "required": true
-            },
-            {
-              "program": "DEE_KY_THUAT_DIEN_2019_MYBK_SEED",
-              "block": "K15",
-              "required": false
             }
           ],
           "parts": [],
@@ -44763,100 +44194,7 @@
         "vi": "Chưa xác định",
         "en": "Unassigned"
       },
-      "courses": [
-        {
-          "id": "007401",
-          "code": "007401",
-          "name": "Vật lý - cơ học",
-          "credits": 4,
-          "faculty": "unknown",
-          "aliases": [],
-          "status": "active",
-          "programs": [
-            {
-              "program": "DEE_KY_THUAT_DIEN_2019_MYBK_SEED",
-              "block": "K16",
-              "required": false
-            }
-          ],
-          "parts": [
-            "theory"
-          ],
-          "related": [],
-          "note": "Nhập từ nguồn công khai (truy cập 03/10/2026).",
-          "updated": "2026-10-04",
-          "items": []
-        },
-        {
-          "id": "008001",
-          "code": "008001",
-          "name": "Pháp luật Việt Nam đại cương",
-          "credits": 2,
-          "faculty": "unknown",
-          "aliases": [],
-          "status": "active",
-          "programs": [
-            {
-              "program": "DEE_KY_THUAT_DIEN_2019_MYBK_SEED",
-              "block": "K16",
-              "required": false
-            }
-          ],
-          "parts": [
-            "theory"
-          ],
-          "related": [],
-          "note": "Nhập từ nguồn công khai (truy cập 03/10/2026).",
-          "updated": "2026-10-04",
-          "items": []
-        },
-        {
-          "id": "400400",
-          "code": "400400",
-          "name": "Nhập môn về kỹ thuật",
-          "credits": 0,
-          "faculty": "unknown",
-          "aliases": [],
-          "status": "active",
-          "programs": [
-            {
-              "program": "DEE_KY_THUAT_DIEN_2019_MYBK_SEED",
-              "block": "K16",
-              "required": false
-            }
-          ],
-          "parts": [
-            "theory"
-          ],
-          "related": [],
-          "note": "Nhập từ nguồn công khai (truy cập 03/10/2026).",
-          "updated": "2026-10-04",
-          "items": []
-        },
-        {
-          "id": "604046",
-          "code": "604046",
-          "name": "Thí nghiệm hóa đại cương",
-          "credits": 1,
-          "faculty": "unknown",
-          "aliases": [],
-          "status": "active",
-          "programs": [
-            {
-              "program": "DEE_KY_THUAT_DIEN_2019_MYBK_SEED",
-              "block": "K16",
-              "required": false
-            }
-          ],
-          "parts": [
-            "lab"
-          ],
-          "related": [],
-          "note": "Nhập từ nguồn công khai (truy cập 03/10/2026).",
-          "updated": "2026-10-04",
-          "items": []
-        }
-      ]
+      "courses": []
     }
   ],
   "programs": [
@@ -45712,212 +45050,6 @@
             "PE1003",
             "PE1005",
             "PE1007"
-          ]
-        }
-      ],
-      "updated": "2026-10-04"
-    },
-    {
-      "code": "DEE_KY_THUAT_DIEN_2019_MYBK_SEED",
-      "name": "Kỹ thuật Điện",
-      "faculty": "dee",
-      "year": "2019",
-      "listed": false,
-      "note": "Nhập từ bản MyBK do sinh viên cung cấp, đã đối chiếu với CTĐT công khai cùng khóa.",
-      "blocks": [
-        {
-          "id": "K01",
-          "name": "MyBK block 3674",
-          "required": false,
-          "courses": [
-            "EE1007",
-            "MT1009"
-          ]
-        },
-        {
-          "id": "K02",
-          "name": "MyBK block 3675",
-          "required": false,
-          "courses": [
-            "MT1003",
-            "MT1005",
-            "MT1007",
-            "MT2013"
-          ]
-        },
-        {
-          "id": "K03",
-          "name": "MyBK block 3676",
-          "required": false,
-          "courses": [
-            "CH1003",
-            "PH1003",
-            "PH1007"
-          ]
-        },
-        {
-          "id": "K04",
-          "name": "MyBK block 3677",
-          "required": false,
-          "courses": [
-            "SP1007",
-            "SP1031",
-            "SP1033",
-            "SP1035",
-            "SP1037",
-            "SP1039"
-          ]
-        },
-        {
-          "id": "K05",
-          "name": "MyBK block 3678",
-          "required": false,
-          "courses": [
-            "LA1003",
-            "LA1005",
-            "LA1007",
-            "LA1009"
-          ]
-        },
-        {
-          "id": "K06",
-          "name": "MyBK block 3679",
-          "required": false,
-          "courses": [
-            "EE1001"
-          ]
-        },
-        {
-          "id": "K07",
-          "name": "MyBK block 3680",
-          "required": false,
-          "courses": [
-            "IM1013",
-            "IM1023",
-            "IM1025",
-            "IM1027",
-            "IM3001"
-          ]
-        },
-        {
-          "id": "K08",
-          "name": "MyBK block 3681",
-          "required": false,
-          "courses": [
-            "EN1003"
-          ]
-        },
-        {
-          "id": "K09",
-          "name": "MyBK block 3682",
-          "required": false,
-          "courses": [
-            "EE1009",
-            "EE2003",
-            "EE2009",
-            "EE2017",
-            "EE2019",
-            "EE2021",
-            "EE2023",
-            "EE2025",
-            "EE2033",
-            "EE2035",
-            "EE2039",
-            "EE3023",
-            "EE3181"
-          ]
-        },
-        {
-          "id": "K10",
-          "name": "MyBK block 3683",
-          "required": false,
-          "courses": [
-            "EE3001",
-            "EE3009",
-            "EE3013",
-            "EE3027",
-            "EE3097"
-          ]
-        },
-        {
-          "id": "K11",
-          "name": "MyBK block 3684",
-          "required": false,
-          "courses": [
-            "EE3087",
-            "EE3089",
-            "EE3091",
-            "EE3093",
-            "EE3095",
-            "EE3099",
-            "EE3101",
-            "EE3131",
-            "EE3133",
-            "EE3135",
-            "EE3139",
-            "EE3143",
-            "EE3145",
-            "EE3171",
-            "EE3179"
-          ]
-        },
-        {
-          "id": "K12",
-          "name": "MyBK block 6919",
-          "required": false,
-          "courses": [
-            "CCGDTC"
-          ]
-        },
-        {
-          "id": "K13",
-          "name": "MyBK block 6920",
-          "required": false,
-          "courses": [
-            "MI1003"
-          ]
-        },
-        {
-          "id": "K14",
-          "name": "MyBK block 3685",
-          "required": false,
-          "courses": [
-            "EE3345",
-            "EE4007",
-            "EE4347"
-          ]
-        },
-        {
-          "id": "K15",
-          "name": "MyBK block 6918",
-          "required": false,
-          "courses": [
-            "ENG_GC",
-            "SA4001"
-          ]
-        },
-        {
-          "id": "K16",
-          "name": "MyBK block 0",
-          "required": false,
-          "courses": [
-            "007401",
-            "008001",
-            "400400",
-            "604046",
-            "EE2409",
-            "EE2411",
-            "EE2413",
-            "MT1023",
-            "PE1003",
-            "PE1005",
-            "PE1007",
-            "PE1011",
-            "PE1023",
-            "PE1025",
-            "PH1013",
-            "SP1019",
-            "SP1041"
           ]
         }
       ],

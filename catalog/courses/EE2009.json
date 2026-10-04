@@ -158,11 +158,6 @@
       "program": "DEE_CHUYEN_NGANH_KY_THUAT_DIEN_TU_VIEN_THONG_2023_DEE_FILE_SYSTEM",
       "block": "K06",
       "required": true
-    },
-    {
-      "program": "DEE_KY_THUAT_DIEN_2019_MYBK_SEED",
-      "block": "K09",
-      "required": false
     }
   ],
   "parts": [

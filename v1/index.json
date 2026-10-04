@@ -3,7 +3,7 @@
   "generated": "2026-10-04",
   "site": "https://bk-study-library.github.io/hcmut-library/",
   "counts": {
-    "courses": 739,
+    "courses": 725,
     "items": 8
   },
   "faculties": [
@@ -122,58 +122,6 @@
   ],
   "courses": [
     {
-      "id": "007401",
-      "code": "007401",
-      "name": "Vật lý - cơ học",
-      "credits": 4,
-      "faculty": "unknown",
-      "aliases": [],
-      "oldNames": [],
-      "status": "active",
-      "items": 0,
-      "url": "https://bk-study-library.github.io/hcmut-library/course/007401/",
-      "detail": "courses/007401.json"
-    },
-    {
-      "id": "008001",
-      "code": "008001",
-      "name": "Pháp luật Việt Nam đại cương",
-      "credits": 2,
-      "faculty": "unknown",
-      "aliases": [],
-      "oldNames": [],
-      "status": "active",
-      "items": 0,
-      "url": "https://bk-study-library.github.io/hcmut-library/course/008001/",
-      "detail": "courses/008001.json"
-    },
-    {
-      "id": "400400",
-      "code": "400400",
-      "name": "Nhập môn về kỹ thuật",
-      "credits": 0,
-      "faculty": "unknown",
-      "aliases": [],
-      "oldNames": [],
-      "status": "active",
-      "items": 0,
-      "url": "https://bk-study-library.github.io/hcmut-library/course/400400/",
-      "detail": "courses/400400.json"
-    },
-    {
-      "id": "604046",
-      "code": "604046",
-      "name": "Thí nghiệm hóa đại cương",
-      "credits": 1,
-      "faculty": "unknown",
-      "aliases": [],
-      "oldNames": [],
-      "status": "active",
-      "items": 0,
-      "url": "https://bk-study-library.github.io/hcmut-library/course/604046/",
-      "detail": "courses/604046.json"
-    },
-    {
       "id": "AS2001",
       "code": "AS2001",
       "name": "Cơ học ứng dụng",
@@ -214,19 +162,6 @@
       "items": 0,
       "url": "https://bk-study-library.github.io/hcmut-library/course/AS2071/",
       "detail": "courses/AS2071.json"
-    },
-    {
-      "id": "CCGDTC",
-      "code": "CCGDTC",
-      "name": "Chứng chỉ Giáo Dục Thể Chất",
-      "credits": 0,
-      "faculty": "chung",
-      "aliases": [],
-      "oldNames": [],
-      "status": "active",
-      "items": 0,
-      "url": "https://bk-study-library.github.io/hcmut-library/course/CCGDTC/",
-      "detail": "courses/CCGDTC.json"
     },
     {
       "id": "CH1003",
@@ -661,45 +596,6 @@
       "items": 0,
       "url": "https://bk-study-library.github.io/hcmut-library/course/EE2119/",
       "detail": "courses/EE2119.json"
-    },
-    {
-      "id": "EE2409",
-      "code": "EE2409",
-      "name": "Cơ sở Trường điện từ",
-      "credits": 3,
-      "faculty": "dee",
-      "aliases": [],
-      "oldNames": [],
-      "status": "active",
-      "items": 0,
-      "url": "https://bk-study-library.github.io/hcmut-library/course/EE2409/",
-      "detail": "courses/EE2409.json"
-    },
-    {
-      "id": "EE2411",
-      "code": "EE2411",
-      "name": "Linh kiện Bán dẫn",
-      "credits": 3,
-      "faculty": "dee",
-      "aliases": [],
-      "oldNames": [],
-      "status": "active",
-      "items": 0,
-      "url": "https://bk-study-library.github.io/hcmut-library/course/EE2411/",
-      "detail": "courses/EE2411.json"
-    },
-    {
-      "id": "EE2413",
-      "code": "EE2413",
-      "name": "Thí nghiệm Kỹ thuật số",
-      "credits": 2,
-      "faculty": "dee",
-      "aliases": [],
-      "oldNames": [],
-      "status": "active",
-      "items": 0,
-      "url": "https://bk-study-library.github.io/hcmut-library/course/EE2413/",
-      "detail": "courses/EE2413.json"
     },
     {
       "id": "EE3001",
@@ -2321,19 +2217,6 @@
       "items": 0,
       "url": "https://bk-study-library.github.io/hcmut-library/course/EN1003/",
       "detail": "courses/EN1003.json"
-    },
-    {
-      "id": "ENG_GC",
-      "code": "ENG_GC",
-      "name": "Đ/kiện tiếng Anh tốt nghiệp ĐH tiêu chuẩn, VLVH",
-      "credits": 0,
-      "faculty": "chung",
-      "aliases": [],
-      "oldNames": [],
-      "status": "active",
-      "items": 0,
-      "url": "https://bk-study-library.github.io/hcmut-library/course/ENG_GC/",
-      "detail": "courses/ENG_GC.json"
     },
     {
       "id": "GE1001",
@@ -9874,19 +9757,6 @@
       "detail": "courses/MT1015.json"
     },
     {
-      "id": "MT1023",
-      "code": "MT1023",
-      "name": "Cơ sở Phương trình Vi phân",
-      "credits": 3,
-      "faculty": "fas",
-      "aliases": [],
-      "oldNames": [],
-      "status": "active",
-      "items": 0,
-      "url": "https://bk-study-library.github.io/hcmut-library/course/MT1023/",
-      "detail": "courses/MT1023.json"
-    },
-    {
       "id": "MT2007",
       "code": "MT2007",
       "name": "Giải tích 3",
@@ -10081,19 +9951,6 @@
       "items": 0,
       "url": "https://bk-study-library.github.io/hcmut-library/course/PE1021/",
       "detail": "courses/PE1021.json"
-    },
-    {
-      "id": "PE1023",
-      "code": "PE1023",
-      "name": "Võ (Vovinam, Karate, Taewondo) (Học phần 1)",
-      "credits": 0,
-      "faculty": "gdtc-qp",
-      "aliases": [],
-      "oldNames": [],
-      "status": "active",
-      "items": 0,
-      "url": "https://bk-study-library.github.io/hcmut-library/course/PE1023/",
-      "detail": "courses/PE1023.json"
     },
     {
       "id": "PE1025",
@@ -10390,19 +10247,6 @@
       "detail": "courses/PH1009.json"
     },
     {
-      "id": "PH1013",
-      "code": "PH1013",
-      "name": "Vật lý - Nhiệt, Lượng tử",
-      "credits": 3,
-      "faculty": "fas",
-      "aliases": [],
-      "oldNames": [],
-      "status": "active",
-      "items": 0,
-      "url": "https://bk-study-library.github.io/hcmut-library/course/PH1013/",
-      "detail": "courses/PH1013.json"
-    },
-    {
       "id": "PH2005",
       "code": "PH2005",
       "name": "Vật lý 2",
@@ -10457,19 +10301,6 @@
       "items": 0,
       "url": "https://bk-study-library.github.io/hcmut-library/course/SP1007/",
       "detail": "courses/SP1007.json"
-    },
-    {
-      "id": "SP1019",
-      "code": "SP1019",
-      "name": "Kỹ năng Xã hội D (Nhiếp Ảnh)",
-      "credits": 0,
-      "faculty": "llct",
-      "aliases": [],
-      "oldNames": [],
-      "status": "active",
-      "items": 0,
-      "url": "https://bk-study-library.github.io/hcmut-library/course/SP1019/",
-      "detail": "courses/SP1019.json"
     },
     {
       "id": "SP1031",
@@ -10540,19 +10371,6 @@
       "items": 0,
       "url": "https://bk-study-library.github.io/hcmut-library/course/SP1039/",
       "detail": "courses/SP1039.json"
-    },
-    {
-      "id": "SP1041",
-      "code": "SP1041",
-      "name": "Kỹ năng mềm",
-      "credits": 0,
-      "faculty": "llct",
-      "aliases": [],
-      "oldNames": [],
-      "status": "active",
-      "items": 0,
-      "url": "https://bk-study-library.github.io/hcmut-library/course/SP1041/",
-      "detail": "courses/SP1041.json"
     }
   ]
 }

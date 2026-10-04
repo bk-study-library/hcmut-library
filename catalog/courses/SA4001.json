@@ -78,11 +78,6 @@
       "program": "DEE_KY_THUAT_DIEN_TU_VIEN_THONG_2024",
       "block": "K14",
       "required": true
-    },
-    {
-      "program": "DEE_KY_THUAT_DIEN_2019_MYBK_SEED",
-      "block": "K15",
-      "required": false
     }
   ],
   "parts": [],
