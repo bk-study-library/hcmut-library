@@ -1,4 +1,4 @@
 {
-  "uploadEndpoint": "",
+  "uploadEndpoint": "https://bk-study-library-upload.tktrungquoc40.workers.dev/submit",
   "turnstileSiteKey": "0x4AAAAAAFMxSkFCGbs--qcI"
 }

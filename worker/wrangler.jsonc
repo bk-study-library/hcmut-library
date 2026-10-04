@@ -15,7 +15,7 @@
   "vars": {
     "REPO": "bk-study-library/bk-study-library",
     "BRANCH": "main",
-    "ALLOWED_ORIGINS": "https://bk-study-library.github.io",
+    "ALLOWED_ORIGINS": "https://bk-study-library.github.io,http://localhost:8080",
     "CATALOG_TTL_SECONDS": "300",
     // "false" khi repo còn private: không trả link PR cho người gửi.
     "PUBLIC_PR_LINKS": "false"
