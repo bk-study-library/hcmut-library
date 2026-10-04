@@ -1,0 +1,44 @@
+{
+  "meta": {
+    "generated": "2026-10-03",
+    "sources": {
+      "hcmut-ctdt-index": { "id": "hcmut-ctdt-index", "url": "https://hcmut.edu.vn/home/giao-dien/chuong-trinh-dao-tao/all" },
+      "seed": { "id": "seed", "url": null }
+    }
+  },
+  "programs": [
+    {
+      "id": "hcmut:geopet:ky-thuat-dia-chat:2023", "name_vi": "Kỹ thuật Địa chất", "name_en": "Geological Engineering", "faculty": "geopet", "cohort_year": 2023, "type": "standard-or-unspecified",
+      "source_url": "https://drive.google.com/file/d/x/view", "sources": ["drive:x", "hcmut-ctdt-index"],
+      "blocks": [
+        { "name": "A. Toán và Khoa học tự nhiên [BB] 30 > A1. Toán [BB] 15", "courses": [{ "code": "MT1003", "required": true }] },
+        { "name": "C. Chuyên ngành > Nhóm tự chọn A (chọn 3 tín chỉ)", "courses": [{ "code": "GE4169", "required": false }, { "code": "GE2033", "required": false }, { "code": "GE2053", "required": null }] }
+      ]
+    },
+    {
+      "id": "hcmut:geopet:dia-ky-thuat-xay-dung:2024", "name_vi": "Địa kỹ thuật Xây dựng", "name_en": null, "faculty": "geopet", "cohort_year": 2024, "type": "standard-or-unspecified",
+      "source_url": "https://drive.google.com/file/d/y/view", "sources": ["drive:y"],
+      "blocks": [
+        { "name": "C. Ngành [TC] 6", "courses": [{ "code": "GE4169", "required": true }, { "code": "MT1003", "required": true }] },
+        { "name": "D. Khối lặp lại", "courses": [{ "code": "MT1003", "required": true }] }
+      ]
+    },
+    {
+      "id": "hcmut:dee:song-nganh-ky-thuat-dien-ky-thuat-dien-tu-vien-thong:2020", "name_vi": "Song ngành: Kỹ thuật Điện - Kỹ thuật Điện tử - Viễn thông", "name_en": null, "faculty": "dee", "cohort_year": 2020, "type": "song-nganh",
+      "source_url": null, "sources": ["hcmut-ctdt-index"], "blocks": []
+    },
+    {
+      "id": "hcmut:admissions-2026:106:standard", "admission_code_2026": "106", "name_vi": "Khoa học Máy tính", "faculty": "cse", "cohort_year": 2026, "type": "standard",
+      "source_url": "https://hcmut.edu.vn/tuyen-sinh/dai-hoc-chinh-quy", "sources": ["hcmut-admissions"], "blocks": []
+    },
+    {
+      "id": "hcmut:admissions-2026:159:day-va-hoc-bang-tieng-anh", "admission_code_2026": "159", "name_vi": "(Ngành mới) Kỹ thuật Bán dẫn", "faculty": null, "cohort_year": 2026, "type": "day-va-hoc-bang-tieng-anh (English; formerly CLC)",
+      "source_url": "https://hcmut.edu.vn/tuyen-sinh/dai-hoc-chinh-quy", "sources": ["hcmut-admissions"], "blocks": []
+    },
+    {
+      "id": "hcmut:geopet:ky-thuat-dau-khi:geopet-course-list", "name_vi": "Kỹ thuật Dầu khí (danh sách môn học theo học kỳ, không ghi khóa)", "faculty": "geopet", "cohort_year": null, "type": "standard-or-unspecified",
+      "source_url": "https://geopet.hcmut.edu.vn/dao-tao/dai-hoc/ky-thuat-dau-khi/danh-sach-cac-mon-hoc", "sources": ["geopet-dk-list"],
+      "blocks": [{ "name": "Semester 1 > Compulsive Courses", "courses": [{ "code": "MT1003", "required": true }, { "code": "IU3047", "required": true }, { "code": "SP1007", "required": true }, { "code": "008001", "required": true }] }]
+    }
+  ]
+}

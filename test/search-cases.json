@@ -29,6 +29,13 @@
     { "q": "thi cong cong trinh ngam", "top": "GE4169-2024" },
     { "q": "khai pha du lieu", "top": "GE4169" },
     { "q": "data mining", "top": "GE4169" },
+    { "q": "ME2007", "top": "ME2007" },
+    { "q": "chi tiet may", "top": "ME2007" },
+    { "q": "nguyên lý máy", "in": ["ME1015", "ME2003"], "within": 2 },
+    { "q": "mach dien tu", "top": "EE2035" },
+    { "q": "truyen dong dien", "in": ["EE3179", "ME2179"], "within": 2 },
+    { "q": "xac suat thong ke", "in": ["MT2009", "MT2013"], "within": 2 },
+    { "q": "GE1003", "in": ["GE1013", "GE1003"], "within": 2 },
     { "q": "xyzabc", "none": true },
     { "q": "   ", "none": true }
   ]
