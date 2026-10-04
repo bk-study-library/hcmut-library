@@ -18,6 +18,8 @@ export function run(argv) {
     if (argv[i] === '--root') args.root = path.resolve(argv[++i]);
     else if (argv[i] === '--write') args.write = true;
     else if (argv[i] === '--quiet') args.quiet = true;
+    // Commit đầu của bot trên nhánh upload/: file sinh ra chưa dựng lại (kiem-file sẽ dựng), chỉ cảnh báo.
+    else if (argv[i] === '--allow-stale') args.allowStale = true;
     else throw new Error(`tham số lạ: ${argv[i]}`);
   }
   const repo = loadRepo(args.root);
@@ -59,12 +61,16 @@ export function run(argv) {
   const log = args.quiet ? () => {} : (s) => console.log(s);
   for (const w of repo.warnings) log(`cảnh báo [${w.code}] ${w.file}: ${w.msg}`);
   for (const e of repo.errors) log(`LỖI [${e.code}] ${e.file}: ${e.msg}`);
-  for (const s of stale) log(`LỖI [STALE] ${s}: file sinh ra đã cũ, chạy "npm run build" rồi commit`);
+  const staleErrors = args.allowStale ? 0 : stale.length;
+  for (const s of stale) {
+    if (args.allowStale) log(`cảnh báo [STALE] ${s}: file sinh ra chưa dựng lại, workflow kiem-file sẽ dựng`);
+    else log(`LỖI [STALE] ${s}: file sinh ra đã cũ, chạy "npm run build" rồi commit`);
+  }
   log(
     `${index.counts.courses} môn, ${index.counts.programs} chương trình, ${index.counts.items} tài liệu; ` +
-      `${repo.errors.length + stale.length} lỗi, ${repo.warnings.length} cảnh báo`,
+      `${repo.errors.length + staleErrors} lỗi, ${repo.warnings.length + stale.length - staleErrors} cảnh báo`,
   );
-  return { repo, index, stale, ok: repo.errors.length === 0 && stale.length === 0 };
+  return { repo, index, stale, ok: repo.errors.length === 0 && staleErrors === 0 };
 }
 
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
