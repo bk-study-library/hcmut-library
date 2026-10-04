@@ -34,25 +34,9 @@
     {
       "id": "thu-nghiem-1-tom-tat-gioi-han",
       "type": "summary",
-      "title": "Thu nghiem 1: tom tat gioi han",
-      "description": "Bai gui thu nghiem luong tai len.",
-      "lang": "vi",
-      "term": "HK261",
-      "license": "CC-BY-SA-4.0",
-      "origin": "self-made",
-      "added": "2026-10-04",
-      "updated": "2026-10-04",
-      "files": [
-        {
-          "name": "MT1005_summary_thu-nghiem-1-tom-tat-gioi-han_HK261.pdf",
-          "mime": "application/pdf",
-          "size": 1296,
-          "sha256": "e9a537c0a540acaa5ce358296167a1dd74b6dc629fe5683984c55ac0347ed080",
-          "urls": [
-            "https://github.com/bk-study-library/bk-study-library/releases/download/files-HK261/MT1005_summary_thu-nghiem-1-tom-tat-gioi-han_HK261.pdf"
-          ]
-        }
-      ]
+      "removed": true,
+      "removedReason": "Bài gửi thử luồng tải lên, gỡ sau khi thử xong.",
+      "added": "2026-10-04"
     },
     {
       "id": "vi-du-openstax-calculus-volume-3",
