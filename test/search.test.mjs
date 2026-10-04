@@ -34,7 +34,9 @@ test('mọi id trong bộ câu tìm có trong index', () => {
 });
 
 // Chạy search.js của trang chủ trên một DOM giả tối thiểu, với v1/index.json thật.
-async function homeSearch(q, fac = '') {
+// programs: nội dung assets/programs.json (mặc định không có); kết quả chương trình nằm ở homeSearch.programs.
+const LEVEL_STRINGS = { 'thac-si': ['Thạc sĩ', 'Master'], 'tien-si': ['Tiến sĩ', 'Doctoral'] };
+async function homeSearch(q, fac = '', programs = null) {
   const el = (tag) => {
     const e = { tagName: tag, children: [], className: '', href: '', value: '', disabled: true, listeners: {} };
     let text = '';
@@ -49,23 +51,72 @@ async function homeSearch(q, fac = '') {
     e.addEventListener = (ev, fn) => (e.listeners[ev] ||= []).push(fn);
     return e;
   };
-  const byId = { q: el('input'), 'q-results': el('ul'), 'q-status': el('p'), 'q-fac': el('select'), 'search-strings': el('script') };
-  byId['search-strings'].textContent = JSON.stringify({ results: ['Không có môn nào khớp', '1 môn khớp', '2 môn khớp'], teacher: 'Giảng viên', lang: 'vi' });
+  const byId = { q: el('input'), 'q-results': el('ul'), 'q-status': el('p'), 'q-fac': el('select'), 'search-strings': el('script'), 'q-prog': el('div'), 'q-prog-list': el('ul') };
+  byId['search-strings'].textContent = JSON.stringify({ results: ['Không có môn nào khớp', '1 môn khớp', '2 môn khớp'], teacher: 'Giảng viên', lang: 'vi', levels: LEVEL_STRINGS });
   byId['q-fac'].value = fac;
   const document = {
     documentElement: { getAttribute: (k) => ({ 'data-root': './', 'data-lang-prefix': '' })[k] ?? null },
     getElementById: (id) => byId[id] || null,
     createElement: el,
   };
-  const ctx = vm.createContext({ document, setTimeout, clearTimeout, fetch: async () => ({ ok: true, json: async () => index }) });
+  const ctx = vm.createContext({ document, setTimeout, clearTimeout, fetch: async (url) => ({ ok: true, json: async () => (String(url).endsWith('programs.json') ? programs || [] : index) }) });
   ctx.window = ctx;
   vm.runInContext(fs.readFileSync(path.join(ROOT, 'site-src', 'assets', 'search-core.js'), 'utf8'), ctx);
   vm.runInContext(fs.readFileSync(path.join(ROOT, 'site-src', 'assets', 'search.js'), 'utf8'), ctx);
   byId.q.value = q;
   for (const fn of byId.q.listeners.focus) fn();
   await new Promise((r) => setTimeout(r, 20));
-  return byId['q-results'].children.map((li) => li.children[0].children.map((s) => s.textContent));
+  const rows = byId['q-results'].children.map((li) => li.children[0].children.map((s) => s.textContent));
+  rows.programs = byId['q-prog-list'].children.map((li) => (li.children[0] ? li.children[0].children.map((s) => s.textContent) : [li.textContent]));
+  rows.tags = byId['q-results'].children.map((li) => li.children[0].children.filter((s) => s.className === 'tag').map((s) => s.textContent));
+  return rows;
 }
+
+test('ô tìm trang chủ: môn có ở sau đại học có nhãn bậc cuối dòng; môn đại học không có', async () => {
+  const pg = await homeSearch('GK5007');
+  assert.equal(pg[0][0], 'GK5007');
+  assert.deepEqual(pg.tags[0], ['Tiến sĩ']);
+  const both = await homeSearch('ENG_B2');
+  assert.deepEqual(both.tags[0], ['Thạc sĩ, Tiến sĩ']);
+  const ug = await homeSearch('MT1005');
+  assert.equal(ug[0][0], 'MT1005');
+  assert.deepEqual(ug.tags[0], []);
+});
+
+test('ô tìm trang chủ: ngành, chương trình sau đại học ghi bậc, tìm được bằng "thạc sĩ", xếp sau đại học', async () => {
+  const programs = [
+    { kind: 'major', code: '7520103', key: '7520103', name: 'Kỹ thuật Cơ khí', faculty: 'fme', types: ['CQ'], programs: 2 },
+    { kind: 'major', code: '8520103', key: '8520103', name: 'Kỹ thuật cơ khí', faculty: 'fme', level: 'thac-si', types: ['UD'], programs: 1 },
+    { kind: 'major', code: '9520103', key: '9520103', name: 'Kỹ thuật Cơ khí', faculty: 'fme', level: 'tien-si', types: ['PT1'], programs: 1 },
+    { code: 'FME_THAC_SI_KY_THUAT_CO_KHI_2025_UD', name: 'Kỹ thuật cơ khí', year: '2025', variant: 'Thạc sĩ định hướng ứng dụng', type: 'UD', major: '8520103', faculty: 'fme', level: 'thac-si', courses: 9 },
+    { code: 'FME_THAC_SI_KY_THUAT_CO_KHI_2022', name: 'Kỹ thuật cơ khí', year: '2022', type: 'CQ', major: '8520103', faculty: 'fme', level: 'thac-si', courses: 0 },
+  ];
+  const all = (await homeSearch('ky thuat co khi', '', programs)).programs;
+  assert.deepEqual(all.map((r) => r[1].split(', ')[0]), ['Khoa Cơ khí', 'Thạc sĩ', 'Tiến sĩ', 'Khoa Cơ khí', 'Thạc sĩ']);
+  assert.match(all[1][1], /^Thạc sĩ, Khoa Cơ khí, Ngành, mã 8520103, 1 chương trình$/);
+  // Chương trình có nhãn loại (variant) đã ghi bậc thì không lặp; chương trình tiêu chuẩn ghi bậc.
+  assert.match(all[3][1], /^Khoa Cơ khí, Thạc sĩ định hướng ứng dụng, 9 môn$/);
+  assert.match(all[4][1], /^Thạc sĩ, Khoa Cơ khí, chưa có danh sách môn$/);
+  const ths = (await homeSearch('thac si co khi', '', programs)).programs;
+  assert.ok(ths.length >= 2 && ths.every((r) => /Thạc sĩ/.test(r[1])));
+  const ud = (await homeSearch('UD', '', programs)).programs;
+  assert.deepEqual(ud.map((r) => r[0]), ['Kỹ thuật cơ khí', 'Kỹ thuật cơ khí (2025)']);
+});
+
+test('tìm môn: môn chỉ có ở sau đại học xếp sau môn đại học cùng mức khớp, trừ khi gõ đúng mã', () => {
+  const mini = {
+    courses: [
+      { id: 'GK5025', code: 'GK5025', name: 'Quản lý dự án', faculty: 'chung', levels: ['thac-si'], aliases: [], oldNames: [], status: 'active', items: 3 },
+      { id: 'IM3001', code: 'IM3001', name: 'Quản lý dự án', faculty: 'sim', aliases: [], oldNames: [], status: 'active', items: 0 },
+      { id: 'PH1003', code: 'PH1003', name: 'Quản lý dự án', faculty: 'chung', levels: ['dai-hoc', 'thac-si'], aliases: [], oldNames: [], status: 'active', items: 0 },
+    ],
+  };
+  const m = BkSearch.prepare(mini);
+  const plain = (x) => JSON.parse(JSON.stringify(x));
+  assert.deepEqual(plain(BkSearch.search(m, 'quan ly du an').map((h) => h.id)), ['IM3001', 'PH1003', 'GK5025']);
+  assert.deepEqual(plain(BkSearch.search(m, 'GK5025').map((h) => [h.id, h.score])), [['GK5025', 0]]);
+  assert.deepEqual(plain(BkSearch.list(m, { faculty: 'chung' }).map((h) => h.id)), ['GK5025', 'PH1003']);
+});
 
 test('ô tìm trang chủ: dòng kết quả có mã, tên, khoa; mã dùng lại ghi ID kèm năm', async () => {
   const rows = await homeSearch('GE3239');

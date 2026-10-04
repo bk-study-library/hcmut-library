@@ -198,6 +198,8 @@ h4 { font-size: 15px; margin: 0 0 4px; font-weight: 600; }
 .results a:hover { background: var(--surface-2); }
 .results .code { min-width: 72px; }
 .results li.muted { padding: 8px 4px; border-bottom: 0; }
+/* Nhãn bậc (Thạc sĩ, Tiến sĩ) cuối dòng kết quả môn: khoảng cách theo gap của dòng. */
+.results a > .tag { margin-left: 0; align-self: center; }
 .results-head { font-size: 15px; margin: 12px 0 4px; }
 #q-prog + #q-status { margin-top: 16px; }
 /* Đích của link tới khối (trang chương trình) hoặc nhóm loại (trang môn) */
