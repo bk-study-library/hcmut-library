@@ -1,8 +1,10 @@
 name: kiem-file
 
-# Kiểm file của bài gửi qua form: tải từ kho cách ly R2, quét virus, làm sạch
-# siêu dữ liệu PDF, tìm lớp chữ và thông tin cá nhân, comment kết quả, rồi ghi
-# link Release vào nhánh của PR. Logic nằm ở scripts/upload/check.mjs.
+# Kiểm file của bài gửi qua form: tải từ kho cách ly R2, quét virus (cả bên trong
+# file nén, báo file mã hóa hay vượt giới hạn quét), làm sạch siêu dữ liệu (PDF,
+# ảnh, Office), tìm JavaScript trong PDF, macro trong Office, mục lạ trong .zip,
+# tìm lớp chữ và thông tin cá nhân, comment kết quả, rồi ghi link Release vào nhánh
+# của PR. Logic nằm ở scripts/upload/check.mjs và scripts/upload/sanitize.mjs.
 #
 # Mô hình đe dọa. pull_request_target chạy với quyền ghi. Có hai thứ không tin được:
 # nội dung nhánh PR, và file người dùng tải lên (có thể nhắm vào lỗ hổng của
@@ -24,8 +26,12 @@ name: kiem-file
 #   report-failure (pull-requests: write)  job nào lỗi thì sửa comment báo không kiểm được.
 # - Khóa chỉ nằm trong env của bước cần chúng.
 #
-# Có virus: comment, đóng PR, xóa file trong kho rồi dừng. Job vẫn thành công,
-# PR bị đóng chính là kết quả.
+# Có virus: comment, đóng PR bằng token của App (để don-kho chạy và xóa nhánh), xóa
+# file và mã xem bài trong kho rồi dừng. Job vẫn thành công, PR bị đóng chính là kết quả.
+#
+# Máy không kết luận được (ClamAV không quét hết, PDF có JavaScript, Office có macro,
+# .zip có mục lạ): báo trong comment và gắn nhãn can-xem-tay, không tự đóng PR.
+# Người duyệt xem tay rồi quyết định.
 #
 # Secrets: R2_ACCOUNT_ID, R2_ACCESS_KEY_ID, R2_SECRET_ACCESS_KEY (khóa R2 đọc,
 # ghi, xóa bucket kho cách ly); GH_APP_CLIENT_ID (Client ID của GitHub App,
@@ -51,6 +57,7 @@ env:
 
 jobs:
   gate:
+    timeout-minutes: 10
     if: >-
       github.event.pull_request.state == 'open' &&
       github.event.pull_request.head.repo.full_name == github.repository &&
@@ -120,6 +127,7 @@ jobs:
           retention-days: 1
 
   fetch:
+    timeout-minutes: 10
     needs: gate
     if: needs.gate.outputs.run == 'true' && needs.gate.outputs.light == 'false'
     runs-on: ubuntu-latest
@@ -167,6 +175,7 @@ jobs:
 
   # Không có secret, chỉ quyền đọc: file tải lên có phá được công cụ thì cũng không lấy được gì.
   scan:
+    timeout-minutes: 15
     needs: [gate, fetch]
     runs-on: ubuntu-latest
     permissions:
@@ -210,6 +219,7 @@ jobs:
           retention-days: 1
 
   apply:
+    timeout-minutes: 10
     needs: [gate, scan]
     runs-on: ubuntu-latest
     # Push dùng token App, nên github.token chỉ cần đọc repo, comment và đóng PR.
@@ -218,6 +228,7 @@ jobs:
       pull-requests: write
     outputs:
       virus: ${{ steps.apply.outputs.virus }}
+      manual: ${{ steps.apply.outputs.manual }}
     env:
       CHECK_ERROR_FILE: ${{ github.workspace }}/loi/loi-apply.txt
       R2_BUCKET: ${{ vars.R2_BUCKET }}
@@ -259,11 +270,31 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: node trusted/scripts/upload/check.mjs comment --repo "$REPO" --pr "$PR" --body-file "$RUNNER_TEMP/report.md"
 
-      - name: Có virus thì đóng PR và xóa file trong kho
-        # Chạy cả khi bước comment lỗi: PR có virus vẫn phải đóng và kho phải sạch.
-        if: always() && steps.apply.outputs.virus != ''
+      # Máy không kết luận được: gắn nhãn để người duyệt xem tay. Nhãn can-xem-tay phải có sẵn trong repo.
+      - name: Gắn nhãn cần xem tay
+        if: always() && steps.apply.outputs.manual == 'true'
         env:
           GH_TOKEN: ${{ github.token }}
+        run: gh api --method POST "repos/$REPO/issues/$PR/labels" -f "labels[]=can-xem-tay" --silent
+
+      # Đóng PR bằng token của App: sự kiện do GITHUB_TOKEN tạo không chạy workflow khác, còn đóng
+      # bằng App thì don-kho chạy và xóa nhánh upload/<mã>.
+      - name: Tạo token của GitHub App để đóng PR có virus
+        if: always() && steps.apply.outputs.virus != ''
+        id: virus-app
+        continue-on-error: true
+        uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1 # v3.2.0
+        with:
+          client-id: ${{ secrets.GH_APP_CLIENT_ID }}
+          private-key: ${{ secrets.GH_APP_PRIVATE_KEY }}
+          permission-pull-requests: write
+
+      - name: Có virus thì đóng PR và xóa file trong kho
+        # Chạy cả khi bước comment lỗi: PR có virus vẫn phải đóng và kho phải sạch.
+        # Không có token App thì đóng bằng GITHUB_TOKEN (don-kho không chạy, nhánh còn lại).
+        if: always() && steps.apply.outputs.virus != ''
+        env:
+          GH_TOKEN: ${{ steps.virus-app.outputs.token || github.token }}
           R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
           AWS_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
@@ -274,6 +305,7 @@ jobs:
           endpoint="https://${R2_ACCOUNT_ID}.r2.cloudflarestorage.com"
           aws s3 rm "s3://$R2_BUCKET/pending/$CODE/" --recursive --endpoint-url "$endpoint" --only-show-errors
           aws s3 rm "s3://$R2_BUCKET/clean/$CODE/" --recursive --endpoint-url "$endpoint" --only-show-errors
+          aws s3 rm "s3://$R2_BUCKET/token/$CODE" --endpoint-url "$endpoint" --only-show-errors
           aws s3 rm "s3://$R2_BUCKET/sha/$SHA" --endpoint-url "$endpoint" --only-show-errors
 
       - name: Đưa bản đã làm sạch về kho cách ly
@@ -325,6 +357,7 @@ jobs:
 
   # Sách tham khảo không file: không có gì để tải hay quét, không đụng R2, không có khóa R2.
   apply-sach:
+    timeout-minutes: 10
     needs: gate
     if: needs.gate.outputs.run == 'true' && needs.gate.outputs.light == 'true'
     runs-on: ubuntu-latest
@@ -384,6 +417,7 @@ jobs:
 
   # Lỗi sau khi đã báo có virus thì giữ nguyên comment báo virus.
   report-failure:
+    timeout-minutes: 10
     needs: [gate, fetch, scan, apply, apply-sach]
     if: always() && contains(needs.*.result, 'failure') && needs.apply.outputs.virus == ''
     runs-on: ubuntu-latest
