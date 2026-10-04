@@ -1,5 +1,5 @@
 {
-  "openTypes": ["summary", "notes", "cheatsheet", "quiz-pack", "tips", "link", "exercise-solution", "exam-solution", "exam-past", "prelab-template", "prelab-reference", "lab-report-reference", "project-reference", "book-ref"],
+  "openTypes": ["lecture-slides", "summary", "notes", "cheatsheet", "quiz-pack", "tips", "link", "exercise-solution", "exam-solution", "exam-past", "prelab-template", "prelab-reference", "lab-report-reference", "project-reference", "book-ref"],
   "note": "Cấu hình chung: loại tài liệu nhận, giới hạn file, đuôi file (types: chỉ nhận cho các loại này), giới hạn khi quét file (scan) và học kỳ.",
   "maxFileBytes": 20971520,
   "maxMdInGitBytes": 1048576,
