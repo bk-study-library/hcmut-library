@@ -51,7 +51,7 @@ const item = (id, name, sha) => ({ id, course: 'MT1005', type: 'slides', title: 
 const PATH_A = 'courses/MT1005/items/chuong-1.json';
 const PATH_B = 'courses/MT1005/items/chuong-2.json';
 
-// GitHub giả có trạng thái: PR số 7 của nhánh upload/<mã> với hai mục; ghi lại mọi lệnh ghi.
+// GitHub giả có trạng thái: PR số 7 của branch upload/<mã> với hai mục; ghi lại mọi lệnh ghi.
 function fakeGitHub({ state = 'open', runs = [{ name: 'validate', status: 'completed', conclusion: 'success' }], message = 'kiem-file: MT1005', items = { [PATH_A]: item('chuong-1', 'a.pdf', SHA_A), [PATH_B]: item('chuong-2', 'b.pdf', SHA_B) } } = {}) {
   const files = { ...items };
   const writes = [];
@@ -253,7 +253,7 @@ describe('POST /duyet-tiep', () => {
     expect((await stored()).waiting).toBe(false);
   });
 
-  it('commit đầu nhánh không phải của kiem-file, mục trên nhánh khác danh sách duyệt, check chưa qua: không gộp', async () => {
+  it('commit đầu branch không phải của kiem-file, mục trên branch khác danh sách duyệt, check chưa qua: không gộp', async () => {
     await waiting();
     for (const fetch of [
       fakeGitHub({ items: onlyA, message: 'review: bỏ chuong-2' }),

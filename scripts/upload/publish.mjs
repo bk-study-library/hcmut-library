@@ -2,20 +2,20 @@
 // Phần logic là hàm thuần để test; phần CLI cuối file chỉ chạy khi gọi trực tiếp.
 // Mọi lệnh chạy từ bản main (tin được); file tải từ R2 chỉ được tính hash, không chạy gì.
 //
-//   node scripts/upload/publish.mjs locate --files <pr-files.jsonl> --root <repo> --branch <nhánh> --output-file <f>
-//     tìm mục tài liệu duy nhất của PR đã merge, đọc ở <repo> (bản main); ghi item, code, light, branch
+//   node scripts/upload/publish.mjs locate --files <pr-files.jsonl> --root <repo> --branch <branch> --output-file <f>
+//     tìm item duy nhất của PR đã merge, đọc ở <repo> (bản main); ghi item, code, light, branch
 //     (light=true: sách tham khảo không file, không có gì để phát hành hay dọn trong kho)
-//   node scripts/upload/publish.mjs kind --files <pr-files.jsonl> --root <thư mục PR> --branch <nhánh> --output-file <f>
+//   node scripts/upload/publish.mjs kind --files <pr-files.jsonl> --root <thư mục PR> --branch <branch> --output-file <f>
 //     ghi light=true khi chắc chắn PR là sách tham khảo không file; mọi trường hợp khác light=false, không lỗi
 //   node scripts/upload/publish.mjs dispatch-locate --item <courses/<MÃ>/items/<id>.json> --root <repo> --output-file <f>
 //     chạy tay (workflow_dispatch): kiểm đường dẫn người bảo trì nhập, mục phải do bot tải lên và
-//     còn bản đã làm sạch trong kho cách ly; ghi item, code, light=false, branch=upload/<mã bài>
-//   node scripts/upload/publish.mjs plan --item <path> --branch <nhánh> --repo <owner/name> --output-file <f>
+//     còn bản đã sanitize trong bucket quarantine; ghi item, code, light=false, branch=upload/<mã bài>
+//   node scripts/upload/publish.mjs plan --item <path> --branch <branch> --repo <owner/name> --output-file <f>
 //     kế hoạch phát hành (cần GH_TOKEN): publish=true thì có tag, name, quarantine, sha256, size để tải và đưa lên
 //   node scripts/upload/publish.mjs verify --file <path> --sha256 <hex> --size <byte>
-//     kiểm file đã tải từ R2 khớp mục tài liệu
-//   node scripts/upload/publish.mjs code --branch <nhánh> --output-file <f>
-//     kiểm tên nhánh upload/<mã bài>, ghi code và branch
+//     kiểm file đã tải từ R2 khớp item
+//   node scripts/upload/publish.mjs code --branch <branch> --output-file <f>
+//     kiểm tên branch upload/<mã bài>, ghi code và branch
 //   node scripts/upload/publish.mjs pending-sha --dir <thư mục> --output-file <f>
 //     sha256 của file cách ly gốc (khóa chặn gửi trùng sha/<sha256>); không có file thì sha rỗng
 //   node scripts/upload/publish.mjs unpublish --before <sha> --after <sha> --repo <owner/name>
@@ -55,7 +55,7 @@ export function parseReleaseUrl(url, repo) {
   return { tag: parts[0], name };
 }
 
-// itemsChanged: mục tài liệu của PR đã merge. existingAssets: Map<tag, Map<tên, sha256>> của các Release đã có.
+// itemsChanged: item của PR đã merge. existingAssets: Map<tag, Map<tên, sha256>> của các Release đã có.
 // Trả việc cần làm cho từng file: tải clean/... về và đưa lên Release. Bỏ qua file cùng tên cùng sha256;
 // cùng tên khác sha256 thì báo lỗi, không ghi đè.
 export function planPublish(itemsChanged, existingAssets, repo) {
@@ -63,15 +63,15 @@ export function planPublish(itemsChanged, existingAssets, repo) {
   for (const item of itemsChanged) {
     if (item.removed) continue;
     const info = quarantineInfo(item);
-    if (!info.key.startsWith('clean/')) throw new Error('Mục tài liệu chưa có bản đã làm sạch trong kho cách ly.');
+    if (!info.key.startsWith('clean/')) throw new Error('Item chưa có bản đã sanitize trong bucket quarantine.');
     const file = item.files[0];
     const target = parseReleaseUrl(file.url, repo);
     if (!target) throw new Error('Link của file không trỏ Release của repo.');
     if (target.name !== info.name) throw new Error('Tên file trong link không khớp với chỗ cách ly.');
-    if (!Number.isInteger(file.size) || file.size <= 0) throw new Error('Mục tài liệu không có kích thước hợp lệ.');
+    if (!Number.isInteger(file.size) || file.size <= 0) throw new Error('Item không có kích thước hợp lệ.');
     const have = existingAssets.get(target.tag)?.get(target.name);
     if (have === info.sha256) continue;
-    if (have === '') throw new Error(`Release ${target.tag} đã có ${target.name} nhưng không có digest sha256. Hãy kiểm tay file này rồi đổi tên file trong mục tài liệu.`);
+    if (have === '') throw new Error(`Release ${target.tag} đã có ${target.name} nhưng không có digest sha256. Hãy kiểm tay file này rồi đổi tên file trong item.`);
     if (have !== undefined) throw new Error(`Release ${target.tag} đã có ${target.name} khác nội dung. Hãy đổi tên file rồi gửi lại.`);
     plan.push({ tag: target.tag, name: target.name, quarantine: info.key, sha256: info.sha256, size: file.size, code: info.code });
   }
@@ -80,10 +80,10 @@ export function planPublish(itemsChanged, existingAssets, repo) {
 
 // Phát hành lại bằng workflow_dispatch. rel là chuỗi người bảo trì nhập (chưa tin được), readItem(rel)
 // đọc mục ở bản main (ném lỗi khi không có file). Mục phải do bot tải lên: có đúng một file với
-// khóa clean/<mã bài>/<tên> trong kho cách ly, chưa gỡ, và nằm đúng chỗ theo course và id.
+// khóa clean/<mã bài>/<tên> trong bucket quarantine, chưa gỡ, và nằm đúng chỗ theo course và id.
 export function dispatchTarget(rel, readItem) {
   if (typeof rel !== 'string' || !ITEM_PATH.test(rel)) {
-    throw new Error('Đường dẫn mục tài liệu không hợp lệ. Cần dạng courses/<MÃ>/items/<id>.json.');
+    throw new Error('Đường dẫn item không hợp lệ. Cần dạng courses/<MÃ>/items/<id>.json.');
   }
   let item;
   try {
@@ -91,11 +91,11 @@ export function dispatchTarget(rel, readItem) {
   } catch {
     throw new Error(`Không đọc được ${rel} trên main.`);
   }
-  if (!item || typeof item !== 'object') throw new Error(`${rel} không phải mục tài liệu.`);
+  if (!item || typeof item !== 'object') throw new Error(`${rel} không phải item.`);
   if (rel !== `courses/${item.course}/items/${item.id}.json`) throw new Error(`${rel} không khớp course và id ghi trong mục.`);
   if (item.removed) throw new Error(`${rel} đã gỡ (removed: true), không phát hành lại.`);
   const info = quarantineInfo(item);
-  if (!info.key.startsWith('clean/')) throw new Error('Mục tài liệu chưa có bản đã làm sạch trong kho cách ly.');
+  if (!info.key.startsWith('clean/')) throw new Error('Item chưa có bản đã sanitize trong bucket quarantine.');
   return { item: rel, code: info.code, light: 'false', branch: `upload/${info.code}` };
 }
 
@@ -107,8 +107,8 @@ export function immutableReleaseMessage(tag) {
     'Người bảo trì làm như sau:',
     '(1) tắt Immutable releases trong Settings của repo (trang General);',
     `(2) đặt tag mới cho học kỳ trong releaseTagOverrides của catalog/policy.json, ví dụ "HK261": "files-HK261b" (tag ${tag} không dùng lại được);`,
-    '(3) sửa url của mục tài liệu sang tag mới, chạy npm run build, merge vào main;',
-    '(4) chạy lại workflow phat-hanh-file bằng workflow_dispatch với ô item là đường dẫn mục tài liệu.',
+    '(3) sửa url của item sang tag mới, chạy npm run build, merge vào main;',
+    '(4) chạy lại workflow phat-hanh-file bằng workflow_dispatch với ô item là đường dẫn item.',
     'Xem docs/cai-dat-luong-tai-len.md, mục Release.',
   ].join(' ');
 }
@@ -162,7 +162,7 @@ export function planRemovals(itemsBefore, itemsAfter, repo, liveItems = []) {
 
 // Dọn kho: chỉ bỏ qua R2 khi chắc chắn PR là sách tham khảo không file. PR lạ hay đọc lỗi thì
 // trả false để dọn như thường (dọn chỗ trống không hại gì), không bao giờ ném lỗi.
-// readItem(rel): đọc mục tài liệu theo đường dẫn trong PR.
+// readItem(rel): đọc item theo đường dẫn trong PR.
 export function isLightPr(files, readItem, branch) {
   try {
     return locateInfo(readItem(pickItemFile(files)), branch).light === 'true';
@@ -192,8 +192,8 @@ export function pendingSha(dir) {
 
 export function verifyFile(file, sha256, size) {
   const actual = fs.statSync(file).size;
-  if (actual !== Number(size)) throw new Error(`Sai kích thước: file tải về ${actual} byte, mục tài liệu ghi ${size}.`);
-  if (sha256File(file) !== sha256) throw new Error('Sai sha256: file tải về không khớp mục tài liệu.');
+  if (actual !== Number(size)) throw new Error(`Sai kích thước: file tải về ${actual} byte, item ghi ${size}.`);
+  if (sha256File(file) !== sha256) throw new Error('Sai sha256: file tải về không khớp item.');
 }
 
 // ---------- CLI ----------
@@ -225,7 +225,7 @@ function run(cmd, argv) {
 function locate(a) {
   const rels = pickItemFiles(readPrFiles(a.files), loadPolicy(path.resolve(a.root)).batchMaxFiles || 1);
   const list = batchManifest(rels, (rel) => readJson(path.join(a.root, rel)), a.branch);
-  // batchManifest đã kiểm nhánh khớp mã bài; branch ghi ra để bước sau dùng chung với dispatch-locate.
+  // batchManifest đã kiểm branch khớp mã bài; branch ghi ra để bước sau dùng chung với dispatch-locate.
   writeOutputs(a['output-file'], { item: list[0].item, items: rels.join('\n'), code: list[0].code, light: list[0].light, branch: a.branch });
 }
 
@@ -279,7 +279,7 @@ function plan(a) {
   if (!target) throw new Error('Link của file không trỏ Release của repo.');
   const release = releaseInfo(a.repo, target.tag);
   const [todo] = planPublish([item], new Map([[target.tag, release.assets]]), a.repo);
-  // Kiểm sớm, trước khi tải file từ kho cách ly: immutable release thì gh release upload chắc chắn lỗi 422.
+  // Kiểm sớm, trước khi tải file từ bucket quarantine: immutable release thì gh release upload chắc chắn lỗi 422.
   assertReleaseWritable(todo, release, target.tag);
   writeOutputs(a['output-file'], todo ? { publish: 'true', ...todo } : { publish: 'false', code: info.code });
 }
@@ -293,7 +293,7 @@ function unpublish(a) {
   for (const sha of [a.before, a.after]) {
     if (!/^[0-9a-f]{40}$/.test(sha)) throw new Error('Mã commit không hợp lệ.');
   }
-  // Nhánh mới tạo (before toàn số 0): không có bản trước để so.
+  // Branch mới tạo (before toàn số 0): không có bản trước để so.
   if (/^0+$/.test(a.before)) return;
   // Cả file mục bị xóa (D): gỡ bằng cách xóa file mục thì file trên Release cũng phải xóa.
   const diff = run('git', ['diff', '--name-status', '-z', '--no-renames', '--diff-filter=AMD', a.before, a.after, '--', 'courses']);

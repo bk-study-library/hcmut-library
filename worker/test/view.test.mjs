@@ -53,7 +53,7 @@ async function signJwt(claims, { key = accessKey.privateKey, kid = 'k1', alg = '
 const t = Math.floor(NOW / 1000);
 const goodClaims = (over = {}) => ({ aud: [AUD], iss: `https://${TEAM}`, exp: t + 600, nbf: t - 10, iat: t - 10, email: 'x@y', ...over });
 
-// fetch giả: khóa Access, GitHub (token, danh mục, PR theo nhánh).
+// fetch giả: khóa Access, GitHub (token, danh mục, PR theo branch).
 const ITEM_PATH = 'courses/MT1005/items/tom-tat.json';
 const ITEM = {
   id: 'tom-tat',
@@ -357,13 +357,13 @@ describe('GET /xem-duyet/<mã>', () => {
     expect(html4).not.toContain('Môn mới');
   });
 
-  it('trang duyệt: không đọc được mục (nhánh mất, JSON hỏng) thì báo; JSON hỏng vẫn hiện file của bài', async () => {
+  it('trang duyệt: không đọc được mục (branch mất, JSON hỏng) thì báo; JSON hỏng vẫn hiện file của bài', async () => {
     await env.QUARANTINE.put(`clean/${CODE}/${NAME}`, pdf);
     for (const [fetch, hasFile] of [[fakeFetch({ fail: { compare: 404 } }), false], [fakeFetch({ item: '{hỏng' }), true], [fakeFetch({ item: [1] }), true]]) {
       const { res } = await get(`/xem-duyet/${CODE}`, { headers: await auth(), fetch });
       expect(res.status).toBe(200);
       const html = await res.text();
-      expect(html).toContain('Không đọc được mục tài liệu');
+      expect(html).toContain('Không đọc được item');
       expect(html.includes(`href="/xem-duyet/${CODE}/file"`)).toBe(hasFile);
     }
   });

@@ -1,4 +1,4 @@
-// Đợt gửi nhiều file: một PR có nhiều mục tài liệu cùng môn, cùng mã bài.
+// Đợt gửi nhiều file: một PR có nhiều item cùng môn, cùng mã bài.
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { pickItemFile, pickItemFiles, batchManifest, batchReport } from '../scripts/upload/check.mjs';
@@ -19,7 +19,7 @@ test('pickItemFiles: nhiều mục cùng môn, theo thứ tự; khác môn, quá
   assert.equal(pickItemFile([f('courses/MT1003/items/a.json')]), 'courses/MT1003/items/a.json');
 });
 
-test('batchManifest: cùng mã bài theo nhánh; sách không file không gửi chung đợt', () => {
+test('batchManifest: cùng mã bài theo branch; sách không file không gửi chung đợt', () => {
   const items = { 'courses/MT1003/items/a.json': item('Abcde12345', 'MT1003_summary_a.pdf'), 'courses/MT1003/items/b.json': item('Abcde12345', 'MT1003_summary_b.pdf') };
   const list = batchManifest(Object.keys(items), (rel) => items[rel], 'upload/Abcde12345');
   assert.deepEqual(list.map((x) => [x.item, x.name, x.light]), [

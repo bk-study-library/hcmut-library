@@ -396,7 +396,7 @@ test('trang chủ: ô tìm không bị khóa, danh sách môn chỉ tải khi d�
   assert.match(js, /pointerenter/);
 });
 
-// Dựng site có đủ loại file để kiểm hàng nút của mục tài liệu.
+// Dựng site có đủ loại file để kiểm hàng nút của item.
 const out4 = (() => {
   const dir = copyFixture();
   fs.writeFileSync(path.join(dir, 'catalog', 'site.json'), JSON.stringify({ uploadEndpoint: '', turnstileSiteKey: 'K', reviewBase: 'https://up.example/' }));

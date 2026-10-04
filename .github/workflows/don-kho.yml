@@ -1,19 +1,19 @@
 name: don-kho
 
-# Dọn kho cách ly R2 và nhánh khi PR của bài gửi bị đóng mà không merge.
+# Dọn bucket quarantine trên R2 và branch khi PR của bài gửi bị đóng mà không merge.
 # Logic nằm ở scripts/upload/publish.mjs.
 #
 # Mô hình đe dọa. pull_request_target chạy với quyền ghi, nên workflow và script lấy từ main,
-# không bao giờ checkout hay chạy mã của nhánh PR. Chỉ chạy khi PR cùng repo, nhánh upload/*
-# và do bot mở. Tên nhánh đi qua env và được kiểm dạng upload/<mã 10 ký tự> trước khi dùng
-# làm đường dẫn R2 hay tên nhánh cần xóa, nên không xóa được gì ngoài upload/*.
+# không bao giờ checkout hay chạy mã của branch PR. Chỉ chạy khi PR cùng repo, branch upload/*
+# và do bot mở. Tên branch đi qua env và được kiểm dạng upload/<mã 10 ký tự> trước khi dùng
+# làm đường dẫn R2 hay tên branch cần xóa, nên không xóa được gì ngoài upload/*.
 # File gốc tải từ R2 chỉ bị tính hash. Khóa R2 chỉ nằm trong env của bước cần chúng.
 #
 # Dọn: pending/<mã>/, clean/<mã>/, mã xem bài token/<mã>, khóa sha/<sha256 file gốc> (tính từ
-# pending/ nếu còn; đã bị luật vòng đời xóa thì bỏ qua), rồi nhánh upload/<mã>. Chạy lại an toàn.
-# Sách tham khảo không file thì không có gì trong kho: bỏ qua R2, chỉ xóa nhánh. Chỉ bỏ qua
+# pending/ nếu còn; đã bị luật vòng đời xóa thì bỏ qua), rồi branch upload/<mã>. Chạy lại an toàn.
+# Sách tham khảo không file thì không có gì trong kho: bỏ qua R2, chỉ xóa branch. Chỉ bỏ qua
 # khi chắc chắn (PR đúng một mục book-ref không file); PR lạ hay đọc lỗi thì dọn như thường.
-# Nhánh PR chỉ được đọc làm dữ liệu.
+# Branch PR chỉ được đọc làm dữ liệu.
 #
 # Secrets: R2_ACCOUNT_ID, R2_ACCESS_KEY_ID, R2_SECRET_ACCESS_KEY.
 # Variables: R2_BUCKET, BOT_LOGIN.
@@ -58,7 +58,7 @@ jobs:
       - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
         with:
           node-version: 24
-      - name: Kiểm tên nhánh
+      - name: Kiểm tên branch
         id: code
         run: node scripts/upload/publish.mjs code --branch "$BRANCH" --output-file "$GITHUB_OUTPUT"
       - name: Checkout dữ liệu của PR (không chạy mã trong này)
@@ -103,7 +103,7 @@ jobs:
           base=$(node -e "process.stdout.write(String(require('./catalog/site.json').reviewBase || ''))")
           if [ -z "$base" ] || [ -z "$CODE" ]; then exit 0; fi
           curl -fsS -m 30 -X POST "$base/bao-ket-qua" -H 'Content-Type: application/json' --data "{\"code\":\"$CODE\"}"
-      - name: Xóa email và quyết định duyệt khỏi kho cách ly
+      - name: Xóa email và quyết định duyệt khỏi bucket quarantine
         env:
           R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
           AWS_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
@@ -113,7 +113,7 @@ jobs:
           if [ -z "$CODE" ]; then exit 0; fi
           aws s3 rm "s3://$R2_BUCKET/notify/$CODE" --endpoint-url "https://${R2_ACCOUNT_ID}.r2.cloudflarestorage.com" --only-show-errors
           aws s3 rm "s3://$R2_BUCKET/review/$CODE.json" --endpoint-url "https://${R2_ACCOUNT_ID}.r2.cloudflarestorage.com" --only-show-errors
-      - name: Xóa file trong kho cách ly
+      - name: Xóa file trong bucket quarantine
         if: steps.kind.outputs.light != 'true'
         env:
           R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
@@ -130,15 +130,15 @@ jobs:
             case "$sha" in *[!0-9a-f]*|"") continue ;; esac
             aws s3 rm "s3://$R2_BUCKET/sha/$sha" --endpoint-url "$endpoint" --only-show-errors
           done
-      # Chỉ xóa nhánh upload/<mã> đã kiểm dạng ở bước đầu. Nhánh đã mất thì coi như xong.
-      - name: Xóa nhánh
+      # Chỉ xóa branch upload/<mã> đã kiểm dạng ở bước đầu. Branch đã mất thì coi như xong.
+      - name: Xóa branch
         env:
           GH_TOKEN: ${{ github.token }}
           UPLOAD_BRANCH: ${{ steps.code.outputs.branch }}
         run: |
           if ! out=$(gh api -X DELETE "repos/$REPO/git/refs/heads/$UPLOAD_BRANCH" 2>&1); then
             case "$out" in
-              *"Reference does not exist"*|*"HTTP 404"*) echo "Nhánh $UPLOAD_BRANCH đã không còn." ;;
+              *"Reference does not exist"*|*"HTTP 404"*) echo "Branch $UPLOAD_BRANCH đã không còn." ;;
               *) echo "$out" >&2; exit 1 ;;
             esac
           fi

@@ -1,6 +1,6 @@
-# Cài đặt và chạy thử luồng tải lên
+# Cài đặt và chạy thử luồng upload
 
-Tài liệu này dành cho chủ repo. Chỉ chủ repo được tạo tài khoản và nhập khóa bí mật, nên bạn tự làm các bước dưới đây trên máy và trên giao diện web. Đừng gửi khóa bí mật cho ai, kể cả qua chat hay issue.
+Tài liệu này dành cho chủ repo. Chỉ chủ repo được tạo tài khoản và nhập secret, nên bạn tự làm các bước dưới đây trên máy và trên giao diện web. Đừng gửi secret cho ai, kể cả qua chat hay issue.
 
 Các tên dưới đây khớp với `worker/wrangler.jsonc`, `catalog/site.json` và ba workflow `kiem-file`, `phat-hanh-file`, `don-kho`. Nếu bạn đổi tên repo hay tên bucket, sửa cả `worker/wrangler.jsonc` và biến Actions tương ứng.
 
@@ -80,7 +80,7 @@ Worker chỉ nhận token Turnstile có hostname nằm trong `ALLOWED_ORIGINS`, 
 cd worker && npx wrangler login
 ```
 
-Nhập bốn khóa bí mật, mỗi lệnh một khóa. Mỗi lệnh sẽ hỏi giá trị: dán vào cửa sổ dòng lệnh, không dán vào chat.
+Nhập bốn secret, mỗi lệnh một secret. Mỗi lệnh sẽ hỏi giá trị: dán vào cửa sổ dòng lệnh, không dán vào chat.
 
 ```bash
 npx wrangler secret put TURNSTILE_SECRET
@@ -163,9 +163,9 @@ Tab **Variables**, bấm **New repository variable** cho từng biến:
 
 Ba workflow chỉ chạy khi PR do đúng `BOT_LOGIN` mở. Sai tên bot thì workflow bị bỏ qua mà không báo lỗi.
 
-## Bước 6. Nhãn `tai-lieu-moi`
+## Bước 6. Label `tai-lieu-moi`
 
-Bot gắn nhãn này khi mở PR, và `kiem-file` chỉ chạy khi PR có nhãn. Repo chưa có nhãn thì việc gửi bài lỗi ở bước gắn nhãn. Tạo nhãn bằng GitHub CLI:
+Bot gắn label này khi mở PR, và `kiem-file` chỉ chạy khi PR có label. Repo chưa có label thì việc gửi bài lỗi ở bước gắn label. Tạo label bằng GitHub CLI:
 
 ```bash
 gh label create tai-lieu-moi --repo bk-study-library/hcmut-library --description "Tài liệu gửi qua form" --color 0E8A16
@@ -173,30 +173,30 @@ gh label create tai-lieu-moi --repo bk-study-library/hcmut-library --description
 
 Hoặc trên web: **Issues** > **Labels** > **New label**.
 
-Tạo thêm nhãn `can-xem-tay`. `kiem-file` gắn nhãn này khi máy không kết luận được (ClamAV không quét hết vì file mã hóa hay vượt giới hạn, PDF có JavaScript, file Office có macro hay liên kết ngoài, .zip có mục lạ). PR không bị đóng, người duyệt xem tay rồi quyết định:
+Tạo thêm label `can-xem-tay`. `kiem-file` gắn label này khi máy không kết luận được (ClamAV không quét hết vì file mã hóa hay vượt giới hạn, PDF có JavaScript, file Office có macro hay liên kết ngoài, .zip có mục lạ). PR không bị đóng, người duyệt xem tay rồi quyết định:
 
 ```bash
 gh label create can-xem-tay --repo bk-study-library/hcmut-library --description "Máy không kết luận được, người duyệt xem tay" --color D93F0B
 ```
 
-## Bước 7. Bảo vệ nhánh `main`
+## Bước 7. Bảo vệ branch `main`
 
-Ruleset bắt buộc PR và một lượt duyệt chỉ bật được sau khi repo public (gói Free). Trong lúc repo còn private, điều duy nhất ngăn bot tự đưa bài lên `main` là khóa App chỉ nằm trong Worker secrets. Khi repo public, vào **Settings** > **Rules** > **Rulesets** và tạo ruleset cho `main`. Cùng lúc đó đổi `PUBLIC_PR_LINKS` thành `"true"` rồi `npx wrangler deploy` lại.
+Ruleset bắt buộc PR và một approval chỉ bật được sau khi repo public (gói Free). Trong lúc repo còn private, điều duy nhất ngăn bot tự đưa bài lên `main` là private key của App chỉ nằm trong Worker secrets. Khi repo public, vào **Settings** > **Rules** > **Rulesets** và tạo ruleset cho `main`. Cùng lúc đó đổi `PUBLIC_PR_LINKS` thành `"true"` rồi `npx wrangler deploy` lại.
 
 Ruleset đang chạy cho `main`:
 
-- Cấm xóa nhánh và đẩy ép (force push).
-- Mọi thay đổi đi qua Pull request, cần một lượt duyệt của code owner (`.github/CODEOWNERS`); lượt duyệt cũ mất hiệu lực khi có commit mới.
-- Check bắt buộc: `validate` và `worker` (workflow `validate`). `kiem-file` không phải check bắt buộc; nếu bài được gộp trước khi quét xong, `phat-hanh-file` dừng vì mục chưa có bản sạch, file không lên Release.
-- **Có một ngoại lệ:** vai trò Admin của repo được bỏ qua ruleset khi gộp Pull request (bypass mode `pull_request`). Người duy trì là admin nên gộp được PR mà không cần lượt duyệt của người khác. Ngoại lệ này cần khi chỉ có một người duyệt. Nó cũng có nghĩa: phiên đăng nhập hay token của tài khoản admin bị lộ thì gộp được bất kỳ PR nào. Bật xác thực hai lớp, và gỡ ngoại lệ khi có người duyệt thứ hai.
-- Bot (GitHub App) không có trong danh sách bỏ qua, nên không tự gộp được bài.
-- Nhánh `upload/*` không có ruleset riêng.
+- Cấm xóa branch và force push.
+- Mọi thay đổi đi qua Pull request, cần một approval của code owner (`.github/CODEOWNERS`); approval cũ mất hiệu lực khi có commit mới.
+- Check bắt buộc: `validate` và `worker` (workflow `validate`). `kiem-file` không phải check bắt buộc; nếu bài được merge trước khi quét xong, `phat-hanh-file` dừng vì mục chưa có bản đã sanitize, file không lên Release.
+- **Có một bypass:** role Admin của repo được bỏ qua ruleset khi merge Pull request (bypass mode `pull_request`). Người duy trì là admin nên merge được PR mà không cần approval của người khác. Bypass này cần khi chỉ có một người duyệt. Nó cũng có nghĩa: phiên đăng nhập hay token của tài khoản admin bị lộ thì merge được bất kỳ PR nào. Bật xác thực hai lớp, và gỡ bypass khi có người duyệt thứ hai.
+- Bot (GitHub App) không có trong Bypass list, nên không tự merge được bài.
+- Branch `upload/*` không có ruleset riêng.
 
-Duyệt trên trang duyệt (mục 8.6) cần thêm GitHub App vào danh sách bỏ qua, bypass mode `pull_request`: **Settings** > **Rules** > **Rulesets** > `Bảo vệ main` > **Bypass list** > **Add bypass** > chọn App của thư viện > **For pull requests only**. Worker chỉ gộp sau khi một thành viên org đã đăng nhập qua Cloudflare Access và bấm Hoàn tất duyệt, và chỉ khi mọi check của đầu nhánh đã qua. Đổi lại, khóa App trong Worker bị lộ thì gộp được PR; giữ khóa như mục 4 và đổi ngay nếu nghi lộ. Chưa thêm App thì trang duyệt vẫn chạy nhưng bước gộp báo lỗi; người duyệt gộp tay trên GitHub như trước.
+Duyệt trên trang duyệt (mục 8.6) cần thêm GitHub App vào Bypass list, bypass mode `pull_request`: **Settings** > **Rules** > **Rulesets** > `Bảo vệ main` > **Bypass list** > **Add bypass** > chọn App của thư viện > **For pull requests only**. Worker chỉ merge sau khi một thành viên org đã đăng nhập qua Cloudflare Access và bấm Hoàn tất duyệt, và chỉ khi mọi check của đầu branch đã qua. Đổi lại, private key của App trong Worker bị lộ thì merge được PR; giữ khóa như mục 4 và đổi ngay nếu nghi lộ. Chưa thêm App thì trang duyệt vẫn chạy nhưng bước merge báo lỗi; người duyệt merge tay trên GitHub như trước.
 
 ## Bước 8. Xem file chờ duyệt: tên miền riêng và Cloudflare Access
 
-Người duyệt mở bài của một PR qua link `https://upload.xerozsoft.com/xem-duyet/<mã bài>` (có trong nội dung PR và comment của `kiem-file`), đăng nhập bằng GitHub, không cần tài khoản Cloudflare. Trang này hiện mọi ô người gửi nhập (đọc từ file mục trên nhánh `upload/<mã bài>`, đã thoát HTML), rồi nút **Xem file** (`/xem-duyet/<mã bài>/file`) và **Tải file**. Tiêu đề và nội dung PR không chứa chữ người gửi. Người gửi nhận link riêng `https://upload.xerozsoft.com/xem/<mã bài>?k=<mã bí mật>` ngay sau khi gửi.
+Người duyệt mở bài của một PR qua link `https://upload.xerozsoft.com/xem-duyet/<mã bài>` (có trong nội dung PR và comment của `kiem-file`), đăng nhập bằng GitHub, không cần tài khoản Cloudflare. Trang này hiện mọi ô người gửi nhập (đọc từ file mục trên branch `upload/<mã bài>`, đã thoát HTML), rồi nút **Xem file** (`/xem-duyet/<mã bài>/file`) và **Tải file**. Tiêu đề và nội dung PR không chứa chữ người gửi. Người gửi nhận link riêng `https://upload.xerozsoft.com/xem/<mã bài>?k=<mã bí mật>` ngay sau khi gửi.
 
 Cloudflare Access chỉ bảo vệ theo đường dẫn khi Worker chạy trên tên miền thuộc tài khoản. Bật Access trên `workers.dev` sẽ khóa cả `/submit` và làm hỏng form công khai, vì vậy Worker có thêm tên miền `upload.xerozsoft.com`:
 
@@ -206,7 +206,7 @@ Cloudflare Access chỉ bảo vệ theo đường dẫn khi Worker chạy trên 
 | `/xem-duyet/*` | Chỉ thành viên org `bk-study-library`, qua Cloudflare Access |
 | `/xem/*` | Ai có link kèm mã bí mật đúng |
 
-Worker vẫn tự kiểm JWT của Access (chữ ký, `aud`, `iss`, thời hạn) trong header `Cf-Access-Jwt-Assertion`. Địa chỉ `workers.dev` đã tắt (`"workers_dev": false`), nên `upload.xerozsoft.com` là lối vào duy nhất.
+Worker vẫn tự kiểm JWT của Access (signature, `aud`, `iss`, thời hạn) trong header `Cf-Access-Jwt-Assertion`. Địa chỉ `workers.dev` đã tắt (`"workers_dev": false`), nên `upload.xerozsoft.com` là lối vào duy nhất.
 
 ### 8.1. Tên miền cho Worker
 
@@ -245,7 +245,7 @@ Mở `worker/wrangler.jsonc`, mục `vars`, điền:
 "ACCESS_AUD": "<AUD tag>"
 ```
 
-Hai giá trị này không phải khóa bí mật. Commit rồi `npx wrangler deploy`. Khi còn trống một trong hai, `/xem-duyet/*` trả 503 cho mọi người.
+Hai giá trị này không phải secret. Commit rồi `npx wrangler deploy`. Khi còn trống một trong hai, `/xem-duyet/*` trả 503 cho mọi người.
 
 Thử:
 - Mở `https://upload.xerozsoft.com/xem-duyet/<mã bài>` của một PR đang mở: Access chuyển sang đăng nhập GitHub, sau đó trang hiện chữ người gửi và nút xem file (hoặc cảnh báo nếu máy chưa quét virus xong).
@@ -257,17 +257,17 @@ Thử:
 
 ### 8.6. Duyệt trên trang duyệt
 
-Một bài (một PR) có thể gồm nhiều file: form nhận tối đa `batchMaxFiles` file, tổng `batchMaxBytes` (`catalog/policy.json`, hiện 10 file và 50 MB), mỗi file vẫn tối đa `maxFileBytes`. Mỗi file thành một mục tài liệu riêng trong cùng PR. `kiem-file` quét từng file và ghi kết quả từng file trong một comment.
+Một bài (một PR) có thể gồm nhiều file: form nhận tối đa `batchMaxFiles` file, tổng `batchMaxBytes` (`catalog/policy.json`, hiện 10 file và 50 MB), mỗi file vẫn tối đa `maxFileBytes`. Mỗi file thành một item riêng trong cùng PR. `kiem-file` quét từng file và ghi kết quả từng file trong một comment.
 
-Trang `/xem-duyet/<mã bài>` hiện từng file: chữ người gửi nhập, tên và cỡ file, nút Xem và Tải, rồi lựa chọn **Duyệt** hay **Không duyệt** kèm lý do. Khi PR còn mở và mọi check của đầu nhánh đã qua, cuối trang có nút **Hoàn tất duyệt**:
+Trang `/xem-duyet/<mã bài>` hiện từng file: chữ người gửi nhập, tên và cỡ file, nút Xem và Tải, rồi lựa chọn **Duyệt** hay **Không duyệt** kèm lý do. Khi PR còn mở và mọi check của đầu branch đã qua, cuối trang có nút **Hoàn tất duyệt**:
 
 | Quyết định | Worker làm |
 |---|---|
-| Duyệt hết | Comment kết quả vào PR rồi gộp đúng commit đã kiểm |
+| Duyệt hết | Comment kết quả vào PR rồi merge đúng commit đã kiểm |
 | Không duyệt file nào | Comment lý do rồi đóng PR; `don-kho` dọn kho như khi đóng tay |
-| Duyệt một phần | Xóa mục không duyệt khỏi nhánh và file của nó khỏi kho, comment kết quả. `kiem-file` dựng lại file sinh ra, `validate` chạy lại; khi `validate` qua, workflow `tu-gop` gọi `POST /duyet-tiep` và Worker gộp |
+| Duyệt một phần | Xóa mục không duyệt khỏi branch và file của nó khỏi kho, comment kết quả. `kiem-file` dựng lại generated file, `validate` chạy lại; khi `validate` qua, workflow `tu-gop` gọi `POST /duyet-tiep` và Worker merge |
 
-Quyết định ghi ở `review/<mã bài>.json` trong kho cách ly, gồm email người duyệt (để tra khi cần; PR công khai nên comment không ghi người duyệt). `phat-hanh-file` và `don-kho` xóa file này cùng email người gửi. `/duyet-tiep` không cần khóa: Worker chỉ gộp khi đã có quyết định chờ gộp, PR còn mở, check của đầu nhánh đã qua, commit đầu là của `kiem-file`, và mục trên nhánh đúng bằng danh sách được duyệt.
+Quyết định ghi ở `review/<mã bài>.json` trong bucket quarantine, gồm email người duyệt (để tra khi cần; PR công khai nên comment không ghi người duyệt). `phat-hanh-file` và `don-kho` xóa file này cùng email người gửi. `/duyet-tiep` không cần khóa: Worker chỉ merge khi đã có quyết định chờ merge, PR còn mở, check của đầu branch đã qua, commit đầu là của `kiem-file`, và mục trên branch đúng bằng danh sách được duyệt.
 
 Form duyệt chỉ nhận POST có `Origin` là chính Worker (chống trang khác gửi form thay người duyệt đang đăng nhập). Duyệt tay trên GitHub (comment, approve, merge) vẫn dùng được như trước.
 
@@ -287,7 +287,7 @@ npx --yes http-server site -p 8080 -c-1
 
 Sau khi repo public, web chạy trên GitHub Pages: đổi `ALLOWED_ORIGINS` thành `https://bk-study-library.github.io`, thêm host đó vào Turnstile, gỡ `localhost` ở cả hai nơi, rồi `npx wrangler deploy` lại.
 
-Gửi bốn bài qua trang **Gửi tài liệu**, mỗi bài một lần gửi, và lưu mã bài trang trả về. Vì `PUBLIC_PR_LINKS` là `"false"`, trang không đưa link PR: tìm PR trong tab **Pull requests** của repo, tên dạng `Tài liệu mới: <mã môn> <tiêu đề>`, nhánh `upload/<mã bài>`.
+Gửi bốn bài qua trang **Gửi tài liệu**, mỗi bài một lần gửi, và lưu mã bài trang trả về. Vì `PUBLIC_PR_LINKS` là `"false"`, trang không đưa link PR: tìm PR trong tab **Pull requests** của repo, tên dạng `Tài liệu mới: <mã môn> <tiêu đề>`, branch `upload/<mã bài>`.
 
 Sau mỗi lần gửi, đợi vài phút cho workflow `kiem-file` chạy xong (xem tab **Actions**).
 
@@ -296,9 +296,9 @@ Sau mỗi lần gửi, đợi vài phút cho workflow `kiem-file` chạy xong (x
 Dùng một PDF nhỏ, không có thông tin cá nhân. Điền đủ form và ba ô cam kết.
 
 Kết quả mong đợi:
-- Có một PR mới, nhãn `tai-lieu-moi`, do bot mở.
+- Có một PR mới, label `tai-lieu-moi`, do bot mở.
 - Một comment kết quả: không có virus, không có cảnh báo, không báo thiếu lớp chữ (nếu PDF có chữ).
-- Nhánh của PR có thêm một commit ghi `url`, `mime`, `sha256`, `size` vào `files[]` của mục tài liệu. `url` trỏ tới Release `files-HK<xxx>` của học kỳ hiện tại, tính theo bảng tháng trong `catalog/policy.json` (ví dụ tháng 10 năm 2026 là học kỳ `HK261`). Tag thường là `files-HK<xxx>`, trừ khi `releaseTagOverrides` đặt tag khác cho học kỳ đó (học kỳ `HK261` dùng `files-HK261b`, xem mục [Release](#release)).
+- Branch của PR có thêm một commit ghi `url`, `mime`, `sha256`, `size` vào `files[]` của item. `url` trỏ tới Release `files-HK<xxx>` của học kỳ hiện tại, tính theo bảng tháng trong `catalog/policy.json` (ví dụ tháng 10 năm 2026 là học kỳ `HK261`). Tag thường là `files-HK<xxx>`, trừ khi `releaseTagOverrides` đặt tag khác cho học kỳ đó (học kỳ `HK261` dùng `files-HK261b`, xem mục [Release](#release)).
 
 ### Bài 2. File EICAR
 
@@ -314,8 +314,8 @@ Kết quả mong đợi:
 Lấy một PDF và đặt tên tác giả (ví dụ `exiftool -Author="Ten Thu" file.pdf`, hoặc điền ở phần thuộc tính tài liệu của trình soạn thảo), rồi gửi.
 
 Kết quả mong đợi:
-- PR mở, comment liệt kê các thẻ metadata đã bị xóa, trong đó có `Author`.
-- Bản đưa lên Release sau khi merge là bản đã làm sạch: `exiftool` trên file tải về không còn `Author`.
+- PR mở, comment liệt kê các tag metadata đã bị xóa, trong đó có `Author`.
+- Bản đưa lên Release sau khi merge là bản đã sanitize: `exiftool` trên file tải về không còn `Author`.
 
 ### Bài 4. File có MSSV giả
 
@@ -329,13 +329,13 @@ Kết quả mong đợi:
 
 Chọn PR của bài 3 hoặc bài 4, bấm **Close pull request** (không merge). Workflow `don-kho` chạy và:
 - xóa `pending/<mã bài>/`, `clean/<mã bài>/`, mã xem bài `token/<mã bài>` và khóa `sha/...` trong bucket (kiểm trong dashboard R2 như ở bài 2);
-- xóa nhánh `upload/<mã bài>` (kiểm ở **Code** > **Branches**).
+- xóa branch `upload/<mã bài>` (kiểm ở **Code** > **Branches**).
 
 ### Merge một PR
 
 Chọn PR của bài 1, xem lại nội dung, bấm **Merge pull request**. Workflow `phat-hanh-file` chạy và:
-- tạo Release `files-HK<xxx>` (đánh dấu pre-release) nếu chưa có, rồi đưa file đã làm sạch lên đúng tên đã ghi trong `files[]`;
-- xóa file của bài đó trong kho cách ly.
+- tạo Release `files-HK<xxx>` (đánh dấu pre-release) nếu chưa có, rồi đưa file đã sanitize lên đúng tên đã ghi trong `files[]`;
+- xóa file của bài đó trong bucket quarantine.
 
 Kiểm: trong **Releases** có pre-release `files-HK<xxx>` kèm file, và link của tài liệu có trong `v1/` trên `main` (workflow `kiem-file` đã dựng lại `v1/` trong PR).
 
@@ -347,7 +347,7 @@ File của thư viện nằm trên các pre-release theo học kỳ. `phat-hanh-
 
 **Immutable releases phải luôn tắt.** Trong **Settings** > **General** của repo (phần **Releases**), không bật **Enable release immutability**. Khi tính năng này bật, Release vừa tạo bị khóa: `gh release upload` báo `HTTP 422: Cannot upload assets to an immutable release`, xóa Release đó đi thì GitHub cũng không cho tạo lại Release cùng tag (`tag_name was used by an immutable release`). Tag đó coi như mất vĩnh viễn.
 
-Bước **Lập kế hoạch phát hành** của `phat-hanh-file` đọc Release đích trước khi tải gì từ kho cách ly: Release đang là immutable release thì dừng ngay và in cách sửa.
+Bước **Lập kế hoạch phát hành** của `phat-hanh-file` đọc Release đích trước khi tải gì từ bucket quarantine: Release đang là immutable release thì dừng ngay và in cách sửa.
 
 ### Tag thay thế cho học kỳ
 
@@ -363,48 +363,48 @@ Tag Release của học kỳ là `files-<học kỳ>`, ví dụ `files-HK261`. K
 
 ### Phát hành lại một bài đã merge
 
-Khi `phat-hanh-file` lỗi sau khi bài đã merge (ví dụ Release bị khóa), file đã làm sạch vẫn nằm ở `clean/<mã bài>/` trong kho cách ly 30 ngày. Trong thời gian đó:
+Khi `phat-hanh-file` lỗi sau khi bài đã merge (ví dụ Release bị khóa), file đã sanitize vẫn nằm ở `clean/<mã bài>/` trong bucket quarantine 30 ngày. Trong thời gian đó:
 
-1. Sửa nguyên nhân. Với Release bị khóa: tắt Immutable releases như trên, thêm tag thay thế vào `releaseTagOverrides`, sửa `url` trong `files[]` của mục tài liệu sang tag mới (giữ nguyên `name`, `sha256`, `size`, `quarantine`), chạy `npm run build` rồi merge vào `main` qua PR như thường.
-2. Chạy tay workflow với đường dẫn mục tài liệu trên `main`:
+1. Sửa nguyên nhân. Với Release bị khóa: tắt Immutable releases như trên, thêm tag thay thế vào `releaseTagOverrides`, sửa `url` trong `files[]` của item sang tag mới (giữ nguyên `name`, `sha256`, `size`, `quarantine`), chạy `npm run build` rồi merge vào `main` qua PR như thường.
+2. Chạy tay workflow với đường dẫn item trên `main`:
 
    ```
    gh workflow run phat-hanh-file.yml --repo <owner>/<repo> --ref main -f item=courses/<MÃ>/items/<id>.json
    ```
 
-   Hoặc ở **Actions** > **phat-hanh-file** > **Run workflow**, chọn nhánh `main`, điền ô **item**.
+   Hoặc ở **Actions** > **phat-hanh-file** > **Run workflow**, chọn branch `main`, điền ô **item**.
 
-Workflow đọc mục ở HEAD của `main`, kiểm đường dẫn (đúng dạng `courses/<MÃ>/items/<id>.json`, có trên `main`, khớp `course` và `id`, chưa gỡ, có khóa `clean/<mã bài>/<tên>` của bài gửi qua form), rồi làm như lúc merge: tải bản đã làm sạch từ R2, kiểm sha256 và kích thước, tạo pre-release nếu chưa có, đưa file lên, rồi dọn kho cách ly. Chỉ người có quyền ghi repo mới chạy tay được workflow, và job chỉ chạy khi chọn nhánh `main`. Chạy lại an toàn: file đã có trên Release cùng sha256 thì bỏ qua.
+Workflow đọc mục ở HEAD của `main`, kiểm đường dẫn (đúng dạng `courses/<MÃ>/items/<id>.json`, có trên `main`, khớp `course` và `id`, chưa gỡ, có khóa `clean/<mã bài>/<tên>` của bài gửi qua form), rồi làm như lúc merge: tải bản đã sanitize từ R2, kiểm sha256 và kích thước, tạo pre-release nếu chưa có, đưa file lên, rồi dọn bucket quarantine. Chỉ người có quyền ghi repo mới chạy tay được workflow, và job chỉ chạy khi chọn branch `main`. Chạy lại an toàn: file đã có trên Release cùng sha256 thì bỏ qua.
 
-Kiểm: link trong `url` của mục tải được, và trong kho cách ly không còn `pending/<mã bài>/`, `clean/<mã bài>/`.
+Kiểm: link trong `url` của mục tải được, và trong bucket quarantine không còn `pending/<mã bài>/`, `clean/<mã bài>/`.
 
 ## Bài có môn mới
 
 Người gửi không tìm thấy môn có thể bấm **Thêm môn mới** trên form (sau khi xem các gợi ý **Có phải môn này?**). Khi đó form gửi `newCourseCode`, `newCourseName` thay cho `course`, và Worker:
 
 - kiểm mã theo mẫu `code` của `schema/course.schema.json` (không có hậu tố năm), mã chưa có trong `worker-catalog.json`, tên không quá `fields.courseNameMax` của `catalog/policy.json`, tên không có link, `@`, ký tự lạ hay thông tin cá nhân; mỗi bài đúng một môn;
-- thêm `catalog/courses/<MÃ>.json` vào nhánh `upload/<mã bài>` trước file mục: khoa theo `prefixes` của `catalog/faculties.json` (không khớp thì `unknown`), `handbookUrl` dựng từ `handbookSubjectUrl` của `catalog/site.json`, `note` ghi môn mới chờ duyệt;
+- thêm `catalog/courses/<MÃ>.json` vào branch `upload/<mã bài>` trước file mục: khoa theo `prefixes` của `catalog/faculties.json` (không khớp thì `unknown`), `handbookUrl` dựng từ `handbookSubjectUrl` của `catalog/site.json`, `note` ghi môn mới chờ duyệt;
 - ghi **Môn mới: <MÃ>** và link Sổ tay vào nội dung PR. Tiêu đề PR vẫn trung tính; tên môn là chữ người gửi nên chỉ nằm trong file môn và trang `/xem-duyet/<mã bài>` (trang này có phần Môn mới ở đầu).
 
-`kiem-file` nhận file môn mới của đúng môn đó (chỉ khi thêm mới), rồi `validate.mjs --write` dựng lại `index.json`, `v1/`, `worker-catalog.json` và README của môn như bài thường. Hai bài cùng đề xuất một mã: gộp bài đầu xong thì bài sau thành sửa môn đã có nên `kiem-file` dừng; đóng bài sau và nhờ người gửi chọn môn vừa thêm.
+`kiem-file` nhận file môn mới của đúng môn đó (chỉ khi thêm mới), rồi `validate.mjs --write` dựng lại `index.json`, `v1/`, `worker-catalog.json` và README của môn như bài thường. Hai bài cùng đề xuất một mã: merge bài đầu xong thì bài sau thành sửa môn đã có nên `kiem-file` dừng; đóng bài sau và nhờ người gửi chọn môn vừa thêm.
 
 Tiền tố khoa, mẫu link Sổ tay và mẫu mã môn được đóng gói vào Worker lúc deploy (như `catalog/policy.json` của `/xem-truoc`), nên đổi các file này thì deploy lại Worker.
 
 ## Duyệt nhiều bài cùng lúc
 
-Mỗi PR gửi bài đều sửa các file sinh ra: `index.json`, `index.min.json`, `worker-catalog.json`, `v1/` và README của môn. Sau khi merge một PR, các PR khác đang mở sẽ xung đột ở các file này. Với từng PR còn lại:
+Mỗi PR gửi bài đều sửa các generated file: `index.json`, `index.min.json`, `worker-catalog.json`, `v1/` và README của môn. Sau khi merge một PR, các PR khác đang mở sẽ xung đột ở các file này. Với từng PR còn lại:
 
 1. Bấm **Update branch** trên trang PR. Nếu GitHub báo xung đột, bấm **Resolve conflicts**.
 2. Với `index.json`, `index.min.json`, `worker-catalog.json`, các file trong `v1/` và README, giữ bên nào cũng được.
-3. Commit. Lần push này làm `kiem-file` chạy lại và dựng lại đúng các file sinh ra trong nhánh PR.
+3. Commit. Lần push này làm `kiem-file` chạy lại và dựng lại đúng các generated file trong branch PR.
 4. Đợi `kiem-file` và `validate` xanh rồi mới merge.
 
-Không sửa tay mục tài liệu `courses/<môn>/items/<id>.json` khi giải xung đột.
+Không sửa tay item `courses/<môn>/items/<id>.json` khi giải xung đột.
 
 ### Nếu có gì không chạy
 
-- Gửi xong mà không có PR: chạy `npx wrangler tail` rồi gửi lại; kiểm nhãn `tai-lieu-moi` đã tạo và `ALLOWED_ORIGINS` có đúng nguồn của trang.
-- Có PR nhưng workflow không chạy: kiểm biến `BOT_LOGIN` có đúng tên bot, PR có nhãn `tai-lieu-moi`.
-- Workflow báo lỗi khóa R2 hoặc khóa App: kiểm lại các secret ở bước 5. `GH_APP_PRIVATE_KEY` của Actions là file `.pem` gốc, của Worker là `bot-pkcs8.pem`.
+- Gửi xong mà không có PR: chạy `npx wrangler tail` rồi gửi lại; kiểm label `tai-lieu-moi` đã tạo và `ALLOWED_ORIGINS` có đúng nguồn của trang.
+- Có PR nhưng workflow không chạy: kiểm biến `BOT_LOGIN` có đúng tên bot, PR có label `tai-lieu-moi`.
+- Workflow báo lỗi API token R2 hoặc private key của App: kiểm lại các secret ở bước 5. `GH_APP_PRIVATE_KEY` của Actions là file `.pem` gốc, của Worker là `bot-pkcs8.pem`.
 - Form báo không xác minh được: kiểm hostname trong Turnstile (bước 3) và `turnstileSiteKey` trong `catalog/site.json`.
-- PR mở quá 30 ngày, file trong kho đã bị xóa (comment báo không tải được file từ kho cách ly): đóng PR, nhờ người gửi gửi lại.
+- PR mở quá 30 ngày, file trong kho đã bị xóa (comment báo không tải được file từ bucket quarantine): đóng PR, nhờ người gửi gửi lại.

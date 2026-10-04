@@ -1,10 +1,10 @@
 name: tu-gop
 
-# Duyệt một phần trên trang duyệt: Worker bỏ file không duyệt khỏi nhánh upload/<mã>, kiem-file dựng
-# lại file sinh ra và commit "kiem-file: ...", validate chạy lại. Khi validate qua, workflow này báo
+# Duyệt một phần trên trang duyệt: Worker bỏ file không duyệt khỏi branch upload/<mã>, kiem-file dựng
+# lại generated file và commit "kiem-file: ...", validate chạy lại. Khi validate qua, workflow này báo
 # Worker (POST /duyet-tiep). Worker tự kiểm lại mọi điều kiện (đã có quyết định của người duyệt, PR
-# còn mở, check của đầu nhánh đã qua, commit đầu là của kiem-file, mục trên nhánh đúng danh sách
-# được duyệt) rồi mới gộp, nên workflow không cần token hay secret nào.
+# còn mở, check của đầu branch đã qua, commit đầu là của kiem-file, mục trên branch đúng danh sách
+# được duyệt) rồi mới merge, nên workflow không cần token hay secret nào.
 
 on:
   workflow_run:
@@ -31,7 +31,7 @@ jobs:
           persist-credentials: false
           sparse-checkout: catalog/site.json
           sparse-checkout-cone-mode: false
-      - name: Báo Worker gộp bài đã duyệt
+      - name: Báo Worker merge bài đã duyệt
         env:
           HEAD_BRANCH: ${{ github.event.workflow_run.head_branch }}
         run: |

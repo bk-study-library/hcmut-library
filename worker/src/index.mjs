@@ -1,4 +1,4 @@
-// Worker nhận bài gửi từ form web: kiểm, lưu file vào kho cách ly R2, nhờ bot GitHub App mở PR.
+// Worker nhận bài gửi từ form web: kiểm, lưu file vào bucket quarantine trên R2, nhờ bot GitHub App mở PR.
 import { validateSubmission } from './validate.mjs';
 import { GitHub, GitHubError, installationToken } from './github.mjs';
 import { loadCatalog } from './catalog.mjs';
@@ -67,7 +67,7 @@ const MESSAGES = {
 // Ô chọn môn và ô môn mới: mỗi ô chỉ được gửi một lần.
 const COURSE_FIELDS = ['course', 'newCourseCode', 'newCourseName'];
 
-// Mục tài liệu trong nhánh của bài (cùng mẫu với scripts/upload/check.mjs).
+// Item trong branch của bài (cùng mẫu với scripts/upload/check.mjs).
 const ITEM_FILE = /^courses\/[A-Za-z0-9_-]+\/items\/[A-Za-z0-9_-]+\.json$/;
 
 const allowedOrigins = (env) => String(env.ALLOWED_ORIGINS ?? '').split(',').map((s) => s.trim()).filter(Boolean);
@@ -156,7 +156,7 @@ export function cell(value) {
 }
 
 // Tiêu đề PR trung tính, không có chữ người gửi: tiêu đề và nội dung PR hiện công khai ngay (cả
-// trong email thông báo). Chữ người gửi chỉ nằm trong file mục tài liệu và trang /xem-duyet/<mã>.
+// trong email thông báo). Chữ người gửi chỉ nằm trong file item và trang /xem-duyet/<mã>.
 export const prTitle = (code, courseCode) => `Bài gửi ${code}: ${courseCode}`;
 
 // newCourse: { code, handbookUrl } khi bài đề xuất môn chưa có. Mã đã qua mẫu mã môn nên được ghi;
@@ -177,7 +177,7 @@ export function prBody({ code, courseCode, type, file, files = null, viewBase, n
   if (newCourse) {
     lines.push(
       `**Môn mới: ${cell(newCourse.code)}**. Môn này chưa có trong danh mục; bài thêm file \`catalog/courses/${newCourse.code}.json\`.`,
-      'Người duyệt kiểm mã, tên và khoa của môn với Sổ tay HCMUT trước khi gộp; sai thì sửa file môn trong PR, trùng môn đã có thì đóng PR.',
+      'Người duyệt kiểm mã, tên và khoa của môn với Sổ tay HCMUT trước khi merge; sai thì sửa file môn trong PR, trùng môn đã có thì đóng PR.',
     );
     if (newCourse.handbookUrl) lines.push(`Trang môn trên Sổ tay: ${newCourse.handbookUrl}`);
     lines.push('');
@@ -195,12 +195,12 @@ export function prBody({ code, courseCode, type, file, files = null, viewBase, n
     files.forEach((x, i) => lines.push(`| ${i + 1} | ${cell(TYPES[x.type]?.vi ?? x.type)} | ${x.file ? cell(x.file.name) : ''} | ${x.file ? formatSize(x.file.size) : ''} |`));
     lines.push('');
   }
-  if (file) lines.push(files ? 'Các file nằm trong kho cách ly. CI sẽ kiểm từng file và ghi kết quả vào PR này.' : 'File nằm trong kho cách ly. CI sẽ kiểm file và ghi kết quả vào PR này.', '');
+  if (file) lines.push(files ? 'Các file nằm trong bucket quarantine. CI sẽ kiểm từng file và ghi kết quả vào PR này.' : 'File nằm trong bucket quarantine. CI sẽ kiểm file và ghi kết quả vào PR này.', '');
   if (viewBase) {
     lines.push(`${file ? 'Xem file' : 'Xem bài'} (người duyệt): ${viewBase}/xem-duyet/${code}`, '');
-    lines.push('Tiêu đề, mô tả và các ô khác người gửi nhập hiện ở trang trên và trong file mục tài liệu của PR, không ghi ở tiêu đề hay nội dung PR.');
+    lines.push('Tiêu đề, mô tả và các ô khác người gửi nhập hiện ở trang trên và trong file item của PR, không ghi ở tiêu đề hay nội dung PR.');
   } else {
-    lines.push('Tiêu đề, mô tả và các ô khác người gửi nhập nằm trong file mục tài liệu của PR, không ghi ở tiêu đề hay nội dung PR.');
+    lines.push('Tiêu đề, mô tả và các ô khác người gửi nhập nằm trong file item của PR, không ghi ở tiêu đề hay nội dung PR.');
   }
   return `${lines.join('\n')}\n`;
 }
@@ -323,7 +323,7 @@ async function handleSubmit(req, env, deps, cors) {
     used.add(e.id);
     e.stored = null;
     if (!e.bytes) continue;
-    // Trùng tài liệu đã có trong thư viện (so cả sha256 file gốc, vì bản đã làm sạch khác sha256).
+    // Trùng tài liệu đã có trong thư viện (so cả sha256 file gốc, vì bản đã sanitize khác sha256).
     // Tài liệu đã gỡ vẫn chặn gửi lại, để file bị gỡ theo yêu cầu không quay lại qua form.
     const sha256 = await sha256Hex(e.bytes);
     if (catalog.blocked.has(sha256)) return reply(409, { ok: false, error: MESSAGES.removed }, cors);
@@ -377,7 +377,7 @@ async function handleSubmit(req, env, deps, cors) {
       await env.QUARANTINE.put(tokenKey(code), view.hash, { customMetadata: { course: course.id } });
       keys.push(tokenKey(code));
     }
-    // Email báo kết quả: chỉ nằm trong kho cách ly, xóa khi đã gửi (POST /bao-ket-qua) hay khi dọn kho.
+    // Email báo kết quả: chỉ nằm trong bucket quarantine, xóa khi đã gửi (POST /bao-ket-qua) hay khi dọn kho.
     if (form.notifyEmail) {
       await env.QUARANTINE.put(notifyKey(code), JSON.stringify({ email: form.notifyEmail, course: course.id }));
       keys.push(notifyKey(code));
@@ -412,7 +412,7 @@ async function handleSubmit(req, env, deps, cors) {
     if (view) out.viewUrl = `${base}/xem/${code}?k=${view.token}`;
     return reply(201, out, cors);
   } catch (err) {
-    // Dọn hết để không còn file hay nhánh mồ côi; xóa nhánh cũng đóng PR nếu đã mở.
+    // Dọn hết để không còn file hay branch mồ côi; xóa branch cũng đóng PR nếu đã mở.
     await cleanup();
     if (branchMade) {
       const gh = await github();
@@ -433,7 +433,7 @@ const asObject = (text) => {
   return v && typeof v === 'object' && !Array.isArray(v) ? v : null;
 };
 
-// Mọi mục tài liệu trên nhánh upload/<mã> (đợt gửi có nhiều mục) kèm file của từng mục trong kho,
+// Mọi item trên branch upload/<mã> (đợt gửi có nhiều mục) kèm file của từng mục trong kho,
 // và file môn mới nếu có. [{ id, path, item, file }]. Lỗi đọc thì danh sách rỗng.
 async function branchDocs(env, github, code) {
   const out = { docs: [], newCourse: null };
@@ -470,7 +470,7 @@ async function reviewer(req, env, deps) {
   return ok ? { email: accessEmail(jwt) } : null;
 }
 
-// Trạng thái PR của bài để quyết: PR mở và mọi check của đầu nhánh đã qua.
+// Trạng thái PR của bài để quyết: PR mở và mọi check của đầu branch đã qua.
 async function prState(gh, code) {
   const found = await gh.findPr(`upload/${code}`);
   if (!found || found.state !== 'open') return { open: false };
@@ -523,7 +523,7 @@ async function handleDecision(req, env, deps, code, who, github) {
   const parsed = parseDecisions(fields, ids);
   if (!parsed.ok) return resultPage(code, parsed.error, false);
   const { keep, drop } = parsed;
-  // Ghi quyết định (kèm email người duyệt, chỉ trong kho) để email báo người gửi và bước gộp sau dựng lại.
+  // Ghi quyết định (kèm email người duyệt, chỉ trong kho) để email báo người gửi và bước merge sau dựng lại.
   const titles = Object.fromEntries(docs.map((d) => [d.id, String(d.item?.title ?? d.id)]));
   const record = { reviewer: who.email, at: new Date(deps.now()).toISOString(), keep, drop, titles, waiting: keep.length > 0 && drop.length > 0 };
   await env.QUARANTINE.put(reviewKey(code), JSON.stringify(record));
@@ -537,7 +537,7 @@ async function handleDecision(req, env, deps, code, who, github) {
     await gh.closePr(state.number);
     return resultPage(code, REVIEW_MESSAGES.rejected);
   }
-  // Bỏ file không duyệt khỏi nhánh và khỏi kho; workflow kiem-file dựng lại dữ liệu, rồi tu-gop gọi /duyet-tiep.
+  // Bỏ file không duyệt khỏi branch và khỏi kho; workflow kiem-file dựng lại dữ liệu, rồi tu-gop gọi /duyet-tiep.
   const branch = `upload/${code}`;
   for (const d of drop) {
     const doc = docs.find((x) => x.id === d.id);
@@ -555,8 +555,8 @@ async function handleDecision(req, env, deps, code, who, github) {
 const prTitleMerge = (code) => `Gộp bài gửi ${code} (đã duyệt trên trang duyệt)`;
 
 // POST /duyet-tiep { code }: workflow tu-gop gọi sau khi bước kiểm qua trên commit dựng lại.
-// Không cần khóa: chỉ gộp khi đã có quyết định của người duyệt (review/<mã>.json, waiting), PR còn mở,
-// mục trên nhánh đúng bằng danh sách được duyệt, và mọi check của đầu nhánh đã qua.
+// Không cần khóa: chỉ merge khi đã có quyết định của người duyệt (review/<mã>.json, waiting), PR còn mở,
+// mục trên branch đúng bằng danh sách được duyệt, và mọi check của đầu branch đã qua.
 async function handleContinue(req, env, deps) {
   if (req.method !== 'POST') return reply(405, { ok: false, error: MESSAGES.method }, {}, { Allow: 'POST' });
   let code = '';

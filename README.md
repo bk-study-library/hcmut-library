@@ -32,7 +32,7 @@ Không gửi file qua issue: file đính kèm trên repo công khai thành công
 
 Người duyệt là sinh viên đã học qua môn, làm tình nguyện; danh sách ở [.github/CODEOWNERS](.github/CODEOWNERS). Với bài gửi qua trang web:
 
-1. Workflow `kiem-file` quét virus, xóa metadata (PDF, ảnh, file Office), cảnh báo thông tin cá nhân, JavaScript trong PDF, macro trong Office, rồi ghi link Release vào Pull Request. Máy không kết luận được thì gắn nhãn `can-xem-tay`.
+1. Workflow `kiem-file` quét virus, xóa metadata (PDF, ảnh, file Office), cảnh báo thông tin cá nhân, JavaScript trong PDF, macro trong Office, rồi ghi link Release vào Pull Request. Máy không kết luận được thì gắn label `can-xem-tay`.
 2. Người duyệt đọc theo danh sách kiểm và merge.
 3. Workflow `phat-hanh-file` đưa file lên GitHub pre-release `files-HKxxx`.
 4. Pull Request bị đóng thì `don-kho` dọn file chờ duyệt.
@@ -73,7 +73,7 @@ index.json, index.min.json  chỉ mục sinh tự động, không sửa tay
 worker-catalog.json         danh mục gọn cho Worker nhận bài (môn, id mục, sha256), sinh tự động
 ```
 
-- **File lớn không vào git.** PDF, .docx, .pptx, ảnh, .zip nằm trên GitHub Release `files-HKxxx`. Mục tài liệu ghi `size`, `sha256` và `url`.
+- **File lớn không vào git.** PDF, .docx, .pptx, ảnh, .zip nằm trên GitHub Release `files-HKxxx`. Item ghi `size`, `sha256` và `url`.
 - **ID môn cố định.** Môn đổi tên thì giữ ID và thêm mã, tên cũ vào `aliases`. Môn ngừng dạy thì đặt `status: retired` và vẫn giữ.
 - **Gói quiz** theo định dạng Study Pack v1 của BK Study Desk: [đặc tả SPEC.md](https://github.com/xeroz369/bk-study-desk/blob/main/studypack/SPEC.md).
 
@@ -84,7 +84,7 @@ Cần Node 22 trở lên. Phần chính của repo không có gói npm nào ph�
 | Lệnh | Làm gì |
 |---|---|
 | `npm test` | chạy test với dữ liệu mẫu trong `test/fixtures/` |
-| `npm run validate` | kiểm schema, tham chiếu, loại file, dung lượng, file trùng, thông tin cá nhân; báo lỗi nếu file sinh ra đã cũ |
+| `npm run validate` | kiểm schema, tham chiếu, loại file, dung lượng, file trùng, thông tin cá nhân; báo lỗi nếu generated file đã cũ |
 | `npm run build` | kiểm rồi ghi lại `index.json`, `index.min.json`, `worker-catalog.json`, `v1/` và README từng môn |
 | `npm run site` | sinh trang web vào `site/` |
 | `npm run demo` | sinh trang web xem thử với dữ liệu mẫu lớn hơn (không đụng `catalog/`) |
@@ -128,7 +128,7 @@ GitHub Pages dựng trang từ `catalog/` và `courses/` mỗi khi `main` thay �
 
 Khoa trong `catalog/faculties.json` có `movedTo` là khóa cũ chỉ giữ cho link (hiện là `flc`, `llct`, `gdtc-qp`, đã gộp vào `chung`): không có trong danh sách khoa, ô lọc, sitemap; trang khoa của khóa đó chuyển ngay tới khoa mới. Kiểm danh mục báo lỗi nếu môn, chương trình, ngành hay tiền tố còn ghi khóa cũ.
 
-Mỗi trang có `canonical`, `hreflang` (khi có cả bản tiếng Việt và tiếng Anh), thẻ Open Graph và Twitter card với ảnh `site-src/assets/social-preview.png` (`socialImage` trong `catalog/site.json`). Lúc dựng web sinh thêm `sitemap.xml` (không gồm 404, trang chuyển hướng, chương trình `listed: false`) và `robots.txt`. `robots.txt` chỉ có hiệu lực ở gốc tên miền; khi web nằm ở đường dẫn con như hiện nay, khai `sitemap.xml` trực tiếp trong công cụ của máy tìm kiếm.
+Mỗi trang có `canonical`, `hreflang` (khi có cả bản tiếng Việt và tiếng Anh), Open Graph tag và Twitter card với ảnh `site-src/assets/social-preview.png` (`socialImage` trong `catalog/site.json`). Lúc dựng web sinh thêm `sitemap.xml` (không gồm 404, trang chuyển hướng, chương trình `listed: false`) và `robots.txt`. `robots.txt` chỉ có hiệu lực ở gốc tên miền; khi web nằm ở đường dẫn con như hiện nay, khai `sitemap.xml` trực tiếp trong công cụ của máy tìm kiếm.
 
 ## Cài đặt luồng gửi tài liệu
 
@@ -146,7 +146,7 @@ Thư viện thu thập gì khi bạn gửi bài, giữ ở đâu, bao lâu: [PRI
 ## Bảo mật và ứng xử
 
 - Tìm thấy lỗ hổng: báo riêng theo [SECURITY.md](SECURITY.md), đừng mở issue công khai.
-- Quy tắc ứng xử khi gửi bài, duyệt bài, bình luận: [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md).
+- Quy tắc ứng xử khi gửi bài, duyệt bài, comment: [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md).
 
 ## Chỉ đọc với hệ thống của trường
 
@@ -154,7 +154,7 @@ Thư viện và các script không đăng nhập, không đọc, không ghi vào
 
 ## Giấy phép
 
-- **Nội dung** (tài liệu, mục tài liệu, danh mục, README môn, `v1/`): [CC BY-SA 4.0](LICENSES/CC-BY-SA-4.0.txt), trừ khi mục ghi khác. Dùng lại thì ghi tác giả và chia sẻ theo cùng giấy phép.
+- **Nội dung** (tài liệu, item, danh mục, README môn, `v1/`): [CC BY-SA 4.0](LICENSES/CC-BY-SA-4.0.txt), trừ khi mục ghi khác. Dùng lại thì ghi tác giả và chia sẻ theo cùng giấy phép.
 - **Link** tới tài liệu ngoài giữ giấy phép của nguồn, ghi ở trường `license` (ví dụ OpenStax, MIT OpenCourseWare là CC BY-NC-SA 4.0). Thư viện chỉ lưu link, không lưu bản sao.
 - **Mã nguồn** (`scripts/`, `site-src/`, `test/`, `schema/`, `worker/`): [MIT](LICENSES/MIT.txt).
 

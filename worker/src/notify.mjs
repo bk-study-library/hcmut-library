@@ -1,12 +1,12 @@
-// Email báo kết quả duyệt (không bắt buộc). Người gửi để lại email ở form; Worker giữ trong kho cách ly
-// R2 ở notify/<mã bài>, không bao giờ ghi vào repo, PR hay log. Khi PR của bài được gộp hoặc đóng,
+// Email báo kết quả duyệt (không bắt buộc). Người gửi để lại email ở form; Worker giữ trong bucket quarantine
+// R2 ở notify/<mã bài>, không bao giờ ghi vào repo, PR hay log. Khi PR của bài được merge hoặc đóng,
 // workflow gọi POST /bao-ket-qua { code }: Worker tự hỏi GitHub trạng thái PR (không tin dữ liệu gọi
 // vào), gửi một email qua Resend rồi xóa email khỏi kho. Gọi lại khi đã gửi hay PR còn mở: không làm gì.
 
 export const notifyKey = (code) => `notify/${code}`;
 
 const RESEND_API = 'https://api.resend.com/emails';
-// Lý do lấy từ bình luận mới nhất của PR: chỉ giữ chữ, bỏ khối mã, cắt độ dài.
+// Lý do lấy từ comment mới nhất của PR: chỉ giữ chữ, bỏ khối mã, cắt độ dài.
 const REASON_MAX = 1200;
 
 export function plainReason(body) {

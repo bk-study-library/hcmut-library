@@ -1,40 +1,40 @@
 name: kiem-file
 
-# Kiểm file của bài gửi qua form: tải từ kho cách ly R2, quét virus (cả bên trong
+# Kiểm file của bài gửi qua form: tải từ bucket quarantine trên R2, quét virus (cả bên trong
 # file nén, báo file mã hóa hay vượt giới hạn quét), làm sạch siêu dữ liệu (PDF,
 # ảnh, Office), tìm JavaScript trong PDF, macro trong Office, mục lạ trong .zip,
-# tìm lớp chữ và thông tin cá nhân, comment kết quả, rồi ghi link Release vào nhánh
+# tìm lớp chữ và thông tin cá nhân, comment kết quả, rồi ghi link Release vào branch
 # của PR. Logic nằm ở scripts/upload/check.mjs và scripts/upload/sanitize.mjs.
 #
 # Mô hình đe dọa. pull_request_target chạy với quyền ghi. Có hai thứ không tin được:
-# nội dung nhánh PR, và file người dùng tải lên (có thể nhắm vào lỗ hổng của
+# nội dung branch PR, và file người dùng tải lên (có thể nhắm vào lỗ hổng của
 # clamscan, exiftool, qpdf, pdftotext). Vì vậy:
-# - Không bao giờ chạy mã của nhánh PR. Script lấy từ main (thư mục trusted), nhánh
+# - Không bao giờ chạy mã của branch PR. Script lấy từ main (thư mục trusted), branch
 #   PR chỉ là dữ liệu (thư mục pr). Không chạy npm install hay npm script trong pr.
 # - Mỗi job chỉ giữ đúng quyền và khóa nó cần:
-#   gate   (contents: read, pull-requests: read)  bỏ qua commit của chính workflow, tìm mục tài liệu,
-#                            kiểm PR chỉ sửa mục đó, file sinh ra của môn đó và file môn mới (nếu có).
-#   fetch  (contents: read, khóa R2)  tải file cách ly và mục tài liệu, đưa lên artifact.
+#   gate   (contents: read, pull-requests: read)  bỏ qua commit của chính workflow, tìm item,
+#                            kiểm PR chỉ sửa mục đó, generated file của môn đó và file môn mới (nếu có).
+#   fetch  (contents: read, khóa R2)  tải file cách ly và item, đưa lên artifact.
 #   scan   (contents: read, không khóa, không token ghi)  bước duy nhất chạy công cụ
-#                            trên file tải lên; ghi kết quả và bản sạch lên artifact.
+#                            trên file tải lên; ghi kết quả và bản đã sanitize lên artifact.
 #   apply  (contents: read, pull-requests: write, khóa R2, token App để push)  coi artifact
 #                            của scan là dữ liệu: kiểm dạng từng trường, tính lại sha256
-#                            của bản sạch, không chạy gì từ artifact, không chạy lại công cụ.
+#                            của bản đã sanitize, không chạy gì từ artifact, không chạy lại công cụ.
 #   apply-sach (contents: read, pull-requests: write, token App để push)  sách tham khảo
-#                            không có file: bỏ fetch, scan, R2; chỉ dựng lại file sinh ra,
+#                            không có file: bỏ fetch, scan, R2; chỉ dựng lại generated file,
 #                            commit và comment ngắn.
 #   report-failure (pull-requests: write)  job nào lỗi thì sửa comment báo không kiểm được.
 # - Khóa chỉ nằm trong env của bước cần chúng.
 #
-# Có virus: comment, đóng PR bằng token của App (để don-kho chạy và xóa nhánh), xóa
+# Có virus: comment, đóng PR bằng token của App (để don-kho chạy và xóa branch), xóa
 # file và mã xem bài trong kho rồi dừng. Job vẫn thành công, PR bị đóng chính là kết quả.
 #
 # Máy không kết luận được (ClamAV không quét hết, PDF có JavaScript, Office có macro,
-# .zip có mục lạ): báo trong comment và gắn nhãn can-xem-tay, không tự đóng PR.
+# .zip có mục lạ): báo trong comment và gắn label can-xem-tay, không tự đóng PR.
 # Người duyệt xem tay rồi quyết định.
 #
 # Secrets: R2_ACCOUNT_ID, R2_ACCESS_KEY_ID, R2_SECRET_ACCESS_KEY (khóa R2 đọc,
-# ghi, xóa bucket kho cách ly); GH_APP_CLIENT_ID (Client ID của GitHub App,
+# ghi, xóa bucket bucket quarantine); GH_APP_CLIENT_ID (Client ID của GitHub App,
 # trang cài đặt của App, dạng Iv...); GH_APP_PRIVATE_KEY (file .pem của App).
 # Variables: R2_BUCKET (tên bucket), BOT_LOGIN (tên bot mở PR, ví dụ
 # bk-study-library-bot[bot]).
@@ -109,8 +109,8 @@ jobs:
         uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
         with:
           node-version: 24
-      # PR chỉ được có một mục tài liệu và file sinh ra của môn đó; sai thì dừng trước khi đụng R2.
-      - name: Tìm mục tài liệu trong PR
+      # PR chỉ được có một item và generated file của môn đó; sai thì dừng trước khi đụng R2.
+      - name: Tìm item trong PR
         id: locate
         if: steps.head.outputs.run == 'true'
         env:
@@ -138,7 +138,7 @@ jobs:
       contents: read
     steps:
       # Mỗi mục một thư mục in/<chỉ số>/: item.json và file/<tên>. Khóa và tên đã qua kiểm ở job gate.
-      - name: Lấy các mục tài liệu và file từ kho cách ly
+      - name: Lấy các item và file từ bucket quarantine
         env:
           GH_TOKEN: ${{ github.token }}
           MANIFEST: ${{ needs.gate.outputs.manifest }}
@@ -157,7 +157,7 @@ jobs:
             aws s3 cp "s3://$R2_BUCKET/$key" "$RUNNER_TEMP/in/$i/file/$name" \
               --endpoint-url "https://${R2_ACCOUNT_ID}.r2.cloudflarestorage.com" --only-show-errors || {
               mkdir -p "$RUNNER_TEMP/loi"
-              echo "Không tải được file $name từ kho cách ly. File có thể đã bị xóa sau 30 ngày. Bạn hãy gửi lại bài." > "$RUNNER_TEMP/loi/loi-fetch.txt"
+              echo "Không tải được file $name từ bucket quarantine. File có thể đã bị xóa sau 30 ngày. Bạn hãy gửi lại bài." > "$RUNNER_TEMP/loi/loi-fetch.txt"
               exit 1
             }
           done < "$RUNNER_TEMP/list.tsv"
@@ -260,7 +260,7 @@ jobs:
           name: kiem-file-ket-qua
           path: ${{ runner.temp }}/res
 
-      - name: Ghi kết quả vào các mục tài liệu
+      - name: Ghi kết quả vào các item
         id: apply
         env:
           GH_TOKEN: ${{ github.token }}
@@ -281,7 +281,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: node trusted/scripts/upload/check.mjs comment --repo "$REPO" --pr "$PR" --body-file "$RUNNER_TEMP/report.md"
 
-      # Máy không kết luận được: gắn nhãn để người duyệt xem tay. Nhãn can-xem-tay phải có sẵn trong repo.
+      # Máy không kết luận được: gắn label để người duyệt xem tay. Nhãn can-xem-tay phải có sẵn trong repo.
       - name: Gắn nhãn cần xem tay
         if: always() && steps.apply.outputs.manual == 'true'
         env:
@@ -289,7 +289,7 @@ jobs:
         run: gh api --method POST "repos/$REPO/issues/$PR/labels" -f "labels[]=can-xem-tay" --silent
 
       # Đóng PR bằng token của App: sự kiện do GITHUB_TOKEN tạo không chạy workflow khác, còn đóng
-      # bằng App thì don-kho chạy và xóa nhánh upload/<mã>.
+      # bằng App thì don-kho chạy và xóa branch upload/<mã>.
       - name: Tạo token của GitHub App để đóng PR có virus
         if: always() && steps.apply.outputs.virus != ''
         id: virus-app
@@ -302,7 +302,7 @@ jobs:
 
       - name: Có virus thì đóng PR và xóa file trong kho
         # Chạy cả khi bước comment lỗi: PR có virus vẫn phải đóng và kho phải sạch.
-        # Không có token App thì đóng bằng GITHUB_TOKEN (don-kho không chạy, nhánh còn lại).
+        # Không có token App thì đóng bằng GITHUB_TOKEN (don-kho không chạy, branch còn lại).
         if: always() && steps.apply.outputs.virus != ''
         env:
           GH_TOKEN: ${{ steps.virus-app.outputs.token || github.token }}
@@ -321,7 +321,7 @@ jobs:
             aws s3 rm "s3://$R2_BUCKET/sha/$sha" --endpoint-url "$endpoint" --only-show-errors
           done
 
-      - name: Đưa bản đã làm sạch về kho cách ly
+      - name: Đưa bản đã sanitize về bucket quarantine
         if: steps.apply.outputs.virus == ''
         env:
           R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
@@ -334,7 +334,7 @@ jobs:
           done < "$RUNNER_TEMP/pairs.tsv"
 
       # Kiểm không qua thì lý do (chỉ dòng LỖI) vào loi-apply để comment nêu rõ.
-      - name: Dựng lại file sinh ra trong nhánh PR
+      - name: Dựng lại generated file trong branch PR
         if: steps.apply.outputs.virus == ''
         run: node trusted/scripts/upload/check.mjs rebuild --root pr
 
@@ -348,8 +348,8 @@ jobs:
           private-key: ${{ secrets.GH_APP_PRIVATE_KEY }}
           permission-contents: write
 
-      # Chỉ commit mục tài liệu và file sinh ra của môn đó, push bằng token của App.
-      - name: Commit link Release vào nhánh PR
+      # Chỉ commit item và generated file của môn đó, push bằng token của App.
+      - name: Commit link Release vào branch PR
         if: steps.apply.outputs.virus == ''
         working-directory: pr
         env:
@@ -394,7 +394,7 @@ jobs:
       - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
         with:
           node-version: 24
-      - name: Dựng lại file sinh ra trong nhánh PR
+      - name: Dựng lại generated file trong branch PR
         run: node trusted/scripts/upload/check.mjs rebuild --root pr
       - name: Tạo token của GitHub App
         id: app
@@ -403,7 +403,7 @@ jobs:
           client-id: ${{ secrets.GH_APP_CLIENT_ID }}
           private-key: ${{ secrets.GH_APP_PRIVATE_KEY }}
           permission-contents: write
-      - name: Commit file sinh ra vào nhánh PR
+      - name: Commit generated file vào branch PR
         working-directory: pr
         env:
           GH_TOKEN: ${{ github.token }}

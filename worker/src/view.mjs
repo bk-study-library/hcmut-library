@@ -1,5 +1,5 @@
 // Xem file chờ duyệt: người duyệt (/xem-duyet/<mã>, sau Cloudflare Access) và người gửi
-// (/xem/<mã>?k=<mã bí mật>). File trong kho cách ly không bao giờ công khai: mọi đường đều kiểm
+// (/xem/<mã>?k=<mã bí mật>). File trong bucket quarantine không bao giờ công khai: mọi đường đều kiểm
 // quyền trước khi đọc R2. Không ghi log mã bí mật, IP hay tên file.
 import { SITE_URL, TYPES, EXAM_KINDS, formatSize } from '../../scripts/lib/labels.mjs';
 
@@ -35,14 +35,14 @@ export const VIEW_MESSAGES = {
   secret: 'Link này là bí mật, chỉ bạn có. Đừng chia sẻ cho người khác. Link hết hạn khi file chờ duyệt bị xóa.',
   reviewTitle: (code) => `Duyệt bài ${code}`,
   fieldsTitle: 'Nội dung người gửi nhập',
-  fieldsNote: 'Chữ dưới đây do người gửi nhập, chưa ai duyệt. Đọc kỹ trước khi gộp; có chữ xúc phạm, quảng cáo hay link lạ thì đóng PR.',
-  noItem: 'Không đọc được mục tài liệu từ nhánh của bài. Nhánh có thể đã bị xóa.',
+  fieldsNote: 'Chữ dưới đây do người gửi nhập, chưa ai duyệt. Đọc kỹ trước khi merge; có chữ xúc phạm, quảng cáo hay link lạ thì đóng PR.',
+  noItem: 'Không đọc được item từ branch của bài. Branch có thể đã bị xóa.',
   fileTitle: 'File',
   viewFile: 'Xem file',
   downloadFile: 'Tải file',
   noFileBook: 'Bài này là sách tham khảo, không có file.',
   newCourseTitle: (code) => `Môn mới: ${code}`,
-  newCourseNote: 'Bài này thêm một môn chưa có trong danh mục. Mở trang môn trên Sổ tay HCMUT, kiểm mã, tên và khoa trước khi gộp. Sai thì sửa file môn trong PR; trùng môn đã có thì đóng PR và nhờ người gửi chọn môn đó.',
+  newCourseNote: 'Bài này thêm một môn chưa có trong danh mục. Mở trang môn trên Sổ tay HCMUT, kiểm mã, tên và khoa trước khi merge. Sai thì sửa file môn trong PR; trùng môn đã có thì đóng PR và nhờ người gửi chọn môn đó.',
   newCourseCode: 'Mã môn',
   newCourseName: 'Tên môn',
   newCourseFaculty: 'Khoa',
@@ -53,9 +53,9 @@ export const VIEW_MESSAGES = {
   drop: 'Không duyệt',
   reasonLabel: 'Lý do không duyệt (gửi cho người gửi qua email nếu họ để lại)',
   submit: 'Hoàn tất duyệt',
-  submitNote: 'Bấm Hoàn tất: file không duyệt bị bỏ khỏi bài, phần còn lại được gộp vào thư viện. Không duyệt hết thì bài bị đóng.',
+  submitNote: 'Bấm Hoàn tất: file không duyệt bị bỏ khỏi bài, phần còn lại được merge vào thư viện. Không duyệt hết thì bài bị đóng.',
   checksWait: 'Bước kiểm file trên GitHub chưa xong. Xem nội dung trước, rồi tải lại trang khi bước kiểm xong để duyệt.',
-  closedNote: 'Bài này đã đóng hoặc đã gộp, không duyệt được nữa.',
+  closedNote: 'Bài này đã đóng hoặc đã merge, không duyệt được nữa.',
   resultTitle: 'Kết quả duyệt',
   backToReview: 'Quay lại trang duyệt',
 };
@@ -149,9 +149,9 @@ export async function checkToken(r2, code, k) {
   return ok ? { course: obj.customMetadata?.course ?? '' } : null;
 }
 
-// ---------- File trong kho cách ly ----------
+// ---------- File trong bucket quarantine ----------
 
-// Ưu tiên bản đã làm sạch; chưa có thì bản gốc chưa quét. Trả { key, name, clean } hoặc null.
+// Ưu tiên bản đã sanitize; chưa có thì bản gốc chưa quét. Trả { key, name, clean } hoặc null.
 // name: tên file trong đợt gửi nhiều file (đã qua mẫu tên an toàn); không có thì file đầu tiên.
 export async function locateFile(r2, code, name = null) {
   for (const [prefix, clean] of [[`clean/${code}/`, true], [`pending/${code}/`, false]]) {
@@ -208,7 +208,7 @@ export function statusOf(pr) {
   return pr.state === 'open' ? 'open' : 'closed';
 }
 
-// Trạng thái từ PR có nhánh upload/<mã>, giữ trong Cache API 60 giây. Lỗi GitHub thì 'unknown', không lưu.
+// Trạng thái từ PR có branch upload/<mã>, giữ trong Cache API 60 giây. Lỗi GitHub thì 'unknown', không lưu.
 export async function loadStatus({ repo, code, cache, github }) {
   const key = `https://status.internal/${encodeURIComponent(repo)}/${code}`;
   if (cache) {
@@ -248,7 +248,7 @@ export function statusPage({ code, status, course, fileHref }) {
 
 // ---------- Trang duyệt bài ----------
 
-// Các ô của mục tài liệu hiện cho người duyệt, theo thứ tự. Giá trị luôn được thoát HTML.
+// Các ô của item hiện cho người duyệt, theo thứ tự. Giá trị luôn được thoát HTML.
 const ITEM_FIELDS = [
   ['title', 'Tiêu đề'],
   ['description', 'Mô tả'],
@@ -293,8 +293,8 @@ export function itemFieldRows(item) {
   return rows;
 }
 
-// item: mục tài liệu trên nhánh của bài (null khi không đọc được). file: kết quả locateFile.
-// Môn mới người gửi đề xuất (file catalog/courses/<mã>.json thêm trong nhánh): tên là chữ người gửi,
+// item: item trên branch của bài (null khi không đọc được). file: kết quả locateFile.
+// Môn mới người gửi đề xuất (file catalog/courses/<mã>.json thêm trong branch): tên là chữ người gửi,
 // đã thoát HTML; link Sổ tay chỉ thành link khi là https.
 function newCourseSection(c) {
   const m = VIEW_MESSAGES;
