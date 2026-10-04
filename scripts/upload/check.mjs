@@ -90,22 +90,40 @@ export function locateInfo(item, branch) {
 // của cùng môn, cùng file môn mới catalog/courses/<môn>.json khi người gửi đề xuất môn chưa có
 // (chỉ thêm mới, không sửa môn đã có). File đổi tên thì đường dẫn cũ cũng phải nằm trong phạm vi đó.
 export function pickItemFile(files) {
+  const list = pickItemFiles(files, 1);
+  return list[0];
+}
+
+// Đợt gửi nhiều file: PR có từ 1 tới max mục tài liệu, cùng một môn. Ngoài các mục đó PR chỉ được có
+// file sinh ra của môn và file môn mới (như pickItemFile). Trả đường dẫn các mục, theo thứ tự tên.
+export function pickItemFiles(files, max = Infinity) {
   const hits = files.filter((f) => ITEM_FILE.test(f.filename) && f.status !== 'removed');
-  if (hits.length !== 1) throw new Error(`PR cần sửa đúng một file courses/<môn>/items/<id>.json, gặp ${hits.length}.`);
-  const item = hits[0];
-  if (item.previous_filename) throw new Error(`PR sửa file ngoài phạm vi: ${item.previous_filename}.`);
-  const course = ITEM_FILE.exec(item.filename)[1];
+  if (!hits.length || hits.length > max) {
+    throw new Error(max === 1 ? `PR cần sửa đúng một file courses/<môn>/items/<id>.json, gặp ${hits.length}.` : `PR cần từ 1 tới ${max} file courses/<môn>/items/<id>.json, gặp ${hits.length}.`);
+  }
+  for (const h of hits) if (h.previous_filename) throw new Error(`PR sửa file ngoài phạm vi: ${h.previous_filename}.`);
+  const course = ITEM_FILE.exec(hits[0].filename)[1];
+  if (hits.some((h) => ITEM_FILE.exec(h.filename)[1] !== course)) throw new Error('Các mục tài liệu trong PR phải cùng một môn.');
   const allowed = generatedPaths(course);
   const ok = (p) => allowed.some((a) => (a.endsWith('/') ? p.startsWith(a) : p === a));
   for (const f of files) {
-    if (f === item) continue;
+    if (hits.includes(f)) continue;
     // Môn mới người gửi đề xuất kèm bài: chỉ thêm file của đúng môn đó, không sửa môn đã có.
     if (f.filename === newCoursePath(course) && f.status === 'added' && !f.previous_filename) continue;
     for (const p of [f.filename, f.previous_filename]) {
       if (p !== undefined && p !== null && !ok(p)) throw new Error(`PR sửa file ngoài phạm vi: ${p}.`);
     }
   }
-  return item.filename;
+  return hits.map((h) => h.filename).sort();
+}
+
+// Danh sách mục của đợt gửi cho các bước sau: [{ item, code, key, name, sha256, light }]. Mọi mục phải
+// cùng mã bài (nhánh upload/<mã>); sách tham khảo không file chỉ được đi một mình.
+export function batchManifest(rels, readItem, branch) {
+  const list = rels.map((rel) => ({ item: rel, ...locateInfo(readItem(rel), branch) }));
+  if (list.length > 1 && list.some((x) => x.light === 'true')) throw new Error('Sách tham khảo không file phải gửi riêng, không gửi chung đợt.');
+  if (new Set(list.map((x) => x.code)).size !== 1) throw new Error('Các mục trong PR phải cùng một mã bài.');
+  return list;
 }
 
 // Đường dẫn validate.mjs --write ghi cho một môn; dấu '/' ở cuối là cả thư mục.
@@ -374,9 +392,12 @@ export function readPrFiles(p) {
   return fs.readFileSync(p, 'utf8').split('\n').filter((l) => l.trim()).map((l) => JSON.parse(l));
 }
 
+// Một hay nhiều mục (đợt gửi): output của mục đầu như trước, cộng count và manifest (JSON) cho các bước lặp.
 function locate(a) {
-  const rel = pickItemFile(readPrFiles(a.files));
-  const out = { item: rel, course: ITEM_FILE.exec(rel)[1], ...locateInfo(readJson(path.join(a.pr, rel)), a.branch) };
+  const policy = loadPolicy(TOOL_ROOT);
+  const rels = pickItemFiles(readPrFiles(a.files), policy.batchMaxFiles || 1);
+  const list = batchManifest(rels, (rel) => readJson(path.join(a.pr, rel)), a.branch);
+  const out = { ...list[0], course: ITEM_FILE.exec(list[0].item)[1], count: String(list.length), manifest: JSON.stringify(list) };
   writeOutputs(a['output-file'], out);
   return out;
 }
@@ -462,30 +483,28 @@ function scan(a) {
   });
 }
 
-function apply(a) {
-  const policy = loadPolicy(TOOL_ROOT);
-  const item = readJson(a.item);
+// Ghi kết quả quét của một mục: trả { report, values } như trước (values: virus, quarantine, clean, manual).
+// assets: Map tag -> danh sách asset đã có (đọc một lần cho cả đợt gửi).
+function applyOne({ itemPath, resultPath, cleanDir, repo, policy, assets }) {
+  const item = readJson(itemPath);
   const info = quarantineInfo(item);
-  const r = validateResult(readJson(a.result), info);
-  const done = (report, values) => {
-    fs.writeFileSync(a.report, report);
-    writeOutputs(a['output-file'], values);
-  };
-  if (r.virus) return done(renderReport({ code: info.code, virus: r.virus }), { virus: r.virus, quarantine: '', clean: '', manual: 'false' });
+  const r = validateResult(readJson(resultPath), info);
+  if (r.virus) return { info, report: renderReport({ code: info.code, virus: r.virus }), values: { virus: r.virus, quarantine: '', clean: '', manual: 'false' } };
 
   // Không tin con số trong kết quả: tính lại trên chính file sẽ đưa lên kho.
-  const cleanFile = path.join(a['clean-dir'], info.name);
+  const cleanFile = path.join(cleanDir, info.name);
   if (sha256File(cleanFile) !== r.sha256 || fs.statSync(cleanFile).size !== r.size) {
     throw new Error('File đã làm sạch không khớp sha256 hoặc kích thước trong kết quả quét.');
   }
   const rule = policy.extensions[path.extname(info.name).toLowerCase()];
   if (!rule) throw new Error('Không nhận đuôi của file.');
   const tag = releaseTag(termFor(new Date(), policy.terms), policy);
+  if (!assets.has(tag)) assets.set(tag, releaseAssets(repo, tag));
   const next = applyCheck(item, {
-    cleanName: info.name, size: r.size, sha256: r.sha256, mime: rule.mime, tag, repo: a.repo,
-    existingAssets: releaseAssets(a.repo, tag),
+    cleanName: info.name, size: r.size, sha256: r.sha256, mime: rule.mime, tag, repo,
+    existingAssets: assets.get(tag),
   });
-  fs.writeFileSync(a.item, `${JSON.stringify(next, null, 2)}\n`);
+  fs.writeFileSync(itemPath, `${JSON.stringify(next, null, 2)}\n`);
   const report = renderReport({
     code: info.code, virus: null, metadataRemoved: r.metadataRemoved, hasText: r.hasText, pii: r.pii,
     piiChecked: r.piiChecked, url: next.files[0].url, unscannable: r.unscannable, warnings: r.warnings,
@@ -493,7 +512,51 @@ function apply(a) {
     reviewUrl: reviewUrl(readJson(path.join(TOOL_ROOT, 'catalog', 'site.json')), info.code),
   });
   // manual=true: workflow gắn nhãn can-xem-tay. Tính lại từ mã cảnh báo, không lấy cờ từ job scan.
-  done(report, { virus: '', quarantine: next.files[0].quarantine, clean: cleanFile, manual: String(needsManualReview(r)) });
+  return { info, report, values: { virus: '', quarantine: next.files[0].quarantine, clean: cleanFile, manual: String(needsManualReview(r)) } };
+}
+
+function apply(a) {
+  const policy = loadPolicy(TOOL_ROOT);
+  const one = applyOne({ itemPath: a.item, resultPath: a.result, cleanDir: a['clean-dir'], repo: a.repo, policy, assets: new Map() });
+  fs.writeFileSync(a.report, one.report);
+  writeOutputs(a['output-file'], one.values);
+}
+
+// Báo cáo đợt gửi: một comment, mỗi file một mục. Một file thì giữ nguyên báo cáo cũ.
+export function batchReport(code, parts) {
+  if (parts.length === 1) return parts[0].report;
+  const body = (r) => r.split('\n').slice(3).join('\n').trim();
+  const out = [REPORT_MARKER, `## Kết quả kiểm đợt gửi ${code} (${parts.length} tài liệu)`, ''];
+  parts.forEach((x, i) => out.push(`### ${i + 1}. ${x.name}`, '', body(x.report), ''));
+  return `${out.join('\n').trim()}\n`;
+}
+
+// Đợt gửi: --manifest <file JSON của locate> --pr <thư mục PR> --res-dir <thư mục có <i>/result.json, <i>/clean>
+// --repo --report <file> --pairs <file> [--output-file]. pairs: mỗi dòng "<file sạch>\t<khóa kho>" để đưa lên kho.
+// Một file có virus thì cả đợt coi như có virus (workflow đóng PR): không ghi pairs.
+function applyBatch(a) {
+  const policy = loadPolicy(TOOL_ROOT);
+  const list = readJson(a.manifest);
+  const assets = new Map();
+  const parts = list.map((m, i) => {
+    const one = applyOne({ itemPath: path.join(a.pr, m.item), resultPath: path.join(a['res-dir'], String(i), 'result.json'), cleanDir: path.join(a['res-dir'], String(i), 'clean'), repo: a.repo, policy, assets });
+    return { ...one, name: m.name };
+  });
+  const virus = parts.find((x) => x.values.virus);
+  fs.writeFileSync(a.report, batchReport(list[0].code, parts));
+  fs.writeFileSync(a.pairs, virus ? '' : parts.map((x) => `${x.values.clean}\t${x.values.quarantine}\n`).join(''));
+  writeOutputs(a['output-file'], { virus: virus ? virus.values.virus : '', manual: String(parts.some((x) => x.values.manual === 'true')) });
+}
+
+// Dòng cho vòng lặp bash của workflow: "<chỉ số>\t<khóa kho>\t<tên file>\t<đường dẫn mục>" cho mỗi mục có file.
+// Giá trị đã qua kiểm ở locate (khóa và tên theo mẫu an toàn), nên đọc bằng read -r an toàn.
+function manifestLines(a) {
+  const list = JSON.parse(fs.readFileSync(a.manifest, 'utf8'));
+  for (const [i, m] of list.entries()) {
+    if (m.light === 'true') continue;
+    if (!QUARANTINE.test(m.key) || !SAFE_NAME.test(m.name) || !ITEM_FILE.test(m.item)) throw new Error('Manifest không hợp lệ.');
+    process.stdout.write(`${i}\t${m.key}\t${m.name}\t${m.item}\n`);
+  }
 }
 
 async function comment(a) {
@@ -543,6 +606,8 @@ async function main(argv) {
   if (cmd === 'locate') console.log(JSON.stringify(locate(a)));
   else if (cmd === 'scan') scan(a);
   else if (cmd === 'apply') apply(a);
+  else if (cmd === 'apply-batch') applyBatch(a);
+  else if (cmd === 'manifest-lines') manifestLines(a);
   else if (cmd === 'comment') await comment(a);
   else if (cmd === 'failure') failure(a);
   else if (cmd === 'book-report') process.stdout.write(bookReport(branchCode(`upload/${a.code}`)));

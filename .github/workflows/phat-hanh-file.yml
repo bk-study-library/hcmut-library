@@ -104,48 +104,40 @@ jobs:
               --branch "$BRANCH" --output-file "$GITHUB_OUTPUT"
           fi
       # Cũng kiểm sớm Release đích: immutable release thì dừng ở đây, trước khi tải gì từ kho cách ly.
+      # Mọi mục của đợt gửi (chạy tay thì một mục). Kiểm sớm mọi Release đích trước khi tải gì từ kho.
       - name: Lập kế hoạch phát hành
         id: plan
         if: steps.locate.outputs.light == 'false'
         env:
           GH_TOKEN: ${{ github.token }}
-          ITEM: ${{ steps.locate.outputs.item }}
+          ITEMS: ${{ steps.locate.outputs.items || steps.locate.outputs.item }}
           BRANCH: ${{ steps.locate.outputs.branch }}
-        run: node scripts/upload/publish.mjs plan --item "$ITEM" --branch "$BRANCH" --repo "$REPO" --output-file "$GITHUB_OUTPUT"
+        run: >-
+          node scripts/upload/publish.mjs plan-batch --items "$ITEMS" --root . --branch "$BRANCH" --repo "$REPO"
+          --plan-file "$RUNNER_TEMP/plan.tsv" --output-file "$GITHUB_OUTPUT"
 
-      - name: Tải bản đã làm sạch từ kho cách ly
-        if: steps.plan.outputs.publish == 'true'
-        env:
-          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
-          AWS_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
-          QUARANTINE: ${{ steps.plan.outputs.quarantine }}
-          NAME: ${{ steps.plan.outputs.name }}
-        run: |
-          mkdir -p "$RUNNER_TEMP/dl"
-          aws s3 cp "s3://$R2_BUCKET/$QUARANTINE" "$RUNNER_TEMP/dl/$NAME" \
-            --endpoint-url "https://${R2_ACCOUNT_ID}.r2.cloudflarestorage.com" --only-show-errors
-      - name: Kiểm sha256 và kích thước
-        if: steps.plan.outputs.publish == 'true'
-        env:
-          NAME: ${{ steps.plan.outputs.name }}
-          SHA256: ${{ steps.plan.outputs.sha256 }}
-          SIZE: ${{ steps.plan.outputs.size }}
-        run: node scripts/upload/publish.mjs verify --file "$RUNNER_TEMP/dl/$NAME" --sha256 "$SHA256" --size "$SIZE"
-      - name: Đưa lên Release
+      # Từng file: tải bản đã làm sạch, kiểm sha256 và kích thước, rồi đưa lên Release (chưa có thì tạo
+      # pre-release; hai bài cùng học kỳ tạo cùng lúc thì đọc lại). Tag, tên, khóa đã qua kiểm ở bước trên.
+      - name: Tải, kiểm và đưa các file lên Release
         if: steps.plan.outputs.publish == 'true'
         env:
           GH_TOKEN: ${{ github.token }}
-          TAG: ${{ steps.plan.outputs.tag }}
-          NAME: ${{ steps.plan.outputs.name }}
+          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
         run: |
-          # Release chưa có thì tạo pre-release; hai bài cùng học kỳ tạo cùng lúc thì đọc lại.
-          if ! gh release view "$TAG" --repo "$REPO" > /dev/null 2>&1; then
-            gh release create "$TAG" --repo "$REPO" --prerelease --title "$TAG" \
-              --notes "File tài liệu của thư viện, do workflow phat-hanh-file đưa lên." ||
-              gh release view "$TAG" --repo "$REPO" > /dev/null
-          fi
-          gh release upload "$TAG" "$RUNNER_TEMP/dl/$NAME" --repo "$REPO"
+          mkdir -p "$RUNNER_TEMP/dl"
+          while IFS=$'\t' read -r tag name quarantine sha256 size; do
+            aws s3 cp "s3://$R2_BUCKET/$quarantine" "$RUNNER_TEMP/dl/$name" \
+              --endpoint-url "https://${R2_ACCOUNT_ID}.r2.cloudflarestorage.com" --only-show-errors
+            node scripts/upload/publish.mjs verify --file "$RUNNER_TEMP/dl/$name" --sha256 "$sha256" --size "$size"
+            if ! gh release view "$tag" --repo "$REPO" > /dev/null 2>&1; then
+              gh release create "$tag" --repo "$REPO" --prerelease --title "$tag" \
+                --notes "File tài liệu của thư viện, do workflow phat-hanh-file đưa lên." ||
+                gh release view "$tag" --repo "$REPO" > /dev/null
+            fi
+            gh release upload "$tag" "$RUNNER_TEMP/dl/$name" --repo "$REPO"
+          done < "$RUNNER_TEMP/plan.tsv"
 
       # Dọn kho chỉ chạy khi các bước trên thành công (kể cả khi file đã có sẵn trên Release).
       # Khóa sha/ đặt theo sha256 của file gốc, mục tài liệu chỉ có sha256 bản sạch, nên tính lại
@@ -191,15 +183,16 @@ jobs:
           AWS_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
           CODE: ${{ steps.locate.outputs.code }}
-          SHA: ${{ steps.sha.outputs.sha }}
+          SHAS: ${{ steps.sha.outputs.shas }}
         run: |
           endpoint="https://${R2_ACCOUNT_ID}.r2.cloudflarestorage.com"
           aws s3 rm "s3://$R2_BUCKET/pending/$CODE/" --recursive --endpoint-url "$endpoint" --only-show-errors
           aws s3 rm "s3://$R2_BUCKET/clean/$CODE/" --recursive --endpoint-url "$endpoint" --only-show-errors
           aws s3 rm "s3://$R2_BUCKET/token/$CODE" --endpoint-url "$endpoint" --only-show-errors
-          if [ -n "$SHA" ]; then
-            aws s3 rm "s3://$R2_BUCKET/sha/$SHA" --endpoint-url "$endpoint" --only-show-errors
-          fi
+          for sha in $SHAS; do
+            case "$sha" in *[!0-9a-f]*|"") continue ;; esac
+            aws s3 rm "s3://$R2_BUCKET/sha/$sha" --endpoint-url "$endpoint" --only-show-errors
+          done
       - name: Hướng dẫn khi phát hành lỗi
         if: failure()
         run: |

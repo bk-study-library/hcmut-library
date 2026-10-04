@@ -5,11 +5,22 @@
 # Commit bằng token của App để workflow validate chạy lại trên PR; commit bằng GITHUB_TOKEN
 # thì GitHub không chạy workflow khác. Chỉ commit mục tài liệu và file sinh ra của môn đó.
 #
-# Biến môi trường: GH_TOKEN (đọc id của bot), APP_TOKEN, APP_SLUG, CODE, ITEM, COURSE,
+# Biến môi trường: GH_TOKEN (đọc id của bot), APP_TOKEN, APP_SLUG, CODE, ITEMS, COURSE,
 # BRANCH, REPO, GITHUB_SERVER_URL.
 set -euo pipefail
 
-for p in "$ITEM" index.json index.min.json worker-catalog.json v1 "courses/$COURSE/README.md"; do
+# ITEMS: các mục của đợt gửi, mỗi dòng một đường dẫn courses/<môn>/items/<id>.json (đã qua kiểm ở job gate).
+while IFS= read -r item; do
+  [ -n "$item" ] || continue
+  case "$item" in
+    courses/"$COURSE"/items/*.json) ;;
+    *) echo "Đường dẫn mục lạ: $item" >&2; exit 1 ;;
+  esac
+  if [ -e "$item" ] || git ls-files --error-unmatch -- "$item" > /dev/null 2>&1; then
+    git add -A -- "$item"
+  fi
+done <<< "$ITEMS"
+for p in index.json index.min.json worker-catalog.json v1 "courses/$COURSE/README.md"; do
   if [ -e "$p" ] || git ls-files --error-unmatch -- "$p" > /dev/null 2>&1; then
     git add -A -- "$p"
   fi

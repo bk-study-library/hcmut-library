@@ -119,15 +119,16 @@ jobs:
           AWS_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
           CODE: ${{ steps.code.outputs.code }}
-          SHA: ${{ steps.sha.outputs.sha }}
+          SHAS: ${{ steps.sha.outputs.shas }}
         run: |
           endpoint="https://${R2_ACCOUNT_ID}.r2.cloudflarestorage.com"
           aws s3 rm "s3://$R2_BUCKET/pending/$CODE/" --recursive --endpoint-url "$endpoint" --only-show-errors
           aws s3 rm "s3://$R2_BUCKET/clean/$CODE/" --recursive --endpoint-url "$endpoint" --only-show-errors
           aws s3 rm "s3://$R2_BUCKET/token/$CODE" --endpoint-url "$endpoint" --only-show-errors
-          if [ -n "$SHA" ]; then
-            aws s3 rm "s3://$R2_BUCKET/sha/$SHA" --endpoint-url "$endpoint" --only-show-errors
-          fi
+          for sha in $SHAS; do
+            case "$sha" in *[!0-9a-f]*|"") continue ;; esac
+            aws s3 rm "s3://$R2_BUCKET/sha/$sha" --endpoint-url "$endpoint" --only-show-errors
+          done
       # Chỉ xóa nhánh upload/<mã> đã kiểm dạng ở bước đầu. Nhánh đã mất thì coi như xong.
       - name: Xóa nhánh
         env:

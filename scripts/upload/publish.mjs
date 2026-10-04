@@ -29,7 +29,8 @@ import crypto from 'node:crypto';
 import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import { loadRepo } from '../lib/repo.mjs';
-import { quarantineInfo, locateInfo, pickItemFile, githubOutput, releaseAssets, releaseInfo, branchCode, readPrFiles } from './check.mjs';
+import { quarantineInfo, locateInfo, pickItemFile, pickItemFiles, batchManifest, githubOutput, releaseAssets, releaseInfo, branchCode, readPrFiles } from './check.mjs';
+import { loadPolicy } from '../lib/policy.mjs';
 
 export { branchCode };
 
@@ -175,6 +176,12 @@ function sha256File(p) {
 }
 
 // Thư mục chứa file cách ly gốc đã tải về. Không có file thì trả chuỗi rỗng.
+// sha256 của mọi file cách ly gốc của một bài (đợt gửi có nhiều file).
+export function pendingShas(dir) {
+  if (!fs.existsSync(dir)) return [];
+  return fs.readdirSync(dir, { withFileTypes: true }).filter((e) => e.isFile()).map((e) => sha256File(path.join(dir, e.name))).sort();
+}
+
 export function pendingSha(dir) {
   if (!fs.existsSync(dir)) return '';
   const files = fs.readdirSync(dir, { withFileTypes: true }).filter((e) => e.isFile());
@@ -214,11 +221,33 @@ function run(cmd, argv) {
   return r;
 }
 
+// Một hay nhiều mục (đợt gửi): item là mục đầu, items là mọi mục (mỗi dòng một đường dẫn).
 function locate(a) {
-  const rel = pickItemFile(readPrFiles(a.files));
-  const info = locateInfo(readJson(path.join(a.root, rel)), a.branch);
-  // locateInfo đã kiểm nhánh khớp mã bài; branch ghi ra để bước sau dùng chung với dispatch-locate.
-  writeOutputs(a['output-file'], { item: rel, code: info.code, light: info.light, branch: a.branch });
+  const rels = pickItemFiles(readPrFiles(a.files), loadPolicy(path.resolve(a.root)).batchMaxFiles || 1);
+  const list = batchManifest(rels, (rel) => readJson(path.join(a.root, rel)), a.branch);
+  // batchManifest đã kiểm nhánh khớp mã bài; branch ghi ra để bước sau dùng chung với dispatch-locate.
+  writeOutputs(a['output-file'], { item: list[0].item, items: rels.join('\n'), code: list[0].code, light: list[0].light, branch: a.branch });
+}
+
+// Kế hoạch phát hành cho nhiều mục: mỗi dòng của --plan-file là "tag<TAB>tên<TAB>khóa kho<TAB>sha256<TAB>cỡ"
+// cho file cần đưa lên. Kiểm sớm mọi Release đích như plan.
+function planBatch(a) {
+  branchCode(a.branch);
+  const rows = [];
+  const releases = new Map();
+  for (const rel of a.items.split('\n').filter(Boolean)) {
+    const item = readJson(path.join(a.root, rel));
+    quarantineInfo(item, a.branch);
+    const target = parseReleaseUrl(item.files[0].url, a.repo);
+    if (!target) throw new Error(`Link của file trong ${rel} không trỏ Release của repo.`);
+    if (!releases.has(target.tag)) releases.set(target.tag, releaseInfo(a.repo, target.tag));
+    const release = releases.get(target.tag);
+    const [todo] = planPublish([item], new Map([[target.tag, release.assets]]), a.repo);
+    assertReleaseWritable(todo, release, target.tag);
+    if (todo) rows.push([todo.tag, todo.name, todo.quarantine, todo.sha256, todo.size].join('\t'));
+  }
+  fs.writeFileSync(a['plan-file'], rows.map((r) => `${r}\n`).join(''));
+  writeOutputs(a['output-file'], { publish: rows.length ? 'true' : 'false' });
 }
 
 function dispatchLocate(a) {
@@ -298,9 +327,13 @@ function main(argv) {
   else if (cmd === 'dispatch-locate') dispatchLocate(a);
   else if (cmd === 'kind') kind(a);
   else if (cmd === 'plan') plan(a);
+  else if (cmd === 'plan-batch') planBatch(a);
   else if (cmd === 'verify') verifyFile(a.file, a.sha256, a.size);
   else if (cmd === 'code') code(a);
-  else if (cmd === 'pending-sha') writeOutputs(a['output-file'], { sha: pendingSha(a.dir) });
+  else if (cmd === 'pending-sha') {
+    const shas = pendingShas(a.dir);
+    writeOutputs(a['output-file'], { sha: shas[0] || '', shas: shas.join('\n') });
+  }
   else if (cmd === 'unpublish') unpublish(a);
   else throw new Error(`lệnh lạ: ${cmd}`);
 }

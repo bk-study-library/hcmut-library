@@ -79,6 +79,9 @@ jobs:
       key: ${{ steps.locate.outputs.key }}
       name: ${{ steps.locate.outputs.name }}
       sha256: ${{ steps.locate.outputs.sha256 }}
+      # Đợt gửi nhiều file: danh sách mục (JSON) và số mục, để các job sau lặp qua từng file.
+      manifest: ${{ steps.locate.outputs.manifest }}
+      count: ${{ steps.locate.outputs.count }}
     steps:
       # Bỏ qua khi commit mới nhất là commit của chính workflow này (tránh tự gọi lại).
       - id: head
@@ -134,15 +137,11 @@ jobs:
     permissions:
       contents: read
     steps:
-      - name: Lấy mục tài liệu của PR
+      # Mỗi mục một thư mục in/<chỉ số>/: item.json và file/<tên>. Khóa và tên đã qua kiểm ở job gate.
+      - name: Lấy các mục tài liệu và file từ kho cách ly
         env:
           GH_TOKEN: ${{ github.token }}
-          ITEM: ${{ needs.gate.outputs.item }}
-        run: |
-          mkdir -p "$RUNNER_TEMP/in/file"
-          gh api -H "Accept: application/vnd.github.raw+json" "repos/$REPO/contents/$ITEM?ref=$HEAD_SHA" > "$RUNNER_TEMP/in/item.json"
-      - name: Tải file từ kho cách ly
-        env:
+          MANIFEST: ${{ needs.gate.outputs.manifest }}
           R2_BUCKET: ${{ vars.R2_BUCKET }}
           R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
           AWS_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
@@ -150,15 +149,18 @@ jobs:
           AWS_DEFAULT_REGION: auto
           AWS_REQUEST_CHECKSUM_CALCULATION: when_required
           AWS_RESPONSE_CHECKSUM_VALIDATION: when_required
-          KEY: ${{ needs.gate.outputs.key }}
-          NAME: ${{ needs.gate.outputs.name }}
         run: |
-          aws s3 cp "s3://$R2_BUCKET/$KEY" "$RUNNER_TEMP/in/file/$NAME" \
-            --endpoint-url "https://${R2_ACCOUNT_ID}.r2.cloudflarestorage.com" --only-show-errors || {
-            mkdir -p "$RUNNER_TEMP/loi"
-            echo "Không tải được file từ kho cách ly. File có thể đã bị xóa sau 30 ngày. Bạn hãy gửi lại bài." > "$RUNNER_TEMP/loi/loi-fetch.txt"
-            exit 1
-          }
+          printf '%s' "$MANIFEST" | jq -r 'to_entries[] | select(.value.light == "false") | [.key, .value.key, .value.name, .value.item] | @tsv' > "$RUNNER_TEMP/list.tsv"
+          while IFS=$'\t' read -r i key name item; do
+            mkdir -p "$RUNNER_TEMP/in/$i/file"
+            gh api -H "Accept: application/vnd.github.raw+json" "repos/$REPO/contents/$item?ref=$HEAD_SHA" > "$RUNNER_TEMP/in/$i/item.json"
+            aws s3 cp "s3://$R2_BUCKET/$key" "$RUNNER_TEMP/in/$i/file/$name" \
+              --endpoint-url "https://${R2_ACCOUNT_ID}.r2.cloudflarestorage.com" --only-show-errors || {
+              mkdir -p "$RUNNER_TEMP/loi"
+              echo "Không tải được file $name từ kho cách ly. File có thể đã bị xóa sau 30 ngày. Bạn hãy gửi lại bài." > "$RUNNER_TEMP/loi/loi-fetch.txt"
+              exit 1
+            }
+          done < "$RUNNER_TEMP/list.tsv"
       - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
           name: kiem-file-goc
@@ -202,8 +204,11 @@ jobs:
       - name: Kiểm file
         run: |
           export CHECK_ERROR_FILE="$RUNNER_TEMP/loi/loi-scan.txt"
-          node trusted/scripts/upload/check.mjs scan --item "$RUNNER_TEMP/in/item.json" \
-            --dir "$RUNNER_TEMP/in/file" --out "$RUNNER_TEMP/out"
+          for d in "$RUNNER_TEMP"/in/*/; do
+            i=$(basename "$d")
+            node trusted/scripts/upload/check.mjs scan --item "$d/item.json" \
+              --dir "$d/file" --out "$RUNNER_TEMP/out/$i"
+          done
       - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
           name: kiem-file-ket-qua
@@ -255,15 +260,21 @@ jobs:
           name: kiem-file-ket-qua
           path: ${{ runner.temp }}/res
 
-      - name: Ghi kết quả vào mục tài liệu
+      - name: Ghi kết quả vào các mục tài liệu
         id: apply
         env:
           GH_TOKEN: ${{ github.token }}
-          ITEM: ${{ needs.gate.outputs.item }}
-        run: >-
-          node trusted/scripts/upload/check.mjs apply --item "pr/$ITEM" --result "$RUNNER_TEMP/res/result.json"
-          --clean-dir "$RUNNER_TEMP/res/clean" --repo "$REPO" --report "$RUNNER_TEMP/report.md"
-          --output-file "$GITHUB_OUTPUT"
+          MANIFEST: ${{ needs.gate.outputs.manifest }}
+        run: |
+          printf '%s' "$MANIFEST" > "$RUNNER_TEMP/manifest.json"
+          node trusted/scripts/upload/check.mjs apply-batch --manifest "$RUNNER_TEMP/manifest.json" --pr pr \
+            --res-dir "$RUNNER_TEMP/res" --repo "$REPO" --report "$RUNNER_TEMP/report.md" \
+            --pairs "$RUNNER_TEMP/pairs.tsv" --output-file "$GITHUB_OUTPUT"
+          {
+            echo "items<<ITEMS_EOF"
+            jq -r '.[].item' "$RUNNER_TEMP/manifest.json"
+            echo "ITEMS_EOF"
+          } >> "$GITHUB_OUTPUT"
 
       - name: Comment kết quả
         env:
@@ -299,14 +310,16 @@ jobs:
           AWS_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
           CODE: ${{ needs.gate.outputs.code }}
-          SHA: ${{ needs.gate.outputs.sha256 }}
+          MANIFEST: ${{ needs.gate.outputs.manifest }}
         run: |
           gh pr close "$PR" --repo "$REPO"
           endpoint="https://${R2_ACCOUNT_ID}.r2.cloudflarestorage.com"
           aws s3 rm "s3://$R2_BUCKET/pending/$CODE/" --recursive --endpoint-url "$endpoint" --only-show-errors
           aws s3 rm "s3://$R2_BUCKET/clean/$CODE/" --recursive --endpoint-url "$endpoint" --only-show-errors
           aws s3 rm "s3://$R2_BUCKET/token/$CODE" --endpoint-url "$endpoint" --only-show-errors
-          aws s3 rm "s3://$R2_BUCKET/sha/$SHA" --endpoint-url "$endpoint" --only-show-errors
+          for sha in $(printf '%s' "$MANIFEST" | jq -r '.[].sha256 | select(test("^[0-9a-f]{64}$"))'); do
+            aws s3 rm "s3://$R2_BUCKET/sha/$sha" --endpoint-url "$endpoint" --only-show-errors
+          done
 
       - name: Đưa bản đã làm sạch về kho cách ly
         if: steps.apply.outputs.virus == ''
@@ -314,11 +327,11 @@ jobs:
           R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
           AWS_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
-          CLEAN: ${{ steps.apply.outputs.clean }}
-          QUARANTINE: ${{ steps.apply.outputs.quarantine }}
-        run: >-
-          aws s3 cp "$CLEAN" "s3://$R2_BUCKET/$QUARANTINE"
-          --endpoint-url "https://${R2_ACCOUNT_ID}.r2.cloudflarestorage.com" --only-show-errors
+        run: |
+          while IFS=$'\t' read -r clean quarantine; do
+            aws s3 cp "$clean" "s3://$R2_BUCKET/$quarantine" \
+              --endpoint-url "https://${R2_ACCOUNT_ID}.r2.cloudflarestorage.com" --only-show-errors
+          done < "$RUNNER_TEMP/pairs.tsv"
 
       # Kiểm không qua thì lý do (chỉ dòng LỖI) vào loi-apply để comment nêu rõ.
       - name: Dựng lại file sinh ra trong nhánh PR
@@ -344,7 +357,7 @@ jobs:
           APP_TOKEN: ${{ steps.app.outputs.token }}
           APP_SLUG: ${{ steps.app.outputs.app-slug }}
           CODE: ${{ needs.gate.outputs.code }}
-          ITEM: ${{ needs.gate.outputs.item }}
+          ITEMS: ${{ steps.apply.outputs.items }}
           COURSE: ${{ needs.gate.outputs.course }}
         run: bash ../trusted/scripts/upload/commit-pr.sh
       - if: failure()
@@ -397,7 +410,7 @@ jobs:
           APP_TOKEN: ${{ steps.app.outputs.token }}
           APP_SLUG: ${{ steps.app.outputs.app-slug }}
           CODE: ${{ needs.gate.outputs.code }}
-          ITEM: ${{ needs.gate.outputs.item }}
+          ITEMS: ${{ needs.gate.outputs.item }}
           COURSE: ${{ needs.gate.outputs.course }}
         run: bash ../trusted/scripts/upload/commit-pr.sh
       - name: Comment kết quả
