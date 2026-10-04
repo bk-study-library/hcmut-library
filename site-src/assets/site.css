@@ -326,10 +326,36 @@ tr.retired td, tr.retired th { color: var(--muted); }
 .item p { margin: 4px 0; }
 .item .meta { font-size: 13px; color: var(--muted); }
 /* Chi tiết tài liệu: từng cặp nhãn, giá trị; nhiều cặp một hàng trên máy tính, một cột trên điện thoại. */
-.item-facts { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 4px 16px; margin: 8px 0 0; font-size: 13px; }
-.item-facts div { display: flex; flex-wrap: wrap; gap: 0 8px; min-width: 0; }
+.item-facts { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 6px 24px; margin: 10px 0 0; font-size: 14px; }
+.item-facts div { display: grid; grid-template-columns: 110px minmax(0, 1fr); gap: 8px; min-width: 0; }
 .item-facts dt { color: var(--muted); }
 .item-facts dd { margin: 0; overflow-wrap: anywhere; }
+.item-facts dd .code { margin-right: 6px; }
+
+/* Dòng mã của trang môn và bộ lọc tài liệu theo mã, theo loại */
+.codes { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 12px; }
+.code-chip { display: inline-flex; align-items: center; gap: 6px; font-size: 14px; color: var(--muted); }
+.doc-filters { display: flex; flex-wrap: wrap; gap: 12px; margin: 0 0 16px; }
+.doc-filters[hidden] { display: none; }
+.doc-filters .filter { display: flex; flex-direction: column; gap: 4px; min-width: 220px; }
+.doc-filters label { font-size: 13px; color: var(--muted); font-weight: 600; }
+.doc-filters select {
+  min-height: var(--control-h);
+  font: inherit;
+  font-size: 16px;
+  padding: 9px 12px;
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius);
+}
+.doc-filters select:hover { border-color: var(--muted); }
+.doc-filters select:focus { outline: none; border-color: var(--brand); box-shadow: 0 0 0 3px var(--ring); }
+#f-status { flex-basis: 100%; margin: 0; }
+@media (max-width: 560px) {
+  .doc-filters .filter { min-width: 0; flex: 1 1 100%; }
+  .item-facts div { grid-template-columns: 96px minmax(0, 1fr); }
+}
 /* Nhiều file: mỗi file một dòng, tên, định dạng và cỡ, rồi nút riêng. */
 .files { list-style: none; margin: 12px 0 0; padding: 0; border-top: 1px solid var(--border); }
 .files li { padding: 8px 0; border-bottom: 1px solid var(--border); }
@@ -338,7 +364,7 @@ tr.retired td, tr.retired th { color: var(--muted); }
 /* Hàng nút của mục: Xem trước, Tải xuống, Yêu cầu gỡ. */
 .item .actions { margin: 12px 0 0; }
 /* Mở từ link có #<id mục> (ví dụ link trong form Yêu cầu gỡ): viền nhấn để thấy ngay mục nào. */
-.item:target { border-color: var(--accent); }
+.item:target { border-color: var(--brand); box-shadow: 0 0 0 1px var(--brand); }
 
 .contribute { margin-top: 28px; }
 .contribute h2 { margin-top: 0; }
@@ -495,7 +521,6 @@ a.tag:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
 .row-title { font-weight: 600; }
 .row-codes { display: inline-flex; flex-wrap: wrap; align-items: center; gap: 4px; }
 .results .row-codes .code { min-width: 0; }
-.codes { display: flex; flex-wrap: wrap; gap: 4px; margin: 0 0 12px; }
 
 /* Tài liệu mới ở trang chủ */
 .recent { margin: 28px 0; }

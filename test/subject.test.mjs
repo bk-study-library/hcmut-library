@@ -156,7 +156,7 @@ const mainOf = (html) => html.slice(html.indexOf('<main'), html.indexOf('</main>
 
 test('trang môn theo tên: h1 là tên gặp nhiều nhất, một dòng mã, mọi tài liệu mới trước; không có ngữ cảnh', () => {
   const html = mainOf(read('mon/do-an-tot-nghiep/index.html'));
-  assert.match(html, /<h1>Đồ án tốt nghiệp<\/h1>\n<p class="codes"><span class="sr">Mã môn: <\/span><span class="code">EE4347<\/span> <span class="code">EE4367<\/span> <span class="code">EE4399<\/span><\/p>/);
+  assert.match(html, /<h1>Đồ án tốt nghiệp<\/h1>\n<p class="codes"><span class="sr">Mã môn: <\/span><span class="code-chip"><span class="code">EE4347<\/span>[^<]*<\/span> <span class="code-chip"><span class="code">EE4367<\/span>[^<]*<\/span> <span class="code-chip"><span class="code">EE4399<\/span>[^<]*<\/span><\/p>/);
   assert.doesNotMatch(html, /subtitle|twins|Kỹ thuật Điện|theo ngành hoặc khóa|class="facts"/);
   // Id trùng giữa hai mã: neo riêng, mới trước.
   const a = html.indexOf('id="ee4367-huong-dan"');

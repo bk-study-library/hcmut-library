@@ -37,7 +37,8 @@ test('sinh đủ các trang, cả tiếng Việt và tiếng Anh', () => {
 test('trang môn theo tên: tên, dòng mã, mọi tài liệu của mọi mã theo loại, nút đóng góp điền sẵn mã chính', () => {
   const html = read('mon/ky-thuat-so/index.html');
   assert.match(html, /<html lang="vi"/);
-  assert.match(html, /<h1>Kỹ thuật số<\/h1>\n<p class="codes"><span class="sr">Mã môn: <\/span><span class="code">EE1009<\/span> <span class="code">EE1010<\/span><\/p>/);
+  // Mỗi mã một nhãn: mã và chương trình (hoặc khoa khi mã không thuộc chương trình nào).
+  assert.match(html, /<h1>Kỹ thuật số<\/h1>\n<p class="codes"><span class="sr">Mã môn: <\/span><span class="code-chip"><span class="code">EE1009<\/span> Chính quy<\/span> <span class="code-chip"><span class="code">EE1010<\/span> [^<]+<\/span><\/p>/);
   // Không còn ngữ cảnh, số mã hay bảng thông tin trên trang môn theo tên.
   assert.doesNotMatch(html, /class="facts"|class="subtitle"|twins|theo ngành hoặc khóa/);
   assert.match(html, /Tóm tắt chương 1/);
@@ -415,7 +416,7 @@ const out4 = (() => {
 const read4 = (p) => fs.readFileSync(path.join(out4, p), 'utf8');
 const itemHtml = (html, id) => {
   // Thẻ có thể chứa danh sách file (li lồng): lấy tới thẻ tài liệu kế tiếp hoặc hết nhóm.
-  const m = html.match(new RegExp(`<li class="item[^"]*" id="${id}">[\\s\\S]*?</li>(?=<li class="item|</ul></section>|</ul><details|</ul></details>)`));
+  const m = html.match(new RegExp(`<li class="item[^"]*" id="${id}"[^>]*>[\\s\\S]*?</li>(?=<li class="item|</ul></section>|</ul><details|</ul></details>)`));
   assert.ok(m, id);
   return m[0];
 };
@@ -682,7 +683,7 @@ test('ô tìm trang chủ: items.json chỉ có mục chưa gỡ, mới thêm tr
   });
   assert.equal(docs.find((d) => d.id === 'link-doi-tac').url, 'mon/ky-thuat-so/#link-doi-tac');
   // Link trỏ tới đúng mục có trên trang môn.
-  for (const d of docs) assert.match(read(d.url.replace(/#.*/, 'index.html')), new RegExp(`<li class="item[^"]*" id="${d.id}">`));
+  for (const d of docs) assert.match(read(d.url.replace(/#.*/, 'index.html')), new RegExp(`<li class="item[^"]*" id="${d.id}"[^>]*>`));
   // Không đưa file chỉ web dùng vào v1/.
   assert.ok(!fs.existsSync(path.join(out, 'v1', 'items.json')));
 });
@@ -972,6 +973,7 @@ test('thẻ tài liệu: khối chi tiết đủ thông tin; nhiều file thì m
   const li = itemHtml(fs.readFileSync(path.join(o, 'mon', 'ky-thuat-so', 'index.html'), 'utf8'), 'de-thi');
   const facts = Object.fromEntries([...li.matchAll(/<dt>([^<]+)<\/dt><dd>(.*?)<\/dd>/g)].map((m) => [m[1], m[2].replace(/<[^>]+>/g, '')]));
   assert.deepEqual(facts, {
+    'Mã môn': 'EE1009 Chính quy',
     'Định dạng': 'PDF, DOCX',
     'Dung lượng': '261 KB',
     'Ngày tải lên': '01/09/2026',

@@ -141,6 +141,7 @@ export const S = {
     prelabRefNote: 'Chỉ để tham khảo sau khi đã hết hạn chấm. Không chép để nộp.',
     // Khối chi tiết trên thẻ tài liệu.
     item: {
+      code: 'Mã môn',
       format: 'Định dạng',
       formatLink: 'Link',
       formatBook: 'Sách, chỉ ghi tên',
@@ -210,6 +211,10 @@ export const S = {
     redirecting: 'Đang chuyển tới',
     // Môn theo tên (mon/<slug>/): một môn, nhiều mã.
     codesLabel: 'Mã môn',
+    allCodes: 'Mọi mã',
+    filterCount: ['Không có tài liệu nào khớp.', '1 tài liệu', '{n} tài liệu'],
+    programTypeFilter: 'Hệ',
+    programTypeAll: 'Mọi hệ',
     subjectDescription: (name, n) => (n ? `${name}: ${n} tài liệu do sinh viên Bách Khoa chia sẻ.` : `${name}: chưa có tài liệu.`),
     oldCodes: 'Mã cũ',
     programsOfCourse: (n) => `Có trong ${n} chương trình`,
@@ -351,6 +356,7 @@ export const S = {
     pendingFile: (name) => `${name}: waiting for upload.`,
     prelabRefNote: 'For reference only, after grading has closed. Do not copy it for submission.',
     item: {
+      code: 'Course code',
       format: 'Format',
       formatLink: 'Link',
       formatBook: 'Book, title only',
@@ -382,6 +388,10 @@ export const S = {
     backHome: 'Go to the home page',
     redirecting: 'Redirecting to',
     codesLabel: 'Course codes',
+    allCodes: 'All codes',
+    filterCount: ['No matching material.', '1 item', '{n} items'],
+    programTypeFilter: 'Program',
+    programTypeAll: 'All programs',
     subjectDescription: (name, n) => (n ? `${name}: ${n} ${n === 1 ? 'item' : 'items'} shared by HCMUT students.` : `${name}: no material yet.`),
     oldCodes: 'Old codes',
     programsOfCourse: (n) => `In ${n} ${n === 1 ? 'program' : 'programs'}`,

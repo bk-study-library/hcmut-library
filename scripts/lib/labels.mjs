@@ -67,6 +67,18 @@ export const PROGRAM_TYPES = {
   TAPT1: { short: { vi: 'Tiếng Anh, phương thức 1', en: 'In English, track 1' }, vi: 'Tiến sĩ phương thức 1 dạy bằng tiếng Anh', en: 'Doctoral track 1 taught in English' },
 };
 
+// Nhãn chương trình ngắn của một mã môn (scripts/lib/program-label.mjs): mã này dạy cho hệ nào.
+export const PROGRAM_LABELS = {
+  CQ: { vi: 'Chính quy', en: 'Standard' },
+  CTTT: { vi: 'Tiên tiến', en: 'Advanced' },
+  PFIEV: { vi: 'Việt Pháp', en: 'French-Vietnamese' },
+  CTTA: { vi: 'Tiếng Anh', en: 'In English' },
+  CNTN: { vi: 'Tài năng', en: 'Honors' },
+  DHNB: { vi: 'Định hướng Nhật Bản', en: 'Japan-oriented' },
+  SN: { vi: 'Song ngành', en: 'Dual degree' },
+  VLVH: { vi: 'Vừa làm vừa học', en: 'Part-time' },
+  CTQT: { vi: 'Chuyển tiếp quốc tế', en: 'International transfer' },
+};
 
 // Vai trò khối kiến thức (trường kind của khối), theo thứ tự thường gặp trong CTĐT.
 export const BLOCK_KINDS = {
