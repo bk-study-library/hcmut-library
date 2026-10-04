@@ -45,6 +45,7 @@ env:
 
 jobs:
   phat-hanh:
+    timeout-minutes: 10
     if: >-
       github.event_name == 'pull_request_target' &&
       github.event.pull_request.merged == true &&
@@ -163,6 +164,7 @@ jobs:
           echo "$msg" >> "$GITHUB_STEP_SUMMARY"
 
   go-file:
+    timeout-minutes: 10
     if: github.event_name == 'push'
     runs-on: ubuntu-latest
     permissions:
