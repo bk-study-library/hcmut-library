@@ -115,6 +115,9 @@ Mở `worker/wrangler.jsonc`, mục `vars`, kiểm lại:
 | `ALLOWED_ORIGINS` | các nguồn được gọi Worker, cách nhau bằng dấu phẩy. Khi chạy thử trên máy: `http://localhost:8080`. Khi repo public: `https://bk-study-library.github.io`, gỡ nguồn localhost |
 | `CATALOG_TTL_SECONDS` | `300` |
 | `PUBLIC_PR_LINKS` | `"false"` khi repo còn private (Worker không trả link PR cho người gửi); đổi thành `"true"` sau khi repo public |
+| `REVIEW_BASE` | `https://upload.xerozsoft.com`: gốc của link xem file (bước 8). Để trống thì Worker không tạo link xem bài |
+| `ACCESS_TEAM_DOMAIN` | tên miền team Cloudflare Access, dạng `<team>.cloudflareaccess.com` (bước 8). Để trống thì trang xem file của người duyệt trả 503 |
+| `ACCESS_AUD` | Application Audience (AUD) của ứng dụng Access (bước 8). Để trống thì trang xem file của người duyệt trả 503 |
 
 Đưa Worker lên:
 
@@ -168,6 +171,67 @@ Hoặc trên web: **Issues** > **Labels** > **New label**.
 ## Bước 7. Bảo vệ nhánh `main`
 
 Ruleset bắt buộc PR và một lượt duyệt chỉ bật được sau khi repo public (gói Free). Trong lúc repo còn private, điều duy nhất ngăn bot tự đưa bài lên `main` là khóa App chỉ nằm trong Worker secrets. Khi repo public, vào **Settings** > **Rules** > **Rulesets** và tạo ruleset cho `main`: yêu cầu Pull request và một lượt duyệt, không ai được bỏ qua, kể cả bot. Cùng lúc đó đổi `PUBLIC_PR_LINKS` thành `"true"` rồi `npx wrangler deploy` lại.
+
+## Bước 8. Xem file chờ duyệt: tên miền riêng và Cloudflare Access
+
+Người duyệt mở file của một PR qua link `https://upload.xerozsoft.com/xem-duyet/<mã bài>` (có trong nội dung PR và comment của `kiem-file`), đăng nhập bằng GitHub, không cần tài khoản Cloudflare. Người gửi nhận link riêng `https://upload.xerozsoft.com/xem/<mã bài>?k=<mã bí mật>` ngay sau khi gửi.
+
+Cloudflare Access chỉ bảo vệ theo đường dẫn khi Worker chạy trên tên miền thuộc tài khoản. Bật Access trên `workers.dev` sẽ khóa cả `/submit` và làm hỏng form công khai, vì vậy Worker có thêm tên miền `upload.xerozsoft.com`:
+
+| Đường dẫn | Ai vào được |
+|---|---|
+| `/submit` | Công khai như trước |
+| `/xem-duyet/*` | Chỉ thành viên org `bk-study-library`, qua Cloudflare Access |
+| `/xem/*` | Ai có link kèm mã bí mật đúng |
+
+Worker vẫn tự kiểm JWT của Access (chữ ký, `aud`, `iss`, thời hạn) trong header `Cf-Access-Jwt-Assertion`. Địa chỉ `workers.dev` vẫn bật trong lúc chuyển: ở đó `/xem-duyet/*` không đi qua Access nên luôn bị Worker chặn (403).
+
+### 8.1. Tên miền cho Worker
+
+`worker/wrangler.jsonc` đã có mục `routes` với `upload.xerozsoft.com` (`custom_domain: true`). Tên miền `xerozsoft.com` phải nằm trong cùng tài khoản Cloudflare. Lần `npx wrangler deploy` kế tiếp tạo bản ghi DNS và chứng chỉ cho `upload.xerozsoft.com`. Kiểm trong **Workers & Pages** > Worker `bk-study-library-upload` > **Settings** > **Domains & Routes**.
+
+### 8.2. Bật Cloudflare Zero Trust
+
+1. Vào dashboard Cloudflare, mục **Zero Trust**. Lần đầu sẽ hỏi đặt tên team và chọn gói: chọn gói **Free** (tối đa 50 người dùng).
+2. Tên team quyết định tên miền team, dạng `<team>.cloudflareaccess.com`. Xem lại ở **Settings** > **Custom Pages** (mục **Team domain**). Đây là giá trị của `ACCESS_TEAM_DOMAIN`, không có `https://`.
+
+### 8.3. Đăng nhập bằng GitHub
+
+1. Trên GitHub, vào trang của org `bk-study-library` > **Settings** > **Developer settings** > **OAuth Apps** > **New OAuth App**. Đây là OAuth App, khác với GitHub App ở bước 1.
+   - **Application name**: `bk-study-library-access`.
+   - **Homepage URL**: `https://<team>.cloudflareaccess.com`.
+   - **Authorization callback URL**: `https://<team>.cloudflareaccess.com/cdn-cgi/access/callback`.
+2. Bấm **Register application**, ghi lại **Client ID**, bấm **Generate a new client secret** và ghi lại secret.
+3. Trong Zero Trust, **Settings** > **Authentication** > **Login methods** > **Add new** > **GitHub**. Dán Client ID và Client secret, lưu, rồi bấm **Test** để thử đăng nhập.
+4. Lần đầu đăng nhập, GitHub hỏi cấp quyền cho OAuth App. Để policy theo org chạy được, org phải cho phép app này: bấm **Grant** cạnh `bk-study-library` (hoặc chủ org duyệt ở **Settings** > **Third-party access**).
+
+### 8.4. Ứng dụng Access cho `/xem-duyet`
+
+1. Zero Trust > **Access** > **Applications** > **Add an application** > **Self-hosted**.
+2. **Application name**: `xem-file-cho-duyet`. **Session duration**: 24 giờ.
+3. **Public hostname**: subdomain `upload`, domain `xerozsoft.com`, path `xem-duyet`. Path này bao cả `/xem-duyet/<mã bài>`. Không thêm hostname nào khác, để `/submit` và `/xem/*` vẫn công khai.
+4. **Policies** > **Add a policy**: tên `thanh-vien-org`, **Action** là **Allow**, **Include** chọn **GitHub organization** và nhập `bk-study-library`.
+5. **Login methods**: chỉ chọn **GitHub**, bật **Instant Auth** để người duyệt đi thẳng tới trang đăng nhập GitHub.
+6. Lưu ứng dụng. Mở lại ứng dụng, tab **Overview** (hoặc **Basic information**), sao chép **Application Audience (AUD) Tag**. Đây là giá trị của `ACCESS_AUD`.
+
+### 8.5. Điền biến và đưa Worker lên
+
+Mở `worker/wrangler.jsonc`, mục `vars`, điền:
+
+```jsonc
+"ACCESS_TEAM_DOMAIN": "<team>.cloudflareaccess.com",
+"ACCESS_AUD": "<AUD tag>"
+```
+
+Hai giá trị này không phải khóa bí mật. Commit rồi `npx wrangler deploy`. Khi còn trống một trong hai, `/xem-duyet/*` trả 503 cho mọi người.
+
+Thử:
+- Mở `https://upload.xerozsoft.com/xem-duyet/<mã bài>` của một PR đang mở: Access chuyển sang đăng nhập GitHub, sau đó trình duyệt mở file (hoặc trang cảnh báo nếu máy chưa quét virus xong).
+- Mở cùng link bằng tài khoản GitHub không thuộc org: Access chặn.
+- Mở `https://bk-study-library-upload.<tên-bạn>.workers.dev/xem-duyet/<mã bài>`: Worker trả 403.
+- Gửi một bài thử: trang Gửi tài liệu hiện link xem bài. Đổi một ký tự của `k` trong link: trang báo không tìm thấy.
+
+Sau khi `upload.xerozsoft.com` chạy ổn, có thể đổi `uploadEndpoint` trong `catalog/site.json` sang `https://upload.xerozsoft.com/submit` để địa chỉ `workers.dev` không còn lộ tên tài khoản.
 
 ## Chạy thử (repo private)
 
@@ -226,7 +290,7 @@ Kết quả mong đợi:
 ### Đóng một PR
 
 Chọn PR của bài 3 hoặc bài 4, bấm **Close pull request** (không merge). Workflow `don-kho` chạy và:
-- xóa `pending/<mã bài>/`, `clean/<mã bài>/` và khóa `sha/...` trong bucket (kiểm trong dashboard R2 như ở bài 2);
+- xóa `pending/<mã bài>/`, `clean/<mã bài>/`, mã xem bài `token/<mã bài>` và khóa `sha/...` trong bucket (kiểm trong dashboard R2 như ở bài 2);
 - xóa nhánh `upload/<mã bài>` (kiểm ở **Code** > **Branches**).
 
 ### Merge một PR
