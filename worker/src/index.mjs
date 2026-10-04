@@ -507,8 +507,11 @@ async function handleReview(req, env, deps, code, wantFile, fileName = null, dec
 // Gộp hay đóng PR thay người duyệt và ghi kết quả. Lỗi GitHub thì trả trang lỗi, không đổi gì thêm.
 async function handleDecision(req, env, deps, code, who, github) {
   // Chống gửi form từ trang khác (cookie Access đi kèm): chỉ nhận khi Origin là chính Worker.
+  // Trang duyệt đặt Referrer-Policy: no-referrer nên trình duyệt gửi Origin "null"; khi đó dựa vào
+  // Sec-Fetch-Site (trình duyệt tự đặt, trang khác không giả được).
   const origin = req.headers.get('Origin');
-  if (!origin || origin !== new URL(req.url).origin) return forbiddenPage();
+  const sameSite = req.headers.get('Sec-Fetch-Site') === 'same-origin';
+  if (!(origin === new URL(req.url).origin || (origin === 'null' && sameSite))) return forbiddenPage();
   const form = await req.formData().catch(() => null);
   if (!form) return resultPage(code, REVIEW_MESSAGES.missing, false);
   const fields = {};
