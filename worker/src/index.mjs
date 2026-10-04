@@ -566,25 +566,29 @@ async function handleContinue(req, env, deps) {
     return reply(400, { ok: false }, {});
   }
   if (!CODE.test(code)) return reply(400, { ok: false }, {});
-  const obj = await env.QUARANTINE.get(reviewKey(code));
-  if (!obj) return reply(200, { ok: true, merged: false }, {});
   try {
-    const record = JSON.parse(await obj.text());
-    if (!record.waiting) return reply(200, { ok: true, merged: false }, {});
-    const github = githubFactory(env, deps);
-    const gh = await github();
-    const state = await prState(gh, code);
-    if (!state.open || !state.green) return reply(200, { ok: true, merged: false }, {});
-    if (!(await gh.commitMessage(state.sha)).startsWith('kiem-file:')) return reply(200, { ok: true, merged: false }, {});
-    const ids = ((await gh.branchItems(env.BRANCH, `upload/${code}`, ITEM_FILE)) ?? []).map((p) => p.split('/').pop().replace(/\.json$/, ''));
-    if (ids.length !== record.keep.length || ids.some((id) => !record.keep.includes(id))) return reply(200, { ok: true, merged: false }, {});
-    await gh.mergePr(state.number, state.sha, prTitleMerge(code));
-    await env.QUARANTINE.put(reviewKey(code), JSON.stringify({ ...record, waiting: false }));
-    return reply(200, { ok: true, merged: true }, {});
+    return reply(200, { ok: true, merged: await continueMerge(env, deps, code) }, {});
   } catch (err) {
     logFailure('review_continue', err);
     return reply(502, { ok: false }, {});
   }
+}
+
+// Merge bài đã duyệt một phần khi đủ điều kiện (xem handleContinue). Trả true khi đã merge.
+async function continueMerge(env, deps, code) {
+  const obj = await env.QUARANTINE.get(reviewKey(code));
+  if (!obj) return false;
+  const record = JSON.parse(await obj.text());
+  if (!record.waiting) return false;
+  const gh = await githubFactory(env, deps)();
+  const state = await prState(gh, code);
+  if (!state.open || !state.green) return false;
+  if (!(await gh.commitMessage(state.sha)).startsWith('kiem-file:')) return false;
+  const ids = ((await gh.branchItems(env.BRANCH, `upload/${code}`, ITEM_FILE)) ?? []).map((p) => p.split('/').pop().replace(/\.json$/, ''));
+  if (ids.length !== record.keep.length || ids.some((id) => !record.keep.includes(id))) return false;
+  await gh.mergePr(state.number, state.sha, prTitleMerge(code));
+  await env.QUARANTINE.put(reviewKey(code), JSON.stringify({ ...record, waiting: false }));
+  return true;
 }
 
 // Người gửi: mã bí mật sai hay thiếu thì 404 như không có bài.
@@ -621,26 +625,57 @@ async function handleNotify(req, env, deps) {
     return reply(400, { ok: false }, {});
   }
   if (!CODE.test(code)) return reply(400, { ok: false }, {});
-  const obj = await env.QUARANTINE.get(notifyKey(code));
-  if (!obj) return reply(200, { ok: true, sent: false }, {});
   if (!env.RESEND_API_KEY || !env.NOTIFY_FROM) return reply(503, { ok: false }, {});
   try {
-    const { email, course } = JSON.parse(await obj.text());
-    const gh = await githubFactory(env, deps)();
-    const pr = await gh.findPr(`upload/${code}`);
-    if (!pr || pr.state === 'open') return reply(200, { ok: true, sent: false }, {});
-    const reason = pr.merged ? '' : plainReason(await gh.lastComment(pr.number));
-    const site = String(env.SITE_BASE ?? '');
-    // Quyết định trên trang duyệt (nếu có) cho kết quả và lý do từng file.
-    const review = await env.QUARANTINE.get(reviewKey(code));
-    const files = review ? reviewFiles(await review.json().catch(() => null)) : null;
-    const msg = notifyMessage({ code, merged: pr.merged, reason, siteUrl: course ? `${site}course/${course}/` : site, statusUrl: null, files });
-    await sendEmail({ apiKey: env.RESEND_API_KEY, from: env.NOTIFY_FROM, to: email, ...msg, fetch: deps.fetch });
-    await env.QUARANTINE.delete(notifyKey(code));
-    return reply(200, { ok: true, sent: true }, {});
+    return reply(200, { ok: true, sent: await notifyCode(env, deps, code) }, {});
   } catch (err) {
     logFailure('notify', err);
     return reply(502, { ok: false }, {});
+  }
+}
+
+// Gửi email kết quả khi PR đã đóng, rồi xóa email và quyết định duyệt khỏi kho. Trả true khi đã gửi.
+async function notifyCode(env, deps, code) {
+  const obj = await env.QUARANTINE.get(notifyKey(code));
+  if (!obj || !env.RESEND_API_KEY || !env.NOTIFY_FROM) return false;
+  const { email, course } = JSON.parse(await obj.text());
+  const gh = await githubFactory(env, deps)();
+  const pr = await gh.findPr(`upload/${code}`);
+  if (!pr || pr.state === 'open') return false;
+  const reason = pr.merged ? '' : plainReason(await gh.lastComment(pr.number));
+  const site = String(env.SITE_BASE ?? '');
+  // Quyết định trên trang duyệt (nếu có) cho kết quả và lý do từng file.
+  const review = await env.QUARANTINE.get(reviewKey(code));
+  const files = review ? reviewFiles(await review.json().catch(() => null)) : null;
+  const msg = notifyMessage({ code, merged: pr.merged, reason, siteUrl: course ? `${site}course/${course}/` : site, statusUrl: null, files });
+  await sendEmail({ apiKey: env.RESEND_API_KEY, from: env.NOTIFY_FROM, to: email, ...msg, fetch: deps.fetch });
+  await env.QUARANTINE.delete([notifyKey(code), reviewKey(code)]);
+  return true;
+}
+
+// Cron (wrangler.jsonc triggers.crons): GitHub Actions không gọi được Worker (Cloudflare chặn IP của
+// runner), nên Worker tự đi một vòng: merge bài duyệt một phần đã đủ điều kiện, gửi email của bài đã
+// đóng, xóa quyết định duyệt của bài đã đóng mà không có email. Lỗi một bài không chặn bài khác.
+const CRON_MAX = 50;
+export async function sweep(env, deps) {
+  const list = async (prefix) => ((await env.QUARANTINE.list({ prefix, limit: CRON_MAX })).objects ?? []).map((o) => o.key.slice(prefix.length));
+  const codeOf = (name) => name.replace(/\.json$/, '');
+  for (const code of (await list('review/')).map(codeOf).filter((c) => CODE.test(c))) {
+    try {
+      if (await continueMerge(env, deps, code)) continue;
+      if (await env.QUARANTINE.head(notifyKey(code))) continue;
+      const pr = await (await githubFactory(env, deps)()).findPr(`upload/${code}`);
+      if (pr && pr.state !== 'open') await env.QUARANTINE.delete(reviewKey(code));
+    } catch (err) {
+      logFailure('cron_review', err);
+    }
+  }
+  for (const code of (await list('notify/')).filter((c) => CODE.test(c))) {
+    try {
+      await notifyCode(env, deps, code);
+    } catch (err) {
+      logFailure('cron_notify', err);
+    }
   }
 }
 
@@ -700,6 +735,9 @@ export function createHandler(deps = {}) {
         logFailure('unexpected', err);
         return reply(500, { ok: false, error: MESSAGES.failed }, cors);
       }
+    },
+    async scheduled(event, env, ctx) {
+      ctx.waitUntil(sweep(env, d));
     },
   };
 }

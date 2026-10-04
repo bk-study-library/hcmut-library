@@ -1,7 +1,7 @@
 import { describe, it, expect, beforeAll, beforeEach } from 'vitest';
 import { env } from 'cloudflare:workers';
 import policy from '../../catalog/policy.json';
-import { createHandler } from '../src/index.mjs';
+import { createHandler, sweep } from '../src/index.mjs';
 import { checksGreen, decisionComment, parseDecisions, REVIEW_MESSAGES, reviewKey } from '../src/review.mjs';
 import { notifyMessage, reviewFiles } from '../src/notify.mjs';
 
@@ -289,5 +289,25 @@ describe('email báo kết quả theo từng file', () => {
     const msg = notifyMessage({ code: CODE, merged: true, reason: '', siteUrl: 'https://site/', statusUrl: null });
     expect(msg.subject).toBe(`Bài ${CODE} đã được duyệt`);
     expect(msg.text).not.toContain('File được duyệt');
+  });
+});
+
+describe('cron sweep', () => {
+  const deps = (fetch) => ({ fetch, now: () => NOW, cache: cacheStub, random: (n) => new Uint8Array(n) });
+
+  it('merge bài duyệt một phần đã đủ điều kiện, không cần workflow gọi', async () => {
+    await env.QUARANTINE.put(reviewKey(CODE), JSON.stringify({ keep: ['chuong-1'], drop: [{ id: 'chuong-2', reason: 'Trùng tài liệu cũ' }], waiting: true }));
+    const fetch = fakeGitHub({ items: { [PATH_A]: item('chuong-1', 'a.pdf', SHA_A) } });
+    await sweep(envFor(), deps(fetch));
+    expect(fetch.writes.find((w) => w.path.endsWith('/pulls/7/merge')).body.sha).toBe('head1');
+    expect((await stored()).waiting).toBe(false);
+  });
+
+  it('PR đã đóng, không có email: xóa quyết định duyệt; còn mở thì giữ', async () => {
+    await env.QUARANTINE.put(reviewKey(CODE), JSON.stringify({ keep: [], drop: [], waiting: false, reviewer: 'a@b' }));
+    await sweep(envFor(), deps(fakeGitHub()));
+    expect(await stored()).not.toBeNull();
+    await sweep(envFor(), deps(fakeGitHub({ state: 'closed' })));
+    expect(await stored()).toBeNull();
   });
 });

@@ -93,26 +93,7 @@ jobs:
         id: sha
         if: steps.kind.outputs.light != 'true'
         run: node scripts/upload/publish.mjs pending-sha --dir "$RUNNER_TEMP/pending" --output-file "$GITHUB_OUTPUT"
-      # Email báo kết quả (không bắt buộc): Worker tự hỏi GitHub trạng thái PR rồi gửi qua Resend và
-      # xóa email. Lỗi gửi không làm hỏng workflow; email vẫn bị xóa ở bước sau.
-      - name: Báo kết quả qua email nếu người gửi có để lại
-        continue-on-error: true
-        env:
-          CODE: ${{ steps.code.outputs.code }}
-        run: |
-          base=$(node -e "process.stdout.write(String(require('./catalog/site.json').reviewBase || ''))")
-          if [ -z "$base" ] || [ -z "$CODE" ]; then exit 0; fi
-          curl -fsS -m 30 -X POST "$base/bao-ket-qua" -H 'Content-Type: application/json' --data "{\"code\":\"$CODE\"}"
-      - name: Xóa email và quyết định duyệt khỏi bucket quarantine
-        env:
-          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
-          AWS_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
-          CODE: ${{ steps.code.outputs.code }}
-        run: |
-          if [ -z "$CODE" ]; then exit 0; fi
-          aws s3 rm "s3://$R2_BUCKET/notify/$CODE" --endpoint-url "https://${R2_ACCOUNT_ID}.r2.cloudflarestorage.com" --only-show-errors
-          aws s3 rm "s3://$R2_BUCKET/review/$CODE.json" --endpoint-url "https://${R2_ACCOUNT_ID}.r2.cloudflarestorage.com" --only-show-errors
+      # Email báo kết quả và review/<mã>.json: Worker tự gửi rồi xóa (cron 5 phút, xem worker/wrangler.jsonc).
       - name: Xóa file trong bucket quarantine
         if: steps.kind.outputs.light != 'true'
         env:

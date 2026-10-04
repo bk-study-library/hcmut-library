@@ -15,6 +15,9 @@
   "routes": [
     { "pattern": "upload.xerozsoft.com", "custom_domain": true }
   ],
+  // Mỗi 5 phút Worker tự merge bài duyệt một phần đã đủ điều kiện và gửi email kết quả (sweep trong
+  // src/index.mjs): Cloudflare chặn request từ runner của GitHub Actions nên workflow không gọi được.
+  "triggers": { "crons": ["*/5 * * * *"] },
   "workers_dev": false,
   "preview_urls": false,
   // Giá trị có thể đổi khi chuyển repo hay tên miền. Khóa bí mật nhập bằng wrangler secret put:
