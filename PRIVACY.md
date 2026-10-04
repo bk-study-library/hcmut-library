@@ -42,11 +42,11 @@ Nếu bạn để lại email, thư viện chỉ dùng nó để gửi đúng m�
 - Khi PR được merge, bản đã làm sạch được đưa lên Release công khai và file trong kho bị xóa. Khi PR bị đóng, file trong kho bị xóa.
 - Bài bị bỏ quên: luật vòng đời của kho xóa mọi file sau 30 ngày.
 - Người duyệt xem file chờ duyệt qua một trang riêng, đăng nhập bằng tài khoản GitHub qua Cloudflare Access. Chỉ thành viên nhóm duyệt bài (org `bk-study-library` trên GitHub) vào được. Cloudflare Access xử lý thông tin đăng nhập của người duyệt theo chính sách của Cloudflare.
-- Máy xóa siêu dữ liệu khỏi bản được đăng, và comment kết quả kiểm liệt kê các trường đã xóa:
-  - PDF: Author, Creator, Producer, XMP và các trường khác của tài liệu. Ảnh nằm bên trong PDF (ví dụ trang scan) giữ nguyên siêu dữ liệu của chính ảnh đó.
-  - Ảnh .png, .jpg: mọi siêu dữ liệu (vị trí GPS, máy chụp, giờ chụp, tên tác giả), chỉ giữ hướng xoay ảnh. Còn sót thì máy không đăng file.
+- Máy xóa metadata khỏi bản được đăng, và comment kết quả kiểm liệt kê các trường đã xóa:
+  - PDF: Author, Creator, Producer, XMP và các trường khác của tài liệu. Ảnh nằm bên trong PDF (ví dụ trang scan) giữ nguyên metadata của chính ảnh đó.
+  - Ảnh .png, .jpg: mọi metadata (vị trí GPS, máy chụp, giờ chụp, tên tác giả), chỉ giữ hướng xoay ảnh. Còn sót thì máy không đăng file.
   - File Office (.docx, .pptx, .xlsx): người tạo, người sửa cuối, giờ tạo, công ty, đường dẫn mẫu và thuộc tính riêng; tên người viết trong bình luận và sửa đổi có theo dõi. Nội dung bình luận vẫn còn, hãy tự xóa trước khi gửi.
-  - File .zip của gói quiz: không sửa bên trong. Ảnh trong .zip giữ siêu dữ liệu, máy chỉ cảnh báo.
+  - File .zip của gói quiz: không sửa bên trong. Ảnh trong .zip giữ metadata, máy chỉ cảnh báo.
 - Bản gốc chỉ nằm trong kho riêng cho tới khi bị xóa như trên.
 - Máy quét virus và quét thông tin cá nhân (MSSV, email, số điện thoại) trong file. Thông tin cá nhân trong file chỉ bị cảnh báo trong PR, không bị chặn: người gửi và người duyệt tự quyết có xóa không. Hãy tự xóa phần này trước khi gửi.
 - Các ô chữ của form (tiêu đề, mô tả, chương, giảng viên, tên hiển thị, thông tin sách) hiện công khai, nên form từ chối bài có MSSV, email hay số điện thoại trong các ô này.

@@ -36,7 +36,7 @@ export const WARNINGS = {
   'zip-nested': { manual: true, text: 'File .zip chứa file nén khác. Người duyệt mở xem tay.' },
   'zip-other-type': { manual: true, text: 'File .zip có file thuộc loại không nhận trong gói quiz (catalog/policy.json, scan.zipAllowedInside). Người duyệt mở xem tay.' },
   'zip-large': { manual: true, text: 'File .zip giải nén ra lớn hơn giới hạn. Người duyệt mở xem tay.' },
-  'zip-images': { manual: false, text: 'Ảnh bên trong file .zip chưa được xóa siêu dữ liệu (vị trí GPS, tên máy). Người duyệt mở xem.' },
+  'zip-images': { manual: false, text: 'Ảnh bên trong file .zip chưa được xóa metadata (vị trí GPS, tên máy). Người duyệt mở xem.' },
 };
 
 // Có cần người duyệt xem tay không: ClamAV không quét được, hoặc có cảnh báo loại manual.
@@ -44,7 +44,7 @@ export function needsManualReview({ unscannable, warnings = [] }) {
   return Boolean(unscannable) || warnings.some((w) => WARNINGS[w]?.manual);
 }
 
-// Số tên siêu dữ liệu đã xóa hiện trong comment; phần còn lại chỉ ghi số lượng.
+// Số tên metadata đã xóa hiện trong comment; phần còn lại chỉ ghi số lượng.
 const METADATA_SHOWN = 40;
 
 // Giữ 2 ký tự đầu và 1 ký tự cuối, che phần giữa; chuỗi ngắn che hết.
@@ -79,7 +79,7 @@ export function renderReport({
   if (metadataRemoved.length) {
     const shown = metadataRemoved.slice(0, METADATA_SHOWN);
     const more = metadataRemoved.length - shown.length;
-    out.push(`Đã xóa siêu dữ liệu: ${shown.join(', ')}${more > 0 ? ` và ${more} mục khác` : ''}.`);
+    out.push(`Đã xóa metadata: ${shown.join(', ')}${more > 0 ? ` và ${more} mục khác` : ''}.`);
   }
   for (const w of warnings) if (WARNINGS[w]) out.push(`Cảnh báo: ${WARNINGS[w].text}`);
   if (hasText === false) {

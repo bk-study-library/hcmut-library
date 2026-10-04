@@ -22,7 +22,7 @@ test('báo cáo có virus nêu chữ ký và không đưa link Release', () => {
   assert.ok(!out.includes(URL));
 });
 
-test('báo cáo sạch có link, siêu dữ liệu đã xóa', () => {
+test('báo cáo sạch có link, metadata đã xóa', () => {
   const out = renderReport({ ...clean, metadataRemoved: ['Author', 'Creator'] });
   assert.ok(out.startsWith(REPORT_MARKER));
   assert.ok(out.includes(URL));
@@ -67,11 +67,11 @@ test('parseClamscan không nhận chữ giả từ đường dẫn file', () => 
   assert.ok(!renderReport({ ...clean, virus: r.signature }).includes('<img'));
 });
 
-test('báo cáo che hết chuỗi ngắn và bỏ dòng siêu dữ liệu khi rỗng', () => {
+test('báo cáo che hết chuỗi ngắn và bỏ dòng metadata khi rỗng', () => {
   const out = renderReport({ ...clean, pii: [{ label: 'Email', page: 1, match: 'abcd' }] });
   assert.ok(out.includes('****'));
   assert.ok(!out.includes('abcd'));
-  assert.ok(!out.includes('Đã xóa siêu dữ liệu'));
+  assert.ok(!out.includes('Đã xóa metadata'));
 });
 
 test('renderReport chịu được thiếu metadataRemoved và pii', () => {
@@ -143,7 +143,7 @@ test('fenced: rào dài hơn đoạn backtick dài nhất, ít nhất 3, có gi�
   assert.match(long, /^```text\ny{10}\n\(còn nữa, xem nhật ký\)\n```$/);
 });
 
-test('báo cáo: danh sách siêu dữ liệu đã xóa dài thì chỉ hiện 40 tên đầu', () => {
+test('báo cáo: danh sách metadata đã xóa dài thì chỉ hiện 40 tên đầu', () => {
   const names = Array.from({ length: 45 }, (_, i) => `docProps/core.xml:f${i}`);
   const out = renderReport({ ...clean, metadataRemoved: names });
   assert.match(out, /f39 và 5 mục khác\./);

@@ -32,7 +32,7 @@ Không gửi file qua issue: file đính kèm trên repo công khai thành công
 
 Người duyệt là sinh viên đã học qua môn, làm tình nguyện; danh sách ở [.github/CODEOWNERS](.github/CODEOWNERS). Với bài gửi qua trang web:
 
-1. Workflow `kiem-file` quét virus, xóa siêu dữ liệu (PDF, ảnh, file Office), cảnh báo thông tin cá nhân, JavaScript trong PDF, macro trong Office, rồi ghi link Release vào Pull Request. Máy không kết luận được thì gắn nhãn `can-xem-tay`.
+1. Workflow `kiem-file` quét virus, xóa metadata (PDF, ảnh, file Office), cảnh báo thông tin cá nhân, JavaScript trong PDF, macro trong Office, rồi ghi link Release vào Pull Request. Máy không kết luận được thì gắn nhãn `can-xem-tay`.
 2. Người duyệt đọc theo danh sách kiểm và merge.
 3. Workflow `phat-hanh-file` đưa file lên GitHub pre-release `files-HKxxx`.
 4. Pull Request bị đóng thì `don-kho` dọn file chờ duyệt.

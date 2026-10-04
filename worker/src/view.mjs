@@ -139,7 +139,7 @@ export async function newToken(random) {
   return { token, hash: await sha256Hex(token) };
 }
 
-// Đọc token/<mã>: trả siêu dữ liệu (môn) khi mã bí mật đúng, null khi sai, thiếu hay không có bài.
+// Đọc token/<mã>: trả metadata (môn) khi mã bí mật đúng, null khi sai, thiếu hay không có bài.
 export async function checkToken(r2, code, k) {
   if (!CODE.test(code) || typeof k !== 'string' || !TOKEN.test(k)) return null;
   const obj = await r2.get(tokenKey(code));

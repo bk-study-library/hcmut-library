@@ -552,7 +552,7 @@ const typeRank = (order, type) => {
   return i < 0 ? order.length : i;
 };
 
-// Nhãn ngắn của chương trình trong một ngành: "Khóa 2026, Tiêu chuẩn" (thêm chuyên ngành nếu có).
+// Nhãn ngắn của chương trình trong một ngành: "Khóa 2026, Chính quy" (thêm chuyên ngành nếu có).
 export function cohortLabel(t, p) {
   return [p.year ? t.cohort(p.year) : t.cohortUnknown, p.type ? typeLabel(t, p.type) : null, p.track || null].filter(Boolean).join(', ');
 }

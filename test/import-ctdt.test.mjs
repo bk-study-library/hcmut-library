@@ -90,7 +90,7 @@ test('nhập CTĐT: giữ mã chương trình cũ khớp ngành, khóa, loại; 
   const ctta = readJson(dir, 'catalog/programs/FME_KY_THUAT_CO_KHI_2025_CTTA.json');
   assert.equal(ctta.variant, 'Dạy và học bằng tiếng Anh');
   assert.match(ctta.note, /Lệch nhiều so với Kế hoạch giảng dạy/);
-  assert.match(ctta.note, /mượn kế hoạch giảng dạy của chương trình tiêu chuẩn/);
+  assert.match(ctta.note, /mượn kế hoạch giảng dạy của chương trình chính quy/);
   // Link ngoài host cho phép không được ghi.
   assert.equal(readJson(dir, 'catalog/programs/GEOPET_DIA_KY_THUAT_XAY_DUNG_2024.json').ctdtUrl, undefined);
   assert.ok(r.skipped.some((x) => x.code === 'XX9999'));

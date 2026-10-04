@@ -36,7 +36,7 @@ Không tìm thấy môn: form gợi ý các môn có mã gần (cùng tiền t�
 
 1. Worker của thư viện kiểm lại form (môn, loại, đuôi file, dung lượng, nội dung file khớp đuôi, thông tin cá nhân trong các ô chữ), rồi cất file vào kho riêng, không công khai.
 2. Một bot mở Pull Request mang nhãn `tai-lieu-moi`, nhánh `upload/<mã bài>`. Người mở PR là bot, không phải bạn. Tiêu đề PR chỉ có mã bài và mã môn; chữ bạn nhập nằm trong file mục tài liệu của PR, **công khai ngay** với ai mở PR, kể cả trước khi duyệt (xem [PRIVACY.md](PRIVACY.md)).
-3. Workflow `kiem-file` quét virus, xóa siêu dữ liệu (PDF, ảnh, file Office), cảnh báo thông tin cá nhân, JavaScript trong PDF, macro trong Office, rồi ghi link Release vào PR. Có virus thì PR bị đóng. Máy không kết luận được thì PR có nhãn `can-xem-tay`.
+3. Workflow `kiem-file` quét virus, xóa metadata (PDF, ảnh, file Office), cảnh báo thông tin cá nhân, JavaScript trong PDF, macro trong Office, rồi ghi link Release vào PR. Có virus thì PR bị đóng. Máy không kết luận được thì PR có nhãn `can-xem-tay`.
 4. Người duyệt đọc và merge.
 5. Workflow `phat-hanh-file` đưa file lên GitHub Release `files-HKxxx` (pre-release) và xóa file trong kho riêng. PR bị đóng mà không merge thì `don-kho` xóa file và nhánh.
 
@@ -99,7 +99,7 @@ Người duyệt là sinh viên đã học qua môn, làm tình nguyện. Danh s
 - [ ] PR có nhãn `can-xem-tay`: đọc lý do trong comment của `kiem-file` (ClamAV không quét hết, PDF có JavaScript, Office có macro hay liên kết ngoài, .zip lạ) và mở file trên máy có phần mềm diệt virus trước khi quyết định.
 - [ ] Đọc chữ người gửi trên trang xem bài của người duyệt: không xúc phạm, không nêu tên để chê bai ai, không quảng cáo, không link lạ.
 - [ ] Đọc cảnh báo thông tin cá nhân của máy trong PR (loại thông tin, số trang) và quyết định: bỏ qua, hoặc yêu cầu người gửi xóa rồi gửi lại. Máy chỉ cảnh báo, không chặn.
-- [ ] Báo cáo của `kiem-file`: không có virus, PDF có lớp chữ khi cần, siêu dữ liệu đã được xóa.
+- [ ] Báo cáo của `kiem-file`: không có virus, PDF có lớp chữ khi cần, metadata đã được xóa.
 - [ ] Giấy phép đúng: tự soạn là CC BY-SA 4.0 (hoặc CC BY 4.0, CC0); link ghi giấy phép của nguồn.
 - [ ] Đúng môn, đúng loại, tiêu đề rõ, không quảng cáo, không nhận xét hay chấm điểm giảng viên.
 - [ ] Mục tài liệu hợp lệ: `npm run validate` sạch, đã commit file sinh ra.

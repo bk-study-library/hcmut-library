@@ -1,4 +1,4 @@
-// Kiểm file tải lên (workflow kiem-file): quét virus, làm sạch siêu dữ liệu PDF,
+// Kiểm file tải lên (workflow kiem-file): quét virus, làm sạch metadata PDF,
 // tìm lớp chữ và thông tin cá nhân, ghi link Release vào mục tài liệu.
 // Phần logic là hàm thuần để test; phần CLI cuối file chỉ chạy khi gọi trực tiếp.
 //
@@ -45,11 +45,11 @@ const SAFE_NAME = /^[A-Za-z0-9_-][A-Za-z0-9._-]*\.[A-Za-z0-9]+$/;
 const SHA256 = /^[0-9a-f]{64}$/;
 // Cùng bộ ký tự tên virus với parseClamscan.
 const SIGNATURE = /^[\w.\-/:]+$/;
-// Tên siêu dữ liệu đã xóa: thẻ exiftool (Author) hoặc phần trong file Office (docProps/core.xml:creator).
+// Tên metadata đã xóa: thẻ exiftool (Author) hoặc phần trong file Office (docProps/core.xml:creator).
 const TAG = /^[A-Za-z0-9_./:-]{1,96}$/;
 const MAX_TAGS = 500;
 const PII_LABELS = new Set(PII_PATTERNS.map((p) => p.label));
-// Nhóm exiftool mô tả chính file hoặc công cụ, không phải siêu dữ liệu trong file.
+// Nhóm exiftool mô tả chính file hoặc công cụ, không phải metadata trong file.
 const NOT_METADATA = new Set(['SourceFile', 'ExifTool', 'File', 'System', 'Composite']);
 
 // ---------- Hàm thuần ----------
@@ -316,7 +316,7 @@ function exifJson(p) {
   return JSON.parse(tool('exiftool', ['-json', '-G0', '-a', p]).stdout)[0];
 }
 
-// Xóa siêu dữ liệu bằng exiftool, rồi qpdf viết lại file để bỏ hẳn bản cũ.
+// Xóa metadata bằng exiftool, rồi qpdf viết lại file để bỏ hẳn bản cũ.
 function cleanPdf(src, dest) {
   const work = `${dest}.work.pdf`;
   fs.copyFileSync(src, work);
@@ -352,7 +352,7 @@ function pdfWarnings(p) {
   }
 }
 
-// Ảnh: exiftool xóa mọi siêu dữ liệu, rồi ghi lại hướng ảnh (Orientation) nếu có để ảnh không bị
+// Ảnh: exiftool xóa mọi metadata, rồi ghi lại hướng ảnh (Orientation) nếu có để ảnh không bị
 // xoay. Đọc lại; còn sót thẻ nào thì dừng (không đưa ảnh chưa sạch lên).
 function cleanImage(src, dest) {
   fs.copyFileSync(src, dest);
@@ -362,7 +362,7 @@ function cleanImage(src, dest) {
   if (/^[2-8]$/.test(orientation)) tool('exiftool', ['-n', `-EXIF:Orientation=${orientation}`, '-overwrite_original', dest]);
   const after = exifJson(dest);
   const left = imageLeftovers(after);
-  if (left.length) throw new Error(`Không xóa hết được siêu dữ liệu của ảnh: ${left.join(', ')}.`);
+  if (left.length) throw new Error(`Không xóa hết được metadata của ảnh: ${left.join(', ')}.`);
   return removedTags(before, after);
 }
 
