@@ -3,6 +3,7 @@ import { env } from 'cloudflare:workers';
 import policy from '../../catalog/policy.json';
 import { createHandler } from '../src/index.mjs';
 import { checksGreen, decisionComment, parseDecisions, REVIEW_MESSAGES, reviewKey } from '../src/review.mjs';
+import { notifyMessage, reviewFiles } from '../src/notify.mjs';
 
 const REPO = 'own/lib';
 const TEAM = 'nhom.cloudflareaccess.com';
@@ -262,5 +263,31 @@ describe('POST /duyet-tiep', () => {
       expect(await (await cont(fetch, { code: CODE })).json()).toEqual({ ok: true, merged: false });
       expect(fetch.writes).toEqual([]);
     }
+  });
+});
+
+describe('email báo kết quả theo từng file', () => {
+  const record = { keep: ['chuong-1'], drop: [{ id: 'chuong-2', reason: 'Trùng tài liệu cũ' }], titles: { 'chuong-1': 'Slide chương 1', 'chuong-2': 'Slide chương 2' } };
+
+  it('gộp một phần: tiêu đề ghi một phần, liệt kê file được duyệt và file không duyệt kèm lý do', () => {
+    const msg = notifyMessage({ code: CODE, merged: true, reason: '', siteUrl: 'https://site/', statusUrl: null, files: reviewFiles(record) });
+    expect(msg.subject).toBe(`Bài ${CODE} đã được duyệt một phần`);
+    expect(msg.text).toContain('- Slide chương 1');
+    expect(msg.text).toContain('- Slide chương 2: Trùng tài liệu cũ');
+  });
+
+  it('không duyệt file nào: lý do từng file thay cho bình luận PR', () => {
+    const files = reviewFiles({ ...record, keep: [], drop: [...record.drop, { id: 'chuong-1', reason: 'Sai môn học' }] });
+    const msg = notifyMessage({ code: CODE, merged: false, reason: 'bình luận PR', siteUrl: '', statusUrl: null, files });
+    expect(msg.text).toContain('- Slide chương 1: Sai môn học');
+    expect(msg.text).not.toContain('bình luận PR');
+  });
+
+  it('không có quyết định hay hỏng: như cũ', () => {
+    expect(reviewFiles(null)).toBeNull();
+    expect(reviewFiles({ keep: 'x' })).toBeNull();
+    const msg = notifyMessage({ code: CODE, merged: true, reason: '', siteUrl: 'https://site/', statusUrl: null });
+    expect(msg.subject).toBe(`Bài ${CODE} đã được duyệt`);
+    expect(msg.text).not.toContain('File được duyệt');
   });
 });

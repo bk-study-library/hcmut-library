@@ -13,7 +13,7 @@ import { rateKey, dailyCap, dailyCapReached, countSubmission } from './limits.mj
 import { accessConfigured, accessEmail, verifyAccessJwt } from './access.mjs';
 import { checksGreen, decisionComment, ITEM_ID, parseDecisions, REVIEW_MESSAGES, reviewKey } from './review.mjs';
 import { handlePreview } from './preview.mjs';
-import { notifyKey, notifyMessage, plainReason, sendEmail } from './notify.mjs';
+import { notifyKey, notifyMessage, plainReason, reviewFiles, sendEmail } from './notify.mjs';
 import {
   CODE,
   checkToken,
@@ -631,7 +631,10 @@ async function handleNotify(req, env, deps) {
     if (!pr || pr.state === 'open') return reply(200, { ok: true, sent: false }, {});
     const reason = pr.merged ? '' : plainReason(await gh.lastComment(pr.number));
     const site = String(env.SITE_BASE ?? '');
-    const msg = notifyMessage({ code, merged: pr.merged, reason, siteUrl: course ? `${site}course/${course}/` : site, statusUrl: null });
+    // Quyết định trên trang duyệt (nếu có) cho kết quả và lý do từng file.
+    const review = await env.QUARANTINE.get(reviewKey(code));
+    const files = review ? reviewFiles(await review.json().catch(() => null)) : null;
+    const msg = notifyMessage({ code, merged: pr.merged, reason, siteUrl: course ? `${site}course/${course}/` : site, statusUrl: null, files });
     await sendEmail({ apiKey: env.RESEND_API_KEY, from: env.NOTIFY_FROM, to: email, ...msg, fetch: deps.fetch });
     await env.QUARANTINE.delete(notifyKey(code));
     return reply(200, { ok: true, sent: true }, {});
