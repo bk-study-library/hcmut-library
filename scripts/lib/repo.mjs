@@ -365,7 +365,7 @@ function cleanCourse(c) {
   return out;
 }
 
-export function buildIndex(repo, { repoSlug = 'bk-study-library/bk-study-library' } = {}) {
+export function buildIndex(repo, { repoSlug = 'bk-study-library/library' } = {}) {
   const dates = [];
   for (const c of repo.courses.values()) dates.push(c.updated);
   for (const p of repo.programs.values()) dates.push(p.updated);

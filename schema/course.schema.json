@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://github.com/bk-study-library/bk-study-library/schema/course.schema.json",
+  "$id": "https://github.com/bk-study-library/library/schema/course.schema.json",
   "title": "Course",
   "description": "Một môn học trong danh mục. ID cố định từ lúc tạo, không bao giờ đổi. / One course in the catalog. The ID is fixed at creation and never changes.",
   "type": "object",

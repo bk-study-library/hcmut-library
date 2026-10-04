@@ -27,7 +27,7 @@ Chưa có mẹo. Bạn có kinh nghiệm học môn này? Mở Pull Request sử
 
 ## Đóng góp
 
-- Gửi file, không cần tài khoản GitHub: [mở trang Gửi tài liệu](https://bk-study-library.github.io/bk-study-library/gui-tai-lieu/?course=ME3031).
-- Thêm link tới tài liệu công khai: [mở form Thêm link](https://github.com/bk-study-library/bk-study-library/issues/new?template=them-link.yml&course=ME3031).
-- Sửa tên, mã môn: [mở form Sửa danh mục môn](https://github.com/bk-study-library/bk-study-library/issues/new?template=sua-danh-muc.yml&course=ME3031).
-- Quy định: [CONTRIBUTING.md](https://github.com/bk-study-library/bk-study-library/blob/main/CONTRIBUTING.md). Gỡ tài liệu: [TAKEDOWN.md](https://github.com/bk-study-library/bk-study-library/blob/main/TAKEDOWN.md).
+- Gửi file, không cần tài khoản GitHub: [mở trang Gửi tài liệu](https://bk-study-library.github.io/library/gui-tai-lieu/?course=ME3031).
+- Thêm link tới tài liệu công khai: [mở form Thêm link](https://github.com/bk-study-library/library/issues/new?template=them-link.yml&course=ME3031).
+- Sửa tên, mã môn: [mở form Sửa danh mục môn](https://github.com/bk-study-library/library/issues/new?template=sua-danh-muc.yml&course=ME3031).
+- Quy định: [CONTRIBUTING.md](https://github.com/bk-study-library/library/blob/main/CONTRIBUTING.md). Gỡ tài liệu: [TAKEDOWN.md](https://github.com/bk-study-library/library/blob/main/TAKEDOWN.md).
