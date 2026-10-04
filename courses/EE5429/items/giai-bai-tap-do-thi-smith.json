@@ -1,0 +1,22 @@
+{
+  "$schema": "../../../schema/item.schema.json",
+  "id": "giai-bai-tap-do-thi-smith",
+  "course": "EE5429",
+  "type": "exercise-solution",
+  "title": "Giải bài tập đồ thị Smith",
+  "lang": "vi",
+  "license": "CC-BY-SA-4.0",
+  "origin": "self-made",
+  "added": "2026-10-04",
+  "removed": false,
+  "files": [
+    {
+      "name": "EE5429_exercise-solution_giai-bai-tap-do-thi-smith.pdf",
+      "size": 263025,
+      "sha256": "a22f1c48aba90ca9761f3710da0e8526cf3a0941058d78693f08786781fac788",
+      "mime": "application/pdf",
+      "quarantine": "pending/unEqefr6Qt/EE5429_exercise-solution_giai-bai-tap-do-thi-smith.pdf",
+      "uploadSha256": "a22f1c48aba90ca9761f3710da0e8526cf3a0941058d78693f08786781fac788"
+    }
+  ]
+}
