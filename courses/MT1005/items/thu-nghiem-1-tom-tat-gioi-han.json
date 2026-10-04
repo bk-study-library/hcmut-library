@@ -1,0 +1,24 @@
+{
+  "$schema": "../../../schema/item.schema.json",
+  "id": "thu-nghiem-1-tom-tat-gioi-han",
+  "course": "MT1005",
+  "type": "summary",
+  "title": "Thu nghiem 1: tom tat gioi han",
+  "lang": "vi",
+  "license": "CC-BY-SA-4.0",
+  "origin": "self-made",
+  "added": "2026-10-04",
+  "removed": false,
+  "description": "Bai gui thu nghiem luong tai len.",
+  "term": "HK261",
+  "files": [
+    {
+      "name": "MT1005_summary_thu-nghiem-1-tom-tat-gioi-han_HK261.pdf",
+      "size": 709,
+      "sha256": "3b225e4508c7226a9dfb0a1495fb63f505b40cc1d1b2eae2e1a65162cc76c785",
+      "mime": "application/pdf",
+      "quarantine": "pending/8BaTBS0yez/MT1005_summary_thu-nghiem-1-tom-tat-gioi-han_HK261.pdf",
+      "uploadSha256": "3b225e4508c7226a9dfb0a1495fb63f505b40cc1d1b2eae2e1a65162cc76c785"
+    }
+  ]
+}
