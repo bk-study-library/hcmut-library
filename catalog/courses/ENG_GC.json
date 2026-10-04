@@ -4,7 +4,7 @@
   "code": "ENG_GC",
   "name": "Đ/kiện tiếng Anh tốt nghiệp ĐH tiêu chuẩn, VLVH",
   "credits": 0,
-  "faculty": "fenr",
+  "faculty": "chung",
   "aliases": [],
   "status": "active",
   "programs": [
@@ -14,10 +14,8 @@
       "required": false
     }
   ],
-  "parts": [
-    "theory"
-  ],
+  "parts": [],
   "related": [],
-  "note": "Nhập từ nguồn công khai (truy cập 03/10/2026).",
+  "note": "Nhập từ nguồn công khai (truy cập 03/10/2026). Điều kiện chung cho mọi ngành, không thuộc riêng khoa nào; đơn vị quản lý chưa xác minh.",
   "updated": "2026-10-04"
 }

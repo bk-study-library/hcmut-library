@@ -5,7 +5,7 @@
   "name": "Hoạt động sinh viên",
   "nameEn": "Student Activities",
   "credits": 0,
-  "faculty": "unknown",
+  "faculty": "chung",
   "aliases": [],
   "status": "active",
   "programs": [
@@ -85,10 +85,8 @@
       "required": false
     }
   ],
-  "parts": [
-    "theory"
-  ],
+  "parts": [],
   "related": [],
-  "note": "Nhập từ nguồn công khai (truy cập 03/10/2026).",
+  "note": "Nhập từ nguồn công khai (truy cập 03/10/2026). Điều kiện chung cho mọi ngành, không thuộc riêng khoa nào; đơn vị quản lý chưa xác minh.",
   "updated": "2026-10-04"
 }

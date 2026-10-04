@@ -3,7 +3,7 @@
   "generated": "2026-10-04",
   "site": "https://bk-study-library.github.io/hcmut-library/",
   "counts": {
-    "courses": 737,
+    "courses": 739,
     "items": 8
   },
   "faculties": [
@@ -103,6 +103,13 @@
       "name": {
         "vi": "Giáo dục thể chất và Quốc phòng (chưa xác định đơn vị)",
         "en": "Physical education and military training (unit not identified)"
+      }
+    },
+    {
+      "key": "chung",
+      "name": {
+        "vi": "Môn chung toàn trường",
+        "en": "University-wide requirements"
       }
     },
     {
@@ -213,7 +220,7 @@
       "code": "CCGDTC",
       "name": "Chứng chỉ Giáo Dục Thể Chất",
       "credits": 0,
-      "faculty": "unknown",
+      "faculty": "chung",
       "aliases": [],
       "oldNames": [],
       "status": "active",
@@ -2320,7 +2327,7 @@
       "code": "ENG_GC",
       "name": "Đ/kiện tiếng Anh tốt nghiệp ĐH tiêu chuẩn, VLVH",
       "credits": 0,
-      "faculty": "fenr",
+      "faculty": "chung",
       "aliases": [],
       "oldNames": [],
       "status": "active",
@@ -4247,6 +4254,20 @@
       "detail": "courses/GE3239.json"
     },
     {
+      "id": "GE3239-2024",
+      "code": "GE3239",
+      "name": "Kỹ thuật nền móng công trình",
+      "nameEn": "Foundation engineering",
+      "credits": 3,
+      "faculty": "geopet",
+      "aliases": [],
+      "oldNames": [],
+      "status": "active",
+      "items": 0,
+      "url": "https://bk-study-library.github.io/hcmut-library/course/GE3239-2024/",
+      "detail": "courses/GE3239-2024.json"
+    },
+    {
       "id": "GE3241",
       "code": "GE3241",
       "name": "Thí nghiệm địa kỹ thuật công trình",
@@ -5054,6 +5075,20 @@
       "items": 0,
       "url": "https://bk-study-library.github.io/hcmut-library/course/GE4165/",
       "detail": "courses/GE4165.json"
+    },
+    {
+      "id": "GE4165-2024",
+      "code": "GE4165",
+      "name": "Quản lý dự án",
+      "nameEn": "Project management",
+      "credits": 3,
+      "faculty": "geopet",
+      "aliases": [],
+      "oldNames": [],
+      "status": "active",
+      "items": 0,
+      "url": "https://bk-study-library.github.io/hcmut-library/course/GE4165-2024/",
+      "detail": "courses/GE4165-2024.json"
     },
     {
       "id": "GE4167",
@@ -10401,7 +10436,7 @@
       "name": "Hoạt động sinh viên",
       "nameEn": "Student Activities",
       "credits": 0,
-      "faculty": "unknown",
+      "faculty": "chung",
       "aliases": [],
       "oldNames": [],
       "status": "active",

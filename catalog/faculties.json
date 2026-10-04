@@ -15,6 +15,7 @@
     { "key": "flc", "name": { "vi": "Trung tâm Ngoại ngữ", "en": "Foreign Language Center" } },
     { "key": "llct", "name": { "vi": "Lý luận chính trị (chưa xác định đơn vị)", "en": "Political theory (unit not identified)" } },
     { "key": "gdtc-qp", "name": { "vi": "Giáo dục thể chất và Quốc phòng (chưa xác định đơn vị)", "en": "Physical education and military training (unit not identified)" } },
+    { "key": "chung", "name": { "vi": "Môn chung toàn trường", "en": "University-wide requirements" }, "note": "Môn và điều kiện tốt nghiệp chung cho mọi ngành, không thuộc riêng khoa nào: hoạt động sinh viên, điều kiện ngoại ngữ, chứng chỉ giáo dục thể chất. Chưa xác minh đơn vị quản lý." },
     { "key": "unknown", "name": { "vi": "Chưa xác định", "en": "Unassigned" }, "note": "Môn có tiền tố chưa xác minh. Chuyển sang khoa đúng khi đã kiểm bằng nguồn công khai." }
   ],
   "prefixes": [
@@ -33,6 +34,9 @@
     { "pattern": "^LA[0-9]{4}$", "faculty": "flc", "verified": false },
     { "pattern": "^SP[0-9]{4}$", "faculty": "llct", "verified": false },
     { "pattern": "^(PE|MI)[0-9]{4}$", "faculty": "gdtc-qp", "verified": false },
+    { "pattern": "^SA[0-9]{4}$", "faculty": "chung", "verified": false, "note": "Hoạt động sinh viên, khối điều kiện tốt nghiệp trong CTĐT." },
+    { "pattern": "^(ENG|FRA)_[A-Z0-9_]+$", "faculty": "chung", "verified": false, "note": "Điều kiện ngoại ngữ tốt nghiệp (ENG_GC, FRA_GC và mã tương tự), không phải môn của khoa nào." },
+    { "pattern": "^CCGDTC$", "faculty": "chung", "verified": false, "note": "Chứng chỉ giáo dục thể chất, điều kiện tốt nghiệp chung." },
     { "pattern": "^[0-9]{6}$", "faculty": "unknown", "verified": false, "note": "Mã 6 chữ số kiểu cũ. Chưa rõ quy tắc đánh mã." }
   ]
 }

@@ -6,7 +6,7 @@ Thư viện tài liệu học tập do sinh viên Bách Khoa TP.HCM (HCMUT) chia
 
 ## Trạng thái
 
-Bản khung (0.1.0). Danh mục có 737 môn và 195 chương trình đào tạo, nhập từ nguồn công khai (truy cập 03/10/2026). Mới có danh sách môn của Khoa Cơ khí, Khoa Điện - Điện tử, Khoa Kỹ thuật Địa chất và Dầu khí; 100 chương trình còn lại chưa có danh sách môn. Các tài liệu hiện có là dữ liệu mẫu (có đánh dấu "mẫu") để thử giao diện và quy trình.
+Bản khung (0.1.0). Danh mục có 739 môn và 195 chương trình đào tạo, nhập từ nguồn công khai (truy cập 03/10/2026). Mới có danh sách môn của Khoa Cơ khí, Khoa Điện - Điện tử, Khoa Kỹ thuật Địa chất và Dầu khí; 100 chương trình còn lại chưa có danh sách môn. Các tài liệu hiện có là dữ liệu mẫu (có đánh dấu "mẫu") để thử giao diện và quy trình.
 
 ## Quy định
 
@@ -55,7 +55,7 @@ Thư viện xuất dữ liệu công khai ở `v1/` (cũng phục vụ tại `<w
 catalog/
   faculties.json            khoa và gợi ý tiền tố mã môn
   policy.json               quy định chung: loại nhận, dung lượng, đuôi file, học kỳ
-  site.json                 địa chỉ Worker nhận bài và khóa công khai Turnstile
+  site.json                 địa chỉ Worker nhận bài, khóa công khai Turnstile, host nhận cho link PDF CTĐT
   courses/<ID>.json         một file mỗi môn; ID cố định, không bao giờ đổi
   programs/<mã CTĐT>.json   chương trình đào tạo; khối có thể rỗng khi chưa có danh sách môn
 courses/<ID>/

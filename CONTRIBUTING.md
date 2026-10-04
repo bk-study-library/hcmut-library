@@ -58,7 +58,8 @@ Mở form [Sửa danh mục môn](https://github.com/bk-study-library/hcmut-libr
 - ID của môn không bao giờ đổi.
 - Môn đổi tên hoặc đổi mã thì giữ ID, thêm mã và tên cũ vào `aliases`.
 - Môn ngừng dạy thì đặt `status: retired` (thêm `replacedBy` nếu có môn thay thế) và vẫn giữ trong danh mục, để link cũ không hỏng.
-- Trường dùng lại một mã cho môn khác thì môn sau có ID kèm năm khóa, ví dụ `GE4169-2024`.
+- Trường dùng lại một mã cho môn khác thì môn sau có ID kèm năm khóa, ví dụ `GE4169-2024`, `GE3239-2024`, `GE4165-2024`. Chương trình từ khóa đó trở đi trỏ tới ID kèm năm; môn cũ giữ ID cũ và ghi chú trỏ sang môn mới.
+- Điều kiện tốt nghiệp chung cho mọi ngành (hoạt động sinh viên SA, điều kiện ngoại ngữ ENG_GC, FRA_GC, chứng chỉ GDTC) thuộc khóa `chung` (Môn chung toàn trường) trong `catalog/faculties.json`, không gán cho khoa nào. Quy tắc tiền tố chưa có văn bản xác nhận thì giữ `verified: false`.
 - Danh mục chỉ lấy từ nguồn công khai. Không ghi điểm, GPA hay số liệu cá nhân.
 
 ## Thêm chương trình đào tạo
@@ -69,6 +70,8 @@ Khoa của bạn chưa có chương trình, hoặc chương trình chưa có dan
 - Gửi link CTĐT chính thức của trường hoặc của khoa. Không có link thì đính kèm file PDF CTĐT; CTĐT là văn bản công khai nên gửi qua issue được.
 - Không đính kèm bảng điểm hay ảnh chụp MyBK có MSSV, điểm.
 - Người duyệt nhập mã môn, tên, tín chỉ, khối kiến thức vào `catalog/programs/<mã>.json` và mục `programs` của từng môn, rồi mở Pull Request. Thư viện không lưu file CTĐT, chỉ lưu link nguồn.
+- Link PDF chính thức của đúng ngành và đúng khóa ghi vào `ctdtUrl` (CTĐT) và `planUrl` (kế hoạch giảng dạy). Chỉ nhận link https tới host trong `programPdfHosts` của `catalog/site.json` (hiện là Google Drive và tên miền hcmut.edu.vn). Chưa kiểm được link đúng ngành, đúng khóa thì để trống; trang chương trình sẽ trỏ về bảng CTĐT của trường (`officialProgramsPage`).
+- Bản chép từ nguồn chưa chính thức (ví dụ MyBK do sinh viên gửi) đặt `listed: false`: trang riêng vẫn có để link từ trang môn không hỏng, nhưng không hiện trong danh sách chương trình ở trang chủ và trang khoa. Các script nhập giữ nguyên `listed`, `ctdtUrl`, `planUrl` khi nhập lại.
 
 ## Duyệt bài
 

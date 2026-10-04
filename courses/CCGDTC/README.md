@@ -7,8 +7,8 @@
 | Mã môn | CCGDTC |
 | Tên | Chứng chỉ Giáo Dục Thể Chất |
 | Tín chỉ | 0 |
-| Khoa | Chưa xác định |
-| Phần | Lý thuyết |
+| Khoa | Môn chung toàn trường |
+| Phần | chưa ghi |
 | Trạng thái | Đang dạy |
 
 ## Tài liệu

@@ -51,6 +51,44 @@ function jsonStrings(v, key, out) {
   return out;
 }
 
+// ---------- Link PDF chính thức của chương trình ----------
+
+// Mẫu host: "hcmut.edu.vn" khớp đúng host đó, "*.hcmut.edu.vn" khớp mọi tên miền con.
+export function hostAllowed(host, patterns) {
+  const h = String(host || '').toLowerCase();
+  return patterns.some((p) => {
+    const x = String(p).toLowerCase();
+    return x.startsWith('*.') ? h.endsWith(x.slice(1)) : h === x;
+  });
+}
+
+// Link https, không có tài khoản hay cổng riêng, host nằm trong danh sách cho phép.
+export function officialPdfUrl(url, hosts) {
+  if (typeof url !== 'string' || !URL.canParse(url)) return false;
+  const u = new URL(url);
+  return u.protocol === 'https:' && !u.username && !u.password && !u.port && hostAllowed(u.hostname, hosts);
+}
+
+// programPdfHosts của catalog/site.json trong root; repo không có file thì dùng của công cụ.
+function readPdfHosts(root, err) {
+  const own = path.join(root, 'catalog', 'site.json');
+  const p = fs.existsSync(own) ? own : path.join(TOOL_ROOT, 'catalog', 'site.json');
+  let cfg;
+  try {
+    cfg = JSON.parse(fs.readFileSync(p, 'utf8'));
+  } catch (e) {
+    err('JSON', rel(root, p), `không đọc được JSON: ${e.message}`);
+    return [];
+  }
+  const hosts = cfg.programPdfHosts;
+  if (hosts === undefined) return [];
+  if (!Array.isArray(hosts) || !hosts.every((h) => typeof h === 'string' && /^(\*\.)?[a-z0-9.-]+$/.test(h))) {
+    err('SCHEMA', 'catalog/site.json', 'programPdfHosts cần là mảng tên miền, ví dụ "drive.google.com" hoặc "*.hcmut.edu.vn"');
+    return [];
+  }
+  return hosts;
+}
+
 // ---------- Đọc repo ----------
 
 export function loadRepo(root) {
@@ -159,6 +197,16 @@ export function loadRepo(root) {
     const fileId = path.basename(p, '.json');
     if (pr.code !== fileId) err('ID_FILE', rel(root, p), `code "${pr.code}" khác tên file "${fileId}"`);
     programs.set(pr.code, { ...pr, _file: rel(root, p) });
+  }
+
+  // Link PDF chính thức của chương trình: chỉ https, chỉ host trong catalog/site.json (programPdfHosts).
+  const pdfHosts = readPdfHosts(root, err);
+  for (const pr of programs.values()) {
+    for (const k of ['ctdtUrl', 'planUrl']) {
+      if (pr[k] != null && !officialPdfUrl(pr[k], pdfHosts)) {
+        err('PROGRAM_URL', pr._file, `${k} cần là link https tới host trong catalog/site.json (programPdfHosts: ${pdfHosts.join(', ') || 'trống'}), gặp ${pr[k]}`);
+      }
+    }
   }
 
   // Tham chiếu giữa các môn
