@@ -1,5 +1,5 @@
 {
-  "uploadEndpoint": "https://bk-study-library-upload.tktrungquoc40.workers.dev/submit",
+  "uploadEndpoint": "https://upload.xerozsoft.com/submit",
   "turnstileSiteKey": "0x4AAAAAAFMxSkFCGbs--qcI",
   "reviewBase": "https://upload.xerozsoft.com",
   "bookSources": [
