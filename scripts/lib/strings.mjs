@@ -100,6 +100,8 @@ export const S = {
       failed: 'Chưa gửi được. Thử lại sau ít phút.',
       done: 'Đã nhận tài liệu. Mã bài của bạn là',
       waiting: 'File đang chờ người duyệt xem.',
+      viewLink: 'Link xem bài của bạn',
+      viewSave: 'Lưu lại link này: thư viện không gửi lại được. Link là bí mật, đừng chia sẻ.',
       selected: 'Đã chọn',
       noMatch: 'Không có môn nào khớp.',
       loadFail: 'Không tải được danh sách môn. Tải lại trang để thử lại.',
