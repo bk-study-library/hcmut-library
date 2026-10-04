@@ -114,6 +114,32 @@ test('nhập research: mã dùng lại, mã cũ đã ngừng, môn tương đư�
   assert.equal(readJson(dir, 'catalog/courses/SP1007.json').faculty, 'llct');
 });
 
+test('nhập research: giữ listed, ctdtUrl, planUrl ghi tay; bản MyBK có listed false', () => {
+  const dir = freshRoot();
+  importFixture(dir);
+  const code = 'GEOPET_KY_THUAT_DIA_CHAT_2023';
+  const file = `catalog/programs/${code}.json`;
+  const p = readJson(dir, file);
+  assert.equal(p.listed, undefined);
+  p.ctdtUrl = 'https://drive.google.com/file/d/ctdt/view';
+  p.planUrl = 'https://drive.google.com/file/d/plan/view';
+  p.listed = false;
+  writeJson(dir, file, p);
+  const research = readResearch(RESEARCH);
+  research.programs.programs.push({
+    id: 'hcmut:dee:ky-thuat-dien:2019:mybk-seed', name_vi: 'Kỹ thuật Điện', name_en: null, faculty: 'dee', cohort_year: 2019, type: 'standard-or-unspecified',
+    source_url: null, sources: ['seed-mybk-kdi-2019'], blocks: [{ name: 'MyBK block 1', courses: [{ code: 'MT1003', required: true }] }],
+  });
+  importFixture(dir, research, '2026-10-09');
+  const again = readJson(dir, file);
+  assert.equal(again.ctdtUrl, 'https://drive.google.com/file/d/ctdt/view');
+  assert.equal(again.planUrl, 'https://drive.google.com/file/d/plan/view');
+  assert.equal(again.listed, false);
+  assert.equal(readJson(dir, 'catalog/programs/DEE_KY_THUAT_DIEN_2019_MYBK_SEED.json').listed, false);
+  const r = run(['--root', dir, '--write', '--quiet']);
+  assert.deepEqual(r.repo.errors, []);
+});
+
 test('nhập research: thiếu tên tiếng Việt, thiếu tín chỉ, ký tự gạch dài', () => {
   const dir = freshRoot();
   const research = readResearch(RESEARCH);
@@ -138,14 +164,58 @@ test('nhập research hai lần: không đổi file nào', () => {
   assert.deepEqual(snap(dir), before);
 });
 
-test('danh mục thật: 737 môn, 195 chương trình, không lỗi, không cảnh báo', () => {
+test('danh mục thật: 739 môn, 195 chương trình, không lỗi, không cảnh báo', () => {
   const repo = loadRepo(TOOL_ROOT);
   assert.deepEqual(repo.errors, []);
   assert.deepEqual(repo.warnings, []);
-  assert.equal(repo.courses.size, 737);
+  assert.equal(repo.courses.size, 739);
   assert.equal(repo.programs.size, 195);
   const empty = [...repo.programs.values()].filter((p) => !p.blocks.some((b) => b.courses.length));
   assert.equal(empty.length, 100);
   for (const p of repo.programs.values()) assert.match(p.code, /^[A-Z0-9_]+$/);
   assert.ok(repo.courses.get('GE4169-2024').programs.every((x) => repo.programs.get(x.program).year >= '2024'));
+});
+
+// Ba mã trường dùng lại cho môn khác ở CTĐT 2024: bản 2023 giữ ID cũ, bản 2024 có ID kèm năm.
+test('danh mục thật: GE4169, GE3239, GE4165 tách theo khóa giống nhau', () => {
+  const repo = loadRepo(TOOL_ROOT);
+  for (const code of ['GE4169', 'GE3239', 'GE4165']) {
+    const old = repo.courses.get(code);
+    const neu = repo.courses.get(`${code}-2024`);
+    assert.ok(old && neu, code);
+    assert.equal(neu.code, code);
+    assert.notEqual(neu.name, old.name, code);
+    assert.deepEqual(old.programs.map((x) => x.program), ['GEOPET_KY_THUAT_DIA_CHAT_2023'], code);
+    assert.deepEqual(neu.programs.map((x) => x.program), ['GEOPET_DIA_KY_THUAT_XAY_DUNG_2024'], code);
+    assert.ok(old.programs.every((x) => repo.programs.get(x.program).year < '2024'), code);
+    assert.ok(neu.programs.every((x) => repo.programs.get(x.program).year >= '2024'), code);
+    const p2024 = repo.programs.get('GEOPET_DIA_KY_THUAT_XAY_DUNG_2024').blocks.flatMap((b) => b.courses);
+    assert.ok(p2024.includes(`${code}-2024`) && !p2024.includes(code), code);
+  }
+});
+
+test('danh mục thật: seed MyBK không liệt kê, 14 môn chỉ có trong seed vẫn thuộc một chương trình', () => {
+  const repo = loadRepo(TOOL_ROOT);
+  const seed = repo.programs.get('DEE_KY_THUAT_DIEN_2019_MYBK_SEED');
+  assert.equal(seed.listed, false);
+  const listed = [...repo.programs.values()].filter((p) => p.listed !== false);
+  assert.equal(listed.length, 194);
+  const inListed = new Set(listed.flatMap((p) => p.blocks.flatMap((b) => b.courses)));
+  const seedOnly = [...new Set(seed.blocks.flatMap((b) => b.courses))].filter((id) => !inListed.has(id)).sort();
+  assert.deepEqual(seedOnly, ['007401', '008001', '400400', '604046', 'CCGDTC', 'EE2409', 'EE2411', 'EE2413', 'ENG_GC', 'MT1023', 'PE1023', 'PH1013', 'SP1019', 'SP1041']);
+  for (const id of seedOnly) assert.ok(repo.courses.get(id).programs.some((x) => x.program === seed.code), id);
+});
+
+test('danh mục thật: điều kiện tốt nghiệp chung thuộc Môn chung toàn trường, khớp quy tắc tiền tố chưa xác minh', () => {
+  const repo = loadRepo(TOOL_ROOT);
+  const shared = repo.faculties.faculties.find((f) => f.key === 'chung');
+  assert.equal(shared.name.vi, 'Môn chung toàn trường');
+  for (const id of ['ENG_GC', 'SA4001', 'CCGDTC']) {
+    assert.equal(repo.courses.get(id).faculty, 'chung', id);
+    const rule = repo.faculties.prefixes.find((h) => new RegExp(h.pattern).test(id));
+    assert.ok(rule, id);
+    assert.equal(rule.faculty, 'chung', id);
+    assert.equal(rule.verified, false, id);
+  }
+  for (const code of ['FRA_GC', 'ENG_GC_600', 'SA4003']) assert.equal(repo.faculties.prefixes.find((h) => new RegExp(h.pattern).test(code))?.faculty, 'chung', code);
 });

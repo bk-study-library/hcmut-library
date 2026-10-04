@@ -34,6 +34,10 @@
     return en ? n + ' courses in ' + name + ', most materials first.' : name + ' có ' + n + ' môn, môn nhiều tài liệu xếp trước.';
   }
 
+  function displayName(c) {
+    return en && c.nameEn ? c.nameEn : c.name;
+  }
+
   function load(index) {
     index.faculties.forEach(function (f) {
       facultyName[f.key] = (en ? f.name.en : f.name.vi) || f.name.vi;
@@ -62,6 +66,8 @@
       hits = window.BkSearch.list(idx, opts);
       status.textContent = facultyText(hits.length, fac) + (hits.length > MAX ? ' ' + (en ? 'Showing the first 30. Type to narrow down.' : 'Hiện 30 môn đầu, gõ tên môn để thu hẹp.') : '');
     }
+    // Môn trùng tên (Đồ án tốt nghiệp, Thực tập ngoài trường) phân biệt bằng mã môn và tên khoa;
+    // v1 không có danh sách chương trình nên chưa hiện được ngành.
     hits.slice(0, MAX).forEach(function (h) {
       var c = byId[h.id];
       var li = document.createElement('li');
@@ -71,11 +77,13 @@
       code.className = 'code';
       code.textContent = c.code;
       var name = document.createElement('span');
-      name.textContent = en && c.nameEn ? c.nameEn : c.name;
+      name.textContent = displayName(c);
       var meta = document.createElement('span');
       meta.className = 'muted';
       // Đã lọc theo khoa thì không lặp tên khoa ở từng dòng.
       var parts = fac ? [] : [facultyName[c.faculty] || c.faculty];
+      // Mã bị trường dùng lại cho môn khác: hai môn cùng mã, ID kèm năm khóa phân biệt.
+      if (c.id !== c.code) parts.push('ID ' + c.id);
       if (c.status === 'retired') parts.push(en ? 'retired' : 'đã ngừng');
       if (c.items) parts.push(en ? c.items + ' items' : c.items + ' tài liệu');
       if (h.teacher) parts.push(strings.teacher + ': ' + h.teacher);

@@ -7,8 +7,8 @@
 | Mã môn | SA4001 |
 | Tên | Hoạt động sinh viên / Student Activities |
 | Tín chỉ | 0 |
-| Khoa | Chưa xác định |
-| Phần | Lý thuyết |
+| Khoa | Môn chung toàn trường |
+| Phần | chưa ghi |
 | Trạng thái | Đang dạy |
 
 ## Tài liệu

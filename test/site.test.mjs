@@ -226,8 +226,11 @@ test('trang chương trình chưa có danh sách môn: thông báo, nút gửi C
   assert.match(html, /<h1>Ngành tuyển sinh thử \(2026\)<\/h1>/);
   assert.match(html, /Chưa có danh sách môn\. Bạn có thể gửi CTĐT của khóa mình\./);
   assert.match(html, /template=them-chuong-trinh\.yml&amp;khoa=[^"]+&amp;nganh=Ng%C3%A0nh\+tuy%E1%BB%83n\+sinh\+th%E1%BB%AD&amp;khoa-hoc=2026"/);
-  // Ghi chú, rồi một hàng nút: gửi CTĐT (nút chính) và link CTĐT chính thức dạng nút.
-  assert.match(html, /<\/div><p class="actions"><a class="btn primary" href="[^"]+" rel="noopener">Thêm chương trình đào tạo<\/a><a class="btn" href="https:\/\/example\.test\/ctdt" rel="noopener">Xem CTĐT chính thức<\/a><\/p>/);
+  // Ghi chú, rồi một hàng nút: gửi CTĐT (nút chính), link nguồn dạng nút, bảng CTĐT của trường (nút nhẹ).
+  assert.match(
+    html,
+    /<\/div><p class="actions"><a class="btn primary" href="[^"]+" rel="noopener">Thêm chương trình đào tạo<\/a><a class="btn" href="https:\/\/example\.test\/ctdt" rel="noopener">Xem CTĐT chính thức<\/a><a class="btn subtle" href="https:\/\/hcmut\.edu\.vn\/bai-viet\/chuong-trinh-dao-tao-tu-khoa-2019" rel="noopener">Bảng CTĐT của trường<\/a><\/p>/,
+  );
   // Dòng meta đọc tự nhiên: "Mã ..., khoa, ..., chưa có danh sách môn", không ghi "0 môn".
   assert.match(html, /<p class="muted">Mã EE_TS_108_2026, <a href="\.\.\/\.\.\/faculty\/EE\/">Khoa Điện - Điện tử<\/a>, Dạy và học bằng tiếng Anh, chưa có danh sách môn<\/p>/);
   assert.doesNotMatch(html, /0 môn/);
@@ -452,4 +455,78 @@ test('CSP: trang Gửi tài liệu khi form mở cho Turnstile và gốc địa 
   assert.deepEqual(closed['script-src'], ["'self'"]);
   assert.equal(closed['frame-src'], undefined);
   assert.deepEqual(closed['connect-src'], ["'self'"]);
+});
+
+// Fixture có link PDF chính thức cho TEST_2019 và một bản nháp nguồn (listed: false) cùng ngành, cùng khóa.
+const outPdf = (() => {
+  const dir = copyFixture();
+  fs.writeFileSync(
+    path.join(dir, 'catalog', 'site.json'),
+    JSON.stringify({ uploadEndpoint: '', turnstileSiteKey: 'K', programPdfHosts: ['drive.google.com', '*.hcmut.edu.vn'], officialProgramsPage: 'https://hcmut.edu.vn/bang-ctdt' }),
+  );
+  editJson(dir, 'catalog/programs/TEST_2019.json', (p) => {
+    p.ctdtUrl = 'https://drive.google.com/file/d/ctdt/view';
+    p.planUrl = 'https://dee.hcmut.edu.vn/khgd.pdf';
+  });
+  fs.writeFileSync(
+    path.join(dir, 'catalog', 'programs', 'TEST_2019_NHAP.json'),
+    JSON.stringify({ code: 'TEST_2019_NHAP', name: 'Chương trình thử', faculty: 'EE', year: '2019', listed: false, blocks: [{ id: 'B1', name: 'Khối nháp', required: false, courses: ['EE1009'] }], updated: '2026-10-01' }),
+  );
+  editJson(dir, 'catalog/courses/EE1009.json', (c) => {
+    c.programs.push({ program: 'TEST_2019_NHAP', block: 'B1', required: false });
+  });
+  const o = fs.mkdtempSync(path.join(os.tmpdir(), 'bk-lib-site-pdf-'));
+  buildSite({ root: dir, out: o });
+  return o;
+})();
+const readPdf = (p) => fs.readFileSync(path.join(outPdf, p), 'utf8');
+
+test('trang chương trình: nút CTĐT gốc và kế hoạch giảng dạy mở tab mới, kèm dòng ghi file do trường lưu', () => {
+  const html = readPdf('program/TEST_2019/index.html');
+  assert.match(
+    html,
+    /<p class="actions"><a class="btn" href="https:\/\/drive\.google\.com\/file\/d\/ctdt\/view" target="_blank" rel="noopener">Xem CTĐT gốc \(PDF của trường\)<\/a><a class="btn" href="https:\/\/dee\.hcmut\.edu\.vn\/khgd\.pdf" target="_blank" rel="noopener">Kế hoạch giảng dạy \(PDF\)<\/a><\/p><p class="muted small">File PDF do trường lưu trữ/,
+  );
+  // Đã có PDF của trường thì không cần link bảng CTĐT.
+  assert.doesNotMatch(html, /hcmut\.edu\.vn\/bang-ctdt/);
+  const en = readPdf('en/program/TEST_2019/index.html');
+  assert.match(en, />View the original curriculum \(university PDF\)<\/a>/);
+  assert.match(en, />Teaching plan \(PDF\)<\/a>/);
+  assert.match(en, /The PDF files are hosted by the university/);
+});
+
+test('trang chương trình không có link PDF: nút nhẹ tới bảng CTĐT của trường theo site.json', () => {
+  const html = readPdf('program/TEST_2019_NHAP/index.html');
+  assert.match(html, /<p class="actions"><a class="btn subtle" href="https:\/\/hcmut\.edu\.vn\/bang-ctdt" rel="noopener">Bảng CTĐT của trường<\/a><\/p>/);
+  assert.doesNotMatch(html, /File PDF do trường lưu trữ/);
+  assert.match(readPdf('en/program/TEST_2019_NHAP/index.html'), />University curriculum table<\/a>/);
+});
+
+test('chương trình listed: false: không vào danh sách trang chủ, trang khoa; trang riêng ghi bản nháp, không lập chỉ mục', () => {
+  for (const p of ['index.html', 'faculty/EE/index.html', 'en/index.html', 'en/faculty/EE/index.html']) {
+    assert.doesNotMatch(readPdf(p), /program\/TEST_2019_NHAP\//, p);
+    assert.match(readPdf(p), /program\/TEST_2019\//, p);
+  }
+  assert.match(readPdf('index.html'), /<summary><span class="prog-fac-name">Khoa Điện - Điện tử<\/span> <span class="muted small">1 chương trình<\/span><\/summary>/);
+  assert.match(readPdf('faculty/EE/index.html'), /<p class="muted">1 chương trình<\/p>/);
+  const draft = readPdf('program/TEST_2019_NHAP/index.html');
+  assert.match(draft, /<meta name="robots" content="noindex">/);
+  assert.match(draft, /Đây là bản nháp nguồn, không hiện trong danh sách chương trình\./);
+  assert.match(draft, /Xem bản chính: <a href="\.\.\/\.\.\/program\/TEST_2019\/">Chương trình thử \(2019\)<\/a>/);
+  assert.doesNotMatch(readPdf('program/TEST_2019/index.html'), /name="robots"/);
+  // Trang môn vẫn link tới bản nháp (không hỏng link), có nhãn bản nháp nguồn.
+  const course = readPdf('course/EE1009/index.html');
+  assert.match(course, /<a href="\.\.\/\.\.\/program\/TEST_2019_NHAP\/">Chương trình thử \(2019\)<\/a> <span class="tag">bản nháp nguồn<\/span>/);
+  assert.match(readPdf('en/course/EE1009/index.html'), /<span class="tag">draft source<\/span>/);
+});
+
+test('trang khoa Môn chung toàn trường có ghi chú riêng', () => {
+  const dir = copyFixture();
+  editJson(dir, 'catalog/faculties.json', (f) => {
+    f.faculties.push({ key: 'chung', name: { vi: 'Môn chung toàn trường', en: 'University-wide requirements' } });
+  });
+  const o = fs.mkdtempSync(path.join(os.tmpdir(), 'bk-lib-site-chung-'));
+  buildSite({ root: dir, out: o });
+  assert.match(fs.readFileSync(path.join(o, 'faculty/chung/index.html'), 'utf8'), /<p class="note">Môn và điều kiện tốt nghiệp áp dụng cho mọi ngành/);
+  assert.doesNotMatch(fs.readFileSync(path.join(o, 'faculty/EE/index.html'), 'utf8'), /áp dụng cho mọi ngành/);
 });

@@ -3,8 +3,8 @@
   "repo": "bk-study-library/hcmut-library",
   "generated": "2026-10-04",
   "counts": {
-    "faculties": 15,
-    "courses": 737,
+    "faculties": 16,
+    "courses": 739,
     "programs": 195,
     "items": 9
   },
@@ -31352,7 +31352,26 @@
               "program": "GEOPET_KY_THUAT_DIA_CHAT_2023",
               "block": "K14",
               "required": true
-            },
+            }
+          ],
+          "parts": [
+            "theory"
+          ],
+          "related": [],
+          "note": "Nhập từ nguồn công khai (truy cập 03/10/2026). CTĐT Kỹ thuật Địa chất 2023. Mã GE3239 xuất hiện với môn khác trong CTĐT 2024, xem GE3239-2024. Chờ người duyệt xác nhận.",
+          "updated": "2026-10-04",
+          "items": []
+        },
+        {
+          "id": "GE3239-2024",
+          "code": "GE3239",
+          "name": "Kỹ thuật nền móng công trình",
+          "nameEn": "Foundation engineering",
+          "credits": 3,
+          "faculty": "geopet",
+          "aliases": [],
+          "status": "active",
+          "programs": [
             {
               "program": "GEOPET_DIA_KY_THUAT_XAY_DUNG_2024",
               "block": "K09",
@@ -31363,7 +31382,7 @@
             "theory"
           ],
           "related": [],
-          "note": "Nhập từ nguồn công khai (truy cập 03/10/2026). Tên khác trong CTĐT: Kỹ thuật nền móng công trình (2024). Chờ người duyệt xác nhận.",
+          "note": "Nhập từ nguồn công khai (truy cập 03/10/2026). CTĐT Địa kỹ thuật Xây dựng 2024 dùng lại mã GE3239 cho môn này. Chờ người duyệt xác nhận.",
           "updated": "2026-10-04",
           "items": []
         },
@@ -33198,7 +33217,26 @@
               "program": "GEOPET_KY_THUAT_DIA_CHAT_2023",
               "block": "K14",
               "required": true
-            },
+            }
+          ],
+          "parts": [
+            "theory"
+          ],
+          "related": [],
+          "note": "Nhập từ nguồn công khai (truy cập 03/10/2026). CTĐT Kỹ thuật Địa chất 2023. Mã GE4165 xuất hiện với môn khác trong CTĐT 2024, xem GE4165-2024. Chờ người duyệt xác nhận.",
+          "updated": "2026-10-04",
+          "items": []
+        },
+        {
+          "id": "GE4165-2024",
+          "code": "GE4165",
+          "name": "Quản lý dự án",
+          "nameEn": "Project management",
+          "credits": 3,
+          "faculty": "geopet",
+          "aliases": [],
+          "status": "active",
+          "programs": [
             {
               "program": "GEOPET_DIA_KY_THUAT_XAY_DUNG_2024",
               "block": "K12",
@@ -33209,7 +33247,7 @@
             "theory"
           ],
           "related": [],
-          "note": "Nhập từ nguồn công khai (truy cập 03/10/2026). Tên khác trong CTĐT: Quản lý dự án (2024). Chờ người duyệt xác nhận.",
+          "note": "Nhập từ nguồn công khai (truy cập 03/10/2026). CTĐT Địa kỹ thuật Xây dựng 2024 dùng lại mã GE4165 cho môn này. Chờ người duyệt xác nhận.",
           "updated": "2026-10-04",
           "items": []
         },
@@ -44055,10 +44093,10 @@
       ]
     },
     {
-      "key": "unknown",
+      "key": "chung",
       "name": {
-        "vi": "Chưa xác định",
-        "en": "Unassigned"
+        "vi": "Môn chung toàn trường",
+        "en": "University-wide requirements"
       },
       "courses": [
         {
@@ -44067,7 +44105,7 @@
           "name": "Hoạt động sinh viên",
           "nameEn": "Student Activities",
           "credits": 0,
-          "faculty": "unknown",
+          "faculty": "chung",
           "aliases": [],
           "status": "active",
           "programs": [
@@ -44142,15 +44180,21 @@
               "required": true
             }
           ],
-          "parts": [
-            "theory"
-          ],
+          "parts": [],
           "related": [],
-          "note": "Nhập từ nguồn công khai (truy cập 03/10/2026).",
+          "note": "Nhập từ nguồn công khai (truy cập 03/10/2026). Điều kiện chung cho mọi ngành, không thuộc riêng khoa nào; đơn vị quản lý chưa xác minh.",
           "updated": "2026-10-04",
           "items": []
         }
       ]
+    },
+    {
+      "key": "unknown",
+      "name": {
+        "vi": "Chưa xác định",
+        "en": "Unassigned"
+      },
+      "courses": []
     }
   ],
   "programs": [
@@ -45706,6 +45750,7 @@
       "faculty": "dee",
       "year": "2024",
       "source": "https://drive.google.com/file/d/1QFg6WWMk80rm5tJ4el2SBEJuRyz6Uql9/view",
+      "ctdtUrl": "https://drive.google.com/file/d/1QFg6WWMk80rm5tJ4el2SBEJuRyz6Uql9/view",
       "blocks": [
         {
           "id": "K01",
@@ -51673,6 +51718,7 @@
       "faculty": "fme",
       "year": "2024",
       "source": "https://drive.google.com/file/d/1OjLKM0Ys8oKiiiaw5SZoHC1ZBq4ewZJ-/view",
+      "ctdtUrl": "https://drive.google.com/file/d/1OjLKM0Ys8oKiiiaw5SZoHC1ZBq4ewZJ-/view",
       "blocks": [
         {
           "id": "K01",
@@ -58424,7 +58470,7 @@
             "GE3237",
             "GE4155",
             "GE4169-2024",
-            "GE3239",
+            "GE3239-2024",
             "GE4157"
           ]
         },
@@ -58460,7 +58506,7 @@
           "courses": [
             "GE4161",
             "GE4163",
-            "GE4165",
+            "GE4165-2024",
             "GE4167"
           ]
         },
