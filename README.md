@@ -55,7 +55,7 @@ Thư viện xuất dữ liệu công khai ở `v1/` (cũng phục vụ tại `<w
 catalog/
   faculties.json            khoa và gợi ý tiền tố mã môn
   policy.json               quy định chung: loại nhận, dung lượng, đuôi file, học kỳ
-  site.json                 địa chỉ Worker nhận bài, khóa công khai Turnstile, host nhận cho link PDF CTĐT
+  site.json                 địa chỉ Worker nhận bài, khóa công khai Turnstile, host nhận cho link PDF CTĐT, cấu hình ô tìm tài liệu, ảnh xem trước khi chia sẻ link
   courses/<ID>.json         một file mỗi môn; ID cố định, không bao giờ đổi
   programs/<mã CTĐT>.json   chương trình đào tạo; khối có thể rỗng khi chưa có danh sách môn
 courses/<ID>/
@@ -93,6 +93,10 @@ Cần Node 22 trở lên. Phần chính của repo không có gói npm nào ph�
 ## Trang web
 
 GitHub Pages dựng trang từ `catalog/` và `courses/` mỗi khi `main` thay đổi (workflow `pages.yml`). Trang tĩnh, không đặt cookie, không có công cụ phân tích, không CDN, dùng font của máy. Chỉ trang Gửi tài liệu có widget Turnstile của Cloudflare để chống gửi tự động. Web có trang chủ với ô tìm kiếm (gõ không dấu được, tìm cả mã cũ), trang khoa, trang chương trình, trang môn, và các trang Đóng góp, Duyệt bài, Gỡ tài liệu. Bản tiếng Anh ở `/en/` chỉ có ba trang hướng dẫn ngắn.
+
+Ô tìm trang chủ tìm cả môn, chương trình và tài liệu. Tài liệu tìm theo tiêu đề, mô tả, mã và tên môn, loại, học kỳ (`HK241` hay `241`), giữa kỳ, cuối kỳ, tên giảng viên, và lọc được theo loại, học kỳ, kỳ thi, khoa. Câu tìm và bộ lọc nằm trên địa chỉ trang (`?q=`, `?khoa=`, `?loai=`, `?hk=`, `?ky=`) nên chia sẻ link được. Danh sách tài liệu `assets/items.json` sinh lúc dựng web, chỉ web dùng, không thuộc hợp đồng `v1/`.
+
+Mỗi trang có `canonical`, `hreflang` (khi có cả bản tiếng Việt và tiếng Anh), thẻ Open Graph và Twitter card với ảnh `site-src/assets/social-preview.png` (`socialImage` trong `catalog/site.json`). Lúc dựng web sinh thêm `sitemap.xml` (không gồm 404, trang chuyển hướng, chương trình `listed: false`) và `robots.txt`. `robots.txt` chỉ có hiệu lực ở gốc tên miền; khi web nằm ở đường dẫn con như hiện nay, khai `sitemap.xml` trực tiếp trong công cụ của máy tìm kiếm.
 
 ## Cài đặt luồng gửi tài liệu
 

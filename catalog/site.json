@@ -17,5 +17,8 @@
   ],
   "itemsPerGroup": 8,
   "programPdfHosts": ["drive.google.com", "hcmut.edu.vn", "*.hcmut.edu.vn"],
-  "officialProgramsPage": "https://hcmut.edu.vn/bai-viet/chuong-trinh-dao-tao-tu-khoa-2019"
+  "officialProgramsPage": "https://hcmut.edu.vn/bai-viet/chuong-trinh-dao-tao-tu-khoa-2019",
+  "docResultsMax": 10,
+  "docDescriptionMax": 200,
+  "socialImage": "assets/social-preview.png"
 }

@@ -563,3 +563,158 @@ test('tên giảng viên trên tài liệu mở ô tìm ở trang chủ', () => 
   const html = fs.readFileSync(path.join(o, 'course/EE1009/index.html'), 'utf8');
   if (html.includes('Nguyễn Văn Thử')) assert.match(html, /href="\.\.\/\.\.\/\?q=Nguy%E1%BB%85n%20V%C4%83n%20Th%E1%BB%AD">Nguyễn Văn Thử<\/a>/);
 });
+
+const SITE = 'https://bk-study-library.github.io/hcmut-library/';
+
+test('ô tìm trang chủ: items.json chỉ có mục chưa gỡ, mới thêm trước, link tới mục trên trang môn', () => {
+  const docs = JSON.parse(read('assets/items.json'));
+  assert.deepEqual(docs.map((d) => d.id), ['tom-tat-c1', 'link-doi-tac', 'prelab-2-tham-khao']);
+  const allowed = ['id', 'course', 'code', 'courseName', 'courseNameEn', 'faculty', 'title', 'description', 'type', 'term', 'examKind', 'chapter', 'teacher', 'lang', 'added', 'url'];
+  for (const d of docs) assert.deepEqual(Object.keys(d).filter((k) => !allowed.includes(k)), [], d.id);
+  assert.deepEqual(docs[0], {
+    id: 'tom-tat-c1', course: 'EE1009', code: 'EE1009', courseName: 'Kỹ thuật số', faculty: 'EE', title: 'Tóm tắt chương 1', type: 'summary', term: 'HK251', lang: 'vi', added: '2026-10-01', url: 'course/EE1009/#tom-tat-c1',
+  });
+  // Link trỏ tới đúng mục có trên trang môn.
+  for (const d of docs) assert.match(read(d.url.replace(/#.*/, 'index.html')), new RegExp(`<li class="item[^"]*" id="${d.id}">`));
+  // Không đưa file chỉ web dùng vào v1/.
+  assert.ok(!fs.existsSync(path.join(out, 'v1', 'items.json')));
+});
+
+test('items.json: mô tả dài bị cắt theo docDescriptionMax ở ranh giới từ', async () => {
+  const { truncate, docIndex } = await import('../scripts/build-site.mjs');
+  assert.equal(truncate('ngắn', 20), 'ngắn');
+  assert.equal(truncate('một hai ba bốn năm sáu bảy tám', 16), 'một hai ba...');
+  assert.ok(truncate('x'.repeat(50), 20).length <= 20);
+  const courses = new Map([['A1', { id: 'A1', code: 'A1', name: 'Môn', faculty: 'f' }]]);
+  const items = [
+    { id: 'a', course: 'A1', type: 'notes', title: 'A', description: 'chữ '.repeat(100), lang: 'vi', added: '2026-01-01', removed: false },
+    { id: 'b', course: 'A1', type: 'notes', title: 'B', lang: 'vi', added: '2026-02-01', removed: true },
+    { id: 'c', course: 'ZZ', type: 'notes', title: 'C', lang: 'vi', added: '2026-02-01', removed: false },
+  ];
+  const rows = docIndex(items, courses, { descriptionMax: 40 });
+  assert.deepEqual(rows.map((r) => r.id), ['a']);
+  assert.ok(rows[0].description.length <= 40 && rows[0].description.endsWith('...'));
+});
+
+test('trang chủ: ô lọc tài liệu có nhãn, chỉ gồm giá trị có trong items.json; nạp search-docs.js trước search.js', () => {
+  const html = read('index.html');
+  assert.match(html, /<label for="q-type">Loại tài liệu<\/label><select id="q-type"><option value="">Mọi loại<\/option><option value="summary">Tóm tắt<\/option><option value="prelab-reference">Prelab tham khảo<\/option><option value="link">Link<\/option><\/select>/);
+  assert.match(html, /<label for="q-term">Học kỳ<\/label><select id="q-term"><option value="">Mọi học kỳ<\/option><option value="HK251">HK251<\/option><\/select>/);
+  // Fixture không có mục nào ghi kỳ thi: không có ô này.
+  assert.doesNotMatch(html, /id="q-kind"/);
+  assert.match(html, /<div id="q-docs" hidden>\s*<h2 class="results-head">Tài liệu<\/h2>/);
+  assert.ok(html.indexOf('id="q-prog"') < html.indexOf('id="q-docs"') && html.indexOf('id="q-docs"') < html.indexOf('id="q-status"'));
+  assert.ok(html.indexOf('search-core.js') < html.indexOf('search-docs.js') && html.indexOf('search-docs.js') < html.indexOf('assets/search.js'));
+  const strings = JSON.parse(html.match(/<script type="application\/json" id="search-strings">([^<]*)<\/script>/)[1]);
+  assert.equal(strings.docs.max, 10);
+  assert.deepEqual(strings.docs.types.summary, ['Tóm tắt', 'Summaries']);
+  const en = read('en/index.html');
+  assert.match(en, /<label for="q-type">Material type<\/label>/);
+  assert.deepEqual(JSON.parse(en.match(/id="search-strings">([^<]*)</)[1]).docs.types.summary, ['Summaries', 'Tóm tắt']);
+});
+
+test('trang chủ: có mục ghi kỳ thi thì có ô Kỳ thi', () => {
+  const dir = copyFixture();
+  editJson(dir, 'courses/EE1009/items/tom-tat-c1.json', (it) => {
+    it.type = 'exam-past';
+    it.examKind = 'ck';
+  });
+  const o = fs.mkdtempSync(path.join(os.tmpdir(), 'bk-lib-site-ky-'));
+  buildSite({ root: dir, out: o });
+  const html = fs.readFileSync(path.join(o, 'index.html'), 'utf8');
+  assert.match(html, /<label for="q-kind">Kỳ thi<\/label><select id="q-kind"><option value="">Mọi kỳ thi<\/option><option value="ck">Cuối kỳ<\/option><\/select>/);
+  assert.match(fs.readFileSync(path.join(o, 'en/index.html'), 'utf8'), /<option value="ck">Final<\/option>/);
+});
+
+const metaOf = (html, attr, key) => {
+  const m = html.match(new RegExp(`<meta ${attr}="${key}" content="([^"]*)">`));
+  return m ? m[1] : null;
+};
+
+test('mọi trang có canonical tuyệt đối, Open Graph và Twitter card; 404 không có canonical', () => {
+  for (const f of allHtml()) {
+    const html = fs.readFileSync(f, 'utf8');
+    if (html.includes('http-equiv="refresh"')) continue;
+    const rel = path.relative(out, f).split(path.sep).join('/');
+    const url = SITE + rel.replace(/(^|\/)index\.html$/, '$1');
+    if (rel === '404.html') {
+      assert.doesNotMatch(html, /rel="canonical"/);
+      assert.match(html, /<meta name="robots" content="noindex">/);
+      assert.equal(metaOf(html, 'property', 'og:url'), null);
+    } else {
+      assert.match(html, new RegExp(`<link rel="canonical" href="${url.replace(/[.?]/g, '\\$&')}">`), rel);
+      assert.equal(metaOf(html, 'property', 'og:url'), url, rel);
+    }
+    for (const k of ['og:title', 'og:description', 'og:type', 'og:site_name', 'og:locale', 'og:image']) assert.ok(metaOf(html, 'property', k), `${rel}: ${k}`);
+    assert.equal(metaOf(html, 'property', 'og:locale'), rel.startsWith('en/') ? 'en_US' : 'vi_VN', rel);
+    assert.equal(metaOf(html, 'property', 'og:image'), `${SITE}assets/social-preview.png`);
+    assert.equal(metaOf(html, 'name', 'twitter:card'), 'summary_large_image', rel);
+  }
+  assert.ok(fs.existsSync(path.join(out, 'assets', 'social-preview.png')));
+  assert.equal(metaOf(read('index.html'), 'property', 'og:image:width'), '1280');
+  assert.equal(metaOf(read('index.html'), 'property', 'og:image:height'), '640');
+});
+
+test('trang môn: og:title, description ghi mã, tên môn và số tài liệu', () => {
+  const html = read('course/EE1009/index.html');
+  assert.equal(metaOf(html, 'property', 'og:title'), 'EE1009 Kỹ thuật số');
+  const desc = metaOf(html, 'name', 'description');
+  assert.match(desc, /^Môn EE1009 Kỹ thuật số: 2 tài liệu/);
+  assert.equal(metaOf(html, 'property', 'og:description'), desc);
+  assert.match(metaOf(read('en/course/EE1009/index.html'), 'name', 'description'), /^EE1009 .+: 2 items/);
+  assert.match(metaOf(read('course/400111/index.html'), 'name', 'description'), /chưa có tài liệu/);
+});
+
+test('hreflang vi, en, x-default tuyệt đối khi trang có cả hai bản; trang Gửi tài liệu chỉ có tiếng Việt thì không', () => {
+  for (const [p, vi, en] of [
+    ['course/EE1009/index.html', 'course/EE1009/', 'en/course/EE1009/'],
+    ['en/course/EE1009/index.html', 'course/EE1009/', 'en/course/EE1009/'],
+    ['index.html', '', 'en/'],
+    ['en/takedown/index.html', 'takedown/', 'en/takedown/'],
+  ]) {
+    const html = read(p);
+    assert.match(html, new RegExp(`<link rel="alternate" hreflang="vi" href="${SITE}${vi}">`), p);
+    assert.match(html, new RegExp(`<link rel="alternate" hreflang="en" href="${SITE}${en}">`), p);
+    assert.match(html, new RegExp(`<link rel="alternate" hreflang="x-default" href="${SITE}${vi}">`), p);
+  }
+  assert.doesNotMatch(read('gui-tai-lieu/index.html'), /<link rel="alternate"/);
+  assert.doesNotMatch(read('404.html'), /<link rel="alternate"/);
+});
+
+test('trang chuyển hướng: canonical tuyệt đối tới ID cố định', () => {
+  assert.match(read('course/402030/index.html'), new RegExp(`<link rel="canonical" href="${SITE}course/EE1009/">`));
+  assert.match(read('en/course/402030/index.html'), new RegExp(`<link rel="canonical" href="${SITE}en/course/EE1009/">`));
+});
+
+test('robots.txt cho phép mọi trang, trỏ tới sitemap.xml', () => {
+  assert.equal(read('robots.txt'), `User-agent: *\nAllow: /\n\nSitemap: ${SITE}sitemap.xml\n`);
+});
+
+test('sitemap.xml: mọi trang thật, địa chỉ tuyệt đối, lastmod theo dữ liệu; không có 404, trang chuyển hướng, trang noindex', () => {
+  const xml = read('sitemap.xml');
+  assert.match(xml, /^<\?xml version="1\.0" encoding="UTF-8"\?>\n<urlset xmlns="http:\/\/www\.sitemaps\.org\/schemas\/sitemap\/0\.9">/);
+  const locs = [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]);
+  for (const p of ['', 'en/', 'course/EE1009/', 'en/course/EE1009/', 'faculty/EE/', 'program/TEST_2019/', 'contribute/', 'gui-tai-lieu/']) assert.ok(locs.includes(SITE + p), p);
+  for (const l of locs) assert.ok(l.startsWith(SITE), l);
+  assert.ok(!locs.some((l) => /404|course\/402030\//.test(l)));
+  assert.deepEqual(locs, [...locs].sort());
+  // Mọi trang HTML có trong sitemap, trừ 404 và trang chuyển hướng.
+  const pages = allHtml().map((f) => path.relative(out, f).split(path.sep).join('/')).filter((p) => p !== '404.html' && !read(p).includes('http-equiv="refresh"'));
+  assert.equal(locs.length, pages.length);
+  assert.match(xml, new RegExp(`<url><loc>${SITE}course/EE1009/</loc><lastmod>2026-10-01</lastmod></url>`));
+  // Chương trình listed: false không vào sitemap.
+  const draft = fs.readFileSync(path.join(outPdf, 'sitemap.xml'), 'utf8');
+  assert.doesNotMatch(draft, /TEST_2019_NHAP/);
+  assert.match(draft, /program\/TEST_2019\//);
+});
+
+test('site.json không có socialImage thì không ghi og:image, Twitter card dạng summary', () => {
+  const dir = copyFixture();
+  fs.writeFileSync(path.join(dir, 'catalog', 'site.json'), JSON.stringify({ uploadEndpoint: '', turnstileSiteKey: 'K' }));
+  const o = fs.mkdtempSync(path.join(os.tmpdir(), 'bk-lib-site-noimg-'));
+  buildSite({ root: dir, out: o });
+  const html = fs.readFileSync(path.join(o, 'index.html'), 'utf8');
+  assert.doesNotMatch(html, /og:image/);
+  assert.equal(metaOf(html, 'name', 'twitter:card'), 'summary');
+  assert.ok(metaOf(html, 'property', 'og:title'));
+});
