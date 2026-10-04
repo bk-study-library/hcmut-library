@@ -67,6 +67,7 @@ function fakeGitHub({ state = 'open', runs = [{ name: 'validate', status: 'compl
     if (p === `/repos/${REPO}/pulls/7` && method === 'GET') return json({ number: 7, state, merged_at: null, head: { ref: `upload/${CODE}`, sha: 'head1' } });
     if (p === `/repos/${REPO}/commits/head1/check-runs`) return json({ check_runs: runs });
     if (p === `/repos/${REPO}/commits/head1`) return json({ commit: { message } });
+    if (p === `/repos/${REPO}/git/commits/head1`) return json({ tree: { sha: "tree1" } });
     if (p === `/repos/${REPO}/compare/main...upload/${CODE}`) return json({ files: Object.keys(files).map((filename) => ({ filename, status: 'added' })) });
     const content = /^\/repos\/own\/lib\/contents\/(courses\/.+)$/.exec(p);
     if (content) {
@@ -208,7 +209,10 @@ describe('trang duyệt và Hoàn tất duyệt', () => {
     const fetch = fakeGitHub();
     const res = await decide(fetch, { 'd-chuong-1': 'keep', 'd-chuong-2': 'drop', 'r-chuong-2': 'Trùng tài liệu cũ' });
     expect(await res.text()).toContain(REVIEW_MESSAGES.waiting(1));
-    expect(fetch.writes.find((w) => w.method === 'DELETE')).toMatchObject({ path: PATH_B, body: { sha: `sha-${PATH_B}`, branch: `upload/${CODE}` } });
+    // Một commit bỏ mọi file không duyệt, cha là đúng commit đã kiểm.
+    expect(fetch.writes.find((w) => w.path.endsWith('/git/trees')).body).toEqual({ base_tree: 'tree1', tree: [{ path: PATH_B, mode: '100644', type: 'blob', sha: null }] });
+    expect(fetch.writes.find((w) => w.path.endsWith('/git/commits')).body.parents).toEqual(['head1']);
+    expect(fetch.writes.find((w) => w.method === 'PATCH' && w.path.endsWith(`/git/refs/heads/upload/${CODE}`)).body.force).toBe(false);
     expect(fetch.writes.some((w) => w.path.endsWith('/merge'))).toBe(false);
     expect(await env.QUARANTINE.head(`clean/${CODE}/b.pdf`)).toBeNull();
     expect(await env.QUARANTINE.head(`sha/${SHA_B}`)).toBeNull();
@@ -320,5 +324,30 @@ describe('form từ trang duyệt có Referrer-Policy no-referrer', () => {
     const res = await decide(fetch, { 'd-chuong-1': 'keep', 'd-chuong-2': 'keep' }, { Origin: 'null', 'Sec-Fetch-Site': 'same-origin' });
     expect(res.status).toBe(200);
     expect(fetch.writes.some((w) => w.path.endsWith('/pulls/7/merge'))).toBe(true);
+  });
+});
+
+describe('lý do chọn sẵn và Duyệt tất cả', () => {
+  const ids = ['chuong-1', 'chuong-2'];
+  it('lý do chọn sẵn đủ; ghi thêm thì nối vào; Lý do khác phải ghi; mã lạ như không chọn', () => {
+    expect(parseDecisions({ 'd-chuong-1': 'keep', 'd-chuong-2': 'drop', 'p-chuong-2': 'trung' }, ids).drop).toEqual([{ id: 'chuong-2', reason: 'Trùng tài liệu đã có trong thư viện' }]);
+    expect(parseDecisions({ 'd-chuong-1': 'keep', 'd-chuong-2': 'drop', 'p-chuong-2': 'chat-luong', 'r-chuong-2': 'Trang 3 bị mờ' }, ids).drop[0].reason).toBe('File mờ, thiếu trang hoặc khó đọc. Trang 3 bị mờ');
+    expect(parseDecisions({ 'd-chuong-1': 'keep', 'd-chuong-2': 'drop', 'p-chuong-2': 'khac' }, ids)).toEqual({ ok: false, error: REVIEW_MESSAGES.reason });
+    expect(parseDecisions({ 'd-chuong-1': 'keep', 'd-chuong-2': 'drop', 'p-chuong-2': '<x>' }, ids).ok).toBe(false);
+  });
+
+  it('all=keep duyệt mọi file, bỏ qua lựa chọn từng file', async () => {
+    expect(parseDecisions({ all: 'keep', 'd-chuong-2': 'drop' }, ids)).toEqual({ ok: true, keep: ids, drop: [] });
+    const fetch = fakeGitHub();
+    const res = await decide(fetch, { all: 'keep' });
+    expect(res.status).toBe(200);
+    expect(fetch.writes.some((w) => w.path.endsWith('/pulls/7/merge'))).toBe(true);
+  });
+
+  it('trang có nút Duyệt cả 2 file, các lý do chọn sẵn và thanh Hoàn tất', async () => {
+    const html = await (await call(`/xem-duyet/${CODE}`, { fetch: fakeGitHub(), headers: await auth() })).text();
+    expect(html).toContain('name="all" value="keep" formnovalidate>Duyệt cả 2 file');
+    expect(html).toContain('name="p-chuong-2" value="trung"');
+    expect(html).toContain('<div class="bar">');
   });
 });

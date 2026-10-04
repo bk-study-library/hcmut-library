@@ -75,6 +75,14 @@ export function branchCode(branch) {
   return m[1];
 }
 
+// Item đã qua bước apply: file nằm ở clean/ trong bucket quarantine và đã có link Release của repo.
+export function alreadyScanned(item, repo) {
+  const f = item && Array.isArray(item.files) && item.files.length === 1 ? item.files[0] : null;
+  if (!f || !repo) return false;
+  const m = QUARANTINE.exec(String(f.quarantine || ''));
+  return Boolean(m && m[1] === 'clean' && m[3] === f.name && SHA256.test(String(f.sha256 || '')) && String(f.url || '').startsWith(`https://github.com/${repo}/releases/download/`));
+}
+
 // Sách tham khảo không có file đi đường nhẹ: light 'true', mã bài lấy từ branch.
 // Mục khác cần đúng một file trong bucket quarantine như quarantineInfo.
 export function locateInfo(item, branch) {
@@ -396,8 +404,18 @@ export function readPrFiles(p) {
 function locate(a) {
   const policy = loadPolicy(TOOL_ROOT);
   const rels = pickItemFiles(readPrFiles(a.files), policy.batchMaxFiles || 1);
-  const list = batchManifest(rels, (rel) => readJson(path.join(a.pr, rel)), a.branch);
-  const out = { ...list[0], course: ITEM_FILE.exec(list[0].item)[1], count: String(list.length), manifest: JSON.stringify(list) };
+  const items = Object.fromEntries(rels.map((rel) => [rel, readJson(path.join(a.pr, rel))]));
+  const list = batchManifest(rels, (rel) => items[rel], a.branch);
+  // Mọi file của bài đã quét xong (người duyệt vừa bỏ bớt file trên trang duyệt): chỉ dựng lại generated file.
+  const rebuild = list.every((x) => x.light === 'false' && alreadyScanned(items[x.item], a.repo));
+  const out = {
+    ...list[0],
+    course: ITEM_FILE.exec(list[0].item)[1],
+    count: String(list.length),
+    manifest: JSON.stringify(list),
+    items: rels.join('\n'),
+    rebuild: String(rebuild),
+  };
   writeOutputs(a['output-file'], out);
   return out;
 }
@@ -420,6 +438,26 @@ function scanLimits(policy) {
 const OFFICE = new Set(['.docx', '.pptx', '.xlsx']);
 const IMAGES = new Set(['.png', '.jpg']);
 
+// Quét cả bên trong file nén; file mã hóa hay vượt giới hạn quét thì ClamAV báo Heuristics.Encrypted
+// hay Heuristics.Limits.Exceeded thay vì coi là sạch.
+const CLAMSCAN_ARGS = ['--no-summary', '--scan-archive=yes', '--alert-encrypted=yes', '--alert-exceeds-max=yes'];
+
+// Quét mọi file của bài trong một lần chạy clamscan (nạp cơ sở dữ liệu một lần thay vì mỗi file một lần).
+// --root <thư mục in/> --out <file JSON { status, stdout }>.
+function clamscanAll(a) {
+  toolTimeoutMs = scanLimits(loadPolicy(TOOL_ROOT)).toolTimeoutSeconds * 1000;
+  const r = tool('clamscan', CLAMSCAN_ARGS.concat('-r', path.resolve(a.root)), [0, 1, 2]);
+  fs.writeFileSync(a.out, JSON.stringify({ status: r.status, stdout: r.stdout }));
+}
+
+// Phần kết quả clamscanAll của một file: dòng "<đường dẫn>: <tên> FOUND" của file đó. Lỗi (mã 2) là lỗi chung.
+export function clamFor(all, src) {
+  if (all.status !== 0 && all.status !== 1) return { status: all.status, stdout: '' };
+  const prefix = `${path.resolve(src)}: `;
+  const lines = String(all.stdout).split('\n').filter((l) => l.startsWith(prefix) && / FOUND\r?$/.test(l));
+  return { status: lines.length ? 1 : 0, stdout: lines.join('\n') };
+}
+
 function scan(a) {
   const policy = loadPolicy(TOOL_ROOT);
   const limits = scanLimits(policy);
@@ -434,9 +472,8 @@ function scan(a) {
   fs.mkdirSync(a.out, { recursive: true });
   const write = (r) => fs.writeFileSync(path.join(a.out, 'result.json'), JSON.stringify(r));
 
-  // Quét cả bên trong file nén; file mã hóa hay vượt giới hạn quét thì ClamAV báo Heuristics.Encrypted
-  // hay Heuristics.Limits.Exceeded thay vì coi là sạch.
-  const av = tool('clamscan', ['--no-summary', '--scan-archive=yes', '--alert-encrypted=yes', '--alert-exceeds-max=yes', src], [0, 1, 2]);
+  // --clam: kết quả clamscanAll của cả bài (nạp cơ sở dữ liệu ClamAV một lần); không có thì quét riêng file này.
+  const av = a.clam ? clamFor(readJson(a.clam), src) : tool('clamscan', CLAMSCAN_ARGS.concat(src), [0, 1, 2]);
   const verdict = parseClamscan(av.stdout, av.status);
   if (verdict.infected) return write({ code: info.code, name: info.name, virus: verdict.signature });
 
@@ -489,7 +526,7 @@ function applyOne({ itemPath, resultPath, cleanDir, repo, policy, assets }) {
   const item = readJson(itemPath);
   const info = quarantineInfo(item);
   const r = validateResult(readJson(resultPath), info);
-  if (r.virus) return { info, report: renderReport({ code: info.code, virus: r.virus }), values: { virus: r.virus, quarantine: '', clean: '', manual: 'false' } };
+  if (r.virus) return { info, file: { name: info.name, virus: r.virus }, values: { virus: r.virus, quarantine: '', clean: '', manual: 'false' } };
 
   // Không tin con số trong kết quả: tính lại trên chính file sẽ đưa lên kho.
   const cleanFile = path.join(cleanDir, info.name);
@@ -505,30 +542,25 @@ function applyOne({ itemPath, resultPath, cleanDir, repo, policy, assets }) {
     existingAssets: assets.get(tag),
   });
   fs.writeFileSync(itemPath, `${JSON.stringify(next, null, 2)}\n`);
-  const report = renderReport({
-    code: info.code, virus: null, metadataRemoved: r.metadataRemoved, hasText: r.hasText, pii: r.pii,
-    piiChecked: r.piiChecked, url: next.files[0].url, unscannable: r.unscannable, warnings: r.warnings,
-    textPages: r.textPages, totalPages: r.totalPages,
-    reviewUrl: reviewUrl(readJson(path.join(TOOL_ROOT, 'catalog', 'site.json')), info.code),
-  });
+  const file = {
+    name: info.name, size: r.size, virus: null, hasText: r.hasText, pii: r.pii, piiChecked: r.piiChecked,
+    unscannable: r.unscannable, warnings: r.warnings, textPages: r.textPages, totalPages: r.totalPages,
+  };
   // manual=true: workflow gắn label can-xem-tay. Tính lại từ mã cảnh báo, không lấy cờ từ job scan.
-  return { info, report, values: { virus: '', quarantine: next.files[0].quarantine, clean: cleanFile, manual: String(needsManualReview(r)) } };
+  return { info, file, values: { virus: '', quarantine: next.files[0].quarantine, clean: cleanFile, manual: String(needsManualReview(r)) } };
 }
 
 function apply(a) {
   const policy = loadPolicy(TOOL_ROOT);
   const one = applyOne({ itemPath: a.item, resultPath: a.result, cleanDir: a['clean-dir'], repo: a.repo, policy, assets: new Map() });
-  fs.writeFileSync(a.report, one.report);
+  fs.writeFileSync(a.report, batchReport(one.info.code, [one]));
   writeOutputs(a['output-file'], one.values);
 }
 
-// Báo cáo đợt gửi: một comment, mỗi file một mục. Một file thì giữ nguyên báo cáo cũ.
+// Comment kết quả của bài (một hay nhiều file): một bảng, một link duyệt.
 export function batchReport(code, parts) {
-  if (parts.length === 1) return parts[0].report;
-  const body = (r) => r.split('\n').slice(3).join('\n').trim();
-  const out = [REPORT_MARKER, `## Kết quả kiểm đợt gửi ${code} (${parts.length} tài liệu)`, ''];
-  parts.forEach((x, i) => out.push(`### ${i + 1}. ${x.name}`, '', body(x.report), ''));
-  return `${out.join('\n').trim()}\n`;
+  const site = readJson(path.join(TOOL_ROOT, 'catalog', 'site.json'));
+  return renderReport({ code, reviewUrl: reviewUrl(site, code), files: parts.map((x) => x.file) });
 }
 
 // Đợt gửi: --manifest <file JSON của locate> --pr <thư mục PR> --res-dir <thư mục có <i>/result.json, <i>/clean>
@@ -605,6 +637,7 @@ async function main(argv) {
   const a = args(argv);
   if (cmd === 'locate') console.log(JSON.stringify(locate(a)));
   else if (cmd === 'scan') scan(a);
+  else if (cmd === 'clamscan-all') clamscanAll(a);
   else if (cmd === 'apply') apply(a);
   else if (cmd === 'apply-batch') applyBatch(a);
   else if (cmd === 'manifest-lines') manifestLines(a);

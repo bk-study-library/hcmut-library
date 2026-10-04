@@ -196,11 +196,16 @@ export class GitHub {
     return (Array.isArray(data.check_runs) ? data.check_runs : []).map((c) => ({ name: String(c.name), status: String(c.status), conclusion: c.conclusion === null ? null : String(c.conclusion) }));
   }
 
-  async deleteFile(path, branch, message) {
-    const cur = await this.getFile(path, branch);
-    if (!cur) return false;
-    await this.#call('DELETE', `/contents/${encodePath(path)}`, { message, sha: cur.sha, branch });
-    return true;
+  // Xóa nhiều file trong một commit (Git Data API), để workflow chỉ chạy một lần. Commit cha phải là
+  // expectSha: branch đã có commit mới hơn thì GitHub từ chối cập nhật ref (không force).
+  async deleteFiles(paths, branch, message, expectSha) {
+    const res = await this.#call('GET', `/git/commits/${encodePath(expectSha)}`);
+    const base = (await res.json()).tree.sha;
+    const tree = paths.map((path) => ({ path, mode: '100644', type: 'blob', sha: null }));
+    const t = await (await this.#call('POST', '/git/trees', { base_tree: base, tree })).json();
+    const c = await (await this.#call('POST', '/git/commits', { message, tree: t.sha, parents: [expectSha] })).json();
+    await this.#call('PATCH', `/git/refs/heads/${encodePath(branch)}`, { sha: c.sha, force: false });
+    return c.sha;
   }
 
   async comment(number, body) {

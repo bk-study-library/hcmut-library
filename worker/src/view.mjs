@@ -2,6 +2,7 @@
 // (/xem/<mã>?k=<mã bí mật>). File trong bucket quarantine không bao giờ công khai: mọi đường đều kiểm
 // quyền trước khi đọc R2. Không ghi log mã bí mật, IP hay tên file.
 import { SITE_URL, TYPES, EXAM_KINDS, formatSize } from '../../scripts/lib/labels.mjs';
+import { REVIEW_REASONS } from './review.mjs';
 
 export const CODE = /^[A-Za-z0-9]{10}$/;
 // 32 byte base64url không đệm: 43 ký tự.
@@ -51,9 +52,14 @@ export const VIEW_MESSAGES = {
   decideTitle: 'Quyết định',
   keep: 'Duyệt',
   drop: 'Không duyệt',
-  reasonLabel: 'Lý do không duyệt (gửi cho người gửi qua email nếu họ để lại)',
+  reasonLabel: 'Lý do (gửi cho người gửi nếu họ để lại email)',
+  reasonExtra: 'Ghi thêm cho người gửi (bắt buộc khi chọn Lý do khác)',
+  keepAll: (n) => `Duyệt cả ${n} file`,
+  moreInfo: 'Thông tin khác',
+  fileCount: (n) => `${n} file`,
+  totalSize: (s) => `tổng ${s}`,
   submit: 'Hoàn tất duyệt',
-  submitNote: 'Bấm Hoàn tất: file không duyệt bị bỏ khỏi bài, phần còn lại được merge vào thư viện. Không duyệt hết thì bài bị đóng.',
+  submitNote: 'File không duyệt bị bỏ, phần còn lại được merge. Không duyệt file nào thì bài bị đóng.',
   checksWait: 'Bước kiểm file trên GitHub chưa xong. Xem nội dung trước, rồi tải lại trang khi bước kiểm xong để duyệt.',
   closedNote: 'Bài này đã đóng hoặc đã merge, không duyệt được nữa.',
   resultTitle: 'Kết quả duyệt',
@@ -66,20 +72,36 @@ const esc = (s) =>
 // Bảng màu giống site (site-src/assets), sáng tối theo hệ thống.
 const CSS = [
   ':root{color-scheme:light dark;--bg:#fafafa;--surface:#fff;--text:#242424;--muted:#616161;--border:#e0e0e0;',
-  '--accent:#0f6cbd;--accent-text:#fff;--warn:#8a3707;--warn-soft:#fdf6f3}',
+  '--accent:#0f6cbd;--accent-text:#fff;--warn:#8a3707;--warn-soft:#fdf6f3;--ok:#107c10}',
   '@media (prefers-color-scheme:dark){:root{--bg:#1f1f1f;--surface:#292929;--text:#fff;--muted:#c7c7c7;--border:#3d3d3d;',
-  '--accent:#479ef5;--accent-text:#0a0a0a;--warn:#f4bfab;--warn-soft:#3b1f14}}',
+  '--accent:#479ef5;--accent-text:#0a0a0a;--warn:#f4bfab;--warn-soft:#3b1f14;--ok:#54b054}}',
   'body{margin:0;background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,-apple-system,Roboto,"Noto Sans",Arial,sans-serif;line-height:1.5}',
-  'main{max-width:40rem;margin:2rem auto;padding:1.5rem 16px;background:var(--surface);border:1px solid var(--border);border-radius:6px}',
+  'main{max-width:46rem;margin:2rem auto;padding:1.5rem 16px;background:var(--surface);border:1px solid var(--border);border-radius:6px}',
   'h1{font-size:1.4rem;margin:0 0 1rem}a{color:var(--accent)}.muted{color:var(--muted)}',
   '.warn{color:var(--warn);background:var(--warn-soft);padding:.75rem;border-radius:6px}',
   '.btn{display:inline-block;padding:.5rem 1rem;border-radius:6px;background:var(--accent);color:var(--accent-text);text-decoration:none}',
   'h2{font-size:1.1rem;margin:1.5rem 0 .5rem}.actions{display:flex;flex-wrap:wrap;gap:8px}',
   'dl.fields{margin:0 0 1rem}dl.fields dt{font-weight:600;margin-top:.75rem}dl.fields dd{margin:.25rem 0 0;white-space:pre-wrap;overflow-wrap:anywhere}',
-  'section.doc{border:1px solid var(--border);border-radius:8px;padding:1rem;margin:1rem 0}fieldset{border:0;margin:.75rem 0 0;padding:0}',
-  'fieldset label{display:inline-flex;align-items:center;gap:.4rem;margin-right:1rem;min-height:2rem}',
-  'textarea{width:100%;box-sizing:border-box;min-height:4rem;font:inherit;padding:.5rem;border:1px solid var(--border);border-radius:6px;background:var(--surface);color:var(--text)}',
-  'button.btn{border:0;font:inherit;cursor:pointer}',
+  '.small{font-size:.875rem}.sum{margin:-.5rem 0 1rem}p{margin:.25rem 0}',
+  '.btn.subtle{background:transparent;color:var(--accent);border:1px solid var(--border)}',
+  'section.doc{border:1px solid var(--border);border-radius:8px;padding:.875rem 1rem;margin:.75rem 0}',
+  'section.doc:has(.keep input:checked){border-color:var(--ok)}section.doc:has(.drop input:checked){border-color:var(--warn)}',
+  '.head{display:flex;gap:.75rem;align-items:flex-start;flex-wrap:wrap}.head .info{flex:1 1 14rem;min-width:0}',
+  '.head h2{font-size:1rem;margin:0;overflow-wrap:anywhere}.name{overflow-wrap:anywhere}',
+  '.num{flex:none;width:1.75rem;height:1.75rem;border-radius:50%;background:var(--bg);border:1px solid var(--border);display:grid;place-items:center;font-size:.875rem}',
+  'details{margin:.5rem 0 0}summary{cursor:pointer;color:var(--accent);font-size:.875rem}',
+  'fieldset{border:0;margin:.75rem 0 0;padding:0;min-width:0}.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}',
+  '.choice{display:grid;grid-template-columns:1fr 1fr;gap:8px}',
+  '.opt{display:block;cursor:pointer}.opt input{position:absolute;opacity:0}',
+  '.opt span{display:block;text-align:center;padding:.6rem;border:1px solid var(--border);border-radius:6px;font-weight:600}',
+  '.opt input:focus-visible+span{outline:2px solid var(--accent);outline-offset:2px}',
+  '.keep input:checked+span{background:var(--ok);border-color:var(--ok);color:var(--accent-text)}',
+  '.drop input:checked+span{background:var(--warn-soft);border-color:var(--warn);color:var(--warn)}',
+  '.why{display:none;border:1px solid var(--border);border-radius:6px;padding:.5rem .75rem}section.doc:has(.drop input:checked) .why{display:block}',
+  '.why legend{font-size:.875rem;font-weight:600;padding:0 .25rem}.why label{display:flex;gap:.5rem;align-items:flex-start;margin:.35rem 0}',
+  'textarea{width:100%;box-sizing:border-box;min-height:3.5rem;margin-top:.5rem;font:inherit;padding:.5rem;border:1px solid var(--border);border-radius:6px;background:var(--surface);color:var(--text)}',
+  '.bar{position:sticky;bottom:0;display:flex;gap:.75rem;align-items:center;justify-content:space-between;flex-wrap:wrap;margin:1rem -1rem -1.5rem;padding:.75rem 1rem;background:var(--surface);border-top:1px solid var(--border)}',
+  'button.btn{border:0;font:inherit;cursor:pointer}button.btn.subtle{border:1px solid var(--border)}',
 ].join('');
 
 const SECURITY_HEADERS = {
@@ -314,44 +336,69 @@ function newCourseSection(c) {
   return out.join('');
 }
 
-// Trang duyệt đợt gửi: mỗi file một khối (chữ người gửi, nút xem, tải, chọn Duyệt hay Không duyệt và lý do),
-// cuối trang nút Hoàn tất gửi form về /xem-duyet/<mã>/duyet. docs: [{ id, item, file }] (file: locateFile
-// theo tên). canDecide: PR còn mở và bước kiểm đã qua; open: PR còn mở.
+// Trang duyệt: mỗi file một thẻ gọn (tiêu đề, loại, file và cỡ, nút Xem và Tải, thông tin khác gập lại),
+// chọn Duyệt hay Không duyệt bằng hai nút lớn; chọn Không duyệt thì hiện lý do chọn sẵn và ô ghi thêm
+// (chỉ CSS, trang không chạy script). Nút Duyệt tất cả và thanh Hoàn tất duyệt dính cuối màn hình.
+// docs: [{ id, item, file }] (file: locateFile theo tên). canDecide: PR còn mở và bước kiểm đã qua.
+const CARD_FIELDS = new Set(['Tiêu đề', 'Loại', 'Học kỳ', 'Loại kiểm tra', 'Giảng viên', 'Môn']);
+
 export function reviewBatchPage({ code, docs, newCourse = null, open = true, canDecide = false, error = '' }) {
   const m = VIEW_MESSAGES;
+  const decide = open && canDecide && docs.length > 0;
   const parts = [];
+  const total = docs.reduce((s, d) => s + (Number.isFinite(d.file?.size) ? d.file.size : 0), 0);
+  const course = docs.map((d) => fieldText(d.item?.course)).find(Boolean) ?? '';
+  parts.push(para([course, m.fileCount(docs.length), total ? m.totalSize(formatSize(total)) : ''].filter(Boolean).join(', '), 'muted sum'));
   if (error) parts.push(para(error, 'warn'));
   if (newCourse) parts.push(newCourseSection(newCourse));
   if (!docs.length) parts.push(para(m.noItem, 'warn'));
-  else parts.push(para(m.fieldsNote, 'muted'));
   if (!open) parts.push(para(m.closedNote, 'warn'));
-  else if (!canDecide) parts.push(para(m.checksWait, 'warn'));
-  const blocks = docs.map((d, i) => {
+  else if (!canDecide && docs.length) parts.push(para(m.checksWait, 'warn'));
+  if (docs.length) parts.push(para(m.fieldsNote, 'muted small'));
+
+  const cards = docs.map((d, i) => {
+    const id = esc(d.id);
     const rows = itemFieldRows(d.item);
-    const out = [`<section class="doc"><h2>${esc(m.batchFile(i + 1, docs.length))}</h2>`];
-    out.push(rows.length ? `<dl class="fields">${rows.map(([k, v]) => `<dt>${esc(k)}</dt><dd>${esc(v)}</dd>`).join('')}</dl>` : para(m.noItem, 'warn'));
+    const get = (label) => rows.find(([k]) => k === label)?.[1] ?? '';
+    const title = get('Tiêu đề') || d.id;
+    const meta = [get('Loại'), get('Học kỳ'), get('Loại kiểm tra'), get('Giảng viên')].filter(Boolean).join(', ');
+    const more = rows.filter(([k]) => !CARD_FIELDS.has(k));
     // Bài một file giữ link /file như trước; đợt gửi nhiều file thì link theo tên file.
     const href = !d.file ? '' : docs.length === 1 ? `/xem-duyet/${code}/file` : `/xem-duyet/${code}/file/${encodeURIComponent(d.file.name)}`;
-    if (d.file) out.push(para(`${m.fileTitle}: ${d.file.name}${Number.isFinite(d.file.size) ? `, ${formatSize(d.file.size)}` : ''}`, 'muted'));
-    if (d.file?.clean) out.push(`<p class="actions"><a class="btn" href="${esc(href)}">${esc(m.viewFile)}</a><a class="btn" href="${esc(`${href}?tai=1`)}">${esc(m.downloadFile)}</a></p>`);
-    else if (d.file) out.push(para(m.pending, 'warn'), `<p class="actions"><a class="btn" href="${esc(`${href}?tai=1`)}">${esc(m.pendingButton)}</a></p>`);
-    else out.push(para(d.item?.type === 'book-ref' ? m.noFileBook : m.noFile, 'muted'));
-    if (open && canDecide) {
+    const out = [`<section class="doc"><div class="head"><span class="num">${i + 1}</span><div class="info">`];
+    out.push(`<h2>${esc(title)}</h2>`);
+    if (meta) out.push(para(meta, 'muted'));
+    if (d.file) out.push(para(`${d.file.name}${Number.isFinite(d.file.size) ? `, ${formatSize(d.file.size)}` : ''}`, 'muted small name'));
+    out.push('</div>');
+    if (d.file?.clean) out.push(`<p class="actions"><a class="btn subtle" href="${esc(href)}" target="_blank" rel="noopener">${esc(m.viewFile)}</a><a class="btn subtle" href="${esc(`${href}?tai=1`)}">${esc(m.downloadFile)}</a></p>`);
+    else if (d.file) out.push(`<p class="actions"><a class="btn subtle" href="${esc(`${href}?tai=1`)}">${esc(m.pendingButton)}</a></p>`);
+    out.push('</div>');
+    if (!rows.length) out.push(para(m.noItem, 'warn'));
+    if (d.file && !d.file.clean) out.push(para(m.pending, 'warn'));
+    if (!d.file) out.push(para(d.item?.type === 'book-ref' ? m.noFileBook : m.noFile, 'muted'));
+    if (more.length) out.push(`<details><summary>${esc(m.moreInfo)}</summary><dl class="fields">${more.map(([k, v]) => `<dt>${esc(k)}</dt><dd>${esc(v)}</dd>`).join('')}</dl></details>`);
+    if (decide) {
       out.push(
-        `<fieldset><legend>${esc(m.decideTitle)}</legend>`,
-        `<label><input type="radio" name="d-${esc(d.id)}" value="keep" required> ${esc(m.keep)}</label>`,
-        `<label><input type="radio" name="d-${esc(d.id)}" value="drop"> ${esc(m.drop)}</label>`,
-        `<p><label for="r-${esc(d.id)}">${esc(m.reasonLabel)}</label></p><textarea id="r-${esc(d.id)}" name="r-${esc(d.id)}" maxlength="500"></textarea>`,
-        '</fieldset>',
+        `<fieldset class="choice"><legend class="sr">${esc(m.decideTitle)}</legend>`,
+        `<label class="opt keep"><input type="radio" name="d-${id}" value="keep" required><span>${esc(m.keep)}</span></label>`,
+        `<label class="opt drop"><input type="radio" name="d-${id}" value="drop"><span>${esc(m.drop)}</span></label></fieldset>`,
+        `<fieldset class="why"><legend>${esc(m.reasonLabel)}</legend>`,
+        REVIEW_REASONS.map(([k, label]) => `<label><input type="radio" name="p-${id}" value="${esc(k)}"> ${esc(label)}</label>`).join(''),
+        `<textarea name="r-${id}" maxlength="500" placeholder="${esc(m.reasonExtra)}" aria-label="${esc(m.reasonExtra)}"></textarea></fieldset>`,
       );
     }
     out.push('</section>');
     return out.join('');
   });
-  if (open && canDecide && docs.length) {
-    parts.push(`<form method="post" action="/xem-duyet/${esc(code)}/duyet">${blocks.join('')}${para(m.submitNote, 'muted')}<p class="actions"><button class="btn" type="submit">${esc(m.submit)}</button></p></form>`);
-  } else parts.push(blocks.join(''));
-  return htmlPage(200, m.reviewTitle(code), parts.join(''), {}, { formSelf: open && canDecide });
+
+  if (decide) {
+    const all = docs.length > 1 ? `<p class="actions"><button class="btn subtle" type="submit" name="all" value="keep" formnovalidate>${esc(m.keepAll(docs.length))}</button></p>` : '';
+    parts.push(
+      `<form method="post" action="/xem-duyet/${esc(code)}/duyet">${all}${cards.join('')}`,
+      `<div class="bar"><span class="muted small">${esc(m.submitNote)}</span><button class="btn" type="submit">${esc(m.submit)}</button></div></form>`,
+    );
+  } else parts.push(cards.join(''));
+  return htmlPage(200, m.reviewTitle(code), parts.join(''), {}, { formSelf: decide });
 }
 
 export function resultPage(code, message, ok = true) {

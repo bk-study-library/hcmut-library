@@ -82,6 +82,9 @@ jobs:
       # Đợt gửi nhiều file: danh sách mục (JSON) và số mục, để các job sau lặp qua từng file.
       manifest: ${{ steps.locate.outputs.manifest }}
       count: ${{ steps.locate.outputs.count }}
+      # Mọi file đã quét xong (người duyệt vừa bỏ bớt file): bỏ qua fetch, scan, apply; chỉ dựng lại generated file.
+      items: ${{ steps.locate.outputs.items }}
+      rebuild: ${{ steps.locate.outputs.rebuild }}
     steps:
       # Bỏ qua khi commit mới nhất là commit của chính workflow này (tránh tự gọi lại).
       - id: head
@@ -120,7 +123,7 @@ jobs:
           gh api --paginate "repos/$REPO/pulls/$PR/files" \
             --jq '.[] | {filename, status, previous_filename} | @json' > "$RUNNER_TEMP/files.jsonl"
           node trusted/scripts/upload/check.mjs locate --files "$RUNNER_TEMP/files.jsonl" --pr pr \
-            --branch "$BRANCH" --output-file "$GITHUB_OUTPUT"
+            --branch "$BRANCH" --repo "$REPO" --output-file "$GITHUB_OUTPUT"
       - if: failure()
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
@@ -132,7 +135,7 @@ jobs:
   fetch:
     timeout-minutes: 10
     needs: gate
-    if: needs.gate.outputs.run == 'true' && needs.gate.outputs.light == 'false'
+    if: needs.gate.outputs.run == 'true' && needs.gate.outputs.light == 'false' && needs.gate.outputs.rebuild != 'true'
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -204,10 +207,12 @@ jobs:
       - name: Kiểm file
         run: |
           export CHECK_ERROR_FILE="$RUNNER_TEMP/loi/loi-scan.txt"
+          # clamscan một lần cho mọi file của bài: nạp cơ sở dữ liệu ClamAV một lần thay vì mỗi file một lần.
+          node trusted/scripts/upload/check.mjs clamscan-all --root "$RUNNER_TEMP/in" --out "$RUNNER_TEMP/clam.json"
           for d in "$RUNNER_TEMP"/in/*/; do
             i=$(basename "$d")
             node trusted/scripts/upload/check.mjs scan --item "$d/item.json" \
-              --dir "$d/file" --out "$RUNNER_TEMP/out/$i"
+              --dir "$d/file" --out "$RUNNER_TEMP/out/$i" --clam "$RUNNER_TEMP/clam.json"
           done
       - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
@@ -372,7 +377,7 @@ jobs:
   apply-sach:
     timeout-minutes: 10
     needs: gate
-    if: needs.gate.outputs.run == 'true' && needs.gate.outputs.light == 'true'
+    if: needs.gate.outputs.run == 'true' && (needs.gate.outputs.light == 'true' || needs.gate.outputs.rebuild == 'true')
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -410,10 +415,11 @@ jobs:
           APP_TOKEN: ${{ steps.app.outputs.token }}
           APP_SLUG: ${{ steps.app.outputs.app-slug }}
           CODE: ${{ needs.gate.outputs.code }}
-          ITEMS: ${{ needs.gate.outputs.item }}
+          ITEMS: ${{ needs.gate.outputs.items }}
           COURSE: ${{ needs.gate.outputs.course }}
         run: bash ../trusted/scripts/upload/commit-pr.sh
       - name: Comment kết quả
+        if: needs.gate.outputs.light == 'true'
         env:
           GH_TOKEN: ${{ github.token }}
           CODE: ${{ needs.gate.outputs.code }}
