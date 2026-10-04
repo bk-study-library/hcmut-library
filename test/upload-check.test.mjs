@@ -153,6 +153,18 @@ test('pickItemFile từ chối PR sửa file ngoài phạm vi', () => {
   }
 });
 
+test('pickItemFile nhận file môn mới của đúng môn đó, chỉ khi thêm mới', () => {
+  const one = { filename: 'courses/EE5430/items/tom-tat.json', status: 'added' };
+  const course = { filename: 'catalog/courses/EE5430.json', status: 'added' };
+  assert.equal(pickItemFile([one, course, { filename: 'courses/EE5430/README.md', status: 'added' }]), one.filename);
+  // Sửa môn đã có, thêm môn khác, hay đổi tên sang file môn: ngoài phạm vi.
+  assert.throws(() => pickItemFile([one, { ...course, status: 'modified' }]), /ngoài phạm vi/);
+  assert.throws(() => pickItemFile([one, { filename: 'catalog/courses/EE5431.json', status: 'added' }]), /ngoài phạm vi/);
+  assert.throws(() => pickItemFile([one, course, { filename: 'catalog/courses/EE5431.json', status: 'added' }]), /ngoài phạm vi/);
+  assert.throws(() => pickItemFile([one, { ...course, status: 'renamed', previous_filename: 'catalog/courses/EE5429.json' }]), /ngoài phạm vi/);
+  assert.throws(() => pickItemFile([one, { filename: 'catalog/faculties.json', status: 'modified' }]), /ngoài phạm vi/);
+});
+
 test('pickItemFile kiểm cả đường dẫn cũ của file đổi tên', () => {
   const one = { filename: 'courses/MT1005/items/tom-tat.json', status: 'added' };
   // Đổi tên từ chỗ không được phép sang chỗ được phép vẫn bị chặn.

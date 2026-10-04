@@ -36,7 +36,7 @@ test('thiếu policy.json thì báo lỗi nêu catalog/policy.json', () => {
 
 test('fields: giới hạn độ dài và loại kiểm tra cho form và Worker', () => {
   const f = loadPolicy(TOOL_ROOT).fields;
-  for (const k of ['titleMax', 'descriptionMax', 'chapterMax', 'teacherMax', 'displayNameMax', 'bookTitleMax', 'bookAuthorMax', 'bookPublisherMax', 'textTotalMax']) {
+  for (const k of ['titleMax', 'descriptionMax', 'chapterMax', 'teacherMax', 'displayNameMax', 'bookTitleMax', 'bookAuthorMax', 'bookPublisherMax', 'textTotalMax', 'courseNameMax']) {
     assert.ok(Number.isInteger(f[k]) && f[k] > 0, k);
   }
   assert.deepEqual(f.examKinds, ['gk', 'ck', 'quiz', 'kt']);

@@ -13,7 +13,22 @@
   <p id="course-hint" class="muted">Chọn một môn trong danh sách hiện ra.</p>
   <ul id="course-results" class="pick"></ul>
   <p class="err" data-err="course" role="alert"></p>
+  <p id="new-course-offer" class="new-offer" hidden>Môn chưa có trong thư viện? <button class="btn subtle" type="button" id="new-course-open" aria-controls="new-course-box" aria-expanded="false">Thêm môn mới</button></p>
 </div>
+
+<fieldset class="field new-course" id="new-course-box" hidden disabled>
+  <legend>Môn mới</legend>
+  <p class="muted">Ghi mã và tên như trên Sổ tay HCMUT. Người duyệt kiểm lại trước khi đăng.</p>
+  <label for="newCourseCode">Mã môn</label>
+  <input id="newCourseCode" name="newCourseCode" type="text" autocomplete="off" spellcheck="false" autocapitalize="characters" aria-describedby="new-code-hint">
+  <p id="new-code-hint" class="muted">Chữ in hoa và số, ví dụ EE5429.</p>
+  <p class="err" data-err="newCourseCode" role="alert"></p>
+  <label for="newCourseName">Tên môn</label>
+  <input id="newCourseName" name="newCourseName" type="text" maxlength="{{upload:courseNameMax}}" autocomplete="off">
+  <p class="err" data-err="newCourseName" role="alert"></p>
+  <ul id="new-course-suggest" class="pick" aria-live="polite"></ul>
+  <p class="actions"><button class="btn subtle" type="button" id="new-course-cancel">Chọn môn có sẵn</button></p>
+</fieldset>
 
 <div class="field">
   <label for="type">Loại tài liệu</label>
