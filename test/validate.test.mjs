@@ -102,6 +102,25 @@ test('ngành và trường mới của chương trình: hợp lệ khi đủ, b�
   assert.deepEqual(after((d) => fs.rmSync(path.join(d, 'catalog', 'majors.json'))), ['MAJOR_MISSING']);
 });
 
+test('worker-catalog.json thật khớp summarize(index) của Worker; index.json không lặp programs của môn', async () => {
+  const { summarize } = await import('../worker/src/catalog.mjs');
+  const { workerCatalog } = await import('../scripts/lib/worker-catalog.mjs');
+  const index = buildIndex(loadRepo(TOOL_ROOT));
+  const file = JSON.parse(fs.readFileSync(path.join(TOOL_ROOT, 'worker-catalog.json'), 'utf8'));
+  assert.deepEqual(file, workerCatalog(index));
+  const fromIndex = summarize({ p: 1 }, JSON.parse(fs.readFileSync(path.join(TOOL_ROOT, 'index.json'), 'utf8')));
+  assert.deepEqual({ courses: file.courses, shas: file.shas, blocked: file.blocked }, { courses: fromIndex.courses, shas: fromIndex.shas, blocked: fromIndex.blocked });
+  assert.equal(file.schemaVersion, 1);
+  assert.equal(file.courses.length, index.counts.courses);
+  // Worker parse nhanh: file nhỏ hơn nhiều so với index.json.
+  assert.ok(fs.statSync(path.join(TOOL_ROOT, 'worker-catalog.json')).size < 512 * 1024);
+  const disk = JSON.parse(fs.readFileSync(path.join(TOOL_ROOT, 'index.json'), 'utf8'));
+  assert.ok(disk.faculties.every((f) => f.courses.every((c) => !('programs' in c))));
+  // Quan hệ môn, chương trình vẫn dựng lại được từ programs[].blocks[].courses.
+  const inBlocks = new Set(disk.programs.flatMap((p) => p.blocks.flatMap((b) => b.courses)));
+  for (const f of index.faculties) for (const c of f.courses) assert.equal(inBlocks.has(c.id), c.programs.length > 0, c.id);
+});
+
 test('index.json có danh sách ngành và counts.majors', () => {
   const dir = copyFixture();
   withMajor(dir);

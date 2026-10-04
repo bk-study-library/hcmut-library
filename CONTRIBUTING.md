@@ -48,7 +48,7 @@ Chỉ có link, không có file: mở form [Thêm link](https://github.com/bk-st
 
 1. Fork repo. Thêm `courses/<ID>/items/<id>.json`. Nếu tài liệu là file `.md` nhỏ (dưới 1 MB), đặt nó ở `courses/<ID>/files/<tên>.md` và ghi `name`, `size`, `sha256`, `path` trong mục. Mẫu: `courses/MT1005/items/bang-cong-thuc-giai-tich-2.json`.
 2. Trong git chỉ có `README.md`, `items/*.json` và `files/*.md` của từng môn. File khác (PDF, .docx, ảnh, .zip) gửi qua cách 1.
-3. Chạy `npm test` rồi `npm run build`. Commit cả file sinh ra (`index.json`, `index.min.json`, `v1/`, README môn).
+3. Chạy `npm test` rồi `npm run build`. Commit cả file sinh ra (`index.json`, `index.min.json`, `worker-catalog.json`, `v1/`, README môn).
 4. Mở Pull Request và đánh dấu danh sách kiểm trong mẫu PR.
 
 ## Sửa danh mục môn
@@ -102,7 +102,7 @@ Người duyệt là sinh viên đã học qua môn, làm tình nguyện. Danh s
 
 ### Khi nhiều PR mở cùng lúc
 
-Mỗi PR gửi bài sửa các file sinh ra (`index.json`, `index.min.json`, `v1/`, README môn), nên sau khi merge một PR, các PR còn lại sẽ xung đột ở những file này. Với từng PR: bấm **Update branch**, giải xung đột ở file sinh ra bằng cách giữ bên nào cũng được, commit để `kiem-file` dựng lại, đợi CI xanh rồi mới merge. Không sửa tay `courses/<ID>/items/<id>.json` khi giải xung đột. Chi tiết: [docs/cai-dat-luong-tai-len.md](docs/cai-dat-luong-tai-len.md).
+Mỗi PR gửi bài sửa các file sinh ra (`index.json`, `index.min.json`, `worker-catalog.json`, `v1/`, README môn), nên sau khi merge một PR, các PR còn lại sẽ xung đột ở những file này. Với từng PR: bấm **Update branch**, giải xung đột ở file sinh ra bằng cách giữ bên nào cũng được, commit để `kiem-file` dựng lại, đợi CI xanh rồi mới merge. Không sửa tay `courses/<ID>/items/<id>.json` khi giải xung đột. Chi tiết: [docs/cai-dat-luong-tai-len.md](docs/cai-dat-luong-tai-len.md).
 
 ## Công cụ cho người đóng góp bằng Git
 

@@ -9,7 +9,7 @@
 # BRANCH, REPO, GITHUB_SERVER_URL.
 set -euo pipefail
 
-for p in "$ITEM" index.json index.min.json v1 "courses/$COURSE/README.md"; do
+for p in "$ITEM" index.json index.min.json worker-catalog.json v1 "courses/$COURSE/README.md"; do
   if [ -e "$p" ] || git ls-files --error-unmatch -- "$p" > /dev/null 2>&1; then
     git add -A -- "$p"
   fi

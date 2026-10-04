@@ -105,7 +105,7 @@ export function pickItemFile(files) {
 
 // Đường dẫn validate.mjs --write ghi cho một môn; dấu '/' ở cuối là cả thư mục.
 export function generatedPaths(course) {
-  return ['index.json', 'index.min.json', 'v1/', `courses/${course}/README.md`];
+  return ['index.json', 'index.min.json', 'worker-catalog.json', 'v1/', `courses/${course}/README.md`];
 }
 
 // Output cho GitHub Actions dạng name<<delimiter, nên xuống dòng không đè được output khác.

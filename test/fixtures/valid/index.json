@@ -34,13 +34,6 @@
           "replaces": [
             "400111"
           ],
-          "programs": [
-            {
-              "program": "TEST_2019",
-              "block": "B1",
-              "required": true
-            }
-          ],
           "parts": [
             "theory"
           ],
@@ -104,7 +97,6 @@
           "faculty": "EE",
           "aliases": [],
           "status": "active",
-          "programs": [],
           "parts": [
             "lab"
           ],
@@ -159,7 +151,6 @@
           "aliases": [],
           "status": "retired",
           "replacedBy": "EE1009",
-          "programs": [],
           "parts": [
             "theory"
           ],

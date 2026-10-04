@@ -490,6 +490,19 @@ export function buildIndex(repo, { repoSlug = 'bk-study-library/hcmut-library' }
   };
 }
 
+// index.json, index.min.json trên đĩa không lặp mục programs của từng môn: quan hệ môn và chương trình
+// đã nằm trong programs[].blocks[].courses (bên đọc tự dựng ngược nếu cần). Bản trong bộ nhớ vẫn đủ.
+export function slimIndex(index) {
+  return {
+    ...index,
+    faculties: index.faculties.map((f) => ({
+      ...f,
+      courses: f.courses.map(({ programs, ...c }) => c),
+    })),
+  };
+}
+
 export function serializeIndex(index) {
-  return { full: JSON.stringify(index, null, 2) + '\n', min: JSON.stringify(index) };
+  const slim = slimIndex(index);
+  return { full: JSON.stringify(slim, null, 2) + '\n', min: JSON.stringify(slim) };
 }

@@ -1,26 +1,12 @@
-// Danh mục cho Worker: policy.json và index.json đọc qua GitHub, giữ trong Cache API.
+// Danh mục cho Worker: policy.json và worker-catalog.json đọc qua GitHub, giữ trong Cache API.
+// worker-catalog.json do validate.mjs --write sinh (scripts/lib/worker-catalog.mjs), nhỏ hơn index.json
+// rất nhiều nên parse nhanh. Nhánh chưa có file này thì đọc index.json rồi gọn lại như cũ.
 
-// Gọn index.json còn những gì Worker cần: môn, mã môn hiện tại, id đã dùng, sha256 tài liệu đang có
-// (cả bản đã làm sạch lẫn file gốc người gửi tải lên), và sha256 tài liệu đã gỡ (blocked): mục gỡ vẫn
-// nằm trong index.json, nên file bị gỡ theo yêu cầu không gửi lại được qua form.
+import { summarizeIndex } from '../../scripts/lib/worker-catalog.mjs';
+
+// Gọn index.json còn những gì Worker cần (cùng logic với worker-catalog.json).
 export function summarize(policy, index) {
-  const courses = [];
-  const shas = [];
-  const blocked = [];
-  for (const faculty of index.faculties ?? []) {
-    for (const c of faculty.courses ?? []) {
-      const items = c.items ?? [];
-      courses.push({ id: c.id, code: c.code, status: c.status, ids: items.map((i) => i.id) });
-      for (const it of items) {
-        const into = it.removed ? blocked : shas;
-        for (const f of it.files ?? []) {
-          if (f.sha256) into.push(f.sha256);
-          if (f.uploadSha256) into.push(f.uploadSha256);
-        }
-      }
-    }
-  }
-  return { policy, courses, shas, blocked };
+  return { policy, ...summarizeIndex(index) };
 }
 
 function hydrate(data) {
@@ -34,10 +20,17 @@ function hydrate(data) {
 }
 
 async function fetchCatalog(gh, branch) {
-  // Đọc thô vì index.json sẽ vượt 1 MB, giới hạn của getFile.
-  const [policyText, indexText] = await Promise.all([gh.getRaw('catalog/policy.json', branch), gh.getRaw('index.json', branch)]);
-  if (policyText === null || indexText === null) throw new Error('Thiếu catalog/policy.json hoặc index.json trên nhánh');
-  return summarize(JSON.parse(policyText), JSON.parse(indexText));
+  // Đọc thô vì file có thể vượt 1 MB, giới hạn của getFile.
+  const [policyText, smallText] = await Promise.all([gh.getRaw('catalog/policy.json', branch), gh.getRaw('worker-catalog.json', branch)]);
+  if (policyText === null) throw new Error('Thiếu catalog/policy.json trên nhánh');
+  const policy = JSON.parse(policyText);
+  if (smallText !== null) {
+    const c = JSON.parse(smallText);
+    return { policy, courses: c.courses, shas: c.shas, blocked: c.blocked ?? [] };
+  }
+  const indexText = await gh.getRaw('index.json', branch);
+  if (indexText === null) throw new Error('Thiếu worker-catalog.json và index.json trên nhánh');
+  return summarize(policy, JSON.parse(indexText));
 }
 
 // github: hàm trả client GitHub, chỉ gọi khi cache trống. ttl <= 0 thì không dùng cache.

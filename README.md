@@ -45,7 +45,7 @@ Tác giả, chủ bản quyền, người có thông tin cá nhân trong tài li
 
 ## Dữ liệu cho app và công cụ khác
 
-Thư viện xuất dữ liệu công khai ở `v1/` (cũng phục vụ tại `<web>/v1/`): `v1/index.json` là danh sách môn, `v1/courses/<ID>.json` là tài liệu của từng môn, `v1/majors.json` là danh sách ngành. Hợp đồng giữ ổn định: đổi tên hay xóa trường thì ra `/v2/`, `/v1/` còn ít nhất 6 tháng. Mô tả đầy đủ: [docs/v1.md](docs/v1.md). `index.json` và `index.min.json` ở gốc repo là chỉ mục đầy đủ (có cả khoa, ngành và chương trình).
+Thư viện xuất dữ liệu công khai ở `v1/` (cũng phục vụ tại `<web>/v1/`): `v1/index.json` là danh sách môn, `v1/courses/<ID>.json` là tài liệu của từng môn, `v1/majors.json` là danh sách ngành. Hợp đồng giữ ổn định: đổi tên hay xóa trường thì ra `/v2/`, `/v1/` còn ít nhất 6 tháng. Mô tả đầy đủ: [docs/v1.md](docs/v1.md). `index.json` và `index.min.json` ở gốc repo là chỉ mục đầy đủ (có cả khoa, ngành và chương trình). Môn trong file này không lặp mục `programs`: quan hệ môn và chương trình nằm ở `programs[].blocks[].courses`. File này không thuộc hợp đồng `v1/`.
 
 [BK Study Desk](https://github.com/xeroz369/bk-study-desk) là một app đọc dữ liệu này, không phải nơi duy nhất.
 
@@ -70,6 +70,7 @@ worker/                     Cloudflare Worker nhận bài từ trang Gửi tài 
 site-src/                   CSS, JS, trang tĩnh của web
 v1/                         dữ liệu công khai cho app, sinh tự động
 index.json, index.min.json  chỉ mục sinh tự động, không sửa tay
+worker-catalog.json         danh mục gọn cho Worker nhận bài (môn, id mục, sha256), sinh tự động
 ```
 
 - **File lớn không vào git.** PDF, .docx, .pptx, ảnh, .zip nằm trên GitHub Release `files-HKxxx`. Mục tài liệu ghi `size`, `sha256` và `url`.
@@ -84,7 +85,7 @@ Cần Node 22 trở lên. Phần chính của repo không có gói npm nào ph�
 |---|---|
 | `npm test` | chạy test với dữ liệu mẫu trong `test/fixtures/` |
 | `npm run validate` | kiểm schema, tham chiếu, loại file, dung lượng, file trùng, thông tin cá nhân; báo lỗi nếu file sinh ra đã cũ |
-| `npm run build` | kiểm rồi ghi lại `index.json`, `index.min.json`, `v1/` và README từng môn |
+| `npm run build` | kiểm rồi ghi lại `index.json`, `index.min.json`, `worker-catalog.json`, `v1/` và README từng môn |
 | `npm run site` | sinh trang web vào `site/` |
 | `npm run demo` | sinh trang web xem thử với dữ liệu mẫu lớn hơn (không đụng `catalog/`) |
 | `node scripts/import-seed.mjs --seed <file>` | nhập một chương trình đào tạo vào danh mục |

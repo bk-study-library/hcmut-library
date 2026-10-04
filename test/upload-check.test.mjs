@@ -136,7 +136,7 @@ test('quarantineInfo đọc mã bài, khóa và kiểm nhánh', () => {
 
 test('pickItemFile cần đúng một mục tài liệu, chỉ thêm file sinh ra của môn đó', () => {
   const one = { filename: 'courses/MT1005/items/tom-tat.json', status: 'added' };
-  const generated = ['index.json', 'index.min.json', 'v1/courses/MT1005.json', 'v1/index.json', 'courses/MT1005/README.md']
+  const generated = ['index.json', 'index.min.json', 'worker-catalog.json', 'v1/courses/MT1005.json', 'v1/index.json', 'courses/MT1005/README.md']
     .map((filename) => ({ filename, status: 'modified' }));
   assert.equal(pickItemFile([one]), one.filename);
   assert.equal(pickItemFile([one, ...generated]), one.filename);

@@ -3,6 +3,7 @@ import { env } from 'cloudflare:workers';
 import policy from '../../catalog/policy.json';
 import { createHandler, cell } from '../src/index.mjs';
 import { rateKey, countKey } from '../src/limits.mjs';
+import { serializeWorkerCatalog } from '../../scripts/lib/worker-catalog.mjs';
 
 const REPO = 'own/lib';
 const SITE = 'https://site.example';
@@ -51,7 +52,9 @@ const raw = (init, text) =>
   init.headers?.Accept === 'application/vnd.github.raw' ? new Response(text) : json({ encoding: 'none', content: '', sha: 's' });
 
 // fetch giả cho Turnstile và GitHub; fail[tên bước] = mã lỗi để giả lập GitHub hỏng.
-function fakeFetch({ turnstile = true, hostname = 'site.example', fail = {} } = {}) {
+// smallCatalog: nhánh có worker-catalog.json (sinh từ index lúc gọi, nên test sửa index vẫn thấy);
+// false thì giả nhánh cũ chưa có file này, Worker phải đọc index.json.
+function fakeFetch({ turnstile = true, hostname = 'site.example', fail = {}, smallCatalog = true } = {}) {
   const calls = [];
   let pr = 0;
   const fn = async (url, init = {}) => {
@@ -65,6 +68,9 @@ function fakeFetch({ turnstile = true, hostname = 'site.example', fail = {} } = 
     if (p.startsWith('/app/installations/')) return step('token', () => json({ token: 'ghs_secret' }, 201));
     if (method === 'GET' && p === `/repos/${REPO}/contents/catalog/policy.json`) {
       return step('catalog', () => raw(init, JSON.stringify(policy)));
+    }
+    if (method === 'GET' && p === `/repos/${REPO}/contents/worker-catalog.json` && smallCatalog) {
+      return step('catalog', () => raw(init, serializeWorkerCatalog(index)));
     }
     if (method === 'GET' && p === `/repos/${REPO}/contents/index.json`) {
       return step('catalog', () => raw(init, JSON.stringify(index)));
@@ -547,8 +553,38 @@ describe('POST /submit', () => {
     const envOver = { CATALOG_TTL_SECONDS: '60', BRANCH: `cache-${crypto.randomUUID()}` };
     await run(post(form({}, pdfBytes(800, 3))), { fetch, envOver });
     await run(post(form({}, pdfBytes(800, 5))), { fetch, envOver });
-    expect(fetch.find('GET', '/contents/index.json')).toHaveLength(1);
+    expect(fetch.find('GET', '/contents/worker-catalog.json')).toHaveLength(1);
+    expect(fetch.find('GET', '/contents/index.json')).toHaveLength(0);
     expect(fetch.find('GET', '/contents/catalog/policy.json')).toHaveLength(1);
+  });
+
+  it('danh mục đọc từ worker-catalog.json, không đọc index.json', async () => {
+    const fetch = fakeFetch();
+    const { res } = await run(post(form({}, pdfBytes(800, 7))), { fetch });
+    expect(res.status).toBe(201);
+    expect(fetch.find('GET', '/contents/worker-catalog.json')).toHaveLength(1);
+    expect(fetch.find('GET', '/contents/index.json')).toHaveLength(0);
+  });
+
+  it('nhánh chưa có worker-catalog.json: đọc index.json như cũ', async () => {
+    const fetch = fakeFetch({ smallCatalog: false });
+    const { res } = await run(post(form({}, pdfBytes(800, 9))), { fetch });
+    expect(res.status).toBe(201);
+    expect(fetch.find('GET', '/contents/worker-catalog.json')).toHaveLength(1);
+    expect(fetch.find('GET', '/contents/index.json')).toHaveLength(1);
+  });
+
+  it('file đã gỡ vẫn bị chặn khi chỉ đọc index.json', async () => {
+    const bytes = pdfBytes(650, 21);
+    const f = index.faculties[0].courses[0].items[2].files[0];
+    const saved = f.sha256;
+    f.sha256 = await sha256Hex(bytes);
+    try {
+      const { res } = await run(post(form({}, bytes)), { fetch: fakeFetch({ smallCatalog: false }) });
+      expect(res.status).toBe(409);
+    } finally {
+      f.sha256 = saved;
+    }
   });
 });
 

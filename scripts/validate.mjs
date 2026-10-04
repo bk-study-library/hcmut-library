@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Kiểm toàn bộ thư viện rồi dựng index.json, index.min.json, v1/ và README từng môn.
+// Kiểm toàn bộ thư viện rồi dựng index.json, index.min.json, worker-catalog.json, v1/ và README từng môn.
 //
 //   node scripts/validate.mjs            kiểm, và báo lỗi nếu file sinh ra đã cũ (dùng trong CI)
 //   node scripts/validate.mjs --write    kiểm, rồi ghi lại index và README
@@ -13,6 +13,7 @@ import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import { loadRepo, buildIndex, serializeIndex, TOOL_ROOT } from './lib/repo.mjs';
 import { syncReadmes } from './lib/readme.mjs';
+import { serializeWorkerCatalog } from './lib/worker-catalog.mjs';
 import { buildV1, serializeV1 } from './lib/v1.mjs';
 import { REPO } from './lib/labels.mjs';
 import { deletedWithRelease } from './upload/publish.mjs';
@@ -64,6 +65,8 @@ export function run(argv) {
     const targets = [
       ['index.json', full],
       ['index.min.json', min],
+      // Danh mục gọn cho Worker nhận bài (scripts/lib/worker-catalog.mjs).
+      ['worker-catalog.json', serializeWorkerCatalog(index)],
       ...serializeV1(buildV1(repo)).map(([p, c]) => [`v1/${p}`, c]),
     ];
     for (const [name, content] of targets) {
