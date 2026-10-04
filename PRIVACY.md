@@ -32,7 +32,7 @@ Nếu bạn để lại email, thư viện chỉ dùng nó để gửi đúng m�
 
 - Email được giữ trong kho riêng chờ duyệt (Cloudflare R2), cạnh file bài gửi. Không ghi vào repo, PR, trang web hay nhật ký.
 - Email được gửi qua Resend (nhà cung cấp dịch vụ gửi email), từ địa chỉ thuộc tên miền `mail.xerozsoft.com`. Resend xử lý địa chỉ email và nội dung thư theo chính sách của họ.
-- Ngay sau khi gửi, email bị xóa khỏi kho. Khi PR đóng, bước dọn kho xóa email kể cả khi gửi lỗi.
+- Email được gửi trong vòng vài phút sau khi PR được merge hay đóng, rồi bị xóa khỏi kho ngay. Gửi lỗi thì thử lại sau 5 phút; mọi object trong kho (kể cả email) tự bị xóa sau 30 ngày dù thế nào.
 - Email không dùng để quảng cáo, không gửi thêm thư nào khác, không chia sẻ cho ai.
 - Thư không có theo dõi mở thư hay theo dõi bấm link.
 

@@ -40,16 +40,16 @@ openssl pkcs8 -topk8 -nocrypt -in <file>.pem -out bot-pkcs8.pem
 
 Bạn có hai file: `<file>.pem` gốc (cho Actions) và `bot-pkcs8.pem` (cho Worker).
 
-## Bước 2. R2: bucket, luật vòng đời, API token
+## Bước 2. R2: bucket, lifecycle rule, API token
 
 1. Trong Cloudflare dashboard, vào **Storage & databases** > **R2 object storage**, bấm **Create bucket**, đặt tên `bk-lib-quarantine`. Giữ bucket riêng tư: không bật public access, không nối tên miền.
-2. Thêm luật vòng đời xóa mọi object sau 30 ngày. Luật phải phủ cả bucket vì kho dùng ba tiền tố `pending/`, `clean/` và `sha/`. Tiền tố bỏ trống (`""`) nghĩa là áp cho cả bucket:
+2. Thêm lifecycle rule xóa mọi object sau 30 ngày. Lifecycle rule phải phủ cả bucket vì kho dùng ba prefix `pending/`, `clean/` và `sha/`. Prefix bỏ trống (`""`) nghĩa là áp cho cả bucket:
 
 ```bash
 npx wrangler r2 bucket lifecycle add bk-lib-quarantine delete-after-30-days "" --expire-days 30
 ```
 
-3. Kiểm lại: phải thấy đúng một luật, không có tiền tố, hết hạn sau 30 ngày.
+3. Kiểm lại: phải thấy đúng một lifecycle rule, không có prefix, hết hạn sau 30 ngày.
 
 ```bash
 npx wrangler r2 bucket lifecycle list bk-lib-quarantine
@@ -118,7 +118,7 @@ Mở `worker/wrangler.jsonc`, mục `vars`, kiểm lại:
 | `REVIEW_BASE` | `https://upload.xerozsoft.com`: gốc của link xem file (bước 8). Để trống thì Worker không tạo link xem bài |
 | `ACCESS_TEAM_DOMAIN` | tên miền team Cloudflare Access, dạng `<team>.cloudflareaccess.com` (bước 8). Để trống thì trang xem file của người duyệt trả 503 |
 | `ACCESS_AUD` | Application Audience (AUD) của ứng dụng Access (bước 8). Để trống thì trang xem file của người duyệt trả 503 |
-| `SUBMIT_DAILY_CAP` | `"200"`: trần số bài nhận mỗi ngày (UTC) cho mọi người gửi, đếm ở R2 `dem/<ngày>` (luật vòng đời 30 ngày cũng xóa các khóa này). Đủ trần thì form báo gửi lại vào ngày mai. Để trống thì không có trần |
+| `SUBMIT_DAILY_CAP` | `"200"`: trần số bài nhận mỗi ngày (UTC) cho mọi người gửi, đếm ở R2 `dem/<ngày>` (lifecycle rule 30 ngày cũng xóa các khóa này). Đủ trần thì form báo gửi lại vào ngày mai. Để trống thì không có trần |
 
 Giới hạn theo người gửi nằm ở mục `ratelimits` (`SUBMIT_LIMIT`, 5 lần mỗi 60 giây). Khóa là địa chỉ IPv4, hoặc dải /64 với IPv6, nên đổi địa chỉ trong cùng dải /64 không vượt được giới hạn. Worker không ghi IP vào đâu.
 
@@ -265,9 +265,9 @@ Trang `/xem-duyet/<mã bài>` hiện từng file: chữ người gửi nhập, t
 |---|---|
 | Duyệt hết | Comment kết quả vào PR rồi merge đúng commit đã kiểm |
 | Không duyệt file nào | Comment lý do rồi đóng PR; `don-kho` dọn kho như khi đóng tay |
-| Duyệt một phần | Xóa mục không duyệt khỏi branch và file của nó khỏi kho, comment kết quả. `kiem-file` dựng lại generated file, `validate` chạy lại; khi `validate` qua, workflow `tu-gop` gọi `POST /duyet-tiep` và Worker merge |
+| Duyệt một phần | Xóa mục không duyệt khỏi branch và file của nó khỏi kho, comment kết quả. `kiem-file` dựng lại generated file, `validate` chạy lại; khi `validate` qua, cron của Worker (5 phút một lần) merge |
 
-Quyết định ghi ở `review/<mã bài>.json` trong bucket quarantine, gồm email người duyệt (để tra khi cần; PR công khai nên comment không ghi người duyệt). `phat-hanh-file` và `don-kho` xóa file này cùng email người gửi. `/duyet-tiep` không cần khóa: Worker chỉ merge khi đã có quyết định chờ merge, PR còn mở, check của đầu branch đã qua, commit đầu là của `kiem-file`, và mục trên branch đúng bằng danh sách được duyệt.
+Quyết định ghi ở `review/<mã bài>.json` trong bucket quarantine, gồm email người duyệt (để tra khi cần; PR công khai nên comment không ghi người duyệt). Cron gửi email kết quả khi PR đã đóng rồi xóa email cùng file này; bài không có email thì cron xóa file này khi PR đóng. Cron chạy trong Worker vì Cloudflare chặn request từ runner của GitHub Actions (403), nên workflow không gọi Worker. Cron chỉ merge khi đã có quyết định chờ merge, PR còn mở, check của đầu branch đã qua, commit đầu là của `kiem-file`, và mục trên branch đúng bằng danh sách được duyệt.
 
 Form duyệt chỉ nhận POST có `Origin` là chính Worker (chống trang khác gửi form thay người duyệt đang đăng nhập). Duyệt tay trên GitHub (comment, approve, merge) vẫn dùng được như trước.
 
