@@ -77,13 +77,25 @@
     timer = setTimeout(run, 80);
   });
 
-  fetch(root + 'v1/index.json')
-    .then(function (r) {
-      if (!r.ok) throw new Error(r.status);
-      return r.json();
-    })
-    .then(load)
-    .catch(function () {
-      status.textContent = en ? "Couldn't load the course list. Reload the page to try again." : 'Không tải được danh sách môn. Tải lại trang để thử lại.';
-    });
+  // Chỉ tải danh sách môn khi bạn sắp dùng ô tìm (rê chuột, chạm, bấm vào ô), để trang chủ mở nhanh.
+  var requested = false;
+  function ensureIndex() {
+    if (requested) return;
+    requested = true;
+    if (input.value.trim()) status.textContent = en ? 'Loading the course list.' : 'Đang tải danh sách môn.';
+    fetch(root + 'v1/index.json')
+      .then(function (r) {
+        if (!r.ok) throw new Error(r.status);
+        return r.json();
+      })
+      .then(load)
+      .catch(function () {
+        requested = false;
+        status.textContent = en ? "Couldn't load the course list. Try again in a moment." : 'Không tải được danh sách môn. Thử lại sau ít phút.';
+      });
+  }
+  ['pointerenter', 'touchstart', 'focus', 'keydown', 'input'].forEach(function (ev) {
+    input.addEventListener(ev, ensureIndex, { passive: true });
+  });
+  if (input.value) ensureIndex();
 })();
