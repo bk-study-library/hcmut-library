@@ -1,4 +1,17 @@
 {
   "uploadEndpoint": "https://bk-study-library-upload.tktrungquoc40.workers.dev/submit",
-  "turnstileSiteKey": "0x4AAAAAAFMxSkFCGbs--qcI"
+  "turnstileSiteKey": "0x4AAAAAAFMxSkFCGbs--qcI",
+  "bookSources": [
+    {
+      "label": "Tra trên Open Library",
+      "labelEn": "Find on Open Library",
+      "isbn": "https://openlibrary.org/isbn/{isbn}",
+      "search": "https://openlibrary.org/search?q={q}"
+    },
+    {
+      "label": "Thư viện trường",
+      "labelEn": "University library",
+      "url": "https://lib.hcmut.edu.vn/"
+    }
+  ]
 }
