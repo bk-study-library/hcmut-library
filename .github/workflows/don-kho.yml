@@ -9,8 +9,8 @@ name: don-kho
 # làm đường dẫn R2 hay tên nhánh cần xóa, nên không xóa được gì ngoài upload/*.
 # File gốc tải từ R2 chỉ bị tính hash. Khóa R2 chỉ nằm trong env của bước cần chúng.
 #
-# Dọn: pending/<mã>/, clean/<mã>/, khóa sha/<sha256 file gốc> (tính từ pending/ nếu còn;
-# đã bị luật vòng đời xóa thì bỏ qua), rồi nhánh upload/<mã>. Chạy lại an toàn.
+# Dọn: pending/<mã>/, clean/<mã>/, mã xem bài token/<mã>, khóa sha/<sha256 file gốc> (tính từ
+# pending/ nếu còn; đã bị luật vòng đời xóa thì bỏ qua), rồi nhánh upload/<mã>. Chạy lại an toàn.
 # Sách tham khảo không file thì không có gì trong kho: bỏ qua R2, chỉ xóa nhánh. Chỉ bỏ qua
 # khi chắc chắn (PR đúng một mục book-ref không file); PR lạ hay đọc lỗi thì dọn như thường.
 # Nhánh PR chỉ được đọc làm dữ liệu.
@@ -104,6 +104,7 @@ jobs:
           endpoint="https://${R2_ACCOUNT_ID}.r2.cloudflarestorage.com"
           aws s3 rm "s3://$R2_BUCKET/pending/$CODE/" --recursive --endpoint-url "$endpoint" --only-show-errors
           aws s3 rm "s3://$R2_BUCKET/clean/$CODE/" --recursive --endpoint-url "$endpoint" --only-show-errors
+          aws s3 rm "s3://$R2_BUCKET/token/$CODE" --endpoint-url "$endpoint" --only-show-errors
           if [ -n "$SHA" ]; then
             aws s3 rm "s3://$R2_BUCKET/sha/$SHA" --endpoint-url "$endpoint" --only-show-errors
           fi
