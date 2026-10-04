@@ -57,7 +57,14 @@ function readSiteConfig(root) {
     programTypeOrder: Array.isArray(cfg.programTypeOrder) ? cfg.programTypeOrder.map(String) : Object.keys(PROGRAM_TYPES),
     // Ô tìm trang chủ: từ bấy nhiêu môn cùng tên trong kết quả thì gộp thành một dòng mở ra được.
     sameNameGroupMin: Number.isInteger(cfg.sameNameGroupMin) && cfg.sameNameGroupMin >= 2 ? cfg.sameNameGroupMin : 3,
+    // Form Gửi tài liệu: gợi ý môn có mã lệch tối đa bấy nhiêu số trước khi cho thêm môn mới. 0 là không gợi ý.
+    nearCodeSpan: Number.isInteger(cfg.nearCodeSpan) && cfg.nearCodeSpan > 0 ? cfg.nearCodeSpan : 0,
   };
+}
+
+// Mẫu mã môn hiện tại (code, không có hậu tố năm) trong schema môn: form kiểm mã môn mới theo đúng mẫu này.
+function courseCodePattern() {
+  return JSON.parse(fs.readFileSync(path.join(TOOL_ROOT, 'schema', 'course.schema.json'), 'utf8')).properties.code.pattern;
 }
 
 // Địa chỉ tuyệt đối của một trang, theo SITE_URL; bỏ index.html ở cuối.
@@ -178,13 +185,21 @@ function uploadPage({ policy, site, root, raw, t }) {
     extensions: exts,
     // Đuôi nhận theo từng loại (extensions[].types, quizExtensions): form lọc ô chọn file theo loại.
     byType: Object.fromEntries(formTypes.map((x) => [x, extensionsFor(policy, x)])),
-    msg: { ...msg, fileExt: msg.fileExt(exts.join(', ')), fileSize: msg.fileSize(formatSize(policy.maxFileBytes)) },
+    msg: {
+      ...msg,
+      fileExt: msg.fileExt(exts.join(', ')),
+      fileSize: msg.fileSize(formatSize(policy.maxFileBytes)),
+      newNameLong: msg.newNameLong(policy.fields.courseNameMax),
+    },
+    // Môn mới gửi kèm bài: mẫu mã từ schema, giới hạn tên từ policy, khoảng gợi ý mã gần từ site.json.
+    newCourse: { codePattern: courseCodePattern(), nameMax: policy.fields.courseNameMax, nearSpan: site.nearCodeSpan },
   };
   // api.js của Cloudflare Turnstile là script ngoài duy nhất của site: chống bot gửi tự động vào form,
   // nên chỉ nạp ở trang này và chỉ khi form đã mở.
   const scripts = [
     `<script type="application/json" id="upload-config">${jsonInScript(config)}</script>`,
     `<script src="${root}assets/search-core.js" defer></script>`,
+    `<script src="${root}assets/upload-core.js" defer></script>`,
     `<script src="${root}assets/upload.js" defer></script>`,
     open ? '<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>' : '',
   ]
@@ -198,7 +213,7 @@ function uploadPage({ policy, site, root, raw, t }) {
     // Loại "link" đi theo form Issue "Thêm link", không qua form này.
     types: formTypes.map((x) => opt(x, TYPES[x].vi)).join('\n'),
     examKinds: policy.fields.examKinds.map((x) => opt(x, EXAM_KINDS[x] || x)).join('\n'),
-    ...Object.fromEntries(['titleMax', 'descriptionMax', 'chapterMax', 'teacherMax', 'displayNameMax', 'bookTitleMax', 'bookPublisherMax'].map((k) => [k, String(policy.fields[k])])),
+    ...Object.fromEntries(['titleMax', 'descriptionMax', 'chapterMax', 'teacherMax', 'displayNameMax', 'bookTitleMax', 'bookPublisherMax', 'courseNameMax'].map((k) => [k, String(policy.fields[k])])),
     licenses: policy.selfMadeLicenses.map((x) => opt(x, x)).join('\n'),
     accept: esc(exts.join(',')),
     exts: esc(exts.join(', ')),

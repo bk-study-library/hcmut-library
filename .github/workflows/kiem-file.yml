@@ -13,7 +13,7 @@ name: kiem-file
 #   PR chỉ là dữ liệu (thư mục pr). Không chạy npm install hay npm script trong pr.
 # - Mỗi job chỉ giữ đúng quyền và khóa nó cần:
 #   gate   (contents: read, pull-requests: read)  bỏ qua commit của chính workflow, tìm mục tài liệu,
-#                            kiểm PR chỉ sửa mục đó và file sinh ra của môn đó.
+#                            kiểm PR chỉ sửa mục đó, file sinh ra của môn đó và file môn mới (nếu có).
 #   fetch  (contents: read, khóa R2)  tải file cách ly và mục tài liệu, đưa lên artifact.
 #   scan   (contents: read, không khóa, không token ghi)  bước duy nhất chạy công cụ
 #                            trên file tải lên; ghi kết quả và bản sạch lên artifact.

@@ -257,3 +257,65 @@ describe('gói quiz', () => {
     expect(validateSubmission({ ...base, type: 'quiz-pack' }, zip, quizCtx).ok).toBe(true);
   });
 });
+
+describe('môn mới gửi kèm bài', () => {
+  const nc = { ...base, course: '', newCourseCode: 'EE5430', newCourseName: 'Kỹ thuật và hệ thống siêu cao tần' };
+  const lim = { ...policy, fields: { ...policy.fields, courseNameMax: 40 } };
+  const nctx = { policy: lim, courses };
+
+  it('mã đúng mẫu, chưa có: nhận, form có newCourse và course là mã mới', () => {
+    const r = validateSubmission({ ...nc, newCourseCode: ' ee5430 ', newCourseName: '  Kỹ thuật   siêu cao tần ' }, pdf, nctx);
+    expect(r.ok).toBe(true);
+    expect(r.form.course).toBe('EE5430');
+    expect(r.form.newCourse).toEqual({ code: 'EE5430', name: 'Kỹ thuật siêu cao tần' });
+  });
+
+  it('chọn môn có sẵn thì không có newCourse', () => {
+    const r = validateSubmission(base, pdf, nctx);
+    expect(r.ok).toBe(true);
+    expect(r.form).not.toHaveProperty('newCourse');
+  });
+
+  it('mã sai mẫu (có hậu tố năm, ký tự lạ, quá dài, quá ngắn)', () => {
+    for (const code of ['EE5430-2024', 'EE 5430x', 'EE54.30', 'A'.repeat(13), 'E1']) {
+      const r = validateSubmission({ ...nc, newCourseCode: code }, pdf, nctx);
+      expect(r.ok, code).toBe(false);
+      expect(r.errors.newCourseCode, code).toBeTruthy();
+    }
+  });
+
+  it('mã đã có trong danh mục (id, mã của môn có hậu tố năm): báo chọn môn có sẵn', () => {
+    for (const code of ['CO1005', 'co1005', 'GE4169']) {
+      const r = validateSubmission({ ...nc, newCourseCode: code }, pdf, nctx);
+      expect(r.ok, code).toBe(false);
+      expect(r.errors.newCourseCode, code).toMatch(/đã có trong thư viện/);
+    }
+  });
+
+  it('tên trống, quá dài, có link, @ hay ký tự lạ, có thông tin cá nhân', () => {
+    const bad = ['   ', 'A'.repeat(41), 'Xem https://x.example', 'www.lua-dao.example', 'Môn @an', 'Môn #1', 'Môn <b>', 'Môn [x](y)', 'Môn | bảng', 'Gọi 0912345678', 'Môn `x`', '---'];
+    for (const name of bad) {
+      const r = validateSubmission({ ...nc, newCourseName: name }, pdf, nctx);
+      expect(r.ok, name).toBe(false);
+      expect(r.errors.newCourseName, name).toBeTruthy();
+    }
+    expect(validateSubmission({ ...nc, newCourseName: "Kỹ thuật (2), A&B / C+: D's" }, pdf, nctx).ok).toBe(true);
+  });
+
+  it('chọn cả môn có sẵn lẫn môn mới: lỗi, không đoán', () => {
+    const r = validateSubmission({ ...nc, course: 'CO1005' }, pdf, nctx);
+    expect(r.ok).toBe(false);
+    expect(r.errors.course).toMatch(/hoặc/);
+    expect(validateSubmission({ ...base, newCourseName: 'Tên' }, pdf, nctx).errors.course).toMatch(/hoặc/);
+  });
+
+  it('không chọn môn, không thêm môn mới: lỗi môn như cũ', () => {
+    const r = validateSubmission({ ...base, course: '' }, pdf, nctx);
+    expect(r.errors.course).toBe('Không tìm thấy môn này. Chọn môn trong danh sách.');
+  });
+
+  it('chỉ có tên hoặc chỉ có mã: báo ô còn thiếu', () => {
+    expect(validateSubmission({ ...nc, newCourseName: '' }, pdf, nctx).errors.newCourseName).toBeTruthy();
+    expect(validateSubmission({ ...nc, newCourseCode: '' }, pdf, nctx).errors.newCourseCode).toBeTruthy();
+  });
+});

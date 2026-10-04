@@ -41,6 +41,12 @@ export const VIEW_MESSAGES = {
   viewFile: 'Xem file',
   downloadFile: 'Tải file',
   noFileBook: 'Bài này là sách tham khảo, không có file.',
+  newCourseTitle: (code) => `Môn mới: ${code}`,
+  newCourseNote: 'Bài này thêm một môn chưa có trong danh mục. Mở trang môn trên Sổ tay HCMUT, kiểm mã, tên và khoa trước khi gộp. Sai thì sửa file môn trong PR; trùng môn đã có thì đóng PR và nhờ người gửi chọn môn đó.',
+  newCourseCode: 'Mã môn',
+  newCourseName: 'Tên môn',
+  newCourseFaculty: 'Khoa',
+  newCourseHandbook: 'Mở trang môn trên Sổ tay',
 };
 
 const esc = (s) =>
@@ -266,9 +272,31 @@ export function itemFieldRows(item) {
 }
 
 // item: mục tài liệu trên nhánh của bài (null khi không đọc được). file: kết quả locateFile.
-export function reviewPage({ code, item, file }) {
+// Môn mới người gửi đề xuất (file catalog/courses/<mã>.json thêm trong nhánh): tên là chữ người gửi,
+// đã thoát HTML; link Sổ tay chỉ thành link khi là https.
+function newCourseSection(c) {
   const m = VIEW_MESSAGES;
-  const parts = [`<h2>${esc(m.fieldsTitle)}</h2>`];
+  const rows = [
+    [m.newCourseCode, c.code],
+    [m.newCourseName, c.name],
+    [m.newCourseFaculty, c.faculty],
+  ].filter(([, v]) => typeof v === 'string' && v);
+  const out = [
+    `<h2>${esc(m.newCourseTitle(String(c.code ?? '')))}</h2>`,
+    para(m.newCourseNote, 'warn'),
+    `<dl class="fields">${rows.map(([k, v]) => `<dt>${esc(k)}</dt><dd>${esc(v)}</dd>`).join('')}</dl>`,
+  ];
+  if (typeof c.handbookUrl === 'string' && /^https:\/\/[^\s"'<>]+$/.test(c.handbookUrl)) {
+    out.push(`<p class="actions"><a class="btn" href="${esc(c.handbookUrl)}" rel="noopener noreferrer">${esc(m.newCourseHandbook)}</a></p>`);
+  }
+  return out.join('');
+}
+
+export function reviewPage({ code, item, file, newCourse = null }) {
+  const m = VIEW_MESSAGES;
+  const parts = [];
+  if (newCourse) parts.push(newCourseSection(newCourse));
+  parts.push(`<h2>${esc(m.fieldsTitle)}</h2>`);
   const rows = itemFieldRows(item);
   if (rows.length) {
     parts.push(para(m.fieldsNote, 'muted'));

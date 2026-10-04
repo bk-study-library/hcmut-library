@@ -5,6 +5,7 @@ import os from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { buildSite } from '../scripts/build-site.mjs';
+import { TOOL_ROOT } from '../scripts/lib/repo.mjs';
 import { FIXTURES, copyFixture, editJson } from './helpers.mjs';
 import { freshRoot, importFixture } from './ctdt-helpers.mjs';
 
@@ -151,6 +152,27 @@ test('trang Gửi tài liệu: đuôi file theo loại lấy từ policy (.zip c
   assert.ok(cfg.byType.summary.includes('.pdf'));
   assert.match(html, /File \.zip chỉ dùng cho Gói quiz \(Study Pack\)\./);
   assert.doesNotMatch(html, /Nhiều file thì nén thành \.zip/);
+});
+
+test('trang Gửi tài liệu: thêm môn mới lấy mẫu mã từ schema, giới hạn tên từ policy, khoảng gợi ý từ site.json', () => {
+  const html = buildWithSite({ uploadEndpoint: '', turnstileSiteKey: 'K', nearCodeSpan: 3 });
+  const cfg = JSON.parse(html.match(/<script type="application\/json" id="upload-config">([^<]*)<\/script>/)[1]);
+  const schema = JSON.parse(fs.readFileSync(path.join(TOOL_ROOT, 'schema', 'course.schema.json'), 'utf8'));
+  const policy = JSON.parse(fs.readFileSync(path.join(TOOL_ROOT, 'catalog', 'policy.json'), 'utf8'));
+  assert.deepEqual(cfg.newCourse, { codePattern: schema.properties.code.pattern, nameMax: policy.fields.courseNameMax, nearSpan: 3 });
+  for (const k of ['newCodeEmpty', 'newCodePattern', 'newNameEmpty', 'newNameLong', 'courseExists', 'maybe']) assert.equal(typeof cfg.msg[k], 'string', k);
+  // Ô môn mới ẩn và tắt sẵn (không gửi đi) cho tới khi người gửi bấm Thêm môn mới.
+  assert.match(html, /<fieldset class="field new-course" id="new-course-box" hidden disabled>/);
+  assert.match(html, /name="newCourseCode" type="text"/);
+  assert.match(html, new RegExp(`name="newCourseName" type="text" maxlength="${policy.fields.courseNameMax}"`));
+  assert.match(html, /data-err="newCourseCode"/);
+  assert.match(html, /data-err="newCourseName"/);
+  assert.match(html, /<p id="new-course-offer" class="new-offer" hidden>/);
+  assert.match(html, /<button class="btn subtle" type="button" id="new-course-open" aria-controls="new-course-box" aria-expanded="false">/);
+  assert.ok(html.indexOf('assets/upload-core.js') > 0 && html.indexOf('assets/upload-core.js') < html.indexOf('assets/upload.js'));
+  // Không có nearCodeSpan thì không gợi ý mã gần.
+  const cfg0 = JSON.parse(buildWithSite({ uploadEndpoint: '', turnstileSiteKey: 'K' }).match(/id="upload-config">([^<]*)</)[1]);
+  assert.equal(cfg0.newCourse.nearSpan, 0);
 });
 
 test('trang môn tiếng Anh trỏ tới form tiếng Việt', () => {

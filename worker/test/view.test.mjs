@@ -67,7 +67,7 @@ const ITEM = {
   authors: ['Nguyen Van An'],
 };
 
-function fakeFetch({ pr = { state: 'open', merged_at: null }, fail = {}, item = ITEM, files = [{ filename: ITEM_PATH, status: 'added' }, { filename: 'index.json', status: 'modified' }] } = {}) {
+function fakeFetch({ pr = { state: 'open', merged_at: null }, fail = {}, item = ITEM, files = [{ filename: ITEM_PATH, status: 'added' }, { filename: 'index.json', status: 'modified' }], courses = {} } = {}) {
   const calls = [];
   const fn = async (url, init = {}) => {
     const method = init.method ?? 'GET';
@@ -84,6 +84,11 @@ function fakeFetch({ pr = { state: 'open', merged_at: null }, fail = {}, item = 
     if (u.pathname === `/repos/${REPO}/contents/${ITEM_PATH}`) {
       if (u.searchParams.get('ref') !== `upload/${CODE}`) return json({ message: 'Not Found' }, 404);
       return new Response(typeof item === 'string' ? item : JSON.stringify(item));
+    }
+    const coursePath = /^\/repos\/[^/]+\/[^/]+\/contents\/(catalog\/courses\/[A-Z0-9_]+\.json)$/.exec(u.pathname);
+    if (coursePath && courses[coursePath[1]] !== undefined && u.searchParams.get('ref') === `upload/${CODE}`) {
+      const c = courses[coursePath[1]];
+      return new Response(typeof c === 'string' ? c : JSON.stringify(c));
     }
     if (u.pathname === `/repos/${REPO}/pulls` && method === 'GET') {
       if (fail.pulls) return json({ message: 'x' }, fail.pulls);
@@ -323,6 +328,33 @@ describe('GET /xem-duyet/<mã>', () => {
     expect(html).toContain('<dt>Tên sách</dt><dd>Giải tích 1</dd>');
     expect(html).toContain('<dt>Tác giả</dt><dd>A, B</dd>');
     expect(html).toContain('Bài này là sách tham khảo, không có file.');
+  });
+
+  it('trang duyệt: bài có môn mới thì báo môn mới đầu trang, tên môn đã thoát HTML, link Sổ tay', async () => {
+    const path = 'catalog/courses/MT1005.json';
+    const course = {
+      id: 'MT1005', code: 'MT1005', name: 'Siêu cao tần <b>x</b>', faculty: 'dee',
+      handbookUrl: 'https://hcmut.edu.vn/study/handbook/subject/MT1005', note: 'Môn mới do người gửi đề xuất, chờ người duyệt xác nhận.',
+    };
+    const files = [{ filename: ITEM_PATH, status: 'added' }, { filename: path, status: 'added' }];
+    const html = await (await get(`/xem-duyet/${CODE}`, { headers: await auth(), fetch: fakeFetch({ files, courses: { [path]: course } }) })).res.text();
+    expect(html).toContain('Môn mới: MT1005');
+    expect(html).toContain('<dt>Tên môn</dt><dd>Siêu cao tần &lt;b&gt;x&lt;/b&gt;</dd>');
+    expect(html).toContain('<dt>Khoa</dt><dd>dee</dd>');
+    expect(html).toContain('href="https://hcmut.edu.vn/study/handbook/subject/MT1005"');
+    expect(html.indexOf('Môn mới: MT1005')).toBeLessThan(html.indexOf('Nội dung người gửi nhập'));
+
+    // Link không phải https thì không thành link; file môn đã có trên main (sửa) không coi là môn mới.
+    const bad = { ...course, handbookUrl: 'javascript:alert(1)' };
+    const html2 = await (await get(`/xem-duyet/${CODE}`, { headers: await auth(), fetch: fakeFetch({ files, courses: { [path]: bad } }) })).res.text();
+    expect(html2).toContain('Môn mới: MT1005');
+    expect(html2).not.toContain('javascript:');
+    const modified = [{ filename: ITEM_PATH, status: 'added' }, { filename: path, status: 'modified' }];
+    const html3 = await (await get(`/xem-duyet/${CODE}`, { headers: await auth(), fetch: fakeFetch({ files: modified, courses: { [path]: course } }) })).res.text();
+    expect(html3).not.toContain('Môn mới');
+    // Bài thường không có phần môn mới.
+    const html4 = await (await get(`/xem-duyet/${CODE}`, { headers: await auth() })).res.text();
+    expect(html4).not.toContain('Môn mới');
   });
 
   it('trang duyệt: không đọc được mục (nhánh mất, nhiều mục, JSON hỏng) thì báo, vẫn hiện phần file', async () => {

@@ -21,6 +21,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { TOOL_ROOT } from './lib/repo.mjs';
+import { inferParts } from './lib/parts.mjs';
 
 const FORBIDDEN = ['score', 'letter', 'gpa', 'gpa4', 'gpa10', 'grade', 'grades', 'creditsDone', 'passed', 'passedCount', 'result'];
 
@@ -40,13 +41,8 @@ function findForbidden(v, trail = '') {
   return null;
 }
 
-export function inferParts(name) {
-  const n = name.toLowerCase();
-  if (n.includes('ngoài trường')) return [];
-  if (n.includes('thí nghiệm') || n.startsWith('thực tập')) return ['lab'];
-  if (n.startsWith('đồ án')) return ['project'];
-  return ['theory'];
-}
+// Dùng chung với Worker (môn mới gửi qua form), nên nằm ở lib/parts.mjs.
+export { inferParts };
 
 // Trường của chương trình do người duyệt ghi tay, nguồn nhập không có: giữ nguyên khi nhập lại.
 export const KEPT_PROGRAM_FIELDS = ['listed', 'ctdtUrl', 'planUrl'];

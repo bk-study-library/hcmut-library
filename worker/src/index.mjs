@@ -4,6 +4,10 @@ import { GitHub, GitHubError, installationToken } from './github.mjs';
 import { loadCatalog } from './catalog.mjs';
 import { slugify, fileName, uniqueId } from '../../scripts/upload/naming.mjs';
 import { buildItem } from '../../scripts/upload/item.mjs';
+import { buildNewCourse, handbookUrlFor, newCoursePath } from '../../scripts/upload/course.mjs';
+// Tiền tố khoa và mẫu link Sổ tay đóng gói lúc deploy (như policy.json ở preview.mjs): đổi thì deploy lại.
+import faculties from '../../catalog/faculties.json';
+import site from '../../catalog/site.json';
 import { formatSize, TYPES } from '../../scripts/lib/labels.mjs';
 import { rateKey, dailyCap, dailyCapReached, countSubmission } from './limits.mjs';
 import { accessConfigured, verifyAccessJwt } from './access.mjs';
@@ -50,7 +54,11 @@ const MESSAGES = {
   removed: 'Tài liệu này đã bị gỡ khỏi thư viện nên không nhận lại.',
   dailyCap: 'Hôm nay thư viện đã nhận đủ số bài. Gửi lại vào ngày mai.',
   failed: 'Chưa gửi được. Thử lại sau ít phút.',
+  oneCourse: 'Mỗi bài chỉ gửi cho một môn. Tải lại trang rồi chọn lại môn.',
 };
+
+// Ô chọn môn và ô môn mới: mỗi ô chỉ được gửi một lần.
+const COURSE_FIELDS = ['course', 'newCourseCode', 'newCourseName'];
 
 // Mục tài liệu trong nhánh của bài (cùng mẫu với scripts/upload/check.mjs).
 const ITEM_FILE = /^courses\/[A-Za-z0-9_-]+\/items\/[A-Za-z0-9_-]+\.json$/;
@@ -144,14 +152,25 @@ export function cell(value) {
 // trong email thông báo). Chữ người gửi chỉ nằm trong file mục tài liệu và trang /xem-duyet/<mã>.
 export const prTitle = (code, courseCode) => `Bài gửi ${code}: ${courseCode}`;
 
-export function prBody({ code, courseCode, type, file, viewBase }) {
+// newCourse: { code, handbookUrl } khi bài đề xuất môn chưa có. Mã đã qua mẫu mã môn nên được ghi;
+// tên môn là chữ người gửi nên chỉ nằm trong file môn của PR, không ghi ở đây.
+export function prBody({ code, courseCode, type, file, viewBase, newCourse = null }) {
   const rows = [
     ['Mã bài', code],
     ['Môn', courseCode],
     ['Loại', TYPES[type]?.vi ?? type],
   ];
   if (file) rows.push(['Kích thước', formatSize(file.size)], ['sha256', file.sha256]);
-  const lines = ['| Trường | Giá trị |', '|---|---|', ...rows.map(([k, v]) => `| ${k} | ${cell(v)} |`), ''];
+  const lines = [];
+  if (newCourse) {
+    lines.push(
+      `**Môn mới: ${cell(newCourse.code)}**. Môn này chưa có trong danh mục; bài thêm file \`catalog/courses/${newCourse.code}.json\`.`,
+      'Người duyệt kiểm mã, tên và khoa của môn với Sổ tay HCMUT trước khi gộp; sai thì sửa file môn trong PR, trùng môn đã có thì đóng PR.',
+    );
+    if (newCourse.handbookUrl) lines.push(`Trang môn trên Sổ tay: ${newCourse.handbookUrl}`);
+    lines.push('');
+  }
+  lines.push('| Trường | Giá trị |', '|---|---|', ...rows.map(([k, v]) => `| ${k} | ${cell(v)} |`), '');
   if (file) lines.push('File nằm trong kho cách ly. CI sẽ kiểm file và ghi kết quả vào PR này.', '');
   if (viewBase) {
     lines.push(`${file ? 'Xem file' : 'Xem bài'} (người duyệt): ${viewBase}/xem-duyet/${code}`, '');
@@ -242,10 +261,13 @@ async function handleSubmit(req, env, deps, cors) {
   const hasFile = upload && typeof upload === 'object' && (upload.size > 0 || upload.name);
   const bytes = hasFile ? new Uint8Array(await upload.arrayBuffer()) : null;
   const file = bytes ? { name: upload.name, size: bytes.length, head: bytes.subarray(0, HEAD_BYTES) } : null;
+  // Mỗi bài đúng một môn: ô môn hay môn mới gửi lặp thì không đoán ô nào là đúng.
+  if (COURSE_FIELDS.some((k) => data.getAll(k).length > 1)) return reply(400, { ok: false, errors: { course: MESSAGES.oneCourse } }, cors);
   const checked = validateSubmission(fields, file, { policy, courses: catalog.courses });
   if (!checked.ok) return reply(400, { ok: false, errors: checked.errors }, cors);
   const { form, ext } = checked;
-  const course = catalog.courses.get(form.course);
+  const { newCourse } = form;
+  const course = newCourse ? { id: newCourse.code, code: newCourse.code, ids: new Set() } : catalog.courses.get(form.course);
 
   const code = makeCode(deps.random);
   const slug = slugify(form.title);
@@ -266,8 +288,18 @@ async function handleSubmit(req, env, deps, cors) {
   // Dựng sẵn mục và PR trước khi ghi R2, để lỗi ở đây không để lại file mồ côi.
   const today = new Date(deps.now() + VN_OFFSET_MS).toISOString().slice(0, 10);
   const itemText = `${JSON.stringify({ $schema: ITEM_SCHEMA, ...buildItem(form, stored, today, id) }, null, 2)}\n`;
+  const courseText = newCourse
+    ? `${JSON.stringify(buildNewCourse({ ...newCourse, today, prefixes: faculties.prefixes, handbookTemplate: site.handbookSubjectUrl }), null, 2)}\n`
+    : null;
   const base = reviewBase(env);
-  const prText = prBody({ code, courseCode: course.code, type: form.type, file: stored, viewBase: base });
+  const prText = prBody({
+    code,
+    courseCode: course.code,
+    type: form.type,
+    file: stored,
+    viewBase: base,
+    newCourse: newCourse ? { code: newCourse.code, handbookUrl: handbookUrlFor(newCourse.code, site.handbookSubjectUrl) } : null,
+  });
   // Mã bí mật cho link xem bài của người gửi; R2 chỉ giữ sha256 của mã.
   const view = base ? await newToken(deps.random) : null;
 
@@ -302,6 +334,10 @@ async function handleSubmit(req, env, deps, cors) {
     step = 'branch';
     await gh.createBranch(branch, await gh.branchSha(env.BRANCH));
     branchMade = true;
+    if (courseText) {
+      step = 'course';
+      await gh.putFile(newCoursePath(course.code), courseText, branch, `feat(catalog): thêm môn mới ${course.code} gửi qua form ${code}`);
+    }
     step = 'item';
     await gh.putFile(`courses/${course.id}/items/${id}.json`, itemText, branch, `feat(courses): thêm tài liệu gửi qua form ${code}`);
     step = 'pr';
@@ -323,21 +359,30 @@ async function handleSubmit(req, env, deps, cors) {
   }
 }
 
-// Mục tài liệu trên nhánh upload/<mã> (đúng một file mục, đọc thô). Lỗi hay không rõ thì null.
+const asObject = (text) => {
+  const v = text === null ? null : JSON.parse(text);
+  return v && typeof v === 'object' && !Array.isArray(v) ? v : null;
+};
+
+// Mục tài liệu trên nhánh upload/<mã> (đúng một file mục, đọc thô), và file môn mới của đúng môn đó
+// nếu bài thêm môn chưa có (file thêm mới so với nhánh chính). Lỗi hay không rõ thì null.
 async function branchItem(env, github, code) {
+  const out = { item: null, newCourse: null };
   try {
     const gh = await github();
     const branch = `upload/${code}`;
-    const files = await gh.changedFiles(env.BRANCH, branch);
-    const hits = (files ?? []).filter((f) => ITEM_FILE.test(f.filename) && f.status !== 'removed');
-    if (hits.length !== 1) return null;
-    const text = await gh.getRaw(hits[0].filename, branch);
-    const item = text === null ? null : JSON.parse(text);
-    return item && typeof item === 'object' && !Array.isArray(item) ? item : null;
+    const files = (await gh.changedFiles(env.BRANCH, branch)) ?? [];
+    const hits = files.filter((f) => ITEM_FILE.test(f.filename) && f.status !== 'removed');
+    if (hits.length !== 1) return out;
+    const coursePath = newCoursePath(hits[0].filename.split('/')[1]);
+    const added = files.some((f) => f.filename === coursePath && f.status === 'added');
+    const [itemText, courseText] = await Promise.all([gh.getRaw(hits[0].filename, branch), added ? gh.getRaw(coursePath, branch) : null]);
+    out.item = asObject(itemText);
+    if (added) out.newCourse = asObject(courseText);
   } catch (err) {
     logFailure('review_item', err);
-    return null;
   }
+  return out;
 }
 
 // Người duyệt: JWT của Cloudflare Access phải hợp lệ; thiếu cấu hình thì đóng (503).
@@ -365,8 +410,8 @@ async function handleReview(req, env, deps, code, wantFile) {
       downloadHref: `/xem-duyet/${code}/file?tai=1`,
     });
   }
-  const [item, file] = await Promise.all([branchItem(env, github, code), locateFile(env.QUARANTINE, code)]);
-  return reviewPage({ code, item, file });
+  const [{ item, newCourse }, file] = await Promise.all([branchItem(env, github, code), locateFile(env.QUARANTINE, code)]);
+  return reviewPage({ code, item, file, newCourse });
 }
 
 // Người gửi: mã bí mật sai hay thiếu thì 404 như không có bài.
