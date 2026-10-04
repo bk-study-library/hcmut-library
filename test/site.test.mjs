@@ -142,6 +142,16 @@ test('trang Gửi tài liệu: có địa chỉ Worker thì form mở và nạp 
   assert.match(html, /<script src="https:\/\/challenges\.cloudflare\.com\/turnstile\/v0\/api\.js"/);
 });
 
+test('trang Gửi tài liệu: đuôi file theo loại lấy từ policy (.zip chỉ cho gói quiz)', () => {
+  const html = buildWithSite({ uploadEndpoint: '', turnstileSiteKey: 'K' });
+  const cfg = JSON.parse(html.match(/<script type="application\/json" id="upload-config">([^<]*)<\/script>/)[1]);
+  assert.ok(cfg.byType['quiz-pack'].includes('.zip'));
+  assert.ok(!cfg.byType.summary.includes('.zip'));
+  assert.ok(cfg.byType.summary.includes('.pdf'));
+  assert.match(html, /File \.zip chỉ dùng cho Gói quiz \(Study Pack\)\./);
+  assert.doesNotMatch(html, /Nhiều file thì nén thành \.zip/);
+});
+
 test('trang môn tiếng Anh trỏ tới form tiếng Việt', () => {
   assert.match(read('en/course/EE1009/index.html'), /href="\.\.\/\.\.\/\.\.\/gui-tai-lieu\/\?course=EE1009"/);
 });
@@ -291,11 +301,12 @@ const out4 = (() => {
   const dir = copyFixture();
   fs.writeFileSync(path.join(dir, 'catalog', 'site.json'), JSON.stringify({ uploadEndpoint: '', turnstileSiteKey: 'K', reviewBase: 'https://up.example/' }));
   const rel = (name) => `https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261/${name}`;
+  // .zip chỉ nhận cho gói quiz (policy.json).
   const item = (id, name, size, sha) => ({
-    id, course: 'EE1009', type: 'summary', title: `Mục ${id}`, lang: 'vi', license: 'CC-BY-SA-4.0', origin: 'self-made',
+    id, course: 'EE1009', type: name.endsWith('.zip') ? 'quiz-pack' : 'summary', title: `Mục ${id}`, lang: 'vi', license: 'CC-BY-SA-4.0', origin: 'self-made',
     files: [{ name, size, sha256: sha.repeat(64), url: rel(name) }], added: '2026-10-04', removed: false,
   });
-  for (const [id, name, sha] of [['co-pdf', 'EE1009_summary_co-pdf.pdf', '2'], ['co-docx', 'EE1009_summary_co-docx.docx', '3'], ['co-zip', 'EE1009_summary_co-zip.zip', '4']]) {
+  for (const [id, name, sha] of [['co-pdf', 'EE1009_summary_co-pdf.pdf', '2'], ['co-docx', 'EE1009_summary_co-docx.docx', '3'], ['co-zip', 'EE1009_quiz-pack_co-zip.zip', '4']]) {
     fs.writeFileSync(path.join(dir, 'courses', 'EE1009', 'items', `${id}.json`), JSON.stringify(item(id, name, 2 * 1024 * 1024, sha)));
   }
   const o = fs.mkdtempSync(path.join(os.tmpdir(), 'bk-lib-site-btn-'));

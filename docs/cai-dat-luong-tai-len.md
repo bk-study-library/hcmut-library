@@ -264,7 +264,7 @@ Kết quả mong đợi:
 
 ### Bài 2. File EICAR
 
-EICAR là file thử chuẩn của phần mềm diệt virus, vô hại. Tải từ trang chính thức https://www.eicar.org (mục file thử). Phần mềm diệt virus trên máy bạn có thể chặn hoặc xóa file này: tạm thời đặt nó vào thư mục được loại trừ. Form chỉ nhận các đuôi trong `catalog/policy.json`, nên nén file EICAR thành `.zip` rồi gửi.
+EICAR là file thử chuẩn của phần mềm diệt virus, vô hại. Tải từ trang chính thức https://www.eicar.org (mục file thử). Phần mềm diệt virus trên máy bạn có thể chặn hoặc xóa file này: tạm thời đặt nó vào thư mục được loại trừ. Form chỉ nhận các đuôi trong `catalog/policy.json`, nên nén file EICAR thành `.zip` rồi gửi với loại **Gói quiz** (`.zip` chỉ nhận cho loại này).
 
 Kết quả mong đợi:
 - Có PR mới, rồi `kiem-file` comment báo phát hiện virus.

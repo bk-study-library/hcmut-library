@@ -90,6 +90,7 @@ export const S = {
     addDoc: 'Gửi tài liệu',
     uploadTitle: 'Gửi tài liệu',
     uploadClosed: 'Form gửi tài liệu chưa mở.',
+    uploadExtOnly: (ext, types) => `File ${ext} chỉ dùng cho ${types}.`,
     // Thông báo của upload.js. Chữ có số (đuôi file, kích thước) được dựng lúc build từ policy.json.
     uploadMsg: {
       course: 'Chưa chọn môn. Gõ mã hoặc tên môn rồi chọn một môn trong danh sách.',
@@ -98,6 +99,7 @@ export const S = {
       file: 'Chưa có file. Chọn file cần gửi.',
       fileEmpty: 'File rỗng. Chọn file khác.',
       fileExt: (list) => `Không nhận đuôi file này. Dùng một trong: ${list}.`,
+      fileExtType: 'Không nhận đuôi file này cho loại tài liệu đã chọn. Dùng một trong:',
       fileSize: (max) => `File quá lớn. Chọn file nhỏ hơn ${max}.`,
       book: 'Chưa có tên sách hoặc tác giả. Nhập tên sách và ít nhất một tác giả.',
       confirm: 'Chưa đủ xác nhận. Đánh dấu cả ba ô cam kết.',

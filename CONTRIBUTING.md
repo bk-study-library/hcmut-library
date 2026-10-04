@@ -8,7 +8,7 @@ Trang này nói thư viện nhận gì, bạn gửi bài bằng cách nào, và 
 |---|---|
 | Mọi tài liệu học tập bạn muốn chia sẻ: tóm tắt, ghi chú, bảng công thức, lời giải, slide, đề thi, đáp án, mẫu và bài tham khảo cho prelab, báo cáo, bài tập lớn, gói quiz Study Pack v1 | File sách có bản quyền (sách thương mại, sách của nhà xuất bản) |
 | Link tới tài liệu công khai khác | File chạy được (exe, bat, sh, apk, jar...) |
-| Đuôi file: .pdf, .md, .docx, .pptx, .xlsx, .zip, .png, .jpg, .json | File lớn hơn 20 MB |
+| Đuôi file: .pdf, .md, .docx, .pptx, .xlsx, .png, .jpg, .json; riêng gói quiz nhận thêm .zip | File lớn hơn 20 MB, file .zip cho loại khác gói quiz |
 
 Một số điều cần nhớ:
 
@@ -26,7 +26,7 @@ Một số điều cần nhớ:
 ### 1. Gửi file qua trang web (khuyên dùng, không cần tài khoản GitHub)
 
 1. Mở [Gửi tài liệu](https://bk-study-library.github.io/hcmut-library/gui-tai-lieu/), hoặc bấm **Gửi tài liệu** trên trang môn để form chọn sẵn môn.
-2. Chọn môn, loại tài liệu, nhập tiêu đề, chọn file. Nhiều file thì nén thành một file .zip.
+2. Chọn môn, loại tài liệu, nhập tiêu đề, chọn file. File .zip chỉ nhận cho loại Gói quiz; loại khác thì gửi từng file, hoặc gộp thành một file PDF.
 3. Chọn giấy phép, đánh dấu ba ô cam kết, qua bước xác minh Turnstile của Cloudflare.
 4. Bấm **Gửi tài liệu**. Trang hiện mã bài. Hãy lưu mã này để hỏi về bài của bạn.
 
