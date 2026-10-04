@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "generated": "2026-10-03",
+  "generated": "2026-10-04",
   "site": "https://bk-study-library.github.io/bk-study-library/",
   "counts": {
     "courses": 8,
-    "items": 8
+    "items": 9
   },
   "faculties": [
     {
@@ -212,7 +212,7 @@
       "aliases": [],
       "oldNames": [],
       "status": "active",
-      "items": 2,
+      "items": 3,
       "url": "https://bk-study-library.github.io/bk-study-library/course/MT1005/",
       "detail": "courses/MT1005.json"
     },
