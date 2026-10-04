@@ -197,6 +197,12 @@ h4 { font-size: 15px; margin: 0 0 4px; font-weight: 600; }
 .results a { display: flex; flex-wrap: wrap; gap: 4px 12px; padding: 8px 4px; text-decoration: none; color: var(--text); }
 .results a:hover { background: var(--surface-2); }
 .results .code { min-width: 72px; }
+.results li.muted { padding: 8px 4px; border-bottom: 0; }
+.results-head { font-size: 15px; margin: 12px 0 4px; }
+#q-prog + #q-status { margin-top: 16px; }
+/* Đích của link tới khối (trang chương trình) hoặc nhóm loại (trang môn) */
+.block:target, .group:target { outline: 2px solid var(--accent); outline-offset: 6px; border-radius: var(--radius); }
+.block, .group { scroll-margin-top: 16px; }
 
 /* Lưới khoa */
 .grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; }
@@ -371,3 +377,14 @@ main h1, main h2, main p, main li { overflow-wrap: break-word; }
 .more-items { margin-top: 10px; }
 .more-items > summary { cursor: pointer; font-weight: 600; color: var(--accent); padding: 4px 0; }
 .more-items > .items { margin-top: 10px; }
+
+/* Bộ lọc và kết quả tài liệu ở ô tìm trang chủ */
+.search-filters { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin-top: 8px; }
+.search .search-filters label { font-size: 13px; color: var(--muted); margin-bottom: 4px; }
+.search .search-filters select { width: 100%; max-width: none; }
+@media (max-width: 560px) {
+  .search-filters { grid-template-columns: 1fr; }
+}
+#q-docs-status { margin: 0 0 4px; }
+.results .doc-title { font-weight: 600; }
+.results .doc-desc { flex-basis: 100%; font-size: 13px; }
