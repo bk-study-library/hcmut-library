@@ -1,0 +1,27 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "GE2053",
+  "code": "GE2053",
+  "name": "Nhiệt động học vỉa và tính chất chất lưu",
+  "nameEn": "Reservoir Thermodynamics and Fluid Properties",
+  "credits": 3,
+  "faculty": "geopet",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "GEOPET_KY_THUAT_DAU_KHI_2024",
+      "block": "K09",
+      "required": true
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [
+    "CH2089",
+    "GE3179"
+  ],
+  "note": "Nhập từ nguồn công khai (truy cập 03/10/2026).",
+  "updated": "2026-10-04"
+}

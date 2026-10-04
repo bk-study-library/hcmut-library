@@ -1,0 +1,11 @@
+{
+  "$schema": "../../schema/program.schema.json",
+  "code": "DEE_SONG_NGANH_KY_THUAT_DIEU_KHIEN_VA_TU_DONG_HOA_KY_THUAT_DIEN_2021",
+  "name": "Song ngành: Kỹ thuật Điều khiển và Tự động hóa - Kỹ thuật Điện",
+  "faculty": "dee",
+  "year": "2021",
+  "source": "https://hcmut.edu.vn/home/giao-dien/chuong-trinh-dao-tao/all",
+  "note": "Có trong danh mục CTĐT của trường nhưng chưa có file CTĐT.",
+  "blocks": [],
+  "updated": "2026-10-04"
+}

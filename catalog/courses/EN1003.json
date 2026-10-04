@@ -1,0 +1,189 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "EN1003",
+  "code": "EN1003",
+  "name": "Con người và môi trường",
+  "nameEn": "Humans and the Environment",
+  "credits": 3,
+  "faculty": "fenr",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "DEE_SONG_NGANH_KY_THUAT_DIEN_TU_VIEN_THONG_KY_THUAT_DIEU_KHIEN_VA_TU_DONG_HOA_2019",
+      "block": "K02",
+      "required": true
+    },
+    {
+      "program": "DEE_SONG_NGANH_KY_THUAT_DIEN_KY_THUAT_DIEN_TU_VIEN_THONG_2022",
+      "block": "K07",
+      "required": false
+    },
+    {
+      "program": "DEE_SONG_NGANH_KY_THUAT_DIEN_KY_THUAT_DIEN_TU_VIEN_THONG_2023",
+      "block": "K07",
+      "required": true
+    },
+    {
+      "program": "DEE_SONG_NGANH_KY_THUAT_DIEN_TU_VIEN_THONG_KY_THUAT_DIEU_KHIEN_VA_TU_DONG_HOA_2023",
+      "block": "K07",
+      "required": true
+    },
+    {
+      "program": "DEE_SONG_NGANH_KY_THUAT_DIEN_TU_VIEN_THONG_KY_THUAT_DIEU_KHIEN_VA_TU_DONG_HOA_2022",
+      "block": "K07",
+      "required": false
+    },
+    {
+      "program": "DEE_SONG_NGANH_KY_THUAT_DIEN_TU_VIEN_THONG_KY_THUAT_DIEU_KHIEN_VA_TU_DONG_HOA_2021",
+      "block": "K07",
+      "required": false
+    },
+    {
+      "program": "DEE_SONG_NGANH_KY_THUAT_DIEN_TU_VIEN_THONG_KY_THUAT_DIEU_KHIEN_VA_TU_DONG_HOA_2020",
+      "block": "K02",
+      "required": true
+    },
+    {
+      "program": "DEE_KY_THUAT_DIEU_KHIEN_VA_TU_DONG_HOA_2020",
+      "block": "K01",
+      "required": true
+    },
+    {
+      "program": "DEE_KY_THUAT_DIEU_KHIEN_VA_TU_DONG_HOA_2021",
+      "block": "K07",
+      "required": false
+    },
+    {
+      "program": "DEE_KY_THUAT_DIEU_KHIEN_VA_TU_DONG_HOA_2022",
+      "block": "K07",
+      "required": false
+    },
+    {
+      "program": "DEE_KY_THUAT_DIEU_KHIEN_VA_TU_DONG_HOA_2023",
+      "block": "K07",
+      "required": true
+    },
+    {
+      "program": "DEE_KY_THUAT_DIEU_KHIEN_VA_TU_DONG_HOA_2024",
+      "block": "K10",
+      "required": false
+    },
+    {
+      "program": "DEE_SONG_NGANH_KY_THUAT_DIEN_TU_VIEN_THONG_KY_THUAT_DIEN_2020",
+      "block": "K02",
+      "required": true
+    },
+    {
+      "program": "DEE_SONG_NGANH_KY_THUAT_DIEN_TU_VIEN_THONG_KY_THUAT_DIEN_2021",
+      "block": "K07",
+      "required": true
+    },
+    {
+      "program": "DEE_SONG_NGANH_KY_THUAT_DIEN_TU_VIEN_THONG_KY_THUAT_DIEN_2022",
+      "block": "K07",
+      "required": true
+    },
+    {
+      "program": "DEE_SONG_NGANH_KY_THUAT_DIEN_TU_VIEN_THONG_KY_THUAT_DIEN_2019",
+      "block": "K02",
+      "required": true
+    },
+    {
+      "program": "DEE_SONG_NGANH_KY_THUAT_DIEN_TU_VIEN_THONG_KY_THUAT_DIEN_2023",
+      "block": "K07",
+      "required": true
+    },
+    {
+      "program": "DEE_THIET_KE_VI_MACH_2024",
+      "block": "K09",
+      "required": false
+    },
+    {
+      "program": "DEE_KY_THUAT_DIEN_2019",
+      "block": "K01",
+      "required": true
+    },
+    {
+      "program": "DEE_KY_THUAT_DIEN_2020",
+      "block": "K02",
+      "required": true
+    },
+    {
+      "program": "DEE_KY_THUAT_DIEN_2021",
+      "block": "K07",
+      "required": true
+    },
+    {
+      "program": "DEE_KY_THUAT_DIEN_2022",
+      "block": "K07",
+      "required": false
+    },
+    {
+      "program": "DEE_KY_THUAT_DIEN_2023",
+      "block": "K07",
+      "required": true
+    },
+    {
+      "program": "DEE_KY_THUAT_DIEN_2024",
+      "block": "K10",
+      "required": false
+    },
+    {
+      "program": "DEE_KY_THUAT_DIEN_TU_VIEN_THONG_2019",
+      "block": "K01",
+      "required": true
+    },
+    {
+      "program": "DEE_KY_THUAT_DIEN_TU_VIEN_THONG_2020",
+      "block": "K01",
+      "required": true
+    },
+    {
+      "program": "DEE_KY_THUAT_DIEN_TU_VIEN_THONG_2021",
+      "block": "K07",
+      "required": false
+    },
+    {
+      "program": "DEE_KY_THUAT_DIEN_TU_VIEN_THONG_2022",
+      "block": "K07",
+      "required": false
+    },
+    {
+      "program": "DEE_KY_THUAT_DIEN_TU_VIEN_THONG_2023",
+      "block": "K07",
+      "required": true
+    },
+    {
+      "program": "DEE_KY_THUAT_DIEU_KHIEN_VA_TU_DONG_HOA_2019",
+      "block": "K01",
+      "required": true
+    },
+    {
+      "program": "DEE_KY_THUAT_DIEN_TU_VIEN_THONG_2024",
+      "block": "K10",
+      "required": false
+    },
+    {
+      "program": "DEE_CHUYEN_NGANH_KY_THUAT_DIEU_KHIEN_VA_TU_DONG_HOA_2023_DEE_FILE_SYSTEM",
+      "block": "K03",
+      "required": true
+    },
+    {
+      "program": "DEE_CTDT_PFIEV_CHUYEN_NGANH_HE_THONG_NANG_LUONG_DIEN_2023_DEE_FILE_SYSTEM",
+      "block": "K05",
+      "required": true
+    },
+    {
+      "program": "DEE_CHUYEN_NGANH_KY_THUAT_DIEN_TU_VIEN_THONG_2023_DEE_FILE_SYSTEM",
+      "block": "K03",
+      "required": true
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "note": "Nhập từ nguồn công khai (truy cập 03/10/2026).",
+  "updated": "2026-10-04"
+}

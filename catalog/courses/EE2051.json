@@ -1,0 +1,79 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "EE2051",
+  "code": "EE2051",
+  "name": "Thực tập điện 2",
+  "nameEn": "Electrical Workshop 2",
+  "credits": 1,
+  "faculty": "dee",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "DEE_SONG_NGANH_KY_THUAT_DIEN_TU_VIEN_THONG_KY_THUAT_DIEU_KHIEN_VA_TU_DONG_HOA_2019",
+      "block": "K03",
+      "required": true
+    },
+    {
+      "program": "DEE_SONG_NGANH_KY_THUAT_DIEN_KY_THUAT_DIEN_TU_VIEN_THONG_2022",
+      "block": "K09",
+      "required": true
+    },
+    {
+      "program": "DEE_SONG_NGANH_KY_THUAT_DIEN_KY_THUAT_DIEN_TU_VIEN_THONG_2023",
+      "block": "K09",
+      "required": true
+    },
+    {
+      "program": "DEE_SONG_NGANH_KY_THUAT_DIEN_TU_VIEN_THONG_KY_THUAT_DIEU_KHIEN_VA_TU_DONG_HOA_2023",
+      "block": "K10",
+      "required": true
+    },
+    {
+      "program": "DEE_SONG_NGANH_KY_THUAT_DIEN_TU_VIEN_THONG_KY_THUAT_DIEU_KHIEN_VA_TU_DONG_HOA_2022",
+      "block": "K10",
+      "required": true
+    },
+    {
+      "program": "DEE_SONG_NGANH_KY_THUAT_DIEN_TU_VIEN_THONG_KY_THUAT_DIEU_KHIEN_VA_TU_DONG_HOA_2021",
+      "block": "K10",
+      "required": true
+    },
+    {
+      "program": "DEE_SONG_NGANH_KY_THUAT_DIEN_TU_VIEN_THONG_KY_THUAT_DIEU_KHIEN_VA_TU_DONG_HOA_2020",
+      "block": "K03",
+      "required": true
+    },
+    {
+      "program": "DEE_SONG_NGANH_KY_THUAT_DIEN_TU_VIEN_THONG_KY_THUAT_DIEN_2020",
+      "block": "K02",
+      "required": true
+    },
+    {
+      "program": "DEE_SONG_NGANH_KY_THUAT_DIEN_TU_VIEN_THONG_KY_THUAT_DIEN_2021",
+      "block": "K10",
+      "required": true
+    },
+    {
+      "program": "DEE_SONG_NGANH_KY_THUAT_DIEN_TU_VIEN_THONG_KY_THUAT_DIEN_2022",
+      "block": "K10",
+      "required": true
+    },
+    {
+      "program": "DEE_SONG_NGANH_KY_THUAT_DIEN_TU_VIEN_THONG_KY_THUAT_DIEN_2019",
+      "block": "K02",
+      "required": true
+    },
+    {
+      "program": "DEE_SONG_NGANH_KY_THUAT_DIEN_TU_VIEN_THONG_KY_THUAT_DIEN_2023",
+      "block": "K10",
+      "required": true
+    }
+  ],
+  "parts": [
+    "lab"
+  ],
+  "related": [],
+  "note": "Nhập từ nguồn công khai (truy cập 03/10/2026).",
+  "updated": "2026-10-04"
+}

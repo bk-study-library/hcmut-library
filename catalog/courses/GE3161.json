@@ -1,0 +1,74 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "GE3161",
+  "code": "GE3161",
+  "name": "Quản lý dự án trong kỹ thuật tài nguyên trái đất",
+  "nameEn": "Project Management in Earth Resources Engineering",
+  "credits": 3,
+  "faculty": "geopet",
+  "aliases": [
+    {
+      "code": "GE3053",
+      "name": "Địa mạo - tân kiến tạo và trầm tích đệ tứ",
+      "to": "2018-12-31"
+    },
+    {
+      "code": "GE4055",
+      "name": "Đánh giá tác động môi trường",
+      "to": "2018-12-31"
+    }
+  ],
+  "status": "active",
+  "replaces": [
+    "GE3053",
+    "GE4055"
+  ],
+  "programs": [
+    {
+      "program": "GEOPET_KY_THUAT_DIA_CHAT_2023",
+      "block": "K06",
+      "required": true
+    },
+    {
+      "program": "GEOPET_KY_THUAT_DAU_KHI_2020",
+      "block": "K06",
+      "required": false
+    },
+    {
+      "program": "GEOPET_KY_THUAT_DIA_CHAT_2022",
+      "block": "K06",
+      "required": true
+    },
+    {
+      "program": "GEOPET_KY_THUAT_DIA_CHAT_2021",
+      "block": "K06",
+      "required": true
+    },
+    {
+      "program": "GEOPET_KY_THUAT_DIA_CHAT_2020",
+      "block": "K01",
+      "required": true
+    },
+    {
+      "program": "GEOPET_KY_THUAT_DIA_CHAT_2019",
+      "block": "K01",
+      "required": true
+    },
+    {
+      "program": "GEOPET_KY_THUAT_DAU_KHI_2019",
+      "block": "K06",
+      "required": false
+    },
+    {
+      "program": "GEOPET_KY_THUAT_DAU_KHI_GEOPET_COURSE_LIST",
+      "block": "K13",
+      "required": false
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "note": "Nhập từ nguồn công khai (truy cập 03/10/2026).",
+  "updated": "2026-10-04"
+}

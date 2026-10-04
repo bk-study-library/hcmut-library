@@ -1,0 +1,12 @@
+{
+  "$schema": "../../schema/program.schema.json",
+  "code": "DEE_TS_308_2026_CTQT",
+  "name": "Kỹ thuật Điện - Điện tử Đại học đối tác: Úc: ĐH Queensland, ĐH Griffith, ĐH Macquarie, ĐH Adelaide Hàn Quốc: ĐH Kwangwoon Anh: ĐH Birmingham",
+  "faculty": "dee",
+  "year": "2026",
+  "variant": "Chuyển tiếp quốc tế",
+  "source": "https://hcmut.edu.vn/tuyen-sinh/dai-hoc-chinh-quy",
+  "note": "Ngành tuyển sinh 2026, mã tuyển sinh 308. Chưa có danh sách môn công khai.",
+  "blocks": [],
+  "updated": "2026-10-04"
+}

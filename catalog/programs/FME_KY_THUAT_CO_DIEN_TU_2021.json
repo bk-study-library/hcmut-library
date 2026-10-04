@@ -1,0 +1,121 @@
+{
+  "$schema": "../../schema/program.schema.json",
+  "code": "FME_KY_THUAT_CO_DIEN_TU_2021",
+  "name": "Kỹ thuật Cơ điện tử",
+  "nameEn": "Mechatronic Engineering",
+  "faculty": "fme",
+  "year": "2021",
+  "source": "https://drive.google.com/file/d/1pTMkNodfIauJ-EaaaBomga0sBgGQ2xV_/view",
+  "blocks": [
+    {
+      "id": "K01",
+      "name": "I. Các môn bắt buộc (Com pulsary Courses ) 87",
+      "required": true,
+      "courses": [
+        "MT1003",
+        "MT1005",
+        "MT1007",
+        "MT2013",
+        "CH1003",
+        "PH1003",
+        "PH1007",
+        "ME2091",
+        "PH1005",
+        "SP1007",
+        "SP1031",
+        "SP1033",
+        "SP1035",
+        "SP1037",
+        "SP1039",
+        "ME1001",
+        "ME2019",
+        "LA1003",
+        "LA1005",
+        "LA1007",
+        "LA1009",
+        "CI2001",
+        "CO1003",
+        "ME1013",
+        "ME1015",
+        "ME2005"
+      ]
+    },
+    {
+      "id": "K02",
+      "name": "Machinery",
+      "group": "I. Các môn bắt buộc (Com pulsary Courses ) 87",
+      "required": true,
+      "courses": [
+        "ME2007",
+        "ME2009",
+        "ME2087",
+        "ME2089",
+        "ME2115"
+      ]
+    },
+    {
+      "id": "K03",
+      "name": "3 - Management Group) (Tối thiểu 3 TC) 3 Quản lý",
+      "group": "II. Các môn bắt buộc và tự chọn của chuyên ngành",
+      "required": false,
+      "courses": [
+        "ME3007",
+        "ME3011",
+        "ME3015",
+        "ME3145",
+        "ME3123",
+        "ME4071",
+        "ME4327"
+      ]
+    },
+    {
+      "id": "K04",
+      "name": "Các môn tự chọn chuyên ngành (Elective Speciality Courses - Group)",
+      "group": "II. Các môn bắt buộc và tự chọn của chuyên ngành",
+      "required": false,
+      "courses": [
+        "ME3001",
+        "ME3005",
+        "ME3009",
+        "ME3013",
+        "ME4133",
+        "ME4135",
+        "ME4137",
+        "ME4217"
+      ]
+    },
+    {
+      "id": "K05",
+      "name": "Các môn tự chọn nhóm quản lý (Elective Courses - Management Group)",
+      "group": "II. Các môn bắt buộc và tự chọn của chuyên ngành",
+      "required": false,
+      "courses": [
+        "IM1013",
+        "IM1023",
+        "IM1025",
+        "IM1027",
+        "IM3001"
+      ]
+    },
+    {
+      "id": "K06",
+      "name": "2 - Management Group) (Tối thiểu 3 TC) 3 Quản lý",
+      "group": "II. Các môn bắt buộc và tự chọn của chuyên ngành",
+      "required": false,
+      "courses": [
+        "ME3007",
+        "ME3011",
+        "ME3015",
+        "ME3145",
+        "ME4133",
+        "ME4135",
+        "ME4137",
+        "ME4217",
+        "ME3123",
+        "ME4071",
+        "ME4327"
+      ]
+    }
+  ],
+  "updated": "2026-10-04"
+}

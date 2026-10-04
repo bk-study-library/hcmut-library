@@ -1,0 +1,17 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "ME4007",
+  "code": "ME4007",
+  "name": "CAD/CAM CAD/CAM",
+  "credits": 3,
+  "faculty": "fme",
+  "aliases": [],
+  "status": "active",
+  "programs": [],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "note": "Nhập từ nguồn công khai (truy cập 03/10/2026). Nguồn chỉ có tên tiếng Anh.",
+  "updated": "2026-10-04"
+}

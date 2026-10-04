@@ -1,0 +1,28 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "EE4101",
+  "code": "EE4101",
+  "name": "thôn g)",
+  "credits": 2,
+  "faculty": "dee",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "DEE_SONG_NGANH_KY_THUAT_DIEN_KY_THUAT_DIEN_TU_VIEN_THONG_2022",
+      "block": "K17",
+      "required": true
+    },
+    {
+      "program": "DEE_SONG_NGANH_KY_THUAT_DIEN_KY_THUAT_DIEN_TU_VIEN_THONG_2023",
+      "block": "K17",
+      "required": true
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "note": "Nhập từ nguồn công khai (truy cập 03/10/2026).",
+  "updated": "2026-10-04"
+}

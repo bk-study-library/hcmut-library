@@ -1,0 +1,39 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "EE2081",
+  "code": "EE2081",
+  "name": "Ngôn ngữ lập trình",
+  "nameEn": "Programming Languages",
+  "credits": 3,
+  "faculty": "dee",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "DEE_KY_THUAT_DIEU_KHIEN_VA_TU_DONG_HOA_2024",
+      "block": "K05",
+      "required": true
+    },
+    {
+      "program": "DEE_THIET_KE_VI_MACH_2024",
+      "block": "K05",
+      "required": true
+    },
+    {
+      "program": "DEE_KY_THUAT_DIEN_2024",
+      "block": "K05",
+      "required": true
+    },
+    {
+      "program": "DEE_KY_THUAT_DIEN_TU_VIEN_THONG_2024",
+      "block": "K05",
+      "required": true
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "note": "Nhập từ nguồn công khai (truy cập 03/10/2026).",
+  "updated": "2026-10-04"
+}

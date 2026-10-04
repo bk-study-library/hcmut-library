@@ -1,0 +1,12 @@
+{
+  "$schema": "../../schema/program.schema.json",
+  "code": "FENR_TS_255_2026_TA",
+  "name": "Chuyên ngành Kinh tế Tuần hoàn (Chuyên ngành của ngành Kinh tế Tài nguyên Thiên nhiên)",
+  "faculty": "fenr",
+  "year": "2026",
+  "variant": "Dạy và học bằng tiếng Anh",
+  "source": "https://hcmut.edu.vn/tuyen-sinh/dai-hoc-chinh-quy",
+  "note": "Ngành tuyển sinh 2026, mã tuyển sinh 255. Chưa có danh sách môn công khai.",
+  "blocks": [],
+  "updated": "2026-10-04"
+}

@@ -1,0 +1,79 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "EE3001",
+  "code": "EE3001",
+  "name": "Hệ thống cung cấp điện",
+  "nameEn": "Power Delivery System",
+  "credits": 3,
+  "faculty": "dee",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "DEE_SONG_NGANH_KY_THUAT_DIEN_KY_THUAT_DIEN_TU_VIEN_THONG_2022",
+      "block": "K12",
+      "required": true
+    },
+    {
+      "program": "DEE_SONG_NGANH_KY_THUAT_DIEN_KY_THUAT_DIEN_TU_VIEN_THONG_2023",
+      "block": "K12",
+      "required": true
+    },
+    {
+      "program": "DEE_SONG_NGANH_KY_THUAT_DIEN_TU_VIEN_THONG_KY_THUAT_DIEN_2020",
+      "block": "K03",
+      "required": false
+    },
+    {
+      "program": "DEE_SONG_NGANH_KY_THUAT_DIEN_TU_VIEN_THONG_KY_THUAT_DIEN_2021",
+      "block": "K14",
+      "required": true
+    },
+    {
+      "program": "DEE_SONG_NGANH_KY_THUAT_DIEN_TU_VIEN_THONG_KY_THUAT_DIEN_2022",
+      "block": "K14",
+      "required": true
+    },
+    {
+      "program": "DEE_SONG_NGANH_KY_THUAT_DIEN_TU_VIEN_THONG_KY_THUAT_DIEN_2019",
+      "block": "K03",
+      "required": false
+    },
+    {
+      "program": "DEE_KY_THUAT_DIEN_2019",
+      "block": "K02",
+      "required": false
+    },
+    {
+      "program": "DEE_KY_THUAT_DIEN_2020",
+      "block": "K03",
+      "required": false
+    },
+    {
+      "program": "DEE_KY_THUAT_DIEN_2021",
+      "block": "K11",
+      "required": true
+    },
+    {
+      "program": "DEE_KY_THUAT_DIEN_2022",
+      "block": "K11",
+      "required": true
+    },
+    {
+      "program": "DEE_KY_THUAT_DIEN_2023",
+      "block": "K11",
+      "required": true
+    },
+    {
+      "program": "DEE_KY_THUAT_DIEN_2024",
+      "block": "K06",
+      "required": true
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "note": "Nhập từ nguồn công khai (truy cập 03/10/2026).",
+  "updated": "2026-10-04"
+}

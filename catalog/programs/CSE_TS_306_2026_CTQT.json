@@ -1,0 +1,12 @@
+{
+  "$schema": "../../schema/program.schema.json",
+  "code": "CSE_TS_306_2026_CTQT",
+  "name": "Khoa học Máy tính Đại học đối tác: Úc: ĐH Queensland, ĐH Griffith, ĐH Công nghệ Sydney, ĐH Macquarie, ĐH Adelaide, ĐH Monash, ĐH Deakin, ĐH Southern Queensland New Zealand: ĐH Auckland",
+  "faculty": "cse",
+  "year": "2026",
+  "variant": "Chuyển tiếp quốc tế",
+  "source": "https://hcmut.edu.vn/tuyen-sinh/dai-hoc-chinh-quy",
+  "note": "Ngành tuyển sinh 2026, mã tuyển sinh 306. Chưa có danh sách môn công khai.",
+  "blocks": [],
+  "updated": "2026-10-04"
+}

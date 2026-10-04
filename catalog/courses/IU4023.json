@@ -1,0 +1,44 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "IU4023",
+  "code": "IU4023",
+  "name": "Khởi nghiệp",
+  "nameEn": "Entrepreneurship",
+  "credits": 3,
+  "faculty": "fme",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "FME_BAO_DUONG_CONG_NGHIEP_2020",
+      "block": "K03",
+      "required": false
+    },
+    {
+      "program": "FME_BAO_DUONG_CONG_NGHIEP_2023",
+      "block": "K06",
+      "required": false
+    },
+    {
+      "program": "FME_BAO_DUONG_CONG_NGHIEP_2022",
+      "block": "K06",
+      "required": false
+    },
+    {
+      "program": "FME_BAO_DUONG_CONG_NGHIEP_2021",
+      "block": "K06",
+      "required": false
+    },
+    {
+      "program": "FME_BAO_DUONG_CONG_NGHIEP_2019",
+      "block": "K03",
+      "required": false
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "note": "Nhập từ nguồn công khai (truy cập 03/10/2026).",
+  "updated": "2026-10-04"
+}

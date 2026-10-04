@@ -1,0 +1,70 @@
+{
+  "$schema": "../../schema/program.schema.json",
+  "code": "FME_LOGISTICS_VA_QUAN_LY_CHUOI_CUNG_UNG_2020",
+  "name": "Logistics và Quản lý chuỗi Cung ứng",
+  "nameEn": "Logistics and Supply Chain Management",
+  "faculty": "fme",
+  "year": "2020",
+  "source": "https://drive.google.com/file/d/1lIxo-Wd-3AeyCEig-HuBpBdlO98bivuW/view",
+  "blocks": [
+    {
+      "id": "K01",
+      "name": "I. Các môn bắt buộc (Compulsary Courses) 94",
+      "required": true,
+      "courses": [
+        "MT1003",
+        "MT1005",
+        "MT1007",
+        "MT2013",
+        "CH1003",
+        "PH1003",
+        "PH1007",
+        "MT1009",
+        "PH1005",
+        "SP1007",
+        "SP1031",
+        "SP1033",
+        "SP1035",
+        "SP1037",
+        "SP1039",
+        "ME1001",
+        "ME1009",
+        "ME2111",
+        "LA1003",
+        "LA1005",
+        "LA1007",
+        "LA1009",
+        "ME2045",
+        "ME2049",
+        "ME2051",
+        "ME2113",
+        "ME2123",
+        "ME2125",
+        "ME3157",
+        "ME3159",
+        "ME3165",
+        "ME3167",
+        "ME3223",
+        "ME3225"
+      ]
+    },
+    {
+      "id": "K02",
+      "name": "1 Tự chọn tự do (Free Elective) (Tối thiểu 12 TC) 12",
+      "group": "II. Các môn bắt buộc và tự chọn của chuyên ngành 38",
+      "required": false,
+      "courses": [
+        "ME3253",
+        "ME3257",
+        "ME4021",
+        "ME4023",
+        "ME4025",
+        "ME4607",
+        "ME3129",
+        "ME4103",
+        "ME4377"
+      ]
+    }
+  ],
+  "updated": "2026-10-04"
+}

@@ -1,0 +1,12 @@
+{
+  "$schema": "../../schema/program.schema.json",
+  "code": "FTE_TS_345_2026_CTQT",
+  "name": "Kỹ thuật Hàng không Đại học đối tác tại Úc: ĐH Griffith",
+  "faculty": "fte",
+  "year": "2026",
+  "variant": "Chuyển tiếp quốc tế",
+  "source": "https://hcmut.edu.vn/tuyen-sinh/dai-hoc-chinh-quy",
+  "note": "Ngành tuyển sinh 2026, mã tuyển sinh 345. Chưa có danh sách môn công khai.",
+  "blocks": [],
+  "updated": "2026-10-04"
+}
