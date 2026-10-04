@@ -23,4 +23,4 @@ Nguồn: bộ chọn chương trình trên Sổ tay HCMUT, https://hcmut.edu.vn/
 | PT2 | PT2_1 | Chương trình Tiến sĩ phương thức 2 (đã có bằng thạc sĩ) | Doctoral Program, Mode 2 (with Master's entry) |
 | TAPT1 | CTTATS1_1 | Chương trình Tiến sĩ Dạy và học bằng tiếng Anh phương thức 1 (đã có bằng thạc sĩ) | English-taught Coursework Doctoral Program, Mode 1 (with Master's entry) |
 
-Việc còn lại: `PROGRAM_TYPES[].vi` trong `scripts/lib/labels.mjs` đang vừa là tên hiện trên web vừa là giá trị `variant` ghi trong 477 file `catalog/programs/*.json`, và script nhập CTĐT dùng nó để khớp chương trình cũ. Muốn hiện đúng tên chính thức thì tách tên hiển thị khỏi `variant` trước, rồi mới đổi tên.
+Web hiện mã viết tắt theo cột Mã Sổ tay trên nhãn và chip; trỏ chuột vào mã thì thấy tên chính thức, và dưới danh sách ngành có mục Viết tắt (gập lại) liệt kê tên chính thức. Nguồn ở `PROGRAM_TYPES[].abbr` và `.official` trong `scripts/lib/labels.mjs`. Mã thư viện (cột đầu) giữ nguyên vì là dữ liệu trong `catalog/programs/`; `PROGRAM_TYPES[].vi` cũng giữ nguyên vì là giá trị `variant` mà script nhập CTĐT dùng để khớp chương trình cũ.

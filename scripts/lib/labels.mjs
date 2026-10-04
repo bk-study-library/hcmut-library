@@ -44,41 +44,33 @@ export const STATUS = {
   retired: { vi: 'Đã ngừng', en: 'Retired' },
 };
 
-// Loại chương trình (trường type của chương trình). short: nhãn ngắn trên badge; vi, en: tên đầy đủ.
+// Loại chương trình (trường type của chương trình). abbr, short: mã viết tắt Sổ tay HCMUT hiện trên badge;
+// official: tên chính thức trên bộ chọn của Sổ tay (hcmut.edu.vn/study/handbook), hiện khi trỏ chuột và
+// trong ghi chú viết tắt (docs/ten-chuong-trinh.md); vi, en: tên cũ, giữ làm giá trị variant.
 // Nhãn vi của loại khác CQ cũng là giá trị variant mà script nhập CTĐT ghi vào chương trình.
 export const PROGRAM_TYPES = {
-  CQ: { short: { vi: 'Tiêu chuẩn', en: 'Standard' }, vi: 'Chương trình tiêu chuẩn', en: 'Standard program' },
-  CTTA: { short: { vi: 'Tiếng Anh', en: 'In English' }, vi: 'Dạy và học bằng tiếng Anh', en: 'Taught in English' },
-  CNTN: { short: { vi: 'Tài năng', en: 'Honors' }, vi: 'Chương trình tài năng', en: 'Honors program' },
-  PFIEV: { short: { vi: 'PFIEV', en: 'PFIEV' }, vi: 'PFIEV (kỹ sư Việt Pháp)', en: 'PFIEV (French-Vietnamese engineer)' },
-  SN: { short: { vi: 'Song ngành', en: 'Dual degree' }, vi: 'Song ngành', en: 'Dual degree' },
-  CTTT: { short: { vi: 'Tiên tiến', en: 'Advanced' }, vi: 'Chương trình tiên tiến', en: 'Advanced program' },
-  DHNB: { short: { vi: 'Nhật Bản', en: 'Japan' }, vi: 'Định hướng Nhật Bản', en: 'Japan-oriented' },
-  VLVH: { short: { vi: 'Vừa làm vừa học', en: 'Part-time' }, vi: 'Vừa làm vừa học', en: 'Part-time' },
-  CTQT: { short: { vi: 'Chuyển tiếp quốc tế', en: 'Transfer' }, vi: 'Chuyển tiếp quốc tế', en: 'International transfer' },
+  CQ: { abbr: 'CQ', short: { vi: 'CQ', en: 'CQ' }, official: { vi: 'Chương trình Đại học tiêu chuẩn', en: 'Vietnamese-taught Undergraduate Program' }, vi: 'Chương trình tiêu chuẩn', en: 'Standard program' },
+  CTTA: { abbr: 'CTTA', short: { vi: 'CTTA', en: 'CTTA' }, official: { vi: 'Chương trình Đại học Dạy và học bằng tiếng Anh', en: 'English-taught Undergraduate Program' }, vi: 'Dạy và học bằng tiếng Anh', en: 'Taught in English' },
+  CNTN: { abbr: 'CNTN', short: { vi: 'CNTN', en: 'CNTN' }, official: { vi: 'Chương trình Đại học tài năng', en: 'Honors Undergraduate Program' }, vi: 'Chương trình tài năng', en: 'Honors program' },
+  PFIEV: { abbr: 'PFIEV', short: { vi: 'PFIEV', en: 'PFIEV' }, official: { vi: 'Chương trình Đại học Kỹ sư chất lượng cao tại Việt Nam', en: 'Vietnamese-French High-Quality Engineering Program (PFIEV)' }, vi: 'PFIEV (kỹ sư Việt Pháp)', en: 'PFIEV (French-Vietnamese engineer)' },
+  SN: { abbr: 'SN', short: { vi: 'SN', en: 'SN' }, official: { vi: 'Chương trình Đại học Song ngành', en: 'Dual-degree Undergraduate Program' }, vi: 'Song ngành', en: 'Dual degree' },
+  CTTT: { abbr: 'CTTT', short: { vi: 'CTTT', en: 'CTTT' }, official: { vi: 'Chương trình Đại học Tiên tiến', en: 'Advanced Undergraduate Program' }, vi: 'Chương trình tiên tiến', en: 'Advanced program' },
+  DHNB: { abbr: 'DHNB', short: { vi: 'DHNB', en: 'DHNB' }, official: { vi: 'Chương trình Đại học Định hướng Nhật Bản', en: 'Japanese-oriented Undergraduate Program' }, vi: 'Định hướng Nhật Bản', en: 'Japan-oriented' },
+  VLVH: { abbr: 'VLVH', short: { vi: 'VLVH', en: 'VLVH' }, official: { vi: 'Hình thức Vừa làm vừa học', en: 'Vừa làm vừa học (VLVH)' }, vi: 'Vừa làm vừa học', en: 'Part-time' },
+  CTQT: { abbr: 'CTQT', short: { vi: 'CTQT', en: 'CTQT' }, official: { vi: 'Chương trình Chuyển tiếp quốc tế', en: 'Trans-national Education program' }, vi: 'Chuyển tiếp quốc tế', en: 'International transfer' },
   // Sau đại học (thạc sĩ, tiến sĩ). Chương trình sau đại học khóa 2022 trở về trước chưa chia hướng, ghi CQ.
-  UD: { short: { vi: 'Ứng dụng', en: 'Applied' }, vi: 'Thạc sĩ định hướng ứng dụng', en: 'Applied master' },
-  NC: { short: { vi: 'Nghiên cứu', en: 'Research' }, vi: 'Thạc sĩ định hướng nghiên cứu', en: 'Research master' },
-  CSAU: { short: { vi: 'Nghiên cứu chuyên sâu', en: 'Intensive research' }, vi: 'Thạc sĩ nghiên cứu chuyên sâu', en: 'Intensive research master' },
-  TAUD: { short: { vi: 'Tiếng Anh, ứng dụng', en: 'In English, applied' }, vi: 'Thạc sĩ ứng dụng dạy bằng tiếng Anh', en: 'Applied master taught in English' },
-  STEM: { short: { vi: 'Tài năng STEM', en: 'STEM honors' }, vi: 'Thạc sĩ tài năng STEM', en: 'STEM honors master' },
-  PT1: { short: { vi: 'Phương thức 1', en: 'Track 1' }, vi: 'Tiến sĩ phương thức 1', en: 'Doctoral track 1' },
-  PT2: { short: { vi: 'Phương thức 2', en: 'Track 2' }, vi: 'Tiến sĩ phương thức 2', en: 'Doctoral track 2' },
-  TAPT1: { short: { vi: 'Tiếng Anh, phương thức 1', en: 'In English, track 1' }, vi: 'Tiến sĩ phương thức 1 dạy bằng tiếng Anh', en: 'Doctoral track 1 taught in English' },
+  UD: { abbr: 'UD', short: { vi: 'UD', en: 'UD' }, official: { vi: 'Chương trình Thạc sĩ hướng Ứng dụng', en: 'Coursework Master Program' }, vi: 'Thạc sĩ định hướng ứng dụng', en: 'Applied master' },
+  NC: { abbr: 'NC', short: { vi: 'NC', en: 'NC' }, official: { vi: 'Chương trình Thạc sĩ hướng Nghiên cứu', en: 'Research-oriented Master Program' }, vi: 'Thạc sĩ định hướng nghiên cứu', en: 'Research master' },
+  CSAU: { abbr: 'CS', short: { vi: 'CS', en: 'CS' }, official: { vi: 'Chương trình Thạc sĩ hướng Nghiên cứu chuyên sâu', en: 'Research-intensive Master Program' }, vi: 'Thạc sĩ nghiên cứu chuyên sâu', en: 'Intensive research master' },
+  TAUD: { abbr: 'CTTAUD', short: { vi: 'CTTAUD', en: 'CTTAUD' }, official: { vi: 'Chương trình Thạc sĩ Dạy và học bằng tiếng Anh hướng Ứng dụng', en: 'English-taught Coursework Master Program' }, vi: 'Thạc sĩ ứng dụng dạy bằng tiếng Anh', en: 'Applied master taught in English' },
+  STEM: { abbr: 'THTN_STEM', short: { vi: 'THTN_STEM', en: 'THTN_STEM' }, official: { vi: 'Chương trình Thạc sĩ tài năng STEM', en: "STEM Honors Master's Program" }, vi: 'Thạc sĩ tài năng STEM', en: 'STEM honors master' },
+  PT1: { abbr: 'PT1_1', short: { vi: 'PT1_1', en: 'PT1_1' }, official: { vi: 'Chương trình Tiến sĩ phương thức 1 (đã có bằng thạc sĩ)', en: "Doctoral Program, Mode 1 (with Master's entry)" }, vi: 'Tiến sĩ phương thức 1', en: 'Doctoral track 1' },
+  PT2: { abbr: 'PT2_1', short: { vi: 'PT2_1', en: 'PT2_1' }, official: { vi: 'Chương trình Tiến sĩ phương thức 2 (đã có bằng thạc sĩ)', en: "Doctoral Program, Mode 2 (with Master's entry)" }, vi: 'Tiến sĩ phương thức 2', en: 'Doctoral track 2' },
+  TAPT1: { abbr: 'CTTATS1_1', short: { vi: 'CTTATS1_1', en: 'CTTATS1_1' }, official: { vi: 'Chương trình Tiến sĩ Dạy và học bằng tiếng Anh phương thức 1 (đã có bằng thạc sĩ)', en: "English-taught Coursework Doctoral Program, Mode 1 (with Master's entry)" }, vi: 'Tiến sĩ phương thức 1 dạy bằng tiếng Anh', en: 'Doctoral track 1 taught in English' },
 };
 
 // Nhãn chương trình ngắn của một mã môn (scripts/lib/program-label.mjs): mã này dạy cho hệ nào.
-export const PROGRAM_LABELS = {
-  CQ: { vi: 'Tiêu chuẩn', en: 'Standard' },
-  CTTT: { vi: 'Tiên tiến', en: 'Advanced' },
-  PFIEV: { vi: 'Việt Pháp', en: 'French-Vietnamese' },
-  CTTA: { vi: 'Tiếng Anh', en: 'In English' },
-  CNTN: { vi: 'Tài năng', en: 'Honors' },
-  DHNB: { vi: 'Định hướng Nhật Bản', en: 'Japan-oriented' },
-  SN: { vi: 'Song ngành', en: 'Dual degree' },
-  VLVH: { vi: 'Vừa làm vừa học', en: 'Part-time' },
-  CTQT: { vi: 'Chuyển tiếp quốc tế', en: 'International transfer' },
-};
+export const PROGRAM_LABELS = Object.fromEntries(['CQ', 'CTTT', 'PFIEV', 'CTTA', 'CNTN', 'DHNB', 'SN', 'VLVH', 'CTQT'].map((k) => [k, { vi: PROGRAM_TYPES[k].abbr, en: PROGRAM_TYPES[k].abbr }]));
 
 // Vai trò khối kiến thức (trường kind của khối), theo thứ tự thường gặp trong CTĐT.
 export const BLOCK_KINDS = {

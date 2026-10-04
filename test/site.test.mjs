@@ -38,7 +38,7 @@ test('trang môn theo tên: tên, dòng mã, mọi tài liệu của mọi mã t
   const html = read('mon/ky-thuat-so/index.html');
   assert.match(html, /<html lang="vi"/);
   // Mỗi mã một nhãn: mã và chương trình (hoặc khoa khi mã không thuộc chương trình nào).
-  assert.match(html, /<h1>Kỹ thuật số<\/h1>\n<p class="codes"><span class="sr">Mã môn: <\/span><span class="code-chip"><span class="code">EE1009<\/span> Tiêu chuẩn<\/span> <span class="code-chip"><span class="code">EE1010<\/span> [^<]+<\/span><\/p>/);
+  assert.match(html, /<h1>Kỹ thuật số<\/h1>\n<p class="codes"><span class="sr">Mã môn: <\/span><span class="code-chip"><span class="code">EE1009<\/span> CQ<\/span> <span class="code-chip"><span class="code">EE1010<\/span> [^<]+<\/span><\/p>/);
   // Không còn ngữ cảnh, số mã hay bảng thông tin trên trang môn theo tên.
   assert.doesNotMatch(html, /class="facts"|class="subtitle"|twins|theo ngành hoặc khóa/);
   assert.match(html, /Tóm tắt chương 1/);
@@ -853,9 +853,9 @@ test('trang ngành: mã ngành, nút PDF và Sổ tay, bộ chọn loại và kh
   assert.match(html, /href="https:\/\/drive\.google\.com\/file\/d\/ghi-tay\/view" target="_blank" rel="noopener">PDF chương trình đào tạo/);
   assert.match(html, /href="https:\/\/drive\.google\.com\/file\/d\/khgd-ck-2024\/view" target="_blank" rel="noopener">PDF kế hoạch giảng dạy/);
   assert.match(html, /<a class="btn subtle" href="https:\/\/hcmut\.edu\.vn\/study\/handbook\/course\/undergraduate\/7520103\?program=CQ" rel="noopener">Xem ngành trên Sổ tay HCMUT<\/a>/);
-  assert.match(html, /<a class="chip" href="\.\.\/\.\.\/program\/FME_KY_THUAT_CO_KHI_2024\/" aria-current="true">Tiêu chuẩn<\/a><a class="chip" href="\.\.\/\.\.\/program\/FME_KY_THUAT_CO_KHI_2025_CTTA\/">Tiếng Anh<\/a>/);
+  assert.match(html, /<a class="chip" href="\.\.\/\.\.\/program\/FME_KY_THUAT_CO_KHI_2024\/" title="[^"]+" aria-current="true">CQ<\/a><a class="chip" href="\.\.\/\.\.\/program\/FME_KY_THUAT_CO_KHI_2025_CTTA\/" title="[^"]+">CTTA<\/a>/);
   assert.match(html, /<a class="chip" href="\.\.\/\.\.\/program\/FME_KY_THUAT_CO_KHI_2024\/" aria-current="true">2024<\/a><a class="chip" href="\.\.\/\.\.\/program\/FME_KY_THUAT_CO_KHI_2019\/">2019<\/a>/);
-  assert.match(html, /Theo chương trình Khóa 2024, Tiêu chuẩn\./);
+  assert.match(html, /Theo chương trình Khóa 2024, CQ\./);
   // Học kỳ 1 đến N theo thứ tự, mỗi kỳ một bảng; môn chưa có học kỳ gập theo vai trò khối.
   const at = (s) => html.indexOf(s);
   assert.ok(at('id="hoc-ky-1"') > 0 && at('id="hoc-ky-1"') < at('id="hoc-ky-2"') && at('id="hoc-ky-2"') < at('id="hoc-ky-3"') && at('id="hoc-ky-3"') < at('id="hoc-ky-4"'));
@@ -881,7 +881,7 @@ test('trang ngành chưa có danh sách môn: thông báo, nút gửi CTĐT; mã
 
 test('trang chương trình gắn ngành: bộ chọn khóa, ngành trong meta và đường dẫn, lộ trình rồi khối kiến thức', () => {
   const html = mainOf(readM('program/FME_KY_THUAT_CO_KHI_2024/index.html'));
-  assert.match(html, /<li><a href="\.\.\/\.\.\/major\/7520103\/">Kỹ thuật Cơ khí<\/a><\/li><li aria-current="page">Khóa 2024, Tiêu chuẩn<\/li>/);
+  assert.match(html, /<li><a href="\.\.\/\.\.\/major\/7520103\/">Kỹ thuật Cơ khí<\/a><\/li><li aria-current="page">Khóa 2024, CQ<\/li>/);
   assert.match(html, /Ngành <a href="\.\.\/\.\.\/major\/7520103\/">Kỹ thuật Cơ khí<\/a>, Cử nhân, 132 tín chỉ, 7 môn<\/p>/);
   assert.match(html, /<p class="small" lang="vi">Đã đối chiếu PDF\.<\/p>/);
   assert.match(html, /<a class="chip" href="\.\.\/\.\.\/program\/FME_KY_THUAT_CO_KHI_2024\/" aria-current="page">2024<\/a>/);
@@ -892,7 +892,7 @@ test('trang chương trình gắn ngành: bộ chọn khóa, ngành trong meta v
   const k19 = mainOf(readM('program/FME_KY_THUAT_CO_KHI_2019/index.html'));
   assert.doesNotMatch(k19, /id="h-road"/);
   assert.match(k19, /<h2 id="h-blocks">Lộ trình theo học kỳ<\/h2><section class="block" id="khoi-k01"><h3>Học kỳ 1<\/h3>/);
-  assert.match(mainOf(readM('en/program/FME_KY_THUAT_CO_KHI_2025_CTTA/index.html')), /Taught in English/);
+  assert.match(mainOf(readM('en/program/FME_KY_THUAT_CO_KHI_2025_CTTA/index.html')), /title="English-taught Undergraduate Program">CTTA</);
 });
 
 test('trang chủ: khoa rồi ngành, mỗi ngành một dòng có nhãn loại và các khóa; chương trình chưa có môn gập lại', () => {
@@ -900,10 +900,10 @@ test('trang chủ: khoa rồi ngành, mỗi ngành một dòng có nhãn loại 
   assert.match(html, /<summary><span class="prog-fac-name">Khoa Cơ khí<\/span> <span class="muted small">1 ngành, 3 chương trình<\/span><\/summary>/);
   assert.match(
     html,
-    /<li class="major-row"><span class="major-head"><a class="major-name" href="\.\/major\/7520103\/">Kỹ thuật Cơ khí<\/a><a class="tag" href="\.\/\?q=CQ">Tiêu chuẩn<\/a><a class="tag" href="\.\/\?q=CTTA">Tiếng Anh<\/a><\/span><span class="muted small">Khóa: <a href="\.\/program\/FME_KY_THUAT_CO_KHI_2025_CTTA\/">2025<\/a>, <a href="\.\/program\/FME_KY_THUAT_CO_KHI_2024\/">2024<\/a>, <a href="\.\/program\/FME_KY_THUAT_CO_KHI_2019\/">2019<\/a><\/span><\/li>/,
+    /<li class="major-row"><span class="major-head"><a class="major-name" href="\.\/major\/7520103\/">Kỹ thuật Cơ khí<\/a><a class="tag" href="\.\/\?q=CQ" title="[^"]+">CQ<\/a><a class="tag" href="\.\/\?q=CTTA" title="[^"]+">CTTA<\/a><\/span><span class="muted small">Khóa: <a href="\.\/program\/FME_KY_THUAT_CO_KHI_2025_CTTA\/">2025<\/a>, <a href="\.\/program\/FME_KY_THUAT_CO_KHI_2024\/">2024<\/a>, <a href="\.\/program\/FME_KY_THUAT_CO_KHI_2019\/">2019<\/a><\/span><\/li>/,
   );
   assert.match(html, /<details class="prog-empty"><summary>1 chương trình chưa có danh sách môn<\/summary><ul class="list"><li><a href="\.\/program\/CSE_TS_106_2026\/">/);
-  assert.match(html, /major-name" href="\.\/major\/7520201-7520207\/">[^<]+<\/a><a class="tag" href="\.\/\?q=SN">Song ngành<\/a><\/span><span class="muted small">chưa có danh sách môn<\/span>/);
+  assert.match(html, /major-name" href="\.\/major\/7520201-7520207\/">[^<]+<\/a><a class="tag" href="\.\/\?q=SN" title="[^"]+">SN<\/a><\/span><span class="muted small">chưa có danh sách môn<\/span>/);
 });
 
 test('trang khoa: ngành trước, rồi Môn của khoa và Môn chung khoa dùng; trang Môn chung toàn trường liệt kê môn chung', () => {
@@ -932,7 +932,7 @@ test('trang môn: link Sổ tay, chương trình gom theo ngành với link tớ
   assert.match(html, /<dt>Sổ tay HCMUT<\/dt><dd><a href="https:\/\/hcmut\.edu\.vn\/study\/handbook\/subject\/MT1003" rel="noopener">Trang môn trên Sổ tay HCMUT<\/a><\/dd>/);
   assert.match(
     html,
-    /<a href="\.\.\/\.\.\/major\/7520103\/">Kỹ thuật Cơ khí<\/a>: <a href="\.\.\/\.\.\/program\/FME_KY_THUAT_CO_KHI_2025_CTTA\/#khoi-k01">2025 Tiếng Anh<\/a>, <a href="\.\.\/\.\.\/program\/FME_KY_THUAT_CO_KHI_2024\/#khoi-k01">2024<\/a>, <a href="\.\.\/\.\.\/program\/FME_KY_THUAT_CO_KHI_2019\/#khoi-k01">2019<\/a>/,
+    /<a href="\.\.\/\.\.\/major\/7520103\/">Kỹ thuật Cơ khí<\/a>: <a href="\.\.\/\.\.\/program\/FME_KY_THUAT_CO_KHI_2025_CTTA\/#khoi-k01">2025 CTTA<\/a>, <a href="\.\.\/\.\.\/program\/FME_KY_THUAT_CO_KHI_2024\/#khoi-k01">2024<\/a>, <a href="\.\.\/\.\.\/program\/FME_KY_THUAT_CO_KHI_2019\/#khoi-k01">2019<\/a>/,
   );
 });
 
@@ -951,10 +951,10 @@ test('nhãn loại chương trình là link mở ô tìm trang chủ (?q=<loại
     const html = mainOf(readM(p));
     assert.doesNotMatch(html, new RegExp('<span class="tag">' + labels.source + '<'), p);
   }
-  assert.match(mainOf(readM('major/7520103/index.html')), /<a class="tag" href="\.\.\/\.\.\/\?q=CTTA">Dạy và học bằng tiếng Anh<\/a>/);
-  assert.match(mainOf(readM('program/FME_KY_THUAT_CO_KHI_2025_CTTA/index.html')), /<a class="tag" href="\.\.\/\.\.\/\?q=CTTA">Dạy và học bằng tiếng Anh<\/a>/);
-  assert.match(mainOf(readM('en/major/7520103/index.html')), /<a class="tag" href="\.\.\/\.\.\/\.\.\/en\/\?q=CTTA">Taught in English<\/a>/);
-  assert.match(mainOf(readM('faculty/fme/index.html')), /<a class="tag" href="\.\.\/\.\.\/\?q=CQ">Tiêu chuẩn<\/a>/);
+  assert.match(mainOf(readM('major/7520103/index.html')), /<a class="tag" href="\.\.\/\.\.\/\?q=CTTA" title="[^"]+">CTTA<\/a>/);
+  assert.match(mainOf(readM('program/FME_KY_THUAT_CO_KHI_2025_CTTA/index.html')), /<a class="tag" href="\.\.\/\.\.\/\?q=CTTA" title="[^"]+">CTTA<\/a>/);
+  assert.match(mainOf(readM('en/major/7520103/index.html')), /<a class="tag" href="\.\.\/\.\.\/\.\.\/en\/\?q=CTTA" title="[^"]+">CTTA<\/a>/);
+  assert.match(mainOf(readM('faculty/fme/index.html')), /<a class="tag" href="\.\.\/\.\.\/\?q=CQ" title="[^"]+">CQ<\/a>/);
   // Ô tìm khớp mã loại: chương trình có type, ngành có types.
   const rows = JSON.parse(readM('assets/programs.json'));
   assert.equal(rows.find((r) => r.code === 'FME_KY_THUAT_CO_KHI_2025_CTTA').type, 'CTTA');
@@ -979,7 +979,7 @@ test('thẻ tài liệu: khối chi tiết đủ thông tin; nhiều file thì m
   const li = itemHtml(fs.readFileSync(path.join(o, 'mon', 'ky-thuat-so', 'index.html'), 'utf8'), 'de-thi');
   const facts = Object.fromEntries([...li.matchAll(/<dt>([^<]+)<\/dt><dd>(.*?)<\/dd>/g)].map((m) => [m[1], m[2].replace(/<[^>]+>/g, '')]));
   assert.deepEqual(facts, {
-    'Mã môn': 'EE1009 Tiêu chuẩn',
+    'Mã môn': 'EE1009 CQ',
     'Định dạng': 'PDF, DOCX',
     'Dung lượng': '261 KB',
     'Ngày tải lên': '01/09/2026',

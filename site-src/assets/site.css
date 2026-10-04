@@ -543,3 +543,9 @@ a.tag:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
   .recent-meta { grid-column: 1; grid-row: 3; text-align: left; white-space: normal; }
   .recent-date { grid-column: 2; grid-row: 3; }
 }
+/* Ghi chú viết tắt loại chương trình dưới danh sách ngành. */
+.abbr-note { margin: 12px 0 0; font-size: 0.875rem; }
+.abbr-note summary { cursor: pointer; color: var(--muted); }
+.abbr-note dl { display: grid; grid-template-columns: max-content 1fr; gap: 4px 12px; margin: 8px 0; }
+.abbr-note dt { font-weight: 600; }
+.abbr-note dd { margin: 0; }
