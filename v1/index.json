@@ -4,7 +4,7 @@
   "site": "https://bk-study-library.github.io/hcmut-library/",
   "counts": {
     "courses": 3796,
-    "items": 9
+    "items": 10
   },
   "faculties": [
     {
@@ -25930,7 +25930,10 @@
       "aliases": [],
       "oldNames": [],
       "status": "active",
-      "items": 0,
+      "items": 1,
+      "teachers": [
+        "Hoàng Trang"
+      ],
       "url": "https://bk-study-library.github.io/hcmut-library/course/EE5367/",
       "detail": "courses/EE5367.json"
     },

@@ -280,7 +280,7 @@ Dùng một PDF nhỏ, không có thông tin cá nhân. Điền đủ form và b
 Kết quả mong đợi:
 - Có một PR mới, nhãn `tai-lieu-moi`, do bot mở.
 - Một comment kết quả: không có virus, không có cảnh báo, không báo thiếu lớp chữ (nếu PDF có chữ).
-- Nhánh của PR có thêm một commit ghi `url`, `mime`, `sha256`, `size` vào `files[]` của mục tài liệu. `url` trỏ tới Release `files-HK<xxx>` của học kỳ hiện tại, tính theo bảng tháng trong `catalog/policy.json` (ví dụ tháng 10 năm 2026 là `files-HK261`).
+- Nhánh của PR có thêm một commit ghi `url`, `mime`, `sha256`, `size` vào `files[]` của mục tài liệu. `url` trỏ tới Release `files-HK<xxx>` của học kỳ hiện tại, tính theo bảng tháng trong `catalog/policy.json` (ví dụ tháng 10 năm 2026 là học kỳ `HK261`). Tag thường là `files-HK<xxx>`, trừ khi `releaseTagOverrides` đặt tag khác cho học kỳ đó (học kỳ `HK261` dùng `files-HK261b`, xem mục [Release](#release)).
 
 ### Bài 2. File EICAR
 
@@ -322,6 +322,43 @@ Chọn PR của bài 1, xem lại nội dung, bấm **Merge pull request**. Work
 Kiểm: trong **Releases** có pre-release `files-HK<xxx>` kèm file, và link của tài liệu có trong `v1/` trên `main` (workflow `kiem-file` đã dựng lại `v1/` trong PR).
 
 Khi repo còn private, file trên Release chỉ thành viên đã đăng nhập mới tải được. Web và app BK Study Desk tải được sau khi repo public.
+
+## Release
+
+File của thư viện nằm trên các pre-release theo học kỳ. `phat-hanh-file` tạo Release lúc merge bài đầu tiên của học kỳ, rồi đưa thêm file vào đó ở mỗi bài sau, và `go-file` xóa file trên Release khi gỡ tài liệu. Vì vậy Release phải sửa được sau khi tạo.
+
+**Immutable releases phải luôn tắt.** Trong **Settings** > **General** của repo (phần **Releases**), không bật **Enable release immutability**. Khi tính năng này bật, Release vừa tạo bị khóa: `gh release upload` báo `HTTP 422: Cannot upload assets to an immutable release`, xóa Release đó đi thì GitHub cũng không cho tạo lại Release cùng tag (`tag_name was used by an immutable release`). Tag đó coi như mất vĩnh viễn.
+
+Bước **Lập kế hoạch phát hành** của `phat-hanh-file` đọc Release đích trước khi tải gì từ kho cách ly: Release đang là immutable release thì dừng ngay và in cách sửa.
+
+### Tag thay thế cho học kỳ
+
+Tag Release của học kỳ là `files-<học kỳ>`, ví dụ `files-HK261`. Khi tag đó không dùng lại được, đặt tag mới trong `releaseTagOverrides` của `catalog/policy.json`:
+
+```json
+"releaseTagOverrides": { "HK261": "files-HK261b" }
+```
+
+- Khóa là học kỳ dạng `HK<3 số>`. Giá trị là `files-<học kỳ>` thêm đúng một chữ thường (`files-HK261b`, rồi `files-HK261c` nếu tag thay thế cũng hỏng). `validate.mjs` báo lỗi khi sai dạng. Dạng này khớp mẫu tag của `scripts/upload/publish.mjs` và danh sách xem trước của `scripts/lib/preview.mjs`.
+- `kiem-file` đọc `catalog/policy.json` của `main` nên các bài gửi sau khi merge sẽ có link tới tag mới.
+- Worker đóng gói `scripts/lib/preview.mjs` lúc deploy. Bản Worker cũ chỉ nhận tag `files-HK<3 số>` nên nút **Xem trước** của file trên tag có chữ cuối báo lỗi cho tới khi deploy lại Worker (`cd worker`, `npx wrangler deploy`).
+
+### Phát hành lại một bài đã merge
+
+Khi `phat-hanh-file` lỗi sau khi bài đã merge (ví dụ Release bị khóa), file đã làm sạch vẫn nằm ở `clean/<mã bài>/` trong kho cách ly 30 ngày. Trong thời gian đó:
+
+1. Sửa nguyên nhân. Với Release bị khóa: tắt Immutable releases như trên, thêm tag thay thế vào `releaseTagOverrides`, sửa `url` trong `files[]` của mục tài liệu sang tag mới (giữ nguyên `name`, `sha256`, `size`, `quarantine`), chạy `npm run build` rồi merge vào `main` qua PR như thường.
+2. Chạy tay workflow với đường dẫn mục tài liệu trên `main`:
+
+   ```
+   gh workflow run phat-hanh-file.yml --repo <owner>/<repo> --ref main -f item=courses/<MÃ>/items/<id>.json
+   ```
+
+   Hoặc ở **Actions** > **phat-hanh-file** > **Run workflow**, chọn nhánh `main`, điền ô **item**.
+
+Workflow đọc mục ở HEAD của `main`, kiểm đường dẫn (đúng dạng `courses/<MÃ>/items/<id>.json`, có trên `main`, khớp `course` và `id`, chưa gỡ, có khóa `clean/<mã bài>/<tên>` của bài gửi qua form), rồi làm như lúc merge: tải bản đã làm sạch từ R2, kiểm sha256 và kích thước, tạo pre-release nếu chưa có, đưa file lên, rồi dọn kho cách ly. Chỉ người có quyền ghi repo mới chạy tay được workflow, và job chỉ chạy khi chọn nhánh `main`. Chạy lại an toàn: file đã có trên Release cùng sha256 thì bỏ qua.
+
+Kiểm: link trong `url` của mục tải được, và trong kho cách ly không còn `pending/<mã bài>/`, `clean/<mã bài>/`.
 
 ## Bài có môn mới
 

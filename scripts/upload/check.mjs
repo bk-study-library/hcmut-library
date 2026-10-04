@@ -243,7 +243,8 @@ export function releaseName(name, sha256, existingAssets) {
 }
 
 // Ghi link Release và thông tin bản đã làm sạch vào files[0]. Không sửa item gốc.
-export function applyCheck(item, { cleanName, size, sha256, mime, term, repo, existingAssets }) {
+// tag: tag Release của học kỳ, tính bằng releaseTag(term, policy) của term.mjs.
+export function applyCheck(item, { cleanName, size, sha256, mime, tag, repo, existingAssets }) {
   const { code } = quarantineInfo(item);
   const name = releaseName(cleanName, sha256, existingAssets);
   const file = {
@@ -253,7 +254,7 @@ export function applyCheck(item, { cleanName, size, sha256, mime, term, repo, ex
     sha256,
     mime,
     quarantine: `clean/${code}/${name}`,
-    url: releaseAssetUrl(repo, releaseTag(term), name),
+    url: releaseAssetUrl(repo, tag, name),
   };
   return { ...item, files: [file] };
 }
@@ -348,14 +349,25 @@ function cleanImage(src, dest) {
 }
 
 // Tên và sha256 các file đã có trên Release; Release chưa có thì rỗng.
-export function releaseAssets(repo, tag) {
+// Đọc Release theo tag (cần GH_TOKEN): exists, immutable (GitHub immutable release, không đưa
+// thêm file được) và assets Map<tên, sha256>. Chưa có Release thì exists=false, assets rỗng.
+export function releaseInfo(repo, tag) {
   const r = spawnSync('gh', ['api', `repos/${repo}/releases/tags/${tag}`], { encoding: 'utf8' });
   if (r.status !== 0) {
-    if (/HTTP 404/.test(r.stderr)) return new Map();
+    if (/HTTP 404/.test(r.stderr)) return { exists: false, immutable: false, assets: new Map() };
     throw new Error(`Không đọc được Release ${tag}: ${String(r.stderr).trim()}`);
   }
-  const assets = JSON.parse(r.stdout).assets || [];
-  return new Map(assets.map((x) => [x.name, String(x.digest || '').replace(/^sha256:/, '')]));
+  const data = JSON.parse(r.stdout);
+  const assets = data.assets || [];
+  return {
+    exists: true,
+    immutable: data.immutable === true,
+    assets: new Map(assets.map((x) => [x.name, String(x.digest || '').replace(/^sha256:/, '')])),
+  };
+}
+
+export function releaseAssets(repo, tag) {
+  return releaseInfo(repo, tag).assets;
 }
 
 export function readPrFiles(p) {
@@ -468,10 +480,10 @@ function apply(a) {
   }
   const rule = policy.extensions[path.extname(info.name).toLowerCase()];
   if (!rule) throw new Error('Không nhận đuôi của file.');
-  const term = termFor(new Date(), policy.terms);
+  const tag = releaseTag(termFor(new Date(), policy.terms), policy);
   const next = applyCheck(item, {
-    cleanName: info.name, size: r.size, sha256: r.sha256, mime: rule.mime, term, repo: a.repo,
-    existingAssets: releaseAssets(a.repo, releaseTag(term)),
+    cleanName: info.name, size: r.size, sha256: r.sha256, mime: rule.mime, tag, repo: a.repo,
+    existingAssets: releaseAssets(a.repo, tag),
   });
   fs.writeFileSync(a.item, `${JSON.stringify(next, null, 2)}\n`);
   const report = renderReport({

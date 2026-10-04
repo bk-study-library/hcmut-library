@@ -7,6 +7,7 @@ import crypto from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 import { validate } from './schema.mjs';
 import { loadPolicy, missingKeys } from './policy.mjs';
+import { releaseTagOverrideErrors } from '../upload/term.mjs';
 import { PII_PATTERNS, scanText } from './pii.mjs';
 import { extensionsFor } from './extensions.mjs';
 import { DEFAULT_LEVEL, LEVELS, courseLevels } from './labels.mjs';
@@ -117,6 +118,7 @@ export function loadRepo(root) {
   if (localPolicy) {
     const miss = missingKeys(localPolicy);
     if (miss.length) err('SCHEMA', 'catalog/policy.json', `thiếu khóa: ${miss.join(', ')}`);
+    for (const m of releaseTagOverrideErrors(localPolicy)) err('SCHEMA', 'catalog/policy.json', m);
   }
   const policy = localPolicy && !missingKeys(localPolicy).length ? localPolicy : loadPolicy(TOOL_ROOT);
   const LIMITS = {

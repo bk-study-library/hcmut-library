@@ -7,7 +7,7 @@
     "courses": 3796,
     "programs": 838,
     "majors": 140,
-    "items": 10
+    "items": 11
   },
   "faculties": [
     {
@@ -21834,7 +21834,31 @@
           "related": [],
           "note": "Nhập từ CTĐT sau đại học chính thức (PDF của trường, truy cập 04/10/2026).",
           "updated": "2026-10-04",
-          "items": []
+          "items": [
+            {
+              "id": "slide-chapter-5",
+              "course": "EE5367",
+              "type": "lecture-slides",
+              "title": "Slide chapter 5",
+              "lang": "vi",
+              "license": "CC-BY-SA-4.0",
+              "origin": "self-made",
+              "added": "2026-10-04",
+              "removed": false,
+              "teacher": "Hoàng Trang",
+              "files": [
+                {
+                  "name": "EE5367_lecture-slides_slide-chapter-5.pdf",
+                  "size": 2899601,
+                  "sha256": "a520393b23d67f33e90f4bb4aecb083d357680b4a1727a46a4cefb02739dbed3",
+                  "mime": "application/pdf",
+                  "quarantine": "clean/KPxYLocxS8/EE5367_lecture-slides_slide-chapter-5.pdf",
+                  "uploadSha256": "1d8e158c5656e02e1d2ed036bddcb5d9d9e816cfd4635d79bfeaf664ef2fb10b",
+                  "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/EE5367_lecture-slides_slide-chapter-5.pdf"
+                }
+              ]
+            }
+          ]
         },
         {
           "id": "EE5371",
@@ -22270,7 +22294,7 @@
                   "mime": "application/pdf",
                   "quarantine": "clean/unEqefr6Qt/EE5429_exercise-solution_giai-bai-tap-do-thi-smith.pdf",
                   "uploadSha256": "a22f1c48aba90ca9761f3710da0e8526cf3a0941058d78693f08786781fac788",
-                  "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261/EE5429_exercise-solution_giai-bai-tap-do-thi-smith.pdf"
+                  "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/EE5429_exercise-solution_giai-bai-tap-do-thi-smith.pdf"
                 }
               ]
             }

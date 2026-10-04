@@ -494,8 +494,14 @@ test('danh sách xem trước: chỉ Release files-HK<xxx> và .md của site, t
   const { previewTarget } = await import('../scripts/lib/preview.mjs');
   const o = { repo: 'a/b', site: 'https://s.example/lib/' };
   assert.ok(previewTarget('https://github.com/a/b/releases/download/files-HK261/x.pdf', o));
+  // Tag thay thế (releaseTagOverrides): thêm một chữ thường.
+  assert.ok(previewTarget('https://github.com/a/b/releases/download/files-HK261b/x.pdf', o));
   assert.ok(previewTarget('https://s.example/lib/files/MT1005/x.md', o));
   for (const bad of [
+    'https://github.com/a/b/releases/download/files-HK261bb/x.pdf',
+    'https://github.com/a/b/releases/download/files-HK261B/x.pdf',
+    'https://github.com/a/b/releases/download/files-HK261-b/x.pdf',
+    'https://github.com/a/b/releases/download/files-HK2611/x.pdf',
     'https://github.com/a/b/releases/download/files-HK261/x.docx',
     'https://github.com/a/b/releases/download/files-HK261/../x.pdf',
     'https://github.com/a/b/releases/download/files-HK26/x.pdf',
