@@ -65,8 +65,8 @@ test('mã cũ chuyển hướng tới ID cố định', () => {
 
 test('404 dùng đường dẫn tuyệt đối theo base', () => {
   const html = read('404.html');
-  assert.match(html, /href="\/bk-study-library\/assets\/site\.css"/);
-  assert.match(html, /href="\/bk-study-library\/en\/"/);
+  assert.match(html, /href="\/library\/assets\/site\.css"/);
+  assert.match(html, /href="\/library\/en\/"/);
 });
 
 test('không tải gì từ máy chủ khác: không CDN, không font ngoài, không theo dõi', () => {
