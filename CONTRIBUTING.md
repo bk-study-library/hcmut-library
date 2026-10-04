@@ -71,7 +71,7 @@ Khoa của bạn chưa có chương trình, hoặc chương trình chưa có dan
 - Không đính kèm bảng điểm hay ảnh chụp MyBK có MSSV, điểm.
 - Người duyệt nhập mã môn, tên, tín chỉ, khối kiến thức vào `catalog/programs/<mã>.json` và mục `programs` của từng môn, rồi mở Pull Request. Thư viện không lưu file CTĐT, chỉ lưu link nguồn.
 - Link PDF chính thức của đúng ngành và đúng khóa ghi vào `ctdtUrl` (CTĐT) và `planUrl` (kế hoạch giảng dạy). Chỉ nhận link https tới host trong `programPdfHosts` của `catalog/site.json` (hiện là Google Drive và tên miền hcmut.edu.vn). Chưa kiểm được link đúng ngành, đúng khóa thì để trống; trang chương trình sẽ trỏ về bảng CTĐT của trường (`officialProgramsPage`).
-- Bản chép từ nguồn chưa chính thức (ví dụ MyBK do sinh viên gửi) đặt `listed: false`: trang riêng vẫn có để link từ trang môn không hỏng, nhưng không hiện trong danh sách chương trình ở trang chủ và trang khoa. Các script nhập giữ nguyên `listed`, `ctdtUrl`, `planUrl` khi nhập lại.
+- Không nhập chương trình chép từ MyBK hay tài khoản cá nhân: đó là dữ liệu học tập riêng (môn đã chọn, mã khối nội bộ). Chỉ dùng CTĐT trường công bố. Chương trình cần ẩn khỏi danh sách thì đặt `listed: false`; các script nhập giữ nguyên `listed`, `ctdtUrl`, `planUrl` khi nhập lại.
 
 ## Duyệt bài
 
