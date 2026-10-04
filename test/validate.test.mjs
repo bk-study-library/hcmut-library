@@ -260,3 +260,12 @@ test('README môn: file gửi qua trang web, link gửi qua form Thêm link, kh�
   assert.ok(out.includes('template=them-link.yml&course=EE1009'));
   assert.ok(!out.includes('dong-gop-tai-lieu'));
 });
+
+test('--allow-stale: file sinh ra cũ chỉ là cảnh báo, lỗi khác vẫn chặn', () => {
+  const dir = copyFixture();
+  fs.writeFileSync(path.join(dir, 'index.json'), '{}\n');
+  assert.equal(run(['--root', dir, '--quiet']).ok, false);
+  assert.equal(run(['--root', dir, '--quiet', '--allow-stale']).ok, true);
+  editJson(dir, ITEM, (it) => { delete it.title; });
+  assert.equal(run(['--root', dir, '--quiet', '--allow-stale']).ok, false);
+});
