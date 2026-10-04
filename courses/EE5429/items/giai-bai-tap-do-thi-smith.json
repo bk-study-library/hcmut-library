@@ -12,11 +12,12 @@
   "files": [
     {
       "name": "EE5429_exercise-solution_giai-bai-tap-do-thi-smith.pdf",
-      "size": 263025,
-      "sha256": "a22f1c48aba90ca9761f3710da0e8526cf3a0941058d78693f08786781fac788",
+      "size": 265472,
+      "sha256": "2ce0c5d8b0ef762f24c80dc3ea0b3b96a47f327e39df19c82872cd49f5d0cba4",
       "mime": "application/pdf",
-      "quarantine": "pending/unEqefr6Qt/EE5429_exercise-solution_giai-bai-tap-do-thi-smith.pdf",
-      "uploadSha256": "a22f1c48aba90ca9761f3710da0e8526cf3a0941058d78693f08786781fac788"
+      "quarantine": "clean/unEqefr6Qt/EE5429_exercise-solution_giai-bai-tap-do-thi-smith.pdf",
+      "uploadSha256": "a22f1c48aba90ca9761f3710da0e8526cf3a0941058d78693f08786781fac788",
+      "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261/EE5429_exercise-solution_giai-bai-tap-do-thi-smith.pdf"
     }
   ]
 }

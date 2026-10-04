@@ -1214,7 +1214,7 @@
     {"id":"EE5423","code":"EE5423","status":"active","ids":[]},
     {"id":"EE5425","code":"EE5425","status":"active","ids":[]},
     {"id":"EE5427","code":"EE5427","status":"active","ids":[]},
-    {"id":"EE5429","code":"EE5429","status":"active","ids":[]},
+    {"id":"EE5429","code":"EE5429","status":"active","ids":["giai-bai-tap-do-thi-smith"]},
     {"id":"EE5431","code":"EE5431","status":"active","ids":[]},
     {"id":"EE5433","code":"EE5433","status":"active","ids":[]},
     {"id":"EE5435","code":"EE5435","status":"active","ids":[]},
@@ -3801,6 +3801,8 @@
   ],
   "shas": [
     "4a181936c0147a7988b9ed839802b6f19a36dff66d012ac4183cd09ba21b22c1",
+    "2ce0c5d8b0ef762f24c80dc3ea0b3b96a47f327e39df19c82872cd49f5d0cba4",
+    "a22f1c48aba90ca9761f3710da0e8526cf3a0941058d78693f08786781fac788",
     "cf6e7ca888ae2d759080d096d407de5d9be42b59e062e532f3293636c0c2e21e",
     "c7ce30ea2d1d701335549b8e0456bc7e2a9cb3525f8077e4af6d023bf40c791c",
     "2c9957c28b94671f4a5a8af3c67dfb12b2902872fbfe038bbd8c742fdfaf31c7",
