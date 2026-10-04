@@ -79,6 +79,12 @@
     return typeSel.value === 'book-ref';
   }
 
+  // Đuôi nhận cho loại đang chọn; chưa chọn loại thì mọi đuôi trong policy.
+  function allowedExts() {
+    var byType = cfg.byType || {};
+    return (typeSel.value && byType[typeSel.value]) || cfg.extensions;
+  }
+
   function checkLocal() {
     var n = 0;
     function bad(key, text) {
@@ -94,6 +100,7 @@
       var file = fileInput.files && fileInput.files[0];
       if (!file) bad('file', msg.file);
       else if (cfg.extensions.indexOf(extOf(file.name)) < 0) bad('file', msg.fileExt);
+      else if (allowedExts().indexOf(extOf(file.name)) < 0) bad('file', msg.fileExtType + ' ' + allowedExts().join(', ') + '.');
       else if (file.size <= 0) bad('file', msg.fileEmpty);
       else if (file.size > cfg.maxBytes) bad('file', msg.fileSize);
     }
@@ -108,6 +115,7 @@
     fileInput.disabled = book;
     bookBox.hidden = !book;
     bookBox.disabled = !book;
+    fileInput.setAttribute('accept', allowedExts().join(','));
   }
 
   // Ô môn

@@ -81,6 +81,16 @@ test('gói quiz chỉ nhận định dạng Study Pack (.json, .md, .zip)', () =
   assert.deepEqual(errorsAfter((d) => editJson(d, PRELAB, (it) => { it.type = 'quiz-pack'; delete it.gradedAfter; })), ['FILE_TYPE']);
 });
 
+test('.zip chỉ nhận cho gói quiz (extensions[".zip"].types trong policy.json)', () => {
+  const zipName = (it) => { it.files[0].name = 'prelab-2.zip'; it.files[0].mime = 'application/zip'; };
+  assert.deepEqual(errorsAfter((d) => editJson(d, PRELAB, zipName)), ['FILE_TYPE']);
+  const dir = copyFixture();
+  editJson(dir, PRELAB, zipName);
+  const e = loadRepo(dir).errors.find((x) => x.code === 'FILE_TYPE');
+  assert.match(e.msg, /đuôi \.zip không nhận cho loại prelab-reference/);
+  assert.deepEqual(errorsAfter((d) => editJson(d, PRELAB, (it) => { zipName(it); it.type = 'quiz-pack'; delete it.gradedAfter; })), []);
+});
+
 test('PDF, ảnh trong git bị từ chối; chỉ README, items/*.json, files/*.md', () => {
   assert.deepEqual(errorsAfter((d) => fs.writeFileSync(path.join(d, 'courses', 'EE1009', 'files', 'slide.pdf'), 'x')), ['GIT_FILE_TYPE']);
 });

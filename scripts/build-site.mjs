@@ -16,6 +16,7 @@ import { previewTarget } from './lib/preview.mjs';
 import { S } from './lib/strings.mjs';
 import { buildV1, serializeV1 } from './lib/v1.mjs';
 import { loadPolicy } from './lib/policy.mjs';
+import { extensionsFor, restrictedExtensions } from './lib/extensions.mjs';
 
 const SRC = path.join(TOOL_ROOT, 'site-src');
 let GENERATED = null;
@@ -64,9 +65,12 @@ function uploadPage({ policy, site, root, raw, t }) {
   const exts = Object.keys(policy.extensions);
   const open = Boolean(site.uploadEndpoint);
   const msg = t.uploadMsg;
+  const formTypes = policy.openTypes.filter((x) => x !== 'link');
   const config = {
     maxBytes: policy.maxFileBytes,
     extensions: exts,
+    // Đuôi nhận theo từng loại (extensions[].types, quizExtensions): form lọc ô chọn file theo loại.
+    byType: Object.fromEntries(formTypes.map((x) => [x, extensionsFor(policy, x)])),
     msg: { ...msg, fileExt: msg.fileExt(exts.join(', ')), fileSize: msg.fileSize(formatSize(policy.maxFileBytes)) },
   };
   // api.js của Cloudflare Turnstile là script ngoài duy nhất của site: chống bot gửi tự động vào form,
@@ -85,12 +89,15 @@ function uploadPage({ policy, site, root, raw, t }) {
     endpoint: esc(site.uploadEndpoint),
     sitekey: esc(site.turnstileSiteKey),
     // Loại "link" đi theo form Issue "Thêm link", không qua form này.
-    types: policy.openTypes.filter((x) => x !== 'link').map((x) => opt(x, TYPES[x].vi)).join('\n'),
+    types: formTypes.map((x) => opt(x, TYPES[x].vi)).join('\n'),
     examKinds: policy.fields.examKinds.map((x) => opt(x, EXAM_KINDS[x] || x)).join('\n'),
     ...Object.fromEntries(['titleMax', 'descriptionMax', 'chapterMax', 'teacherMax', 'displayNameMax', 'bookTitleMax', 'bookPublisherMax'].map((k) => [k, String(policy.fields[k])])),
     licenses: policy.selfMadeLicenses.map((x) => opt(x, x)).join('\n'),
     accept: esc(exts.join(',')),
     exts: esc(exts.join(', ')),
+    extNote: Object.entries(restrictedExtensions(policy))
+      .map(([ext, types]) => ` ${esc(t.uploadExtOnly(ext, types.map((x) => TYPES[x]?.vi ?? x).join(', ')))}`)
+      .join(''),
     maxSize: esc(formatSize(policy.maxFileBytes)),
     scripts,
   };

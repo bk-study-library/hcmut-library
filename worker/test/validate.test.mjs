@@ -6,7 +6,7 @@ const policy = {
   maxFileBytes: 20 * 1024 * 1024,
   extensions: {
     '.pdf': { mime: 'application/pdf', magic: '25504446' },
-    '.zip': { mime: 'application/zip', magic: '504b0304' },
+    '.zip': { mime: 'application/zip', magic: '504b0304', types: ['quiz-pack'] },
     '.md': { mime: 'text/markdown' },
   },
   selfMadeLicenses: ['CC-BY-SA-4.0', 'CC-BY-4.0', 'CC0-1.0'],
@@ -244,8 +244,16 @@ describe('gói quiz', () => {
   it('chỉ nhận đuôi trong policy.quizExtensions', () => {
     const r = validateSubmission({ ...base, type: 'quiz-pack' }, pdf, quizCtx);
     expect(r.ok).toBe(false);
-    expect(r.errors.file).toBe('Không nhận file này cho gói quiz. Dùng một trong: .json, .md, .zip.');
+    expect(r.errors.file).toBe('Không nhận file này cho gói quiz. Dùng một trong: .md, .zip.');
     const md = { name: 'quiz.md', size: 10, head: new Uint8Array([0x23]) };
     expect(validateSubmission({ ...base, type: 'quiz-pack' }, md, quizCtx).ok).toBe(true);
+  });
+
+  it('.zip chỉ nhận cho gói quiz (extensions[.zip].types)', () => {
+    const zip = { name: 'tom-tat.zip', size: 10, head: new Uint8Array([0x50, 0x4b, 0x03, 0x04]) };
+    const r = validateSubmission(base, zip, quizCtx);
+    expect(r.ok).toBe(false);
+    expect(r.errors.file).toBe('Không nhận đuôi file này cho loại tài liệu đã chọn. Dùng một trong: .pdf, .md.');
+    expect(validateSubmission({ ...base, type: 'quiz-pack' }, zip, quizCtx).ok).toBe(true);
   });
 });
