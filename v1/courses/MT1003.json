@@ -33,6 +33,27 @@
       ]
     },
     {
+      "id": "test",
+      "type": "notes",
+      "title": "test",
+      "lang": "vi",
+      "license": "CC-BY-SA-4.0",
+      "origin": "self-made",
+      "added": "2026-10-04",
+      "updated": "2026-10-04",
+      "files": [
+        {
+          "name": "MT1003_notes_test.json",
+          "mime": "application/json",
+          "size": 29,
+          "sha256": "7d859d13f9aa54f1e751a17a76adcdb0100de10ab5660afc568c557039ab2f3e",
+          "urls": [
+            "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261/MT1003_notes_test.json"
+          ]
+        }
+      ]
+    },
+    {
       "id": "tom-tat-gioi-han-dao-ham",
       "type": "summary",
       "title": "Tóm tắt giới hạn và đạo hàm",

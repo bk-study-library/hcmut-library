@@ -18,6 +18,10 @@
 
 - **Tóm tắt giới hạn và đạo hàm** (ví dụ minh họa) (vi, CC-BY-SA-4.0, BK Study Library): [tom-tat-gioi-han-dao-ham.md, 2 KB](files/tom-tat-gioi-han-dao-ham.md)
 
+### Ghi chú
+
+- **test** (vi, CC-BY-SA-4.0): [MT1003_notes_test.json, 29 B](https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261/MT1003_notes_test.json)
+
 ### Gói quiz (Study Pack)
 
 - **Gói quiz giới hạn và đạo hàm** (ví dụ minh họa) (vi, CC-BY-SA-4.0, BK Study Library): [quiz-gioi-han-dao-ham.md, 1 KB](files/quiz-gioi-han-dao-ham.md)
