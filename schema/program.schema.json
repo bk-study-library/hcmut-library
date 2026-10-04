@@ -14,9 +14,10 @@
     "faculty": { "type": "string", "pattern": "^[A-Za-z0-9_-]+$" },
     "year": { "type": "string", "pattern": "^[0-9]{4}$", "description": "Khóa (năm vào trường). Bỏ trống khi nguồn không ghi khóa." },
     "major": { "type": "string", "pattern": "^[0-9][0-9A-Za-z+]{3,31}$", "description": "Mã ngành, khóa trong catalog/majors.json. Vắng với chương trình chưa gắn ngành." },
-    "type": { "enum": ["CQ", "CTTA", "CNTN", "PFIEV", "SN", "CTTT", "DHNB", "VLVH", "CTQT"], "description": "Loại chương trình: CQ tiêu chuẩn, CTTA dạy bằng tiếng Anh, CNTN tài năng, PFIEV, SN song ngành, CTTT tiên tiến, DHNB định hướng Nhật Bản, VLVH vừa làm vừa học, CTQT chuyển tiếp quốc tế." },
+    "type": { "enum": ["CQ", "CTTA", "CNTN", "PFIEV", "SN", "CTTT", "DHNB", "VLVH", "CTQT", "UD", "NC", "CSAU", "TAUD", "STEM", "PT1", "PT2", "TAPT1"], "description": "Loại chương trình: CQ tiêu chuẩn, CTTA dạy bằng tiếng Anh, CNTN tài năng, PFIEV, SN song ngành, CTTT tiên tiến, DHNB định hướng Nhật Bản, VLVH vừa làm vừa học, CTQT chuyển tiếp quốc tế. Sau đại học: UD thạc sĩ ứng dụng, NC thạc sĩ nghiên cứu, CSAU thạc sĩ nghiên cứu chuyên sâu, TAUD thạc sĩ ứng dụng dạy bằng tiếng Anh, STEM thạc sĩ tài năng STEM, PT1 và PT2 tiến sĩ phương thức 1 và 2, TAPT1 tiến sĩ phương thức 1 dạy bằng tiếng Anh; CTĐT sau đại học trước khóa 2025 chưa chia hướng ghi CQ." },
     "track": { "type": "string", "minLength": 1, "description": "Chuyên ngành, khi ngành có CTĐT riêng cho từng chuyên ngành." },
     "level": { "enum": ["dai-hoc", "thac-si", "tien-si"], "description": "Bậc đào tạo. Vắng nghĩa là dai-hoc." },
+    "orientation": { "enum": ["ung-dung", "nghien-cuu"], "description": "Định hướng của chương trình thạc sĩ. Nghiên cứu chuyên sâu (type CSAU) là nghien-cuu. Vắng khi nguồn không ghi." },
     "degree": { "enum": ["cu-nhan", "ky-su", "ky-su-chuyen-sau", "thac-si", "tien-si"], "description": "Văn bằng theo nguồn. Vắng khi nguồn không ghi." },
     "totalCredits": { "type": "integer", "minimum": 0, "maximum": 400, "description": "Tổng số tín chỉ của chương trình theo nguồn." },
     "variant": { "type": "string", "minLength": 1, "description": "Nhãn loại chương trình để hiển thị, ví dụ Dạy và học bằng tiếng Anh. Loại thường thì bỏ trống." },
@@ -27,6 +28,19 @@
     "ctdtUrl": { "type": "string", "pattern": "^https://", "description": "Link PDF CTĐT chính thức của đúng ngành và khóa. Chỉ nhận host trong catalog/site.json (programPdfHosts)." },
     "planUrl": { "type": "string", "pattern": "^https://", "description": "Link PDF kế hoạch giảng dạy chính thức của đúng ngành và khóa. Chỉ nhận host trong catalog/site.json (programPdfHosts)." },
     "handbookUrl": { "type": "string", "pattern": "^https://", "description": "Trang chương trình trên Sổ tay HCMUT. Chỉ nhận host trong catalog/site.json (handbookHosts)." },
+    "groups": {
+      "type": "array",
+      "description": "Khối cha có yêu cầu tín chỉ riêng mà không trực tiếp chứa môn (ví dụ khối A gồm A.1, A.2, A.3). name trùng group của các khối con.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["name"],
+        "properties": {
+          "name": { "type": "string", "minLength": 1 },
+          "creditsNeed": { "type": "integer", "minimum": 0 }
+        }
+      }
+    },
     "blocks": {
       "type": "array",
       "description": "Có thể rỗng khi chưa có danh sách môn.",
@@ -39,8 +53,8 @@
           "name": { "type": "string", "minLength": 1 },
           "group": { "type": "string" },
           "kind": {
-            "enum": ["toan-khtn", "ly-luan-chinh-tri", "giao-duc-chung", "ngoai-ngu", "co-so-nganh", "nganh", "tu-chon-nganh", "chuyen-nganh", "tu-chon-tu-do", "tot-nghiep", "quoc-phong", "the-chat", "dieu-kien-tot-nghiep", "khac"],
-            "description": "Vai trò của khối, chuẩn hóa từ tên khối (chữ cái của khối đổi theo khóa, vai trò thì không)."
+            "enum": ["toan-khtn", "ly-luan-chinh-tri", "giao-duc-chung", "ngoai-ngu", "co-so-nganh", "nganh", "tu-chon-nganh", "chuyen-nganh", "tu-chon-tu-do", "tot-nghiep", "chung", "hoc-phan-tien-si", "tieu-luan-chuyen-de", "luan-van", "luan-an", "quoc-phong", "the-chat", "dieu-kien-tot-nghiep", "khac"],
+            "description": "Vai trò của khối, chuẩn hóa từ tên khối (chữ cái của khối đổi theo khóa, vai trò thì không). Sau đại học: chung (đa ngành tổng quát), hoc-phan-tien-si, tieu-luan-chuyen-de, luan-van, luan-an."
           },
           "required": { "type": "boolean" },
           "requiredUnknown": { "const": true, "description": "Nguồn không ghi khối bắt buộc hay tự chọn. Khi đó required là false và web không ghi nhãn bắt buộc, tự chọn." },

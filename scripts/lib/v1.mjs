@@ -96,6 +96,8 @@ export function buildV1(repo, { site = SITE_URL } = {}) {
     if (c.nameEn) row.nameEn = c.nameEn;
     if (c.credits != null) row.credits = c.credits;
     row.faculty = c.faculty;
+    // Bậc của môn, chỉ ghi khi môn có bậc sau đại học (vắng nghĩa là chỉ đại học).
+    if (Array.isArray(c.levels) && c.levels.some((l) => l !== DEFAULT_LEVEL)) row.levels = c.levels;
     row.aliases = uniq((c.aliases || []).map((a) => a.code).filter((x) => x !== c.code));
     row.oldNames = uniq((c.aliases || []).map((a) => a.name).filter((x) => x && x !== c.name));
     row.status = c.status;
@@ -132,6 +134,7 @@ function buildMajors(repo, site) {
       row.faculty = m.faculty;
       row.level = m.level || DEFAULT_LEVEL;
       row.programTypes = m.programTypes;
+      if (m.aliases && m.aliases.length) row.aliases = m.aliases;
       if (m.handbookUrl) row.handbookUrl = m.handbookUrl;
       row.url = `${site}major/${encodeURIComponent(majorKey(m.code))}/`;
       return row;

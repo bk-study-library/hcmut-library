@@ -16,12 +16,13 @@
         "additionalProperties": false,
         "required": ["code", "name", "faculty", "programTypes"],
         "properties": {
-          "code": { "type": "string", "pattern": "^[0-9][0-9A-Za-z+]{3,31}$", "description": "Mã ngành Bộ (7 chữ số). Nguồn dùng mã biến thể (ví dụ 75202TT, hay 7520201+7520207 cho song ngành) thì giữ nguyên." },
+          "code": { "type": "string", "pattern": "^[0-9][0-9A-Za-z+]{3,31}$", "description": "Mã ngành Bộ (7 chữ số; thạc sĩ 8 chữ số đầu là 8, tiến sĩ 9). Nguồn dùng mã biến thể (ví dụ 75202TT, hay 7520201+7520207 cho song ngành) thì giữ nguyên." },
           "name": { "type": "string", "minLength": 1 },
           "nameEn": { "type": "string", "minLength": 1 },
           "faculty": { "type": "string", "pattern": "^[A-Za-z0-9_-]+$", "description": "Khoa quản lý hiện hành, khóa trong catalog/faculties.json." },
           "level": { "enum": ["dai-hoc", "thac-si", "tien-si"], "description": "Bậc đào tạo. Vắng nghĩa là dai-hoc." },
-          "programTypes": { "type": "array", "items": { "enum": ["CQ", "CTTA", "CNTN", "PFIEV", "SN", "CTTT", "DHNB", "VLVH", "CTQT"] } },
+          "programTypes": { "type": "array", "items": { "enum": ["CQ", "CTTA", "CNTN", "PFIEV", "SN", "CTTT", "DHNB", "VLVH", "CTQT", "UD", "NC", "CSAU", "TAUD", "STEM", "PT1", "PT2", "TAPT1"] } },
+          "aliases": { "type": "array", "items": { "type": "string", "pattern": "^[0-9][0-9A-Za-z+]{3,31}$" }, "description": "Mã ngành khác mà nguồn dùng cho cùng ngành (ghi sai hoặc mã thí điểm). Script nhập gộp chương trình ghi mã này vào ngành có mã chính." },
           "handbookUrl": { "type": "string", "pattern": "^https://", "description": "Trang ngành trên Sổ tay HCMUT. Chỉ nhận host trong catalog/site.json (handbookHosts)." },
           "note": { "type": "string" }
         }

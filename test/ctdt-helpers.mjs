@@ -3,6 +3,7 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import { importCtdt, readCtdt } from '../scripts/import-ctdt.mjs';
+import { importSdh, readSdh } from '../scripts/import-sdh.mjs';
 import { TOOL_ROOT } from '../scripts/lib/repo.mjs';
 import { FIXTURES, writeJson } from './helpers.mjs';
 
@@ -68,3 +69,25 @@ export function freshRoot() {
 }
 
 export const importFixture = (dir, date = '2026-10-04') => importCtdt(readCtdt(DATA), dir, { date, faculties });
+
+// ---------- Sau đại học (test/fixtures/sdh) ----------
+export const SDH_DATA = path.join(FIXTURES, 'sdh');
+
+// Người duyệt chọn mã chính cho ngành nguồn ghi hai mã: ghi sẵn trong majors.json trước khi nhập.
+export function seedSdhMajors(dir) {
+  const p = path.join(dir, 'catalog', 'majors.json');
+  const cur = fs.existsSync(p) ? JSON.parse(fs.readFileSync(p, 'utf8')) : { $schema: '../schema/major.schema.json', updated: '2026-10-04', majors: [] };
+  cur.majors.push({ code: '8520202', name: 'Thiết kế vi mạch', faculty: 'dee', level: 'thac-si', programTypes: [], aliases: ['85202a1'], note: 'Mã ngành chờ xác nhận.' });
+  cur.majors.sort((a, b) => a.code.localeCompare(b.code));
+  writeJson(dir, 'catalog/majors.json', cur);
+}
+
+export const importSdhFixture = (dir, date = '2026-10-04') => importSdh(readSdh(SDH_DATA), dir, { date, faculties });
+
+// Thư mục đã nhập cả đại học (test/fixtures/ctdt) và sau đại học, như luồng thật.
+export function freshSdhRoot() {
+  const dir = freshRoot();
+  importFixture(dir);
+  seedSdhMajors(dir);
+  return dir;
+}

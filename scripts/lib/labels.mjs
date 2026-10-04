@@ -56,7 +56,17 @@ export const PROGRAM_TYPES = {
   DHNB: { short: { vi: 'Nhật Bản', en: 'Japan' }, vi: 'Định hướng Nhật Bản', en: 'Japan-oriented' },
   VLVH: { short: { vi: 'Vừa làm vừa học', en: 'Part-time' }, vi: 'Vừa làm vừa học', en: 'Part-time' },
   CTQT: { short: { vi: 'Chuyển tiếp quốc tế', en: 'Transfer' }, vi: 'Chuyển tiếp quốc tế', en: 'International transfer' },
+  // Sau đại học (thạc sĩ, tiến sĩ). Chương trình sau đại học khóa 2022 trở về trước chưa chia hướng, ghi CQ.
+  UD: { short: { vi: 'Ứng dụng', en: 'Applied' }, vi: 'Thạc sĩ định hướng ứng dụng', en: 'Applied master' },
+  NC: { short: { vi: 'Nghiên cứu', en: 'Research' }, vi: 'Thạc sĩ định hướng nghiên cứu', en: 'Research master' },
+  CSAU: { short: { vi: 'Nghiên cứu chuyên sâu', en: 'Intensive research' }, vi: 'Thạc sĩ nghiên cứu chuyên sâu', en: 'Intensive research master' },
+  TAUD: { short: { vi: 'Tiếng Anh, ứng dụng', en: 'In English, applied' }, vi: 'Thạc sĩ ứng dụng dạy bằng tiếng Anh', en: 'Applied master taught in English' },
+  STEM: { short: { vi: 'Tài năng STEM', en: 'STEM honors' }, vi: 'Thạc sĩ tài năng STEM', en: 'STEM honors master' },
+  PT1: { short: { vi: 'Phương thức 1', en: 'Track 1' }, vi: 'Tiến sĩ phương thức 1', en: 'Doctoral track 1' },
+  PT2: { short: { vi: 'Phương thức 2', en: 'Track 2' }, vi: 'Tiến sĩ phương thức 2', en: 'Doctoral track 2' },
+  TAPT1: { short: { vi: 'Tiếng Anh, phương thức 1', en: 'In English, track 1' }, vi: 'Tiến sĩ phương thức 1 dạy bằng tiếng Anh', en: 'Doctoral track 1 taught in English' },
 };
+
 
 // Vai trò khối kiến thức (trường kind của khối), theo thứ tự thường gặp trong CTĐT.
 export const BLOCK_KINDS = {
@@ -70,6 +80,12 @@ export const BLOCK_KINDS = {
   'chuyen-nganh': { vi: 'Chuyên ngành', en: 'Specialization' },
   'tu-chon-tu-do': { vi: 'Tự chọn tự do', en: 'Free electives' },
   'tot-nghiep': { vi: 'Tốt nghiệp', en: 'Graduation' },
+  // Sau đại học.
+  chung: { vi: 'Đa ngành tổng quát', en: 'General interdisciplinary' },
+  'hoc-phan-tien-si': { vi: 'Học phần trình độ tiến sĩ', en: 'Doctoral-level courses' },
+  'tieu-luan-chuyen-de': { vi: 'Tiểu luận tổng quan và chuyên đề', en: 'Literature review and seminars' },
+  'luan-van': { vi: 'Luận văn, đề án thạc sĩ', en: "Master's thesis or project" },
+  'luan-an': { vi: 'Luận án tiến sĩ', en: 'Doctoral dissertation' },
   'quoc-phong': { vi: 'Giáo dục quốc phòng', en: 'Military education' },
   'the-chat': { vi: 'Giáo dục thể chất', en: 'Physical education' },
   'dieu-kien-tot-nghiep': { vi: 'Điều kiện tốt nghiệp', en: 'Graduation requirements' },
@@ -91,6 +107,13 @@ export const LEVELS = {
   'tien-si': { vi: 'Tiến sĩ', en: 'Doctoral' },
 };
 export const DEFAULT_LEVEL = 'dai-hoc';
+// Bậc của môn: trường levels (vắng nghĩa là chỉ đại học).
+export const courseLevels = (c) => (Array.isArray(c.levels) && c.levels.length ? c.levels : [DEFAULT_LEVEL]);
+// Môn chỉ thuộc sau đại học (không có bậc đại học).
+export const isPostgradCourse = (c) => !courseLevels(c).includes(DEFAULT_LEVEL);
+// Chương trình, ngành thuộc sau đại học.
+export const isPostgrad = (x) => Boolean(x.level) && x.level !== DEFAULT_LEVEL;
+export const POSTGRAD_LEVELS = ['thac-si', 'tien-si'];
 
 // Đoạn đường dẫn trang ngành: major/<khóa>/. Mã song ngành có dấu + (7520201+7520207) đổi thành dấu gạch ngang.
 export const majorKey = (code) => String(code).replace(/\+/g, '-');

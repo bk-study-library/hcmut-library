@@ -2,12 +2,12 @@
 // Chỉ hỗ trợ các từ khóa mà schema/ đang dùng: type, enum, const, pattern,
 // minLength, maxLength, minimum, maximum, required, properties,
 // additionalProperties (false hoặc một schema cho mọi trường còn lại), propertyNames
-// (schema cho tên trường), items. Gặp từ khóa lạ thì báo lỗi để không âm thầm bỏ qua quy tắc.
+// (schema cho tên trường), items, minItems, uniqueItems (so bằng JSON). Gặp từ khóa lạ thì báo lỗi để không âm thầm bỏ qua quy tắc.
 
 const KNOWN = new Set([
   '$schema', '$id', 'title', 'description', 'type', 'enum', 'const', 'pattern',
   'minLength', 'maxLength', 'minimum', 'maximum', 'required', 'properties',
-  'additionalProperties', 'propertyNames', 'items',
+  'additionalProperties', 'propertyNames', 'items', 'minItems', 'uniqueItems',
 ]);
 
 function typeOf(v) {
@@ -68,7 +68,9 @@ function walk(s, v, path, errors) {
       else if (s.additionalProperties && typeof s.additionalProperties === 'object') walk(s.additionalProperties, val, `${path}.${k}`, errors);
     }
   }
-  if (Array.isArray(v) && s.items) {
-    v.forEach((item, i) => walk(s.items, item, `${path}[${i}]`, errors));
+  if (Array.isArray(v)) {
+    if (s.minItems != null && v.length < s.minItems) errors.push(`${path}: cần ít nhất ${s.minItems} phần tử`);
+    if (s.uniqueItems && new Set(v.map((x) => JSON.stringify(x))).size !== v.length) errors.push(`${path}: có phần tử trùng`);
+    if (s.items) v.forEach((item, i) => walk(s.items, item, `${path}[${i}]`, errors));
   }
 }

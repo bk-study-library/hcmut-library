@@ -2,9 +2,11 @@
 // Nhập bộ dữ liệu CTĐT chính thức của trường (Sổ tay HCMUT, bảng CTĐT từ khóa 2019, kế hoạch giảng dạy)
 // vào danh mục: ngành (catalog/majors.json), chương trình theo khóa và loại, môn.
 //
-//   node scripts/import-ctdt.mjs --data <thư mục> [--out .] [--date 2026-10-04]
+//   node scripts/import-ctdt.mjs --data <thư mục> [--sdh <thư mục>] [--out .] [--date 2026-10-04]
 //
 // Thư mục cần majors.json, programs.json, courses.json; links.json nếu có thì lấy ngày truy cập nguồn.
+// --sdh: nhập thêm CTĐT sau đại học (thạc sĩ, tiến sĩ) bằng scripts/import-sdh.mjs, sau phần đại học.
+// Có thể chỉ chạy --sdh mà không có --data.
 // Chỉ nhập dữ kiện (mã, tên, tín chỉ, khối, học kỳ đề xuất, link nguồn). Không chép PDF.
 //
 // Quy tắc:
@@ -29,9 +31,11 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { TOOL_ROOT, officialPdfUrl } from './lib/repo.mjs';
-import { PROGRAM_TYPES, BLOCK_KINDS, DEFAULT_LEVEL } from './lib/labels.mjs';
+import { PROGRAM_TYPES, BLOCK_KINDS, DEFAULT_LEVEL, isPostgradCourse } from './lib/labels.mjs';
 import { clean } from './import-research.mjs';
 import { inferParts } from './import-seed.mjs';
+// Vòng import với import-sdh.mjs an toàn: hai module chỉ dùng hàm của nhau khi chạy, không lúc nạp.
+import { importSdh, readSdh } from './import-sdh.mjs';
 
 const CODE_RE = /^[A-Z0-9_]{3,12}$/;
 const MAJOR_RE = /^[0-9][0-9A-Za-z+]{3,31}$/;
@@ -122,26 +126,36 @@ export function enNameSuspicious(fresh, viName, rec = {}) {
 
 const sameText = (a, b) => clean(a).toLowerCase() === clean(b).toLowerCase();
 
-function addSentence(note, s) {
+export function addSentence(note, s) {
   const cur = clean(note || '');
   if (!s || cur.includes(s)) return cur || undefined;
   return cur ? `${cur} ${s}` : s;
 }
 
-const json = (o) => JSON.stringify(o, null, 2) + '\n';
+export const json = (o) => JSON.stringify(o, null, 2) + '\n';
 
-function ordered(obj, order) {
+export function ordered(obj, order) {
   const o = {};
   for (const k of order) if (obj[k] !== undefined) o[k] = obj[k];
   for (const k of Object.keys(obj)) if (!(k in o) && obj[k] !== undefined) o[k] = obj[k];
   return o;
 }
 
-const COURSE_ORDER = ['$schema', 'id', 'code', 'name', 'nameEn', 'credits', 'faculty', 'aliases', 'status', 'replacedBy', 'replaces', 'programs', 'parts', 'related', 'handbookUrl', 'note', 'updated'];
-const PROGRAM_ORDER = ['$schema', 'code', 'name', 'nameEn', 'faculty', 'year', 'major', 'type', 'track', 'level', 'degree', 'totalCredits', 'variant', 'listed', 'note', 'reviewNote', 'source', 'ctdtUrl', 'planUrl', 'handbookUrl', 'blocks', 'updated'];
-const MAJOR_ORDER = ['code', 'name', 'nameEn', 'faculty', 'level', 'programTypes', 'handbookUrl', 'note'];
+export const COURSE_ORDER = ['$schema', 'id', 'code', 'name', 'nameEn', 'credits', 'faculty', 'levels', 'aliases', 'status', 'replacedBy', 'replaces', 'programs', 'parts', 'related', 'handbookUrl', 'note', 'updated'];
+export const PROGRAM_ORDER = ['$schema', 'code', 'name', 'nameEn', 'faculty', 'year', 'major', 'type', 'track', 'level', 'orientation', 'degree', 'totalCredits', 'variant', 'listed', 'note', 'reviewNote', 'source', 'ctdtUrl', 'planUrl', 'handbookUrl', 'groups', 'blocks', 'updated'];
+export const MAJOR_ORDER = ['code', 'name', 'nameEn', 'faculty', 'level', 'programTypes', 'aliases', 'handbookUrl', 'note'];
+export const KEPT_PROGRAM_FIELDS = KEPT_PROGRAM;
 
-function readSite(root) {
+// Ghi file JSON; updated chỉ đổi khi nội dung (trừ updated) đổi.
+export function writeKeepDate(p, obj, date) {
+  if (fs.existsSync(p)) {
+    const cur = JSON.parse(fs.readFileSync(p, 'utf8'));
+    obj.updated = JSON.stringify({ ...cur, updated: null }) === JSON.stringify({ ...obj, updated: null }) ? cur.updated : date;
+  }
+  fs.writeFileSync(p, json(obj));
+}
+
+export function readSite(root) {
   const own = path.join(root, 'catalog', 'site.json');
   const p = fs.existsSync(own) ? own : path.join(TOOL_ROOT, 'catalog', 'site.json');
   return JSON.parse(fs.readFileSync(p, 'utf8'));
@@ -161,7 +175,7 @@ function legacyType(p) {
   return nameKey(p.name).startsWith('song nganh') ? 'SN' : 'CQ';
 }
 
-const vnDate = (d) => (/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/.test(d || '') ? d.split('-').reverse().join('/') : d);
+export const vnDate = (d) => (/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/.test(d || '') ? d.split('-').reverse().join('/') : d);
 
 export function readCtdt(dir) {
   const r = (n) => JSON.parse(fs.readFileSync(path.join(dir, n), 'utf8'));
@@ -212,8 +226,10 @@ export function importCtdt(data, outRoot, { date, faculties, log = () => {} }) {
   const existingPrograms = new Map(readDir(programsDir).map((p) => [p.code, p]));
 
   // Mã bị dùng lại: ID kèm năm khóa, áp cho chương trình từ năm đó trở đi.
+  // Môn chỉ thuộc sau đại học (ID kèm năm do trùng mã với môn đại học) không áp cho chương trình đại học.
   const reused = new Map();
   for (const c of out.values()) {
+    if (isPostgradCourse(c)) continue;
     const m = c.id.match(/^(.+)-([0-9]{4})$/);
     if (m && m[1] === c.code) {
       if (!reused.has(c.code)) reused.set(c.code, []);
@@ -493,25 +509,18 @@ export function importCtdt(data, outRoot, { date, faculties, log = () => {} }) {
   }
 
   // ---------- Ghi file; updated chỉ đổi khi nội dung đổi ----------
-  const writeKeepDate = (p, obj) => {
-    if (fs.existsSync(p)) {
-      const cur = JSON.parse(fs.readFileSync(p, 'utf8'));
-      obj.updated = JSON.stringify({ ...cur, updated: null }) === JSON.stringify({ ...obj, updated: null }) ? cur.updated : date;
-    }
-    fs.writeFileSync(p, json(obj));
-  };
   for (const c of out.values()) {
     c.related = [...(c.related || [])].sort();
     if (c.replaces) c.replaces = [...c.replaces].sort();
-    writeKeepDate(path.join(coursesDir, `${c.id}.json`), ordered(c, COURSE_ORDER));
+    writeKeepDate(path.join(coursesDir, `${c.id}.json`), ordered(c, COURSE_ORDER), date);
   }
-  for (const pr of written.values()) writeKeepDate(path.join(programsDir, `${pr.code}.json`), pr);
+  for (const pr of written.values()) writeKeepDate(path.join(programsDir, `${pr.code}.json`), pr, date);
   const majorsOut = {
     $schema: '../schema/major.schema.json',
     updated: date,
     majors: [...majors.values()].sort((a, b) => a.code.localeCompare(b.code)),
   };
-  writeKeepDate(majorsPath, majorsOut);
+  writeKeepDate(majorsPath, majorsOut, date);
 
   report.courses = out.size;
   report.programs = written.size;
@@ -533,14 +542,18 @@ if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.me
   const argv = process.argv.slice(2);
   for (let i = 0; i < argv.length; i++) {
     if (argv[i] === '--data') a.data = argv[++i];
+    else if (argv[i] === '--sdh') a.sdh = argv[++i];
     else if (argv[i] === '--out') a.out = path.resolve(argv[++i]);
     else if (argv[i] === '--date') a.date = argv[++i];
     else throw new Error(`tham số lạ: ${argv[i]}`);
   }
-  if (!a.data) {
-    console.error('Cần --data <thư mục>.');
+  if (!a.data && !a.sdh) {
+    console.error('Cần --data <thư mục> hoặc --sdh <thư mục>.');
     process.exit(2);
   }
   const faculties = JSON.parse(fs.readFileSync(path.join(a.out, 'catalog', 'faculties.json'), 'utf8'));
-  importCtdt(readCtdt(a.data), a.out, { date: a.date, faculties, log: (s) => console.log(s) });
+  if (a.data) importCtdt(readCtdt(a.data), a.out, { date: a.date, faculties, log: (s) => console.log(s) });
+  if (a.sdh) {
+    importSdh(readSdh(a.sdh), a.out, { date: a.date, faculties, log: (s) => console.log(s) });
+  }
 }

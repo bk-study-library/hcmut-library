@@ -199,7 +199,7 @@ test('v1/majors.json thật: đủ ngành của catalog/majors.json, không null
   walk(majors, (v, at) => assert.notEqual(v, null, `null ở ${at}`));
   const keys = new Set(index.faculties.map((f) => f.key));
   for (const m of majors.majors) {
-    assert.deepEqual(Object.keys(m).filter((k) => !['code', 'name', 'nameEn', 'faculty', 'level', 'programTypes', 'handbookUrl', 'url'].includes(k)), []);
+    assert.deepEqual(Object.keys(m).filter((k) => !['code', 'name', 'nameEn', 'faculty', 'level', 'programTypes', 'aliases', 'handbookUrl', 'url'].includes(k)), []);
     assert.ok(keys.has(m.faculty), m.code);
     assert.ok(['dai-hoc', 'thac-si', 'tien-si'].includes(m.level), m.code);
     assert.equal(m.url, `${index.site}major/${encodeURIComponent(m.code.replace(/\+/g, '-'))}/`);

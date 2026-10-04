@@ -1,0 +1,95 @@
+[
+  {
+    "id": "SDH_THS_8520103_UD_2025", "level": "thac-si", "major": "8520103", "majorName": "Kỹ thuật cơ khí", "faculty": "fme", "year": "2025",
+    "orientation": "ung-dung", "variant": null, "mode": "Thạc sĩ ứng dụng", "language": "vi", "totalCredits": 60,
+    "ctdtUrl": "https://drive.google.com/file/d/ths-ck-ud/view", "planUrl": "https://drive.google.com/file/d/khgd-ths-ck-ud/view",
+    "sourceUrl": "https://hcmut.edu.vn/bai-viet/chuong-trinh-dao-tao-thac-si-tu-khoa-2025",
+    "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/postgraduate/8520103?program=UD", "printedDate": "30/01/2026", "source": "pdf",
+    "groups": [{ "id": "A", "name": "Đa ngành Tổng quát (General Interdisciplinary Knowledge)", "creditsNeed": 9 }],
+    "blocks": [
+      { "id": "A.1", "name": "Bắt buộc Đa ngành, tổng quát", "group": "A", "kind": "chung", "required": true, "creditsNeed": 3, "courses": ["AS5113"] },
+      { "id": "A.2", "name": "Tự chọn Đa ngành, tổng quát", "group": "A", "kind": "chung", "required": false, "creditsNeed": 6, "courses": ["GK5025"] },
+      { "id": "A.3", "name": "Ngoại ngữ (Foreign Languages)", "group": "A", "kind": "ngoai-ngu", "required": true, "creditsNeed": 0, "courses": ["GK5047"] },
+      { "id": "B", "name": "Cơ sở ngành (Core courses)", "group": null, "kind": "co-so", "required": true, "creditsNeed": 12, "courses": ["ME5327", "MT1003", "PH1003"] },
+      { "id": "C", "name": "Ngành/Chuyên ngành tự chọn", "group": null, "kind": "chuyen-nganh", "required": false, "creditsNeed": 12, "courses": ["ME5021", "ZZ9999"] },
+      { "id": "D", "name": "Học phần tốt nghiệp (Graduation Module)", "group": null, "kind": "luan-van", "required": true, "creditsNeed": 15, "courses": ["ME6139"] },
+      { "id": "E", "name": "Điều kiện tốt nghiệp", "group": null, "kind": "dieu-kien-tot-nghiep", "required": true, "creditsNeed": null, "courses": ["ENG_B2"] }
+    ],
+    "note": null
+  },
+  {
+    "id": "SDH_THS_8520103_NCS_2025", "level": "thac-si", "major": "8520103", "majorName": "Kỹ thuật cơ khí", "faculty": "fme", "year": "2025",
+    "orientation": "nghien-cuu", "variant": "chuyen-sau", "mode": "Thạc sĩ nghiên cứu chuyên sâu", "language": "vi", "totalCredits": 60,
+    "ctdtUrl": "https://drive.google.com/file/d/ths-ck-ncs/view", "planUrl": null, "sourceUrl": "https://hcmut.edu.vn/bai-viet/chuong-trinh-dao-tao-thac-si-tu-khoa-2025",
+    "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/postgraduate/8520103?program=CS", "printedDate": "30/01/2026", "source": "pdf",
+    "groups": [],
+    "blocks": [
+      { "id": "A", "name": "Đa ngành Tổng quát", "group": null, "kind": "chung", "required": true, "creditsNeed": 3, "courses": ["AS5113"] },
+      { "id": "D", "name": "Học phần tốt nghiệp", "group": null, "kind": "luan-van", "required": true, "creditsNeed": 57, "courses": ["ME6201"] }
+    ],
+    "note": null
+  },
+  {
+    "id": "SDH_THS_8520103_2022", "level": "thac-si", "major": "8520103", "majorName": "Kỹ thuật cơ khí", "faculty": "fme", "year": "2022",
+    "orientation": null, "variant": null, "mode": null, "language": "vi", "totalCredits": 60,
+    "ctdtUrl": "https://drive.google.com/file/d/ths-ck-2022/view", "planUrl": null, "sourceUrl": "https://hcmut.edu.vn/dao-tao/chuong-trinh-dao-tao/chuong-trinh-thac-si",
+    "handbookUrl": null, "printedDate": null, "source": "pdf-2022", "groups": [], "blocks": [],
+    "note": "Bản CTĐT 2022 dạng văn bản mô tả, liệt kê tên môn nhưng không ghi mã môn, nên chưa tách khối và mã."
+  },
+  {
+    "id": "SDH_THS_85202A1_UD_2025", "level": "thac-si", "major": "85202a1", "majorName": "Thiết kế vi mạch", "faculty": "dee", "year": "2025",
+    "orientation": "ung-dung", "variant": null, "mode": "Thạc sĩ ứng dụng", "language": "vi", "totalCredits": 60,
+    "ctdtUrl": "https://drive.google.com/file/d/ths-tkvm-ud/view", "planUrl": null, "sourceUrl": "https://hcmut.edu.vn/bai-viet/chuong-trinh-dao-tao-thac-si-tu-khoa-2025",
+    "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/postgraduate/85202a1?program=UD", "printedDate": "30/01/2026", "source": "pdf",
+    "groups": [], "blocks": [{ "id": "B", "name": "Cơ sở ngành", "group": null, "kind": "co-so", "required": true, "creditsNeed": 12, "courses": ["EE5229"] }],
+    "note": null
+  },
+  {
+    "id": "SDH_THS_8520202_CTTAUD_2026", "level": "thac-si", "major": "8520202", "majorName": "Thiết kế vi mạch", "faculty": "dee", "year": "2026",
+    "orientation": "ung-dung", "variant": "tieng-anh", "mode": "CTTAUD", "language": "en", "totalCredits": 60,
+    "ctdtUrl": null, "planUrl": null, "sourceUrl": "https://hcmut.edu.vn/study/handbook/course/postgraduate/8520202?program=CTTAUD",
+    "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/postgraduate/8520202?program=CTTAUD", "printedDate": null, "source": "so-tay",
+    "groups": [], "blocks": [{ "id": "B", "name": "CƠ SỞ NGÀNH", "group": null, "kind": "co-so", "required": true, "creditsNeed": 12, "courses": ["EE5229"] }],
+    "note": "Chỉ có trên Sổ tay HCMUT, không có PDF CTĐT trên trang Đào tạo."
+  },
+  {
+    "id": "SDH_TS_9520118_PT1_2026", "level": "tien-si", "major": "9520118", "majorName": "Kỹ thuật Hệ thống công nghiệp", "faculty": "sim", "year": "2026",
+    "orientation": null, "variant": "phuong-thuc-1", "mode": "Phương thức 1", "language": "vi", "totalCredits": 90,
+    "ctdtUrl": "https://drive.google.com/file/d/ts-httcn-pt1/view", "planUrl": null, "sourceUrl": "https://hcmut.edu.vn/bai-viet/chuong-trinh-dao-tao-tien-si-tu-khoa-2025",
+    "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/postgraduate/9520118?program=PT1_1", "printedDate": "25/06/2026", "source": "pdf",
+    "groups": [],
+    "blocks": [
+      { "id": "A", "name": "Đa Ngành Tổng Quát", "group": null, "kind": "chung", "required": true, "creditsNeed": 3, "courses": ["GK5007"] },
+      { "id": "C", "name": "Học phần tốt nghiệp", "group": null, "kind": "luan-an", "required": true, "creditsNeed": 87, "courses": ["ME7377"] },
+      { "id": "D", "name": "Điều kiện tốt nghiệp", "group": null, "kind": "dieu-kien-tot-nghiep", "required": true, "creditsNeed": null, "courses": ["ENG_B2"] }
+    ],
+    "note": null
+  },
+  {
+    "id": "SDH_TS_9520118_CTTATS1_1_2026", "level": "tien-si", "major": "9520118", "majorName": "Kỹ thuật Hệ thống Công nghiệp", "faculty": "fme", "year": "2026",
+    "orientation": null, "variant": "tieng-anh-phuong-thuc-1", "mode": "CTTATS1_1", "language": "en", "totalCredits": 90,
+    "ctdtUrl": null, "planUrl": null, "sourceUrl": "https://hcmut.edu.vn/study/handbook/course/postgraduate/9520118?program=CTTATS1_1",
+    "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/postgraduate/9520118?program=CTTATS1_1", "printedDate": null, "source": "so-tay",
+    "groups": [], "blocks": [{ "id": "A", "name": "ĐA NGÀNH TỔNG QUÁT", "group": null, "kind": "chung", "required": true, "creditsNeed": 3, "courses": ["GK5007"] }],
+    "note": null
+  },
+  {
+    "id": "SDH_THS_8340101_THCQ_2022", "level": "thac-si", "major": "8340101", "majorName": "Quản trị kinh doanh", "faculty": "sim", "year": "2022",
+    "orientation": null, "variant": "tieu-chuan", "mode": "THCQ", "language": "vi", "totalCredits": 60,
+    "ctdtUrl": null, "planUrl": null, "sourceUrl": "https://hcmut.edu.vn/study/handbook/course/postgraduate/8340101?program=THCQ",
+    "handbookUrl": "https://hcmut.edu.vn/study/handbook/course/postgraduate/8340101?program=THCQ", "printedDate": null, "source": "so-tay",
+    "groups": [], "blocks": [{ "id": "5", "name": "5. KHỐI KIẾN THỨC TỐT NGHIỆP", "group": null, "kind": "bat-buoc", "required": true, "creditsNeed": 0, "courses": ["TH5929"] }],
+    "note": "Chỉ có trên Sổ tay HCMUT, không có PDF CTĐT trên trang Đào tạo."
+  },
+  {
+    "id": "SDH_THS_8340101_2022", "level": "thac-si", "major": "8340101", "majorName": "Quản trị kinh doanh", "faculty": "sim", "year": "2022",
+    "orientation": null, "variant": null, "mode": null, "language": "vi", "totalCredits": 60,
+    "ctdtUrl": "https://drive.google.com/file/d/ths-qtkd-2022/view", "planUrl": null, "sourceUrl": "https://hcmut.edu.vn/dao-tao/chuong-trinh-dao-tao/chuong-trinh-thac-si",
+    "handbookUrl": null, "printedDate": null, "source": "pdf-2022", "groups": [], "blocks": [],
+    "note": "Bản CTĐT 2022 dạng văn bản mô tả, liệt kê tên môn nhưng không ghi mã môn, nên chưa tách khối và mã."
+  },
+  {
+    "id": "SDH_THS_9999999_UD_2025", "level": "thac-si", "major": "9999999", "majorName": "Ngành lạ", "faculty": "fme", "year": "2025",
+    "orientation": "ung-dung", "variant": null, "source": "pdf", "groups": [], "blocks": [], "note": null
+  }
+]
