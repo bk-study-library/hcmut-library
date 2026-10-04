@@ -28,9 +28,18 @@ Form không bắt nhập email. Những gì form gửi đi:
 - File bạn gửi nằm trong một kho riêng (Cloudflare R2, không công khai) cho tới khi người duyệt xử lý PR.
 - Khi PR được merge, bản đã làm sạch được đưa lên Release công khai và file trong kho bị xóa. Khi PR bị đóng, file trong kho bị xóa.
 - Bài bị bỏ quên: luật vòng đời của kho xóa mọi file sau 30 ngày.
+- Người duyệt xem file chờ duyệt qua một trang riêng, đăng nhập bằng tài khoản GitHub qua Cloudflare Access. Chỉ thành viên nhóm duyệt bài (org `bk-study-library` trên GitHub) vào được. Cloudflare Access xử lý thông tin đăng nhập của người duyệt theo chính sách của Cloudflare.
 - Với PDF, máy xóa siêu dữ liệu (Author, Creator, Producer, XMP) khỏi bản được đăng. Bản gốc chỉ nằm trong kho riêng cho tới khi bị xóa như trên.
 - Máy quét virus và quét thông tin cá nhân (MSSV, email, số điện thoại) trong file. Thông tin cá nhân trong file chỉ bị cảnh báo trong PR, không bị chặn: người gửi và người duyệt tự quyết có xóa không. Hãy tự xóa phần này trước khi gửi.
 - Các ô chữ của form (tiêu đề, mô tả, chương, giảng viên, tên hiển thị, thông tin sách) hiện công khai, nên form từ chối bài có MSSV, email hay số điện thoại trong các ô này.
+
+## Link xem bài của bạn
+
+Sau khi gửi, trang Gửi tài liệu hiện một link xem bài riêng của bạn. Link cho bạn xem trạng thái bài (đang chờ duyệt, đã đăng, không được nhận) và xem lại file khi file còn trong kho riêng.
+
+- Link chứa một mã bí mật ngẫu nhiên. Chỉ bạn có link: thư viện chỉ lưu giá trị băm `sha256` của mã, không lưu chính mã, nên không gửi lại được và không ai trong nhóm duyệt đọc được mã. Hãy tự lưu link, đừng chia sẻ.
+- Ai có link đều xem được bài, nên giữ link như một mật khẩu.
+- Link hết hạn khi file chờ duyệt bị xóa: khi người duyệt merge hoặc đóng PR, muộn nhất sau 30 ngày theo luật vòng đời của kho.
 
 ## Những gì công khai khi repo public
 
