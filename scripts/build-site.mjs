@@ -195,8 +195,14 @@ function uploadPage({ policy, site, root, raw, t }) {
   const open = Boolean(site.uploadEndpoint);
   const msg = t.uploadMsg;
   const formTypes = policy.openTypes.filter((x) => x !== 'link');
+  // Đợt gửi nhiều file: thiếu số trong policy thì một file một lần như cũ.
+  const batchFiles = Number.isInteger(policy.batchMaxFiles) && policy.batchMaxFiles > 0 ? policy.batchMaxFiles : 1;
+  const batchBytes = batchFiles > 1 && Number.isInteger(policy.batchMaxBytes) ? policy.batchMaxBytes : policy.maxFileBytes;
   const config = {
     maxBytes: policy.maxFileBytes,
+    batchFiles,
+    batchBytes,
+    batchSize: formatSize(batchBytes),
     extensions: exts,
     // Đuôi nhận theo từng loại (extensions[].types, quizExtensions): form lọc ô chọn file theo loại.
     byType: Object.fromEntries(formTypes.map((x) => [x, extensionsFor(policy, x)])),
@@ -204,6 +210,9 @@ function uploadPage({ policy, site, root, raw, t }) {
       ...msg,
       fileExt: msg.fileExt(exts.join(', ')),
       fileSize: msg.fileSize(formatSize(policy.maxFileBytes)),
+      batchCount: msg.batchCount(batchFiles),
+      batchSize: msg.batchSize(formatSize(batchBytes)),
+      batchLimit: msg.batchLimit(batchFiles, formatSize(batchBytes)),
       newNameLong: msg.newNameLong(policy.fields.courseNameMax),
     },
     // Môn mới gửi kèm bài: mẫu mã từ schema, giới hạn tên từ policy, khoảng gợi ý mã gần từ site.json.
@@ -239,6 +248,8 @@ function uploadPage({ policy, site, root, raw, t }) {
       .map(([ext, types]) => ` ${esc(t.uploadExtOnly(ext, types.map((x) => TYPES[x]?.vi ?? x).join(', ')))}`)
       .join(''),
     maxSize: esc(formatSize(policy.maxFileBytes)),
+    multiple: batchFiles > 1 ? ' multiple' : '',
+    batchNote: batchFiles > 1 ? ` ${esc(msg.batchLimit(batchFiles, formatSize(batchBytes)))} ${esc(msg.batchHint)}` : '',
     teacherPlaceholder: esc(t.uploadTeacherPlaceholder),
     scripts,
   };

@@ -179,3 +179,16 @@ test('cảnh báo trùng tên: trùng hẳn, chứa nhau, chung đa số từ; t
   assert.deepEqual(ids(BkUpload.subjectDocs(docs, ['MT1003', 'MT1011'])), ['c', 'b', 'a']);
   assert.deepEqual(ids(BkUpload.subjectDocs(docs, ['MT1003'])), ['b', 'a']);
 });
+
+test('đợt gửi: tiêu đề gợi ý từ tên file, cỡ file như build, lỗi chung của đợt', async () => {
+  const { formatSize } = await import('../scripts/lib/labels.mjs');
+  for (const n of [512, 2048, 5 * 1024 * 1024 + 12345]) assert.equal(BkUpload.formatSize(n), formatSize(n));
+  assert.equal(BkUpload.titleFromName('Chuong_3--Dao-ham.pdf'), 'Chuong 3 Dao ham');
+  assert.equal(BkUpload.titleFromName('.pdf'), '.pdf');
+  assert.equal(BkUpload.titleFromName('abcdef.pdf', 3), 'abc');
+  const f = (name, size) => ({ name, size });
+  assert.equal(BkUpload.batchProblem([f('a.pdf', 1), f('b.pdf', 2)], 10, 100), '');
+  assert.equal(BkUpload.batchProblem([f('a.pdf', 1), f('b.pdf', 2), f('c.pdf', 3)], 2, 100), 'batchCount');
+  assert.equal(BkUpload.batchProblem([f('a.pdf', 60), f('b.pdf', 50)], 10, 100), 'batchSize');
+  assert.equal(BkUpload.batchProblem([f('a.pdf', 5), f('a.pdf', 5)], 10, 100), 'batchSame');
+});

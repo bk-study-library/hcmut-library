@@ -1,7 +1,7 @@
 // Xem file chờ duyệt: người duyệt (/xem-duyet/<mã>, sau Cloudflare Access) và người gửi
 // (/xem/<mã>?k=<mã bí mật>). File trong kho cách ly không bao giờ công khai: mọi đường đều kiểm
 // quyền trước khi đọc R2. Không ghi log mã bí mật, IP hay tên file.
-import { SITE_URL, TYPES, EXAM_KINDS } from '../../scripts/lib/labels.mjs';
+import { SITE_URL, TYPES, EXAM_KINDS, formatSize } from '../../scripts/lib/labels.mjs';
 
 export const CODE = /^[A-Za-z0-9]{10}$/;
 // 32 byte base64url không đệm: 43 ký tự.
@@ -157,12 +157,12 @@ export async function locateFile(r2, code, name = null) {
   for (const [prefix, clean] of [[`clean/${code}/`, true], [`pending/${code}/`, false]]) {
     if (name) {
       const obj = await r2.head(`${prefix}${name}`);
-      if (obj) return { key: `${prefix}${name}`, name, clean };
+      if (obj) return { key: `${prefix}${name}`, name, clean, size: obj.size };
       continue;
     }
     const list = await r2.list({ prefix, limit: 1 });
     const obj = list.objects?.[0];
-    if (obj) return { key: obj.key, name: obj.key.slice(prefix.length), clean };
+    if (obj) return { key: obj.key, name: obj.key.slice(prefix.length), clean, size: obj.size };
   }
   return null;
 }
@@ -332,6 +332,7 @@ export function reviewBatchPage({ code, docs, newCourse = null, open = true, can
     out.push(rows.length ? `<dl class="fields">${rows.map(([k, v]) => `<dt>${esc(k)}</dt><dd>${esc(v)}</dd>`).join('')}</dl>` : para(m.noItem, 'warn'));
     // Bài một file giữ link /file như trước; đợt gửi nhiều file thì link theo tên file.
     const href = !d.file ? '' : docs.length === 1 ? `/xem-duyet/${code}/file` : `/xem-duyet/${code}/file/${encodeURIComponent(d.file.name)}`;
+    if (d.file) out.push(para(`${m.fileTitle}: ${d.file.name}${Number.isFinite(d.file.size) ? `, ${formatSize(d.file.size)}` : ''}`, 'muted'));
     if (d.file?.clean) out.push(`<p class="actions"><a class="btn" href="${esc(href)}">${esc(m.viewFile)}</a><a class="btn" href="${esc(`${href}?tai=1`)}">${esc(m.downloadFile)}</a></p>`);
     else if (d.file) out.push(para(m.pending, 'warn'), `<p class="actions"><a class="btn" href="${esc(`${href}?tai=1`)}">${esc(m.pendingButton)}</a></p>`);
     else out.push(para(d.item?.type === 'book-ref' ? m.noFileBook : m.noFile, 'muted'));

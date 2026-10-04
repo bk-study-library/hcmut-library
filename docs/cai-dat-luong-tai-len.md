@@ -192,6 +192,8 @@ Ruleset đang chạy cho `main`:
 - Bot (GitHub App) không có trong danh sách bỏ qua, nên không tự gộp được bài.
 - Nhánh `upload/*` không có ruleset riêng.
 
+Duyệt trên trang duyệt (mục 8.6) cần thêm GitHub App vào danh sách bỏ qua, bypass mode `pull_request`: **Settings** > **Rules** > **Rulesets** > `Bảo vệ main` > **Bypass list** > **Add bypass** > chọn App của thư viện > **For pull requests only**. Worker chỉ gộp sau khi một thành viên org đã đăng nhập qua Cloudflare Access và bấm Hoàn tất duyệt, và chỉ khi mọi check của đầu nhánh đã qua. Đổi lại, khóa App trong Worker bị lộ thì gộp được PR; giữ khóa như mục 4 và đổi ngay nếu nghi lộ. Chưa thêm App thì trang duyệt vẫn chạy nhưng bước gộp báo lỗi; người duyệt gộp tay trên GitHub như trước.
+
 ## Bước 8. Xem file chờ duyệt: tên miền riêng và Cloudflare Access
 
 Người duyệt mở bài của một PR qua link `https://upload.xerozsoft.com/xem-duyet/<mã bài>` (có trong nội dung PR và comment của `kiem-file`), đăng nhập bằng GitHub, không cần tài khoản Cloudflare. Trang này hiện mọi ô người gửi nhập (đọc từ file mục trên nhánh `upload/<mã bài>`, đã thoát HTML), rồi nút **Xem file** (`/xem-duyet/<mã bài>/file`) và **Tải file**. Tiêu đề và nội dung PR không chứa chữ người gửi. Người gửi nhận link riêng `https://upload.xerozsoft.com/xem/<mã bài>?k=<mã bí mật>` ngay sau khi gửi.
@@ -252,6 +254,22 @@ Thử:
 - Gửi một bài thử: trang Gửi tài liệu hiện link xem bài. Đổi một ký tự của `k` trong link: trang báo không tìm thấy.
 
 `uploadEndpoint` trong `catalog/site.json` đã là `https://upload.xerozsoft.com/submit`.
+
+### 8.6. Duyệt trên trang duyệt
+
+Một bài (một PR) có thể gồm nhiều file: form nhận tối đa `batchMaxFiles` file, tổng `batchMaxBytes` (`catalog/policy.json`, hiện 10 file và 50 MB), mỗi file vẫn tối đa `maxFileBytes`. Mỗi file thành một mục tài liệu riêng trong cùng PR. `kiem-file` quét từng file và ghi kết quả từng file trong một comment.
+
+Trang `/xem-duyet/<mã bài>` hiện từng file: chữ người gửi nhập, tên và cỡ file, nút Xem và Tải, rồi lựa chọn **Duyệt** hay **Không duyệt** kèm lý do. Khi PR còn mở và mọi check của đầu nhánh đã qua, cuối trang có nút **Hoàn tất duyệt**:
+
+| Quyết định | Worker làm |
+|---|---|
+| Duyệt hết | Comment kết quả vào PR rồi gộp đúng commit đã kiểm |
+| Không duyệt file nào | Comment lý do rồi đóng PR; `don-kho` dọn kho như khi đóng tay |
+| Duyệt một phần | Xóa mục không duyệt khỏi nhánh và file của nó khỏi kho, comment kết quả. `kiem-file` dựng lại file sinh ra, `validate` chạy lại; khi `validate` qua, workflow `tu-gop` gọi `POST /duyet-tiep` và Worker gộp |
+
+Quyết định ghi ở `review/<mã bài>.json` trong kho cách ly, gồm email người duyệt (để tra khi cần; PR công khai nên comment không ghi người duyệt). `phat-hanh-file` và `don-kho` xóa file này cùng email người gửi. `/duyet-tiep` không cần khóa: Worker chỉ gộp khi đã có quyết định chờ gộp, PR còn mở, check của đầu nhánh đã qua, commit đầu là của `kiem-file`, và mục trên nhánh đúng bằng danh sách được duyệt.
+
+Form duyệt chỉ nhận POST có `Origin` là chính Worker (chống trang khác gửi form thay người duyệt đang đăng nhập). Duyệt tay trên GitHub (comment, approve, merge) vẫn dùng được như trước.
 
 ## Chạy thử (repo private)
 

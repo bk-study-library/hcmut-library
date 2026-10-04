@@ -44,7 +44,7 @@
   <p class="err" data-err="type" role="alert"></p>
 </div>
 
-<div class="field">
+<div class="field" id="title-field">
   <label for="title">Tiêu đề</label>
   <input id="title" name="title" type="text" maxlength="{{upload:titleMax}}" autocomplete="off">
   <p class="err" data-err="title" role="alert"></p>
@@ -67,9 +67,13 @@
 
 <div class="field" id="file-box">
   <label for="file">File</label>
-  <input id="file" name="file" type="file" accept="{{upload:accept}}" aria-describedby="file-hint">
-  <p id="file-hint" class="muted">Nhận {{upload:exts}}. Tối đa {{upload:maxSize}}.{{upload:extNote}}</p>
+  <input id="file" name="file" type="file" accept="{{upload:accept}}" aria-describedby="file-hint"{{upload:multiple}}>
+  <p id="file-hint" class="muted">Nhận {{upload:exts}}. Mỗi file tối đa {{upload:maxSize}}.{{upload:extNote}}{{upload:batchNote}}</p>
   <p class="err" data-err="file" role="alert"></p>
+  <div id="batch-box" hidden>
+    <p id="batch-total" class="muted" role="status"></p>
+    <ol id="batch-list" class="batch"></ol>
+  </div>
 </div>
 
 <fieldset class="field book" id="book-box" hidden disabled>

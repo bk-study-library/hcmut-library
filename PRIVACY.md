@@ -28,7 +28,7 @@ Form không bắt nhập email. Những gì form gửi đi:
 
 ## Email báo kết quả
 
-Nếu bạn để lại email, thư viện chỉ dùng nó để gửi đúng một email báo bài được duyệt hay chưa, kèm lý do người duyệt ghi trong PR.
+Nếu bạn để lại email, thư viện chỉ dùng nó để gửi đúng một email báo bài được duyệt hay chưa, kèm lý do người duyệt ghi. Bài gồm nhiều file thì email ghi file nào được duyệt, file nào không và lý do.
 
 - Email được giữ trong kho riêng chờ duyệt (Cloudflare R2), cạnh file bài gửi. Không ghi vào repo, PR, trang web hay nhật ký.
 - Email được gửi qua Resend (nhà cung cấp dịch vụ gửi email), từ địa chỉ thuộc tên miền `mail.xerozsoft.com`. Resend xử lý địa chỉ email và nội dung thư theo chính sách của họ.
