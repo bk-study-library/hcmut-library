@@ -340,3 +340,6 @@ main.wrap:has(> .prose) { max-width: 792px; }
 .prog-fac > p.muted { padding: 0 4px; }
 .facts summary { cursor: pointer; }
 .block p.small { margin: -4px 0 8px; }
+.facts summary { padding: 6px 0; }
+/* Mã chương trình và tên dài không có khoảng trắng: xuống dòng thay vì làm trang cuộn ngang. */
+main h1, main h2, main p, main li { overflow-wrap: break-word; }
