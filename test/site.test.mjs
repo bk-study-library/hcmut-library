@@ -232,3 +232,30 @@ test('trang chủ: chương trình gộp theo khoa trong khối đóng mở, có
 test('bảng môn: môn chưa có tài liệu ghi "chưa có"', () => {
   assert.match(read3('faculty/unknown/index.html'), /<td class="num"><span class="muted">chưa có<\/span><\/td>/);
 });
+
+test('sách tham khảo: link tìm ở nguồn hợp pháp theo site.json, ưu tiên ISBN', async () => {
+  const { bookLinks } = await import('../scripts/build-site.mjs');
+  const sources = [
+    { label: 'A', isbn: 'https://a.example/isbn/{isbn}', search: 'https://a.example/s?q={q}' },
+    { label: 'B', url: 'https://b.example/' },
+    { label: 'C', url: 'http://khong-https.example/' },
+  ];
+  const withIsbn = bookLinks({ title: 'Giải tích', authors: ['Nguyễn A'], isbn: '9786040000000' }, sources, 'vi');
+  assert.deepEqual(withIsbn.map((l) => l.href), ['https://a.example/isbn/9786040000000', 'https://b.example/']);
+  const noIsbn = bookLinks({ title: 'Giải tích', authors: ['Nguyễn A'] }, sources, 'vi');
+  assert.equal(noIsbn[0].href, `https://a.example/s?q=${encodeURIComponent('Giải tích Nguyễn A')}`);
+});
+
+test('trang môn: mục sách tham khảo có nút tra sách', () => {
+  const dir = copyFixture();
+  fs.writeFileSync(path.join(dir, 'catalog', 'site.json'), JSON.stringify({ uploadEndpoint: '', turnstileSiteKey: 'K', bookSources: [{ label: 'Tra trên Open Library', isbn: 'https://openlibrary.org/isbn/{isbn}' }] }));
+  fs.writeFileSync(path.join(dir, 'courses', 'EE1009', 'items', 'sach-ky-thuat-so.json'), JSON.stringify({
+    id: 'sach-ky-thuat-so', course: 'EE1009', type: 'book-ref', title: 'Digital Design', lang: 'en', license: 'CC0-1.0', origin: 'self-made',
+    book: { title: 'Digital Design', authors: ['M. Morris Mano'], isbn: '9780134549897' }, added: '2026-10-04', removed: false,
+  }));
+  const outDir = fs.mkdtempSync(path.join(os.tmpdir(), 'bk-lib-site-book-'));
+  buildSite({ root: dir, out: outDir });
+  const html = fs.readFileSync(path.join(outDir, 'course', 'EE1009', 'index.html'), 'utf8');
+  assert.match(html, /href="https:\/\/openlibrary\.org\/isbn\/9780134549897"/);
+  assert.match(html, /Tra trên Open Library/);
+});

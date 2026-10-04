@@ -17,6 +17,7 @@ Một số điều cần nhớ:
 - **Thông tin cá nhân** (MSSV, email, số điện thoại) trong file chỉ bị máy cảnh báo. Người duyệt quyết định có yêu cầu xóa hay không. Bạn nên tự xóa trước khi gửi.
 - **Các ô chữ** (tiêu đề, mô tả, chương, giảng viên, tên hiển thị) hiện công khai, nên form từ chối và CI báo lỗi nếu thấy MSSV, email hay số điện thoại trong các ô này. File `.md` trong git cũng bị kiểm như vậy. Dòng nào chắc chắn không phải thông tin cá nhân thì thêm chú thích `pii-ok` vào dòng đó.
 - **Giấy phép.** Tài liệu bạn tự soạn dùng CC BY-SA 4.0 (hoặc CC BY 4.0, CC0). Link ghi giấy phép của nguồn.
+- **Link sách** chỉ trỏ tới nguồn hợp pháp: giáo trình mở (OpenStax, LibreTexts, MIT OpenCourseWare, DOAB), Open Library, thư viện trường, trang nhà xuất bản. Không trỏ tới trang chia sẻ tài liệu do người dùng tự tải lên (Studylib, Scribd, Studocu và tương tự), vì sách trên đó thường bị đăng lại khi chưa có phép. Mục Sách tham khảo trên web tự có nút tra sách ở Open Library và thư viện trường.
 - **Không chấm điểm hay nhận xét giảng viên.** Trường giảng viên chỉ ghi tên.
 - **Hạn mức** nằm trong `catalog/policy.json` (dung lượng, đuôi file, độ dài các ô). Đổi hạn mức là việc của người duy trì.
 
