@@ -222,7 +222,9 @@ h4 { font-size: 15px; margin: 0 0 4px; font-weight: 600; }
 .btn.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-text); }
 .btn.primary:hover { background: var(--accent-hover); border-color: var(--accent-hover); color: var(--accent-text); }
 .btn.subtle { border-color: transparent; background: transparent; color: var(--accent); }
-.actions { display: flex; flex-wrap: wrap; gap: 8px; margin: 0; }
+.actions { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0 0; }
+/* Khối ngay sau ghi chú luôn cách 12 px. */
+.note + * { margin-top: 12px; }
 
 /* Bảng */
 .table-wrap { overflow-x: auto; border: 1px solid var(--border); border-radius: 8px; background: var(--surface); }
@@ -258,7 +260,10 @@ tr.retired td, tr.retired th { color: var(--muted); }
 .item p { margin: 4px 0; }
 .item .meta { font-size: 13px; color: var(--muted); }
 .item.is-removed { opacity: 0.75; }
-.files { margin: 6px 0 0; padding-left: 20px; }
+/* Hàng nút của mục: Xem trước, Tải xuống, Yêu cầu gỡ. */
+.item .actions { margin: 12px 0 0; }
+/* Mở từ link có #<id mục> (ví dụ link trong form Yêu cầu gỡ): viền nhấn để thấy ngay mục nào. */
+.item:target { border-color: var(--accent); }
 
 .contribute { margin-top: 28px; }
 .contribute h2 { margin-top: 0; }

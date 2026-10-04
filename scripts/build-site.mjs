@@ -11,7 +11,8 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { loadRepo, buildIndex, serializeIndex, TOOL_ROOT } from './lib/repo.mjs';
-import { EXAM_KINDS, TYPES, TYPE_ORDER, PARTS, STATUS, REPO_URL, issueUrl, formatSize, formatBook } from './lib/labels.mjs';
+import { EXAM_KINDS, TYPES, TYPE_ORDER, PARTS, STATUS, REPO, REPO_URL, SITE_URL, issueUrl, formatSize, formatBook } from './lib/labels.mjs';
+import { previewTarget } from './lib/preview.mjs';
 import { S } from './lib/strings.mjs';
 import { buildV1, serializeV1 } from './lib/v1.mjs';
 import { loadPolicy } from './lib/policy.mjs';
@@ -35,6 +36,8 @@ function readSiteConfig(root) {
   return {
     uploadEndpoint: String(cfg.uploadEndpoint || ''),
     turnstileSiteKey: String(cfg.turnstileSiteKey || ''),
+    // Gốc Worker: nút Xem trước trỏ tới <reviewBase>/xem-truoc. Để trống thì không có nút này.
+    reviewBase: /^https:\/\//.test(cfg.reviewBase || '') ? String(cfg.reviewBase).replace(/\/+$/, '') : '',
     bookSources: Array.isArray(cfg.bookSources) ? cfg.bookSources : [],
     // Số mục hiện sẵn mỗi nhóm tài liệu; phần còn lại gập trong "Xem thêm" để trang môn nhẹ khi có nhiều bài.
     itemsPerGroup: Number.isInteger(cfg.itemsPerGroup) && cfg.itemsPerGroup > 0 ? cfg.itemsPerGroup : Infinity,
@@ -231,7 +234,22 @@ function programsByYear(t, progs, hrefOf) {
     .join('');
 }
 
-function renderItem(t, it, site) {
+// Link xem trước qua Worker, chỉ cho file nằm trong danh sách được phép (scripts/lib/preview.mjs).
+function previewHref(url, site) {
+  if (!site.reviewBase || !url || !previewTarget(url, { repo: REPO, site: SITE_URL })) return null;
+  return `${site.reviewBase}/xem-truoc?u=${encodeURIComponent(url)}`;
+}
+
+// Form Yêu cầu gỡ điền sẵn link tới đúng mục trên trang môn (ô "item") và id mục trong tiêu đề.
+function takedownUrl(t, it) {
+  const page = `${SITE_URL}${pagePath(t.lang, `course/${it.course}/`)}#${it.id}`;
+  return issueUrl('yeu-cau-go.yml', { title: `[Gỡ] ${it.course} ${it.id}`, item: page });
+}
+
+const btn = (cls, href, label, extra = '') => `<a class="${cls}" href="${esc(href)}"${extra}>${esc(label)}</a>`;
+
+// Thông tin trước, hành động sau: Xem trước, Tải xuống, Yêu cầu gỡ (mẫu trong skill bk-library-ui).
+function renderItem(t, it, site, root) {
   const meta = [];
   if (it.term) meta.push(`${t.term} ${it.term}`);
   if (it.lab != null) meta.push(t.labNo(it.lab));
@@ -240,24 +258,39 @@ function renderItem(t, it, site) {
   if (it.source) meta.push(`${t.source}: ${it.source}`);
   const authors = it.authors && it.authors.length ? it.authors.join(', ') : t.anonymous;
   const badges = [it.example ? `<span class="tag accent">${esc(t.example)}</span>` : '', it.removed ? `<span class="tag warn">${esc(t.removed)}</span>` : ''].join('');
+  const takedown = btn('btn subtle', takedownUrl(t, it), t.requestTakedown, ' rel="noopener"');
+  const row = (buttons) => `<p class="actions">${[...buttons, takedown].join('')}</p>`;
+  let extra = '';
   let actions = '';
-  if (it.removed) actions = `<p class="muted">${esc(it.removedReason || '')}</p>`;
+  if (it.removed) extra = `<p class="muted">${esc(it.removedReason || '')}</p>`;
   else if (it.type === 'book-ref') {
-    const links = bookLinks(it.book, site.bookSources, t.lang);
-    actions = `<p>${esc(formatBook(it.book))}</p>${links.length ? `<p class="actions">${links.map((l) => `<a class="btn" href="${esc(l.href)}" rel="noopener">${esc(l.label)}</a>`).join('')}</p>` : ''}`;
-  }
-  else if (it.type === 'link') actions = `<p><a class="btn" href="${esc(it.url)}" rel="noopener">${esc(t.openLink)}</a></p>`;
+    extra = `<p>${esc(formatBook(it.book))}</p>`;
+    actions = row(bookLinks(it.book, site.bookSources, t.lang).map((l) => btn('btn', l.href, l.label, ' rel="noopener"')));
+  } else if (it.type === 'link') actions = row([btn('btn', it.url, t.openLink, ' rel="noopener"')]);
   else {
-    actions = `<ul class="files">${(it.files || [])
-      .map((f) => {
-        const target = f.url || (f.path ? `${REPO_URL}/blob/main/${f.path}` : null);
-        const label = `${esc(f.name)} <span class="muted">(${formatSize(f.size)})</span>`;
-        return `<li>${target ? `<a href="${esc(target)}" rel="noopener">${label}</a>` : `${label} <span class="muted">${esc(t.pending)}</span>`}</li>`;
-      })
-      .join('')}</ul>`;
+    const files = it.files || [];
+    const many = files.length > 1;
+    const buttons = [];
+    const waiting = [];
+    for (const f of files) {
+      const size = formatSize(f.size);
+      // File .md trong git: web phục vụ ở files/<ID>/<tên> (cùng link với v1).
+      const name = f.path ? f.path.split('/').pop() : null;
+      const download = f.url || (name ? `${root}files/${encodeURIComponent(it.course)}/${encodeURIComponent(name)}` : null);
+      const published = f.url || (name ? `${SITE_URL}files/${encodeURIComponent(it.course)}/${encodeURIComponent(name)}` : null);
+      if (!download) {
+        waiting.push(`<p class="meta">${esc(t.pendingFile(f.name))}</p>`);
+        continue;
+      }
+      const preview = previewHref(published, site);
+      if (preview) buttons.push(btn('btn', preview, many ? t.previewNamed(f.name) : t.preview, ' target="_blank" rel="noopener"'));
+      buttons.push(btn('btn', download, many ? t.downloadNamed(f.name, size) : t.download(size), f.url ? ' rel="noopener"' : ` download="${esc(f.name)}"`));
+    }
+    extra = waiting.join('');
+    actions = row(buttons);
   }
   const note = it.type === 'prelab-reference' ? `<p class="note">${esc(t.prelabRefNote)}</p>` : '';
-  return `<li class="item${it.removed ? ' is-removed' : ''}"><h4>${esc(it.title)} ${badges}</h4>${it.description ? `<p>${esc(it.description)}</p>` : ''}<p class="meta">${esc(meta.join(', '))}. ${esc(authors)}</p>${note}${actions}</li>`;
+  return `<li class="item${it.removed ? ' is-removed' : ''}" id="${esc(it.id)}"><h4>${esc(it.title)} ${badges}</h4>${it.description ? `<p>${esc(it.description)}</p>` : ''}<p class="meta">${esc(meta.join(', '))}. ${esc(authors)}</p>${note}${extra}${actions}</li>`;
 }
 
 export function buildSite({ root = TOOL_ROOT, out = path.join(TOOL_ROOT, 'site'), base = '/hcmut-library/' } = {}) {
@@ -404,14 +437,16 @@ ${courseTable(t, f.courses, root, t.facultyCourses)}`;
         })
         .join('');
       const pname = programName(t, p);
-      const empty = blocks
-        ? ''
-        : `<div class="note" role="note"><p>${esc(t.programNoCourses)}</p></div><p class="actions"><a class="btn primary" href="${esc(addProgramUrl(fac, p))}" rel="noopener">${esc(t.addProgram)}</a></p>`;
-      const source = /^https?:\/\//.test(p.source || '') ? `<p class="small"><a href="${esc(p.source)}" rel="noopener">${esc(t.programSource)}</a></p>` : '';
-      const meta = [esc(p.code), fac ? `<a href="${root}${P(`faculty/${fac.key}/`)}">${esc(facultyName(t, fac))}</a>` : null, p.variant ? esc(p.variant) : null, esc(t.coursesCount(programCourseCount(p)))]
+      // Chưa có danh sách môn: ghi chú, rồi một hàng nút (gửi CTĐT, xem CTĐT chính thức).
+      const sourceBtn = /^https?:\/\//.test(p.source || '') ? `<a class="btn" href="${esc(p.source)}" rel="noopener">${esc(t.programSource)}</a>` : '';
+      const actions = blocks
+        ? sourceBtn && `<p class="actions">${sourceBtn}</p>`
+        : `<div class="note" role="note"><p>${esc(t.programNoCourses)}</p></div><p class="actions"><a class="btn primary" href="${esc(addProgramUrl(fac, p))}" rel="noopener">${esc(t.addProgram)}</a>${sourceBtn}</p>`;
+      const n = programCourseCount(p);
+      const meta = [esc(t.programCode(p.code)), fac ? `<a href="${root}${P(`faculty/${fac.key}/`)}">${esc(facultyName(t, fac))}</a>` : null, p.variant ? esc(p.variant) : null, esc(n ? t.coursesCount(n) : t.programNoCoursesShort)]
         .filter(Boolean)
         .join(', ');
-      const body = `<h1>${esc(pname)}${p.year ? ` (${esc(p.year)})` : ''}</h1><p class="muted">${meta}</p>${p.note ? `<p class="small" lang="vi">${esc(p.note)}</p>` : ''}${source}${empty}${blocks}`;
+      const body = `<h1>${esc(pname)}${p.year ? ` (${esc(p.year)})` : ''}</h1><p class="muted">${meta}</p>${p.note ? `<p class="small" lang="vi">${esc(p.note)}</p>` : ''}${actions}${blocks}`;
       write(
         here,
         finish(
@@ -463,10 +498,10 @@ ${courseTable(t, f.courses, root, t.facultyCourses)}`;
         const list = c.items.filter((i) => i.type === type).sort((a, b) => Number(!!a.removed) - Number(!!b.removed) || a.title.localeCompare(b.title));
         if (!list.length) return '';
         const n = siteCfg.itemsPerGroup;
-        const shown = list.slice(0, n).map((i) => renderItem(t, i, siteCfg)).join('');
+        const shown = list.slice(0, n).map((i) => renderItem(t, i, siteCfg, root)).join('');
         const rest = list.slice(n);
         const more = rest.length
-          ? `<details class="more-items"><summary>${esc(t.moreItems(rest.length))}</summary><ul class="items">${rest.map((i) => renderItem(t, i, siteCfg)).join('')}</ul></details>`
+          ? `<details class="more-items"><summary>${esc(t.moreItems(rest.length))}</summary><ul class="items">${rest.map((i) => renderItem(t, i, siteCfg, root)).join('')}</ul></details>`
           : '';
         return `<section class="group"><h3>${esc(TYPES[type][lang])} <span class="muted small">(${list.length})</span></h3><ul class="items">${shown}</ul>${more}</section>`;
       }).join('');
