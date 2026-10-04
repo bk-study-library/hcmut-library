@@ -98,6 +98,11 @@ GitHub Pages dựng trang từ `catalog/` và `courses/` mỗi khi `main` thay �
 
 Dành cho chủ repo: tạo GitHub App, kho R2, Turnstile, Worker, khóa cho Actions. Xem [docs/cai-dat-luong-tai-len.md](docs/cai-dat-luong-tai-len.md).
 
+## Thảo luận và báo lỗi
+
+- Đề xuất tính năng, hỏi đáp, trao đổi chung: [Thảo luận (Discussions)](https://github.com/bk-study-library/hcmut-library/discussions). Đề xuất được bình chọn để chọn việc làm trước.
+- Issue chỉ dùng cho lỗi và việc cần xử lý: báo lỗi, yêu cầu gỡ, sửa danh mục, thêm link, thêm chương trình đào tạo, đăng ký duyệt bài.
+
 ## Quyền riêng tư
 
 Thư viện thu thập gì khi bạn gửi bài, giữ ở đâu, bao lâu: [PRIVACY.md](PRIVACY.md).

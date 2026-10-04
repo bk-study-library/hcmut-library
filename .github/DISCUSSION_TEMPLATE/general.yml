@@ -1,0 +1,11 @@
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Trao đổi chung về thư viện, kinh nghiệm học các môn, góp ý cách tổ chức tài liệu. Đề xuất tính năng thì đăng ở mục **Ideas**, lỗi thì mở issue **Báo lỗi**.
+        Giữ lịch sự theo [quy tắc ứng xử](../blob/main/CODE_OF_CONDUCT.md). Đừng ghi thông tin cá nhân.
+  - type: textarea
+    id: body
+    attributes:
+      label: Nội dung
+    validations: { required: true }
