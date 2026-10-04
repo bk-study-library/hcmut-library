@@ -135,14 +135,17 @@ test('worker-catalog.json thật khớp summarize(index) của Worker; index.jso
   const { workerCatalog } = await import('../scripts/lib/worker-catalog.mjs');
   const index = buildIndex(loadRepo(TOOL_ROOT));
   const file = JSON.parse(fs.readFileSync(path.join(TOOL_ROOT, 'worker-catalog.json'), 'utf8'));
-  assert.deepEqual(file, workerCatalog(index));
-  const fromIndex = summarize({ p: 1 }, JSON.parse(fs.readFileSync(path.join(TOOL_ROOT, 'index.json'), 'utf8')));
+  const disk = JSON.parse(fs.readFileSync(path.join(TOOL_ROOT, 'index.json'), 'utf8'));
+  // So hai file đã commit với nhau, không so với danh mục dựng lại: ở commit đầu của bot (bài gửi qua
+  // form) file sinh ra còn cũ, validate --allow-stale cho qua và kiem-file dựng lại sau.
+  // Kiểm file cũ hay mới là việc của validate (lỗi STALE).
+  assert.deepEqual(file, workerCatalog(disk));
+  const fromIndex = summarize({ p: 1 }, disk);
   assert.deepEqual({ courses: file.courses, shas: file.shas, blocked: file.blocked }, { courses: fromIndex.courses, shas: fromIndex.shas, blocked: fromIndex.blocked });
   assert.equal(file.schemaVersion, 1);
-  assert.equal(file.courses.length, index.counts.courses);
+  assert.equal(file.courses.length, disk.counts.courses);
   // Worker parse nhanh: file nhỏ hơn nhiều so với index.json.
   assert.ok(fs.statSync(path.join(TOOL_ROOT, 'worker-catalog.json')).size < 512 * 1024);
-  const disk = JSON.parse(fs.readFileSync(path.join(TOOL_ROOT, 'index.json'), 'utf8'));
   assert.ok(disk.faculties.every((f) => f.courses.every((c) => !('programs' in c))));
   // Quan hệ môn, chương trình vẫn dựng lại được từ programs[].blocks[].courses.
   const inBlocks = new Set(disk.programs.flatMap((p) => p.blocks.flatMap((b) => b.courses)));
