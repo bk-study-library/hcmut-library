@@ -1,0 +1,285 @@
+{
+  "$schema": "../../schema/program.schema.json",
+  "code": "FME_KY_THUAT_CO_DIEN_TU_2024",
+  "name": "Kỹ thuật Cơ điện tử",
+  "nameEn": "Mechatronic Engineering",
+  "faculty": "fme",
+  "year": "2024",
+  "source": "https://drive.google.com/file/d/1S7upx3LD3HPYPOFjzwcIPcnZdcBvTVH9/view",
+  "blocks": [
+    {
+      "id": "K01",
+      "name": "A1. 1. Toán (Mathematics)",
+      "group": "A. A. Toán và Khoa học tự nhiên (30 tín chỉ) (Mathematics and Basic Sciences)",
+      "required": true,
+      "creditsNeed": 15,
+      "courses": [
+        "MT1003",
+        "MT1005",
+        "MT1007",
+        "MT2013"
+      ]
+    },
+    {
+      "id": "K02",
+      "name": "A2. 2. Khoa học tự nhiên (Basic Sciences)",
+      "group": "A. A. Toán và Khoa học tự nhiên (30 tín chỉ) (Mathematics and Basic Sciences)",
+      "required": true,
+      "creditsNeed": 8,
+      "courses": [
+        "PH1003",
+        "PH1007",
+        "CH1003"
+      ]
+    },
+    {
+      "id": "K03",
+      "name": "A3. 3. Toán và Khoa học tự nhiên khác (Mathematics and Basic Sciences others)",
+      "group": "A. A. Toán và Khoa học tự nhiên (30 tín chỉ) (Mathematics and Basic Sciences)",
+      "required": true,
+      "creditsNeed": 7,
+      "courses": [
+        "ME2091",
+        "ME1021"
+      ]
+    },
+    {
+      "id": "K04",
+      "name": "B1. 1. Chính trị, Kinh tế, Văn hóa, Xã hội (Socials and Economics)",
+      "group": "B. B. Giáo dục chung (30 tín chỉ) (General education)",
+      "required": true,
+      "creditsNeed": 13,
+      "courses": [
+        "SP1007",
+        "SP1031",
+        "SP1033",
+        "SP1035",
+        "SP1039",
+        "SP1037"
+      ]
+    },
+    {
+      "id": "K05",
+      "name": "B2.1. 2.1. Nhập môn (Introduction to Engineering)",
+      "group": "B. B. Giáo dục chung (30 tín chỉ) (General education)",
+      "required": true,
+      "creditsNeed": 3,
+      "courses": [
+        "ME1001"
+      ]
+    },
+    {
+      "id": "K06",
+      "name": "B2.2. 2.2. Con người và môi trường (Humans and Environment)",
+      "group": "B. B. Giáo dục chung (30 tín chỉ) (General education)",
+      "required": true,
+      "creditsNeed": 3,
+      "courses": [
+        "ME2019"
+      ]
+    },
+    {
+      "id": "K07",
+      "name": "B2.3. 2.3. Tự chọn Quản lý (tối thiểu 3 tín chỉ) (Management for Engineers)",
+      "group": "B. B. Giáo dục chung (30 tín chỉ) (General education)",
+      "required": false,
+      "creditsNeed": 3,
+      "courses": [
+        "IM1013",
+        "IM3001",
+        "IM1027",
+        "IM1023",
+        "IM1025"
+      ]
+    },
+    {
+      "id": "K08",
+      "name": "B3. 3. Ngoại ngữ (Foreign Languages)",
+      "group": "B. B. Giáo dục chung (30 tín chỉ) (General education)",
+      "required": true,
+      "creditsNeed": 8,
+      "courses": [
+        "LA1003",
+        "LA1005",
+        "LA1007",
+        "LA1009"
+      ]
+    },
+    {
+      "id": "K09",
+      "name": "B4 - 4.1. Giáo dục thể chất học phần 1 (Physical Education Part 1)",
+      "group": "B. B. Giáo dục chung (30 tín chỉ) (General education)",
+      "required": true,
+      "creditsNeed": 0,
+      "courses": [
+        "PE1009",
+        "PE1011",
+        "PE1013",
+        "PE1015",
+        "PE1017",
+        "PE1019",
+        "PE1021",
+        "PE1025",
+        "PE1027",
+        "PE1053",
+        "PE1057",
+        "PE1061"
+      ]
+    },
+    {
+      "id": "K10",
+      "name": "B4 - 4.2. Giáo dục thể chất học phần 2 (Physical Education Part 2)",
+      "group": "B. B. Giáo dục chung (30 tín chỉ) (General education)",
+      "required": true,
+      "creditsNeed": 0,
+      "courses": [
+        "PE1033",
+        "PE1035",
+        "PE1037",
+        "PE1039",
+        "PE1041",
+        "PE1043",
+        "PE1045",
+        "PE1049",
+        "PE1051",
+        "PE1055",
+        "PE1059",
+        "PE1063"
+      ]
+    },
+    {
+      "id": "K11",
+      "name": "B5. 5. Giáo dục quốc phòng (Military Trainning)",
+      "group": "B. B. Giáo dục chung (30 tín chỉ) (General education)",
+      "required": true,
+      "creditsNeed": 0,
+      "courses": [
+        "MI1003"
+      ]
+    },
+    {
+      "id": "K12",
+      "name": "C1.1. 1.1. Cơ sở ngành (Core Courses)",
+      "group": "C. C. Cơ sở ngành/Ngành/Chuyên ngành (72 tín ch ỉ) (Core Courses/Speciality Courses (72 Credit))",
+      "required": true,
+      "creditsNeed": 29,
+      "courses": [
+        "CI2001",
+        "CO1003",
+        "ME1013",
+        "ME2003",
+        "AS2071",
+        "ME2179",
+        "ME2007",
+        "ME2009",
+        "ME2089",
+        "ME2087"
+      ]
+    },
+    {
+      "id": "K13",
+      "name": "C1.2.1. 1.2.1. Chuyên ngành chung (Speciality Courses)",
+      "group": "C. C. Cơ sở ngành/Ngành/Chuyên ngành (72 tín ch ỉ) (Core Courses/Speciality Courses (72 Credit))",
+      "required": true,
+      "creditsNeed": 11,
+      "courses": [
+        "ME3139",
+        "ME3005",
+        "ME3007",
+        "ME3011"
+      ]
+    },
+    {
+      "id": "K14",
+      "name": "C1.2.2. 1.2.2. Nhóm A - Chuyên ngành Kỹ thuật Cơ đi ện tử (Group A - Speciality Courses for Mechatronic Engineering)",
+      "group": "C. C. Cơ sở ngành/Ngành/Chuyên ngành (72 tín ch ỉ) (Core Courses/Speciality Courses (72 Credit))",
+      "required": true,
+      "creditsNeed": 9,
+      "courses": [
+        "ME3009",
+        "ME3013",
+        "ME4217"
+      ]
+    },
+    {
+      "id": "K15",
+      "name": "C1.2.3. 1.2.3. Nhóm B - Chuyên ngành K ỹ thuật Robot (Group B - Speciality Courses for Robot Engineering)",
+      "group": "C. C. Cơ sở ngành/Ngành/Chuyên ngành (72 tín ch ỉ) (Core Courses/Speciality Courses (72 Credit))",
+      "required": true,
+      "creditsNeed": 9,
+      "courses": [
+        "ME3015",
+        "ME3187",
+        "ME4137"
+      ]
+    },
+    {
+      "id": "K16",
+      "name": "C1.2.4. 1.2.4. Nhóm C - Tự chọn chuyên ngành Kỹ thuật Cơ Đi ện tử (tối thiểu 06 tín chỉ) (Group C - Elective Speciality Courses Mechatronic Engineering (minimum 06 credit))",
+      "group": "C. C. Cơ sở ngành/Ngành/Chuyên ngành (72 tín ch ỉ) (Core Courses/Speciality Courses (72 Credit))",
+      "required": false,
+      "creditsNeed": 6,
+      "courses": [
+        "ME3351",
+        "ME3003",
+        "ME2131",
+        "ME3015",
+        "ME3187",
+        "ME4137",
+        "ME4201",
+        "ME4203",
+        "ME4205",
+        "ME4207",
+        "ME4211",
+        "ME4215",
+        "ME3181",
+        "ME3805"
+      ]
+    },
+    {
+      "id": "K17",
+      "name": "C1.2.5. 1.2.5. Nhóm D - Tự chọn chuyên ngành K ỹ thuật Robot (tối thiểu 06 tín chỉ) (Group D - Elective Speciality Courses Robot Engineering (minimum 06 credit))",
+      "group": "C. C. Cơ sở ngành/Ngành/Chuyên ngành (72 tín ch ỉ) (Core Courses/Speciality Courses (72 Credit))",
+      "required": false,
+      "creditsNeed": 6,
+      "courses": [
+        "ME3351",
+        "ME3003",
+        "ME2131",
+        "ME3013",
+        "ME3009",
+        "ME4217",
+        "ME4203",
+        "ME4205",
+        "ME4207",
+        "ME4211",
+        "ME4215",
+        "ME3181",
+        "ME3805",
+        "ME4729"
+      ]
+    },
+    {
+      "id": "K18",
+      "name": "C2. 2. Tốt nghiệp (Graduation Practice/Projects)",
+      "group": "C. C. Cơ sở ngành/Ngành/Chuyên ngành (72 tín ch ỉ) (Core Courses/Speciality Courses (72 Credit))",
+      "required": true,
+      "creditsNeed": 8,
+      "courses": [
+        "ME3123",
+        "ME4071",
+        "ME4327"
+      ]
+    },
+    {
+      "id": "K19",
+      "name": "D. Điều kiện tốt nghiệp (Gradution Condition)",
+      "required": true,
+      "creditsNeed": 0,
+      "courses": [
+        "SA4001"
+      ]
+    }
+  ],
+  "updated": "2026-10-04"
+}

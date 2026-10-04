@@ -1,0 +1,74 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "ME4015",
+  "code": "ME4015",
+  "name": "Trung tâm nhiệt điện",
+  "nameEn": "Thermal Power Center",
+  "credits": 3,
+  "faculty": "fme",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "FME_KY_THUAT_NHIET_2020",
+      "block": "K03",
+      "required": false
+    },
+    {
+      "program": "FME_KY_THUAT_NHIET_2020",
+      "block": "K04",
+      "required": false
+    },
+    {
+      "program": "FME_KY_THUAT_NHIET_2021",
+      "block": "K12",
+      "required": false
+    },
+    {
+      "program": "FME_KY_THUAT_NHIET_2021",
+      "block": "K15",
+      "required": false
+    },
+    {
+      "program": "FME_KY_THUAT_NHIET_2022",
+      "block": "K12",
+      "required": false
+    },
+    {
+      "program": "FME_KY_THUAT_NHIET_2022",
+      "block": "K15",
+      "required": false
+    },
+    {
+      "program": "FME_KY_THUAT_NHIET_2024",
+      "block": "K15",
+      "required": true
+    },
+    {
+      "program": "FME_KY_THUAT_NHIET_2023",
+      "block": "K12",
+      "required": false
+    },
+    {
+      "program": "FME_KY_THUAT_NHIET_2023",
+      "block": "K14",
+      "required": false
+    },
+    {
+      "program": "FME_KY_THUAT_NHIET_2019",
+      "block": "K03",
+      "required": false
+    },
+    {
+      "program": "FME_KY_THUAT_NHIET_2019",
+      "block": "K04",
+      "required": false
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "note": "Nhập từ nguồn công khai (truy cập 03/10/2026).",
+  "updated": "2026-10-04"
+}

@@ -1,0 +1,12 @@
+{
+  "$schema": "../../schema/program.schema.json",
+  "code": "DEE_TS_108_2026_CTQT",
+  "name": "Kỹ thuật Điện - Điện tử Đại học đối tác tại Nhật Bản: ĐH Công nghệ Nagaoka (NUT)",
+  "faculty": "dee",
+  "year": "2026",
+  "variant": "Chuyển tiếp quốc tế",
+  "source": "https://hcmut.edu.vn/tuyen-sinh/dai-hoc-chinh-quy",
+  "note": "Ngành tuyển sinh 2026, mã tuyển sinh 108. Chưa có danh sách môn công khai.",
+  "blocks": [],
+  "updated": "2026-10-04"
+}

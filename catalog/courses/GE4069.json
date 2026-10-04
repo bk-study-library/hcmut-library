@@ -1,0 +1,58 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "GE4069",
+  "code": "GE4069",
+  "name": "Địa chất động lực công trình + kiến tập",
+  "nameEn": "Geodynamics Engineering and Practice",
+  "credits": 3,
+  "faculty": "geopet",
+  "aliases": [
+    {
+      "code": "GE3111",
+      "name": "Địa chất động lực công trình",
+      "to": "2018-12-31"
+    }
+  ],
+  "status": "active",
+  "replaces": [
+    "GE3111"
+  ],
+  "programs": [
+    {
+      "program": "GEOPET_KY_THUAT_DIA_CHAT_2024",
+      "block": "K13",
+      "required": false
+    },
+    {
+      "program": "GEOPET_KY_THUAT_DIA_CHAT_2023",
+      "block": "K14",
+      "required": true
+    },
+    {
+      "program": "GEOPET_KY_THUAT_DIA_CHAT_2022",
+      "block": "K09",
+      "required": true
+    },
+    {
+      "program": "GEOPET_KY_THUAT_DIA_CHAT_2021",
+      "block": "K09",
+      "required": true
+    },
+    {
+      "program": "GEOPET_KY_THUAT_DIA_CHAT_2020",
+      "block": "K01",
+      "required": true
+    },
+    {
+      "program": "GEOPET_KY_THUAT_DIA_CHAT_2019",
+      "block": "K01",
+      "required": true
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "note": "Nhập từ nguồn công khai (truy cập 03/10/2026).",
+  "updated": "2026-10-04"
+}

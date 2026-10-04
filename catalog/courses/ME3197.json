@@ -1,0 +1,18 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "ME3197",
+  "code": "ME3197",
+  "name": "ứng dụng công nghệ mới trong ngành dệt",
+  "nameEn": "Application of New Technology in Textiles",
+  "credits": 3,
+  "faculty": "fme",
+  "aliases": [],
+  "status": "active",
+  "programs": [],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "note": "Nhập từ nguồn công khai (truy cập 03/10/2026).",
+  "updated": "2026-10-04"
+}

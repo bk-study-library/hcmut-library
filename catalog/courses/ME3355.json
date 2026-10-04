@@ -1,0 +1,24 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "ME3355",
+  "code": "ME3355",
+  "name": "Tự động hóa trong cơ khí",
+  "nameEn": "Mechanical Automation",
+  "credits": 3,
+  "faculty": "fme",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "FME_KY_THUAT_CO_KHI_2024",
+      "block": "K13",
+      "required": true
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "note": "Nhập từ nguồn công khai (truy cập 03/10/2026).",
+  "updated": "2026-10-04"
+}

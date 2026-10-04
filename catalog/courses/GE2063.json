@@ -1,0 +1,26 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "GE2063",
+  "code": "GE2063",
+  "name": "Kỹ thuật khoan dầu khí",
+  "nameEn": "Drilling Engineering",
+  "credits": 3,
+  "faculty": "geopet",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "GEOPET_KY_THUAT_DAU_KHI_2024",
+      "block": "K09",
+      "required": true
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [
+    "GE3181"
+  ],
+  "note": "Nhập từ nguồn công khai (truy cập 03/10/2026).",
+  "updated": "2026-10-04"
+}

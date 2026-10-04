@@ -5,14 +5,14 @@
   "description": "Một môn học trong danh mục. ID cố định từ lúc tạo, không bao giờ đổi. / One course in the catalog. The ID is fixed at creation and never changes.",
   "type": "object",
   "additionalProperties": false,
-  "required": ["id", "code", "name", "credits", "faculty", "aliases", "status", "programs", "parts", "related", "updated"],
+  "required": ["id", "code", "name", "faculty", "aliases", "status", "programs", "parts", "related", "updated"],
   "properties": {
     "$schema": { "type": "string" },
     "id": { "type": "string", "pattern": "^[A-Z0-9_]{3,12}(-[0-9]{4})?$", "description": "Mã môn lúc tạo; mã bị dùng lại cho môn khác thì thêm -<năm khóa>, ví dụ GE4169-2024. Dùng cho thư mục và URL." },
     "code": { "type": "string", "pattern": "^[A-Z0-9_]{3,12}$", "description": "Mã môn hiện tại." },
     "name": { "type": "string", "minLength": 1, "description": "Tên tiếng Việt hiện tại." },
     "nameEn": { "type": "string", "minLength": 1 },
-    "credits": { "type": "integer", "minimum": 0, "maximum": 30 },
+    "credits": { "type": "integer", "minimum": 0, "maximum": 30, "description": "Bỏ trống khi nguồn chưa ghi số tín chỉ." },
     "faculty": { "type": "string", "pattern": "^[A-Za-z0-9_-]+$", "description": "Khóa trong catalog/faculties.json." },
     "aliases": {
       "type": "array",

@@ -1,0 +1,92 @@
+{
+  "$schema": "../../schema/program.schema.json",
+  "code": "FME_KY_THUAT_CO_KHI_2020",
+  "name": "Kỹ thuật Cơ khí",
+  "nameEn": "Mechanical Engineering",
+  "faculty": "fme",
+  "year": "2020",
+  "source": "https://drive.google.com/file/d/1-HkmMbqIRNo3B4AVGyBk70MRLh14O-Hl/view",
+  "blocks": [
+    {
+      "id": "K01",
+      "name": "I. Các môn bắt buộc (Compulsary Courses) 95",
+      "required": true,
+      "courses": [
+        "MT1003",
+        "MT1005",
+        "MT1007",
+        "MT2013",
+        "CH1003",
+        "PH1003",
+        "PH1007",
+        "ME2091",
+        "PH1005",
+        "SP1007",
+        "SP1031",
+        "SP1033",
+        "SP1035",
+        "SP1037",
+        "SP1039",
+        "ME1001",
+        "ME2019",
+        "LA1003",
+        "LA1005",
+        "LA1007",
+        "LA1009",
+        "CI2001",
+        "CI2003",
+        "CO1003",
+        "ME1013",
+        "ME1015",
+        "ME2005"
+      ]
+    },
+    {
+      "id": "K02",
+      "name": "Machinery",
+      "group": "I. Các môn bắt buộc (Compulsary Courses) 95",
+      "required": true,
+      "courses": [
+        "ME2007",
+        "ME2009",
+        "ME2013",
+        "ME2087",
+        "ME2089",
+        "ME2117",
+        "ME3139",
+        "ME3141"
+      ]
+    },
+    {
+      "id": "K03",
+      "name": "2 Group) A (Tối thiểu 3 TC) 3 Quản lý",
+      "group": "II. Các môn bắt buộc và tự chọn của chuyên ngành 37",
+      "required": false,
+      "courses": [
+        "ME2015",
+        "ME2071",
+        "ME3001",
+        "ME3003",
+        "ME3143",
+        "ME4063",
+        "ME3135",
+        "ME4061",
+        "ME4387"
+      ]
+    },
+    {
+      "id": "K04",
+      "name": "Các môn tự chọn nhóm (Elective Courses - Group) A",
+      "group": "II. Các môn bắt buộc và tự chọn của chuyên ngành 37",
+      "required": false,
+      "courses": [
+        "IM1013",
+        "IM1023",
+        "IM1025",
+        "IM1027",
+        "IM3001"
+      ]
+    }
+  ],
+  "updated": "2026-10-04"
+}

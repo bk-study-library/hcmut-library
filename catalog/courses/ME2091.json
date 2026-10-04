@@ -1,0 +1,74 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "ME2091",
+  "code": "ME2091",
+  "name": "Phương pháp số",
+  "nameEn": "Numerical Analysis",
+  "credits": 3,
+  "faculty": "fme",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "FME_KY_THUAT_CO_DIEN_TU_2021",
+      "block": "K01",
+      "required": true
+    },
+    {
+      "program": "FME_KY_THUAT_CO_DIEN_TU_2024",
+      "block": "K03",
+      "required": true
+    },
+    {
+      "program": "FME_KY_THUAT_CO_DIEN_TU_2023",
+      "block": "K03",
+      "required": true
+    },
+    {
+      "program": "FME_KY_THUAT_CO_DIEN_TU_2022",
+      "block": "K03",
+      "required": true
+    },
+    {
+      "program": "FME_KY_THUAT_CO_DIEN_TU_2020",
+      "block": "K01",
+      "required": true
+    },
+    {
+      "program": "FME_KY_THUAT_CO_KHI_2023",
+      "block": "K03",
+      "required": true
+    },
+    {
+      "program": "FME_KY_THUAT_CO_KHI_2020",
+      "block": "K01",
+      "required": true
+    },
+    {
+      "program": "FME_KY_THUAT_CO_KHI_2024",
+      "block": "K03",
+      "required": true
+    },
+    {
+      "program": "FME_KY_THUAT_CO_KHI_2022",
+      "block": "K03",
+      "required": true
+    },
+    {
+      "program": "FME_KY_THUAT_CO_KHI_2021",
+      "block": "K03",
+      "required": true
+    },
+    {
+      "program": "FME_KY_THUAT_CO_KHI_2019",
+      "block": "K01",
+      "required": true
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "note": "Nhập từ nguồn công khai (truy cập 03/10/2026).",
+  "updated": "2026-10-04"
+}

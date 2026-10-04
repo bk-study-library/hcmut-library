@@ -1,0 +1,137 @@
+{
+  "$schema": "../../schema/program.schema.json",
+  "code": "GEOPET_KY_THUAT_DIA_CHAT_2020",
+  "name": "Kỹ thuật Địa chất",
+  "nameEn": "Geological Engineering",
+  "faculty": "geopet",
+  "year": "2020",
+  "source": "https://drive.google.com/file/d/1limipSgAilkPvbsWnohjSWlmuZLKAhNX/view",
+  "blocks": [
+    {
+      "id": "K01",
+      "name": "I. Các môn bắt buộc (Compulsary Courses) 94",
+      "required": true,
+      "courses": [
+        "MT1003",
+        "MT1005",
+        "MT1007",
+        "MT2013",
+        "CH1003",
+        "PH1003",
+        "PH1007",
+        "GE1013",
+        "MT1009",
+        "SP1007",
+        "SP1031",
+        "SP1033",
+        "SP1035",
+        "SP1037",
+        "SP1039",
+        "GE1001",
+        "GE3161",
+        "GE2029",
+        "LA1003",
+        "LA1005",
+        "LA1007",
+        "LA1009",
+        "AS2001",
+        "GE1011",
+        "GE2031",
+        "GE2033",
+        "GE2035",
+        "GE2037",
+        "GE2043",
+        "GE3013",
+        "GE3139",
+        "GE3141",
+        "GE4033",
+        "GE4069"
+      ]
+    },
+    {
+      "id": "K02",
+      "name": "3 thiểu 5 TC) 5 Chuyên ngành",
+      "group": "II. Các môn bắt buộc và tự chọn của chuyên ngành",
+      "required": false,
+      "courses": [
+        "GE2021",
+        "GE3137",
+        "GE3335",
+        "GE4143",
+        "GE4337"
+      ]
+    },
+    {
+      "id": "K03",
+      "name": "Các môn tự chọn nhóm (Elective Courses - Group) A",
+      "group": "II. Các môn bắt buộc và tự chọn của chuyên ngành",
+      "required": false,
+      "courses": [
+        "GE3061",
+        "GE3089",
+        "GE3143",
+        "GE3145",
+        "GE3147",
+        "GE3149",
+        "GE3151",
+        "GE3153",
+        "GE3193",
+        "GE3195",
+        "GE3197",
+        "GE3201",
+        "GE3203"
+      ]
+    },
+    {
+      "id": "K04",
+      "name": "Thực tập kỹ thuật phân tích các chỉ tiêu của môi trường địa",
+      "group": "II. Các môn bắt buộc và tự chọn của chuyên ngành",
+      "required": false,
+      "courses": [
+        "GE3037",
+        "GE4029"
+      ]
+    },
+    {
+      "id": "K05",
+      "name": "Đồ án môn học khảo sát - thăm dò và các phương pháp tính",
+      "group": "II. Các môn bắt buộc và tự chọn của chuyên ngành",
+      "required": false,
+      "courses": [
+        "GE4039",
+        "GE4079",
+        "GE4081",
+        "GE4085",
+        "GE4087",
+        "GE4089",
+        "GE4105",
+        "GE4107",
+        "GE4111",
+        "GE4113"
+      ]
+    },
+    {
+      "id": "K06",
+      "name": "3 thiểu 2 TC) 2 Chuyên ngành",
+      "group": "II. Các môn bắt buộc và tự chọn của chuyên ngành",
+      "required": false,
+      "courses": [
+        "GE2021",
+        "GE3137",
+        "GE3147",
+        "GE3151",
+        "GE4079",
+        "GE3335",
+        "GE4143",
+        "GE4337",
+        "GE3089",
+        "GE3143",
+        "GE4029",
+        "GE3153",
+        "GE3203",
+        "GE4085"
+      ]
+    }
+  ],
+  "updated": "2026-10-04"
+}

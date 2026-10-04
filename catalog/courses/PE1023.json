@@ -1,0 +1,21 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "PE1023",
+  "code": "PE1023",
+  "name": "Võ (Vovinam, Karate, Taewondo) (Học phần 1)",
+  "credits": 0,
+  "faculty": "gdtc-qp",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "DEE_KY_THUAT_DIEN_2019_MYBK_SEED",
+      "block": "K16",
+      "required": false
+    }
+  ],
+  "parts": [],
+  "related": [],
+  "note": "Nhập từ nguồn công khai (truy cập 03/10/2026).",
+  "updated": "2026-10-04"
+}

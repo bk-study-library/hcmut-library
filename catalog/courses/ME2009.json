@@ -1,0 +1,69 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "ME2009",
+  "code": "ME2009",
+  "name": "Kỹ thuật điều khiển tự động",
+  "nameEn": "Control System Technology",
+  "credits": 3,
+  "faculty": "fme",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "FME_KY_THUAT_CO_DIEN_TU_2021",
+      "block": "K02",
+      "required": true
+    },
+    {
+      "program": "FME_KY_THUAT_CO_DIEN_TU_2024",
+      "block": "K12",
+      "required": true
+    },
+    {
+      "program": "FME_KY_THUAT_CO_DIEN_TU_2023",
+      "block": "K10",
+      "required": true
+    },
+    {
+      "program": "FME_KY_THUAT_CO_DIEN_TU_2022",
+      "block": "K10",
+      "required": true
+    },
+    {
+      "program": "FME_KY_THUAT_CO_DIEN_TU_2020",
+      "block": "K02",
+      "required": true
+    },
+    {
+      "program": "FME_KY_THUAT_CO_KHI_2023",
+      "block": "K10",
+      "required": true
+    },
+    {
+      "program": "FME_KY_THUAT_CO_KHI_2020",
+      "block": "K02",
+      "required": true
+    },
+    {
+      "program": "FME_KY_THUAT_CO_KHI_2022",
+      "block": "K10",
+      "required": true
+    },
+    {
+      "program": "FME_KY_THUAT_CO_KHI_2021",
+      "block": "K10",
+      "required": true
+    },
+    {
+      "program": "FME_KY_THUAT_CO_KHI_2019",
+      "block": "K02",
+      "required": true
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "note": "Nhập từ nguồn công khai (truy cập 03/10/2026).",
+  "updated": "2026-10-04"
+}

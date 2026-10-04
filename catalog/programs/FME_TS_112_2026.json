@@ -1,0 +1,11 @@
+{
+  "$schema": "../../schema/program.schema.json",
+  "code": "FME_TS_112_2026",
+  "name": "Nhóm ngành Dệt - May (Ngành/Chuyên ngành : Công nghệ Dệt, May/Công nghệ May - Thời trang; Kỹ thuật Dệt/Công nghệ Sợi dệt)",
+  "faculty": "fme",
+  "year": "2026",
+  "source": "https://hcmut.edu.vn/tuyen-sinh/dai-hoc-chinh-quy",
+  "note": "Ngành tuyển sinh 2026, mã tuyển sinh 112. Chưa có danh sách môn công khai.",
+  "blocks": [],
+  "updated": "2026-10-04"
+}

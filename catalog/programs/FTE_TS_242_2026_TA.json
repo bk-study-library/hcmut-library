@@ -1,0 +1,12 @@
+{
+  "$schema": "../../schema/program.schema.json",
+  "code": "FTE_TS_242_2026_TA",
+  "name": "Kỹ thuật Ô tô",
+  "faculty": "fte",
+  "year": "2026",
+  "variant": "Dạy và học bằng tiếng Anh",
+  "source": "https://hcmut.edu.vn/tuyen-sinh/dai-hoc-chinh-quy",
+  "note": "Ngành tuyển sinh 2026, mã tuyển sinh 242. Chưa có danh sách môn công khai.",
+  "blocks": [],
+  "updated": "2026-10-04"
+}

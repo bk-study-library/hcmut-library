@@ -1,0 +1,49 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "ME3199",
+  "code": "ME3199",
+  "name": "Đồ án thiết kế - hướng thiết bị trao đổi nhiệt",
+  "nameEn": "Design Project - Heat Exchanger Orientation",
+  "credits": 2,
+  "faculty": "fme",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "FME_KY_THUAT_NHIET_2020",
+      "block": "K03",
+      "required": false
+    },
+    {
+      "program": "FME_KY_THUAT_NHIET_2021",
+      "block": "K11",
+      "required": false
+    },
+    {
+      "program": "FME_KY_THUAT_NHIET_2022",
+      "block": "K11",
+      "required": false
+    },
+    {
+      "program": "FME_KY_THUAT_NHIET_2024",
+      "block": "K14",
+      "required": true
+    },
+    {
+      "program": "FME_KY_THUAT_NHIET_2023",
+      "block": "K11",
+      "required": false
+    },
+    {
+      "program": "FME_KY_THUAT_NHIET_2019",
+      "block": "K03",
+      "required": false
+    }
+  ],
+  "parts": [
+    "project"
+  ],
+  "related": [],
+  "note": "Nhập từ nguồn công khai (truy cập 03/10/2026).",
+  "updated": "2026-10-04"
+}

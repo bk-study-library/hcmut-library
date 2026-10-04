@@ -1,0 +1,210 @@
+{
+  "$schema": "../../schema/program.schema.json",
+  "code": "DEE_CTDT_PFIEV_CHUYEN_NGANH_HE_THONG_NANG_LUONG_DIEN_2023_DEE_FILE_SYSTEM",
+  "name": "CTĐT PFIEV - Chuyên ngành: Hệ thống năng lượng điện (2023)",
+  "nameEn": "PFIEV Training Program - Speciality: Energy Systems (2023)",
+  "faculty": "dee",
+  "year": "2023",
+  "variant": "PFIEV",
+  "source": "https://dee.hcmut.edu.vn/file-system/P0lXkA5cZjkOb3p1XLN0UAxK.pdf",
+  "blocks": [
+    {
+      "id": "K01",
+      "name": "Toán",
+      "group": "Các môn bắt buộc",
+      "required": true,
+      "courses": [
+        "MT1011",
+        "MT1013",
+        "MT1015",
+        "MT2007",
+        "MT2009",
+        "MT2011"
+      ]
+    },
+    {
+      "id": "K02",
+      "name": "Khoa học tự nhiên",
+      "group": "Các môn bắt buộc",
+      "required": true,
+      "courses": [
+        "PH1009",
+        "PH2005",
+        "PH2007",
+        "AS2047",
+        "CH1003"
+      ]
+    },
+    {
+      "id": "K03",
+      "name": "Chính trị, Kinh tế, Văn hóa, Xã hội",
+      "group": "Các môn bắt buộc",
+      "required": true,
+      "courses": [
+        "SP1007",
+        "SP1031",
+        "SP1033",
+        "SP1035",
+        "SP1039",
+        "SP1037"
+      ]
+    },
+    {
+      "id": "K04",
+      "name": "Nhập môn",
+      "group": "Các môn bắt buộc",
+      "required": true,
+      "courses": [
+        "EE1001"
+      ]
+    },
+    {
+      "id": "K05",
+      "name": "Con người và môi trường",
+      "group": "Các môn bắt buộc",
+      "required": true,
+      "courses": [
+        "EN1003"
+      ]
+    },
+    {
+      "id": "K06",
+      "name": "Ngoại ngữ",
+      "group": "Các môn bắt buộc",
+      "required": true,
+      "courses": [
+        "LA1003",
+        "LA1005",
+        "LA1007",
+        "LA1009",
+        "LA1011",
+        "LA1013",
+        "LA1015",
+        "LA1017",
+        "LA3021",
+        "LA3023"
+      ]
+    },
+    {
+      "id": "K07",
+      "name": "Môn học cơ sở ngành",
+      "group": "Các môn bắt buộc",
+      "required": true,
+      "courses": [
+        "CI1003",
+        "EE1009",
+        "EE2003",
+        "EE2009",
+        "EE2017",
+        "EE2019",
+        "EE2031",
+        "EE3189",
+        "EE3013",
+        "EE4055"
+      ]
+    },
+    {
+      "id": "K08",
+      "name": "Đồ án cơ sở ngành",
+      "group": "Các môn bắt buộc",
+      "required": true,
+      "courses": [
+        "EE4069"
+      ]
+    },
+    {
+      "id": "K09",
+      "name": "Thực tập công nhân",
+      "group": "Các môn bắt buộc",
+      "required": true,
+      "courses": [
+        "EE2119"
+      ]
+    },
+    {
+      "id": "K10",
+      "name": "Quản lý/Khởi nghiệp",
+      "group": "Các môn bắt buộc",
+      "required": true,
+      "courses": [
+        "IM1021"
+      ]
+    },
+    {
+      "id": "K11",
+      "name": "Chuyên ngành",
+      "group": "Các môn bắt buộc và tự chọn của chuyên ngành",
+      "required": true,
+      "courses": [
+        "EE3009",
+        "EE3097",
+        "EE4063",
+        "EE4065",
+        "EE5007",
+        "EE5005",
+        "EE4059",
+        "EE4061",
+        "EE3093",
+        "EE3087",
+        "EE5009",
+        "EE5011"
+      ]
+    },
+    {
+      "id": "K12",
+      "name": "Luận văn tốt nghiệp",
+      "group": "Các môn bắt buộc và tự chọn của chuyên ngành",
+      "required": true,
+      "courses": [
+        "EE5027"
+      ]
+    },
+    {
+      "id": "K13",
+      "name": "Thực tập ngoài trường",
+      "group": "Tự chọn tự do",
+      "required": false,
+      "courses": [
+        "EE3395"
+      ]
+    },
+    {
+      "id": "K14",
+      "name": "Thực tập kỹ sư",
+      "group": "Tự chọn tự do",
+      "required": false,
+      "courses": [
+        "EE4395"
+      ]
+    },
+    {
+      "id": "K15",
+      "name": "Đồ án chuyên ngành",
+      "group": "Tự chọn tự do",
+      "required": false,
+      "courses": [
+        "EE5003"
+      ]
+    },
+    {
+      "id": "K16",
+      "name": "Giáo dục quốc phòng",
+      "group": "Tự chọn tự do",
+      "required": false,
+      "courses": [
+        "MI1003"
+      ]
+    },
+    {
+      "id": "K17",
+      "name": "Giáo dục thể chất",
+      "group": "Tự chọn tự do",
+      "required": false,
+      "courses": [
+        "PE1003",
+        "PE1005"
+      ]
+    }
+  ],
+  "updated": "2026-10-04"
+}

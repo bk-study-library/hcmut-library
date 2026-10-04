@@ -1,0 +1,207 @@
+{
+  "$schema": "../../schema/program.schema.json",
+  "code": "DEE_KY_THUAT_DIEU_KHIEN_VA_TU_DONG_HOA_2024",
+  "name": "Kỹ thuật Điều khiển và Tự động hóa",
+  "nameEn": "Control Engineering and Automation",
+  "faculty": "dee",
+  "year": "2024",
+  "source": "https://drive.google.com/file/d/1_Xw-E7kWiywtT_QqNVaXUTbRJ3CPPHpl/view",
+  "blocks": [
+    {
+      "id": "K01",
+      "name": "A.1. Toán và KH Tự nhiên (Mathematics and Basic Sciences)",
+      "required": true,
+      "creditsNeed": 30,
+      "courses": [
+        "MT1003",
+        "MT1005",
+        "MT1007",
+        "MT2013",
+        "CH1003",
+        "PH1003",
+        "PH1007",
+        "EE1007",
+        "MT1009"
+      ]
+    },
+    {
+      "id": "K02",
+      "name": "A.2. Chính trị, Kinh tế, Văn hóa, Xã hội (Socials and Economics)",
+      "required": true,
+      "creditsNeed": 13,
+      "courses": [
+        "SP1007",
+        "SP1031",
+        "SP1033",
+        "SP1035",
+        "SP1037",
+        "SP1039"
+      ]
+    },
+    {
+      "id": "K03",
+      "name": "A.3. Nhập môn (Introduction to Engineering)",
+      "required": true,
+      "creditsNeed": 3,
+      "courses": [
+        "EE1001"
+      ]
+    },
+    {
+      "id": "K04",
+      "name": "A.4. Ngoại ngữ (Foreign Languages)",
+      "required": true,
+      "creditsNeed": 8,
+      "courses": [
+        "LA1003",
+        "LA1005",
+        "LA1007",
+        "LA1009"
+      ]
+    },
+    {
+      "id": "K05",
+      "name": "A.5. Cơ sở ngành (Core Courses)",
+      "required": true,
+      "creditsNeed": 31,
+      "courses": [
+        "EE1009",
+        "EE2005",
+        "EE2081",
+        "EE2017",
+        "EE2019",
+        "EE2021",
+        "EE2023",
+        "EE2025",
+        "EE2033",
+        "EE2035",
+        "EE2039",
+        "EE3023",
+        "EE3185"
+      ]
+    },
+    {
+      "id": "K06",
+      "name": "A.6. Chuyên ngành (Speciality Courses)",
+      "required": true,
+      "creditsNeed": 15,
+      "courses": [
+        "EE3005",
+        "EE3007",
+        "EE3017",
+        "EE3029",
+        "EE3065"
+      ]
+    },
+    {
+      "id": "K07",
+      "name": "A.7. Tốt nghiệ p (Graduation Internship/Projects)",
+      "required": true,
+      "creditsNeed": 8,
+      "courses": [
+        "EE3355",
+        "EE4009",
+        "EE4357"
+      ]
+    },
+    {
+      "id": "K08",
+      "name": "B. Các môn tự chọn chuyên ngành nhóm A (Elective Specialized courses - Group A)",
+      "required": false,
+      "creditsNeed": 9,
+      "courses": [
+        "EE3057",
+        "EE3063",
+        "EE3067",
+        "EE3069",
+        "EE3071",
+        "EE3075",
+        "EE3077",
+        "EE3079",
+        "EE3173",
+        "EE3175"
+      ]
+    },
+    {
+      "id": "K09",
+      "name": "C. Môn t ự chọn nhóm Quản lý/Khởi nghiệp - Nhóm B (Elective Courses - Group of Management/Entrepreuneurship - Group B)",
+      "required": false,
+      "creditsNeed": 3,
+      "courses": [
+        "IM1023",
+        "IM1025",
+        "IM3001",
+        "IM1031"
+      ]
+    },
+    {
+      "id": "K10",
+      "name": "D. Môn tự chọn nhóm Con người và môi trường/Kỹ năng nghề nghiệp chuyên nghi ệp - Nhóm C (Elective Courses - Group of Humans and Environment/Professional career skills - Group C)",
+      "required": false,
+      "creditsNeed": 3,
+      "courses": [
+        "EN1003",
+        "ME1019"
+      ]
+    },
+    {
+      "id": "K11",
+      "name": "F. Giáo dục quốc phòng (Military Trainning)",
+      "required": true,
+      "creditsNeed": 0,
+      "courses": [
+        "MI1003"
+      ]
+    },
+    {
+      "id": "K12",
+      "name": "G. Giáo dục thể chất học phần 1 (Physical education part 1)",
+      "required": false,
+      "creditsNeed": 0,
+      "courses": [
+        "PE1009",
+        "PE1011",
+        "PE1013",
+        "PE1021",
+        "PE1015",
+        "PE1017",
+        "PE1025",
+        "PE1019",
+        "PE1027",
+        "PE1053",
+        "PE1057",
+        "PE1061"
+      ]
+    },
+    {
+      "id": "K13",
+      "name": "H. Giáo dục thể chất học phần 2 (Physical education part 2)",
+      "required": false,
+      "creditsNeed": 0,
+      "courses": [
+        "PE1037",
+        "PE1041",
+        "PE1033",
+        "PE1045",
+        "PE1043",
+        "PE1039",
+        "PE1035",
+        "PE1049",
+        "PE1051",
+        "PE1055",
+        "PE1063",
+        "PE1059"
+      ]
+    },
+    {
+      "id": "K14",
+      "name": "I. Điều kiện tốt nghiệp (Graduation Condition)",
+      "required": true,
+      "creditsNeed": 0,
+      "courses": [
+        "SA4001"
+      ]
+    }
+  ],
+  "updated": "2026-10-04"
+}

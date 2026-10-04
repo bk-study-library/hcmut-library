@@ -1,0 +1,32 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "GE4109",
+  "code": "GE4109",
+  "name": "Đồ án chuyên đề 2",
+  "credits": 2,
+  "faculty": "geopet",
+  "aliases": [
+    {
+      "code": "GE3085",
+      "name": "Bảo vệ môi trường trong khai thác mỏ",
+      "to": "2018-12-31"
+    },
+    {
+      "code": "GE4051",
+      "name": "Tai biến địa động lực",
+      "to": "2018-12-31"
+    }
+  ],
+  "status": "active",
+  "replaces": [
+    "GE3085",
+    "GE4051"
+  ],
+  "programs": [],
+  "parts": [
+    "project"
+  ],
+  "related": [],
+  "note": "Nhập từ nguồn công khai (truy cập 03/10/2026).",
+  "updated": "2026-10-04"
+}

@@ -1,0 +1,24 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "EE5009",
+  "code": "EE5009",
+  "name": "Điều khiển máy điện (PBL)",
+  "nameEn": "Control of Electrical Machines",
+  "credits": 3,
+  "faculty": "dee",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "DEE_CTDT_PFIEV_CHUYEN_NGANH_HE_THONG_NANG_LUONG_DIEN_2023_DEE_FILE_SYSTEM",
+      "block": "K11",
+      "required": true
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "note": "Nhập từ nguồn công khai (truy cập 03/10/2026).",
+  "updated": "2026-10-04"
+}

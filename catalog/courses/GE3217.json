@@ -1,0 +1,26 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "GE3217",
+  "code": "GE3217",
+  "name": "Kỹ thuật khai thác dầu khí",
+  "nameEn": "Production Engineering",
+  "credits": 3,
+  "faculty": "geopet",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "GEOPET_KY_THUAT_DAU_KHI_2024",
+      "block": "K10",
+      "required": true
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [
+    "GE3015"
+  ],
+  "note": "Nhập từ nguồn công khai (truy cập 03/10/2026).",
+  "updated": "2026-10-04"
+}

@@ -1,0 +1,34 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "ME2173",
+  "code": "ME2173",
+  "name": "Các công nghệ 4.0 trong quản lý năng suất và chất lượng",
+  "nameEn": "Industry 4.0 technologies in quality and productivity Management",
+  "credits": 3,
+  "faculty": "fme",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "FME_CONG_NGHE_DET_MAY_2024",
+      "block": "K12",
+      "required": true
+    },
+    {
+      "program": "FME_KY_THUAT_DET_2024",
+      "block": "K12",
+      "required": true
+    },
+    {
+      "program": "FME_BAO_DUONG_CONG_NGHIEP_2024",
+      "block": "K07",
+      "required": false
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "note": "Nhập từ nguồn công khai (truy cập 03/10/2026).",
+  "updated": "2026-10-04"
+}

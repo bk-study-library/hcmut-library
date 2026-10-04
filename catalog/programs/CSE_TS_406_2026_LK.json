@@ -1,0 +1,12 @@
+{
+  "$schema": "../../schema/program.schema.json",
+  "code": "CSE_TS_406_2026_LK",
+  "name": "Trí tuệ Nhân tạo",
+  "faculty": "cse",
+  "year": "2026",
+  "variant": "Liên kết quốc tế",
+  "source": "https://hcmut.edu.vn/tuyen-sinh/dai-hoc-chinh-quy",
+  "note": "Ngành tuyển sinh 2026, mã tuyển sinh 406. Chưa có danh sách môn công khai.",
+  "blocks": [],
+  "updated": "2026-10-04"
+}

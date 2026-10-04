@@ -1,0 +1,309 @@
+{
+  "$schema": "../../schema/program.schema.json",
+  "code": "GEOPET_KY_THUAT_DIA_CHAT_2021",
+  "name": "Kỹ thuật Địa chất",
+  "nameEn": "Geological Engineering",
+  "faculty": "geopet",
+  "year": "2021",
+  "source": "https://drive.google.com/file/d/1cXXqQbBZlIzEHpgtaQAhJK8WRF2vdJlH/view",
+  "blocks": [
+    {
+      "id": "K01",
+      "name": "Toán (Mathematics)",
+      "group": "1. Kiến thức giáo dục đại cương (General Knowledge )",
+      "required": true,
+      "courses": [
+        "MT1003",
+        "MT1005",
+        "MT1007",
+        "MT2013"
+      ]
+    },
+    {
+      "id": "K02",
+      "name": "Khoa học tự nhiên (Science)",
+      "group": "1. Kiến thức giáo dục đại cương (General Knowledge )",
+      "required": true,
+      "courses": [
+        "CH1003",
+        "PH1003",
+        "PH1007"
+      ]
+    },
+    {
+      "id": "K03",
+      "name": "Toán và KH tự nhiên khác (Other Mathematics and Science)",
+      "group": "1. Kiến thức giáo dục đại cương (General Knowledge )",
+      "required": true,
+      "courses": [
+        "GE1013",
+        "MT1009"
+      ]
+    },
+    {
+      "id": "K04",
+      "name": "Kinh tế- Chính trị- Xã hội- Luật (Economics - Politics - Sociology - Law)",
+      "group": "1. Kiến thức giáo dục đại cương (General Knowledge )",
+      "required": true,
+      "courses": [
+        "SP1007",
+        "SP1031",
+        "SP1033",
+        "SP1035",
+        "SP1037",
+        "SP1039"
+      ]
+    },
+    {
+      "id": "K05",
+      "name": "Nhập môn (Introduction to Engineering)",
+      "group": "1. Kiến thức giáo dục đại cương (General Knowledge )",
+      "required": true,
+      "courses": [
+        "GE1001"
+      ]
+    },
+    {
+      "id": "K06",
+      "name": "Quản lý (Management for Engineers)",
+      "group": "1. Kiến thức giáo dục đại cương (General Knowledge )",
+      "required": true,
+      "courses": [
+        "GE3161"
+      ]
+    },
+    {
+      "id": "K07",
+      "name": "Con người và môi trường (Humans and Environment)",
+      "group": "1. Kiến thức giáo dục đại cương (General Knowledge )",
+      "required": true,
+      "courses": [
+        "GE2029"
+      ]
+    },
+    {
+      "id": "K08",
+      "name": "Ngoại ngữ (Foreign Language)",
+      "group": "1. Kiến thức giáo dục đại cương (General Knowledge )",
+      "required": true,
+      "courses": [
+        "LA1003",
+        "LA1005",
+        "LA1007",
+        "LA1009"
+      ]
+    },
+    {
+      "id": "K09",
+      "name": "Cơ sở ngành (Core)",
+      "group": "2. Kiến thức giáo dục chuyên nghiệp (Professional Knowledge )",
+      "required": true,
+      "courses": [
+        "AS2001",
+        "GE1011",
+        "GE2031",
+        "GE2033",
+        "GE2035",
+        "GE2037",
+        "GE2043",
+        "GE3013",
+        "GE3139",
+        "GE3141",
+        "GE4033",
+        "GE4069"
+      ]
+    },
+    {
+      "id": "K10",
+      "name": "Chuyên ngành (Speciality)",
+      "group": "2. Kiến thức giáo dục chuyên nghiệp (Professional Knowledge )",
+      "required": true,
+      "courses": [
+        "GE2021",
+        "GE3137"
+      ]
+    },
+    {
+      "id": "K11",
+      "name": "Nhóm tự chọn A (chọn 7 tín chỉ trong các học phần sau) **",
+      "group": "Chuyên ngành (Speciality)",
+      "required": false,
+      "courses": [
+        "GE3061",
+        "GE3089",
+        "GE3143",
+        "GE3145",
+        "GE3147",
+        "GE3149"
+      ]
+    },
+    {
+      "id": "K12",
+      "name": "Bảo vệ môi trường trong công nghiệp dầu khí + kiến tập",
+      "group": "2. Kiến thức giáo dục chuyên nghiệp (Professional Knowledge )",
+      "required": true,
+      "courses": [
+        "GE3151",
+        "GE3153",
+        "GE3193",
+        "GE3195",
+        "GE3197",
+        "GE3201",
+        "GE3203"
+      ]
+    },
+    {
+      "id": "K13",
+      "name": "Thực tập kỹ thuật phân tích các chỉ tiêu của môi trường địa",
+      "group": "2. Kiến thức giáo dục chuyên nghiệp (Professional Knowledge )",
+      "required": true,
+      "courses": [
+        "GE3037",
+        "GE4029"
+      ]
+    },
+    {
+      "id": "K14",
+      "name": "Đồ án môn học khảo sát - thăm dò và các phương pháp",
+      "group": "2. Kiến thức giáo dục chuyên nghiệp (Professional Knowledge )",
+      "required": true,
+      "courses": [
+        "GE4039"
+      ]
+    },
+    {
+      "id": "K15",
+      "name": "Phương pháp lập bản đồ địa chất môi trường - địa chất đô",
+      "group": "2. Kiến thức giáo dục chuyên nghiệp (Professional Knowledge )",
+      "required": true,
+      "courses": [
+        "GE4079",
+        "GE4081",
+        "GE4085",
+        "GE4087",
+        "GE4089",
+        "GE4105",
+        "GE4107",
+        "GE4111",
+        "GE4113"
+      ]
+    },
+    {
+      "id": "K16",
+      "name": "Tốt nghiệp (Graduation)",
+      "group": "2. Kiến thức giáo dục chuyên nghiệp (Professional Knowledge )",
+      "required": true,
+      "courses": [
+        "GE3335",
+        "GE4143",
+        "GE4337"
+      ]
+    },
+    {
+      "id": "K17",
+      "name": "** Chuyên ngành: Địa chất môi trường",
+      "group": "4. Chứng chỉ (Certification )",
+      "required": false,
+      "courses": [
+        "GE3147"
+      ]
+    },
+    {
+      "id": "K18",
+      "name": "Bảo vệ môi trường trong công nghiệp dầu khí + kiến tập",
+      "group": "4. Chứng chỉ (Certification )",
+      "required": false,
+      "courses": [
+        "GE3151"
+      ]
+    },
+    {
+      "id": "K19",
+      "name": "Phương pháp lập bản đồ địa chất môi trường - địa chất đô",
+      "group": "4. Chứng chỉ (Certification )",
+      "required": false,
+      "courses": [
+        "GE4079"
+      ]
+    },
+    {
+      "id": "K20",
+      "name": "Nhóm tự chọn A (chọn 1 tín chỉ trong các học phần sau)",
+      "group": "Phương pháp lập bản đồ địa chất môi trường - địa chất đô",
+      "required": false,
+      "courses": [
+        "GE3061",
+        "GE3145",
+        "GE3149",
+        "GE3197"
+      ]
+    },
+    {
+      "id": "K21",
+      "name": "Thực tập kỹ thuật phân tích các chỉ tiêu của môi trường địa",
+      "group": "4. Chứng chỉ (Certification )",
+      "required": false,
+      "courses": [
+        "GE3037"
+      ]
+    },
+    {
+      "id": "K22",
+      "name": "Đồ án môn học khảo sát - thăm dò và các phương pháp",
+      "group": "4. Chứng chỉ (Certification )",
+      "required": false,
+      "courses": [
+        "GE4039",
+        "GE4111",
+        "GE4113"
+      ]
+    },
+    {
+      "id": "K23",
+      "name": "** Chuyên ngành: Địa kỹ thuật",
+      "group": "4. Chứng chỉ (Certification )",
+      "required": false,
+      "courses": [
+        "GE3089",
+        "GE3143",
+        "GE4029"
+      ]
+    },
+    {
+      "id": "K24",
+      "name": "Nhóm tự chọn A (chọn 1 tín chỉ trong các học phần sau)",
+      "group": "** Chuyên ngành: Địa kỹ thuật",
+      "required": false,
+      "courses": [
+        "GE3061",
+        "GE3145",
+        "GE3149",
+        "GE3197"
+      ]
+    },
+    {
+      "id": "K25",
+      "name": "** Chuyên ngành: Quản lý Tài nguyên Đất và Khoáng sản",
+      "group": "4. Chứng chỉ (Certification )",
+      "required": false,
+      "courses": [
+        "GE3153",
+        "GE3203",
+        "GE4085"
+      ]
+    },
+    {
+      "id": "K26",
+      "name": "Nhóm tự chọn A (chọn 1 tín chỉ trong các học phần sau)",
+      "group": "** Chuyên ngành: Quản lý Tài nguyên Đất và Khoáng sản",
+      "required": false,
+      "courses": [
+        "GE3061",
+        "GE3145",
+        "GE3149",
+        "GE3197"
+      ]
+    }
+  ],
+  "updated": "2026-10-04"
+}

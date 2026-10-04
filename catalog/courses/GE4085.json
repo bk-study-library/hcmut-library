@@ -1,0 +1,59 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "GE4085",
+  "code": "GE4085",
+  "name": "Đo vẽ và thành lập bản đồ tài nguyên đất và khoáng sản",
+  "nameEn": "Drawing and Maping Land and Mineral Resources",
+  "credits": 3,
+  "faculty": "geopet",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "GEOPET_KY_THUAT_DIA_CHAT_2022",
+      "block": "K14",
+      "required": true
+    },
+    {
+      "program": "GEOPET_KY_THUAT_DIA_CHAT_2022",
+      "block": "K23",
+      "required": false
+    },
+    {
+      "program": "GEOPET_KY_THUAT_DIA_CHAT_2021",
+      "block": "K15",
+      "required": true
+    },
+    {
+      "program": "GEOPET_KY_THUAT_DIA_CHAT_2021",
+      "block": "K25",
+      "required": false
+    },
+    {
+      "program": "GEOPET_KY_THUAT_DIA_CHAT_2020",
+      "block": "K05",
+      "required": false
+    },
+    {
+      "program": "GEOPET_KY_THUAT_DIA_CHAT_2020",
+      "block": "K06",
+      "required": false
+    },
+    {
+      "program": "GEOPET_KY_THUAT_DIA_CHAT_2019",
+      "block": "K05",
+      "required": false
+    },
+    {
+      "program": "GEOPET_KY_THUAT_DIA_CHAT_2019",
+      "block": "K06",
+      "required": false
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "note": "Nhập từ nguồn công khai (truy cập 03/10/2026).",
+  "updated": "2026-10-04"
+}

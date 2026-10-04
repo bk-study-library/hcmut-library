@@ -1,0 +1,73 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "GE3143",
+  "code": "GE3143",
+  "name": "Địa kỹ thuật 2",
+  "nameEn": "Geotechnics 2",
+  "credits": 3,
+  "faculty": "geopet",
+  "aliases": [
+    {
+      "code": "GE3051",
+      "name": "Địa kỹ thuật 2",
+      "to": "2018-12-31"
+    }
+  ],
+  "status": "active",
+  "replaces": [
+    "GE3051"
+  ],
+  "programs": [
+    {
+      "program": "GEOPET_KY_THUAT_DIA_CHAT_2023",
+      "block": "K11",
+      "required": false
+    },
+    {
+      "program": "GEOPET_KY_THUAT_DIA_CHAT_2022",
+      "block": "K11",
+      "required": false
+    },
+    {
+      "program": "GEOPET_KY_THUAT_DIA_CHAT_2022",
+      "block": "K21",
+      "required": false
+    },
+    {
+      "program": "GEOPET_KY_THUAT_DIA_CHAT_2021",
+      "block": "K11",
+      "required": false
+    },
+    {
+      "program": "GEOPET_KY_THUAT_DIA_CHAT_2021",
+      "block": "K23",
+      "required": false
+    },
+    {
+      "program": "GEOPET_KY_THUAT_DIA_CHAT_2020",
+      "block": "K03",
+      "required": false
+    },
+    {
+      "program": "GEOPET_KY_THUAT_DIA_CHAT_2020",
+      "block": "K06",
+      "required": false
+    },
+    {
+      "program": "GEOPET_KY_THUAT_DIA_CHAT_2019",
+      "block": "K03",
+      "required": false
+    },
+    {
+      "program": "GEOPET_KY_THUAT_DIA_CHAT_2019",
+      "block": "K06",
+      "required": false
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "note": "Nhập từ nguồn công khai (truy cập 03/10/2026).",
+  "updated": "2026-10-04"
+}

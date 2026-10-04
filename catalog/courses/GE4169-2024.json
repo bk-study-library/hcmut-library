@@ -8,11 +8,17 @@
   "faculty": "geopet",
   "aliases": [],
   "status": "active",
-  "programs": [],
+  "programs": [
+    {
+      "program": "GEOPET_DIA_KY_THUAT_XAY_DUNG_2024",
+      "block": "K09",
+      "required": true
+    }
+  ],
   "parts": [
     "theory"
   ],
   "related": [],
   "note": "Dữ liệu mẫu cho hợp đồng v1. Tên, mã, tín chỉ lấy từ CTĐT công khai (truy cập 03/10/2026). CTĐT Địa kỹ thuật Xây dựng 2024 dùng lại mã GE4169 cho môn này. Chờ người duyệt xác nhận.",
-  "updated": "2026-10-03"
+  "updated": "2026-10-04"
 }

@@ -1,0 +1,49 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "ME4105",
+  "code": "ME4105",
+  "name": "CAD-CAM trong dệt may",
+  "nameEn": "may Application of CAD-CAM in Textiles",
+  "credits": 3,
+  "faculty": "fme",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "FME_CONG_NGHE_DET_MAY_2019",
+      "block": "K01",
+      "required": true
+    },
+    {
+      "program": "FME_KY_THUAT_DET_2019",
+      "block": "K01",
+      "required": true
+    },
+    {
+      "program": "FME_KY_THUAT_DET_2020",
+      "block": "K01",
+      "required": true
+    },
+    {
+      "program": "FME_CONG_NGHE_DET_MAY_2021",
+      "block": "K09",
+      "required": true
+    },
+    {
+      "program": "FME_CONG_NGHE_DET_MAY_2020",
+      "block": "K01",
+      "required": true
+    },
+    {
+      "program": "FME_KY_THUAT_DET_2021",
+      "block": "K09",
+      "required": true
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "note": "Nhập từ nguồn công khai (truy cập 03/10/2026).",
+  "updated": "2026-10-04"
+}

@@ -1,0 +1,12 @@
+{
+  "$schema": "../../schema/program.schema.json",
+  "code": "DEE_TS_208_2026_TT",
+  "name": "Kỹ Thuật Điện - Điện Tử (Chuyên ngành: Vi mạch - Hệ thống Phần cứng, Hệ thống Năng lượng, Kỹ thuật Điều khiển & Tự động hoá, Hệ thống Viễn thông)",
+  "faculty": "dee",
+  "year": "2026",
+  "variant": "Chương trình tiên tiến",
+  "source": "https://hcmut.edu.vn/tuyen-sinh/dai-hoc-chinh-quy",
+  "note": "Ngành tuyển sinh 2026, mã tuyển sinh 208. Chưa có danh sách môn công khai.",
+  "blocks": [],
+  "updated": "2026-10-04"
+}

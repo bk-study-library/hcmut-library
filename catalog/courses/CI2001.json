@@ -1,0 +1,79 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "CI2001",
+  "code": "CI2001",
+  "name": "Sức bền vật liệu",
+  "nameEn": "Strength of Materials",
+  "credits": 3,
+  "faculty": "fce",
+  "aliases": [],
+  "status": "active",
+  "programs": [
+    {
+      "program": "FME_KY_THUAT_CO_DIEN_TU_2021",
+      "block": "K01",
+      "required": true
+    },
+    {
+      "program": "FME_KY_THUAT_CO_DIEN_TU_2024",
+      "block": "K12",
+      "required": true
+    },
+    {
+      "program": "FME_KY_THUAT_CO_DIEN_TU_2023",
+      "block": "K09",
+      "required": true
+    },
+    {
+      "program": "FME_KY_THUAT_CO_DIEN_TU_2022",
+      "block": "K09",
+      "required": true
+    },
+    {
+      "program": "FME_KY_THUAT_NHIET_2019",
+      "block": "K01",
+      "required": true
+    },
+    {
+      "program": "FME_KY_THUAT_CO_DIEN_TU_2020",
+      "block": "K01",
+      "required": true
+    },
+    {
+      "program": "FME_KY_THUAT_CO_KHI_2023",
+      "block": "K09",
+      "required": true
+    },
+    {
+      "program": "FME_KY_THUAT_CO_KHI_2020",
+      "block": "K01",
+      "required": true
+    },
+    {
+      "program": "FME_KY_THUAT_CO_KHI_2024",
+      "block": "K12",
+      "required": true
+    },
+    {
+      "program": "FME_KY_THUAT_CO_KHI_2022",
+      "block": "K09",
+      "required": true
+    },
+    {
+      "program": "FME_KY_THUAT_CO_KHI_2021",
+      "block": "K09",
+      "required": true
+    },
+    {
+      "program": "FME_KY_THUAT_CO_KHI_2019",
+      "block": "K01",
+      "required": true
+    }
+  ],
+  "parts": [
+    "theory"
+  ],
+  "related": [],
+  "note": "Nhập từ nguồn công khai (truy cập 03/10/2026).",
+  "updated": "2026-10-04"
+}
