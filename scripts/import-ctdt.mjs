@@ -171,6 +171,8 @@ const VARIANT_TYPE = new Map([
   ...TYPES.filter((t) => t !== 'CQ').map((t) => [PROGRAM_TYPES[t].vi, t]),
 ]);
 function legacyType(p) {
+  // Ngành tuyển sinh đã có type (import-research) thì dùng type; trùng với cách suy từ variant.
+  if (p.type) return p.type;
   if (p.variant) return VARIANT_TYPE.get(p.variant) || null;
   return nameKey(p.name).startsWith('song nganh') ? 'SN' : 'CQ';
 }
