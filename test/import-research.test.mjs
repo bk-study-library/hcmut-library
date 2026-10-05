@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
-import { importResearch, readResearch, programCode, parseBlockName, admissionType } from '../scripts/import-research.mjs';
+import { importResearch, readResearch, programCode, parseBlockName } from '../scripts/import-research.mjs';
 import { run } from '../scripts/validate.mjs';
 import { loadRepo, TOOL_ROOT } from '../scripts/lib/repo.mjs';
 import { FIXTURES, readJson, writeJson } from './helpers.mjs';
@@ -232,15 +232,4 @@ test('danh mục thật: điều kiện tốt nghiệp chung thuộc Môn chung 
     assert.equal(rule.verified, false, id);
   }
   for (const code of ['FRA_GC', 'ENG_GC', 'ENG_GC_600', 'CCGDTC', 'SA4003']) assert.equal(repo.faculties.prefixes.find((h) => new RegExp(h.pattern).test(code))?.faculty, 'chung', code);
-});
-
-test('admissionType: loại của ngành tuyển sinh theo mã thư viện; liên kết không có loại trên Sổ tay', () => {
-  assert.equal(admissionType('standard'), 'CQ');
-  assert.equal(admissionType('day-va-hoc-bang-tieng-anh (English; formerly CLC)'), 'CTTA');
-  assert.equal(admissionType('tien-tien (English)'), 'CTTT');
-  assert.equal(admissionType('dinh-huong-nhat-ban'), 'DHNB');
-  assert.equal(admissionType('chuyen-tiep-quoc-te'), 'CTQT');
-  assert.equal(admissionType('pfiev'), 'PFIEV');
-  assert.equal(admissionType('lien-ket (UTS degree)'), null);
-  assert.equal(admissionType(undefined), null);
 });

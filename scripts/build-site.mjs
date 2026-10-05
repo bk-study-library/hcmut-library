@@ -11,7 +11,8 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { loadRepo, buildIndex, serializeIndex, TOOL_ROOT } from './lib/repo.mjs';
-import { EXAM_KINDS, TYPES, TYPE_ORDER, PARTS, STATUS, REPO, REPO_URL, SITE_URL, issueUrl, formatSize, formatBook, PROGRAM_TYPES, programTypeInfo, BLOCK_KINDS, DEGREES, LEVELS, DEFAULT_LEVEL, POSTGRAD_LEVELS, majorKey, isPostgrad, isPostgradCourse, courseLevels, fileFormat, DOC_LANGS } from './lib/labels.mjs';
+import { PROGRAM_TYPES, TYPE_CODES, programTypeInfo } from './lib/program-types.mjs';
+import { EXAM_KINDS, TYPES, TYPE_ORDER, PARTS, STATUS, REPO, REPO_URL, SITE_URL, issueUrl, formatSize, formatBook, BLOCK_KINDS, DEGREES, LEVELS, DEFAULT_LEVEL, POSTGRAD_LEVELS, majorKey, isPostgrad, isPostgradCourse, courseLevels, fileFormat, DOC_LANGS } from './lib/labels.mjs';
 import { previewTarget } from './lib/preview.mjs';
 import { S } from './lib/strings.mjs';
 import { buildV1, serializeV1 } from './lib/v1.mjs';
@@ -57,7 +58,7 @@ function readSiteConfig(root) {
     // trang khoa khác tách "Môn chung khoa dùng" khỏi "Môn của khoa".
     sharedFaculty: typeof cfg.sharedFaculty === 'string' ? cfg.sharedFaculty : '',
     // Thứ tự loại chương trình trên badge, bộ chọn loại; loại đầu là loại chính của ngành.
-    programTypeOrder: Array.isArray(cfg.programTypeOrder) ? cfg.programTypeOrder.map(String) : Object.keys(PROGRAM_TYPES),
+    programTypeOrder: Array.isArray(cfg.programTypeOrder) ? cfg.programTypeOrder.map(String) : TYPE_CODES,
     // Từ bấy nhiêu mã cùng tên thì gộp thành một môn có trang chung mon/<slug>/ (site-src/assets/subject-core.js).
     sameNameGroupMin: Number.isInteger(cfg.sameNameGroupMin) && cfg.sameNameGroupMin >= 2 ? cfg.sameNameGroupMin : 2,
     // Dòng môn nhiều mã (ô tìm, form Gửi tài liệu): hiện tối đa bấy nhiêu mã, phần còn lại ghi +N.
@@ -489,7 +490,7 @@ function addProgramUrl(f, p) {
 // (CQ đại học và THCQ thạc sĩ); bậc chưa có tên chính thức thì bỏ.
 export function typeNotes(lang) {
   return Object.fromEntries(
-    Object.keys(PROGRAM_TYPES).map((type) => {
+    TYPE_CODES.map((type) => {
       const seen = new Map();
       for (const level of [DEFAULT_LEVEL, ...POSTGRAD_LEVELS]) {
         const info = programTypeInfo(type, level);

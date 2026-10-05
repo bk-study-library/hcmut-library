@@ -25,33 +25,9 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { TOOL_ROOT } from './lib/repo.mjs';
 import { inferParts, keptProgramFields } from './import-seed.mjs';
+import { researchType } from './lib/program-types.mjs';
 
 const CODE_RE = /^[A-Z0-9_]{3,12}$/;
-
-// Nhãn tiếng Việt cho loại chương trình (trường type của research). Loại thường thì không ghi.
-// Cột cuối: mã loại của thư viện (PROGRAM_TYPES) ghi vào type của ngành tuyển sinh; null là loại không có
-// trên Sổ tay HCMUT (Liên kết quốc tế), giữ không có type. Xem docs/ten-chuong-trinh.md.
-const VARIANTS = [
-  [/^tien-tien/, 'Chương trình tiên tiến', 'TT', 'CTTT'],
-  [/^pfiev/, 'PFIEV', 'PFIEV', 'PFIEV'],
-  [/^day-va-hoc-bang-tieng-anh/, 'Dạy và học bằng tiếng Anh', 'TA', 'CTTA'],
-  [/^dinh-huong-nhat-ban/, 'Định hướng Nhật Bản', 'NB', 'DHNB'],
-  [/^chuyen-tiep-quoc-te/, 'Chuyển tiếp quốc tế', 'CTQT', 'CTQT'],
-  [/^lien-ket/, 'Liên kết quốc tế', 'LK', null],
-];
-
-function variantOf(type) {
-  const v = VARIANTS.find(([re]) => re.test(type || ''));
-  return v ? { label: v[1], short: v[2] } : null;
-}
-
-// Mã loại của ngành tuyển sinh (mã tuyển sinh: 1xx tiêu chuẩn, 2xx dạy bằng tiếng Anh, tiên tiến, định hướng
-// Nhật Bản, 3xx chuyển tiếp quốc tế, 4xx liên kết). "standard" là chương trình tiêu chuẩn, mã CQ.
-export function admissionType(type) {
-  if (/^standard/.test(type || '')) return 'CQ';
-  const v = VARIANTS.find(([re]) => re.test(type || ''));
-  return v ? v[3] : null;
-}
 
 const up = (s) => String(s).toUpperCase().replace(/[^A-Z0-9]+/g, '_').replace(/^_+|_+$/g, '');
 
@@ -61,8 +37,8 @@ export function programCode(p) {
   const parts = p.id.split(':').slice(1);
   const adm = parts[0].match(/^admissions-([0-9]{4})$/);
   if (adm) {
-    const v = variantOf(p.type);
-    return [up(p.faculty || 'unknown'), 'TS', parts[1], adm[1], v ? v.short : null].filter(Boolean).join('_');
+    const v = researchType(p.type);
+    return [up(p.faculty || 'unknown'), 'TS', parts[1], adm[1], v ? v.idSuffix : null].filter(Boolean).join('_');
   }
   const [fac, slug, ...rest] = parts;
   const year = /^[0-9]{4}$/.test(rest[0] || '') ? rest.shift() : null;
@@ -259,7 +235,7 @@ export function importResearch(research, outRoot, { date, faculties, log = () =>
     if (programCodes.has(code)) throw new Error(`trùng mã chương trình ${code} (${p.id})`);
     programCodes.add(code);
     const year = p.cohort_year != null ? Number(p.cohort_year) : null;
-    const v = variantOf(p.type);
+    const v = researchType(p.type);
     const blocks = [];
     (p.blocks || []).forEach((b, i) => {
       const parsed = parseBlockName(b.name);
@@ -297,7 +273,11 @@ export function importResearch(research, outRoot, { date, faculties, log = () =>
     const kept = keptProgramFields(path.join(programsDir, `${code}.json`));
     // Bản chép từ MyBK là nguồn nháp: có trang riêng nhưng không hiện trong danh sách chương trình.
     const listed = 'listed' in kept ? kept.listed : undefined;
-    const admType = p.id.startsWith('hcmut:admissions') ? admissionType(p.type) : null;
+    // type: ngành tuyển sinh luôn có (mã tuyển sinh: 1xx tiêu chuẩn, 2xx tiếng Anh, tiên tiến, Nhật Bản, 3xx chuyển
+    // tiếp quốc tế, 4xx liên kết); CTĐT khác chỉ khi nguồn ghi rõ loại đặc biệt (có đuôi id), vì "standard" của
+    // file khoa chưa chắc là chương trình tiêu chuẩn. Liên kết không có trên Sổ tay nên không có type.
+    const admission = p.id.startsWith('hcmut:admissions');
+    const admType = v && (admission || v.idSuffix) ? v.type : null;
     programs.push({
       $schema: '../../schema/program.schema.json',
       code,
@@ -306,7 +286,7 @@ export function importResearch(research, outRoot, { date, faculties, log = () =>
       faculty,
       ...(year != null ? { year: String(year) } : {}),
       ...(admType ? { type: admType } : {}),
-      ...(v ? { variant: v.label } : {}),
+      ...(v && v.label ? { variant: v.label } : {}),
       ...(listed !== undefined ? { listed } : {}),
       ...(src ? { source: src } : {}),
       ...(kept.ctdtUrl ? { ctdtUrl: kept.ctdtUrl } : {}),

@@ -31,7 +31,8 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { TOOL_ROOT, officialPdfUrl } from './lib/repo.mjs';
-import { PROGRAM_TYPES, BLOCK_KINDS, DEFAULT_LEVEL, isPostgradCourse } from './lib/labels.mjs';
+import { BLOCK_KINDS, DEFAULT_LEVEL, isPostgradCourse } from './lib/labels.mjs';
+import { PROGRAM_TYPES, TYPE_CODES, typeFromVariant } from './lib/program-types.mjs';
 import { clean } from './import-research.mjs';
 import { inferParts } from './import-seed.mjs';
 // Vòng import với import-sdh.mjs an toàn: hai module chỉ dùng hàm của nhau khi chạy, không lúc nạp.
@@ -39,7 +40,7 @@ import { importSdh, readSdh } from './import-sdh.mjs';
 
 const CODE_RE = /^[A-Z0-9_]{3,12}$/;
 const MAJOR_RE = /^[0-9][0-9A-Za-z+]{3,31}$/;
-const TYPES = Object.keys(PROGRAM_TYPES);
+const TYPES = TYPE_CODES;
 const KINDS = Object.keys(BLOCK_KINDS);
 const DEGREES = new Set(['cu-nhan', 'ky-su', 'ky-su-chuyen-sau', 'thac-si', 'tien-si']);
 const KEPT_PROGRAM = ['listed', 'ctdtUrl', 'planUrl', 'reviewNote'];
@@ -161,19 +162,11 @@ export function readSite(root) {
   return JSON.parse(fs.readFileSync(p, 'utf8'));
 }
 
-// Loại của chương trình cũ chưa gắn ngành, suy từ nhãn variant và tên.
-const VARIANT_TYPE = new Map([
-  ['Chương trình tiên tiến', 'CTTT'],
-  ['PFIEV', 'PFIEV'],
-  ['Dạy và học bằng tiếng Anh', 'CTTA'],
-  ['Định hướng Nhật Bản', 'DHNB'],
-  ['Chuyển tiếp quốc tế', 'CTQT'],
-  ...TYPES.filter((t) => t !== 'CQ').map((t) => [PROGRAM_TYPES[t].vi, t]),
-]);
+// Loại của chương trình cũ chưa gắn ngành: type có sẵn (ngành tuyển sinh), không thì suy từ variant, không có
+// variant thì theo tên (song ngành) hay tiêu chuẩn.
 function legacyType(p) {
-  // Ngành tuyển sinh đã có type (import-research) thì dùng type; trùng với cách suy từ variant.
   if (p.type) return p.type;
-  if (p.variant) return VARIANT_TYPE.get(p.variant) || null;
+  if (p.variant) return typeFromVariant(p.variant);
   return nameKey(p.name).startsWith('song nganh') ? 'SN' : 'CQ';
 }
 
@@ -485,7 +478,7 @@ export function importCtdt(data, outRoot, { date, faculties, log = () => {} }) {
       level: DEFAULT_LEVEL,
       degree: DEGREES.has(p.degree) ? p.degree : undefined,
       totalCredits: Number.isInteger(p.totalCredits) && p.totalCredits > 0 ? p.totalCredits : undefined,
-      variant: p.type !== 'CQ' ? PROGRAM_TYPES[p.type].vi : undefined,
+      variant: PROGRAM_TYPES[p.type].variant ?? undefined,
       listed: kept.listed,
       note,
       reviewNote: kept.reviewNote,
