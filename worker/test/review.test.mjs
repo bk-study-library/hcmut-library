@@ -1,7 +1,8 @@
 import { describe, it, expect, beforeAll, beforeEach } from 'vitest';
 import { env } from 'cloudflare:workers';
 import policy from '../../catalog/policy.json';
-import { createHandler, sweep } from '../src/index.mjs';
+import { createHandler } from '../src/index.mjs';
+import { sweep } from '../src/cron.mjs';
 import { checksGreen, decisionComment, parseDecisions, REVIEW_MESSAGES, reviewKey } from '../src/review.mjs';
 import { notifyMessage, reviewFiles } from '../src/notify.mjs';
 

@@ -47,7 +47,7 @@ const MESSAGES = {
   replacesNew: 'Môn mới chưa có tài liệu nào để thay. Bỏ ô bản cập nhật.',
 };
 
-// Email nhận kết quả duyệt: dạng đơn giản, đủ để gửi; không lưu vào repo (index.mjs giữ trong kho cách ly).
+// Email nhận kết quả duyệt: dạng đơn giản, đủ để gửi; không lưu vào repo (routes/submit.mjs giữ trong bucket quarantine).
 const EMAIL = /^[^\s@<>()",;:]+@[A-Za-z0-9-]+(\.[A-Za-z0-9-]+)+$/;
 const EMAIL_MAX = 254;
 // Tài liệu được thay: <ID môn>/<id tài liệu>, như trường replaces của schema mục tài liệu.

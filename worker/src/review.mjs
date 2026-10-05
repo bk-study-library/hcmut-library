@@ -1,7 +1,7 @@
 // Duyệt ngay trên trang /xem-duyet/<mã>: người duyệt chọn Duyệt hay Không duyệt cho từng file của
 // bài (đợt gửi), ghi lý do khi không duyệt, rồi bấm Hoàn tất. Worker ghi quyết định vào bucket quarantine
 // (review/<mã>.json), bỏ file không duyệt khỏi PR và merge hay đóng PR thay người duyệt.
-// Phần này là hàm thuần để test; gọi GitHub và R2 nằm ở index.mjs.
+// Phần này là hàm thuần để test; gọi GitHub và R2 nằm ở routes/review.mjs.
 
 export const reviewKey = (code) => `review/${code}.json`;
 
