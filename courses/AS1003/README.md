@@ -14,7 +14,15 @@
 
 ## Tài liệu
 
-Chưa có tài liệu.
+### Slide bài giảng
+
+- **Chuong 1 Cac khai niem co ban He tien de tinh hoc BK** (vi, CC-BY-SA-4.0): [AS1003_lecture-slides_chuong-1-cac-khai-niem-co-ban-he-tien-de-tinh-hoc-bk.pdf, 3.7 MB](https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_lecture-slides_chuong-1-cac-khai-niem-co-ban-he-tien-de-tinh-hoc-bk.pdf)
+- **Chuong 2 Thu gon he luc Dieu kien can bang cua he luc** (vi, CC-BY-SA-4.0): [AS1003_lecture-slides_chuong-2-thu-gon-he-luc-dieu-kien-can-bang-cua-he-luc.pdf, 10.2 MB](https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_lecture-slides_chuong-2-thu-gon-he-luc-dieu-kien-can-bang-cua-he-luc.pdf)
+- **Chuong 3 Bai toan Can bang vat ran He vat ran** (vi, CC-BY-SA-4.0): [AS1003_lecture-slides_chuong-3-bai-toan-can-bang-vat-ran-he-vat-ran.pdf, 4.9 MB](https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_lecture-slides_chuong-3-bai-toan-can-bang-vat-ran-he-vat-ran.pdf)
+- **Chuong 4 Bai toan gian** (vi, CC-BY-SA-4.0): [AS1003_lecture-slides_chuong-4-bai-toan-gian.pdf, 8.5 MB](https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_lecture-slides_chuong-4-bai-toan-gian.pdf)
+- **Chuong 5 Bai toan ma sat** (vi, CC-BY-SA-4.0): [AS1003_lecture-slides_chuong-5-bai-toan-ma-sat.pdf, 3.4 MB](https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_lecture-slides_chuong-5-bai-toan-ma-sat.pdf)
+- **Chuong 6 Trong tam cua vat ran** (vi, CC-BY-SA-4.0): [AS1003_lecture-slides_chuong-6-trong-tam-cua-vat-ran.pdf, 8.8 MB](https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_lecture-slides_chuong-6-trong-tam-cua-vat-ran.pdf)
+- **Chuong 7 Dong hoc diem** (vi, CC-BY-SA-4.0): [AS1003_lecture-slides_chuong-7-dong-hoc-diem.pdf, 5.0 MB](https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_lecture-slides_chuong-7-dong-hoc-diem.pdf)
 
 ## Link
 
