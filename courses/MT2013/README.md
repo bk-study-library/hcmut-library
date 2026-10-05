@@ -14,7 +14,9 @@
 
 ## Tài liệu
 
-Chưa có tài liệu.
+### Đề cũ
+
+- **Đề thi giữa kỳ HK242** (vi, CC-BY-SA-4.0): [MT2013_exam-past_de-thi-giua-ky-hk242.pdf, 217 KB](https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/MT2013_exam-past_de-thi-giua-ky-hk242.pdf)
 
 ## Link
 

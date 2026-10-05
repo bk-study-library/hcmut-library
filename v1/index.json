@@ -4,7 +4,7 @@
   "site": "https://bk-study-library.github.io/hcmut-library/",
   "counts": {
     "courses": 3796,
-    "items": 14
+    "items": 15
   },
   "faculties": [
     {
@@ -53106,7 +53106,7 @@
       "aliases": [],
       "oldNames": [],
       "status": "active",
-      "items": 0,
+      "items": 1,
       "url": "https://bk-study-library.github.io/hcmut-library/course/MT2013/",
       "detail": "courses/MT2013.json"
     },
