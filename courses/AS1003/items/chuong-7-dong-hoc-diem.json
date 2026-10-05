@@ -1,0 +1,23 @@
+{
+  "$schema": "../../../schema/item.schema.json",
+  "id": "chuong-7-dong-hoc-diem",
+  "course": "AS1003",
+  "type": "lecture-slides",
+  "title": "Chuong 7 Dong hoc diem",
+  "lang": "vi",
+  "license": "CC-BY-SA-4.0",
+  "origin": "self-made",
+  "added": "2026-10-05",
+  "removed": false,
+  "teacher": "Nguyễn Hữu Hào",
+  "files": [
+    {
+      "name": "AS1003_lecture-slides_chuong-7-dong-hoc-diem.pdf",
+      "size": 5173611,
+      "sha256": "03a0a0503f327548df40ddc75d1aff666eb29d889fd721da0e9d50bbca2927dd",
+      "mime": "application/pdf",
+      "quarantine": "pending/gzPvE1QIDp/AS1003_lecture-slides_chuong-7-dong-hoc-diem.pdf",
+      "uploadSha256": "03a0a0503f327548df40ddc75d1aff666eb29d889fd721da0e9d50bbca2927dd"
+    }
+  ]
+}
