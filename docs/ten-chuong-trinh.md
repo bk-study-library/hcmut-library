@@ -10,6 +10,8 @@ Trường tách hai khái niệm (Quy định về học vụ và đào tạo b�
 Hệ quả cho thư viện:
 
 - Mã CQ (giá trị `program=CQ` trên Sổ tay) gần như chắc là viết tắt của "chính quy", nhưng nhãn Sổ tay là "Chương trình Đại học tiêu chuẩn". Chưa có văn bản ghi thẳng "CQ = tiêu chuẩn", nên web hiện mã CQ và tên theo Sổ tay.
+- "Chính quy" và "tiêu chuẩn": chính quy là hình thức đào tạo; chương trình học theo hình thức chính quy mà không thuộc chương trình đặc biệt nào, văn bản 2021, 2022 gọi là "chương trình chính quy đại trà", văn bản 2026 (QĐ 1259/QĐ-ĐHBK) gọi là "chương trình tiêu chuẩn". Ghi chú của mã CQ trên web nêu cả hai.
+- Tên tiếng Việt là "vừa làm vừa học", không phải "vừa học vừa làm": 12 văn bản quy chế của trường dùng "vừa làm vừa học" 119 lần, không lần nào dùng "vừa học vừa làm"; Thông tư 08/2021/TT-BGDĐT (quy chế đào tạo trình độ đại học) và trang BKSI cũng dùng "vừa làm vừa học". Cách nói "vừa học vừa làm" chỉ gặp ở trang không chính thức.
 - VLVH là hình thức đào tạo, không phải chương trình: Sổ tay không có mục VLVH, và VLVH học cùng CTĐT với chính quy (chuẩn ngoại ngữ riêng). Viết tắt VLVH có trong bảng ký hiệu của bản hợp nhất 2022. Chưa có tên tiếng Anh chính thức, nên để nguyên VLVH.
 - Đổi tên trong quy chế: QĐ 1259 và 1260/QĐ-ĐHBK (16/3/2026) thay "Chương trình Chất lượng cao" bằng "Chương trình Dạy và Học bằng tiếng Anh"; QĐ 2749/QĐ-ĐHBK (27/5/2026) có "Chương trình Định hướng Nhật Bản" (trước là Chất lượng cao tăng cường tiếng Nhật). Tuyển sinh dùng tên mới sớm hơn (thông tin tuyển sinh 2023 đã ghi "Chương trình giảng dạy bằng tiếng Anh" và "Chương trình định hướng Nhật Bản").
 
