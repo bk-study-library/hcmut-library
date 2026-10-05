@@ -1,5 +1,5 @@
 node_modules/
 *.log
-site/
+/site/
 worker/node_modules/
 worker/.wrangler/

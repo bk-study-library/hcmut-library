@@ -11,29 +11,24 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { loadRepo, buildIndex, serializeIndex, TOOL_ROOT } from './lib/repo.mjs';
-import { PROGRAM_TYPES, TYPE_CODES, programTypeInfo } from './lib/program-types.mjs';
-import { EXAM_KINDS, TYPES, TYPE_ORDER, PARTS, STATUS, REPO, REPO_URL, SITE_URL, issueUrl, formatSize, formatBook, BLOCK_KINDS, DEGREES, LEVELS, DEFAULT_LEVEL, POSTGRAD_LEVELS, majorKey, isPostgrad, isPostgradCourse, courseLevels, fileFormat, DOC_LANGS } from './lib/labels.mjs';
-import { previewTarget } from './lib/preview.mjs';
+import { TYPE_CODES } from './lib/program-types.mjs';
+import { TYPES, TYPE_ORDER, REPO_URL, SITE_URL, issueUrl, DEGREES, LEVELS, DEFAULT_LEVEL, POSTGRAD_LEVELS, majorKey, isPostgrad, isPostgradCourse, courseLevels } from './lib/labels.mjs';
 import { S } from './lib/strings.mjs';
 import { buildV1, serializeV1 } from './lib/v1.mjs';
 import { loadPolicy } from './lib/policy.mjs';
-import { extensionsFor, restrictedExtensions } from './lib/extensions.mjs';
 import { subjectIndex } from './lib/subject.mjs';
 import { programLabel, courseTypes } from './lib/program-label.mjs';
-
-const SRC = path.join(TOOL_ROOT, 'site-src');
-let GENERATED = null;
-
-const esc = (s) =>
-  String(s ?? '')
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&#39;');
+import { SRC, state } from './site/state.mjs';
+import { esc, jsonInScript, btn, absUrl, pagePath, relPrefix } from './site/html.mjs';
+import { uploadPage } from './site/upload-page.mjs';
+import { pngSize, sitemapXml, redirectPage, layout } from './site/layout.mjs';
+import { docIndex, searchCourses, docFilterValues, isListed } from './site/data.mjs';
+import { renderItem, recentItems, recentSection } from './site/items.mjs';
+import { itemsCountOf, courseTable, facultyName } from './site/courses.mjs';
+import { blockAnchor, programCourseCount, programName, addProgramUrl, typeNotes, typeTagLink, programTypeTag, noCoursesShort, majorTitle, programLi, byYearDesc, programsByYear, officialProgramLinks, typeLabel, typeRank, cohortLabel, hasSemesters, blocksAreSemesters, mainProgram, majorPickers, roadmapHtml, blocksHtml, majorList } from './site/programs.mjs';
 
 // Cấu hình của repo cần dựng: dùng file trong root nếu có, không thì dùng của công cụ (repo mẫu trong test không có).
-function readSiteConfig(root) {
+export function readSiteConfig(root) {
   const own = path.join(root, 'catalog', 'site.json');
   const p = fs.existsSync(own) ? own : path.join(TOOL_ROOT, 'catalog', 'site.json');
   const cfg = JSON.parse(fs.readFileSync(p, 'utf8'));
@@ -70,784 +65,6 @@ function readSiteConfig(root) {
   };
 }
 
-// Mẫu mã môn hiện tại (code, không có hậu tố năm) trong schema môn: form kiểm mã môn mới theo đúng mẫu này.
-function courseCodePattern() {
-  return JSON.parse(fs.readFileSync(path.join(TOOL_ROOT, 'schema', 'course.schema.json'), 'utf8')).properties.code.pattern;
-}
-
-// Địa chỉ tuyệt đối của một trang, theo SITE_URL; bỏ index.html ở cuối.
-export const absUrl = (p) => SITE_URL + String(p).replace(/(^|\/)index\.html$/, '$1');
-
-// Cỡ ảnh PNG đọc từ khối IHDR, để ghi og:image:width, og:image:height. Không phải PNG thì null.
-export function pngSize(buf) {
-  if (!buf || buf.length < 24 || buf.toString('latin1', 1, 4) !== 'PNG' || buf.toString('latin1', 12, 16) !== 'IHDR') return null;
-  return { width: buf.readUInt32BE(16), height: buf.readUInt32BE(20) };
-}
-
-// Cắt chữ dài ở ranh giới từ, thêm "..." (ba dấu chấm thường).
-export function truncate(s, max) {
-  const t = String(s || '').replace(/\s+/g, ' ').trim();
-  if (t.length <= max) return t;
-  const cut = t.slice(0, max - 3);
-  const at = cut.lastIndexOf(' ');
-  return `${(at > max / 2 ? cut.slice(0, at) : cut).replace(/[\s,.;:]+$/, '')}...`;
-}
-
-// Danh sách tài liệu cho ô tìm trang chủ (chỉ web dùng, không thuộc hợp đồng v1): mục chưa gỡ,
-// mới thêm trước. url là link tới mục trên trang môn (trang môn theo tên nếu mã thuộc môn nhiều mã), tính
-// từ gốc site (bản tiếng Anh thêm en/). courseName là tên môn theo tên khi có.
-//   pageOf(id) -> { path, name, nameEn, anchor(it) }; không truyền thì là trang course/<ID>/ của mã đó.
-export function docIndex(items, courses, { descriptionMax = 200, pageOf = null } = {}) {
-  const rows = [];
-  for (const it of items) {
-    if (it.removed) continue;
-    const c = courses.get(it.course);
-    if (!c) continue;
-    const page = pageOf ? pageOf(c.id) : { path: `course/${c.id}/`, name: c.name, nameEn: c.nameEn, anchor: (x) => x.id };
-    const row = { id: it.id, course: c.id, code: c.code, courseName: page.name };
-    if (page.nameEn) row.courseNameEn = page.nameEn;
-    row.faculty = c.faculty;
-    row.title = it.title;
-    if (it.description) row.description = truncate(it.description, descriptionMax);
-    row.type = it.type;
-    for (const k of ['term', 'examKind', 'chapter', 'teacher']) if (it[k]) row[k] = it[k];
-    // Bậc của môn, chỉ ghi khi khác mặc định (đại học), cho ô lọc Bậc.
-    if (Array.isArray(c.levels) && c.levels.length && !(c.levels.length === 1 && c.levels[0] === DEFAULT_LEVEL)) row.levels = c.levels;
-    row.added = it.added;
-    row.url = `${page.path}#${page.anchor(it)}`;
-    rows.push(row);
-  }
-  return rows.sort((a, b) => b.added.localeCompare(a.added) || a.course.localeCompare(b.course) || a.id.localeCompare(b.id));
-}
-
-// Danh sách môn cho ô tìm trang chủ và form Gửi tài liệu (chỉ web dùng, không thuộc hợp đồng v1): cùng dạng
-// với v1/index.json (search-core.js đọc được như nhau) nhưng bỏ trường ô tìm không dùng (url, detail, credits,
-// replacedBy), bỏ giá trị mặc định (aliases, oldNames rỗng; status active), để tải nhẹ hơn. progs: số chương
-// trình có mã này, để form chọn mã mặc định của môn nhiều mã (subject-core.js pickCode). Môn theo tên không
-// ghi ở đây: trình duyệt tự gộp bằng subject-core.js, cùng quy tắc với build.
-// extra: Map id -> { prog, progEn, types }: nhãn chương trình của mã (scripts/lib/program-label.mjs) và loại
-// chương trình có mã này, cho ô lọc Hệ.
-export function searchCourses(v1Index, progs = new Map(), extra = new Map()) {
-  return {
-    faculties: v1Index.faculties,
-    courses: v1Index.courses.map((c) => {
-      const row = { id: c.id, code: c.code, name: c.name };
-      if (c.nameEn) row.nameEn = c.nameEn;
-      row.faculty = c.faculty;
-      if (c.levels) row.levels = c.levels;
-      if (c.aliases && c.aliases.length) row.aliases = c.aliases;
-      if (c.oldNames && c.oldNames.length) row.oldNames = c.oldNames;
-      if (c.status !== 'active') row.status = c.status;
-      if (c.items) row.items = c.items;
-      if (c.teachers) row.teachers = c.teachers;
-      if (progs.get(c.id)) row.progs = progs.get(c.id);
-      const x = extra.get(c.id);
-      if (x && x.prog) row.prog = x.prog;
-      if (x && x.progEn && x.progEn !== x.prog) row.progEn = x.progEn;
-      if (x && x.types && x.types.length) row.types = x.types;
-      return row;
-    }),
-  };
-}
-
-// sitemap.xml: địa chỉ tuyệt đối, xếp theo chữ; lastmod là ngày dữ liệu của trang nếu có.
-export function sitemapXml(pages) {
-  const rows = pages
-    .slice()
-    .sort((a, b) => (a.loc < b.loc ? -1 : a.loc > b.loc ? 1 : 0))
-    .map((p) => `  <url><loc>${esc(p.loc)}</loc>${p.lastmod ? `<lastmod>${p.lastmod}</lastmod>` : ''}</url>`);
-  return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${rows.join('\n')}\n</urlset>\n`;
-}
-
-// Giá trị cho ô lọc tài liệu, chỉ gồm giá trị có trong danh sách: loại theo TYPE_ORDER,
-// học kỳ mới nhất trước, kỳ thi theo thứ tự của EXAM_KINDS.
-export function docFilterValues(docs) {
-  const has = (k) => new Set(docs.map((d) => d[k]).filter(Boolean));
-  const types = has('type');
-  const kinds = has('examKind');
-  return {
-    types: TYPE_ORDER.filter((x) => types.has(x)),
-    terms: [...has('term')].sort().reverse(),
-    examKinds: Object.keys(EXAM_KINDS).filter((x) => kinds.has(x)),
-  };
-}
-
-// Chương trình có listed: false (bản nháp nguồn) vẫn có trang riêng nhưng không vào danh sách.
-export const isListed = (p) => p.listed !== false;
-
-// Link tìm sách ở nguồn hợp pháp, theo catalog/site.json (bookSources). Có ISBN và nguồn có mẫu {isbn} thì
-// tra theo ISBN; không thì tìm theo tên sách và tác giả đầu tiên ({q}); không có mẫu nào thì dùng url.
-export function bookLinks(book, sources, lang) {
-  const q = encodeURIComponent([book.title, (book.authors || [])[0]].filter(Boolean).join(' '));
-  return sources.map((s) => {
-    let href = s.url || '';
-    if (book.isbn && s.isbn) href = s.isbn.replace('{isbn}', encodeURIComponent(book.isbn));
-    else if (s.search) href = s.search.replace('{q}', q);
-    return { label: (lang === 'en' && s.labelEn) || s.label, href };
-  }).filter((l) => l.label && /^https:\/\//.test(l.href));
-}
-
-const jsonInScript = (o) => JSON.stringify(o).replace(/</g, '\\u003c');
-
-// Trang Gửi tài liệu (chỉ tiếng Việt): đổ số liệu từ policy.json và site.json vào mẫu.
-function uploadPage({ policy, site, root, raw, t }) {
-  const opt = (value, label) => `    <option value="${esc(value)}">${esc(label)}</option>`;
-  const exts = Object.keys(policy.extensions);
-  const open = Boolean(site.uploadEndpoint);
-  const msg = t.uploadMsg;
-  const formTypes = policy.openTypes.filter((x) => x !== 'link');
-  // Đợt gửi nhiều file: thiếu số trong policy thì một file một lần như cũ.
-  const batchFiles = Number.isInteger(policy.batchMaxFiles) && policy.batchMaxFiles > 0 ? policy.batchMaxFiles : 1;
-  const batchBytes = batchFiles > 1 && Number.isInteger(policy.batchMaxBytes) ? policy.batchMaxBytes : policy.maxFileBytes;
-  const config = {
-    maxBytes: policy.maxFileBytes,
-    batchFiles,
-    batchBytes,
-    batchSize: formatSize(batchBytes),
-    extensions: exts,
-    // Đuôi nhận theo từng loại (extensions[].types, quizExtensions): form lọc ô chọn file theo loại.
-    byType: Object.fromEntries(formTypes.map((x) => [x, extensionsFor(policy, x)])),
-    msg: {
-      ...msg,
-      fileExt: msg.fileExt(exts.join(', ')),
-      fileSize: msg.fileSize(formatSize(policy.maxFileBytes)),
-      batchCount: msg.batchCount(batchFiles),
-      batchSize: msg.batchSize(formatSize(batchBytes)),
-      batchLimit: msg.batchLimit(batchFiles, formatSize(batchBytes)),
-      newNameLong: msg.newNameLong(policy.fields.courseNameMax),
-    },
-    // Môn mới gửi kèm bài: mẫu mã từ schema, giới hạn tên từ policy, khoảng gợi ý mã gần từ site.json.
-    newCourse: { codePattern: courseCodePattern(), nameMax: policy.fields.courseNameMax, nearSpan: site.nearCodeSpan },
-    // Môn cùng tên gộp thành một dòng, cùng ngưỡng với ô tìm trang chủ.
-    sameName: { groupMin: site.sameNameGroupMin, chipsMax: site.sameNameChipsMax },
-  };
-  // api.js của Cloudflare Turnstile là script ngoài duy nhất của site: chống bot gửi tự động vào form,
-  // nên chỉ nạp ở trang này và chỉ khi form đã mở.
-  const scripts = [
-    `<script type="application/json" id="upload-config">${jsonInScript(config)}</script>`,
-    `<script src="${root}assets/search-core.js" defer></script>`,
-    `<script src="${root}assets/subject-core.js" defer></script>`,
-    `<script src="${root}assets/upload-core.js" defer></script>`,
-    `<script src="${root}assets/upload.js" defer></script>`,
-    open ? '<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>' : '',
-  ]
-    .filter(Boolean)
-    .join('\n');
-  const parts = {
-    closed: open ? '' : `<p class="note warn" role="note">${esc(t.uploadClosed)}</p>`,
-    disabled: open ? '' : ' disabled',
-    endpoint: esc(site.uploadEndpoint),
-    sitekey: esc(site.turnstileSiteKey),
-    // Loại "link" đi theo form Issue "Thêm link", không qua form này.
-    types: formTypes.map((x) => opt(x, TYPES[x].vi)).join('\n'),
-    examKinds: policy.fields.examKinds.map((x) => opt(x, EXAM_KINDS[x] || x)).join('\n'),
-    ...Object.fromEntries(['titleMax', 'descriptionMax', 'chapterMax', 'teacherMax', 'displayNameMax', 'bookTitleMax', 'bookPublisherMax', 'courseNameMax'].map((k) => [k, String(policy.fields[k])])),
-    licenses: policy.selfMadeLicenses.map((x) => opt(x, x)).join('\n'),
-    accept: esc(exts.join(',')),
-    exts: esc(exts.join(', ')),
-    extNote: Object.entries(restrictedExtensions(policy))
-      .map(([ext, types]) => ` ${esc(t.uploadExtOnly(ext, types.map((x) => TYPES[x]?.vi ?? x).join(', ')))}`)
-      .join(''),
-    maxSize: esc(formatSize(policy.maxFileBytes)),
-    multiple: batchFiles > 1 ? ' multiple' : '',
-    batchNote: batchFiles > 1 ? ` ${esc(msg.batchLimit(batchFiles, formatSize(batchBytes)))} ${esc(msg.batchHint)}` : '',
-    teacherPlaceholder: esc(t.uploadTeacherPlaceholder),
-    scripts,
-  };
-  return raw
-    .replace(/\{\{upload:([a-zA-Z]+)\}\}/g, (_, k) => {
-      if (!(k in parts)) throw new Error(`gui-tai-lieu.html: không có chỗ điền upload:${k}`);
-      return parts[k];
-    })
-    .replace(/\{\{root\}\}/g, root);
-}
-
-const TURNSTILE_ORIGIN = 'https://challenges.cloudflare.com';
-
-// Content-Security-Policy của trang (thẻ meta, vì GitHub Pages không cho đặt header). Mọi trang chỉ
-// chạy script, CSS, ảnh của site. Riêng trang Gửi tài liệu khi form mở (upload: địa chỉ Worker từ
-// site.json): thêm script và khung Turnstile, và cho gửi tới gốc địa chỉ Worker.
-// Script JSON (type="application/json") không chạy nên CSP không chặn.
-export function cspFor({ upload = '' } = {}) {
-  const origin = upload && URL.canParse(upload) ? new URL(upload).origin : '';
-  const extra = (s) => (origin ? `${s} ${origin}` : s);
-  return [
-    "default-src 'self'",
-    `script-src 'self'${origin ? ` ${TURNSTILE_ORIGIN}` : ''}`,
-    "style-src 'self'",
-    "img-src 'self' data:",
-    extra("connect-src 'self'"),
-    ...(origin ? [`frame-src ${TURNSTILE_ORIGIN}`] : []),
-    "object-src 'none'",
-    "base-uri 'none'",
-    extra("form-action 'self'"),
-  ].join('; ');
-}
-
-const cspMeta = (opts) => `<meta http-equiv="Content-Security-Policy" content="${esc(cspFor(opts))}">`;
-
-// Trang chuyển hướng ngắn (mã môn cũ, mã thuộc môn nhiều mã, khóa khoa cũ): chuyển ngay, có link cho trình
-// duyệt tắt chuyển hướng. assets/redirect.js chuyển sớm hơn và giữ phần #id của link cũ (thẻ meta bỏ phần này).
-function redirectPage(write, here, target, canonical, lang, t, label, title = label) {
-  write(
-    here,
-    `<!doctype html><html lang="${lang}"><head><meta charset="utf-8">${cspMeta()}<meta http-equiv="refresh" content="0; url=${target}"><link rel="canonical" href="${esc(canonical)}"><title>${esc(title)}</title><script src="${relPrefix(here)}assets/redirect.js"></script></head><body><p>${esc(t.redirecting)} <a href="${target}">${esc(label)}</a>.</p></body></html>\n`,
-  );
-}
-
-// Đường dẫn trang, tính từ gốc site, không có "/" đầu. Bản tiếng Anh nằm dưới en/.
-const pagePath = (lang, p) => (lang === 'en' ? `en/${p}` : p);
-
-function relPrefix(fromPath) {
-  const depth = fromPath.split('/').length - 1;
-  return depth ? '../'.repeat(depth) : './';
-}
-
-// Thẻ cho máy tìm kiếm và khi chia sẻ link: canonical, hreflang (khi trang có đủ hai bản vi và en),
-// Open Graph, Twitter card. Mọi địa chỉ tuyệt đối theo SITE_URL. 404 không có canonical.
-function headMeta({ t, here, title, description, alt, pair, social, notFound }) {
-  const lines = [];
-  const url = absUrl(here);
-  if (!notFound) lines.push(`<link rel="canonical" href="${esc(url)}">`);
-  if (!notFound && alt && pair) {
-    const urls = { [t.lang]: url, [t.other]: absUrl(pagePath(t.other, alt)) };
-    for (const l of ['vi', 'en']) lines.push(`<link rel="alternate" hreflang="${l}" href="${esc(urls[l])}">`);
-    lines.push(`<link rel="alternate" hreflang="x-default" href="${esc(urls.vi)}">`);
-  }
-  const og = {
-    'og:type': 'website',
-    'og:site_name': t.siteName,
-    'og:title': title || t.siteName,
-    'og:description': description,
-    ...(notFound ? {} : { 'og:url': url }),
-    'og:locale': t.lang === 'en' ? 'en_US' : 'vi_VN',
-    ...(!notFound && alt && pair ? { 'og:locale:alternate': t.lang === 'en' ? 'vi_VN' : 'en_US' } : {}),
-  };
-  if (social) {
-    og['og:image'] = SITE_URL + social.path;
-    og['og:image:width'] = String(social.width);
-    og['og:image:height'] = String(social.height);
-    og['og:image:alt'] = t.socialImageAlt;
-  }
-  for (const [k, v] of Object.entries(og)) lines.push(`<meta property="${k}" content="${esc(v)}">`);
-  const tw = { 'twitter:card': social ? 'summary_large_image' : 'summary', 'twitter:title': og['og:title'], 'twitter:description': description };
-  if (social) {
-    tw['twitter:image'] = og['og:image'];
-    tw['twitter:image:alt'] = t.socialImageAlt;
-  }
-  for (const [k, v] of Object.entries(tw)) lines.push(`<meta name="${k}" content="${esc(v)}">`);
-  return lines.join('\n');
-}
-
-let SOCIAL = null;
-
-function layout({ t, path: here, title, description, body, crumbs = [], alt, base, upload = '', noindex = false, pair = true }) {
-  // base: dùng cho 404.html (đường dẫn tuyệt đối); còn lại dùng đường dẫn tương đối.
-  const root = base || relPrefix(here);
-  const desc = description || t.siteTag;
-  const notFound = Boolean(base);
-  const href = (lang, p) => root + pagePath(lang, p).replace(/index\.html$/, '');
-  const L = (p) => href(t.lang, p);
-  const altHref = alt ? href(t.other, alt) : href(t.other, '');
-  // Gửi tài liệu chỉ có bản tiếng Việt: trang tiếng Anh cũng trỏ về form này.
-  const current = here.replace(/^en\//, '').replace(/index\.html$/, '');
-  const nav = [
-    [L(''), '', t.nav.home],
-    [root + 'gui-tai-lieu/', 'gui-tai-lieu/', t.nav.send],
-    [L('review/'), 'review/', t.nav.review],
-    [L('takedown/'), 'takedown/', t.nav.takedown],
-  ];
-  const crumbHtml = crumbs.length
-    ? `<nav class="crumbs" aria-label="${esc(t.breadcrumb)}"><ol>${crumbs
-        .map(([p, label], i) => (i === crumbs.length - 1 ? `<li aria-current="page">${esc(label)}</li>` : `<li><a href="${L(p)}">${esc(label)}</a></li>`))
-        .join('')}</ol></nav>`
-    : '';
-  return `<!doctype html>
-<html lang="${t.lang}" data-root="${esc(root)}" data-lang-prefix="${t.lang === 'en' ? 'en/' : ''}">
-<head>
-<meta charset="utf-8">
-${cspMeta({ upload })}
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="color-scheme" content="light dark">
-<meta name="referrer" content="strict-origin-when-cross-origin">
-${noindex || notFound ? '<meta name="robots" content="noindex">\n' : ''}<title>${esc(title ? `${title} | ${t.siteName}` : t.siteName)}</title>
-<meta name="description" content="${esc(desc)}">
-${headMeta({ t, here, title, description: desc, alt, pair, social: SOCIAL, notFound })}
-<link rel="icon" href="${root}assets/favicon.svg" type="image/svg+xml">
-<link rel="icon" href="${root}assets/favicon-32.png" sizes="32x32" type="image/png">
-<link rel="apple-touch-icon" href="${root}assets/apple-touch-icon.png">
-<link rel="stylesheet" href="${root}assets/site.css">
-</head>
-<body>
-<a class="skip" href="#main">${esc(t.skip)}</a>
-<header class="top">
-  <div class="wrap top-in">
-    <a class="brand" href="${L('')}"><span class="brand-mark" aria-hidden="true">BK</span><span class="brand-text"><strong>${esc(t.siteName)}</strong><span>${esc(t.siteTag)}</span></span></a>
-    <nav class="nav" aria-label="${esc(t.nav.home)}">
-      <ul>${nav.map(([link, p, label]) => `<li><a href="${link}"${p === current ? ' aria-current="page"' : ''}>${esc(label)}</a></li>`).join('')}
-      <li><a href="${REPO_URL}" rel="noopener">${esc(t.nav.github)}</a></li>
-      <li><a class="lang" href="${altHref}" hreflang="${t.other}" lang="${t.other}">${esc(t.otherName)}</a></li></ul>
-    </nav>
-  </div>
-</header>
-<main id="main" class="wrap" tabindex="-1">
-${crumbHtml}
-${body}
-</main>
-<footer class="foot">
-  <div class="wrap">
-    <p>${esc(t.unofficial)}</p>
-    <p>${esc(t.footerLicense)} ${esc(t.footerPrivacy)}</p>
-    <p class="muted">${esc(t.footerUpdated(GENERATED || '-'))}</p>
-  </div>
-</footer>
-</body>
-</html>
-`;
-}
-
-// Trang của từng mã: mã thuộc môn nhiều mã thì là trang môn theo tên mon/<slug>/, còn lại course/<ID>/.
-// buildSite đặt lại khi biết danh mục (như GENERATED, SOCIAL).
-let PAGE = {
-  collapseMin: Infinity,
-  label: () => '',
-  subject: () => false,
-  path: (id) => `course/${id}/`,
-  anchor: (it) => it.id,
-  name: (t, c) => (t.lang === 'en' && c.nameEn ? c.nameEn : c.name),
-};
-
-function itemsCountOf(course) {
-  return course.items.filter((i) => !i.removed).length;
-}
-
-// Một dòng môn: link tới trang môn theo tên khi mã thuộc môn nhiều mã.
-function courseRow(t, c, root) {
-  const href = `${root}${pagePath(t.lang, PAGE.path(c.id))}`;
-  const n = itemsCountOf(c);
-  return `<tr${c.status === 'retired' ? ' class="retired"' : ''}><th scope="row"><a href="${href}">${esc(c.code)}</a></th><td><a href="${href}">${esc(t.lang === 'en' && c.nameEn ? c.nameEn : c.name)}</a>${c.status === 'retired' ? ` <span class="tag">${esc(STATUS.retired[t.lang])}</span>` : ''}</td><td class="num">${c.credits ?? ''}</td><td class="num">${n || `<span class="muted">${esc(t.noMaterial)}</span>`}</td></tr>`;
-}
-
-// Bảng dài (vài trăm môn ở trang khoa): trình duyệt bỏ qua phần ngoài màn hình khi vẽ (CSS .table-wrap.long).
-const LONG_TABLE = 60;
-
-// Môn có tài liệu lên trước, môn chưa có xuống sau, giữ thứ tự cũ trong mỗi phần (chỉ đổi thứ tự).
-export function docsFirst(courses) {
-  return [...courses.filter((c) => itemsCountOf(c) > 0), ...courses.filter((c) => !itemsCountOf(c))];
-}
-
-function courseTableHtml(t, courses, root, caption) {
-  return `<div class="table-wrap${courses.length > LONG_TABLE ? ' long' : ''}"><table><caption class="sr">${esc(caption)}</caption><thead><tr><th scope="col">${esc(t.code)}</th><th scope="col">${esc(t.name)}</th><th scope="col" class="num">${esc(t.credits)}</th><th scope="col" class="num">${esc(t.materials)}</th></tr></thead><tbody>${courses
-    .map((c) => courseRow(t, c, root))
-    .join('')}</tbody></table></div>`;
-}
-
-// Bảng môn: môn có tài liệu trước. Bảng dài (từ PAGE.collapseMin môn, noDocsCollapseMin trong site.json): môn
-// chưa có tài liệu gập trong "Môn chưa có tài liệu (N)".
-function courseTable(t, courses, root, caption) {
-  if (!courses.length) return `<p class="muted">${esc(t.noCourses)}</p>`;
-  const list = docsFirst(courses);
-  const empty = list.filter((c) => !itemsCountOf(c));
-  if (courses.length < PAGE.collapseMin || !empty.length) return courseTableHtml(t, list, root, caption);
-  const withDocs = list.filter((c) => itemsCountOf(c) > 0);
-  return `${withDocs.length ? courseTableHtml(t, withDocs, root, caption) : ''}<details class="no-docs"><summary>${esc(t.noDocsCourses(empty.length))}</summary>${courseTableHtml(t, empty, root, caption)}</details>`;
-}
-
-// Neo tới một khối trên trang chương trình, dùng cho link từ trang môn.
-function blockAnchor(id) {
-  return `khoi-${String(id).toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
-}
-
-function facultyName(t, f) {
-  return f ? f.name[t.lang] || f.name.vi : '';
-}
-
-// Số môn khác nhau trong mọi khối của chương trình.
-function programCourseCount(p) {
-  return new Set(p.blocks.flatMap((b) => b.courses)).size;
-}
-
-function programName(t, p) {
-  return t.lang === 'en' && p.nameEn ? p.nameEn : p.name;
-}
-
-// Link tới form issue Thêm chương trình, điền sẵn khoa (tên tiếng Việt, khớp lựa chọn trong form).
-function addProgramUrl(f, p) {
-  const fields = {};
-  if (f) fields.khoa = f.name.vi;
-  if (p) {
-    fields.nganh = p.name;
-    if (p.year) fields['khoa-hoc'] = p.year;
-  }
-  return issueUrl('them-chuong-trinh.yml', fields);
-}
-
-// Nhãn loại chương trình là link mở ô tìm trang chủ với ?q=<mã loại> (hoặc nhãn variant khi chương trình
-// chưa có type), để xem mọi chương trình cùng loại. root: gốc site tính từ trang hiện tại.
-// Tên chính thức của loại chương trình (Sổ tay HCMUT) hiện khi trỏ chuột vào mã viết tắt.
-// level: bậc của ngành hay chương trình (CQ ở sau đại học có tên khác, xem programTypeInfo).
-// Tên chính thức theo mã loại cho ô tìm (?q=CTTA): { CQ: [{ abbr, name }], ... }, mỗi bậc một dòng nếu mã khác
-// (CQ đại học và THCQ thạc sĩ); bậc chưa có tên chính thức thì bỏ.
-export function typeNotes(lang) {
-  return Object.fromEntries(
-    TYPE_CODES.map((type) => {
-      const seen = new Map();
-      for (const level of [DEFAULT_LEVEL, ...POSTGRAD_LEVELS]) {
-        const info = programTypeInfo(type, level);
-        if (info.official[lang] && !seen.has(info.abbr)) seen.set(info.abbr, info.official[lang]);
-      }
-      return [type, [...seen].map(([abbr, name]) => ({ abbr, name }))];
-    }),
-  );
-}
-
-const typeTitle = (t, type, level) => {
-  const name = programTypeInfo(type, level)?.official[t.lang];
-  return name ? ` title="${esc(name)}"` : '';
-};
-
-// Nhãn của ngành, chương trình sau đại học mở ô tìm ở đúng bậc (&bac=), vì ô tìm mặc định chỉ hiện đại học.
-export function typeTagLink(t, root, q, label, level) {
-  const bac = level && level !== DEFAULT_LEVEL ? `&amp;bac=${encodeURIComponent(level)}` : '';
-  return `<a class="tag" href="${root}${t.lang === 'en' ? 'en/' : ''}?q=${encodeURIComponent(q)}${bac}"${typeTitle(t, q, level)}>${esc(label)}</a>`;
-}
-
-// Nhãn loại của một chương trình: theo type (trừ CQ), không có type thì theo variant.
-function programTypeTag(t, p, root) {
-  if (p.type && p.type !== 'CQ' && PROGRAM_TYPES[p.type]) return typeTagLink(t, root, p.type, typeLabel(t, p.type, p.level), p.level);
-  if (!p.type && p.variant) return typeTagLink(t, root, p.variant, p.variant);
-  return '';
-}
-
-// Chương trình chưa có môn: sau đại học là CTĐT không ghi mã môn (có PDF), đại học là chưa ai gửi CTĐT.
-const noCoursesShort = (t, p) => (isPostgrad(p) ? t.programNoCodesShort : t.programNoCoursesShort);
-
-// Tên ngành kèm bậc cho ngành sau đại học ("Thạc sĩ Kỹ thuật cơ khí"), để không lẫn với ngành đại học cùng tên.
-function majorTitle(t, m) {
-  const name = majorDisplayName(t, m);
-  return isPostgrad(m) && LEVELS[m.level] ? t.levelName(LEVELS[m.level][t.lang], name) : name;
-}
-
-// Một dòng chương trình: tên, loại, số môn (hoặc chưa có danh sách môn).
-function programLi(t, p, href, { withYear = false, root = './' } = {}) {
-  const n = programCourseCount(p);
-  const label = withYear && p.year ? `${programName(t, p)} (${p.year})` : programName(t, p);
-  const tag = programTypeTag(t, p, root);
-  return `<li><a href="${href}">${esc(label)}</a>${tag ? ` ${tag}` : ''} <span class="muted small">${esc(n ? t.coursesCount(n) : noCoursesShort(t, p))}</span></li>`;
-}
-
-// Chương trình xếp theo khóa, mới nhất trước; chương trình không ghi khóa ở cuối.
-function byYearDesc(a, b) {
-  return (b.year || '0000').localeCompare(a.year || '0000') || a.name.localeCompare(b.name, 'vi') || a.code.localeCompare(b.code);
-}
-
-function programsByYear(t, progs, hrefOf, root) {
-  const groups = new Map();
-  for (const p of progs.slice().sort(byYearDesc)) {
-    const k = p.year || '';
-    if (!groups.has(k)) groups.set(k, []);
-    groups.get(k).push(p);
-  }
-  return [...groups]
-    .map(([y, list]) => `<h3>${esc(y ? t.cohort(y) : t.cohortUnknown)}</h3><ul class="list">${list.map((p) => programLi(t, p, hrefOf(p), { root })).join('')}</ul>`)
-    .join('');
-}
-
-// Nút tới nguồn chính thức của chương trình. ctdtUrl, planUrl đã được kiểm host khi đọc repo
-// (programPdfHosts trong site.json). pdf: có ít nhất một file PDF của trường.
-export function officialProgramLinks(t, p, site) {
-  const pdfBtn = (href, label) => `<a class="btn" href="${esc(href)}" target="_blank" rel="noopener">${esc(label)}</a>`;
-  const buttons = [];
-  if (p.ctdtUrl) buttons.push(pdfBtn(p.ctdtUrl, t.programCtdtPdf));
-  if (p.planUrl) buttons.push(pdfBtn(p.planUrl, t.programPlanPdf));
-  const pdf = buttons.length > 0;
-  if (!pdf) {
-    if (/^https?:\/\//.test(p.source || '')) buttons.push(`<a class="btn" href="${esc(p.source)}" rel="noopener">${esc(t.programSource)}</a>`);
-    if (site.officialProgramsPage) buttons.push(`<a class="btn subtle" href="${esc(site.officialProgramsPage)}" rel="noopener">${esc(t.programTable)}</a>`);
-  }
-  return { buttons, pdf };
-}
-
-// ---------- Ngành, bộ chọn khóa và loại, lộ trình theo học kỳ ----------
-
-const typeLabel = (t, type, level) => programTypeInfo(type, level)?.abbr ?? type;
-const majorDisplayName = (t, m) => (t.lang === 'en' && m.nameEn ? m.nameEn : m.name);
-const typeRank = (order, type) => {
-  const i = order.indexOf(type);
-  return i < 0 ? order.length : i;
-};
-
-// Nhãn ngắn của chương trình trong một ngành: "Khóa 2026, Tiêu chuẩn" (thêm chuyên ngành nếu có).
-export function cohortLabel(t, p) {
-  return [p.year ? t.cohort(p.year) : t.cohortUnknown, p.type ? typeLabel(t, p.type, p.level) : null, p.track || null].filter(Boolean).join(', ');
-}
-
-export const hasSemesters = (p) => p.blocks.some((b) => b.semesters && Object.keys(b.semesters).length);
-
-// Khối của chương trình đã là từng học kỳ (chỉ có kế hoạch giảng dạy): mỗi khối có môn đều cùng một học kỳ
-// cho mọi môn. Khi đó trang chương trình không cần thêm phần lộ trình, vì khối đã là lộ trình.
-export function blocksAreSemesters(p) {
-  const filled = p.blocks.filter((b) => b.courses.length);
-  return (
-    filled.length > 0 &&
-    filled.every((b) => {
-      const s = b.semesters || {};
-      const vals = new Set(b.courses.map((id) => s[id]));
-      return vals.size === 1 && !vals.has(undefined);
-    })
-  );
-}
-
-// Môn theo học kỳ đề xuất (học kỳ sớm nhất nếu có ở nhiều khối), rồi môn chưa có học kỳ theo vai trò khối.
-export function semesterPlan(p) {
-  const seen = new Set();
-  const sem = new Map();
-  for (const b of p.blocks) {
-    for (const id of b.courses) {
-      const n = b.semesters?.[id];
-      if (!n || seen.has(id)) continue;
-      seen.add(id);
-      if (!sem.has(n)) sem.set(n, []);
-      sem.get(n).push(id);
-    }
-  }
-  const rest = new Map();
-  for (const b of p.blocks) {
-    for (const id of b.courses) {
-      if (seen.has(id)) continue;
-      seen.add(id);
-      const k = BLOCK_KINDS[b.kind] ? b.kind : 'khac';
-      if (!rest.has(k)) rest.set(k, []);
-      rest.get(k).push(id);
-    }
-  }
-  const kinds = Object.keys(BLOCK_KINDS);
-  return {
-    semesters: [...sem].sort((a, b) => a[0] - b[0]),
-    rest: [...rest].sort((a, b) => kinds.indexOf(a[0]) - kinds.indexOf(b[0])),
-  };
-}
-
-// Chương trình chính của một nhóm: ưu tiên có danh sách môn, có học kỳ đề xuất, loại xếp đầu, khóa mới nhất.
-export function mainProgram(list, order) {
-  const filled = list.filter((p) => programCourseCount(p));
-  const withSem = filled.filter(hasSemesters);
-  const pool = withSem.length ? withSem : filled.length ? filled : list;
-  return pool.slice().sort((a, b) => typeRank(order, a.type) - typeRank(order, b.type) || (b.year || '').localeCompare(a.year || '') || a.code.localeCompare(b.code))[0] || null;
-}
-
-// Bộ chọn loại chương trình và khóa (link tới trang chương trình). current: chương trình đang xem.
-function majorPickers(t, list, current, hrefOf, order, currentAttr) {
-  const chip = (p, label, on, title = '') => `<a class="chip" href="${hrefOf(p)}"${title}${on ? ` aria-current="${currentAttr}"` : ''}>${esc(label)}</a>`;
-  const types = [...new Set(list.map((p) => p.type).filter(Boolean))].sort((a, b) => typeRank(order, a) - typeRank(order, b));
-  const typeChips = types.map((type) => chip(mainProgram(list.filter((p) => p.type === type), order), typeLabel(t, type, current.level), type === current.type, typeTitle(t, type, current.level)));
-  const cohorts = list
-    .filter((p) => p.type === current.type)
-    .sort((a, b) => (b.year || '').localeCompare(a.year || '') || (a.track || '').localeCompare(b.track || '', 'vi'));
-  const cohortChips = cohorts.map((p) => chip(p, [p.year || t.cohortUnknown, p.track].filter(Boolean).join(', '), p.code === current.code));
-  const row = (label, chips) => `<div class="pick-row"><span class="pick-label">${esc(label)}</span><span class="chips">${chips.join('')}</span></div>`;
-  return `<nav class="pickers" aria-label="${esc(t.pickersLabel)}">${types.length > 1 ? row(t.pickType, typeChips) : ''}${row(t.pickCohort, cohortChips)}</nav>`;
-}
-
-// Lộ trình theo học kỳ: mỗi học kỳ một bảng môn; môn chưa có học kỳ gập theo vai trò khối.
-function roadmapHtml(t, p, allCourses, root) {
-  const plan = semesterPlan(p);
-  const list = (ids) => ids.map((id) => allCourses.get(id)).filter(Boolean);
-  const sems = plan.semesters
-    .map(([n, ids]) => `<section class="sem" id="hoc-ky-${n}"><h3>${esc(t.semester(n))} <span class="muted small">${esc(t.coursesCount(list(ids).length))}</span></h3>${courseTable(t, list(ids), root, t.semester(n))}</section>`)
-    .join('');
-  const rest = plan.rest.length
-    ? `<section class="sem"><h3>${esc(t.noSemester)}</h3>${plan.rest
-        .map(([kind, ids]) => `<details class="sem-rest"><summary>${esc(BLOCK_KINDS[kind][t.lang])} <span class="muted small">${esc(t.coursesCount(list(ids).length))}</span></summary>${courseTable(t, list(ids), root, BLOCK_KINDS[kind][t.lang])}</details>`)
-        .join('')}</section>`
-    : '';
-  return sems + rest;
-}
-
-// Một dòng ngành: tên (link trang ngành), nhãn loại, các khóa có danh sách môn (mới trước).
-function majorRow(t, m, progs, root, P, order) {
-  const href = `${root}${P(`major/${majorKey(m.code)}/`)}`;
-  const types = [...new Set(progs.map((p) => p.type).filter(Boolean))].sort((a, b) => typeRank(order, a) - typeRank(order, b));
-  const filled = progs.filter((p) => programCourseCount(p));
-  const years = [...new Set(filled.map((p) => p.year).filter(Boolean))].sort().reverse();
-  const links = years.map((y) => {
-    const p = mainProgram(filled.filter((x) => x.year === y), order);
-    return `<a href="${root}${P(`program/${p.code}/`)}">${esc(y)}</a>`;
-  });
-  const tags = types.map((x) => typeTagLink(t, root, x, typeLabel(t, x, m.level), m.level)).join('');
-  const none = isPostgrad(m) ? t.programNoCodesShort : t.majorNoCourses;
-  return `<li class="major-row"><span class="major-head"><a class="major-name" href="${href}">${esc(majorDisplayName(t, m))}</a>${tags}</span><span class="muted small">${links.length ? `${esc(t.cohortsLabel)}: ${links.join(', ')}` : esc(none)}</span></li>`;
-}
-
-// Khối kiến thức của một chương trình: mỗi khối có môn một bảng; khối có khối cha (group) ghi tên khối cha,
-// kèm số tín chỉ khối cha cần nếu chương trình ghi ở groups.
-function blocksHtml(t, p, allCourses, root, heading = 'h3') {
-  const groupCredits = new Map((p.groups || []).filter((g) => g.creditsNeed != null).map((g) => [g.name, g.creditsNeed]));
-  return p.blocks
-    .filter((b) => b.courses.length)
-    .map((b) => {
-      const list = b.courses.map((id) => allCourses.get(id)).filter(Boolean);
-      const meta = [b.requiredUnknown ? null : b.required ? t.required : t.elective, b.creditsNeed ? t.blockCredits(b.creditsNeed) : null, b.coursesNeed ? t.coursesNeed(b.coursesNeed) : null].filter(Boolean).join(', ');
-      const group = b.group ? [b.group, groupCredits.get(b.group) ? t.blockCredits(groupCredits.get(b.group)) : null].filter(Boolean).join(', ') : '';
-      return `<section class="block" id="${blockAnchor(b.id)}"><${heading}>${esc(b.name)}${meta ? ` <span class="muted small">${esc(meta)}</span>` : ''}</${heading}>${group ? `<p class="muted small">${esc(group)}</p>` : ''}${courseTable(t, list, root, b.name)}</section>`;
-    })
-    .join('');
-}
-
-// Danh sách ngành của một khoa, xếp theo tên.
-function majorList(t, majors, progsOfMajor, root, P, order) {
-  const rows = majors
-    .slice()
-    .sort((a, b) => majorDisplayName(t, a).localeCompare(majorDisplayName(t, b), t.lang) || a.code.localeCompare(b.code))
-    .map((m) => majorRow(t, m, progsOfMajor(m.code), root, P, order));
-  if (!rows.length) return '';
-  // Mỗi cặp loại và bậc một dòng ghi chú (CQ ở thạc sĩ là THCQ); trùng mã viết tắt thì giữ một.
-  const pairs = majors.flatMap((m) => progsOfMajor(m.code).map((p) => [p.type, m.level])).filter(([x]) => PROGRAM_TYPES[x]);
-  pairs.sort((a, b) => typeRank(order, a[0]) - typeRank(order, b[0]));
-  return `<ul class="majors">${rows.join('')}</ul>${abbrNote(t, pairs)}`;
-}
-
-// Ghi chú viết tắt: mã loại chương trình (theo Sổ tay HCMUT) và tên chính thức, gập lại.
-function abbrNote(t, pairs) {
-  const seen = new Map();
-  for (const [type, level] of pairs) {
-    const info = programTypeInfo(type, level);
-    if (info.official[t.lang] && !seen.has(info.abbr)) seen.set(info.abbr, info.official[t.lang]);
-  }
-  if (!seen.size) return '';
-  const rows = [...seen].map(([abbr, name]) => `<dt>${esc(abbr)}</dt><dd>${esc(name)}</dd>`).join('');
-  return `<details class="abbr-note"><summary>${esc(t.abbrTitle)}</summary><dl>${rows}</dl><p class="muted small">${esc(t.abbrSource)}</p></details>`;
-}
-
-// Link xem trước qua Worker, chỉ cho file nằm trong danh sách được phép (scripts/lib/preview.mjs).
-function previewHref(url, site) {
-  if (!site.reviewBase || !url || !previewTarget(url, { repo: REPO, site: SITE_URL })) return null;
-  return `${site.reviewBase}/xem-truoc?u=${encodeURIComponent(url)}`;
-}
-
-// Form Yêu cầu gỡ điền sẵn link tới đúng mục trên trang môn (ô "item") và id mục trong tiêu đề.
-function takedownUrl(t, it) {
-  const page = `${SITE_URL}${pagePath(t.lang, PAGE.path(it.course))}#${PAGE.anchor(it)}`;
-  return issueUrl('yeu-cau-go.yml', { title: `[Gỡ] ${it.course} ${it.id}`, item: page });
-}
-
-const btn = (cls, href, label, extra = '') => `<a class="${cls}" href="${esc(href)}"${extra}>${esc(label)}</a>`;
-
-// Một file của tài liệu: link tải, link xem trước (nếu được), định dạng và cỡ.
-function fileLinks(it, f, site, root) {
-  // File .md trong git: web phục vụ ở files/<ID>/<tên> (cùng link với v1).
-  const name = f.path ? f.path.split('/').pop() : null;
-  const download = f.url || (name ? `${root}files/${encodeURIComponent(it.course)}/${encodeURIComponent(name)}` : null);
-  const published = f.url || (name ? `${SITE_URL}files/${encodeURIComponent(it.course)}/${encodeURIComponent(name)}` : null);
-  return { download, preview: download ? previewHref(published, site) : null, format: fileFormat(f.name), size: formatSize(f.size) };
-}
-
-// Định dạng của cả tài liệu: link, sách, hoặc các định dạng file (không trùng).
-export function itemFormat(t, it) {
-  if (it.type === 'link') return t.item.formatLink;
-  if (it.type === 'book-ref') return t.item.formatBook;
-  return [...new Set((it.files || []).map((f) => fileFormat(f.name)).filter(Boolean))].join(', ');
-}
-
-// Thông tin trước, hành động sau: Xem trước, Tải xuống, Yêu cầu gỡ (mẫu trong skill bk-library-ui).
-// Khối chi tiết (dl hai cột nhãn, giá trị) ghi đủ: định dạng, cỡ, ngày tải lên, ngày cập nhật (nếu khác),
-// loại, học kỳ, kỳ thi, chương, bài, giảng viên, người gửi, ngôn ngữ, giấy phép, nguồn. Nhiều file: mỗi file
-// một dòng có định dạng, cỡ và nút riêng.
-function renderItem(t, it, site, root) {
-  const L = t.item;
-  const files = it.removed || it.type === 'link' || it.type === 'book-ref' ? [] : it.files || [];
-  const many = files.length > 1;
-  const links = files.map((f) => ({ f, ...fileLinks(it, f, site, root) }));
-  const facts = [];
-  const add = (label, value, html = false) => {
-    if (value) facts.push([label, html ? value : esc(value)]);
-  };
-  // Mã môn tài liệu được gửi cho, kèm nhãn chương trình của mã đó.
-  const codeOf = PAGE.code ? PAGE.code(it.course) : it.course;
-  const plabel = PAGE.label(t, it.course);
-  add(L.code, `<span class="code">${esc(codeOf)}</span>${plabel ? ` ${esc(plabel)}` : ''}`, true);
-  add(L.format, itemFormat(t, it));
-  if (files.length === 1) add(L.size, links[0].size);
-  else if (many) add(L.size, formatSize(files.reduce((n, f) => n + (f.size || 0), 0)));
-  if (it.added) add(L.added, `<time datetime="${esc(it.added)}">${esc(formatDate(t, it.added))}</time>`, true);
-  if (it.updated && it.updated !== it.added) add(L.updated, `<time datetime="${esc(it.updated)}">${esc(formatDate(t, it.updated))}</time>`, true);
-  add(L.type, TYPES[it.type] ? TYPES[it.type][t.lang] : it.type);
-  add(L.term, it.term);
-  if (it.examKind) add(L.examKind, t.examKinds[it.examKind] || it.examKind);
-  add(L.chapter, it.chapter);
-  if (it.lab != null) add(L.lab, String(it.lab));
-  // Tên giảng viên mở ô tìm ở trang chủ để ra các môn khác có tài liệu của cùng người.
-  if (it.teacher) add(L.teacher, `<a href="${root}${pagePath(t.lang, '')}?q=${encodeURIComponent(it.teacher)}">${esc(it.teacher)}</a>`, true);
-  add(L.authors, it.authors && it.authors.length ? it.authors.join(', ') : L.anonymous);
-  add(L.lang, DOC_LANGS[it.lang] ? DOC_LANGS[it.lang][t.lang] : it.lang);
-  add(L.license, it.license);
-  add(L.source, it.source);
-  const details = facts.length ? `<dl class="item-facts">${facts.map(([k, v]) => `<div><dt>${esc(k)}</dt><dd>${v}</dd></div>`).join('')}</dl>` : '';
-  // Trang môn nhiều mã: nhãn mã và chương trình ngay cạnh tiêu đề để thấy tài liệu này của mã nào.
-  const codeTag = PAGE.subject(it.course) ? `<span class="tag">${esc([codeOf, plabel].filter(Boolean).join(', '))}</span>` : '';
-  const badges = [codeTag, it.example ? `<span class="tag accent">${esc(t.example)}</span>` : '', it.removed ? `<span class="tag warn">${esc(t.removed)}</span>` : ''].join('');
-  const takedown = btn('btn subtle', takedownUrl(t, it), t.requestTakedown, ' rel="noopener"');
-  const row = (buttons) => `<p class="actions">${[...buttons, takedown].join('')}</p>`;
-  const fileButtons = (x, named) => {
-    const out = [];
-    if (x.preview) out.push(btn('btn', x.preview, named ? t.previewNamed(x.f.name) : t.preview, ' target="_blank" rel="noopener"'));
-    out.push(btn('btn', x.download, named ? t.downloadNamed(x.f.name, x.size) : t.download(x.size), x.f.url ? ' rel="noopener"' : ` download="${esc(x.f.name)}"`));
-    return out;
-  };
-  let extra = '';
-  let actions = '';
-  if (it.removed) extra = `<p class="muted">${esc(it.removedReason || '')}</p>`;
-  else if (it.type === 'book-ref') {
-    extra = `<p>${esc(formatBook(it.book))}</p>`;
-    actions = row(bookLinks(it.book, site.bookSources, t.lang).map((l) => btn('btn', l.href, l.label, ' rel="noopener"')));
-  } else if (it.type === 'link') actions = row([btn('btn', it.url, t.openLink, ' rel="noopener"')]);
-  else if (many) {
-    // Nhiều file: danh sách file, mỗi file định dạng, cỡ và nút riêng; hàng nút cuối chỉ còn Yêu cầu gỡ.
-    extra = `<ul class="files">${links
-      .map((x) => `<li><span class="file-name">${esc(x.f.name)}</span> <span class="muted">${esc([x.format, x.size].filter(Boolean).join(', '))}</span>${x.download ? `<p class="actions">${fileButtons(x, true).join('')}</p>` : `<p class="muted">${esc(t.pendingFile(x.f.name))}</p>`}</li>`)
-      .join('')}</ul>`;
-    actions = row([]);
-  } else {
-    const x = links[0];
-    if (x && !x.download) extra = `<p class="muted">${esc(t.pendingFile(x.f.name))}</p>`;
-    actions = row(x && x.download ? fileButtons(x, false) : []);
-  }
-  const note = it.type === 'prelab-reference' ? `<p class="note">${esc(t.prelabRefNote)}</p>` : '';
-  return `<li class="item${it.removed ? ' is-removed' : ''}" id="${esc(PAGE.anchor(it))}" data-course="${esc(it.course)}" data-type="${esc(it.type)}"><h4>${esc(it.title)}${badges ? ` ${badges}` : ''}</h4>${it.description ? `<p>${esc(it.description)}</p>` : ''}${details}${note}${extra}${actions}</li>`;
-}
-
-// Ngày dạng YYYY-MM-DD thành 04/10/2026 (tiếng Việt) hoặc 4 Oct 2026 (tiếng Anh).
-function formatDate(t, d) {
-  const [y, m, day] = d.split('-').map(Number);
-  if (t.lang === 'en') return `${day} ${['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'][m - 1]} ${y}`;
-  return `${String(day).padStart(2, '0')}/${String(m).padStart(2, '0')}/${y}`;
-}
-
-// Tài liệu mới nhất (chưa gỡ), xếp theo ngày cập nhật rồi ngày thêm.
-export function recentItems(items, max) {
-  return items
-    .filter((it) => !it.removed)
-    .map((it) => ({ it, date: it.updated || it.added }))
-    .sort((a, b) => b.date.localeCompare(a.date) || a.it.course.localeCompare(b.it.course) || a.it.id.localeCompare(b.it.id))
-    .slice(0, max);
-}
-
-// Mục "Tài liệu mới" ở trang chủ: tên, môn, loại, dung lượng (hoặc Link, Sách), ngày cập nhật.
-function recentSection(t, rows, courses, root, P) {
-  if (!rows.length) return '';
-  const li = rows
-    .map(({ it, date }) => {
-      const c = courses.get(it.course);
-      const cname = c ? PAGE.name(t, c) : '';
-      const size = (it.files || []).reduce((n, f) => n + (f.size || 0), 0);
-      const kind = it.type === 'link' || it.type === 'book-ref' ? '' : [itemFormat(t, it), size ? formatSize(size) : ''].filter(Boolean).join(', ');
-      const href = `${root}${P(PAGE.path(it.course))}#${encodeURIComponent(PAGE.anchor(it))}`;
-      const meta = [TYPES[it.type] ? TYPES[it.type][t.lang] : it.type, kind].filter(Boolean).join(', ');
-      return `<li><a href="${href}"><span class="recent-title">${esc(it.title)}</span><span class="recent-course"><span class="code">${esc(c ? c.code : it.course)}</span> ${esc(cname)}</span><span class="muted recent-meta">${esc(meta)}</span><time class="muted recent-date" datetime="${esc(date)}">${esc(formatDate(t, date))}</time></a></li>`;
-    })
-    .join('');
-  return `<section class="recent" aria-labelledby="h-recent"><h2 id="h-recent">${esc(t.recentTitle)}</h2><ul class="recent-list">${li}</ul></section>`;
-}
 
 export function buildSite({ root = TOOL_ROOT, out = path.join(TOOL_ROOT, 'site'), base = '/hcmut-library/' } = {}) {
   const siteCfg = readSiteConfig(root);
@@ -873,7 +90,7 @@ export function buildSite({ root = TOOL_ROOT, out = path.join(TOOL_ROOT, 'site')
   {
     const img = siteCfg.socialImage ? path.join(SRC, siteCfg.socialImage) : '';
     const size = img && fs.existsSync(img) ? pngSize(fs.readFileSync(img)) : null;
-    SOCIAL = size ? { path: siteCfg.socialImage, ...size } : null;
+    state.social = size ? { path: siteCfg.socialImage, ...size } : null;
   }
 
   // Tài nguyên tĩnh
@@ -941,7 +158,7 @@ export function buildSite({ root = TOOL_ROOT, out = path.join(TOOL_ROOT, 'site')
     for (const id of s.ids) for (const it of allCourses.get(id).items) seen.set(it.id, (seen.get(it.id) || 0) + 1);
     for (const id of s.ids) for (const it of allCourses.get(id).items) if (seen.get(it.id) > 1) anchorClash.add(`${it.course}/${it.id}`);
   }
-  PAGE = {
+  state.page = {
     collapseMin: siteCfg.noDocsCollapseMin,
     label: () => '',
     code: (id) => (allCourses.get(id) ? allCourses.get(id).code : id),
@@ -963,7 +180,7 @@ export function buildSite({ root = TOOL_ROOT, out = path.join(TOOL_ROOT, 'site')
     for (const lang of ['vi', 'en']) progLabel[lang].set(c.id, programLabel(c, { ...labelOpts, lang }));
     extra.set(c.id, { prog: progLabel.vi.get(c.id), progEn: progLabel.en.get(c.id), types: courseTypes(c, labelOpts) });
   }
-  PAGE.label = (t, id) => progLabel[t.lang].get(id) || '';
+  state.page.label = (t, id) => progLabel[t.lang].get(id) || '';
   write('assets/courses.json', JSON.stringify(searchCourses(v1.index, progCount, extra)) + '\n');
   // Danh sách chương trình cho ô tìm ở trang chủ (chỉ web dùng, không thuộc hợp đồng v1).
   // Ngành là dòng kind: "major" (link tới trang ngành, key là đoạn đường dẫn); chương trình gắn ngành ghi
@@ -1004,14 +221,14 @@ export function buildSite({ root = TOOL_ROOT, out = path.join(TOOL_ROOT, 'site')
     descriptionMax: siteCfg.docDescriptionMax,
     pageOf: (id) => {
       const c = allCourses.get(id);
-      const vi = PAGE.name(S.vi, c);
-      const en = PAGE.name(S.en, c);
-      return { path: PAGE.path(id), name: vi, nameEn: en !== vi ? en : '', anchor: PAGE.anchor };
+      const vi = state.page.name(S.vi, c);
+      const en = state.page.name(S.en, c);
+      return { path: state.page.path(id), name: vi, nameEn: en !== vi ? en : '', anchor: state.page.anchor };
     },
   });
   write('assets/items.json', JSON.stringify(docs) + '\n');
   const docValues = docFilterValues(docs);
-  GENERATED = index.generated;
+  state.generated = index.generated;
   const finish = (html) => html;
 
   for (const lang of ['vi', 'en']) {
@@ -1411,7 +628,7 @@ ${main ? `<section aria-labelledby="h-progs"><h2 id="h-progs">${esc(t.programsOf
       // Mỗi mã một nhãn: mã và chương trình ("MT1019 Tiên tiến"). Mã trùng (ID kèm năm) chỉ ghi một lần.
       const byCode = new Map();
       for (const c of list.slice().sort((a, b) => a.code.localeCompare(b.code) || a.id.localeCompare(b.id))) if (!byCode.has(c.code)) byCode.set(c.code, c);
-      const chip = (c) => `<span class="code-chip"><span class="code">${esc(c.code)}</span>${PAGE.label(t, c.id) ? ` ${esc(PAGE.label(t, c.id))}` : ''}</span>`;
+      const chip = (c) => `<span class="code-chip"><span class="code">${esc(c.code)}</span>${state.page.label(t, c.id) ? ` ${esc(state.page.label(t, c.id))}` : ''}</span>`;
       // Lọc tài liệu theo mã và theo loại: chỉ khi có từ 2 lựa chọn. assets/subject-filter.js, ghi lên ?ma=, ?loai=.
       const live = items.filter((i) => !i.removed);
       const docCourses = list.filter((c) => live.some((i) => i.course === c.id));
@@ -1419,7 +636,7 @@ ${main ? `<section aria-labelledby="h-progs"><h2 id="h-progs">${esc(t.programsOf
       const sel = (id, label, all, opts) => `<div class="filter"><label for="${id}">${esc(label)}</label><select id="${id}"><option value="">${esc(all)}</option>${opts.map(([v, l]) => `<option value="${esc(v)}">${esc(l)}</option>`).join('')}</select></div>`;
       const filters =
         docCourses.length > 1 || docTypes.length > 1
-          ? `<div class="doc-filters" id="doc-filters" hidden>${docCourses.length > 1 ? sel('f-course', t.codesLabel, t.allCodes, docCourses.map((c) => [c.id, [c.code, PAGE.label(t, c.id)].filter(Boolean).join(', ')])) : ''}${docTypes.length > 1 ? sel('f-type', t.docType, t.docTypeAll, docTypes.map((x) => [x, TYPES[x][lang]])) : ''}<p id="f-status" class="muted small" aria-live="polite"></p></div>`
+          ? `<div class="doc-filters" id="doc-filters" hidden>${docCourses.length > 1 ? sel('f-course', t.codesLabel, t.allCodes, docCourses.map((c) => [c.id, [c.code, state.page.label(t, c.id)].filter(Boolean).join(', ')])) : ''}${docTypes.length > 1 ? sel('f-type', t.docType, t.docTypeAll, docTypes.map((x) => [x, TYPES[x][lang]])) : ''}<p id="f-status" class="muted small" aria-live="polite"></p></div>`
           : '';
       const body = `
 <h1>${esc(name)}</h1>
@@ -1435,16 +652,16 @@ ${materials(items, root, s.main)}${filters ? `\n<script type="application/json" 
     for (const c of allCourses.values()) {
       const here = P(`course/${c.id}/index.html`);
       const root = relPrefix(here);
-      const name = PAGE.name(t, c);
+      const name = state.page.name(t, c);
       if (subjectOf.has(c.id)) {
-        const to = P(PAGE.path(c.id));
+        const to = P(state.page.path(c.id));
         redirectPage(write, here, root + to, absUrl(to), lang, t, name, `${c.code} ${name}`);
         continue;
       }
       const fac = facByKey.get(c.faculty);
       const cLink = (id) => {
         const x = allCourses.get(id);
-        return `<a href="${root}${P(PAGE.path(id))}">${esc(x ? `${x.code} ${PAGE.name(t, x)}` : id)}</a>`;
+        return `<a href="${root}${P(state.page.path(id))}">${esc(x ? `${x.code} ${state.page.name(t, x)}` : id)}</a>`;
       };
       // Vài thông tin có ích khi chọn môn; chương trình có môn này gập trong một dòng.
       const rows = [];
@@ -1513,8 +730,8 @@ ${materials(c.items, root, c.id, [fix])}`;
       for (const code of new Set([c.code, ...c.aliases.map((a) => a.code)])) {
         if (code === c.id || allCourses.has(code)) continue;
         const here = P(`course/${code}/index.html`);
-        const to = P(PAGE.path(c.id));
-        redirectPage(write, here, relPrefix(here) + to, absUrl(to), lang, t, `${c.code} ${PAGE.name(t, c)}`, c.code);
+        const to = P(state.page.path(c.id));
+        redirectPage(write, here, relPrefix(here) + to, absUrl(to), lang, t, `${c.code} ${state.page.name(t, c)}`, c.code);
       }
     }
 

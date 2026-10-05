@@ -64,7 +64,7 @@ test('nameMatches: tên gõ khớp tên môn đã có (bỏ dấu) thì gợi ý
 });
 
 test('gợi ý dùng cùng dữ liệu với ô chọn môn (assets/courses.json)', async () => {
-  const { searchCourses } = await import('../scripts/build-site.mjs');
+  const { searchCourses } = await import('../scripts/site/data.mjs');
   const web = JSON.parse(JSON.stringify(searchCourses(index, new Map([['EE5429', 2]]))));
   const near = BkUpload.nearCodes(web.courses, 'EE5430', 2);
   assert.deepEqual(ids(near), ['EE5429', 'EE5431']);
