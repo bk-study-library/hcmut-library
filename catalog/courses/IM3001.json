@@ -10,16 +10,6 @@
   "status": "active",
   "programs": [
     {
-      "program": "DEE_CHUYEN_NGANH_KY_THUAT_DIEU_KHIEN_VA_TU_DONG_HOA_2023_DEE_FILE_SYSTEM",
-      "block": "K10",
-      "required": false
-    },
-    {
-      "program": "DEE_CHUYEN_NGANH_KY_THUAT_DIEN_TU_VIEN_THONG_2023_DEE_FILE_SYSTEM",
-      "block": "K10",
-      "required": false
-    },
-    {
       "program": "CSE_CONG_NGHE_THONG_TIN_VUA_LAM_VUA_HOC_2020_VLVH",
       "block": "K07",
       "required": false
@@ -247,6 +237,16 @@
     {
       "program": "CSE_KY_THUAT_MAY_TINH_2023",
       "block": "K23",
+      "required": false
+    },
+    {
+      "program": "DEE_CHUYEN_NGANH_KY_THUAT_DIEN_TU_VIEN_THONG_2023_DEE_FILE_SYSTEM",
+      "block": "K10",
+      "required": false
+    },
+    {
+      "program": "DEE_CHUYEN_NGANH_KY_THUAT_DIEU_KHIEN_VA_TU_DONG_HOA_2023_DEE_FILE_SYSTEM",
+      "block": "K10",
       "required": false
     },
     {

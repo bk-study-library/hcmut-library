@@ -10,11 +10,6 @@
   "status": "active",
   "programs": [
     {
-      "program": "GEOPET_KY_THUAT_DAU_KHI_GEOPET_COURSE_LIST",
-      "block": "K01",
-      "required": true
-    },
-    {
       "program": "GEOPET_DIA_KY_THUAT_XAY_DUNG_2024",
       "block": "K04",
       "required": true
@@ -57,6 +52,11 @@
     {
       "program": "GEOPET_KY_THUAT_DAU_KHI_2025_CTTA",
       "block": "K04",
+      "required": true
+    },
+    {
+      "program": "GEOPET_KY_THUAT_DAU_KHI_GEOPET_COURSE_LIST",
+      "block": "K01",
       "required": true
     },
     {

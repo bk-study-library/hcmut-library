@@ -10,11 +10,6 @@
   "status": "active",
   "programs": [
     {
-      "program": "DEE_CTDT_PFIEV_CHUYEN_NGANH_HE_THONG_NANG_LUONG_DIEN_2023_DEE_FILE_SYSTEM",
-      "block": "K07",
-      "required": true
-    },
-    {
       "program": "CHE_CONG_NGHE_SINH_HOC_2019",
       "block": "K02",
       "required": false
@@ -187,6 +182,11 @@
     {
       "program": "CHE_TS_219_2026_TA",
       "block": "K09",
+      "required": true
+    },
+    {
+      "program": "DEE_CTDT_PFIEV_CHUYEN_NGANH_HE_THONG_NANG_LUONG_DIEN_2023_DEE_FILE_SYSTEM",
+      "block": "K07",
       "required": true
     },
     {

@@ -10,21 +10,6 @@
   "status": "active",
   "programs": [
     {
-      "program": "DEE_CHUYEN_NGANH_KY_THUAT_DIEU_KHIEN_VA_TU_DONG_HOA_2023_DEE_FILE_SYSTEM",
-      "block": "K01",
-      "required": true
-    },
-    {
-      "program": "DEE_CHUYEN_NGANH_KY_THUAT_DIEN_TU_VIEN_THONG_2023_DEE_FILE_SYSTEM",
-      "block": "K01",
-      "required": true
-    },
-    {
-      "program": "GEOPET_KY_THUAT_DAU_KHI_GEOPET_COURSE_LIST",
-      "block": "K02",
-      "required": true
-    },
-    {
       "program": "CHE_CONG_NGHE_SINH_HOC_2019",
       "block": "K02",
       "required": false
@@ -356,6 +341,16 @@
     },
     {
       "program": "CSE_TS_251_2026_TA",
+      "block": "K01",
+      "required": true
+    },
+    {
+      "program": "DEE_CHUYEN_NGANH_KY_THUAT_DIEN_TU_VIEN_THONG_2023_DEE_FILE_SYSTEM",
+      "block": "K01",
+      "required": true
+    },
+    {
+      "program": "DEE_CHUYEN_NGANH_KY_THUAT_DIEU_KHIEN_VA_TU_DONG_HOA_2023_DEE_FILE_SYSTEM",
       "block": "K01",
       "required": true
     },
@@ -2037,6 +2032,11 @@
     {
       "program": "GEOPET_KY_THUAT_DAU_KHI_2025_CTTA",
       "block": "K01",
+      "required": true
+    },
+    {
+      "program": "GEOPET_KY_THUAT_DAU_KHI_GEOPET_COURSE_LIST",
+      "block": "K02",
       "required": true
     },
     {

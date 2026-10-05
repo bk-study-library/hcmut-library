@@ -28,7 +28,8 @@ import { BLOCK_KINDS, POSTGRAD_LEVELS, DEFAULT_LEVEL, courseLevels } from './lib
 import { PROGRAM_TYPES, TYPE_CODES, sdhType } from './lib/program-types.mjs';
 import { clean } from './import-research.mjs';
 import { inferParts } from './import-seed.mjs';
-import { slug, addSentence, ordered, writeKeepDate, readSite, vnDate, COURSE_ORDER, PROGRAM_ORDER, MAJOR_ORDER, KEPT_PROGRAM_FIELDS } from './import-ctdt.mjs';
+import { slug, addSentence, readSite, vnDate, KEPT_PROGRAM_FIELDS } from './import-ctdt.mjs';
+import { ordered, writeKeepDate, courseRecord, PROGRAM_ORDER, MAJOR_ORDER } from './lib/catalog-write.mjs';
 
 const CODE_RE = /^[A-Z0-9_]{3,12}$/;
 const MAJOR_RE = /^[0-9][0-9A-Za-z+]{3,31}$/;
@@ -379,7 +380,7 @@ export function importSdh(data, outRoot, { date, faculties, log = () => {} }) {
   }
 
   // ---------- Ghi file ----------
-  for (const c of out.values()) writeKeepDate(path.join(coursesDir, `${c.id}.json`), ordered(c, COURSE_ORDER), date);
+  for (const c of out.values()) writeKeepDate(path.join(coursesDir, `${c.id}.json`), courseRecord(c), date);
   for (const pr of written.values()) writeKeepDate(path.join(programsDir, `${pr.code}.json`), pr, date);
   writeKeepDate(
     majorsPath,

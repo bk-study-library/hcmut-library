@@ -37,6 +37,7 @@ import { clean } from './import-research.mjs';
 import { inferParts } from './import-seed.mjs';
 // Vòng import với import-sdh.mjs an toàn: hai module chỉ dùng hàm của nhau khi chạy, không lúc nạp.
 import { importSdh, readSdh } from './import-sdh.mjs';
+import { ordered, writeKeepDate, courseRecord, PROGRAM_ORDER, MAJOR_ORDER } from './lib/catalog-write.mjs';
 
 const CODE_RE = /^[A-Z0-9_]{3,12}$/;
 const MAJOR_RE = /^[0-9][0-9A-Za-z+]{3,31}$/;
@@ -133,28 +134,7 @@ export function addSentence(note, s) {
   return cur ? `${cur} ${s}` : s;
 }
 
-export const json = (o) => JSON.stringify(o, null, 2) + '\n';
-
-export function ordered(obj, order) {
-  const o = {};
-  for (const k of order) if (obj[k] !== undefined) o[k] = obj[k];
-  for (const k of Object.keys(obj)) if (!(k in o) && obj[k] !== undefined) o[k] = obj[k];
-  return o;
-}
-
-export const COURSE_ORDER = ['$schema', 'id', 'code', 'name', 'nameEn', 'credits', 'faculty', 'levels', 'aliases', 'status', 'replacedBy', 'replaces', 'programs', 'parts', 'related', 'handbookUrl', 'note', 'updated'];
-export const PROGRAM_ORDER = ['$schema', 'code', 'name', 'nameEn', 'faculty', 'year', 'major', 'type', 'track', 'level', 'orientation', 'degree', 'totalCredits', 'variant', 'listed', 'note', 'reviewNote', 'source', 'ctdtUrl', 'planUrl', 'handbookUrl', 'groups', 'blocks', 'updated'];
-export const MAJOR_ORDER = ['code', 'name', 'nameEn', 'faculty', 'level', 'programTypes', 'aliases', 'handbookUrl', 'note'];
 export const KEPT_PROGRAM_FIELDS = KEPT_PROGRAM;
-
-// Ghi file JSON; updated chỉ đổi khi nội dung (trừ updated) đổi.
-export function writeKeepDate(p, obj, date) {
-  if (fs.existsSync(p)) {
-    const cur = JSON.parse(fs.readFileSync(p, 'utf8'));
-    obj.updated = JSON.stringify({ ...cur, updated: null }) === JSON.stringify({ ...obj, updated: null }) ? cur.updated : date;
-  }
-  fs.writeFileSync(p, json(obj));
-}
 
 export function readSite(root) {
   const own = path.join(root, 'catalog', 'site.json');
@@ -507,7 +487,7 @@ export function importCtdt(data, outRoot, { date, faculties, log = () => {} }) {
   for (const c of out.values()) {
     c.related = [...(c.related || [])].sort();
     if (c.replaces) c.replaces = [...c.replaces].sort();
-    writeKeepDate(path.join(coursesDir, `${c.id}.json`), ordered(c, COURSE_ORDER), date);
+    writeKeepDate(path.join(coursesDir, `${c.id}.json`), courseRecord(c), date);
   }
   for (const pr of written.values()) writeKeepDate(path.join(programsDir, `${pr.code}.json`), pr, date);
   const majorsOut = {
