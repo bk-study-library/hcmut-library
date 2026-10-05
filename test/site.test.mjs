@@ -345,7 +345,7 @@ test('bảng môn: môn chưa có tài liệu ghi "chưa có"', () => {
 });
 
 test('sách tham khảo: link tìm ở nguồn hợp pháp theo site.json, ưu tiên ISBN', async () => {
-  const { bookLinks } = await import('../scripts/build-site.mjs');
+  const { bookLinks } = await import('../scripts/site/items.mjs');
   const sources = [
     { label: 'A', isbn: 'https://a.example/isbn/{isbn}', search: 'https://a.example/s?q={q}' },
     { label: 'B', url: 'https://b.example/' },
@@ -695,7 +695,8 @@ test('ô tìm trang chủ: items.json chỉ có mục chưa gỡ, mới thêm tr
 });
 
 test('items.json: mô tả dài bị cắt theo docDescriptionMax ở ranh giới từ', async () => {
-  const { truncate, docIndex } = await import('../scripts/build-site.mjs');
+  const { truncate } = await import('../scripts/site/html.mjs');
+  const { docIndex } = await import('../scripts/site/data.mjs');
   assert.equal(truncate('ngắn', 20), 'ngắn');
   assert.equal(truncate('một hai ba bốn năm sáu bảy tám', 16), 'một hai ba...');
   assert.ok(truncate('x'.repeat(50), 20).length <= 20);
@@ -1041,7 +1042,7 @@ test('bảng môn: môn có tài liệu trước; bảng dài gập môn chưa c
 });
 
 test('items.json: tài liệu của môn sau đại học ghi levels cho ô Bậc; môn đại học thì không', async () => {
-  const { docIndex } = await import('../scripts/build-site.mjs');
+  const { docIndex } = await import('../scripts/site/data.mjs');
   const courses = new Map([
     ['A1', { id: 'A1', code: 'A1', name: 'Môn', faculty: 'f' }],
     ['B1', { id: 'B1', code: 'B1', name: 'Môn sau đại học', faculty: 'f', levels: ['thac-si'] }],

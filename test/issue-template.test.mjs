@@ -30,7 +30,7 @@ test('form Thêm chương trình: danh sách khoa khớp catalog/faculties.json,
 test('form Thêm chương trình: có các ô ngành, khóa, link, file, ghi chú; trang web điền sẵn đúng id', () => {
   const yml = fs.readFileSync(TPL, 'utf8');
   for (const id of ['khoa', 'nganh', 'khoa-hoc', 'link-ctdt', 'file-ctdt', 'ghi-chu']) assert.match(yml, new RegExp(`id: ${id}\r?\n`), id);
-  const site = fs.readFileSync(path.join(TOOL_ROOT, 'scripts', 'build-site.mjs'), 'utf8');
+  const site = fs.readFileSync(path.join(TOOL_ROOT, 'scripts', 'site', 'programs.mjs'), 'utf8');
   assert.match(site, /them-chuong-trinh\.yml/);
   assert.match(site, /fields\.khoa = /);
   assert.match(site, /fields\.nganh = /);

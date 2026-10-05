@@ -53,10 +53,15 @@ form web (site-src/assets/upload.js)
 | Nhãn chương trình cạnh mã môn ("CTTT, CQ") | `scripts/lib/program-label.mjs` | |
 | Giới hạn file, đuôi file, loại tài liệu, học kỳ, tag Release | `catalog/policy.json` | Đọc qua `scripts/lib/policy.mjs`; Worker đọc cùng file |
 | Kiểm dữ liệu, sinh index, v1, README môn | `scripts/lib/repo.mjs`, `scripts/lib/v1.mjs`, `scripts/lib/readme.mjs`; lệnh `scripts/validate.mjs` | v1 chỉ được thêm, không đổi nghĩa (`docs/v1.md`) |
-| Một trang web | `scripts/build-site.mjs`, trong `buildSite()` tìm ghi chú `// Trang chủ`, `// Trang khoa`, `// Trang chương trình`, `// Trang ngành`, `// Trang môn theo tên`, `// Trang môn của từng mã`, `// Trang tĩnh` | Phần dựng HTML dùng chung (nhãn, chip, bảng môn, thẻ tài liệu) là các hàm nhỏ phía trên `buildSite()` |
-| Khung trang, CSP, thẻ meta | `scripts/build-site.mjs`: `layout`, `headMeta`, `cspFor` | |
+| Một trang web | `scripts/build-site.mjs`, trong `buildSite()` tìm ghi chú `// Trang chủ`, `// Trang khoa`, `// Trang chương trình`, `// Trang ngành`, `// Trang môn theo tên`, `// Trang môn của từng mã`, `// Trang tĩnh` | Phần dựng HTML dùng chung ở `scripts/site/` (bảng dưới) |
+| Nhãn, chip loại chương trình, bộ chọn khóa, lộ trình, khối kiến thức, danh sách ngành, ghi chú viết tắt | `scripts/site/programs.mjs` | Tên và mã loại lấy từ `scripts/lib/program-types.mjs` |
+| Thẻ tài liệu, file, xem trước, yêu cầu gỡ, tài liệu mới | `scripts/site/items.mjs` (`renderItem`, `recentSection`) | |
+| Bảng môn | `scripts/site/courses.mjs` | |
+| Dữ liệu cho ô tìm (assets/courses.json, items.json) | `scripts/site/data.mjs` | Chỉ web dùng, không thuộc v1 |
+| Trạng thái của một lần dựng (ngày dữ liệu, ảnh chia sẻ, đường dẫn trang môn) | `scripts/site/state.mjs` | `buildSite()` đặt một lần |
+| Khung trang, CSP, thẻ meta, trang chuyển hướng, sitemap | `scripts/site/layout.mjs`: `layout`, `headMeta`, `cspFor`, `redirectPage` | |
 | Ô tìm trang chủ | `site-src/assets/search.js` (giao diện), `search-core.js` (tìm môn), `search-docs.js` (tìm tài liệu), `subject-core.js` (gộp môn cùng tên) | Thay đổi cách tìm môn phải qua `test/search-cases.json` |
-| Form Gửi tài liệu | `site-src/pages/vi/gui-tai-lieu.html`, `site-src/assets/upload.js` (giao diện), `upload-core.js` (logic thuần) | Số liệu lấy từ `#upload-config` do `build-site.mjs` (`uploadPage`) đổ từ `policy.json` |
+| Form Gửi tài liệu | `site-src/pages/vi/gui-tai-lieu.html`, `site-src/assets/upload.js` (giao diện), `upload-core.js` (logic thuần) | Số liệu lấy từ `#upload-config` do `scripts/site/upload-page.mjs` (`uploadPage`) đổ từ `policy.json` |
 | Worker nhận bài | `worker/src/index.mjs`: `handleSubmit`; kiểm phiếu ở `worker/src/validate.mjs` | |
 | Trang duyệt, nút Hoàn tất | `worker/src/view.mjs` (`reviewBatchPage`), `worker/src/review.mjs` (quyết định, lý do), `worker/src/index.mjs` (`handleReview`, `handleDecision`, `continueMerge`) | |
 | Email kết quả, cron | `worker/src/notify.mjs`; `worker/src/index.mjs`: `notifyCode`, `sweep`; lịch ở `worker/wrangler.jsonc` | Cloudflare chặn runner GitHub gọi Worker nên dùng cron |
@@ -71,7 +76,7 @@ Các file dưới đây gánh nhiều việc; sửa một chỗ phải đọc nh
 
 | File | Dòng | Hướng tách |
 |---|---|---|
-| `scripts/build-site.mjs` | khoảng 1600 (`buildSite()` khoảng 730) | Mỗi loại trang một file (`scripts/site/pages/home.mjs`, `course.mjs`, `program.mjs`, `major.mjs`, `faculty.mjs`), phần dùng chung ở `scripts/site/components.mjs`; `buildSite()` chỉ điều phối |
+| `scripts/build-site.mjs` | khoảng 800 (`buildSite()` khoảng 730) | Hàm dùng chung đã tách sang `scripts/site/`. Còn lại: mỗi loại trang một file `scripts/site/pages/*.mjs`; `buildSite()` chỉ điều phối |
 | `worker/src/index.mjs` | khoảng 750 | `routes/submit.mjs`, `routes/review.mjs`, `notify` và `cron` riêng; `index.mjs` chỉ định tuyến |
 | `site-src/assets/upload.js` | khoảng 730 | Tách phần chọn môn, đợt gửi nhiều file, gửi và báo lỗi |
 | `scripts/upload/check.mjs` | khoảng 660 | `locate`, `scan`, `apply`, CLI riêng |
