@@ -1,0 +1,23 @@
+{
+  "$schema": "../../../schema/item.schema.json",
+  "id": "de-thi-giua-ky-hk242",
+  "course": "MT2013",
+  "type": "exam-past",
+  "title": "Đề thi giữa kỳ HK242",
+  "lang": "vi",
+  "license": "CC-BY-SA-4.0",
+  "origin": "self-made",
+  "added": "2026-10-05",
+  "removed": false,
+  "files": [
+    {
+      "name": "MT2013_exam-past_de-thi-giua-ky-hk242.pdf",
+      "size": 222619,
+      "sha256": "b2de80fc0296069a0f0813b381cb63250fab9e5e6b064227e2149077c1f7163f",
+      "mime": "application/pdf",
+      "quarantine": "clean/601DcQRyEG/MT2013_exam-past_de-thi-giua-ky-hk242.pdf",
+      "uploadSha256": "b098f1ec264801d08885c6b066f79528dd62f8f0f8ddd2a128fb6269c51ef004",
+      "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/MT2013_exam-past_de-thi-giua-ky-hk242.pdf"
+    }
+  ]
+}
