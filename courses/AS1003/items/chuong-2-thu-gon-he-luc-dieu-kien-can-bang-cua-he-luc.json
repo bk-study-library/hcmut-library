@@ -1,0 +1,23 @@
+{
+  "$schema": "../../../schema/item.schema.json",
+  "id": "chuong-2-thu-gon-he-luc-dieu-kien-can-bang-cua-he-luc",
+  "course": "AS1003",
+  "type": "lecture-slides",
+  "title": "Chuong 2 Thu gon he luc Dieu kien can bang cua he luc",
+  "lang": "vi",
+  "license": "CC-BY-SA-4.0",
+  "origin": "self-made",
+  "added": "2026-10-05",
+  "removed": false,
+  "teacher": "Nguyễn Hữu Hào",
+  "files": [
+    {
+      "name": "AS1003_lecture-slides_chuong-2-thu-gon-he-luc-dieu-kien-can-bang-cua-he-luc.pdf",
+      "size": 10699632,
+      "sha256": "aa79771f7e0c5da109e9cb4f97797ffa9f1232884ca4428703837ad08548eb9d",
+      "mime": "application/pdf",
+      "quarantine": "pending/gzPvE1QIDp/AS1003_lecture-slides_chuong-2-thu-gon-he-luc-dieu-kien-can-bang-cua-he-luc.pdf",
+      "uploadSha256": "aa79771f7e0c5da109e9cb4f97797ffa9f1232884ca4428703837ad08548eb9d"
+    }
+  ]
+}
