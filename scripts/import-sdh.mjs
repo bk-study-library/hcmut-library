@@ -24,7 +24,8 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { officialPdfUrl } from './lib/repo.mjs';
-import { PROGRAM_TYPES, BLOCK_KINDS, POSTGRAD_LEVELS, DEFAULT_LEVEL, courseLevels } from './lib/labels.mjs';
+import { BLOCK_KINDS, POSTGRAD_LEVELS, DEFAULT_LEVEL, courseLevels } from './lib/labels.mjs';
+import { PROGRAM_TYPES, TYPE_CODES, sdhType } from './lib/program-types.mjs';
 import { clean } from './import-research.mjs';
 import { inferParts } from './import-seed.mjs';
 import { slug, addSentence, ordered, writeKeepDate, readSite, vnDate, COURSE_ORDER, PROGRAM_ORDER, MAJOR_ORDER, KEPT_PROGRAM_FIELDS } from './import-ctdt.mjs';
@@ -33,28 +34,8 @@ const CODE_RE = /^[A-Z0-9_]{3,12}$/;
 const MAJOR_RE = /^[0-9][0-9A-Za-z+]{3,31}$/;
 const LEVEL_SLUG = { 'thac-si': 'THAC_SI', 'tien-si': 'TIEN_SI' };
 
-// Loại chương trình theo cặp định hướng và biến thể của bộ dữ liệu.
-export function sdhType(p) {
-  const v = p.variant || null;
-  const o = p.orientation || null;
-  if (p.level === 'thac-si') {
-    if (v === 'chuyen-sau') return 'CSAU';
-    if (v === 'tieng-anh') return 'TAUD';
-    if (v === 'tai-nang-stem') return 'STEM';
-    if (v === 'tieu-chuan' || (!v && !o)) return 'CQ';
-    if (!v && o === 'ung-dung') return 'UD';
-    if (!v && o === 'nghien-cuu') return 'NC';
-  }
-  if (p.level === 'tien-si') {
-    if (v === 'phuong-thuc-1') return 'PT1';
-    if (v === 'phuong-thuc-2') return 'PT2';
-    if (v === 'tieng-anh-phuong-thuc-1') return 'TAPT1';
-    if (!v && !o) return 'CQ';
-  }
-  return null;
-}
-
-const TYPE_ORIENTATION = { UD: 'ung-dung', TAUD: 'ung-dung', NC: 'nghien-cuu', CSAU: 'nghien-cuu' };
+// Loại chương trình nhận từ cặp định hướng và biến thể: sdhType trong scripts/lib/program-types.mjs.
+export { sdhType };
 
 // Vai trò khối của bộ dữ liệu sang BLOCK_KINDS: co-so là co-so-nganh của đại học; bat-buoc, tu-chon (bản
 // 2022 theo kiểu cũ) không phải vai trò nên ghi khac.
@@ -340,7 +321,7 @@ export function importSdh(data, outRoot, { date, faculties, log = () => {} }) {
     const handbookUrl = hbUrl(pick((x) => hbUrl(x.handbookUrl)));
     // Bản gộp đã có PDF từ bản kia: bỏ câu "không có PDF CTĐT" của bản Sổ tay.
     if (ctdtUrl && note) note = note.replace(/[^.]*không có PDF CTĐT[^.]*\.\s*/g, '').trim() || undefined;
-    const orientation = p.orientation || TYPE_ORIENTATION[type];
+    const orientation = p.orientation || PROGRAM_TYPES[type].orientation;
     const rec = {
       $schema: '../../schema/program.schema.json',
       code,
@@ -354,7 +335,7 @@ export function importSdh(data, outRoot, { date, faculties, log = () => {} }) {
       orientation: orientation === 'ung-dung' || orientation === 'nghien-cuu' ? orientation : undefined,
       degree: major.level,
       totalCredits: Number.isInteger(p.totalCredits) && p.totalCredits > 0 ? p.totalCredits : undefined,
-      variant: type !== 'CQ' ? PROGRAM_TYPES[type].vi : undefined,
+      variant: PROGRAM_TYPES[type].variant ?? undefined,
       listed: kept.listed,
       note,
       reviewNote: kept.reviewNote,
@@ -371,7 +352,7 @@ export function importSdh(data, outRoot, { date, faculties, log = () => {} }) {
   }
 
   // Loại chương trình của ngành theo chương trình vừa ghi (và chương trình cũ còn lại của ngành).
-  const typeOrder = Object.keys(PROGRAM_TYPES);
+  const typeOrder = TYPE_CODES;
   for (const code of touchedMajors) {
     const m = majors.get(code);
     const types = new Set(m.programTypes || []);

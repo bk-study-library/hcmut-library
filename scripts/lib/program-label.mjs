@@ -5,7 +5,8 @@
 // của các chương trình (được liệt kê) có mã này, hai loại gặp nhiều nhất (sau đại học ghi bậc); không thuộc
 // chương trình nào thì tên khoa bỏ chữ "Khoa".
 
-import { PROGRAM_LABELS, PROGRAM_TYPES, LEVELS, isPostgrad } from './labels.mjs';
+import { LEVELS, isPostgrad } from './labels.mjs';
+import { PROGRAM_TYPES } from './program-types.mjs';
 
 // Phần ngoặc cuối gọi tên chương trình (không phải tên ngành): CT Tiên tiến, Việt Pháp, PFIEV, Tài năng...
 const PROGRAM_TAIL = /(ti[eê]n ti[eế]n|vi[eệ]t ph[aá]p|pfiev|t[aà]i n[aă]ng|ti[eế]ng anh|ch[aấ]t l[uư][oợ]ng cao|song ng[aà]nh|nh[aậ]t b[aả]n|v[uừ]a l[aà]m|chuy[eể]n ti[eế]p|\bclc\b|\bcttt\b|\bctta\b)/i;
@@ -16,7 +17,7 @@ export function programTail(name) {
   return m && PROGRAM_TAIL.test(m[1]) ? m[1].replace(/\s+/g, ' ').trim() : '';
 }
 
-const typeText = (type, lang) => (PROGRAM_LABELS[type] ? PROGRAM_LABELS[type][lang] : PROGRAM_TYPES[type] ? PROGRAM_TYPES[type].short[lang] : type);
+const typeText = (type) => PROGRAM_TYPES[type]?.abbr ?? type;
 const facultyShort = (f, lang) => (f ? String(f.name[lang] || f.name.vi).replace(/^(Khoa|Faculty of)\s+/i, '') : '');
 
 // Loại chương trình (type) của các chương trình có mã này, không trùng, theo thứ tự order. Dùng cho ô lọc Hệ.
