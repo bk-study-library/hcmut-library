@@ -3,5 +3,27 @@
   "id": "MT2013",
   "code": "MT2013",
   "name": "Xác suất và thống kê",
-  "items": []
+  "items": [
+    {
+      "id": "de-thi-giua-ky-hk242",
+      "type": "exam-past",
+      "title": "Đề thi giữa kỳ HK242",
+      "lang": "vi",
+      "license": "CC-BY-SA-4.0",
+      "origin": "self-made",
+      "added": "2026-10-05",
+      "updated": "2026-10-05",
+      "files": [
+        {
+          "name": "MT2013_exam-past_de-thi-giua-ky-hk242.pdf",
+          "mime": "application/pdf",
+          "size": 222619,
+          "sha256": "b2de80fc0296069a0f0813b381cb63250fab9e5e6b064227e2149077c1f7163f",
+          "urls": [
+            "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/MT2013_exam-past_de-thi-giua-ky-hk242.pdf"
+          ]
+        }
+      ]
+    }
+  ]
 }
