@@ -1,0 +1,23 @@
+{
+  "$schema": "../../../schema/item.schema.json",
+  "id": "chuong-1-cac-khai-niem-co-ban-he-tien-de-tinh-hoc-bk",
+  "course": "AS1003",
+  "type": "lecture-slides",
+  "title": "Chuong 1 Cac khai niem co ban He tien de tinh hoc BK",
+  "lang": "vi",
+  "license": "CC-BY-SA-4.0",
+  "origin": "self-made",
+  "added": "2026-10-05",
+  "removed": false,
+  "teacher": "Nguyễn Hữu Hào",
+  "files": [
+    {
+      "name": "AS1003_lecture-slides_chuong-1-cac-khai-niem-co-ban-he-tien-de-tinh-hoc-bk.pdf",
+      "size": 3849164,
+      "sha256": "597fa91bcbd4e1e5acb30b4b54f94950247d665fef264c5cc718863de5cf67c0",
+      "mime": "application/pdf",
+      "quarantine": "pending/gzPvE1QIDp/AS1003_lecture-slides_chuong-1-cac-khai-niem-co-ban-he-tien-de-tinh-hoc-bk.pdf",
+      "uploadSha256": "597fa91bcbd4e1e5acb30b4b54f94950247d665fef264c5cc718863de5cf67c0"
+    }
+  ]
+}
