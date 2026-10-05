@@ -18,7 +18,7 @@ Gửi tài liệu:
 
 ```
 form web (site-src/assets/upload.js)
-  Worker (worker/src/index.mjs, handleSubmit): kiểm, lưu file vào R2 (bucket quarantine), bot mở PR upload/<mã bài>
+  Worker (worker/src/routes/submit.mjs, handleSubmit): kiểm, lưu file vào R2 (bucket quarantine), bot mở PR upload/<mã bài>
   workflow kiem-file (scripts/upload/check.mjs): quét virus, sanitize, ghi link Release vào item, comment kết quả
   người duyệt: trang /xem-duyet/<mã> của Worker (worker/src/view.mjs, review.mjs) hay duyệt tay trên GitHub
   Worker merge (bỏ file không duyệt; cron 5 phút merge bài duyệt một phần, gửi email)
@@ -63,9 +63,12 @@ form web (site-src/assets/upload.js)
 | Khung trang, CSP, thẻ meta, trang chuyển hướng, sitemap | `scripts/site/layout.mjs`: `layout`, `headMeta`, `cspFor`, `redirectPage` | |
 | Ô tìm trang chủ | `site-src/assets/search.js` (giao diện), `search-core.js` (tìm môn), `search-docs.js` (tìm tài liệu), `subject-core.js` (gộp môn cùng tên) | Thay đổi cách tìm môn phải qua `test/search-cases.json` |
 | Form Gửi tài liệu | `site-src/pages/vi/gui-tai-lieu.html`, `site-src/assets/upload.js` (giao diện), `upload-core.js` (logic thuần) | Số liệu lấy từ `#upload-config` do `scripts/site/upload-page.mjs` (`uploadPage`) đổ từ `policy.json` |
-| Worker nhận bài | `worker/src/index.mjs`: `handleSubmit`; kiểm phiếu ở `worker/src/validate.mjs` | |
-| Trang duyệt, nút Hoàn tất | `worker/src/view.mjs` (`reviewBatchPage`), `worker/src/review.mjs` (quyết định, lý do), `worker/src/index.mjs` (`handleReview`, `handleDecision`, `continueMerge`) | |
-| Email kết quả, cron | `worker/src/notify.mjs`; `worker/src/index.mjs`: `notifyCode`, `sweep`; lịch ở `worker/wrangler.jsonc` | Cloudflare chặn runner GitHub gọi Worker nên dùng cron |
+| Worker: định tuyến | `worker/src/index.mjs` (`createHandler`, `handleView`) | Mỗi việc một file trong `worker/src/routes/` |
+| Worker nhận bài | `worker/src/routes/submit.mjs`: `handleSubmit`; kiểm phiếu ở `worker/src/validate.mjs` | |
+| Trang duyệt, nút Hoàn tất | `worker/src/routes/review.mjs` (`handleReview`, `handleDecision`, `continueMerge`), `worker/src/view.mjs` (`reviewBatchPage`), `worker/src/review.mjs` (quyết định, lý do: hàm thuần) | |
+| Email kết quả, cron | `worker/src/routes/notify.mjs` (`notifyCode`), `worker/src/notify.mjs` (nội dung email), `worker/src/cron.mjs` (`sweep`); lịch ở `worker/wrangler.jsonc` | Cloudflare chặn runner GitHub gọi Worker nên dùng cron |
+| Trang người gửi `/xem/<mã>` | `worker/src/routes/owner.mjs`, `worker/src/view.mjs` (`statusPage`) | |
+| Phản hồi JSON, CORS, log lỗi; client GitHub App, danh mục | `worker/src/http.mjs`; `worker/src/deps.mjs` | |
 | Quét file, sanitize, comment kết quả | `scripts/upload/check.mjs` (lệnh), `sanitize.mjs`, `report.mjs` (bảng comment) | Workflow `kiem-file.yml` |
 | Đưa file lên Release, dọn kho | `scripts/upload/publish.mjs` | Workflow `phat-hanh-file.yml`, `don-kho.yml` |
 | Nguồn dữ liệu chính thức, thứ tự nhập | `docs/nguon-du-lieu.md` | Chương trình đã gắn ngành thuộc `import-ctdt`, `import-research` không ghi đè |
@@ -77,7 +80,6 @@ Các file dưới đây gánh nhiều việc; sửa một chỗ phải đọc nh
 
 | File | Dòng | Hướng tách |
 |---|---|---|
-| `worker/src/index.mjs` | khoảng 750 | `routes/submit.mjs`, `routes/review.mjs`, `notify` và `cron` riêng; `index.mjs` chỉ định tuyến |
 | `site-src/assets/upload.js` | khoảng 730 | Tách phần chọn môn, đợt gửi nhiều file, gửi và báo lỗi |
 | `scripts/upload/check.mjs` | khoảng 660 | `locate`, `scan`, `apply`, CLI riêng |
 

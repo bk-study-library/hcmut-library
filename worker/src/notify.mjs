@@ -1,5 +1,5 @@
 // Email báo kết quả duyệt (không bắt buộc). Người gửi để lại email ở form; Worker giữ trong bucket quarantine
-// R2 ở notify/<mã bài>, không bao giờ ghi vào repo, PR hay log. Cron 5 phút của Worker (sweep trong index.mjs)
+// R2 ở notify/<mã bài>, không bao giờ ghi vào repo, PR hay log. Cron 5 phút của Worker (sweep trong cron.mjs)
 // tìm bài có email mà PR đã merge hoặc đóng: Worker tự hỏi GitHub trạng thái PR, gửi một email qua Resend rồi
 // xóa email khỏi kho. Route POST /bao-ket-qua { code } làm cùng việc cho một bài. PR còn mở: không làm gì.
 

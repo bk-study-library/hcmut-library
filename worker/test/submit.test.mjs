@@ -1,7 +1,8 @@
 import { describe, it, expect, beforeAll, beforeEach, afterEach, vi } from 'vitest';
 import { env } from 'cloudflare:workers';
 import policy from '../../catalog/policy.json';
-import { createHandler, cell } from '../src/index.mjs';
+import { createHandler } from '../src/index.mjs';
+import { cell } from '../src/routes/submit.mjs';
 import { rateKey, countKey } from '../src/limits.mjs';
 import { serializeWorkerCatalog } from '../../scripts/lib/worker-catalog.mjs';
 
