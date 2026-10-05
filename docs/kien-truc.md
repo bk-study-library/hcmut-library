@@ -10,7 +10,7 @@ nguồn chính thức (Sổ tay, CTĐT, tuyển sinh; docs/nguon-du-lieu.md)
 catalog/ (môn, ngành, chương trình, khoa, cấu hình)   courses/<môn>/items/ (tài liệu)
   scripts/validate.mjs --write  (npm run build)                       kiểm và sinh file
 index.json, index.min.json, worker-catalog.json, v1/ (API công khai), courses/<môn>/README.md
-  scripts/build-site.mjs  (npm run site)                               dựng web
+  scripts/build-site.mjs + scripts/site/  (npm run site)               dựng web
 site/ (GitHub Pages, workflow pages.yml)
 ```
 
@@ -53,7 +53,8 @@ form web (site-src/assets/upload.js)
 | Nhãn chương trình cạnh mã môn ("CTTT, CQ") | `scripts/lib/program-label.mjs` | |
 | Giới hạn file, đuôi file, loại tài liệu, học kỳ, tag Release | `catalog/policy.json` | Đọc qua `scripts/lib/policy.mjs`; Worker đọc cùng file |
 | Kiểm dữ liệu, sinh index, v1, README môn | `scripts/lib/repo.mjs`, `scripts/lib/v1.mjs`, `scripts/lib/readme.mjs`; lệnh `scripts/validate.mjs` | v1 chỉ được thêm, không đổi nghĩa (`docs/v1.md`) |
-| Một trang web | `scripts/build-site.mjs`, trong `buildSite()` tìm ghi chú `// Trang chủ`, `// Trang khoa`, `// Trang chương trình`, `// Trang ngành`, `// Trang môn theo tên`, `// Trang môn của từng mã`, `// Trang tĩnh` | Phần dựng HTML dùng chung ở `scripts/site/` (bảng dưới) |
+| Một trang web | `scripts/site/pages/`: `home.mjs` (trang chủ), `faculty.mjs` (khoa), `program.mjs` (chương trình), `major.mjs` (ngành), `course.mjs` (môn theo tên, trang từng mã, chuyển hướng mã cũ), `static.mjs` (đóng góp, duyệt bài, gỡ tài liệu) | Mỗi file một hàm `write...Pages(ctx, { lang, t, P })`; `ctx` là dữ liệu chung do `buildSite()` tính một lần |
+| Thứ tự dựng, dữ liệu chung `ctx`, trang Gửi tài liệu, 404, robots.txt, sitemap | `scripts/build-site.mjs`: `buildSite()` | |
 | Nhãn, chip loại chương trình, bộ chọn khóa, lộ trình, khối kiến thức, danh sách ngành, ghi chú viết tắt | `scripts/site/programs.mjs` | Tên và mã loại lấy từ `scripts/lib/program-types.mjs` |
 | Thẻ tài liệu, file, xem trước, yêu cầu gỡ, tài liệu mới | `scripts/site/items.mjs` (`renderItem`, `recentSection`) | |
 | Bảng môn | `scripts/site/courses.mjs` | |
@@ -76,7 +77,6 @@ Các file dưới đây gánh nhiều việc; sửa một chỗ phải đọc nh
 
 | File | Dòng | Hướng tách |
 |---|---|---|
-| `scripts/build-site.mjs` | khoảng 800 (`buildSite()` khoảng 730) | Hàm dùng chung đã tách sang `scripts/site/`. Còn lại: mỗi loại trang một file `scripts/site/pages/*.mjs`; `buildSite()` chỉ điều phối |
 | `worker/src/index.mjs` | khoảng 750 | `routes/submit.mjs`, `routes/review.mjs`, `notify` và `cron` riêng; `index.mjs` chỉ định tuyến |
 | `site-src/assets/upload.js` | khoảng 730 | Tách phần chọn môn, đợt gửi nhiều file, gửi và báo lỗi |
 | `scripts/upload/check.mjs` | khoảng 660 | `locate`, `scan`, `apply`, CLI riêng |
