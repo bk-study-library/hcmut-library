@@ -130,6 +130,10 @@ Khoa trong `catalog/faculties.json` có `movedTo` là khóa cũ chỉ giữ cho 
 
 Mỗi trang có `canonical`, `hreflang` (khi có cả bản tiếng Việt và tiếng Anh), Open Graph tag và Twitter card với ảnh `site-src/assets/social-preview.png` (`socialImage` trong `catalog/site.json`). Lúc dựng web sinh thêm `sitemap.xml` (không gồm 404, trang chuyển hướng, chương trình `listed: false`) và `robots.txt`. `robots.txt` chỉ có hiệu lực ở gốc tên miền; khi web nằm ở đường dẫn con như hiện nay, khai `sitemap.xml` trực tiếp trong công cụ của máy tìm kiếm.
 
+## Bản đồ code
+
+Trước khi sửa code, xem [docs/kien-truc.md](docs/kien-truc.md): luồng dữ liệu, thư mục, "muốn sửa gì thì vào file nào", và các file lớn cần tách.
+
 ## Cài đặt luồng gửi tài liệu
 
 Dành cho chủ repo: tạo GitHub App, kho R2, Turnstile, Worker, khóa cho Actions. Xem [docs/cai-dat-luong-tai-len.md](docs/cai-dat-luong-tai-len.md).

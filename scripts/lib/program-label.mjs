@@ -1,4 +1,4 @@
-// Nhãn chương trình của một mã môn ("Chính quy", "Tiên tiến, Chính quy", "Thạc sĩ"): mã này dạy cho hệ nào,
+// Nhãn chương trình của một mã môn ("CQ", "CTTT, CQ", "Thạc sĩ"; mã viết tắt từ program-types.mjs): mã này dạy cho hệ nào,
 // để phân biệt các mã của cùng một môn. Chỉ web dùng (trang môn theo tên, ô tìm, form gửi), không thuộc v1.
 //
 // Thứ tự ưu tiên: phần ngoặc cuối tên nếu nó gọi tên chương trình ("Giải tích 2 (CT Tiên tiến)"); không thì loại
