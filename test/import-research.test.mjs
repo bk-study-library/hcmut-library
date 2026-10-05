@@ -233,3 +233,26 @@ test('danh mục thật: điều kiện tốt nghiệp chung thuộc Môn chung 
   }
   for (const code of ['FRA_GC', 'ENG_GC', 'ENG_GC_600', 'CCGDTC', 'SA4003']) assert.equal(repo.faculties.prefixes.find((h) => new RegExp(h.pattern).test(code))?.faculty, 'chung', code);
 });
+
+test('nhập research: chương trình đã gắn ngành (import-ctdt) không bị ghi đè, quan hệ môn giữ nguyên', () => {
+  const dir = freshRoot();
+  importFixture(dir);
+  const code = 'GEOPET_KY_THUAT_DIA_CHAT_2023';
+  const file = `catalog/programs/${code}.json`;
+  // Giả lập import-ctdt nhận chương trình này: gắn ngành, đổi khối, môn trỏ về khối mới.
+  const p = readJson(dir, file);
+  p.major = '7520501';
+  p.type = 'CQ';
+  p.blocks = [{ id: 'K99', name: 'Khối do import-ctdt ghi', required: true, courses: ['GE1007'] }];
+  writeJson(dir, file, p);
+  const c = readJson(dir, 'catalog/courses/GE1007.json');
+  c.programs = c.programs.filter((x) => x.program !== code).concat([{ program: code, block: 'K99', required: true }]);
+  writeJson(dir, 'catalog/courses/GE1007.json', c);
+  const before = { p: fs.readFileSync(path.join(dir, file), 'utf8'), c: fs.readFileSync(path.join(dir, 'catalog/courses/GE1007.json'), 'utf8') };
+
+  const report = importFixture(dir, readResearch(RESEARCH), '2026-10-09');
+  assert.deepEqual(report.programsOwned, [code]);
+  assert.equal(fs.readFileSync(path.join(dir, file), 'utf8'), before.p);
+  const after = readJson(dir, 'catalog/courses/GE1007.json');
+  assert.deepEqual(after.programs.filter((x) => x.program === code), [{ program: code, block: 'K99', required: true }]);
+});

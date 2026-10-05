@@ -62,7 +62,8 @@ form web (site-src/assets/upload.js)
 | Email kết quả, cron | `worker/src/notify.mjs`; `worker/src/index.mjs`: `notifyCode`, `sweep`; lịch ở `worker/wrangler.jsonc` | Cloudflare chặn runner GitHub gọi Worker nên dùng cron |
 | Quét file, sanitize, comment kết quả | `scripts/upload/check.mjs` (lệnh), `sanitize.mjs`, `report.mjs` (bảng comment) | Workflow `kiem-file.yml` |
 | Đưa file lên Release, dọn kho | `scripts/upload/publish.mjs` | Workflow `phat-hanh-file.yml`, `don-kho.yml` |
-| Nguồn dữ liệu chính thức, thứ tự nhập | `docs/nguon-du-lieu.md` | Chạy riêng `import-research` ghi đè chương trình đã gắn ngành: chạy lại `import-ctdt` sau đó |
+| Nguồn dữ liệu chính thức, thứ tự nhập | `docs/nguon-du-lieu.md` | Chương trình đã gắn ngành thuộc `import-ctdt`, `import-research` không ghi đè |
+| Cách ghi file môn, chương trình, ngành khi nhập (thứ tự khóa, ngày cập nhật) | `scripts/lib/catalog-write.mjs`: `courseRecord`, `writeKeepDate`, `*_ORDER` | Dùng chung cho cả ba script nhập |
 
 ## File lớn cần tách (chưa làm)
 

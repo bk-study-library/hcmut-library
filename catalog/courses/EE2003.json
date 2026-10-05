@@ -10,13 +10,13 @@
   "status": "active",
   "programs": [
     {
-      "program": "DEE_CTDT_PFIEV_CHUYEN_NGANH_HE_THONG_NANG_LUONG_DIEN_2023_DEE_FILE_SYSTEM",
-      "block": "K07",
+      "program": "DEE_CHUYEN_NGANH_KY_THUAT_DIEN_TU_VIEN_THONG_2023_DEE_FILE_SYSTEM",
+      "block": "K06",
       "required": true
     },
     {
-      "program": "DEE_CHUYEN_NGANH_KY_THUAT_DIEN_TU_VIEN_THONG_2023_DEE_FILE_SYSTEM",
-      "block": "K06",
+      "program": "DEE_CTDT_PFIEV_CHUYEN_NGANH_HE_THONG_NANG_LUONG_DIEN_2023_DEE_FILE_SYSTEM",
+      "block": "K07",
       "required": true
     },
     {

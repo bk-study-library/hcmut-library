@@ -29,5 +29,5 @@ Danh sách nguồn dùng để dựng và kiểm danh mục chương trình, lo�
 ## Thứ tự nhập và lưu ý khi cập nhật
 
 1. `scripts/import-research.mjs` (bản thu thập chung, ngành tuyển sinh), rồi `scripts/import-ctdt.mjs` (CTĐT đại học), rồi `scripts/import-sdh.mjs` (sau đại học).
-2. `import-ctdt` nhận các ngành tuyển sinh có cùng ngành, khóa và loại làm chương trình của ngành đó (thêm `major`, `level`, link Sổ tay). Chạy lại riêng `import-research` sẽ ghi đè các trường này (29 file ngày 2026-10-05), nên sau đó phải chạy lại `import-ctdt`.
+2. `import-ctdt` nhận các ngành tuyển sinh có cùng ngành, khóa và loại làm chương trình của ngành đó (thêm `major`, `level`, link Sổ tay). Từ đó chương trình thuộc `import-ctdt`: `import-research` không ghi đè file và không đổi quan hệ môn của chương trình đã có `major`. Ba script ghi file môn cùng một cách (`scripts/lib/catalog-write.mjs`), nên chạy theo thứ tự nào cũng ra cùng dữ liệu (đã kiểm ngày 2026-10-05).
 3. Mã loại của thư viện (`type`: CQ, CTTA, CSAU, TAUD, ...) nằm trong hợp đồng v1 và trong id của 395 chương trình: không đổi tên. Tên hiển thị và mã viết tắt Sổ tay ở `PROGRAM_TYPES[].abbr`, `.official` và `programTypeInfo()`.

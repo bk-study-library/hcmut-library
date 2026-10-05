@@ -26,6 +26,7 @@ import { fileURLToPath } from 'node:url';
 import { TOOL_ROOT } from './lib/repo.mjs';
 import { inferParts, keptProgramFields } from './import-seed.mjs';
 import { researchType } from './lib/program-types.mjs';
+import { writeKeepDate, courseRecord } from './lib/catalog-write.mjs';
 
 const CODE_RE = /^[A-Z0-9_]{3,12}$/;
 
@@ -77,10 +78,6 @@ export function parseBlockName(raw) {
 
 const retiredHint = (c) => (c.status_hints || []).some((h) => /: retired$/.test(h));
 
-function sortedJson(o) {
-  return JSON.stringify(o, null, 2) + '\n';
-}
-
 const PRIVATE_SOURCES = new Set(['seed-mybk-kdi-2019']);
 
 export function importResearch(research, outRoot, { date, faculties, log = () => {} }) {
@@ -97,7 +94,7 @@ export function importResearch(research, outRoot, { date, faculties, log = () =>
   fs.mkdirSync(coursesDir, { recursive: true });
   fs.mkdirSync(programsDir, { recursive: true });
 
-  const report = { coursesCreated: 0, coursesKept: 0, programs: 0, programsEmpty: 0, retired: 0, aliases: 0, related: 0, skipped: [] };
+  const report = { coursesCreated: 0, coursesKept: 0, programs: 0, programsEmpty: 0, retired: 0, aliases: 0, related: 0, skipped: [], programsOwned: [] };
 
   // Môn đã có trong danh mục
   const existing = new Map();
@@ -230,9 +227,17 @@ export function importResearch(research, outRoot, { date, faculties, log = () =>
     for (const s of p.sources || []) if (registry[s]?.url) return registry[s].url;
     return null;
   };
+  // Chương trình đã gắn ngành (có major) do import-ctdt quản lý: không ghi đè file, không đụng quan hệ môn của nó.
+  const seen = new Set();
   for (const p of rp) {
     const code = programCode(p);
-    if (programCodes.has(code)) throw new Error(`trùng mã chương trình ${code} (${p.id})`);
+    if (seen.has(code)) throw new Error(`trùng mã chương trình ${code} (${p.id})`);
+    seen.add(code);
+    const file = path.join(programsDir, `${code}.json`);
+    if (fs.existsSync(file) && JSON.parse(fs.readFileSync(file, 'utf8')).major) {
+      report.programsOwned.push(code);
+      continue;
+    }
     programCodes.add(code);
     const year = p.cohort_year != null ? Number(p.cohort_year) : null;
     const v = researchType(p.type);
@@ -270,7 +275,7 @@ export function importResearch(research, outRoot, { date, faculties, log = () =>
     const faculty = p.faculty && facKeys.has(p.faculty) ? current(p.faculty) : 'unknown';
     const src = sourceUrl(p);
     // Trường người duyệt ghi tay (listed, ctdtUrl, planUrl) giữ nguyên khi nhập lại.
-    const kept = keptProgramFields(path.join(programsDir, `${code}.json`));
+    const kept = keptProgramFields(file);
     // Bản chép từ MyBK là nguồn nháp: có trang riêng nhưng không hiện trong danh sách chương trình.
     const listed = 'listed' in kept ? kept.listed : undefined;
     // type: ngành tuyển sinh luôn có (mã tuyển sinh: 1xx tiêu chuẩn, 2xx tiếng Anh, tiên tiến, Nhật Bản, 3xx chuyển
@@ -313,26 +318,12 @@ export function importResearch(research, outRoot, { date, faculties, log = () =>
   }
 
   // Ghi file; updated chỉ đổi khi nội dung đổi.
-  const writeKeepDate = (p, obj) => {
-    if (fs.existsSync(p)) {
-      const cur = JSON.parse(fs.readFileSync(p, 'utf8'));
-      const a = { ...cur, updated: null };
-      const b = { ...obj, updated: null };
-      if (JSON.stringify(a) === JSON.stringify(b)) obj.updated = cur.updated;
-      else obj.updated = date;
-    }
-    fs.writeFileSync(p, sortedJson(obj));
-  };
-  const ORDER = ['$schema', 'id', 'code', 'name', 'nameEn', 'credits', 'faculty', 'aliases', 'status', 'replacedBy', 'replaces', 'programs', 'parts', 'related', 'note', 'updated'];
   for (const c of out.values()) {
     c.related.sort();
     if (c.replaces) c.replaces.sort();
-    const o = {};
-    for (const k of ORDER) if (c[k] !== undefined) o[k] = c[k];
-    for (const k of Object.keys(c)) if (!(k in o)) o[k] = c[k];
-    writeKeepDate(path.join(coursesDir, `${c.id}.json`), o);
+    writeKeepDate(path.join(coursesDir, `${c.id}.json`), courseRecord(c), date);
   }
-  for (const pr of programs) writeKeepDate(path.join(programsDir, `${pr.code}.json`), pr);
+  for (const pr of programs) writeKeepDate(path.join(programsDir, `${pr.code}.json`), pr, date);
 
   report.retired = [...out.values()].filter((c) => c.status === 'retired').length;
   report.aliases = [...out.values()].reduce((n, c) => n + c.aliases.length, 0);
@@ -340,7 +331,7 @@ export function importResearch(research, outRoot, { date, faculties, log = () =>
   report.courses = out.size;
   log(
     `${report.courses} môn (tạo ${report.coursesCreated}, giữ ${report.coursesKept}), ${report.programs} chương trình (${report.programsEmpty} chưa có danh sách môn), ` +
-      `${report.retired} môn ngừng dạy, ${report.aliases} mã cũ, ${report.related} cặp liên quan.`,
+      `${report.retired} môn ngừng dạy, ${report.aliases} mã cũ, ${report.related} cặp liên quan; giữ nguyên ${report.programsOwned.length} chương trình đã gắn ngành (import-ctdt).`,
   );
   for (const s of report.skipped) log(`Bỏ qua ${s.code}: ${s.why}`);
   return report;
