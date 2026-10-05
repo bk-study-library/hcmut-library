@@ -1,0 +1,23 @@
+{
+  "$schema": "../../../schema/item.schema.json",
+  "id": "chuong-5-bai-toan-ma-sat",
+  "course": "AS1003",
+  "type": "lecture-slides",
+  "title": "Chuong 5 Bai toan ma sat",
+  "lang": "vi",
+  "license": "CC-BY-SA-4.0",
+  "origin": "self-made",
+  "added": "2026-10-05",
+  "removed": false,
+  "teacher": "Nguyễn Hữu Hào",
+  "files": [
+    {
+      "name": "AS1003_lecture-slides_chuong-5-bai-toan-ma-sat.pdf",
+      "size": 3608015,
+      "sha256": "af85c4ab699786df76610d4bcea23e93fde1ab6028295f5dfef0b186bd297523",
+      "mime": "application/pdf",
+      "quarantine": "pending/gzPvE1QIDp/AS1003_lecture-slides_chuong-5-bai-toan-ma-sat.pdf",
+      "uploadSha256": "af85c4ab699786df76610d4bcea23e93fde1ab6028295f5dfef0b186bd297523"
+    }
+  ]
+}
