@@ -31,8 +31,8 @@ test('trang chủ: đại học giữ nguyên, sau đại học là phần riên
   assert.match(pg, /<p class="muted">3 ngành thạc sĩ, 1 ngành tiến sĩ, 8 chương trình<\/p>/);
   assert.match(pg, /<details class="prog-fac"><summary><span class="prog-fac-name">Thạc sĩ<\/span> <span class="muted small">3 ngành, 6 chương trình<\/span><\/summary><h3>Khoa Cơ khí<\/h3>/);
   assert.match(pg, /<summary><span class="prog-fac-name">Tiến sĩ<\/span> <span class="muted small">1 ngành, 2 chương trình<\/span><\/summary><h3>Khoa Quản lý Công nghiệp<\/h3>/);
-  assert.match(pg, /<a class="major-name" href="\.\/major\/8520103\/">Kỹ thuật cơ khí<\/a><a class="tag" href="\.\/\?q=CQ" title="Chương trình Thạc sĩ tiêu chuẩn">THCQ<\/a><a class="tag" href="\.\/\?q=UD" title="[^"]+">UD<\/a><a class="tag" href="\.\/\?q=CSAU" title="[^"]+">CS<\/a>/);
-  assert.match(pg, /<a class="tag" href="\.\/\?q=PT1" title="[^"]+">PT1_1<\/a><a class="tag" href="\.\/\?q=TAPT1" title="[^"]+">CTTATS1_1<\/a>/);
+  assert.match(pg, /<a class="major-name" href="\.\/major\/8520103\/">Kỹ thuật cơ khí<\/a><a class="tag" href="\.\/\?q=CQ&amp;bac=thac-si" title="Chương trình Thạc sĩ tiêu chuẩn">THCQ<\/a><a class="tag" href="\.\/\?q=UD&amp;bac=thac-si" title="[^"]+">UD<\/a><a class="tag" href="\.\/\?q=CSAU&amp;bac=thac-si" title="[^"]+">CS<\/a>/);
+  assert.match(pg, /<a class="tag" href="\.\/\?q=PT1&amp;bac=tien-si" title="[^"]+">PT1_1<\/a><a class="tag" href="\.\/\?q=TAPT1&amp;bac=tien-si" title="[^"]+">CTTATS1_1<\/a>/);
   // Nhãn bậc cho ô tìm, lấy từ LEVELS.
   assert.match(html, /"levels":\{"thac-si":\["Thạc sĩ","Master"\],"tien-si":\["Tiến sĩ","Doctoral"\]\}/);
   const en = read('en/index.html');
@@ -66,7 +66,7 @@ test('trang ngành sau đại học: tên kèm bậc, bộ chọn loại và kh�
   const html = mainOf(read('major/8520103/index.html'));
   assert.match(html, /<li aria-current="page">Thạc sĩ Kỹ thuật cơ khí<\/li>/);
   assert.match(html, /<h1>Thạc sĩ Kỹ thuật cơ khí<\/h1><p class="muted">Mã ngành 8520103, <a href="\.\.\/\.\.\/faculty\/fme\/">Khoa Cơ khí<\/a>, Thạc sĩ, 3 chương trình<\/p>/);
-  assert.match(html, /<a class="tag" href="\.\.\/\.\.\/\?q=UD" title="[^"]+">UD<\/a>/);
+  assert.match(html, /<a class="tag" href="\.\.\/\.\.\/\?q=UD&amp;bac=thac-si" title="[^"]+">UD<\/a>/);
   assert.match(html, /<a class="chip" href="\.\.\/\.\.\/program\/FME_THAC_SI_KY_THUAT_CO_KHI_2025_UD\/" title="[^"]+" aria-current="true">UD<\/a><a class="chip" href="\.\.\/\.\.\/program\/FME_THAC_SI_KY_THUAT_CO_KHI_2025_CSAU\/" title="[^"]+">CS<\/a>/);
   assert.match(html, /<h2 id="h-road">Khối kiến thức<\/h2><p class="muted">Theo chương trình Khóa 2025, UD\./);
   assert.doesNotMatch(html, /Lộ trình theo học kỳ|id="hoc-ky-/);
@@ -82,7 +82,7 @@ test('trang chương trình sau đại học: CTĐT không ghi mã môn thì ghi
   assert.match(k22, /Thạc sĩ, 60 tín chỉ, chưa có danh sách mã môn<\/p>/);
   assert.match(k22, /<div class="note" role="note"><p>Chương trình đào tạo của khóa này không ghi mã môn\. Xem danh sách môn trong PDF của trường\.<\/p><\/div><p class="actions"><a class="btn primary" href="https:\/\/drive\.google\.com\/file\/d\/ths-ck-2022\/view" target="_blank" rel="noopener">PDF chương trình đào tạo<\/a><a class="btn subtle" href="[^"]*them-chuong-trinh\.yml/);
   const ud = mainOf(read('program/FME_THAC_SI_KY_THUAT_CO_KHI_2025_UD/index.html'));
-  assert.match(ud, /<a class="tag" href="\.\.\/\.\.\/\?q=UD" title="[^"]+">UD<\/a>, Thạc sĩ, 60 tín chỉ, 9 môn<\/p>/);
+  assert.match(ud, /<a class="tag" href="\.\.\/\.\.\/\?q=UD&amp;bac=thac-si" title="[^"]+">UD<\/a>, Thạc sĩ, 60 tín chỉ, 9 môn<\/p>/);
   assert.doesNotMatch(ud, /Thạc sĩ, Thạc sĩ/);
   assert.match(ud, /<li><a href="\.\.\/\.\.\/major\/8520103\/">Thạc sĩ Kỹ thuật cơ khí<\/a><\/li><li aria-current="page">Khóa 2025, UD<\/li>/);
   assert.match(ud, /<section class="block" id="khoi-k04"><h3>B\. Cơ sở ngành \(Core courses\)/);

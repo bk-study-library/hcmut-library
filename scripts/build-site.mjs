@@ -485,13 +485,30 @@ function addProgramUrl(f, p) {
 // chưa có type), để xem mọi chương trình cùng loại. root: gốc site tính từ trang hiện tại.
 // Tên chính thức của loại chương trình (Sổ tay HCMUT) hiện khi trỏ chuột vào mã viết tắt.
 // level: bậc của ngành hay chương trình (CQ ở sau đại học có tên khác, xem programTypeInfo).
+// Tên chính thức theo mã loại cho ô tìm (?q=CTTA): { CQ: [{ abbr, name }], ... }, mỗi bậc một dòng nếu mã khác
+// (CQ đại học và THCQ thạc sĩ); bậc chưa có tên chính thức thì bỏ.
+export function typeNotes(lang) {
+  return Object.fromEntries(
+    Object.keys(PROGRAM_TYPES).map((type) => {
+      const seen = new Map();
+      for (const level of [DEFAULT_LEVEL, ...POSTGRAD_LEVELS]) {
+        const info = programTypeInfo(type, level);
+        if (info.official[lang] && !seen.has(info.abbr)) seen.set(info.abbr, info.official[lang]);
+      }
+      return [type, [...seen].map(([abbr, name]) => ({ abbr, name }))];
+    }),
+  );
+}
+
 const typeTitle = (t, type, level) => {
   const name = programTypeInfo(type, level)?.official[t.lang];
   return name ? ` title="${esc(name)}"` : '';
 };
 
+// Nhãn của ngành, chương trình sau đại học mở ô tìm ở đúng bậc (&bac=), vì ô tìm mặc định chỉ hiện đại học.
 export function typeTagLink(t, root, q, label, level) {
-  return `<a class="tag" href="${root}${t.lang === 'en' ? 'en/' : ''}?q=${encodeURIComponent(q)}"${typeTitle(t, q, level)}>${esc(label)}</a>`;
+  const bac = level && level !== DEFAULT_LEVEL ? `&amp;bac=${encodeURIComponent(level)}` : '';
+  return `<a class="tag" href="${root}${t.lang === 'en' ? 'en/' : ''}?q=${encodeURIComponent(q)}${bac}"${typeTitle(t, q, level)}>${esc(label)}</a>`;
 }
 
 // Nhãn loại của một chương trình: theo type (trừ CQ), không có type thì theo variant.
@@ -1095,6 +1112,7 @@ export function buildSite({ root = TOOL_ROOT, out = path.join(TOOL_ROOT, 'site')
   <p id="q-hint" class="muted">${esc(t.searchHint)}</p>
   <noscript><p class="note">${esc(t.searchNoJs)}</p></noscript>
   <div id="q-out">
+  <p id="q-prog-type" class="note" role="note" hidden></p>
   <div id="q-prog" hidden>
     <h2 class="results-head">${esc(t.programsTitle)}</h2>
     <ul id="q-prog-list" class="results"></ul>
@@ -1124,7 +1142,7 @@ ${pgSection}
   <div class="panel"><p>${esc(t.contributeCta)}</p><p class="muted small">${esc(t.homeRules)}</p><p class="actions"><a class="btn primary" href="${root}gui-tai-lieu/">${esc(t.contributeBtn)}</a><a class="btn subtle" href="${root}${P('contribute/')}">${esc(t.contributeGuide)}</a></p></div>
   <div class="panel"><p>${esc(t.reviewCta)}</p><p><a class="btn" href="${root}${P('review/')}">${esc(t.reviewBtn)}</a></p></div>
 </section>
-<script type="application/json" id="search-strings">${jsonInScript({ results: [t.results(0), t.results(1), t.results(2)], teacher: t.teacher, lang, groupMin: siteCfg.sameNameGroupMin, chipsMax: siteCfg.sameNameChipsMax, docs: docStrings, levels: Object.fromEntries(POSTGRAD_LEVELS.map((l) => [l, [LEVELS[l][lang], LEVELS[l][t.other]]])) })}</script>
+<script type="application/json" id="search-strings">${jsonInScript({ results: [t.results(0), t.results(1), t.results(2)], teacher: t.teacher, lang, groupMin: siteCfg.sameNameGroupMin, chipsMax: siteCfg.sameNameChipsMax, docs: docStrings, levels: Object.fromEntries(POSTGRAD_LEVELS.map((l) => [l, [LEVELS[l][lang], LEVELS[l][t.other]]])), types: typeNotes(lang), typeNote: t.typeNote })}</script>
 <script src="${root}assets/search-core.js" defer></script>
 <script src="${root}assets/subject-core.js" defer></script>
 <script src="${root}assets/search-docs.js" defer></script>

@@ -12,6 +12,8 @@
   // Bậc: mặc định đại học (không ghi lên địa chỉ trang), Thạc sĩ, Tiến sĩ, Tất cả.
   var levelSel = document.getElementById('q-level');
   var DEFAULT_LEVEL = 'dai-hoc';
+  // Ghi chú tên chính thức khi câu tìm là mã loại chương trình (bấm nhãn CTTA ra ?q=CTTA, hay gõ THCQ).
+  var typeBox = document.getElementById('q-prog-type');
   var progBox = document.getElementById('q-prog');
   var progList = document.getElementById('q-prog-list');
   var docBox = document.getElementById('q-docs');
@@ -265,9 +267,31 @@
     }
   }
 
+  // Mã loại của câu tìm: khớp mã thư viện (CSAU) hay mã Sổ tay (CS, THCQ). Không khớp thì null.
+  function typeOfQuery(q) {
+    var key = q.trim().toUpperCase();
+    var types = strings.types || {};
+    if (!key) return null;
+    if (types[key]) return types[key];
+    for (var code in types) {
+      if (types[code].some(function (x) { return x.abbr === key; })) return types[code];
+    }
+    return null;
+  }
+
+  function renderType(q) {
+    if (!typeBox) return;
+    var notes = typeOfQuery(q);
+    typeBox.hidden = !notes || !notes.length;
+    typeBox.textContent = notes && notes.length
+      ? strings.typeNote + ' ' + notes.map(function (x) { return x.abbr + ', ' + x.name; }).join('. ') + '.'
+      : '';
+  }
+
   function run() {
     list.textContent = '';
     syncUrl();
+    renderType(input.value);
     var fac = facSel ? facSel.value : '';
     renderPrograms(input.value.trim() ? matchPrograms(input.value, fac) : []);
     var filtered = hasDocFilter();
@@ -435,7 +459,11 @@
           // Chương trình gắn ngành tìm được theo tên ngành (majorName) và mã ngành (major).
           // Mã loại (type, types của ngành) để nhãn loại bấm được (?q=PFIEV, ?q=CTTA) ra đúng chương trình.
           // Bậc sau đại học tìm được bằng cả hai thứ tiếng ("thac si", "master").
-          var text = [p.name, p.nameEn, p.majorName, p.major, p.variant, p.type, (p.types || []).join(' '), p.year, p.code.replace(/[_+]/g, ' '), (LEVELS[p.level] || []).join(' ')].filter(Boolean).join(' ');
+          // Mã Sổ tay khác mã thư viện (THCQ, CTTAUD, PT1_1) cũng tìm được; bỏ mã 2 chữ (CS) để khỏi lẫn với chữ thường gặp.
+          var abbrs = [p.type].concat(p.types || []).map(function (x) {
+            return ((strings.types || {})[x] || []).map(function (n) { return n.abbr; }).filter(function (a) { return a !== x && a.length > 2; }).join(' ');
+          });
+          var text = [p.name, p.nameEn, p.majorName, p.major, p.variant, p.type, (p.types || []).join(' '), abbrs.join(' '), p.year, p.code.replace(/[_+]/g, ' '), (LEVELS[p.level] || []).join(' ')].filter(Boolean).join(' ');
           return { kind: p.kind, key: p.key, code: p.code, name: p.name, nameEn: p.nameEn, year: p.year, variant: p.variant, level: p.level, faculty: p.faculty, courses: p.courses, programs: p.programs, words: window.BkSearch.fold(text).split(' '), folded: window.BkSearch.fold(en && p.nameEn ? p.nameEn : p.name) };
         });
         load(res[0]);
