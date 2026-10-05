@@ -11,7 +11,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { loadRepo, buildIndex, serializeIndex, TOOL_ROOT } from './lib/repo.mjs';
-import { EXAM_KINDS, TYPES, TYPE_ORDER, PARTS, STATUS, REPO, REPO_URL, SITE_URL, issueUrl, formatSize, formatBook, PROGRAM_TYPES, BLOCK_KINDS, DEGREES, LEVELS, DEFAULT_LEVEL, POSTGRAD_LEVELS, majorKey, isPostgrad, isPostgradCourse, courseLevels, fileFormat, DOC_LANGS } from './lib/labels.mjs';
+import { EXAM_KINDS, TYPES, TYPE_ORDER, PARTS, STATUS, REPO, REPO_URL, SITE_URL, issueUrl, formatSize, formatBook, PROGRAM_TYPES, programTypeInfo, BLOCK_KINDS, DEGREES, LEVELS, DEFAULT_LEVEL, POSTGRAD_LEVELS, majorKey, isPostgrad, isPostgradCourse, courseLevels, fileFormat, DOC_LANGS } from './lib/labels.mjs';
 import { previewTarget } from './lib/preview.mjs';
 import { S } from './lib/strings.mjs';
 import { buildV1, serializeV1 } from './lib/v1.mjs';
@@ -484,15 +484,19 @@ function addProgramUrl(f, p) {
 // Nhãn loại chương trình là link mở ô tìm trang chủ với ?q=<mã loại> (hoặc nhãn variant khi chương trình
 // chưa có type), để xem mọi chương trình cùng loại. root: gốc site tính từ trang hiện tại.
 // Tên chính thức của loại chương trình (Sổ tay HCMUT) hiện khi trỏ chuột vào mã viết tắt.
-const typeTitle = (t, type) => (PROGRAM_TYPES[type]?.official ? ` title="${esc(PROGRAM_TYPES[type].official[t.lang])}"` : '');
+// level: bậc của ngành hay chương trình (CQ ở sau đại học có tên khác, xem programTypeInfo).
+const typeTitle = (t, type, level) => {
+  const name = programTypeInfo(type, level)?.official[t.lang];
+  return name ? ` title="${esc(name)}"` : '';
+};
 
-export function typeTagLink(t, root, q, label) {
-  return `<a class="tag" href="${root}${t.lang === 'en' ? 'en/' : ''}?q=${encodeURIComponent(q)}"${typeTitle(t, q)}>${esc(label)}</a>`;
+export function typeTagLink(t, root, q, label, level) {
+  return `<a class="tag" href="${root}${t.lang === 'en' ? 'en/' : ''}?q=${encodeURIComponent(q)}"${typeTitle(t, q, level)}>${esc(label)}</a>`;
 }
 
 // Nhãn loại của một chương trình: theo type (trừ CQ), không có type thì theo variant.
 function programTypeTag(t, p, root) {
-  if (p.type && p.type !== 'CQ' && PROGRAM_TYPES[p.type]) return typeTagLink(t, root, p.type, PROGRAM_TYPES[p.type].abbr);
+  if (p.type && p.type !== 'CQ' && PROGRAM_TYPES[p.type]) return typeTagLink(t, root, p.type, typeLabel(t, p.type, p.level), p.level);
   if (!p.type && p.variant) return typeTagLink(t, root, p.variant, p.variant);
   return '';
 }
@@ -548,7 +552,7 @@ export function officialProgramLinks(t, p, site) {
 
 // ---------- Ngành, bộ chọn khóa và loại, lộ trình theo học kỳ ----------
 
-const typeLabel = (t, type) => (PROGRAM_TYPES[type] ? PROGRAM_TYPES[type].short[t.lang] : type);
+const typeLabel = (t, type, level) => programTypeInfo(type, level)?.abbr ?? type;
 const majorDisplayName = (t, m) => (t.lang === 'en' && m.nameEn ? m.nameEn : m.name);
 const typeRank = (order, type) => {
   const i = order.indexOf(type);
@@ -557,7 +561,7 @@ const typeRank = (order, type) => {
 
 // Nhãn ngắn của chương trình trong một ngành: "Khóa 2026, Tiêu chuẩn" (thêm chuyên ngành nếu có).
 export function cohortLabel(t, p) {
-  return [p.year ? t.cohort(p.year) : t.cohortUnknown, p.type ? typeLabel(t, p.type) : null, p.track || null].filter(Boolean).join(', ');
+  return [p.year ? t.cohort(p.year) : t.cohortUnknown, p.type ? typeLabel(t, p.type, p.level) : null, p.track || null].filter(Boolean).join(', ');
 }
 
 export const hasSemesters = (p) => p.blocks.some((b) => b.semesters && Object.keys(b.semesters).length);
@@ -618,7 +622,7 @@ export function mainProgram(list, order) {
 function majorPickers(t, list, current, hrefOf, order, currentAttr) {
   const chip = (p, label, on, title = '') => `<a class="chip" href="${hrefOf(p)}"${title}${on ? ` aria-current="${currentAttr}"` : ''}>${esc(label)}</a>`;
   const types = [...new Set(list.map((p) => p.type).filter(Boolean))].sort((a, b) => typeRank(order, a) - typeRank(order, b));
-  const typeChips = types.map((type) => chip(mainProgram(list.filter((p) => p.type === type), order), typeLabel(t, type), type === current.type, typeTitle(t, type)));
+  const typeChips = types.map((type) => chip(mainProgram(list.filter((p) => p.type === type), order), typeLabel(t, type, current.level), type === current.type, typeTitle(t, type, current.level)));
   const cohorts = list
     .filter((p) => p.type === current.type)
     .sort((a, b) => (b.year || '').localeCompare(a.year || '') || (a.track || '').localeCompare(b.track || '', 'vi'));
@@ -652,7 +656,7 @@ function majorRow(t, m, progs, root, P, order) {
     const p = mainProgram(filled.filter((x) => x.year === y), order);
     return `<a href="${root}${P(`program/${p.code}/`)}">${esc(y)}</a>`;
   });
-  const tags = types.map((x) => typeTagLink(t, root, x, typeLabel(t, x))).join('');
+  const tags = types.map((x) => typeTagLink(t, root, x, typeLabel(t, x, m.level), m.level)).join('');
   const none = isPostgrad(m) ? t.programNoCodesShort : t.majorNoCourses;
   return `<li class="major-row"><span class="major-head"><a class="major-name" href="${href}">${esc(majorDisplayName(t, m))}</a>${tags}</span><span class="muted small">${links.length ? `${esc(t.cohortsLabel)}: ${links.join(', ')}` : esc(none)}</span></li>`;
 }
@@ -679,14 +683,21 @@ function majorList(t, majors, progsOfMajor, root, P, order) {
     .sort((a, b) => majorDisplayName(t, a).localeCompare(majorDisplayName(t, b), t.lang) || a.code.localeCompare(b.code))
     .map((m) => majorRow(t, m, progsOfMajor(m.code), root, P, order));
   if (!rows.length) return '';
-  const types = [...new Set(majors.flatMap((m) => progsOfMajor(m.code).map((p) => p.type)).filter((x) => PROGRAM_TYPES[x]))].sort((a, b) => typeRank(order, a) - typeRank(order, b));
-  return `<ul class="majors">${rows.join('')}</ul>${abbrNote(t, types)}`;
+  // Mỗi cặp loại và bậc một dòng ghi chú (CQ ở thạc sĩ là THCQ); trùng mã viết tắt thì giữ một.
+  const pairs = majors.flatMap((m) => progsOfMajor(m.code).map((p) => [p.type, m.level])).filter(([x]) => PROGRAM_TYPES[x]);
+  pairs.sort((a, b) => typeRank(order, a[0]) - typeRank(order, b[0]));
+  return `<ul class="majors">${rows.join('')}</ul>${abbrNote(t, pairs)}`;
 }
 
 // Ghi chú viết tắt: mã loại chương trình (theo Sổ tay HCMUT) và tên chính thức, gập lại.
-function abbrNote(t, types) {
-  if (!types.length) return '';
-  const rows = types.map((x) => `<dt>${esc(PROGRAM_TYPES[x].abbr)}</dt><dd>${esc(PROGRAM_TYPES[x].official[t.lang])}</dd>`).join('');
+function abbrNote(t, pairs) {
+  const seen = new Map();
+  for (const [type, level] of pairs) {
+    const info = programTypeInfo(type, level);
+    if (info.official[t.lang] && !seen.has(info.abbr)) seen.set(info.abbr, info.official[t.lang]);
+  }
+  if (!seen.size) return '';
+  const rows = [...seen].map(([abbr, name]) => `<dt>${esc(abbr)}</dt><dd>${esc(name)}</dd>`).join('');
   return `<details class="abbr-note"><summary>${esc(t.abbrTitle)}</summary><dl>${rows}</dl><p class="muted small">${esc(t.abbrSource)}</p></details>`;
 }
 
@@ -1292,7 +1303,7 @@ ${pgBlock}`;
       ]
         .filter(Boolean)
         .join(', ');
-      const tags = types.map((x) => typeTagLink(t, root, x, typeLabel(t, x))).join('');
+      const tags = types.map((x) => typeTagLink(t, root, x, typeLabel(t, x, m.level), m.level)).join('');
       const buttons = [];
       let hosted = '';
       if (main) {
@@ -1449,7 +1460,7 @@ ${materials(items, root, s.main)}${filters ? `\n<script type="application/json" 
             const links = list
               .sort((a, b) => (b.pr.year || '').localeCompare(a.pr.year || '') || typeRank(typeOrder, a.pr.type) - typeRank(typeOrder, b.pr.type) || a.pr.code.localeCompare(b.pr.code))
               .map(({ pr, pg }) => {
-                const label = [pr.year, pr.type && pr.type !== 'CQ' ? typeLabel(t, pr.type) : null, pr.track].filter(Boolean).join(' ');
+                const label = [pr.year, pr.type && pr.type !== 'CQ' ? typeLabel(t, pr.type, pr.level) : null, pr.track].filter(Boolean).join(' ');
                 return `<a href="${root}${P(`program/${pr.code}/`)}#${blockAnchor(pg.block)}">${esc(label || pr.code)}</a>`;
               });
             return `<a href="${root}${P(`major/${majorKey(m.code)}/`)}">${esc(majorTitle(t, m))}</a>: ${links.join(', ')}`;

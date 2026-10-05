@@ -31,7 +31,7 @@ test('trang chủ: đại học giữ nguyên, sau đại học là phần riên
   assert.match(pg, /<p class="muted">3 ngành thạc sĩ, 1 ngành tiến sĩ, 8 chương trình<\/p>/);
   assert.match(pg, /<details class="prog-fac"><summary><span class="prog-fac-name">Thạc sĩ<\/span> <span class="muted small">3 ngành, 6 chương trình<\/span><\/summary><h3>Khoa Cơ khí<\/h3>/);
   assert.match(pg, /<summary><span class="prog-fac-name">Tiến sĩ<\/span> <span class="muted small">1 ngành, 2 chương trình<\/span><\/summary><h3>Khoa Quản lý Công nghiệp<\/h3>/);
-  assert.match(pg, /<a class="major-name" href="\.\/major\/8520103\/">Kỹ thuật cơ khí<\/a><a class="tag" href="\.\/\?q=CQ" title="[^"]+">CQ<\/a><a class="tag" href="\.\/\?q=UD" title="[^"]+">UD<\/a><a class="tag" href="\.\/\?q=CSAU" title="[^"]+">CS<\/a>/);
+  assert.match(pg, /<a class="major-name" href="\.\/major\/8520103\/">Kỹ thuật cơ khí<\/a><a class="tag" href="\.\/\?q=CQ" title="Chương trình Thạc sĩ tiêu chuẩn">THCQ<\/a><a class="tag" href="\.\/\?q=UD" title="[^"]+">UD<\/a><a class="tag" href="\.\/\?q=CSAU" title="[^"]+">CS<\/a>/);
   assert.match(pg, /<a class="tag" href="\.\/\?q=PT1" title="[^"]+">PT1_1<\/a><a class="tag" href="\.\/\?q=TAPT1" title="[^"]+">CTTATS1_1<\/a>/);
   // Nhãn bậc cho ô tìm, lấy từ LEVELS.
   assert.match(html, /"levels":\{"thac-si":\["Thạc sĩ","Master"\],"tien-si":\["Tiến sĩ","Doctoral"\]\}/);

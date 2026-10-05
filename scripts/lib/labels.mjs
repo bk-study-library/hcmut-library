@@ -69,6 +69,21 @@ export const PROGRAM_TYPES = {
   TAPT1: { abbr: 'CTTATS1_1', short: { vi: 'CTTATS1_1', en: 'CTTATS1_1' }, official: { vi: 'Chương trình Tiến sĩ Dạy và học bằng tiếng Anh phương thức 1 (đã có bằng thạc sĩ)', en: "English-taught Coursework Doctoral Program, Mode 1 (with Master's entry)" }, vi: 'Tiến sĩ phương thức 1 dạy bằng tiếng Anh', en: 'Doctoral track 1 taught in English' },
 };
 
+// CQ ở sau đại học (CTĐT trước khóa 2025 chưa chia hướng): thạc sĩ là THCQ, "Chương trình Thạc sĩ tiêu chuẩn"
+// trên Sổ tay; tiến sĩ chưa có tên chính thức nên chỉ hiện mã CQ. Xem docs/ten-chuong-trinh.md.
+const POSTGRAD_CQ = {
+  'thac-si': { abbr: 'THCQ', official: { vi: 'Chương trình Thạc sĩ tiêu chuẩn' } },
+  'tien-si': { abbr: 'CQ', official: {} },
+};
+
+// Mã viết tắt và tên chính thức của loại chương trình theo bậc. Loại lạ thì null.
+export function programTypeInfo(type, level) {
+  const base = PROGRAM_TYPES[type];
+  if (!base) return null;
+  if (type === 'CQ' && POSTGRAD_CQ[level]) return POSTGRAD_CQ[level];
+  return { abbr: base.abbr, official: base.official };
+}
+
 // Nhãn chương trình ngắn của một mã môn (scripts/lib/program-label.mjs): mã này dạy cho hệ nào.
 export const PROGRAM_LABELS = Object.fromEntries(['CQ', 'CTTT', 'PFIEV', 'CTTA', 'CNTN', 'DHNB', 'SN', 'VLVH', 'CTQT'].map((k) => [k, { vi: PROGRAM_TYPES[k].abbr, en: PROGRAM_TYPES[k].abbr }]));
 

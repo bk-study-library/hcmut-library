@@ -1,5 +1,22 @@
 # Tên chính thức các loại chương trình
 
+## Khái niệm
+
+Trường tách hai khái niệm (Quy định về học vụ và đào tạo bậc đại học, bản hợp nhất số 285/ĐHBK-ĐT ngày 28/7/2022, Điều 2; QĐ 2931/QĐ-ĐHBK ngày 10/9/2021):
+
+- **Hình thức đào tạo**: chính quy, vừa làm vừa học (VLVH), đào tạo từ xa, bằng thứ hai.
+- **Chương trình**: tiêu chuẩn (văn bản cũ gọi là "đại trà"), Dạy và học bằng tiếng Anh (trước là Chất lượng cao), Tài năng, Kỹ sư Chất lượng cao tại Việt Nam (PFIEV), Tiên tiến, Định hướng Nhật Bản, Song ngành, Chuyển tiếp quốc tế.
+
+Hệ quả cho thư viện:
+
+- Mã CQ (giá trị `program=CQ` trên Sổ tay) gần như chắc là viết tắt của "chính quy", nhưng nhãn Sổ tay là "Chương trình Đại học tiêu chuẩn". Chưa có văn bản ghi thẳng "CQ = tiêu chuẩn", nên web hiện mã CQ và tên theo Sổ tay.
+- VLVH là hình thức đào tạo, không phải chương trình: Sổ tay không có mục VLVH, và VLVH học cùng CTĐT với chính quy (chuẩn ngoại ngữ riêng). Viết tắt VLVH có trong bảng ký hiệu của bản hợp nhất 2022. Chưa có tên tiếng Anh chính thức, nên để nguyên VLVH.
+- Đổi tên trong quy chế: QĐ 1259 và 1260/QĐ-ĐHBK (16/3/2026) thay "Chương trình Chất lượng cao" bằng "Chương trình Dạy và Học bằng tiếng Anh"; QĐ 2749/QĐ-ĐHBK (27/5/2026) có "Chương trình Định hướng Nhật Bản" (trước là Chất lượng cao tăng cường tiếng Nhật). Tuyển sinh dùng tên mới sớm hơn (thông tin tuyển sinh 2023 đã ghi "Chương trình giảng dạy bằng tiếng Anh" và "Chương trình định hướng Nhật Bản").
+
+Nguồn quy chế: trang BKSI "Quy chế - Quy định" (https://mybk.hcmut.edu.vn/bksi/public/vi/blog/quy-che---quy-dinh) dẫn tới thư mục văn bản của trường; trang VLVH: https://mybk.hcmut.edu.vn/bksi/public/vi/blog/chuyen-sang-vua-lam-vua-hoc.
+
+## Bảng tên
+
 Nguồn: bộ chọn chương trình trên Sổ tay HCMUT, https://hcmut.edu.vn/study/handbook (bản tiếng Anh thêm `?lang=en`), đọc ngày 2026-10-05. Mã Sổ tay là giá trị `program=` trong link.
 
 | Mã thư viện | Mã Sổ tay | Tên tiếng Việt | Tên tiếng Anh |
@@ -12,8 +29,9 @@ Nguồn: bộ chọn chương trình trên Sổ tay HCMUT, https://hcmut.edu.vn/
 | CTTT | CTTT | Chương trình Đại học Tiên tiến | Advanced Undergraduate Program |
 | DHNB | DHNB | Chương trình Đại học Định hướng Nhật Bản | Japanese-oriented Undergraduate Program |
 | CTQT | CTQT | Chương trình Chuyển tiếp quốc tế | Trans-national Education program |
-| VLVH | không có | Hình thức Vừa làm vừa học (hình thức đào tạo, không có trong bộ chọn) | chưa xác minh được |
-| CQ (sau đại học) | THCQ | Chương trình Thạc sĩ tiêu chuẩn | Sổ tay để trống |
+| VLVH | không có | Hình thức đào tạo vừa làm vừa học (không phải chương trình, không có trong bộ chọn) | chưa xác minh được, để nguyên VLVH |
+| CQ (thạc sĩ) | THCQ | Chương trình Thạc sĩ tiêu chuẩn | Sổ tay để trống, chưa xác minh được |
+| CQ (tiến sĩ) | không có | chưa xác minh được, để nguyên CQ | chưa xác minh được |
 | UD | UD | Chương trình Thạc sĩ hướng Ứng dụng | Coursework Master Program |
 | NC | NC | Chương trình Thạc sĩ hướng Nghiên cứu | Research-oriented Master Program |
 | CSAU | CS | Chương trình Thạc sĩ hướng Nghiên cứu chuyên sâu | Research-intensive Master Program |
