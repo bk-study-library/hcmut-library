@@ -15,7 +15,7 @@ Hệ quả cho thư viện:
 - VLVH là hình thức đào tạo, không phải chương trình: Sổ tay không có mục VLVH, và VLVH học cùng CTĐT với chính quy (chuẩn ngoại ngữ riêng). Viết tắt VLVH có trong bảng ký hiệu của bản hợp nhất 2022. Chưa có tên tiếng Anh chính thức, nên để nguyên VLVH.
 - Đổi tên trong quy chế: QĐ 1259 và 1260/QĐ-ĐHBK (16/3/2026) thay "Chương trình Chất lượng cao" bằng "Chương trình Dạy và Học bằng tiếng Anh"; QĐ 2749/QĐ-ĐHBK (27/5/2026) có "Chương trình Định hướng Nhật Bản" (trước là Chất lượng cao tăng cường tiếng Nhật). Tuyển sinh dùng tên mới sớm hơn (thông tin tuyển sinh 2023 đã ghi "Chương trình giảng dạy bằng tiếng Anh" và "Chương trình định hướng Nhật Bản").
 
-Nguồn quy chế: trang BKSI "Quy chế - Quy định" (https://mybk.hcmut.edu.vn/bksi/public/vi/blog/quy-che---quy-dinh) dẫn tới thư mục văn bản của trường; trang VLVH: https://mybk.hcmut.edu.vn/bksi/public/vi/blog/chuyen-sang-vua-lam-vua-hoc.
+Danh sách mọi nguồn và ngày kiểm: docs/nguon-du-lieu.md. Nguồn quy chế: trang BKSI "Quy chế - Quy định" (https://mybk.hcmut.edu.vn/bksi/public/vi/blog/quy-che---quy-dinh) dẫn tới thư mục văn bản của trường; trang VLVH: https://mybk.hcmut.edu.vn/bksi/public/vi/blog/chuyen-sang-vua-lam-vua-hoc.
 
 ## Bảng tên
 

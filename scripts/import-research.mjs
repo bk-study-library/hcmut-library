@@ -29,18 +29,28 @@ import { inferParts, keptProgramFields } from './import-seed.mjs';
 const CODE_RE = /^[A-Z0-9_]{3,12}$/;
 
 // Nhãn tiếng Việt cho loại chương trình (trường type của research). Loại thường thì không ghi.
+// Cột cuối: mã loại của thư viện (PROGRAM_TYPES) ghi vào type của ngành tuyển sinh; null là loại không có
+// trên Sổ tay HCMUT (Liên kết quốc tế), giữ không có type. Xem docs/ten-chuong-trinh.md.
 const VARIANTS = [
-  [/^tien-tien/, 'Chương trình tiên tiến', 'TT'],
-  [/^pfiev/, 'PFIEV', 'PFIEV'],
-  [/^day-va-hoc-bang-tieng-anh/, 'Dạy và học bằng tiếng Anh', 'TA'],
-  [/^dinh-huong-nhat-ban/, 'Định hướng Nhật Bản', 'NB'],
-  [/^chuyen-tiep-quoc-te/, 'Chuyển tiếp quốc tế', 'CTQT'],
-  [/^lien-ket/, 'Liên kết quốc tế', 'LK'],
+  [/^tien-tien/, 'Chương trình tiên tiến', 'TT', 'CTTT'],
+  [/^pfiev/, 'PFIEV', 'PFIEV', 'PFIEV'],
+  [/^day-va-hoc-bang-tieng-anh/, 'Dạy và học bằng tiếng Anh', 'TA', 'CTTA'],
+  [/^dinh-huong-nhat-ban/, 'Định hướng Nhật Bản', 'NB', 'DHNB'],
+  [/^chuyen-tiep-quoc-te/, 'Chuyển tiếp quốc tế', 'CTQT', 'CTQT'],
+  [/^lien-ket/, 'Liên kết quốc tế', 'LK', null],
 ];
 
 function variantOf(type) {
   const v = VARIANTS.find(([re]) => re.test(type || ''));
   return v ? { label: v[1], short: v[2] } : null;
+}
+
+// Mã loại của ngành tuyển sinh (mã tuyển sinh: 1xx tiêu chuẩn, 2xx dạy bằng tiếng Anh, tiên tiến, định hướng
+// Nhật Bản, 3xx chuyển tiếp quốc tế, 4xx liên kết). "standard" là chương trình tiêu chuẩn, mã CQ.
+export function admissionType(type) {
+  if (/^standard/.test(type || '')) return 'CQ';
+  const v = VARIANTS.find(([re]) => re.test(type || ''));
+  return v ? v[3] : null;
 }
 
 const up = (s) => String(s).toUpperCase().replace(/[^A-Z0-9]+/g, '_').replace(/^_+|_+$/g, '');
@@ -287,6 +297,7 @@ export function importResearch(research, outRoot, { date, faculties, log = () =>
     const kept = keptProgramFields(path.join(programsDir, `${code}.json`));
     // Bản chép từ MyBK là nguồn nháp: có trang riêng nhưng không hiện trong danh sách chương trình.
     const listed = 'listed' in kept ? kept.listed : undefined;
+    const admType = p.id.startsWith('hcmut:admissions') ? admissionType(p.type) : null;
     programs.push({
       $schema: '../../schema/program.schema.json',
       code,
@@ -294,6 +305,7 @@ export function importResearch(research, outRoot, { date, faculties, log = () =>
       ...(p.name_en && p.name_vi ? { nameEn: clean(p.name_en) } : {}),
       faculty,
       ...(year != null ? { year: String(year) } : {}),
+      ...(admType ? { type: admType } : {}),
       ...(v ? { variant: v.label } : {}),
       ...(listed !== undefined ? { listed } : {}),
       ...(src ? { source: src } : {}),
