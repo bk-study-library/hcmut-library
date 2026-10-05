@@ -5,7 +5,7 @@ import { PROGRAM_TYPES, programTypeInfo } from '../scripts/lib/labels.mjs';
 
 test('programTypeInfo: CQ đại học là tiêu chuẩn, thạc sĩ là THCQ, tiến sĩ chỉ có mã', () => {
   assert.deepEqual(programTypeInfo('CQ'), { abbr: 'CQ', official: PROGRAM_TYPES.CQ.official });
-  assert.equal(programTypeInfo('CQ', 'dai-hoc').official.vi, 'Chương trình Đại học tiêu chuẩn');
+  assert.match(programTypeInfo('CQ', 'dai-hoc').official.vi, /^Chương trình Đại học tiêu chuẩn \(hình thức chính quy; văn bản trước 2026 gọi là chính quy đại trà\)$/);
   assert.deepEqual(programTypeInfo('CQ', 'thac-si'), { abbr: 'THCQ', official: { vi: 'Chương trình Thạc sĩ tiêu chuẩn' } });
   assert.deepEqual(programTypeInfo('CQ', 'tien-si'), { abbr: 'CQ', official: {} });
   assert.equal(programTypeInfo('XX'), null);

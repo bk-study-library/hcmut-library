@@ -49,14 +49,14 @@ export const STATUS = {
 // trong ghi chú viết tắt (docs/ten-chuong-trinh.md); vi, en: tên cũ, giữ làm giá trị variant.
 // Nhãn vi của loại khác CQ cũng là giá trị variant mà script nhập CTĐT ghi vào chương trình.
 export const PROGRAM_TYPES = {
-  CQ: { abbr: 'CQ', short: { vi: 'CQ', en: 'CQ' }, official: { vi: 'Chương trình Đại học tiêu chuẩn', en: 'Vietnamese-taught Undergraduate Program' }, vi: 'Chương trình tiêu chuẩn', en: 'Standard program' },
+  CQ: { abbr: 'CQ', short: { vi: 'CQ', en: 'CQ' }, official: { vi: 'Chương trình Đại học tiêu chuẩn (hình thức chính quy; văn bản trước 2026 gọi là chính quy đại trà)', en: 'Vietnamese-taught Undergraduate Program' }, vi: 'Chương trình tiêu chuẩn', en: 'Standard program' },
   CTTA: { abbr: 'CTTA', short: { vi: 'CTTA', en: 'CTTA' }, official: { vi: 'Chương trình Đại học Dạy và học bằng tiếng Anh', en: 'English-taught Undergraduate Program' }, vi: 'Dạy và học bằng tiếng Anh', en: 'Taught in English' },
   CNTN: { abbr: 'CNTN', short: { vi: 'CNTN', en: 'CNTN' }, official: { vi: 'Chương trình Đại học tài năng', en: 'Honors Undergraduate Program' }, vi: 'Chương trình tài năng', en: 'Honors program' },
   PFIEV: { abbr: 'PFIEV', short: { vi: 'PFIEV', en: 'PFIEV' }, official: { vi: 'Chương trình Đại học Kỹ sư chất lượng cao tại Việt Nam', en: 'Vietnamese-French High-Quality Engineering Program (PFIEV)' }, vi: 'PFIEV (kỹ sư Việt Pháp)', en: 'PFIEV (French-Vietnamese engineer)' },
   SN: { abbr: 'SN', short: { vi: 'SN', en: 'SN' }, official: { vi: 'Chương trình Đại học Song ngành', en: 'Dual-degree Undergraduate Program' }, vi: 'Song ngành', en: 'Dual degree' },
   CTTT: { abbr: 'CTTT', short: { vi: 'CTTT', en: 'CTTT' }, official: { vi: 'Chương trình Đại học Tiên tiến', en: 'Advanced Undergraduate Program' }, vi: 'Chương trình tiên tiến', en: 'Advanced program' },
   DHNB: { abbr: 'DHNB', short: { vi: 'DHNB', en: 'DHNB' }, official: { vi: 'Chương trình Đại học Định hướng Nhật Bản', en: 'Japanese-oriented Undergraduate Program' }, vi: 'Định hướng Nhật Bản', en: 'Japan-oriented' },
-  VLVH: { abbr: 'VLVH', short: { vi: 'VLVH', en: 'VLVH' }, official: { vi: 'Hình thức Vừa làm vừa học', en: 'Vừa làm vừa học (VLVH)' }, vi: 'Vừa làm vừa học', en: 'Part-time' },
+  VLVH: { abbr: 'VLVH', short: { vi: 'VLVH', en: 'VLVH' }, official: { vi: 'Hình thức đào tạo vừa làm vừa học (học theo chương trình chính quy)', en: 'Vừa làm vừa học (VLVH)' }, vi: 'Vừa làm vừa học', en: 'Part-time' },
   CTQT: { abbr: 'CTQT', short: { vi: 'CTQT', en: 'CTQT' }, official: { vi: 'Chương trình Chuyển tiếp quốc tế', en: 'Trans-national Education program' }, vi: 'Chuyển tiếp quốc tế', en: 'International transfer' },
   // Sau đại học (thạc sĩ, tiến sĩ). Chương trình sau đại học khóa 2022 trở về trước chưa chia hướng, ghi CQ.
   UD: { abbr: 'UD', short: { vi: 'UD', en: 'UD' }, official: { vi: 'Chương trình Thạc sĩ hướng Ứng dụng', en: 'Coursework Master Program' }, vi: 'Thạc sĩ định hướng ứng dụng', en: 'Applied master' },
