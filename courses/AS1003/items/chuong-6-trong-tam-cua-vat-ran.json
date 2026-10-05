@@ -1,0 +1,23 @@
+{
+  "$schema": "../../../schema/item.schema.json",
+  "id": "chuong-6-trong-tam-cua-vat-ran",
+  "course": "AS1003",
+  "type": "lecture-slides",
+  "title": "Chuong 6 Trong tam cua vat ran",
+  "lang": "vi",
+  "license": "CC-BY-SA-4.0",
+  "origin": "self-made",
+  "added": "2026-10-05",
+  "removed": false,
+  "teacher": "Nguyễn Hữu Hào",
+  "files": [
+    {
+      "name": "AS1003_lecture-slides_chuong-6-trong-tam-cua-vat-ran.pdf",
+      "size": 9208416,
+      "sha256": "a77b5a77ca2b34ac486d3991edef72ca5bc846189bf2979f3d1b06c5d5446503",
+      "mime": "application/pdf",
+      "quarantine": "pending/gzPvE1QIDp/AS1003_lecture-slides_chuong-6-trong-tam-cua-vat-ran.pdf",
+      "uploadSha256": "a77b5a77ca2b34ac486d3991edef72ca5bc846189bf2979f3d1b06c5d5446503"
+    }
+  ]
+}
