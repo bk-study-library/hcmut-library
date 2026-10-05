@@ -1,0 +1,23 @@
+{
+  "$schema": "../../../schema/item.schema.json",
+  "id": "chuong-3-bai-toan-can-bang-vat-ran-he-vat-ran",
+  "course": "AS1003",
+  "type": "lecture-slides",
+  "title": "Chuong 3 Bai toan Can bang vat ran He vat ran",
+  "lang": "vi",
+  "license": "CC-BY-SA-4.0",
+  "origin": "self-made",
+  "added": "2026-10-05",
+  "removed": false,
+  "teacher": "Nguyễn Hữu Hào",
+  "files": [
+    {
+      "name": "AS1003_lecture-slides_chuong-3-bai-toan-can-bang-vat-ran-he-vat-ran.pdf",
+      "size": 5112958,
+      "sha256": "ec8aae6937726c127af0c15a290624803859e0dd1083bdda3c8c1f2beadfbc38",
+      "mime": "application/pdf",
+      "quarantine": "pending/gzPvE1QIDp/AS1003_lecture-slides_chuong-3-bai-toan-can-bang-vat-ran-he-vat-ran.pdf",
+      "uploadSha256": "ec8aae6937726c127af0c15a290624803859e0dd1083bdda3c8c1f2beadfbc38"
+    }
+  ]
+}
