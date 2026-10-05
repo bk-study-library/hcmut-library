@@ -13,11 +13,12 @@
   "files": [
     {
       "name": "AS1003_lecture-slides_chuong-3-bai-toan-can-bang-vat-ran-he-vat-ran.pdf",
-      "size": 5112958,
-      "sha256": "ec8aae6937726c127af0c15a290624803859e0dd1083bdda3c8c1f2beadfbc38",
+      "size": 5109139,
+      "sha256": "7ac3e4df33727a8b2f2caed42a24247f8ff988e18d3d320284830cdf395a6ea5",
       "mime": "application/pdf",
-      "quarantine": "pending/gzPvE1QIDp/AS1003_lecture-slides_chuong-3-bai-toan-can-bang-vat-ran-he-vat-ran.pdf",
-      "uploadSha256": "ec8aae6937726c127af0c15a290624803859e0dd1083bdda3c8c1f2beadfbc38"
+      "quarantine": "clean/gzPvE1QIDp/AS1003_lecture-slides_chuong-3-bai-toan-can-bang-vat-ran-he-vat-ran.pdf",
+      "uploadSha256": "ec8aae6937726c127af0c15a290624803859e0dd1083bdda3c8c1f2beadfbc38",
+      "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_lecture-slides_chuong-3-bai-toan-can-bang-vat-ran-he-vat-ran.pdf"
     }
   ]
 }

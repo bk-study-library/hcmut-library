@@ -4,7 +4,7 @@
   "site": "https://bk-study-library.github.io/hcmut-library/",
   "counts": {
     "courses": 3796,
-    "items": 15
+    "items": 22
   },
   "faculties": [
     {
@@ -145,7 +145,10 @@
       "aliases": [],
       "oldNames": [],
       "status": "active",
-      "items": 0,
+      "items": 7,
+      "teachers": [
+        "Nguyễn Hữu Hào"
+      ],
       "url": "https://bk-study-library.github.io/hcmut-library/course/AS1003/",
       "detail": "courses/AS1003.json"
     },

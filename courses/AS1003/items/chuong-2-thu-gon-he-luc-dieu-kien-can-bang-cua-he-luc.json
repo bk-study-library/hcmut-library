@@ -13,11 +13,12 @@
   "files": [
     {
       "name": "AS1003_lecture-slides_chuong-2-thu-gon-he-luc-dieu-kien-can-bang-cua-he-luc.pdf",
-      "size": 10699632,
-      "sha256": "aa79771f7e0c5da109e9cb4f97797ffa9f1232884ca4428703837ad08548eb9d",
+      "size": 10701182,
+      "sha256": "1cfea5266d34cd335a5e1823f2ea8074251aa991c50fdc9fdd4f36c4be0aa3da",
       "mime": "application/pdf",
-      "quarantine": "pending/gzPvE1QIDp/AS1003_lecture-slides_chuong-2-thu-gon-he-luc-dieu-kien-can-bang-cua-he-luc.pdf",
-      "uploadSha256": "aa79771f7e0c5da109e9cb4f97797ffa9f1232884ca4428703837ad08548eb9d"
+      "quarantine": "clean/gzPvE1QIDp/AS1003_lecture-slides_chuong-2-thu-gon-he-luc-dieu-kien-can-bang-cua-he-luc.pdf",
+      "uploadSha256": "aa79771f7e0c5da109e9cb4f97797ffa9f1232884ca4428703837ad08548eb9d",
+      "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_lecture-slides_chuong-2-thu-gon-he-luc-dieu-kien-can-bang-cua-he-luc.pdf"
     }
   ]
 }

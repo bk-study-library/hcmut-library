@@ -13,11 +13,12 @@
   "files": [
     {
       "name": "AS1003_lecture-slides_chuong-7-dong-hoc-diem.pdf",
-      "size": 5173611,
-      "sha256": "03a0a0503f327548df40ddc75d1aff666eb29d889fd721da0e9d50bbca2927dd",
+      "size": 5204735,
+      "sha256": "7dafe8b94f078f8778ec15f9174dec5b34488d1363f0d78015d7a12a5349ff6e",
       "mime": "application/pdf",
-      "quarantine": "pending/gzPvE1QIDp/AS1003_lecture-slides_chuong-7-dong-hoc-diem.pdf",
-      "uploadSha256": "03a0a0503f327548df40ddc75d1aff666eb29d889fd721da0e9d50bbca2927dd"
+      "quarantine": "clean/gzPvE1QIDp/AS1003_lecture-slides_chuong-7-dong-hoc-diem.pdf",
+      "uploadSha256": "03a0a0503f327548df40ddc75d1aff666eb29d889fd721da0e9d50bbca2927dd",
+      "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_lecture-slides_chuong-7-dong-hoc-diem.pdf"
     }
   ]
 }

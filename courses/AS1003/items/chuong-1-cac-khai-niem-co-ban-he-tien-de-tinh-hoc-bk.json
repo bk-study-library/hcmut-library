@@ -13,11 +13,12 @@
   "files": [
     {
       "name": "AS1003_lecture-slides_chuong-1-cac-khai-niem-co-ban-he-tien-de-tinh-hoc-bk.pdf",
-      "size": 3849164,
-      "sha256": "597fa91bcbd4e1e5acb30b4b54f94950247d665fef264c5cc718863de5cf67c0",
+      "size": 3876435,
+      "sha256": "66ccd54b98cff57e6f3aec9dfb2370e6b96f8bc2426f47ab013c03c43c9398eb",
       "mime": "application/pdf",
-      "quarantine": "pending/gzPvE1QIDp/AS1003_lecture-slides_chuong-1-cac-khai-niem-co-ban-he-tien-de-tinh-hoc-bk.pdf",
-      "uploadSha256": "597fa91bcbd4e1e5acb30b4b54f94950247d665fef264c5cc718863de5cf67c0"
+      "quarantine": "clean/gzPvE1QIDp/AS1003_lecture-slides_chuong-1-cac-khai-niem-co-ban-he-tien-de-tinh-hoc-bk.pdf",
+      "uploadSha256": "597fa91bcbd4e1e5acb30b4b54f94950247d665fef264c5cc718863de5cf67c0",
+      "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_lecture-slides_chuong-1-cac-khai-niem-co-ban-he-tien-de-tinh-hoc-bk.pdf"
     }
   ]
 }

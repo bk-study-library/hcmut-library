@@ -3,5 +3,160 @@
   "id": "AS1003",
   "code": "AS1003",
   "name": "Cơ lý thuyết",
-  "items": []
+  "items": [
+    {
+      "id": "chuong-1-cac-khai-niem-co-ban-he-tien-de-tinh-hoc-bk",
+      "type": "lecture-slides",
+      "title": "Chuong 1 Cac khai niem co ban He tien de tinh hoc BK",
+      "lang": "vi",
+      "teacher": "Nguyễn Hữu Hào",
+      "license": "CC-BY-SA-4.0",
+      "origin": "self-made",
+      "added": "2026-10-05",
+      "updated": "2026-10-05",
+      "files": [
+        {
+          "name": "AS1003_lecture-slides_chuong-1-cac-khai-niem-co-ban-he-tien-de-tinh-hoc-bk.pdf",
+          "mime": "application/pdf",
+          "size": 3876435,
+          "sha256": "66ccd54b98cff57e6f3aec9dfb2370e6b96f8bc2426f47ab013c03c43c9398eb",
+          "urls": [
+            "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_lecture-slides_chuong-1-cac-khai-niem-co-ban-he-tien-de-tinh-hoc-bk.pdf"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "chuong-2-thu-gon-he-luc-dieu-kien-can-bang-cua-he-luc",
+      "type": "lecture-slides",
+      "title": "Chuong 2 Thu gon he luc Dieu kien can bang cua he luc",
+      "lang": "vi",
+      "teacher": "Nguyễn Hữu Hào",
+      "license": "CC-BY-SA-4.0",
+      "origin": "self-made",
+      "added": "2026-10-05",
+      "updated": "2026-10-05",
+      "files": [
+        {
+          "name": "AS1003_lecture-slides_chuong-2-thu-gon-he-luc-dieu-kien-can-bang-cua-he-luc.pdf",
+          "mime": "application/pdf",
+          "size": 10701182,
+          "sha256": "1cfea5266d34cd335a5e1823f2ea8074251aa991c50fdc9fdd4f36c4be0aa3da",
+          "urls": [
+            "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_lecture-slides_chuong-2-thu-gon-he-luc-dieu-kien-can-bang-cua-he-luc.pdf"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "chuong-3-bai-toan-can-bang-vat-ran-he-vat-ran",
+      "type": "lecture-slides",
+      "title": "Chuong 3 Bai toan Can bang vat ran He vat ran",
+      "lang": "vi",
+      "teacher": "Nguyễn Hữu Hào",
+      "license": "CC-BY-SA-4.0",
+      "origin": "self-made",
+      "added": "2026-10-05",
+      "updated": "2026-10-05",
+      "files": [
+        {
+          "name": "AS1003_lecture-slides_chuong-3-bai-toan-can-bang-vat-ran-he-vat-ran.pdf",
+          "mime": "application/pdf",
+          "size": 5109139,
+          "sha256": "7ac3e4df33727a8b2f2caed42a24247f8ff988e18d3d320284830cdf395a6ea5",
+          "urls": [
+            "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_lecture-slides_chuong-3-bai-toan-can-bang-vat-ran-he-vat-ran.pdf"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "chuong-4-bai-toan-gian",
+      "type": "lecture-slides",
+      "title": "Chuong 4 Bai toan gian",
+      "lang": "vi",
+      "teacher": "Nguyễn Hữu Hào",
+      "license": "CC-BY-SA-4.0",
+      "origin": "self-made",
+      "added": "2026-10-05",
+      "updated": "2026-10-05",
+      "files": [
+        {
+          "name": "AS1003_lecture-slides_chuong-4-bai-toan-gian.pdf",
+          "mime": "application/pdf",
+          "size": 8948034,
+          "sha256": "34e4a56fa5b8734fedc001f4e9abec68b6d7a78b81672669a7b72a7d3df17cc2",
+          "urls": [
+            "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_lecture-slides_chuong-4-bai-toan-gian.pdf"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "chuong-5-bai-toan-ma-sat",
+      "type": "lecture-slides",
+      "title": "Chuong 5 Bai toan ma sat",
+      "lang": "vi",
+      "teacher": "Nguyễn Hữu Hào",
+      "license": "CC-BY-SA-4.0",
+      "origin": "self-made",
+      "added": "2026-10-05",
+      "updated": "2026-10-05",
+      "files": [
+        {
+          "name": "AS1003_lecture-slides_chuong-5-bai-toan-ma-sat.pdf",
+          "mime": "application/pdf",
+          "size": 3605087,
+          "sha256": "eebad7dc326bf8526afe07de454452c6a3ee645250f34e8c7f33ee26d70052e4",
+          "urls": [
+            "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_lecture-slides_chuong-5-bai-toan-ma-sat.pdf"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "chuong-6-trong-tam-cua-vat-ran",
+      "type": "lecture-slides",
+      "title": "Chuong 6 Trong tam cua vat ran",
+      "lang": "vi",
+      "teacher": "Nguyễn Hữu Hào",
+      "license": "CC-BY-SA-4.0",
+      "origin": "self-made",
+      "added": "2026-10-05",
+      "updated": "2026-10-05",
+      "files": [
+        {
+          "name": "AS1003_lecture-slides_chuong-6-trong-tam-cua-vat-ran.pdf",
+          "mime": "application/pdf",
+          "size": 9205076,
+          "sha256": "e915dab19ec91fbcb4eed626984fae60b0b2848ef9699db398cbc3f700edf405",
+          "urls": [
+            "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_lecture-slides_chuong-6-trong-tam-cua-vat-ran.pdf"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "chuong-7-dong-hoc-diem",
+      "type": "lecture-slides",
+      "title": "Chuong 7 Dong hoc diem",
+      "lang": "vi",
+      "teacher": "Nguyễn Hữu Hào",
+      "license": "CC-BY-SA-4.0",
+      "origin": "self-made",
+      "added": "2026-10-05",
+      "updated": "2026-10-05",
+      "files": [
+        {
+          "name": "AS1003_lecture-slides_chuong-7-dong-hoc-diem.pdf",
+          "mime": "application/pdf",
+          "size": 5204735,
+          "sha256": "7dafe8b94f078f8778ec15f9174dec5b34488d1363f0d78015d7a12a5349ff6e",
+          "urls": [
+            "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_lecture-slides_chuong-7-dong-hoc-diem.pdf"
+          ]
+        }
+      ]
+    }
+  ]
 }

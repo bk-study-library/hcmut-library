@@ -13,11 +13,12 @@
   "files": [
     {
       "name": "AS1003_lecture-slides_chuong-6-trong-tam-cua-vat-ran.pdf",
-      "size": 9208416,
-      "sha256": "a77b5a77ca2b34ac486d3991edef72ca5bc846189bf2979f3d1b06c5d5446503",
+      "size": 9205076,
+      "sha256": "e915dab19ec91fbcb4eed626984fae60b0b2848ef9699db398cbc3f700edf405",
       "mime": "application/pdf",
-      "quarantine": "pending/gzPvE1QIDp/AS1003_lecture-slides_chuong-6-trong-tam-cua-vat-ran.pdf",
-      "uploadSha256": "a77b5a77ca2b34ac486d3991edef72ca5bc846189bf2979f3d1b06c5d5446503"
+      "quarantine": "clean/gzPvE1QIDp/AS1003_lecture-slides_chuong-6-trong-tam-cua-vat-ran.pdf",
+      "uploadSha256": "a77b5a77ca2b34ac486d3991edef72ca5bc846189bf2979f3d1b06c5d5446503",
+      "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_lecture-slides_chuong-6-trong-tam-cua-vat-ran.pdf"
     }
   ]
 }

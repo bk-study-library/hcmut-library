@@ -13,11 +13,12 @@
   "files": [
     {
       "name": "AS1003_lecture-slides_chuong-5-bai-toan-ma-sat.pdf",
-      "size": 3608015,
-      "sha256": "af85c4ab699786df76610d4bcea23e93fde1ab6028295f5dfef0b186bd297523",
+      "size": 3605087,
+      "sha256": "eebad7dc326bf8526afe07de454452c6a3ee645250f34e8c7f33ee26d70052e4",
       "mime": "application/pdf",
-      "quarantine": "pending/gzPvE1QIDp/AS1003_lecture-slides_chuong-5-bai-toan-ma-sat.pdf",
-      "uploadSha256": "af85c4ab699786df76610d4bcea23e93fde1ab6028295f5dfef0b186bd297523"
+      "quarantine": "clean/gzPvE1QIDp/AS1003_lecture-slides_chuong-5-bai-toan-ma-sat.pdf",
+      "uploadSha256": "af85c4ab699786df76610d4bcea23e93fde1ab6028295f5dfef0b186bd297523",
+      "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_lecture-slides_chuong-5-bai-toan-ma-sat.pdf"
     }
   ]
 }
