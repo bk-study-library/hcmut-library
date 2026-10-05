@@ -1,0 +1,23 @@
+{
+  "$schema": "../../../schema/item.schema.json",
+  "id": "chuong-4-bai-toan-gian",
+  "course": "AS1003",
+  "type": "lecture-slides",
+  "title": "Chuong 4 Bai toan gian",
+  "lang": "vi",
+  "license": "CC-BY-SA-4.0",
+  "origin": "self-made",
+  "added": "2026-10-05",
+  "removed": false,
+  "teacher": "Nguyễn Hữu Hào",
+  "files": [
+    {
+      "name": "AS1003_lecture-slides_chuong-4-bai-toan-gian.pdf",
+      "size": 8951779,
+      "sha256": "41c4574e74479bb86dd9549509d193137362f578efe4ed80b33402cf1451bc23",
+      "mime": "application/pdf",
+      "quarantine": "pending/gzPvE1QIDp/AS1003_lecture-slides_chuong-4-bai-toan-gian.pdf",
+      "uploadSha256": "41c4574e74479bb86dd9549509d193137362f578efe4ed80b33402cf1451bc23"
+    }
+  ]
+}
