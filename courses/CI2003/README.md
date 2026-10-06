@@ -18,6 +18,10 @@
 
 - **Bài giảng Cơ lưu chất - Nguyễn Thị Bảy** (vi, CC-BY-SA-4.0): [CI2003_lecture-slides_bai-giang-co-luu-chat-nguyen-thi-bay.pdf, 7.4 MB](https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/CI2003_lecture-slides_bai-giang-co-luu-chat-nguyen-thi-bay.pdf)
 
+### Đề cũ
+
+- **Đề thi học kỳ Cơ lưu chất HK172 - đề mẫu có đáp án** (HK172, vi, CC-BY-SA-4.0): [CI2003_exam-past_de-thi-hoc-ky-co-luu-chat-hk172-de-mau-co-dap-an_HK172.pdf, 513 KB](https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/CI2003_exam-past_de-thi-hoc-ky-co-luu-chat-hk172-de-mau-co-dap-an_HK172.pdf)
+
 ## Link
 
 Chưa có link.

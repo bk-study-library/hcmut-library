@@ -15,11 +15,12 @@
   "files": [
     {
       "name": "CI2003_exam-past_de-thi-hoc-ky-co-luu-chat-hk172-de-mau-co-dap-an_HK172.pdf",
-      "size": 519041,
-      "sha256": "5b19b23c7d5b33c0469038137417e1eafb80083f28eb3db490c81e76aaeb74b2",
+      "size": 525397,
+      "sha256": "d3558835da47c9e549fc2173e67c03f41a77bbf207de3cba3ba7e3ec242a567a",
       "mime": "application/pdf",
-      "quarantine": "pending/Dz4QFAp82s/CI2003_exam-past_de-thi-hoc-ky-co-luu-chat-hk172-de-mau-co-dap-an_HK172.pdf",
-      "uploadSha256": "5b19b23c7d5b33c0469038137417e1eafb80083f28eb3db490c81e76aaeb74b2"
+      "quarantine": "clean/Dz4QFAp82s/CI2003_exam-past_de-thi-hoc-ky-co-luu-chat-hk172-de-mau-co-dap-an_HK172.pdf",
+      "uploadSha256": "5b19b23c7d5b33c0469038137417e1eafb80083f28eb3db490c81e76aaeb74b2",
+      "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/CI2003_exam-past_de-thi-hoc-ky-co-luu-chat-hk172-de-mau-co-dap-an_HK172.pdf"
     }
   ]
 }
