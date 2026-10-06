@@ -5,6 +5,28 @@
   "name": "Cơ lưu chất",
   "items": [
     {
+      "id": "bai-giang-co-luu-chat-huynh-cong-hoai",
+      "type": "lecture-slides",
+      "title": "Bài giảng Cơ lưu chất - Huỳnh Công Hoài",
+      "description": "Bài giảng Cơ lưu chất (Fluid Mechanics) của giảng viên Khoa Kỹ thuật Xây dựng và Bộ môn Kỹ thuật Hàng không, ĐH Bách Khoa TP.HCM: tĩnh học lưu chất, động học, phương trình năng lượng, động lượng, dòng chảy trong ống, thế lưu. Đợt này gồm bộ của thầy Lê Văn Dực (chia 2 phần theo trang), thầy Huỳnh Công Hoài, thầy Nguyễn Quốc Ý và bảng tra Cơ lưu chất.",
+      "lang": "vi",
+      "license": "CC-BY-SA-4.0",
+      "origin": "self-made",
+      "added": "2026-10-06",
+      "updated": "2026-10-06",
+      "files": [
+        {
+          "name": "CI2003_lecture-slides_bai-giang-co-luu-chat-huynh-cong-hoai.pdf",
+          "mime": "application/pdf",
+          "size": 12832071,
+          "sha256": "a34563fe549b250708beff60795eb62636e261ceaf7bf1b8ff970b4e99a56f7e",
+          "urls": [
+            "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/CI2003_lecture-slides_bai-giang-co-luu-chat-huynh-cong-hoai.pdf"
+          ]
+        }
+      ]
+    },
+    {
       "id": "bai-giang-co-luu-chat-le-song-giang",
       "type": "lecture-slides",
       "title": "Bài giảng Cơ lưu chất - Lê Song Giang",
@@ -28,6 +50,50 @@
       ]
     },
     {
+      "id": "bai-giang-co-luu-chat-le-van-duc-phan-1-trang-1-54",
+      "type": "lecture-slides",
+      "title": "Bài giảng Cơ lưu chất - Lê Văn Dực (phần 1, trang 1-54)",
+      "description": "Bài giảng Cơ lưu chất (Fluid Mechanics) của giảng viên Khoa Kỹ thuật Xây dựng và Bộ môn Kỹ thuật Hàng không, ĐH Bách Khoa TP.HCM: tĩnh học lưu chất, động học, phương trình năng lượng, động lượng, dòng chảy trong ống, thế lưu. Đợt này gồm bộ của thầy Lê Văn Dực (chia 2 phần theo trang), thầy Huỳnh Công Hoài, thầy Nguyễn Quốc Ý và bảng tra Cơ lưu chất.",
+      "lang": "vi",
+      "license": "CC-BY-SA-4.0",
+      "origin": "self-made",
+      "added": "2026-10-06",
+      "updated": "2026-10-06",
+      "files": [
+        {
+          "name": "CI2003_lecture-slides_bai-giang-co-luu-chat-le-van-duc-phan-1-trang-1-54.pdf",
+          "mime": "application/pdf",
+          "size": 11991958,
+          "sha256": "69c7828af3095b28f51d2af00eaa4ddc9b7701961e8e51b959b433ddbbc454b7",
+          "urls": [
+            "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/CI2003_lecture-slides_bai-giang-co-luu-chat-le-van-duc-phan-1-trang-1-54.pdf"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bai-giang-co-luu-chat-le-van-duc-phan-2-trang-55-107",
+      "type": "lecture-slides",
+      "title": "Bài giảng Cơ lưu chất - Lê Văn Dực (phần 2, trang 55-107)",
+      "description": "Bài giảng Cơ lưu chất (Fluid Mechanics) của giảng viên Khoa Kỹ thuật Xây dựng và Bộ môn Kỹ thuật Hàng không, ĐH Bách Khoa TP.HCM: tĩnh học lưu chất, động học, phương trình năng lượng, động lượng, dòng chảy trong ống, thế lưu. Đợt này gồm bộ của thầy Lê Văn Dực (chia 2 phần theo trang), thầy Huỳnh Công Hoài, thầy Nguyễn Quốc Ý và bảng tra Cơ lưu chất.",
+      "lang": "vi",
+      "license": "CC-BY-SA-4.0",
+      "origin": "self-made",
+      "added": "2026-10-06",
+      "updated": "2026-10-06",
+      "files": [
+        {
+          "name": "CI2003_lecture-slides_bai-giang-co-luu-chat-le-van-duc-phan-2-trang-55-107.pdf",
+          "mime": "application/pdf",
+          "size": 11813535,
+          "sha256": "4c167360f3d835d5e5b436810aaf9ffcef47a7a01130d07cabd2200edc96b9f8",
+          "urls": [
+            "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/CI2003_lecture-slides_bai-giang-co-luu-chat-le-van-duc-phan-2-trang-55-107.pdf"
+          ]
+        }
+      ]
+    },
+    {
       "id": "bai-giang-co-luu-chat-ly-hung-anh",
       "type": "lecture-slides",
       "title": "Bài giảng Cơ lưu chất - Lý Hùng Anh",
@@ -46,6 +112,28 @@
           "sha256": "151186cebbd1742bf539aa155d6d193ea97ac531a75e3ecef9bf4349afe8b428",
           "urls": [
             "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/CI2003_lecture-slides_bai-giang-co-luu-chat-ly-hung-anh.pdf"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bai-giang-co-luu-chat-nguyen-quoc-y",
+      "type": "lecture-slides",
+      "title": "Bài giảng Cơ lưu chất - Nguyễn Quốc Ý",
+      "description": "Bài giảng Cơ lưu chất (Fluid Mechanics) của giảng viên Khoa Kỹ thuật Xây dựng và Bộ môn Kỹ thuật Hàng không, ĐH Bách Khoa TP.HCM: tĩnh học lưu chất, động học, phương trình năng lượng, động lượng, dòng chảy trong ống, thế lưu. Đợt này gồm bộ của thầy Lê Văn Dực (chia 2 phần theo trang), thầy Huỳnh Công Hoài, thầy Nguyễn Quốc Ý và bảng tra Cơ lưu chất.",
+      "lang": "vi",
+      "license": "CC-BY-SA-4.0",
+      "origin": "self-made",
+      "added": "2026-10-06",
+      "updated": "2026-10-06",
+      "files": [
+        {
+          "name": "CI2003_lecture-slides_bai-giang-co-luu-chat-nguyen-quoc-y.pdf",
+          "mime": "application/pdf",
+          "size": 11670206,
+          "sha256": "69a9ac993a78bb19c0150d227bfc1bd81ee1d7eec2b1ad224edc73ac1edbd535",
+          "urls": [
+            "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/CI2003_lecture-slides_bai-giang-co-luu-chat-nguyen-quoc-y.pdf"
           ]
         }
       ]
@@ -114,6 +202,28 @@
           "sha256": "6fc476a83cdabb89ac08a294541be6e91c5d9c652decec15f05d54698d8c0410",
           "urls": [
             "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/CI2003_exercise-solution_bai-tap-co-luu-chat-chuong-1-3-kem-video-giai.pdf"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bang-tra-co-luu-chat-thuy-tinh-ton-that-ong-don-vi",
+      "type": "cheatsheet",
+      "title": "Bảng tra Cơ lưu chất (thủy tĩnh, tổn thất, ống, đơn vị...)",
+      "description": "Bài giảng Cơ lưu chất (Fluid Mechanics) của giảng viên Khoa Kỹ thuật Xây dựng và Bộ môn Kỹ thuật Hàng không, ĐH Bách Khoa TP.HCM: tĩnh học lưu chất, động học, phương trình năng lượng, động lượng, dòng chảy trong ống, thế lưu. Đợt này gồm bộ của thầy Lê Văn Dực (chia 2 phần theo trang), thầy Huỳnh Công Hoài, thầy Nguyễn Quốc Ý và bảng tra Cơ lưu chất.",
+      "lang": "vi",
+      "license": "CC-BY-SA-4.0",
+      "origin": "self-made",
+      "added": "2026-10-06",
+      "updated": "2026-10-06",
+      "files": [
+        {
+          "name": "CI2003_cheatsheet_bang-tra-co-luu-chat-thuy-tinh-ton-that-ong-don-vi.pdf",
+          "mime": "application/pdf",
+          "size": 10450660,
+          "sha256": "2e6574c8f28fcee43ecbe4cef9672757d249cceebcaeee9ec2a7f8497ec954bf",
+          "urls": [
+            "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/CI2003_cheatsheet_bang-tra-co-luu-chat-thuy-tinh-ton-that-ong-don-vi.pdf"
           ]
         }
       ]

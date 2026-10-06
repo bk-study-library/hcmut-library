@@ -13,11 +13,12 @@
   "files": [
     {
       "name": "CI2003_lecture-slides_bai-giang-co-luu-chat-le-van-duc-phan-2-trang-55-107.pdf",
-      "size": 11811663,
-      "sha256": "ee9f04dc768cd13fbae6545d4faa18867276a8595b02def4afff7d7deb293c76",
+      "size": 11813535,
+      "sha256": "4c167360f3d835d5e5b436810aaf9ffcef47a7a01130d07cabd2200edc96b9f8",
       "mime": "application/pdf",
-      "quarantine": "pending/k9dvSlUwmC/CI2003_lecture-slides_bai-giang-co-luu-chat-le-van-duc-phan-2-trang-55-107.pdf",
-      "uploadSha256": "ee9f04dc768cd13fbae6545d4faa18867276a8595b02def4afff7d7deb293c76"
+      "quarantine": "clean/k9dvSlUwmC/CI2003_lecture-slides_bai-giang-co-luu-chat-le-van-duc-phan-2-trang-55-107.pdf",
+      "uploadSha256": "ee9f04dc768cd13fbae6545d4faa18867276a8595b02def4afff7d7deb293c76",
+      "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/CI2003_lecture-slides_bai-giang-co-luu-chat-le-van-duc-phan-2-trang-55-107.pdf"
     }
   ]
 }

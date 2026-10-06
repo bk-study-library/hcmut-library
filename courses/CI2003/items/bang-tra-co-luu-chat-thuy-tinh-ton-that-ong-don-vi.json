@@ -13,11 +13,12 @@
   "files": [
     {
       "name": "CI2003_cheatsheet_bang-tra-co-luu-chat-thuy-tinh-ton-that-ong-don-vi.pdf",
-      "size": 10440993,
-      "sha256": "85239bbe629ad8fb06a89d8c5ad217f8bb0d3ffd62715a47ffd8ac064e74f832",
+      "size": 10450660,
+      "sha256": "2e6574c8f28fcee43ecbe4cef9672757d249cceebcaeee9ec2a7f8497ec954bf",
       "mime": "application/pdf",
-      "quarantine": "pending/k9dvSlUwmC/CI2003_cheatsheet_bang-tra-co-luu-chat-thuy-tinh-ton-that-ong-don-vi.pdf",
-      "uploadSha256": "85239bbe629ad8fb06a89d8c5ad217f8bb0d3ffd62715a47ffd8ac064e74f832"
+      "quarantine": "clean/k9dvSlUwmC/CI2003_cheatsheet_bang-tra-co-luu-chat-thuy-tinh-ton-that-ong-don-vi.pdf",
+      "uploadSha256": "85239bbe629ad8fb06a89d8c5ad217f8bb0d3ffd62715a47ffd8ac064e74f832",
+      "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/CI2003_cheatsheet_bang-tra-co-luu-chat-thuy-tinh-ton-that-ong-don-vi.pdf"
     }
   ]
 }

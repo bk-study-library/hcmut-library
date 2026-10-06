@@ -13,11 +13,12 @@
   "files": [
     {
       "name": "CI2003_lecture-slides_bai-giang-co-luu-chat-nguyen-quoc-y.pdf",
-      "size": 11687025,
-      "sha256": "aef247addf068d3faeb7c525fab1e65832ff1369931f67e967c1792bb563099a",
+      "size": 11670206,
+      "sha256": "69a9ac993a78bb19c0150d227bfc1bd81ee1d7eec2b1ad224edc73ac1edbd535",
       "mime": "application/pdf",
-      "quarantine": "pending/k9dvSlUwmC/CI2003_lecture-slides_bai-giang-co-luu-chat-nguyen-quoc-y.pdf",
-      "uploadSha256": "aef247addf068d3faeb7c525fab1e65832ff1369931f67e967c1792bb563099a"
+      "quarantine": "clean/k9dvSlUwmC/CI2003_lecture-slides_bai-giang-co-luu-chat-nguyen-quoc-y.pdf",
+      "uploadSha256": "aef247addf068d3faeb7c525fab1e65832ff1369931f67e967c1792bb563099a",
+      "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/CI2003_lecture-slides_bai-giang-co-luu-chat-nguyen-quoc-y.pdf"
     }
   ]
 }
