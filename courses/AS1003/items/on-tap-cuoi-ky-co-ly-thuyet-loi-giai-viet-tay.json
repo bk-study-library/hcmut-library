@@ -14,11 +14,15 @@
   "files": [
     {
       "name": "AS1003_exam-solution_on-tap-cuoi-ky-co-ly-thuyet-loi-giai-viet-tay.pdf",
-      "size": 9683478,
-      "sha256": "7f2b1aee2b66b8d1925edfef6a2c334e931e9e23cb7c6db6e77e233f8d7f3b53",
+      "size": 9689073,
+      "sha256": "68891c2316a46751778146d0225d32b88381307cc56d85c74442cd553e470e2f",
       "mime": "application/pdf",
-      "quarantine": "pending/myTGJmzFhQ/AS1003_exam-solution_on-tap-cuoi-ky-co-ly-thuyet-loi-giai-viet-tay.pdf",
-      "uploadSha256": "7f2b1aee2b66b8d1925edfef6a2c334e931e9e23cb7c6db6e77e233f8d7f3b53"
+      "quarantine": "clean/myTGJmzFhQ/AS1003_exam-solution_on-tap-cuoi-ky-co-ly-thuyet-loi-giai-viet-tay.pdf",
+      "uploadSha256": "7f2b1aee2b66b8d1925edfef6a2c334e931e9e23cb7c6db6e77e233f8d7f3b53",
+      "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_exam-solution_on-tap-cuoi-ky-co-ly-thuyet-loi-giai-viet-tay.pdf"
     }
+  ],
+  "unclassified": [
+    "no-text"
   ]
 }

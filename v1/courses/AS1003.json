@@ -304,6 +304,32 @@
       ]
     },
     {
+      "id": "on-tap-cuoi-ky-co-ly-thuyet-loi-giai-viet-tay",
+      "type": "exam-solution",
+      "title": "Ôn tập cuối kỳ Cơ lý thuyết - lời giải viết tay",
+      "description": "Lời giải viết tay các dạng bài ôn tập cuối kỳ Cơ lý thuyết (35 trang): động học vật rắn, động lực học, nguyên lý D'Alembert, di chuyển khả dĩ.",
+      "lang": "vi",
+      "examKind": "ck",
+      "license": "CC-BY-SA-4.0",
+      "origin": "self-made",
+      "added": "2026-10-06",
+      "unclassified": [
+        "no-text"
+      ],
+      "updated": "2026-10-06",
+      "files": [
+        {
+          "name": "AS1003_exam-solution_on-tap-cuoi-ky-co-ly-thuyet-loi-giai-viet-tay.pdf",
+          "mime": "application/pdf",
+          "size": 9689073,
+          "sha256": "68891c2316a46751778146d0225d32b88381307cc56d85c74442cd553e470e2f",
+          "urls": [
+            "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_exam-solution_on-tap-cuoi-ky-co-ly-thuyet-loi-giai-viet-tay.pdf"
+          ]
+        }
+      ]
+    },
+    {
       "id": "slide-chuong-10-chuyen-dong-song-phang-cua-vat-ran-thay",
       "type": "lecture-slides",
       "title": "Slide chương 10: Chuyển động song phẳng của vật rắn - thầy Nguyễn Hữu Hào",

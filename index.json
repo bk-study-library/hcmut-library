@@ -7,7 +7,7 @@
     "courses": 3796,
     "programs": 838,
     "majors": 140,
-    "items": 100
+    "items": 101
   },
   "faculties": [
     {
@@ -24659,6 +24659,33 @@
                   "quarantine": "clean/3lWWiGvNNH/AS1003_notes_ghi-chep-tay-co-ly-thuyet-phan-4-trang-361-479.pdf",
                   "uploadSha256": "a11a8577138fed6c982f8eca76db8bcacf476207e637774fb7888348d7780be5",
                   "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_notes_ghi-chep-tay-co-ly-thuyet-phan-4-trang-361-479.pdf"
+                }
+              ],
+              "unclassified": [
+                "no-text"
+              ]
+            },
+            {
+              "id": "on-tap-cuoi-ky-co-ly-thuyet-loi-giai-viet-tay",
+              "course": "AS1003",
+              "type": "exam-solution",
+              "title": "Ôn tập cuối kỳ Cơ lý thuyết - lời giải viết tay",
+              "lang": "vi",
+              "license": "CC-BY-SA-4.0",
+              "origin": "self-made",
+              "added": "2026-10-06",
+              "removed": false,
+              "description": "Lời giải viết tay các dạng bài ôn tập cuối kỳ Cơ lý thuyết (35 trang): động học vật rắn, động lực học, nguyên lý D'Alembert, di chuyển khả dĩ.",
+              "examKind": "ck",
+              "files": [
+                {
+                  "name": "AS1003_exam-solution_on-tap-cuoi-ky-co-ly-thuyet-loi-giai-viet-tay.pdf",
+                  "size": 9689073,
+                  "sha256": "68891c2316a46751778146d0225d32b88381307cc56d85c74442cd553e470e2f",
+                  "mime": "application/pdf",
+                  "quarantine": "clean/myTGJmzFhQ/AS1003_exam-solution_on-tap-cuoi-ky-co-ly-thuyet-loi-giai-viet-tay.pdf",
+                  "uploadSha256": "7f2b1aee2b66b8d1925edfef6a2c334e931e9e23cb7c6db6e77e233f8d7f3b53",
+                  "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_exam-solution_on-tap-cuoi-ky-co-ly-thuyet-loi-giai-viet-tay.pdf"
                 }
               ],
               "unclassified": [
