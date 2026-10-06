@@ -7,7 +7,7 @@
     "courses": 3796,
     "programs": 838,
     "majors": 140,
-    "items": 39
+    "items": 40
   },
   "faculties": [
     {
@@ -51252,6 +51252,31 @@
                   "quarantine": "clean/qK0dneaFWv/CI2003_exam-past_de-cuoi-ky-co-luu-chat-hk181_HK181.pdf",
                   "uploadSha256": "d4bcdd649405c8b6e30208a92f3b45026fea49fe90cb86b707ff537b211902ce",
                   "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/CI2003_exam-past_de-cuoi-ky-co-luu-chat-hk181_HK181.pdf"
+                }
+              ]
+            },
+            {
+              "id": "de-thi-hoc-ky-co-luu-chat-hk172-de-mau-co-dap-an",
+              "course": "CI2003",
+              "type": "exam-past",
+              "title": "Đề thi học kỳ Cơ lưu chất HK172 - đề mẫu có đáp án",
+              "lang": "vi",
+              "license": "CC-BY-SA-4.0",
+              "origin": "self-made",
+              "added": "2026-10-06",
+              "removed": false,
+              "description": "Đề thi cuối kỳ Cơ lưu chất (CI2003) các học kỳ, bản scan hoặc PDF gốc. Một số đề có tên PGS.TS. Lê Song Giang (người phê duyệt hoặc chủ nhiệm bộ môn) và PGS.TS. Lê Văn Dực. Có thêm một đề CI2005 HK191 cùng nội dung môn.",
+              "term": "HK172",
+              "examKind": "ck",
+              "files": [
+                {
+                  "name": "CI2003_exam-past_de-thi-hoc-ky-co-luu-chat-hk172-de-mau-co-dap-an_HK172.pdf",
+                  "size": 525397,
+                  "sha256": "d3558835da47c9e549fc2173e67c03f41a77bbf207de3cba3ba7e3ec242a567a",
+                  "mime": "application/pdf",
+                  "quarantine": "clean/Dz4QFAp82s/CI2003_exam-past_de-thi-hoc-ky-co-luu-chat-hk172-de-mau-co-dap-an_HK172.pdf",
+                  "uploadSha256": "5b19b23c7d5b33c0469038137417e1eafb80083f28eb3db490c81e76aaeb74b2",
+                  "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/CI2003_exam-past_de-thi-hoc-ky-co-luu-chat-hk172-de-mau-co-dap-an_HK172.pdf"
                 }
               ]
             }
