@@ -14,11 +14,12 @@
   "files": [
     {
       "name": "AS1003_lecture-slides_slide-chuong-8-hai-chuyen-dong-co-ban-cua-vat-ran-thay.pdf",
-      "size": 4658444,
-      "sha256": "7d5305e145c14ad1c7748508d5472ae3e99fe1121733b397febcb0c851a086f3",
+      "size": 4654974,
+      "sha256": "84ebbd071fc8527a4181e8ebd283ca2fb85d32aac86d07a29f4f35c71ec1a32f",
       "mime": "application/pdf",
-      "quarantine": "pending/FwL9ugvZ0s/AS1003_lecture-slides_slide-chuong-8-hai-chuyen-dong-co-ban-cua-vat-ran-thay.pdf",
-      "uploadSha256": "7d5305e145c14ad1c7748508d5472ae3e99fe1121733b397febcb0c851a086f3"
+      "quarantine": "clean/FwL9ugvZ0s/AS1003_lecture-slides_slide-chuong-8-hai-chuyen-dong-co-ban-cua-vat-ran-thay.pdf",
+      "uploadSha256": "7d5305e145c14ad1c7748508d5472ae3e99fe1121733b397febcb0c851a086f3",
+      "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_lecture-slides_slide-chuong-8-hai-chuyen-dong-co-ban-cua-vat-ran-thay.pdf"
     }
   ]
 }
