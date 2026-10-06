@@ -35,6 +35,7 @@
 - **Đề cuối kỳ Cơ lưu chất HK193** (HK193, vi, CC-BY-SA-4.0): [CI2003_exam-past_de-cuoi-ky-co-luu-chat-hk193_HK193.pdf, 581 KB](https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/CI2003_exam-past_de-cuoi-ky-co-luu-chat-hk193_HK193.pdf)
 - **Đề cuối kỳ Cơ lưu chất HK212** (HK212, vi, CC-BY-SA-4.0): [CI2003_exam-past_de-cuoi-ky-co-luu-chat-hk212_HK212.pdf, 1.0 MB](https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/CI2003_exam-past_de-cuoi-ky-co-luu-chat-hk212_HK212.pdf)
 - **Đề cuối kỳ Cơ lưu chất HK222** (HK222, vi, CC-BY-SA-4.0): [CI2003_exam-past_de-cuoi-ky-co-luu-chat-hk222_HK222.pdf, 3.4 MB](https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/CI2003_exam-past_de-cuoi-ky-co-luu-chat-hk222_HK222.pdf)
+- **Đề giữa kỳ Cơ lưu chất HK171** (HK171, vi, CC-BY-SA-4.0): [CI2003_exam-past_de-giua-ky-co-luu-chat-hk171_HK171.pdf, 471 KB](https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/CI2003_exam-past_de-giua-ky-co-luu-chat-hk171_HK171.pdf)
 - **Đề thi học kỳ Cơ lưu chất HK172 - đề mẫu có đáp án** (HK172, vi, CC-BY-SA-4.0): [CI2003_exam-past_de-thi-hoc-ky-co-luu-chat-hk172-de-mau-co-dap-an_HK172.pdf, 513 KB](https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/CI2003_exam-past_de-thi-hoc-ky-co-luu-chat-hk172-de-mau-co-dap-an_HK172.pdf)
 
 ## Link

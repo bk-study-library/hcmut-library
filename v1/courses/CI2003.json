@@ -311,6 +311,30 @@
       ]
     },
     {
+      "id": "de-giua-ky-co-luu-chat-hk171",
+      "type": "exam-past",
+      "title": "Đề giữa kỳ Cơ lưu chất HK171",
+      "description": "Đề kiểm tra giữa kỳ Cơ lưu chất: đề HK171, đề mẫu và ảnh chụp đề HK231.",
+      "lang": "vi",
+      "term": "HK171",
+      "examKind": "gk",
+      "license": "CC-BY-SA-4.0",
+      "origin": "self-made",
+      "added": "2026-10-06",
+      "updated": "2026-10-06",
+      "files": [
+        {
+          "name": "CI2003_exam-past_de-giua-ky-co-luu-chat-hk171_HK171.pdf",
+          "mime": "application/pdf",
+          "size": 482089,
+          "sha256": "34e76808d9f5ec34b8ac36a85360f32dbf1c38ccdc95f4c40044eceaa808c9a1",
+          "urls": [
+            "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/CI2003_exam-past_de-giua-ky-co-luu-chat-hk171_HK171.pdf"
+          ]
+        }
+      ]
+    },
+    {
       "id": "de-thi-hoc-ky-co-luu-chat-hk172-de-mau-co-dap-an",
       "type": "exam-past",
       "title": "Đề thi học kỳ Cơ lưu chất HK172 - đề mẫu có đáp án",
