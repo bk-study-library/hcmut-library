@@ -5,6 +5,29 @@
   "name": "Cơ lý thuyết",
   "items": [
     {
+      "id": "bai-tap-co-ly-thuyet-cac-chuong-1-4-9-14-thay-tran-kim-bang",
+      "type": "lecture-slides",
+      "title": "Bài tập Cơ lý thuyết các chương 1-4, 9-14 - thầy Trần Kim Bằng",
+      "description": "Slide và bài tập Cơ lý thuyết của ThS. Trần Kim Bằng (Bộ môn Cơ kỹ thuật), bản 2018-2021. File slide gộp chương 0-14 (giới thiệu, tĩnh học, động học, động lực học); file bài tập gộp các chương 1-4 và 9-14.",
+      "lang": "vi",
+      "teacher": "Trần Kim Bằng",
+      "license": "CC-BY-SA-4.0",
+      "origin": "self-made",
+      "added": "2026-10-06",
+      "updated": "2026-10-06",
+      "files": [
+        {
+          "name": "AS1003_lecture-slides_bai-tap-co-ly-thuyet-cac-chuong-1-4-9-14-thay-tran-kim-bang.pdf",
+          "mime": "application/pdf",
+          "size": 3895053,
+          "sha256": "b9b029e8106743f7ac5d977169da5d569a2601a26e90036c371c0b1adf03102c",
+          "urls": [
+            "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_lecture-slides_bai-tap-co-ly-thuyet-cac-chuong-1-4-9-14-thay-tran-kim-bang.pdf"
+          ]
+        }
+      ]
+    },
+    {
       "id": "chuong-1-cac-khai-niem-co-ban-he-tien-de-tinh-hoc-bk",
       "type": "lecture-slides",
       "title": "Chuong 1 Cac khai niem co ban He tien de tinh hoc BK",
