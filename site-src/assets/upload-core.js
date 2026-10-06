@@ -201,14 +201,24 @@
         return w.length > 1;
       });
     };
+    // Số trong tên (chương 8, HK241, 2023) phân biệt tài liệu cùng bộ: hai tên đều có số mà không chung số nào thì
+    // không coi là gần giống (chương 8 và chương 9 của cùng bộ slide).
+    var nums = function (s) {
+      return fold(s).split(' ').filter(function (w) {
+        return /[0-9]/.test(w);
+      });
+    };
     var t = fold(title);
     var tw = words(title);
+    var tn = nums(title);
     if (tw.length < 2) return [];
     var out = [];
     docs.forEach(function (d) {
       var dt = fold(d.title);
       var dw = words(d.title);
       if (!dw.length) return;
+      var dn = nums(d.title);
+      if (tn.length && dn.length && !tn.some(function (n) { return dn.indexOf(n) >= 0; })) return;
       var same = 0;
       var set = Object.create(null);
       dw.forEach(function (w) {

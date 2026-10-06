@@ -174,6 +174,11 @@ test('cảnh báo trùng tên: trùng hẳn, chứa nhau, chung đa số từ; t
   assert.deepEqual(ids(BkUpload.similarDocs('Tóm tắt giới hạn, đạo hàm (bản mới)', docs, fold)), ['a']);
   assert.deepEqual(ids(BkUpload.similarDocs('De thi cuoi ky HK241 ca 2', docs, fold)), ['b']);
   assert.deepEqual(ids(BkUpload.similarDocs('Slide chương 5', docs, fold)), []);
+  // Cùng bộ, khác số: không trùng (chương 8 và 9, HK241 và HK242); cùng số khác thầy vẫn cảnh báo.
+  const slides = [{ id: 's8', title: 'Slide chương 8: Hai chuyển động cơ bản - thầy Nguyễn Hữu Hào' }, ...docs];
+  assert.deepEqual(ids(BkUpload.similarDocs('Slide chương 9: Chuyển động phức hợp - thầy Nguyễn Hữu Hào', slides, fold)), []);
+  assert.deepEqual(ids(BkUpload.similarDocs('Đề thi cuối kỳ HK242', docs, fold)), []);
+  assert.deepEqual(ids(BkUpload.similarDocs('Slide chương 8: Hai chuyển động cơ bản - thầy Nguyễn Thái Hiền', slides, fold)), ['s8']);
   assert.deepEqual(ids(BkUpload.similarDocs('Đề', docs, fold)), []);
   // Tài liệu của môn: chỉ các mã trong môn, mới nhất trước.
   assert.deepEqual(ids(BkUpload.subjectDocs(docs, ['MT1003', 'MT1011'])), ['c', 'b', 'a']);
