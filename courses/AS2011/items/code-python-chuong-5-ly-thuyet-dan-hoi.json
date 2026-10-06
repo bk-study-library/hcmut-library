@@ -13,11 +13,12 @@
   "files": [
     {
       "name": "AS2011_exercise-solution_code-python-chuong-5-ly-thuyet-dan-hoi.pdf",
-      "size": 668361,
-      "sha256": "08408248b2a1c0b74532a126704485f199eb6aa887fc30a6c82b319aa3189122",
+      "size": 670129,
+      "sha256": "63afecc40ab4403c84ac26318536c7f82af7615fe50d1f422c4924fbdef352b1",
       "mime": "application/pdf",
-      "quarantine": "pending/0xvy7fErXf/AS2011_exercise-solution_code-python-chuong-5-ly-thuyet-dan-hoi.pdf",
-      "uploadSha256": "08408248b2a1c0b74532a126704485f199eb6aa887fc30a6c82b319aa3189122"
+      "quarantine": "clean/0xvy7fErXf/AS2011_exercise-solution_code-python-chuong-5-ly-thuyet-dan-hoi.pdf",
+      "uploadSha256": "08408248b2a1c0b74532a126704485f199eb6aa887fc30a6c82b319aa3189122",
+      "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS2011_exercise-solution_code-python-chuong-5-ly-thuyet-dan-hoi.pdf"
     }
   ]
 }

@@ -14,7 +14,10 @@
 
 ## Tài liệu
 
-Chưa có tài liệu.
+### Lời giải bài tập
+
+- **Code Python chương 5 - Lý thuyết đàn hồi** (vi, CC-BY-SA-4.0): [AS2011_exercise-solution_code-python-chuong-5-ly-thuyet-dan-hoi.pdf, 654 KB](https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS2011_exercise-solution_code-python-chuong-5-ly-thuyet-dan-hoi.pdf)
+- **Lời giải bài tập Lý thuyết đàn hồi bằng MATLAB/Python (lớp tài năng)** (vi, CC-BY-SA-4.0): [AS2011_exercise-solution_loi-giai-bai-tap-ly-thuyet-dan-hoi-bang-matlab-python-lop.pdf, 2.0 MB](https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS2011_exercise-solution_loi-giai-bai-tap-ly-thuyet-dan-hoi-bang-matlab-python-lop.pdf)
 
 ## Link
 

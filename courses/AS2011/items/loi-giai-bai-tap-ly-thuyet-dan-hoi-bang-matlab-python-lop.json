@@ -13,11 +13,12 @@
   "files": [
     {
       "name": "AS2011_exercise-solution_loi-giai-bai-tap-ly-thuyet-dan-hoi-bang-matlab-python-lop.pdf",
-      "size": 2084583,
-      "sha256": "73442785af926880fce3b22ec057aae86799fa91ad8f9a327f0b82b09daee567",
+      "size": 2088544,
+      "sha256": "bb5e240903a3e82799b30e90ef83e3265ef2434fc0fd251d3661cddcaefb1a8f",
       "mime": "application/pdf",
-      "quarantine": "pending/0xvy7fErXf/AS2011_exercise-solution_loi-giai-bai-tap-ly-thuyet-dan-hoi-bang-matlab-python-lop.pdf",
-      "uploadSha256": "73442785af926880fce3b22ec057aae86799fa91ad8f9a327f0b82b09daee567"
+      "quarantine": "clean/0xvy7fErXf/AS2011_exercise-solution_loi-giai-bai-tap-ly-thuyet-dan-hoi-bang-matlab-python-lop.pdf",
+      "uploadSha256": "73442785af926880fce3b22ec057aae86799fa91ad8f9a327f0b82b09daee567",
+      "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS2011_exercise-solution_loi-giai-bai-tap-ly-thuyet-dan-hoi-bang-matlab-python-lop.pdf"
     }
   ]
 }
