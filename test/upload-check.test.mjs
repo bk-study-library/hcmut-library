@@ -187,6 +187,8 @@ test('piiFromPages ghi số trang và lớp chữ', () => {
     ['email', 2, 'an@hcmut.edu.vn'],
     ['MSSV 7 chữ số', 2, '2112345'],
   ]);
+  // Số tròn trong đề (a_b_c = 1000000) không phải MSSV.
+  assert.deepEqual(piiFromPages(['a_b_c = 1000000; gia 2500000']).pii, []);
   assert.equal(piiFromPages([' ', '\n']).hasText, false);
   assert.equal(piiFromPages([]).hasText, false);
 });

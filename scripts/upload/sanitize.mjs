@@ -319,8 +319,25 @@ export function pdfActiveContent(text) {
     names.add(n);
   }
   const out = [];
-  for (const [key, code] of PDF_KEYS) if (names.has(key) && !out.includes(code)) out.push(code);
+  for (const [key, code] of PDF_KEYS) {
+    if (key === 'OpenAction' && openActionIsGoTo(dicts)) continue;
+    if (names.has(key) && !out.includes(code)) out.push(code);
+  }
   return out;
+}
+
+// OpenAction chỉ mở tới một trang (mảng đích như [3 0 R /Fit], hay hành động /S /GoTo không nối hành động khác): file
+// xuất từ Word, LaTeX hay có. Không phải mã tự chạy nên không cảnh báo. Không chắc (tên mã hóa #xx, hành động nối /Next,
+// loại khác) thì coi như cảnh báo.
+function openActionIsGoTo(dicts) {
+  const vals = [...dicts.matchAll(/\/OpenAction\s*(\[[^\]]*\]|<<[\s\S]*?>>|(\d+)\s+(\d+)\s+R)/g)];
+  if (!vals.length || vals.length !== [...dicts.matchAll(/\/OpenAction\b/g)].length) return false;
+  return vals.every((m) => {
+    const body = m[2] ? (new RegExp(`(?:^|\\s)${m[2]}\\s+${m[3]}\\s+obj\\b([\\s\\S]*?)\\bendobj`).exec(dicts)?.[1] ?? '') : m[1];
+    if (body.trim().startsWith('[')) return true;
+    const kinds = [...body.matchAll(/\/S\s*\/([A-Za-z]+)/g)].map((x) => x[1]);
+    return kinds.length > 0 && kinds.every((k) => k === 'GoTo') && !/\/Next\b|#/.test(body);
+  });
 }
 
 // Chữ từ một lần pdftotext (trang cách nhau bằng \f). Trả chữ từng trang, tối đa maxPages trang.

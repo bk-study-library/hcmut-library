@@ -15,6 +15,7 @@ body:
       options:
         - Trang web thư viện
         - Form gửi tài liệu
+        - Thông tin của một tài liệu sai (loại, tiêu đề, học kỳ, giảng viên)
         - Dữ liệu môn, chương trình đào tạo
         - Link tài liệu hỏng
         - Khác

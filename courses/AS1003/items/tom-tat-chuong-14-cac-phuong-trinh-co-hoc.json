@@ -4,6 +4,7 @@
   "course": "AS1003",
   "type": "summary",
   "title": "Tóm tắt Chương 14 - Các phương trình cơ học",
+  "chapter": "14",
   "lang": "vi",
   "license": "CC-BY-SA-4.0",
   "origin": "self-made",
@@ -20,8 +21,5 @@
       "uploadSha256": "0d862e6243d954df54aec64edb09c1cebdbf8617b24010e47d00e0ca31e6861e",
       "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_summary_tom-tat-chuong-14-cac-phuong-trinh-co-hoc.pdf"
     }
-  ],
-  "unclassified": [
-    "no-text"
   ]
 }

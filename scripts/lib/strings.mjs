@@ -147,6 +147,7 @@ export const S = {
     download: (size) => `Tải xuống (${size})`,
     downloadNamed: (name, size) => `Tải xuống ${name} (${size})`,
     requestTakedown: 'Yêu cầu gỡ',
+    reportWrongInfo: 'Báo sai thông tin',
     pendingFile: (name) => `${name}: đang chờ tải lên.`,
     prelabRefNote: 'Chỉ để tham khảo sau khi đã hết hạn chấm. Không chép để nộp.',
     // Khối chi tiết trên thẻ tài liệu.
@@ -394,6 +395,7 @@ export const S = {
     download: (size) => `Download (${size})`,
     downloadNamed: (name, size) => `Download ${name} (${size})`,
     requestTakedown: 'Request removal',
+    reportWrongInfo: 'Report wrong info',
     pendingFile: (name) => `${name}: waiting for upload.`,
     prelabRefNote: 'For reference only, after grading has closed. Do not copy it for submission.',
     item: {

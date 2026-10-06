@@ -129,9 +129,6 @@
       "license": "CC-BY-SA-4.0",
       "origin": "self-made",
       "added": "2026-10-06",
-      "unclassified": [
-        "pii"
-      ],
       "updated": "2026-10-06",
       "files": [
         {
@@ -178,9 +175,6 @@
       "license": "CC-BY-SA-4.0",
       "origin": "self-made",
       "added": "2026-10-06",
-      "unclassified": [
-        "warning"
-      ],
       "updated": "2026-10-06",
       "files": [
         {
@@ -269,12 +263,10 @@
       "description": "Slide Kỹ thuật lập trình cho Cơ kỹ thuật (Python) của TS. Nguyễn Thanh Nhã, bản 2021: chương 3 kiểu dữ liệu, chương 4 cấu trúc điều khiển, chương 6 lập trình hướng đối tượng.",
       "lang": "vi",
       "teacher": "Nguyễn Thanh Nhã",
+      "chapter": "3",
       "license": "CC-BY-SA-4.0",
       "origin": "self-made",
       "added": "2026-10-06",
-      "unclassified": [
-        "pii"
-      ],
       "updated": "2026-10-06",
       "files": [
         {
@@ -295,12 +287,10 @@
       "description": "Slide Kỹ thuật lập trình cho Cơ kỹ thuật (Python) của TS. Nguyễn Thanh Nhã, bản 2021: chương 3 kiểu dữ liệu, chương 4 cấu trúc điều khiển, chương 6 lập trình hướng đối tượng.",
       "lang": "vi",
       "teacher": "Nguyễn Thanh Nhã",
+      "chapter": "4",
       "license": "CC-BY-SA-4.0",
       "origin": "self-made",
       "added": "2026-10-06",
-      "unclassified": [
-        "pii"
-      ],
       "updated": "2026-10-06",
       "files": [
         {
@@ -321,12 +311,10 @@
       "description": "Slide Kỹ thuật lập trình cho Cơ kỹ thuật (Python) của TS. Nguyễn Thanh Nhã, bản 2021: chương 3 kiểu dữ liệu, chương 4 cấu trúc điều khiển, chương 6 lập trình hướng đối tượng.",
       "lang": "vi",
       "teacher": "Nguyễn Thanh Nhã",
+      "chapter": "6",
       "license": "CC-BY-SA-4.0",
       "origin": "self-made",
       "added": "2026-10-06",
-      "unclassified": [
-        "pii"
-      ],
       "updated": "2026-10-06",
       "files": [
         {
