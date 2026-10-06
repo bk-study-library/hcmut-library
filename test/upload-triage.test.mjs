@@ -40,7 +40,7 @@ test('comment ghi kết quả phân loại', () => {
   const f = (t) => ({ name: 'a.pdf', size: 1, ...clean, triage: t });
   assert.match(renderReport({ code: 'Abc1234567', files: [f({ review: [], unclassified: [] })], decision: 'publish' }), /Tự đăng: bot merge ở lượt chạy kế tiếp/);
   assert.match(renderReport({ code: 'Abc1234567', files: [f({ review: [], unclassified: ['new-course'] })], decision: 'unclassified', reviewers: ['xeroz369'], unclassifiedUrl: 'https://x/chua-phan-loai/' }), /Chưa phân loại \(môn mới\).* @xeroz369 phân loại ở https:\/\/x\/chua-phan-loai\//);
-  assert.match(renderReport({ code: 'Abc1234567', files: [f({ review: ['type'], unclassified: [] })], decision: 'review' }), /Cần người duyệt: loại tài liệu cần người duyệt \(đề thi\)/);
+  assert.match(renderReport({ code: 'Abc1234567', files: [f({ review: ['type'], unclassified: [] })], decision: 'review' }), /Cần người duyệt: loại tài liệu cần người duyệt\./);
 });
 
 test('trùng tên dùng cùng quy tắc với form gửi', () => {
