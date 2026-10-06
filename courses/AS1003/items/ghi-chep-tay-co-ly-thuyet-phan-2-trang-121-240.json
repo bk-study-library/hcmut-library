@@ -1,0 +1,23 @@
+{
+  "$schema": "../../../schema/item.schema.json",
+  "id": "ghi-chep-tay-co-ly-thuyet-phan-2-trang-121-240",
+  "course": "AS1003",
+  "type": "notes",
+  "title": "Ghi chép tay Cơ lý thuyết (phần 2, trang 121-240)",
+  "lang": "vi",
+  "license": "CC-BY-SA-4.0",
+  "origin": "self-made",
+  "added": "2026-10-06",
+  "removed": false,
+  "description": "Tài liệu Cơ lý thuyết (AS1003) dung lượng lớn gửi chung một đợt: slide chương 9 của TS. Nguyễn Hữu Hào; tóm tắt lý thuyết kèm ví dụ giải mẫu chương 8, 10, 12, 14 do sinh viên tự soạn; cheatsheet động học và động lực học; ghi chép tay toàn môn (479 trang, chia 4 phần theo trang).",
+  "files": [
+    {
+      "name": "AS1003_notes_ghi-chep-tay-co-ly-thuyet-phan-2-trang-121-240.pdf",
+      "size": 12648069,
+      "sha256": "c6e417285fff6b9ce9872a534f292a0b93fcf734851c5866f538d618627497be",
+      "mime": "application/pdf",
+      "quarantine": "pending/3lWWiGvNNH/AS1003_notes_ghi-chep-tay-co-ly-thuyet-phan-2-trang-121-240.pdf",
+      "uploadSha256": "c6e417285fff6b9ce9872a534f292a0b93fcf734851c5866f538d618627497be"
+    }
+  ]
+}
