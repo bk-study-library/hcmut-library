@@ -217,6 +217,30 @@
       ]
     },
     {
+      "id": "de-cuoi-ky-co-luu-chat-hk193",
+      "type": "exam-past",
+      "title": "Đề cuối kỳ Cơ lưu chất HK193",
+      "description": "Đề thi cuối kỳ Cơ lưu chất (CI2003) các học kỳ, bản scan hoặc PDF gốc. Một số đề có tên PGS.TS. Lê Song Giang (người phê duyệt hoặc chủ nhiệm bộ môn) và PGS.TS. Lê Văn Dực. Có thêm một đề CI2005 HK191 cùng nội dung môn.",
+      "lang": "vi",
+      "term": "HK193",
+      "examKind": "ck",
+      "license": "CC-BY-SA-4.0",
+      "origin": "self-made",
+      "added": "2026-10-06",
+      "updated": "2026-10-06",
+      "files": [
+        {
+          "name": "CI2003_exam-past_de-cuoi-ky-co-luu-chat-hk193_HK193.pdf",
+          "mime": "application/pdf",
+          "size": 595437,
+          "sha256": "d9f3bd80c79d4d7ca5dc02e010a66d0d21e448b28068c4be218248ea71a1de29",
+          "urls": [
+            "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/CI2003_exam-past_de-cuoi-ky-co-luu-chat-hk193_HK193.pdf"
+          ]
+        }
+      ]
+    },
+    {
       "id": "de-thi-hoc-ky-co-luu-chat-hk172-de-mau-co-dap-an",
       "type": "exam-past",
       "title": "Đề thi học kỳ Cơ lưu chất HK172 - đề mẫu có đáp án",
