@@ -7,7 +7,7 @@
     "courses": 3796,
     "programs": 838,
     "majors": 140,
-    "items": 24
+    "items": 25
   },
   "faculties": [
     {
@@ -24511,6 +24511,30 @@
                   "quarantine": "clean/gzPvE1QIDp/AS1003_lecture-slides_chuong-7-dong-hoc-diem.pdf",
                   "uploadSha256": "03a0a0503f327548df40ddc75d1aff666eb29d889fd721da0e9d50bbca2927dd",
                   "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_lecture-slides_chuong-7-dong-hoc-diem.pdf"
+                }
+              ]
+            },
+            {
+              "id": "slide-chuong-12-cac-dinh-ly-tong-quat-dong-luc-hoc-thay",
+              "course": "AS1003",
+              "type": "lecture-slides",
+              "title": "Slide chương 12: Các định lý tổng quát động lực học - thầy Nguyễn Hữu Hào",
+              "lang": "vi",
+              "license": "CC-BY-SA-4.0",
+              "origin": "self-made",
+              "added": "2026-10-06",
+              "removed": false,
+              "description": "Bộ slide bài giảng Cơ lý thuyết (Engineering Mechanics) của TS. Nguyễn Hữu Hào, Bộ môn Cơ kỹ thuật, Khoa Khoa học Ứng dụng, bản 2020-2021. Đủ 15 chương: tĩnh học (hệ tiên đề, thu gọn hệ lực, cân bằng vật rắn và hệ vật rắn, giàn, ma sát, trọng tâm), động học (động học điểm, hai chuyển động cơ bản, chuyển động phức hợp, song phẳng) và động lực học (chất điểm, các định lý tổng quát, nguyên lý D'Alembert, di chuyển khả dĩ, phương trình cơ học). Mỗi chương một file; ảnh đã nén để vừa giới hạn 20 MB.",
+              "teacher": "Nguyễn Hữu Hào",
+              "files": [
+                {
+                  "name": "AS1003_lecture-slides_slide-chuong-12-cac-dinh-ly-tong-quat-dong-luc-hoc-thay.pdf",
+                  "size": 4637123,
+                  "sha256": "ec9f4d9b22d9780477c4f13fd97767ae05a30da68e40d843692d8c423b671c15",
+                  "mime": "application/pdf",
+                  "quarantine": "clean/qcY5fjr24i/AS1003_lecture-slides_slide-chuong-12-cac-dinh-ly-tong-quat-dong-luc-hoc-thay.pdf",
+                  "uploadSha256": "88e34dbc02bf66b0e2e9d9617113c8d356cd643c1b3175460e0a293e70f373aa",
+                  "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_lecture-slides_slide-chuong-12-cac-dinh-ly-tong-quat-dong-luc-hoc-thay.pdf"
                 }
               ]
             }
