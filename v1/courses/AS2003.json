@@ -339,6 +339,28 @@
           ]
         }
       ]
+    },
+    {
+      "id": "tu-hoc-tkinter-python-gui-code-mau",
+      "type": "notes",
+      "title": "Tự học Tkinter (Python GUI) - code mẫu",
+      "description": "Code mẫu tự học Tkinter (giao diện Python) gồm các file .py và notebook, phục vụ bài tập lớn.",
+      "lang": "vi",
+      "license": "CC-BY-SA-4.0",
+      "origin": "self-made",
+      "added": "2026-10-06",
+      "updated": "2026-10-06",
+      "files": [
+        {
+          "name": "AS2003_notes_tu-hoc-tkinter-python-gui-code-mau.pdf",
+          "mime": "application/pdf",
+          "size": 1925962,
+          "sha256": "5efc6ca5dc379d5d1b07d5e7a0fffa3705078515fdcbd799115dcd83aeac34e0",
+          "urls": [
+            "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS2003_notes_tu-hoc-tkinter-python-gui-code-mau.pdf"
+          ]
+        }
+      ]
     }
   ]
 }

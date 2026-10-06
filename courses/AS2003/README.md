@@ -20,6 +20,10 @@
 - **Slide chương 4 - Các cấu trúc điều khiển (thầy Nguyễn Thanh Nhã)** (vi, CC-BY-SA-4.0): [AS2003_lecture-slides_slide-chuong-4-cac-cau-truc-dieu-khien-thay-nguyen-thanh-nha.pdf, 319 KB](https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS2003_lecture-slides_slide-chuong-4-cac-cau-truc-dieu-khien-thay-nguyen-thanh-nha.pdf)
 - **Slide chương 6 - Lập trình hướng đối tượng (thầy Nguyễn Thanh Nhã)** (vi, CC-BY-SA-4.0): [AS2003_lecture-slides_slide-chuong-6-lap-trinh-huong-doi-tuong-thay-nguyen-thanh.pdf, 448 KB](https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS2003_lecture-slides_slide-chuong-6-lap-trinh-huong-doi-tuong-thay-nguyen-thanh.pdf)
 
+### Ghi chú
+
+- **Tự học Tkinter (Python GUI) - code mẫu** (vi, CC-BY-SA-4.0): [AS2003_notes_tu-hoc-tkinter-python-gui-code-mau.pdf, 1.8 MB](https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS2003_notes_tu-hoc-tkinter-python-gui-code-mau.pdf)
+
 ### Lời giải bài tập
 
 - **Bài tập chương 3 - lời giải Python (thầy Nguyễn Thanh Nhã)** (vi, CC-BY-SA-4.0): [AS2003_exercise-solution_bai-tap-chuong-3-loi-giai-python-thay-nguyen-thanh-nha.pdf, 912 KB](https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS2003_exercise-solution_bai-tap-chuong-3-loi-giai-python-thay-nguyen-thanh-nha.pdf)
