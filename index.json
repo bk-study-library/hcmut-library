@@ -7,7 +7,7 @@
     "courses": 3796,
     "programs": 838,
     "majors": 140,
-    "items": 33
+    "items": 34
   },
   "faculties": [
     {
@@ -24706,6 +24706,30 @@
                   "quarantine": "clean/FwL9ugvZ0s/AS1003_lecture-slides_slide-chuong-8-hai-chuyen-dong-co-ban-cua-vat-ran-thay.pdf",
                   "uploadSha256": "7d5305e145c14ad1c7748508d5472ae3e99fe1121733b397febcb0c851a086f3",
                   "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_lecture-slides_slide-chuong-8-hai-chuyen-dong-co-ban-cua-vat-ran-thay.pdf"
+                }
+              ]
+            },
+            {
+              "id": "slide-co-ly-thuyet-chuong-0-14-thay-tran-kim-bang",
+              "course": "AS1003",
+              "type": "lecture-slides",
+              "title": "Slide Cơ lý thuyết chương 0-14 - thầy Trần Kim Bằng",
+              "lang": "vi",
+              "license": "CC-BY-SA-4.0",
+              "origin": "self-made",
+              "added": "2026-10-06",
+              "removed": false,
+              "description": "Slide và bài tập Cơ lý thuyết của ThS. Trần Kim Bằng (Bộ môn Cơ kỹ thuật), bản 2018-2021. File slide gộp chương 0-14 (giới thiệu, tĩnh học, động học, động lực học); file bài tập gộp các chương 1-4 và 9-14.",
+              "teacher": "Trần Kim Bằng",
+              "files": [
+                {
+                  "name": "AS1003_lecture-slides_slide-co-ly-thuyet-chuong-0-14-thay-tran-kim-bang.pdf",
+                  "size": 8106032,
+                  "sha256": "d6eae40edae7f76850864da6ec487a35be28fd1125d8ee2391bc155776702a0a",
+                  "mime": "application/pdf",
+                  "quarantine": "clean/nSjvV11PZy/AS1003_lecture-slides_slide-co-ly-thuyet-chuong-0-14-thay-tran-kim-bang.pdf",
+                  "uploadSha256": "36ecdbfcc1d568340ce5204298cac4052b58625e834486beabc97d80c80976e8",
+                  "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_lecture-slides_slide-co-ly-thuyet-chuong-0-14-thay-tran-kim-bang.pdf"
                 }
               ]
             },

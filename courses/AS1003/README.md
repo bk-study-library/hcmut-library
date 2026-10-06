@@ -31,6 +31,7 @@
 - **Slide chương 14: Nguyên lý di chuyển khả dĩ - thầy Nguyễn Hữu Hào** (vi, CC-BY-SA-4.0): [AS1003_lecture-slides_slide-chuong-14-nguyen-ly-di-chuyen-kha-di-thay-nguyen-huu.pdf, 7.5 MB](https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_lecture-slides_slide-chuong-14-nguyen-ly-di-chuyen-kha-di-thay-nguyen-huu.pdf)
 - **Slide chương 15: Một số phương trình cơ học - thầy Nguyễn Hữu Hào** (vi, CC-BY-SA-4.0): [AS1003_lecture-slides_slide-chuong-15-mot-so-phuong-trinh-co-hoc-thay-nguyen-huu.pdf, 2.3 MB](https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_lecture-slides_slide-chuong-15-mot-so-phuong-trinh-co-hoc-thay-nguyen-huu.pdf)
 - **Slide chương 8: Hai chuyển động cơ bản của vật rắn - thầy Nguyễn Hữu Hào** (vi, CC-BY-SA-4.0): [AS1003_lecture-slides_slide-chuong-8-hai-chuyen-dong-co-ban-cua-vat-ran-thay.pdf, 4.4 MB](https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_lecture-slides_slide-chuong-8-hai-chuyen-dong-co-ban-cua-vat-ran-thay.pdf)
+- **Slide Cơ lý thuyết chương 0-14 - thầy Trần Kim Bằng** (vi, CC-BY-SA-4.0): [AS1003_lecture-slides_slide-co-ly-thuyet-chuong-0-14-thay-tran-kim-bang.pdf, 7.7 MB](https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_lecture-slides_slide-co-ly-thuyet-chuong-0-14-thay-tran-kim-bang.pdf)
 
 ### Tóm tắt
 
