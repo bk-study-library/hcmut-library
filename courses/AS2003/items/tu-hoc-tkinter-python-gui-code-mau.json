@@ -13,11 +13,12 @@
   "files": [
     {
       "name": "AS2003_notes_tu-hoc-tkinter-python-gui-code-mau.pdf",
-      "size": 1922014,
-      "sha256": "7479cff1c6b2d4a4f1354ba223126e42c1506b0d5f82f2ce364c6ae8c6341866",
+      "size": 1925962,
+      "sha256": "5efc6ca5dc379d5d1b07d5e7a0fffa3705078515fdcbd799115dcd83aeac34e0",
       "mime": "application/pdf",
-      "quarantine": "pending/nDaPeNIbTm/AS2003_notes_tu-hoc-tkinter-python-gui-code-mau.pdf",
-      "uploadSha256": "7479cff1c6b2d4a4f1354ba223126e42c1506b0d5f82f2ce364c6ae8c6341866"
+      "quarantine": "clean/nDaPeNIbTm/AS2003_notes_tu-hoc-tkinter-python-gui-code-mau.pdf",
+      "uploadSha256": "7479cff1c6b2d4a4f1354ba223126e42c1506b0d5f82f2ce364c6ae8c6341866",
+      "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS2003_notes_tu-hoc-tkinter-python-gui-code-mau.pdf"
     }
   ]
 }

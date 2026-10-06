@@ -14,7 +14,9 @@
 
 ## Tài liệu
 
-Chưa có tài liệu.
+### Ghi chú
+
+- **Tự học Tkinter (Python GUI) - code mẫu** (vi, CC-BY-SA-4.0): [AS2003_notes_tu-hoc-tkinter-python-gui-code-mau.pdf, 1.8 MB](https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS2003_notes_tu-hoc-tkinter-python-gui-code-mau.pdf)
 
 ## Link
 
