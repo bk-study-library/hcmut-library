@@ -1,0 +1,24 @@
+{
+  "$schema": "../../../schema/item.schema.json",
+  "id": "slide-chuong-15-mot-so-phuong-trinh-co-hoc-thay-nguyen-huu",
+  "course": "AS1003",
+  "type": "lecture-slides",
+  "title": "Slide chương 15: Một số phương trình cơ học - thầy Nguyễn Hữu Hào",
+  "lang": "vi",
+  "license": "CC-BY-SA-4.0",
+  "origin": "self-made",
+  "added": "2026-10-06",
+  "removed": false,
+  "description": "Bộ slide bài giảng Cơ lý thuyết (Engineering Mechanics) của TS. Nguyễn Hữu Hào, Bộ môn Cơ kỹ thuật, Khoa Khoa học Ứng dụng, bản 2020-2021. Đủ 15 chương: tĩnh học (hệ tiên đề, thu gọn hệ lực, cân bằng vật rắn và hệ vật rắn, giàn, ma sát, trọng tâm), động học (động học điểm, hai chuyển động cơ bản, chuyển động phức hợp, song phẳng) và động lực học (chất điểm, các định lý tổng quát, nguyên lý D'Alembert, di chuyển khả dĩ, phương trình cơ học). Mỗi chương một file; ảnh đã nén để vừa giới hạn 20 MB.",
+  "teacher": "Nguyễn Hữu Hào",
+  "files": [
+    {
+      "name": "AS1003_lecture-slides_slide-chuong-15-mot-so-phuong-trinh-co-hoc-thay-nguyen-huu.pdf",
+      "size": 2406155,
+      "sha256": "47d0f513247c2ca012b7c69e000ae8af395b03dc672d13bb357f444ee742df1d",
+      "mime": "application/pdf",
+      "quarantine": "pending/D3CgOFCVBy/AS1003_lecture-slides_slide-chuong-15-mot-so-phuong-trinh-co-hoc-thay-nguyen-huu.pdf",
+      "uploadSha256": "47d0f513247c2ca012b7c69e000ae8af395b03dc672d13bb357f444ee742df1d"
+    }
+  ]
+}
