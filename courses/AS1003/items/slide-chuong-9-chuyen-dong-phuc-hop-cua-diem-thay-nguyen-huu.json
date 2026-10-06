@@ -1,0 +1,23 @@
+{
+  "$schema": "../../../schema/item.schema.json",
+  "id": "slide-chuong-9-chuyen-dong-phuc-hop-cua-diem-thay-nguyen-huu",
+  "course": "AS1003",
+  "type": "lecture-slides",
+  "title": "Slide chương 9: Chuyển động phức hợp của điểm - thầy Nguyễn Hữu Hào",
+  "lang": "vi",
+  "license": "CC-BY-SA-4.0",
+  "origin": "self-made",
+  "added": "2026-10-06",
+  "removed": false,
+  "description": "Tài liệu Cơ lý thuyết (AS1003) dung lượng lớn gửi chung một đợt: slide chương 9 của TS. Nguyễn Hữu Hào; tóm tắt lý thuyết kèm ví dụ giải mẫu chương 8, 10, 12, 14 do sinh viên tự soạn; cheatsheet động học và động lực học; ghi chép tay toàn môn (479 trang, chia 4 phần theo trang).",
+  "files": [
+    {
+      "name": "AS1003_lecture-slides_slide-chuong-9-chuyen-dong-phuc-hop-cua-diem-thay-nguyen-huu.pdf",
+      "size": 10234575,
+      "sha256": "6137e6d142a19ee75f283cbc4c10cab31f0caeb2c4c8e81d831a8553c7c82678",
+      "mime": "application/pdf",
+      "quarantine": "pending/3lWWiGvNNH/AS1003_lecture-slides_slide-chuong-9-chuyen-dong-phuc-hop-cua-diem-thay-nguyen-huu.pdf",
+      "uploadSha256": "6137e6d142a19ee75f283cbc4c10cab31f0caeb2c4c8e81d831a8553c7c82678"
+    }
+  ]
+}
