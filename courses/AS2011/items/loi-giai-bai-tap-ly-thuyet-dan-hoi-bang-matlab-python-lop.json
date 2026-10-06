@@ -1,0 +1,23 @@
+{
+  "$schema": "../../../schema/item.schema.json",
+  "id": "loi-giai-bai-tap-ly-thuyet-dan-hoi-bang-matlab-python-lop",
+  "course": "AS2011",
+  "type": "exercise-solution",
+  "title": "Lời giải bài tập Lý thuyết đàn hồi bằng MATLAB/Python (lớp tài năng)",
+  "lang": "vi",
+  "license": "CC-BY-SA-4.0",
+  "origin": "self-made",
+  "added": "2026-10-06",
+  "removed": false,
+  "description": "Lời giải bài tập Lý thuyết đàn hồi bằng MATLAB và Python của lớp tài năng (bài 5.27, 5.30, 6.41-6.44) gồm code và hình kết quả, cùng code Python chương 5.",
+  "files": [
+    {
+      "name": "AS2011_exercise-solution_loi-giai-bai-tap-ly-thuyet-dan-hoi-bang-matlab-python-lop.pdf",
+      "size": 2084583,
+      "sha256": "73442785af926880fce3b22ec057aae86799fa91ad8f9a327f0b82b09daee567",
+      "mime": "application/pdf",
+      "quarantine": "pending/0xvy7fErXf/AS2011_exercise-solution_loi-giai-bai-tap-ly-thuyet-dan-hoi-bang-matlab-python-lop.pdf",
+      "uploadSha256": "73442785af926880fce3b22ec057aae86799fa91ad8f9a327f0b82b09daee567"
+    }
+  ]
+}
