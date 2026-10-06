@@ -13,11 +13,12 @@
   "files": [
     {
       "name": "AS2011_lecture-slides_slide-ly-thuyet-dan-hoi-chuong-6-bai-toan-phang-trong-he-toa.pdf",
-      "size": 580673,
-      "sha256": "ce37e4de17a53d0d1bea7062d09ebddb89c6bcaf0bea61f76e661726bd1b77d3",
+      "size": 547083,
+      "sha256": "5bc235b9eafe28cecaa2bbb0ef3aa3348cc9795ada4a42150ae592ae4be58df8",
       "mime": "application/pdf",
-      "quarantine": "pending/0vecojbJiS/AS2011_lecture-slides_slide-ly-thuyet-dan-hoi-chuong-6-bai-toan-phang-trong-he-toa.pdf",
-      "uploadSha256": "ce37e4de17a53d0d1bea7062d09ebddb89c6bcaf0bea61f76e661726bd1b77d3"
+      "quarantine": "clean/0vecojbJiS/AS2011_lecture-slides_slide-ly-thuyet-dan-hoi-chuong-6-bai-toan-phang-trong-he-toa.pdf",
+      "uploadSha256": "ce37e4de17a53d0d1bea7062d09ebddb89c6bcaf0bea61f76e661726bd1b77d3",
+      "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS2011_lecture-slides_slide-ly-thuyet-dan-hoi-chuong-6-bai-toan-phang-trong-he-toa.pdf"
     }
   ]
 }

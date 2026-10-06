@@ -13,11 +13,12 @@
   "files": [
     {
       "name": "AS2011_lecture-slides_slide-ly-thuyet-dan-hoi-chuong-2-quan-he-giua-bien-dang-va.pdf",
-      "size": 623528,
-      "sha256": "db7e7a5978d169248ff066ec1542876cbdf59886e859754971a48c53eddd49c8",
+      "size": 590582,
+      "sha256": "d20b13b525ee0520084cf14ba5a6d2f59d2805e807a6165a810254c284efd9e2",
       "mime": "application/pdf",
-      "quarantine": "pending/0vecojbJiS/AS2011_lecture-slides_slide-ly-thuyet-dan-hoi-chuong-2-quan-he-giua-bien-dang-va.pdf",
-      "uploadSha256": "db7e7a5978d169248ff066ec1542876cbdf59886e859754971a48c53eddd49c8"
+      "quarantine": "clean/0vecojbJiS/AS2011_lecture-slides_slide-ly-thuyet-dan-hoi-chuong-2-quan-he-giua-bien-dang-va.pdf",
+      "uploadSha256": "db7e7a5978d169248ff066ec1542876cbdf59886e859754971a48c53eddd49c8",
+      "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS2011_lecture-slides_slide-ly-thuyet-dan-hoi-chuong-2-quan-he-giua-bien-dang-va.pdf"
     }
   ]
 }

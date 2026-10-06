@@ -13,11 +13,12 @@
   "files": [
     {
       "name": "AS2011_lecture-slides_slide-ly-thuyet-dan-hoi-chuong-1-ky-hieu-chi-so.pdf",
-      "size": 856657,
-      "sha256": "4b54e8259a3fce3e1db570a16838e5d613cac6be298d236c9d41d24699fe24e5",
+      "size": 847740,
+      "sha256": "18b29660f8f893eaa70b761734787c870a44c99596b9a734c1cab0252677dc33",
       "mime": "application/pdf",
-      "quarantine": "pending/0vecojbJiS/AS2011_lecture-slides_slide-ly-thuyet-dan-hoi-chuong-1-ky-hieu-chi-so.pdf",
-      "uploadSha256": "4b54e8259a3fce3e1db570a16838e5d613cac6be298d236c9d41d24699fe24e5"
+      "quarantine": "clean/0vecojbJiS/AS2011_lecture-slides_slide-ly-thuyet-dan-hoi-chuong-1-ky-hieu-chi-so.pdf",
+      "uploadSha256": "4b54e8259a3fce3e1db570a16838e5d613cac6be298d236c9d41d24699fe24e5",
+      "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS2011_lecture-slides_slide-ly-thuyet-dan-hoi-chuong-1-ky-hieu-chi-so.pdf"
     }
   ]
 }

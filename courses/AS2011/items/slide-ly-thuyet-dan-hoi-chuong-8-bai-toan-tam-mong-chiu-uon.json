@@ -13,11 +13,12 @@
   "files": [
     {
       "name": "AS2011_lecture-slides_slide-ly-thuyet-dan-hoi-chuong-8-bai-toan-tam-mong-chiu-uon.pdf",
-      "size": 465964,
-      "sha256": "99a3a272176f1fd1de8c8bbccb8e153538c193825591d770c097d3d1274e87f6",
+      "size": 447508,
+      "sha256": "5c7e0abd3dfc06a41b32e31412ddc0e12157319885e42d7cd67e41eeae8a635d",
       "mime": "application/pdf",
-      "quarantine": "pending/0vecojbJiS/AS2011_lecture-slides_slide-ly-thuyet-dan-hoi-chuong-8-bai-toan-tam-mong-chiu-uon.pdf",
-      "uploadSha256": "99a3a272176f1fd1de8c8bbccb8e153538c193825591d770c097d3d1274e87f6"
+      "quarantine": "clean/0vecojbJiS/AS2011_lecture-slides_slide-ly-thuyet-dan-hoi-chuong-8-bai-toan-tam-mong-chiu-uon.pdf",
+      "uploadSha256": "99a3a272176f1fd1de8c8bbccb8e153538c193825591d770c097d3d1274e87f6",
+      "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS2011_lecture-slides_slide-ly-thuyet-dan-hoi-chuong-8-bai-toan-tam-mong-chiu-uon.pdf"
     }
   ]
 }

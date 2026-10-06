@@ -13,11 +13,12 @@
   "files": [
     {
       "name": "AS2011_lecture-slides_slide-ly-thuyet-dan-hoi-chuong-3-ung-suat-va-su-can-bang-co.pdf",
-      "size": 698187,
-      "sha256": "f5f05a9b38b8f0e195b4bc15ffcd560cdc898d1dbe3c516ea75f1e7483effe49",
+      "size": 659381,
+      "sha256": "d2ddfcc24cbc7462770f22e8b2b9850eff2b4df6953458d12959b3409100df5c",
       "mime": "application/pdf",
-      "quarantine": "pending/0vecojbJiS/AS2011_lecture-slides_slide-ly-thuyet-dan-hoi-chuong-3-ung-suat-va-su-can-bang-co.pdf",
-      "uploadSha256": "f5f05a9b38b8f0e195b4bc15ffcd560cdc898d1dbe3c516ea75f1e7483effe49"
+      "quarantine": "clean/0vecojbJiS/AS2011_lecture-slides_slide-ly-thuyet-dan-hoi-chuong-3-ung-suat-va-su-can-bang-co.pdf",
+      "uploadSha256": "f5f05a9b38b8f0e195b4bc15ffcd560cdc898d1dbe3c516ea75f1e7483effe49",
+      "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS2011_lecture-slides_slide-ly-thuyet-dan-hoi-chuong-3-ung-suat-va-su-can-bang-co.pdf"
     }
   ]
 }

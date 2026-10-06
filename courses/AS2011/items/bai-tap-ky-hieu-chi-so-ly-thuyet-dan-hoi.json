@@ -13,11 +13,15 @@
   "files": [
     {
       "name": "AS2011_lecture-slides_bai-tap-ky-hieu-chi-so-ly-thuyet-dan-hoi.pdf",
-      "size": 745679,
-      "sha256": "f62397b426e89365044dfa59bd7669c5974a6e2e48319ac5e07da046c26fbf8b",
+      "size": 743020,
+      "sha256": "6c43d9d705b3169accdb20e8d378f7173a6248f0d399773e2bca43efeef94575",
       "mime": "application/pdf",
-      "quarantine": "pending/0vecojbJiS/AS2011_lecture-slides_bai-tap-ky-hieu-chi-so-ly-thuyet-dan-hoi.pdf",
-      "uploadSha256": "f62397b426e89365044dfa59bd7669c5974a6e2e48319ac5e07da046c26fbf8b"
+      "quarantine": "clean/0vecojbJiS/AS2011_lecture-slides_bai-tap-ky-hieu-chi-so-ly-thuyet-dan-hoi.pdf",
+      "uploadSha256": "f62397b426e89365044dfa59bd7669c5974a6e2e48319ac5e07da046c26fbf8b",
+      "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS2011_lecture-slides_bai-tap-ky-hieu-chi-so-ly-thuyet-dan-hoi.pdf"
     }
+  ],
+  "unclassified": [
+    "pii"
   ]
 }

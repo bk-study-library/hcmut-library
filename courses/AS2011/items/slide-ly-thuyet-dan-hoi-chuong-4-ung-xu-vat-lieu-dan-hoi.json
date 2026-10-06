@@ -13,11 +13,12 @@
   "files": [
     {
       "name": "AS2011_lecture-slides_slide-ly-thuyet-dan-hoi-chuong-4-ung-xu-vat-lieu-dan-hoi.pdf",
-      "size": 745052,
-      "sha256": "96cf4c8b9020835cc0fe3b463f2daa6b16754cd20a0c50eee17864518ffb2753",
+      "size": 705720,
+      "sha256": "bff7231ef942ec9830c79c0f14b70392c16188c875cc6bb70014822fde5baac8",
       "mime": "application/pdf",
-      "quarantine": "pending/0vecojbJiS/AS2011_lecture-slides_slide-ly-thuyet-dan-hoi-chuong-4-ung-xu-vat-lieu-dan-hoi.pdf",
-      "uploadSha256": "96cf4c8b9020835cc0fe3b463f2daa6b16754cd20a0c50eee17864518ffb2753"
+      "quarantine": "clean/0vecojbJiS/AS2011_lecture-slides_slide-ly-thuyet-dan-hoi-chuong-4-ung-xu-vat-lieu-dan-hoi.pdf",
+      "uploadSha256": "96cf4c8b9020835cc0fe3b463f2daa6b16754cd20a0c50eee17864518ffb2753",
+      "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS2011_lecture-slides_slide-ly-thuyet-dan-hoi-chuong-4-ung-xu-vat-lieu-dan-hoi.pdf"
     }
   ]
 }
