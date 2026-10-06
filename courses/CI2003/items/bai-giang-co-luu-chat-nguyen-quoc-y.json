@@ -1,0 +1,23 @@
+{
+  "$schema": "../../../schema/item.schema.json",
+  "id": "bai-giang-co-luu-chat-nguyen-quoc-y",
+  "course": "CI2003",
+  "type": "lecture-slides",
+  "title": "Bài giảng Cơ lưu chất - Nguyễn Quốc Ý",
+  "lang": "vi",
+  "license": "CC-BY-SA-4.0",
+  "origin": "self-made",
+  "added": "2026-10-06",
+  "removed": false,
+  "description": "Bài giảng Cơ lưu chất (Fluid Mechanics) của giảng viên Khoa Kỹ thuật Xây dựng và Bộ môn Kỹ thuật Hàng không, ĐH Bách Khoa TP.HCM: tĩnh học lưu chất, động học, phương trình năng lượng, động lượng, dòng chảy trong ống, thế lưu. Đợt này gồm bộ của thầy Lê Văn Dực (chia 2 phần theo trang), thầy Huỳnh Công Hoài, thầy Nguyễn Quốc Ý và bảng tra Cơ lưu chất.",
+  "files": [
+    {
+      "name": "CI2003_lecture-slides_bai-giang-co-luu-chat-nguyen-quoc-y.pdf",
+      "size": 11687025,
+      "sha256": "aef247addf068d3faeb7c525fab1e65832ff1369931f67e967c1792bb563099a",
+      "mime": "application/pdf",
+      "quarantine": "pending/k9dvSlUwmC/CI2003_lecture-slides_bai-giang-co-luu-chat-nguyen-quoc-y.pdf",
+      "uploadSha256": "aef247addf068d3faeb7c525fab1e65832ff1369931f67e967c1792bb563099a"
+    }
+  ]
+}
