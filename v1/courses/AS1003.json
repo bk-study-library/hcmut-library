@@ -206,6 +206,31 @@
           ]
         }
       ]
+    },
+    {
+      "id": "tom-tat-chuong-11-dinh-ly-d-alembert",
+      "type": "summary",
+      "title": "Tóm tắt Chương 11 - Định lý D' Alembert",
+      "description": "Tóm tắt lý thuyết kèm ví dụ giải mẫu từng chương phần động học và động lực học (chương 8-14), sinh viên tự soạn: chuyển động song phẳng, chuyển động phức hợp, phương trình vi phân chuyển động, nguyên lý D'Alembert, các định lý động lực học, nguyên lý di chuyển khả dĩ, các phương trình cơ học (Lagrange loại II). Mỗi chương một file.",
+      "lang": "vi",
+      "license": "CC-BY-SA-4.0",
+      "origin": "self-made",
+      "added": "2026-10-06",
+      "unclassified": [
+        "no-text"
+      ],
+      "updated": "2026-10-06",
+      "files": [
+        {
+          "name": "AS1003_summary_tom-tat-chuong-11-dinh-ly-d-alembert.pdf",
+          "mime": "application/pdf",
+          "size": 7075119,
+          "sha256": "9de9dabcddee49189630945232fc4e67077ea0fa828a79a92cc4119accd5761d",
+          "urls": [
+            "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_summary_tom-tat-chuong-11-dinh-ly-d-alembert.pdf"
+          ]
+        }
+      ]
     }
   ]
 }
