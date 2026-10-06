@@ -20,6 +20,10 @@
 - **Slide chương 4 - Các cấu trúc điều khiển (thầy Nguyễn Thanh Nhã)** (vi, CC-BY-SA-4.0): [AS2003_lecture-slides_slide-chuong-4-cac-cau-truc-dieu-khien-thay-nguyen-thanh-nha.pdf, 319 KB](https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS2003_lecture-slides_slide-chuong-4-cac-cau-truc-dieu-khien-thay-nguyen-thanh-nha.pdf)
 - **Slide chương 6 - Lập trình hướng đối tượng (thầy Nguyễn Thanh Nhã)** (vi, CC-BY-SA-4.0): [AS2003_lecture-slides_slide-chuong-6-lap-trinh-huong-doi-tuong-thay-nguyen-thanh.pdf, 448 KB](https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS2003_lecture-slides_slide-chuong-6-lap-trinh-huong-doi-tuong-thay-nguyen-thanh.pdf)
 
+### Đề cũ
+
+- **Bài tập trắc nghiệm và quiz KTLT Cơ kỹ thuật (có đáp án, HK251)** (HK251, vi, CC-BY-SA-4.0): [AS2003_exam-past_bai-tap-trac-nghiem-va-quiz-ktlt-co-ky-thuat-co-dap-an-hk251_HK251.pdf, 2.1 MB](https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS2003_exam-past_bai-tap-trac-nghiem-va-quiz-ktlt-co-ky-thuat-co-dap-an-hk251_HK251.pdf)
+
 ## Link
 
 Chưa có link.
