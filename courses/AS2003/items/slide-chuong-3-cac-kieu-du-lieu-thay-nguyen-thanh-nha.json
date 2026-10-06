@@ -1,0 +1,28 @@
+{
+  "$schema": "../../../schema/item.schema.json",
+  "id": "slide-chuong-3-cac-kieu-du-lieu-thay-nguyen-thanh-nha",
+  "course": "AS2003",
+  "type": "lecture-slides",
+  "title": "Slide chương 3 - Các kiểu dữ liệu (thầy Nguyễn Thanh Nhã)",
+  "lang": "vi",
+  "license": "CC-BY-SA-4.0",
+  "origin": "self-made",
+  "added": "2026-10-06",
+  "removed": false,
+  "description": "Slide Kỹ thuật lập trình cho Cơ kỹ thuật (Python) của TS. Nguyễn Thanh Nhã, bản 2021: chương 3 kiểu dữ liệu, chương 4 cấu trúc điều khiển, chương 6 lập trình hướng đối tượng.",
+  "teacher": "Nguyễn Thanh Nhã",
+  "files": [
+    {
+      "name": "AS2003_lecture-slides_slide-chuong-3-cac-kieu-du-lieu-thay-nguyen-thanh-nha.pdf",
+      "size": 271842,
+      "sha256": "92e607a326ef18d04633bec8a159d1aa9548a941406f6ab120192e33f6e0e319",
+      "mime": "application/pdf",
+      "quarantine": "clean/VYBaKewwi2/AS2003_lecture-slides_slide-chuong-3-cac-kieu-du-lieu-thay-nguyen-thanh-nha.pdf",
+      "uploadSha256": "43e3fa0c005a381260a7ab2e66c945605501f9d276222b79d86d0dc4a06ec646",
+      "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS2003_lecture-slides_slide-chuong-3-cac-kieu-du-lieu-thay-nguyen-thanh-nha.pdf"
+    }
+  ],
+  "unclassified": [
+    "pii"
+  ]
+}
