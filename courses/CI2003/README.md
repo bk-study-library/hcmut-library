@@ -47,9 +47,18 @@
 - **Đề cuối kỳ Cơ lưu chất HK193** (HK193, vi, CC-BY-SA-4.0): [CI2003_exam-past_de-cuoi-ky-co-luu-chat-hk193_HK193.pdf, 581 KB](https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/CI2003_exam-past_de-cuoi-ky-co-luu-chat-hk193_HK193.pdf)
 - **Đề cuối kỳ Cơ lưu chất HK212** (HK212, vi, CC-BY-SA-4.0): [CI2003_exam-past_de-cuoi-ky-co-luu-chat-hk212_HK212.pdf, 1.0 MB](https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/CI2003_exam-past_de-cuoi-ky-co-luu-chat-hk212_HK212.pdf)
 - **Đề cuối kỳ Cơ lưu chất HK222** (HK222, vi, CC-BY-SA-4.0): [CI2003_exam-past_de-cuoi-ky-co-luu-chat-hk222_HK222.pdf, 3.4 MB](https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/CI2003_exam-past_de-cuoi-ky-co-luu-chat-hk222_HK222.pdf)
+- **Đề cuối kỳ mẫu Cơ lưu chất (lý thuyết và bài tập)** (vi, CC-BY-SA-4.0): [CI2003_exam-past_de-cuoi-ky-mau-co-luu-chat-ly-thuyet-va-bai-tap.pdf, 1.4 MB](https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/CI2003_exam-past_de-cuoi-ky-mau-co-luu-chat-ly-thuyet-va-bai-tap.pdf)
+- **Đề giữa kỳ Cơ lưu chất - đề mẫu** (vi, CC-BY-SA-4.0): [CI2003_exam-past_de-giua-ky-co-luu-chat-de-mau.pdf, 547 KB](https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/CI2003_exam-past_de-giua-ky-co-luu-chat-de-mau.pdf)
 - **Đề giữa kỳ Cơ lưu chất HK171** (HK171, vi, CC-BY-SA-4.0): [CI2003_exam-past_de-giua-ky-co-luu-chat-hk171_HK171.pdf, 471 KB](https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/CI2003_exam-past_de-giua-ky-co-luu-chat-hk171_HK171.pdf)
 - **Đề giữa kỳ Cơ lưu chất HK231 (ảnh chụp)** (HK231, vi, CC-BY-SA-4.0): [CI2003_exam-past_de-giua-ky-co-luu-chat-hk231-anh-chup_HK231.pdf, 1.4 MB](https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/CI2003_exam-past_de-giua-ky-co-luu-chat-hk231-anh-chup_HK231.pdf)
 - **Đề thi học kỳ Cơ lưu chất HK172 - đề mẫu có đáp án** (HK172, vi, CC-BY-SA-4.0): [CI2003_exam-past_de-thi-hoc-ky-co-luu-chat-hk172-de-mau-co-dap-an_HK172.pdf, 513 KB](https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/CI2003_exam-past_de-thi-hoc-ky-co-luu-chat-hk172-de-mau-co-dap-an_HK172.pdf)
+- **Đề thi kỳ hè Cơ lưu chất** (vi, CC-BY-SA-4.0): [CI2003_exam-past_de-thi-ky-he-co-luu-chat.pdf, 813 KB](https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/CI2003_exam-past_de-thi-ky-he-co-luu-chat.pdf)
+- **Ngân hàng câu hỏi trắc nghiệm Cơ lưu chất (có đáp án)** (vi, CC-BY-SA-4.0): [CI2003_exam-past_ngan-hang-cau-hoi-trac-nghiem-co-luu-chat-co-dap-an.pdf, 1.5 MB](https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/CI2003_exam-past_ngan-hang-cau-hoi-trac-nghiem-co-luu-chat-co-dap-an.pdf)
+- **Trắc nghiệm Cơ lưu chất (Fluid Mechanics)** (vi, CC-BY-SA-4.0): [CI2003_exam-past_trac-nghiem-co-luu-chat-fluid-mechanics.pdf, 1.4 MB](https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/CI2003_exam-past_trac-nghiem-co-luu-chat-fluid-mechanics.pdf)
+
+### Lời giải đề
+
+- **Đề giữa kỳ Cơ lưu chất - đề mẫu có đáp án** (vi, CC-BY-SA-4.0): [CI2003_exam-solution_de-giua-ky-co-luu-chat-de-mau-co-dap-an.pdf, 234 KB](https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/CI2003_exam-solution_de-giua-ky-co-luu-chat-de-mau-co-dap-an.pdf)
 
 ## Link
 

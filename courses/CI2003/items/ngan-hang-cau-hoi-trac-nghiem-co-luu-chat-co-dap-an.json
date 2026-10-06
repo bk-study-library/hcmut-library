@@ -1,0 +1,25 @@
+{
+  "$schema": "../../../schema/item.schema.json",
+  "id": "ngan-hang-cau-hoi-trac-nghiem-co-luu-chat-co-dap-an",
+  "course": "CI2003",
+  "type": "exam-past",
+  "title": "Ngân hàng câu hỏi trắc nghiệm Cơ lưu chất (có đáp án)",
+  "lang": "vi",
+  "license": "CC-BY-SA-4.0",
+  "origin": "self-made",
+  "added": "2026-10-06",
+  "removed": false,
+  "description": "Đề và trắc nghiệm Cơ lưu chất không ghi học kỳ: ngân hàng câu hỏi có đáp án, bộ trắc nghiệm Fluid Mechanics, đề thi kỳ hè, đề cuối kỳ mẫu (lý thuyết và bài tập, có ghi năm học 2017-2018), đề giữa kỳ mẫu và đề giữa kỳ mẫu có đáp án.",
+  "examKind": "quiz",
+  "files": [
+    {
+      "name": "CI2003_exam-past_ngan-hang-cau-hoi-trac-nghiem-co-luu-chat-co-dap-an.pdf",
+      "size": 1594496,
+      "sha256": "c89781cd023befef78fe5bfbf6b0039bdf5c46a436f8d7402fc2a3ef97cf28b0",
+      "mime": "application/pdf",
+      "quarantine": "clean/HH8PnBzaQr/CI2003_exam-past_ngan-hang-cau-hoi-trac-nghiem-co-luu-chat-co-dap-an.pdf",
+      "uploadSha256": "27aea86ab52d61547ecab7a8355d329d60ede050e15376ed44501f8ac630fa42",
+      "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/CI2003_exam-past_ngan-hang-cau-hoi-trac-nghiem-co-luu-chat-co-dap-an.pdf"
+    }
+  ]
+}
