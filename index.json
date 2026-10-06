@@ -7,7 +7,7 @@
     "courses": 3796,
     "programs": 838,
     "majors": 140,
-    "items": 74
+    "items": 75
   },
   "faculties": [
     {
@@ -52068,6 +52068,31 @@
                   "quarantine": "clean/E3MZUwUNDx/CI2003_exam-past_de-cuoi-ky-co-luu-chat-hk193_HK193.pdf",
                   "uploadSha256": "fc5d6ee22034156b860c65a38020796e3fec2258c8276da8f25945894fab1fce",
                   "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/CI2003_exam-past_de-cuoi-ky-co-luu-chat-hk193_HK193.pdf"
+                }
+              ]
+            },
+            {
+              "id": "de-cuoi-ky-co-luu-chat-hk212",
+              "course": "CI2003",
+              "type": "exam-past",
+              "title": "Đề cuối kỳ Cơ lưu chất HK212",
+              "lang": "vi",
+              "license": "CC-BY-SA-4.0",
+              "origin": "self-made",
+              "added": "2026-10-06",
+              "removed": false,
+              "description": "Đề thi cuối kỳ Cơ lưu chất (CI2003) các học kỳ, bản scan hoặc PDF gốc. Một số đề có tên PGS.TS. Lê Song Giang (người phê duyệt hoặc chủ nhiệm bộ môn) và PGS.TS. Lê Văn Dực. Có thêm một đề CI2005 HK191 cùng nội dung môn.",
+              "term": "HK212",
+              "examKind": "ck",
+              "files": [
+                {
+                  "name": "CI2003_exam-past_de-cuoi-ky-co-luu-chat-hk212_HK212.pdf",
+                  "size": 1092117,
+                  "sha256": "c5378a6b0e495824b0781b0688995974ba351f333cef14ca3487fb1cfac6d84c",
+                  "mime": "application/pdf",
+                  "quarantine": "clean/cBNynMBrZZ/CI2003_exam-past_de-cuoi-ky-co-luu-chat-hk212_HK212.pdf",
+                  "uploadSha256": "bc83dc08a0caafb010db55ce7c5bc9c8e02c0e2fc4cf2c50b9b6057e45a98d99",
+                  "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/CI2003_exam-past_de-cuoi-ky-co-luu-chat-hk212_HK212.pdf"
                 }
               ]
             },
