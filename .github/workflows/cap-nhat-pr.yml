@@ -1,0 +1,77 @@
+name: cap-nhat-pr
+
+# Giữ các PR upload/<mã> đã kiểm xong luôn gồm main mới nhất (scripts/upload/sync-main.sh), để cron của Worker merge
+# được và generated file trên main đúng khi nhiều bài cùng chờ. Chạy khi main đổi và khi kiem-file vừa xong (bài vừa
+# kiểm có thể đã cũ hơn main).
+#
+# Chỉ chạy mã của main. Branch PR chỉ là dữ liệu: git merge không chạy mã trong branch, rebuild dùng script của main
+# (như kiem-file). Chỉ nhận PR do bot mở, có label tai-lieu-moi, branch dạng upload/<mã 10 ký tự>, commit đầu là
+# commit của kiem-file (bài chưa kiểm xong thì để kiem-file làm trước).
+
+on:
+  push:
+    branches: [main]
+  workflow_run:
+    workflows: [kiem-file]
+    types: [completed]
+
+permissions: {}
+
+concurrency:
+  group: cap-nhat-pr
+  cancel-in-progress: true
+
+jobs:
+  sync:
+    timeout-minutes: 10
+    if: vars.BOT_LOGIN != ''
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: read
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: main
+          path: trusted
+          persist-credentials: false
+      - name: Checkout có đủ lịch sử để gộp (không chạy mã trong này)
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: main
+          path: work
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: 24
+      - name: Tạo token của GitHub App
+        id: app
+        uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1 # v3.2.0
+        with:
+          client-id: ${{ secrets.GH_APP_CLIENT_ID }}
+          private-key: ${{ secrets.GH_APP_PRIVATE_KEY }}
+          permission-contents: write
+      - name: Gộp main vào các bài đã kiểm xong
+        working-directory: work
+        env:
+          GH_TOKEN: ${{ github.token }}
+          APP_TOKEN: ${{ steps.app.outputs.token }}
+          APP_SLUG: ${{ steps.app.outputs.app-slug }}
+          BOT: ${{ vars.BOT_LOGIN }}
+          REPO: ${{ github.repository }}
+          TRUSTED: ${{ github.workspace }}/trusted
+        run: |
+          gh api --paginate "repos/$REPO/pulls?state=open&per_page=100" --jq '.[]
+            | select(.user.login == env.BOT and .head.repo.full_name == env.REPO and any(.labels[]; .name == "tai-lieu-moi"))
+            | .head.ref' > "$RUNNER_TEMP/branches.txt"
+          while IFS= read -r branch; do
+            [[ "$branch" =~ ^upload/[A-Za-z0-9]{10}$ ]] || continue
+            git fetch -q origin "$branch"
+            msg=$(git log -1 --format=%s FETCH_HEAD)
+            case "$msg" in kiem-file:*) ;; *) continue ;; esac
+            git checkout -q -B "$branch" FETCH_HEAD
+            CODE="${branch#upload/}" BRANCH="$branch" bash "$TRUSTED/scripts/upload/sync-main.sh" \
+              || echo "::warning::Không gộp được main vào $branch."
+            git reset -q --hard && git checkout -q --detach origin/main
+          done < "$RUNNER_TEMP/branches.txt"
