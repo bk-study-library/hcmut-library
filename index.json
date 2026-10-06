@@ -7,7 +7,7 @@
     "courses": 3796,
     "programs": 838,
     "majors": 140,
-    "items": 25
+    "items": 26
   },
   "faculties": [
     {
@@ -24353,6 +24353,30 @@
           "note": "Nhập từ CTĐT chính thức (Sổ tay HCMUT, truy cập 04/10/2026).",
           "updated": "2026-10-04",
           "items": [
+            {
+              "id": "bai-tap-co-ly-thuyet-cac-chuong-1-4-9-14-thay-tran-kim-bang",
+              "course": "AS1003",
+              "type": "lecture-slides",
+              "title": "Bài tập Cơ lý thuyết các chương 1-4, 9-14 - thầy Trần Kim Bằng",
+              "lang": "vi",
+              "license": "CC-BY-SA-4.0",
+              "origin": "self-made",
+              "added": "2026-10-06",
+              "removed": false,
+              "description": "Slide và bài tập Cơ lý thuyết của ThS. Trần Kim Bằng (Bộ môn Cơ kỹ thuật), bản 2018-2021. File slide gộp chương 0-14 (giới thiệu, tĩnh học, động học, động lực học); file bài tập gộp các chương 1-4 và 9-14.",
+              "teacher": "Trần Kim Bằng",
+              "files": [
+                {
+                  "name": "AS1003_lecture-slides_bai-tap-co-ly-thuyet-cac-chuong-1-4-9-14-thay-tran-kim-bang.pdf",
+                  "size": 3895053,
+                  "sha256": "b9b029e8106743f7ac5d977169da5d569a2601a26e90036c371c0b1adf03102c",
+                  "mime": "application/pdf",
+                  "quarantine": "clean/SFn3vJWaJY/AS1003_lecture-slides_bai-tap-co-ly-thuyet-cac-chuong-1-4-9-14-thay-tran-kim-bang.pdf",
+                  "uploadSha256": "4c59fc40e2005238c0eddeee740e8b772101a3aae3675ebb9f36f627434bc6c7",
+                  "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_lecture-slides_bai-tap-co-ly-thuyet-cac-chuong-1-4-9-14-thay-tran-kim-bang.pdf"
+                }
+              ]
+            },
             {
               "id": "chuong-1-cac-khai-niem-co-ban-he-tien-de-tinh-hoc-bk",
               "course": "AS1003",

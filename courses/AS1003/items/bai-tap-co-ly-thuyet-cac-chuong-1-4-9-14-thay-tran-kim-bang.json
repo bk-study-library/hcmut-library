@@ -14,11 +14,12 @@
   "files": [
     {
       "name": "AS1003_lecture-slides_bai-tap-co-ly-thuyet-cac-chuong-1-4-9-14-thay-tran-kim-bang.pdf",
-      "size": 3876338,
-      "sha256": "4c59fc40e2005238c0eddeee740e8b772101a3aae3675ebb9f36f627434bc6c7",
+      "size": 3895053,
+      "sha256": "b9b029e8106743f7ac5d977169da5d569a2601a26e90036c371c0b1adf03102c",
       "mime": "application/pdf",
-      "quarantine": "pending/SFn3vJWaJY/AS1003_lecture-slides_bai-tap-co-ly-thuyet-cac-chuong-1-4-9-14-thay-tran-kim-bang.pdf",
-      "uploadSha256": "4c59fc40e2005238c0eddeee740e8b772101a3aae3675ebb9f36f627434bc6c7"
+      "quarantine": "clean/SFn3vJWaJY/AS1003_lecture-slides_bai-tap-co-ly-thuyet-cac-chuong-1-4-9-14-thay-tran-kim-bang.pdf",
+      "uploadSha256": "4c59fc40e2005238c0eddeee740e8b772101a3aae3675ebb9f36f627434bc6c7",
+      "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_lecture-slides_bai-tap-co-ly-thuyet-cac-chuong-1-4-9-14-thay-tran-kim-bang.pdf"
     }
   ]
 }

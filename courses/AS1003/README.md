@@ -16,6 +16,7 @@
 
 ### Slide bài giảng
 
+- **Bài tập Cơ lý thuyết các chương 1-4, 9-14 - thầy Trần Kim Bằng** (vi, CC-BY-SA-4.0): [AS1003_lecture-slides_bai-tap-co-ly-thuyet-cac-chuong-1-4-9-14-thay-tran-kim-bang.pdf, 3.7 MB](https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_lecture-slides_bai-tap-co-ly-thuyet-cac-chuong-1-4-9-14-thay-tran-kim-bang.pdf)
 - **Chuong 1 Cac khai niem co ban He tien de tinh hoc BK** (vi, CC-BY-SA-4.0): [AS1003_lecture-slides_chuong-1-cac-khai-niem-co-ban-he-tien-de-tinh-hoc-bk.pdf, 3.7 MB](https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_lecture-slides_chuong-1-cac-khai-niem-co-ban-he-tien-de-tinh-hoc-bk.pdf)
 - **Chuong 2 Thu gon he luc Dieu kien can bang cua he luc** (vi, CC-BY-SA-4.0): [AS1003_lecture-slides_chuong-2-thu-gon-he-luc-dieu-kien-can-bang-cua-he-luc.pdf, 10.2 MB](https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_lecture-slides_chuong-2-thu-gon-he-luc-dieu-kien-can-bang-cua-he-luc.pdf)
 - **Chuong 3 Bai toan Can bang vat ran He vat ran** (vi, CC-BY-SA-4.0): [AS1003_lecture-slides_chuong-3-bai-toan-can-bang-vat-ran-he-vat-ran.pdf, 4.9 MB](https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_lecture-slides_chuong-3-bai-toan-can-bang-vat-ran-he-vat-ran.pdf)
