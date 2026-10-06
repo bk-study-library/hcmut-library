@@ -60,8 +60,10 @@ async function main(argv) {
     uploadBase: a.worker,
   });
   process.stderr.write('\n');
+  // Access từ chối thì chuyển hướng tới trang đăng nhập (HTML, 200 sau khi fetch đi theo), không có JSON của Worker.
+  if (!res.body) throw new Error('Cloudflare Access chặn request (không có phản hồi của Worker): kiểm token và policy Service Auth của ứng dụng xem-file-cho-duyet.');
   console.log(JSON.stringify({ status: res.status, ...res.body }));
-  if (!res.ok) process.exitCode = 1;
+  if (!res.ok || !res.body.code) process.exitCode = 1;
 }
 
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
