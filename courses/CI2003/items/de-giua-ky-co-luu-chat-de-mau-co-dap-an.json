@@ -1,0 +1,24 @@
+{
+  "$schema": "../../../schema/item.schema.json",
+  "id": "de-giua-ky-co-luu-chat-de-mau-co-dap-an",
+  "course": "CI2003",
+  "type": "exam-solution",
+  "title": "Đề giữa kỳ Cơ lưu chất - đề mẫu có đáp án",
+  "lang": "vi",
+  "license": "CC-BY-SA-4.0",
+  "origin": "self-made",
+  "added": "2026-10-06",
+  "removed": false,
+  "description": "Đề và trắc nghiệm Cơ lưu chất không ghi học kỳ: ngân hàng câu hỏi có đáp án, bộ trắc nghiệm Fluid Mechanics, đề thi kỳ hè, đề cuối kỳ mẫu (lý thuyết và bài tập, có ghi năm học 2017-2018), đề giữa kỳ mẫu và đề giữa kỳ mẫu có đáp án.",
+  "examKind": "gk",
+  "files": [
+    {
+      "name": "CI2003_exam-solution_de-giua-ky-co-luu-chat-de-mau-co-dap-an.pdf",
+      "size": 266713,
+      "sha256": "c7c7a70db0b314ef916aa67f8b3acc0cc0e7c9dd2e656e10ed1fc40090cdcaec",
+      "mime": "application/pdf",
+      "quarantine": "pending/HH8PnBzaQr/CI2003_exam-solution_de-giua-ky-co-luu-chat-de-mau-co-dap-an.pdf",
+      "uploadSha256": "c7c7a70db0b314ef916aa67f8b3acc0cc0e7c9dd2e656e10ed1fc40090cdcaec"
+    }
+  ]
+}
