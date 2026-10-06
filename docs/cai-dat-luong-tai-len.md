@@ -261,7 +261,7 @@ Thử:
 
 ### 8.7. Duyệt trên trang duyệt
 
-Một bài (một PR) có thể gồm nhiều file: form nhận tối đa `batchMaxFiles` file, tổng `batchMaxBytes` (`catalog/policy.json`, hiện 10 file và 1 GB), mỗi file tối đa `maxFileBytes` (1 GB). Tổng tới `directMaxBytes` (90 MB) thì gửi trong một request; lớn hơn thì trình duyệt tải theo phần `uploadPartBytes` (32 MB) qua Worker vào R2 multipart (`worker/src/routes/upload.mjs`, `site-src/assets/upload-chunks.js`), vì Worker nhận thân request tối đa 100 MB. R2 miễn phí 10 GB: file chờ duyệt lớn nên được duyệt sớm; R2 tự hủy multipart dở dang sau 7 ngày. Mỗi file thành một item riêng trong cùng PR. `kiem-file` quét từng file và ghi kết quả từng file trong một comment.
+Một bài (một PR) có thể gồm nhiều file: form nhận tối đa `batchMaxFiles` file, tổng `batchMaxBytes` (`catalog/policy.json`, hiện 10 file và 1 GB), mỗi file tối đa `maxFileBytes` (1 GB). Bài có file luôn tải theo phần `uploadPartBytes` (32 MB) qua Worker vào R2 multipart (`worker/src/routes/upload.mjs`, `site-src/assets/upload-chunks.js`): trình duyệt tính sha256, Worker chỉ chuyển dữ liệu, vì gói Worker miễn phí cho mỗi request 10 ms CPU (băm hay đọc cả file lớn trong Worker sẽ vượt) và thân request tối đa 100 MB. `directMaxBytes` (0) là cỡ tối đa còn gửi trong một request; bài không có file (sách) vẫn đi đường này. R2 miễn phí 10 GB: file chờ duyệt lớn nên được duyệt sớm; R2 tự hủy multipart dở dang sau 7 ngày. Mỗi file thành một item riêng trong cùng PR. `kiem-file` quét từng file và ghi kết quả từng file trong một comment.
 
 Trang `/xem-duyet/<mã bài>` hiện từng file: chữ người gửi nhập, tên và cỡ file, nút Xem và Tải, rồi lựa chọn **Duyệt** hay **Không duyệt** kèm lý do. Khi PR còn mở và mọi check của đầu branch đã qua, cuối trang có nút **Hoàn tất duyệt**:
 
@@ -283,13 +283,21 @@ Cho script dùng (không qua trình duyệt) cần một service token:
 
 1. Zero Trust > **Access** > **Service Auth** > **Service Tokens** > **Create Service Token**, đặt tên (ví dụ `nap-tai-lieu`), thời hạn ngắn. Ghi lại Client ID và Client Secret (chỉ hiện một lần; không gửi qua chat).
 2. Ứng dụng `xem-file-cho-duyet` > **Policies** > **Add a policy**: Action **Service Auth**, Include **Service Token** chọn token vừa tạo.
-3. Gọi với hai header `CF-Access-Client-Id` và `CF-Access-Client-Secret`. Thân request là multipart giống form Gửi tài liệu (các ô `course`, `type`, `title`, `license`, `confirm-own`, `confirm-license`, `confirm-not-book`, `file`, và ô theo loại như `term`, `examKind`), không cần `cf-turnstile-response`:
+3. Chạy script nạp (dùng đúng logic tải theo phần của form, nên không vượt giới hạn CPU của Worker):
 
 ```bash
-curl -sS -X POST https://upload.xerozsoft.com/xem-duyet/nap -H "CF-Access-Client-Id: $CF_ID" -H "CF-Access-Client-Secret: $CF_SECRET" -F course=AS1003 -F type=lecture-slides -F "title=Slide chương 8" -F license=CC-BY-SA-4.0 -F confirm-own=on -F confirm-license=on -F confirm-not-book=on -F "file=@chuong-8.pdf"
+CF_ACCESS_CLIENT_ID=... CF_ACCESS_CLIENT_SECRET=... node scripts/upload/nap.mjs --bai bai.json
 ```
 
-Mỗi request tối đa 10 file (lặp `-F title-0=... -F file=@...`), tổng tới `directMaxBytes` (90 MB); file lớn hơn thì tải theo phần như form (`site-src/assets/upload-chunks.js`). Dùng xong thì xóa service token (hay bỏ policy) để đóng đường này.
+`bai.json` mô tả một bài (một môn, tối đa 10 file), cùng các ô như form Gửi tài liệu; đường dẫn file tính từ thư mục của `bai.json`:
+
+```json
+{ "course": "AS1003", "type": "lecture-slides", "license": "CC-BY-SA-4.0", "teacher": "Nguyễn Hữu Hào", "files": [{ "path": "chuong-8.pdf", "title": "Slide chương 8" }] }
+```
+
+Đề thi (`exam-past`, `exam-solution`) cần thêm `term` (dạng HK251) và `examKind` (`gk`, `ck`, `quiz`, `kt`). Script in mã bài và link xem bài; lỗi kiểm ô in đúng tên ô.
+
+Dùng xong thì xóa service token (hay bỏ policy) để đóng đường này.
 
 ## Chạy thử (repo private)
 

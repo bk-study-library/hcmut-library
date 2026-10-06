@@ -126,8 +126,11 @@
   }
 
   // fields: FormData các ô chữ (không có file). files: [File]. onProgress(0..1): băm chiếm 20%, gửi 80%.
+  // opts.headers: header thêm cho request đầu (script nạp riêng gửi service token của Access); opts.uploadBase: gốc của
+  // /submit/<mã>/... khi request đầu không gọi /submit (route nạp riêng /xem-duyet/nap).
   // Trả { ok, status, body } như request thường: lỗi kiểm ô ở bước đầu trả về ngay để form hiện đúng chỗ.
-  function upload(endpoint, fields, files, partSize, onProgress) {
+  function upload(endpoint, fields, files, partSize, onProgress, opts) {
+    opts = opts || {};
     var total = files.reduce(function (n, f) { return n + f.size; }, 0) || 1;
     var hashed = 0;
     var sent = 0;
@@ -150,12 +153,12 @@
           fields.set('file-sha256-' + i, info[i].sha256);
           fields.set('file-head-' + i, b64(info[i].head));
         });
-        return fetch(endpoint, { method: 'POST', body: fields }).then(json);
+        return fetch(endpoint, { method: 'POST', body: fields, headers: opts.headers || {} }).then(json);
       })
       .then(function (start) {
         if (!start.ok || !start.body || !start.body.upload) return start;
         var up = start.body.upload;
-        var base = endpoint.replace(/\/submit$/, '') + '/submit/' + start.body.code;
+        var base = (opts.uploadBase || endpoint.replace(/\/submit$/, '')) + '/submit/' + start.body.code;
         var parts = [];
         return up.files
           .reduce(function (p, f) {
