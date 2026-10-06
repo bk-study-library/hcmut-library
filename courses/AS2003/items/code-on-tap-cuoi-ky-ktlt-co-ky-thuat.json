@@ -1,0 +1,24 @@
+{
+  "$schema": "../../../schema/item.schema.json",
+  "id": "code-on-tap-cuoi-ky-ktlt-co-ky-thuat",
+  "course": "AS2003",
+  "type": "exercise-solution",
+  "title": "Code ôn tập cuối kỳ KTLT Cơ kỹ thuật",
+  "lang": "vi",
+  "license": "CC-BY-SA-4.0",
+  "origin": "self-made",
+  "added": "2026-10-06",
+  "removed": false,
+  "description": "Bài tập Python môn KTLT Cơ kỹ thuật do sinh viên làm: bài tập trên lớp năm 2025 (đề và code theo từng buổi, có bài khảo sát dầm cantilever, sắp xếp nổi bọt), code ôn giữa kỳ và cuối kỳ, bài tập lớp tài năng.",
+  "files": [
+    {
+      "name": "AS2003_exercise-solution_code-on-tap-cuoi-ky-ktlt-co-ky-thuat.pdf",
+      "size": 1710842,
+      "sha256": "a7dd42c68ae4f78f40e2b76a5d69d4f512426cc7e0e34bbb2df41fb71d8abf06",
+      "mime": "application/pdf",
+      "quarantine": "clean/MSqXduDhXb/AS2003_exercise-solution_code-on-tap-cuoi-ky-ktlt-co-ky-thuat.pdf",
+      "uploadSha256": "1d839588c061f2bca13aeaa5bbf77b468ff533d8d014a175096051e73c954f74",
+      "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS2003_exercise-solution_code-on-tap-cuoi-ky-ktlt-co-ky-thuat.pdf"
+    }
+  ]
+}
