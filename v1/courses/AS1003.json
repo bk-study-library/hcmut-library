@@ -292,6 +292,32 @@
       ]
     },
     {
+      "id": "on-tap-cuoi-ky-co-ly-thuyet-loi-giai-viet-tay",
+      "type": "exam-solution",
+      "title": "Ôn tập cuối kỳ Cơ lý thuyết - lời giải viết tay",
+      "description": "Lời giải viết tay các dạng bài ôn tập cuối kỳ Cơ lý thuyết (35 trang): động học vật rắn, động lực học, nguyên lý D'Alembert, di chuyển khả dĩ.",
+      "lang": "vi",
+      "examKind": "ck",
+      "license": "CC-BY-SA-4.0",
+      "origin": "self-made",
+      "added": "2026-10-06",
+      "unclassified": [
+        "no-text"
+      ],
+      "updated": "2026-10-06",
+      "files": [
+        {
+          "name": "AS1003_exam-solution_on-tap-cuoi-ky-co-ly-thuyet-loi-giai-viet-tay.pdf",
+          "mime": "application/pdf",
+          "size": 9689073,
+          "sha256": "68891c2316a46751778146d0225d32b88381307cc56d85c74442cd553e470e2f",
+          "urls": [
+            "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_exam-solution_on-tap-cuoi-ky-co-ly-thuyet-loi-giai-viet-tay.pdf"
+          ]
+        }
+      ]
+    },
+    {
       "id": "slide-chuong-10-chuyen-dong-song-phang-cua-vat-ran-thay",
       "type": "lecture-slides",
       "title": "Slide chương 10: Chuyển động song phẳng của vật rắn - thầy Nguyễn Hữu Hào",
@@ -813,6 +839,32 @@
           "sha256": "045d1182088598617a4048d79494c0e42a127efc93bb929f034836b951d1989d",
           "urls": [
             "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_summary_tom-tat-chuong-9-chuyen-dong-phuc-hop.pdf"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tong-hop-de-cuoi-ky-co-ly-thuyet",
+      "type": "exam-past",
+      "title": "Tổng hợp đề cuối kỳ Cơ lý thuyết",
+      "description": "Tổng hợp đề kiểm tra cuối kỳ Cơ lý thuyết qua nhiều học kỳ (102 trang, bản scan), dạng trắc nghiệm và tự luận.",
+      "lang": "vi",
+      "examKind": "ck",
+      "license": "CC-BY-SA-4.0",
+      "origin": "self-made",
+      "added": "2026-10-06",
+      "unclassified": [
+        "no-text"
+      ],
+      "updated": "2026-10-06",
+      "files": [
+        {
+          "name": "AS1003_exam-past_tong-hop-de-cuoi-ky-co-ly-thuyet.pdf",
+          "mime": "application/pdf",
+          "size": 4170711,
+          "sha256": "599c9e5028002c54b42188f042fe64ef02057cbe7900d3219c39e2ef86590fb8",
+          "urls": [
+            "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_exam-past_tong-hop-de-cuoi-ky-co-ly-thuyet.pdf"
           ]
         }
       ]

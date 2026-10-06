@@ -7,7 +7,7 @@
     "courses": 3796,
     "programs": 838,
     "majors": 140,
-    "items": 100
+    "items": 102
   },
   "faculties": [
     {
@@ -24654,6 +24654,33 @@
               ]
             },
             {
+              "id": "on-tap-cuoi-ky-co-ly-thuyet-loi-giai-viet-tay",
+              "course": "AS1003",
+              "type": "exam-solution",
+              "title": "Ôn tập cuối kỳ Cơ lý thuyết - lời giải viết tay",
+              "lang": "vi",
+              "license": "CC-BY-SA-4.0",
+              "origin": "self-made",
+              "added": "2026-10-06",
+              "removed": false,
+              "description": "Lời giải viết tay các dạng bài ôn tập cuối kỳ Cơ lý thuyết (35 trang): động học vật rắn, động lực học, nguyên lý D'Alembert, di chuyển khả dĩ.",
+              "examKind": "ck",
+              "files": [
+                {
+                  "name": "AS1003_exam-solution_on-tap-cuoi-ky-co-ly-thuyet-loi-giai-viet-tay.pdf",
+                  "size": 9689073,
+                  "sha256": "68891c2316a46751778146d0225d32b88381307cc56d85c74442cd553e470e2f",
+                  "mime": "application/pdf",
+                  "quarantine": "clean/myTGJmzFhQ/AS1003_exam-solution_on-tap-cuoi-ky-co-ly-thuyet-loi-giai-viet-tay.pdf",
+                  "uploadSha256": "7f2b1aee2b66b8d1925edfef6a2c334e931e9e23cb7c6db6e77e233f8d7f3b53",
+                  "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_exam-solution_on-tap-cuoi-ky-co-ly-thuyet-loi-giai-viet-tay.pdf"
+                }
+              ],
+              "unclassified": [
+                "no-text"
+              ]
+            },
+            {
               "id": "slide-chuong-10-chuyen-dong-song-phang-cua-vat-ran-thay",
               "course": "AS1003",
               "type": "lecture-slides",
@@ -25200,6 +25227,33 @@
                   "uploadSha256": "bf5211cf2291e5f9521227cf3690da982b66d297bf98f4a8e865a8c96682f05d",
                   "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_summary_tom-tat-chuong-9-chuyen-dong-phuc-hop.pdf"
                 }
+              ]
+            },
+            {
+              "id": "tong-hop-de-cuoi-ky-co-ly-thuyet",
+              "course": "AS1003",
+              "type": "exam-past",
+              "title": "Tổng hợp đề cuối kỳ Cơ lý thuyết",
+              "lang": "vi",
+              "license": "CC-BY-SA-4.0",
+              "origin": "self-made",
+              "added": "2026-10-06",
+              "removed": false,
+              "description": "Tổng hợp đề kiểm tra cuối kỳ Cơ lý thuyết qua nhiều học kỳ (102 trang, bản scan), dạng trắc nghiệm và tự luận.",
+              "examKind": "ck",
+              "files": [
+                {
+                  "name": "AS1003_exam-past_tong-hop-de-cuoi-ky-co-ly-thuyet.pdf",
+                  "size": 4170711,
+                  "sha256": "599c9e5028002c54b42188f042fe64ef02057cbe7900d3219c39e2ef86590fb8",
+                  "mime": "application/pdf",
+                  "quarantine": "clean/mXZnyHkMa4/AS1003_exam-past_tong-hop-de-cuoi-ky-co-ly-thuyet.pdf",
+                  "uploadSha256": "ef52f40aa72a59ea808c6fe8f18e247fdf6239cc2d9c448d24264f6f51659471",
+                  "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_exam-past_tong-hop-de-cuoi-ky-co-ly-thuyet.pdf"
+                }
+              ],
+              "unclassified": [
+                "no-text"
               ]
             }
           ]
