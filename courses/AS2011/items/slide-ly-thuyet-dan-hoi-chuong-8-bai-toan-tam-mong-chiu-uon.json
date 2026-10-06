@@ -1,0 +1,24 @@
+{
+  "$schema": "../../../schema/item.schema.json",
+  "id": "slide-ly-thuyet-dan-hoi-chuong-8-bai-toan-tam-mong-chiu-uon",
+  "course": "AS2011",
+  "type": "lecture-slides",
+  "title": "Slide Lý thuyết đàn hồi chương 8: Bài toán tấm mỏng chịu uốn trong hệ tọa độ trụ",
+  "lang": "vi",
+  "license": "CC-BY-SA-4.0",
+  "origin": "self-made",
+  "added": "2026-10-06",
+  "removed": false,
+  "description": "Slide Lý thuyết đàn hồi 8 chương: ký hiệu chỉ số, biến dạng và chuyển vị, ứng suất và cân bằng, vật liệu đàn hồi tuyến tính, bài toán phẳng trong tọa độ Descartes và tọa độ cực, tấm mỏng chịu uốn (Descartes và tọa độ trụ). Kèm phiếu bài tập ký hiệu chỉ số.",
+  "files": [
+    {
+      "name": "AS2011_lecture-slides_slide-ly-thuyet-dan-hoi-chuong-8-bai-toan-tam-mong-chiu-uon.pdf",
+      "size": 447508,
+      "sha256": "5c7e0abd3dfc06a41b32e31412ddc0e12157319885e42d7cd67e41eeae8a635d",
+      "mime": "application/pdf",
+      "quarantine": "clean/0vecojbJiS/AS2011_lecture-slides_slide-ly-thuyet-dan-hoi-chuong-8-bai-toan-tam-mong-chiu-uon.pdf",
+      "uploadSha256": "99a3a272176f1fd1de8c8bbccb8e153538c193825591d770c097d3d1274e87f6",
+      "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS2011_lecture-slides_slide-ly-thuyet-dan-hoi-chuong-8-bai-toan-tam-mong-chiu-uon.pdf"
+    }
+  ]
+}
