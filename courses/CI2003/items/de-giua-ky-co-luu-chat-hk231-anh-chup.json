@@ -1,0 +1,25 @@
+{
+  "$schema": "../../../schema/item.schema.json",
+  "id": "de-giua-ky-co-luu-chat-hk231-anh-chup",
+  "course": "CI2003",
+  "type": "exam-past",
+  "title": "Đề giữa kỳ Cơ lưu chất HK231 (ảnh chụp)",
+  "lang": "vi",
+  "license": "CC-BY-SA-4.0",
+  "origin": "self-made",
+  "added": "2026-10-06",
+  "removed": false,
+  "description": "Đề kiểm tra giữa kỳ Cơ lưu chất: đề HK171, đề mẫu và ảnh chụp đề HK231.",
+  "term": "HK231",
+  "examKind": "gk",
+  "files": [
+    {
+      "name": "CI2003_exam-past_de-giua-ky-co-luu-chat-hk231-anh-chup_HK231.pdf",
+      "size": 1424701,
+      "sha256": "8ebca48efd46fe285b35cb306171ac2064933d046d1264eb78e5bfd8a675ea1f",
+      "mime": "application/pdf",
+      "quarantine": "pending/JUM0EWL6QA/CI2003_exam-past_de-giua-ky-co-luu-chat-hk231-anh-chup_HK231.pdf",
+      "uploadSha256": "8ebca48efd46fe285b35cb306171ac2064933d046d1264eb78e5bfd8a675ea1f"
+    }
+  ]
+}
