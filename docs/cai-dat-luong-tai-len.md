@@ -283,29 +283,6 @@ Quyết định ghi ở `review/<mã bài>.json` trong bucket quarantine, gồm 
 
 Form duyệt chỉ nhận POST có `Origin` là chính Worker (chống trang khác gửi form thay người duyệt đang đăng nhập). Duyệt tay trên GitHub (comment, approve, merge) vẫn dùng được như trước.
 
-### 8.8. Nạp riêng cho chủ dự án (`POST /xem-duyet/nap`)
-
-Dùng khi người gửi nhắn riêng tài liệu cho chủ dự án. Route nằm dưới `/xem-duyet` nên ứng dụng Access ở mục 8.4 chặn trước; web không có link nào tới đây. Khác form công khai: không có Turnstile, không giới hạn theo IP; còn lại giống hệt (`worker/src/routes/intake.mjs` gọi `handleSubmit`): cùng phiếu, cùng phần kiểm, bot mở PR, file qua `kiem-file`, rồi phân loại tự động như mọi bài.
-
-Cho script dùng (không qua trình duyệt) cần một service token:
-
-1. Zero Trust > **Access** > **Service Auth** > **Service Tokens** > **Create Service Token**, đặt tên (ví dụ `nap-tai-lieu`), thời hạn ngắn. Ghi lại Client ID và Client Secret (chỉ hiện một lần; không gửi qua chat).
-2. Ứng dụng `xem-file-cho-duyet` > **Policies** > **Add a policy**: Action **Service Auth**, Include **Service Token** chọn token vừa tạo.
-3. Chạy script nạp (dùng đúng logic tải theo phần của form, nên không vượt giới hạn CPU của Worker):
-
-```bash
-CF_ACCESS_CLIENT_ID=... CF_ACCESS_CLIENT_SECRET=... node scripts/upload/nap.mjs --bai bai.json
-```
-
-`bai.json` mô tả một bài (một môn, tối đa 10 file), cùng các ô như form Gửi tài liệu; đường dẫn file tính từ thư mục của `bai.json`:
-
-```json
-{ "course": "AS1003", "type": "lecture-slides", "license": "CC-BY-SA-4.0", "teacher": "Nguyễn Hữu Hào", "files": [{ "path": "chuong-8.pdf", "title": "Slide chương 8" }] }
-```
-
-Đề thi (`exam-past`, `exam-solution`) cần thêm `term` (dạng HK251) và `examKind` (`gk`, `ck`, `quiz`, `kt`). Script in mã bài và link xem bài; lỗi kiểm ô in đúng tên ô.
-
-Dùng xong thì xóa service token (hay bỏ policy) để đóng đường này.
 
 ## Chạy thử (repo private)
 
