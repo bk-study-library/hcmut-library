@@ -66,6 +66,10 @@
 
 - **Tổng hợp đề cuối kỳ Cơ lý thuyết** (vi, CC-BY-SA-4.0): [AS1003_exam-past_tong-hop-de-cuoi-ky-co-ly-thuyet.pdf, 4.0 MB](https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_exam-past_tong-hop-de-cuoi-ky-co-ly-thuyet.pdf)
 
+### Lời giải đề
+
+- **Ôn tập cuối kỳ Cơ lý thuyết - lời giải viết tay** (vi, CC-BY-SA-4.0): [AS1003_exam-solution_on-tap-cuoi-ky-co-ly-thuyet-loi-giai-viet-tay.pdf, 9.2 MB](https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_exam-solution_on-tap-cuoi-ky-co-ly-thuyet-loi-giai-viet-tay.pdf)
+
 ## Link
 
 Chưa có link.
