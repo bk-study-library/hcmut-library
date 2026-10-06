@@ -1,0 +1,23 @@
+{
+  "$schema": "../../../schema/item.schema.json",
+  "id": "tom-tat-chuong-13-nguyen-ly-di-chuyen-kha-di",
+  "course": "AS1003",
+  "type": "summary",
+  "title": "Tóm tắt Chương 13 - Nguyên lý di chuyển khả dĩ",
+  "lang": "vi",
+  "license": "CC-BY-SA-4.0",
+  "origin": "self-made",
+  "added": "2026-10-06",
+  "removed": false,
+  "description": "Tóm tắt lý thuyết kèm ví dụ giải mẫu từng chương phần động học và động lực học (chương 8-14), sinh viên tự soạn: chuyển động song phẳng, chuyển động phức hợp, phương trình vi phân chuyển động, nguyên lý D'Alembert, các định lý động lực học, nguyên lý di chuyển khả dĩ, các phương trình cơ học (Lagrange loại II). Mỗi chương một file.",
+  "files": [
+    {
+      "name": "AS1003_summary_tom-tat-chuong-13-nguyen-ly-di-chuyen-kha-di.pdf",
+      "size": 6391171,
+      "sha256": "d8f86223f94342f667ec0522ec763eb153ac7c9fb2e7793f9619d1b3e22b05fa",
+      "mime": "application/pdf",
+      "quarantine": "pending/ZXErbD6Zfs/AS1003_summary_tom-tat-chuong-13-nguyen-ly-di-chuyen-kha-di.pdf",
+      "uploadSha256": "d8f86223f94342f667ec0522ec763eb153ac7c9fb2e7793f9619d1b3e22b05fa"
+    }
+  ]
+}
