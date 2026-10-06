@@ -14,11 +14,12 @@
   "files": [
     {
       "name": "AS2003_exam-past_de-thi-cuoi-ky-ktlt-co-ky-thuat-de-2.pdf",
-      "size": 141764,
-      "sha256": "854fe77b36973ce22d2c3f34049c26cdbbfec40acba8745371624a2b36cd8f55",
+      "size": 169957,
+      "sha256": "23cf1e559fab8357d928bd04b4e92bbec9dd8c41f3942bc2fdef3f8fd35a431a",
       "mime": "application/pdf",
-      "quarantine": "pending/JQOk1CzkRd/AS2003_exam-past_de-thi-cuoi-ky-ktlt-co-ky-thuat-de-2.pdf",
-      "uploadSha256": "854fe77b36973ce22d2c3f34049c26cdbbfec40acba8745371624a2b36cd8f55"
+      "quarantine": "clean/JQOk1CzkRd/AS2003_exam-past_de-thi-cuoi-ky-ktlt-co-ky-thuat-de-2.pdf",
+      "uploadSha256": "854fe77b36973ce22d2c3f34049c26cdbbfec40acba8745371624a2b36cd8f55",
+      "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS2003_exam-past_de-thi-cuoi-ky-ktlt-co-ky-thuat-de-2.pdf"
     }
   ]
 }

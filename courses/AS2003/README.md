@@ -38,6 +38,9 @@
 ### Đề cũ
 
 - **Bài tập trắc nghiệm và quiz KTLT Cơ kỹ thuật (có đáp án, HK251)** (HK251, vi, CC-BY-SA-4.0): [AS2003_exam-past_bai-tap-trac-nghiem-va-quiz-ktlt-co-ky-thuat-co-dap-an-hk251_HK251.pdf, 2.1 MB](https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS2003_exam-past_bai-tap-trac-nghiem-va-quiz-ktlt-co-ky-thuat-co-dap-an-hk251_HK251.pdf)
+- **Đề thi cuối kỳ KTLT Cơ kỹ thuật - đề 1** (vi, CC-BY-SA-4.0): [AS2003_exam-past_de-thi-cuoi-ky-ktlt-co-ky-thuat-de-1.pdf, 157 KB](https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS2003_exam-past_de-thi-cuoi-ky-ktlt-co-ky-thuat-de-1.pdf)
+- **Đề thi cuối kỳ KTLT Cơ kỹ thuật - đề 2** (vi, CC-BY-SA-4.0): [AS2003_exam-past_de-thi-cuoi-ky-ktlt-co-ky-thuat-de-2.pdf, 166 KB](https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS2003_exam-past_de-thi-cuoi-ky-ktlt-co-ky-thuat-de-2.pdf)
+- **Đề thi cuối kỳ KTLT Cơ kỹ thuật - đề 3** (vi, CC-BY-SA-4.0): [AS2003_exam-past_de-thi-cuoi-ky-ktlt-co-ky-thuat-de-3.pdf, 105 KB](https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS2003_exam-past_de-thi-cuoi-ky-ktlt-co-ky-thuat-de-3.pdf)
 
 ### Bài tập lớn tham khảo
 
