@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { slugify, fileName, uniqueId } from '../scripts/upload/naming.mjs';
+import { slugify, fileName } from '../scripts/upload/naming.mjs';
 import { readFileSync } from 'node:fs';
 import { termFor, releaseTag, releaseAssetUrl, releaseTagOverrideErrors } from '../scripts/upload/term.mjs';
 import { parseReleaseUrl } from '../scripts/upload/publish.mjs';
@@ -27,12 +27,6 @@ test('fileName ghép tên chuẩn', () => {
     'MT1005_summary_chuong-1_HK251.pdf',
   );
   assert.equal(fileName({ code: 'MT1005', type: 'summary', slug: 'chuong-1', ext: '.md' }), 'MT1005_summary_chuong-1.md');
-});
-
-test('uniqueId thêm hậu tố số', () => {
-  assert.equal(uniqueId('a', new Set()), 'a');
-  assert.equal(uniqueId('a', new Set(['a'])), 'a-2');
-  assert.equal(uniqueId('a', new Set(['a', 'a-2'])), 'a-3');
 });
 
 test('termFor theo năm học', () => {

@@ -43,7 +43,7 @@ Bạn có hai file: `<file>.pem` gốc (cho Actions) và `bot-pkcs8.pem` (cho Wo
 ## Bước 2. R2: bucket, lifecycle rule, API token
 
 1. Trong Cloudflare dashboard, vào **Storage & databases** > **R2 object storage**, bấm **Create bucket**, đặt tên `bk-lib-quarantine`. Giữ bucket riêng tư: không bật public access, không nối tên miền.
-2. Thêm lifecycle rule xóa mọi object sau 30 ngày. Lifecycle rule phải phủ cả bucket vì kho dùng ba prefix `pending/`, `clean/` và `sha/`. Prefix bỏ trống (`""`) nghĩa là áp cho cả bucket:
+2. Thêm lifecycle rule xóa mọi object sau 30 ngày. Lifecycle rule phải phủ cả bucket vì kho dùng các prefix `pending/`, `clean/`, `sha/` và `id/` (id item của bài đang chờ duyệt). Prefix bỏ trống (`""`) nghĩa là áp cho cả bucket:
 
 ```bash
 npx wrangler r2 bucket lifecycle add bk-lib-quarantine delete-after-30-days "" --expire-days 30
@@ -279,7 +279,7 @@ Trang `/xem-duyet/<mã bài>` hiện từng file: chữ người gửi nhập, t
 | Không duyệt file nào | Comment lý do rồi đóng PR; `don-kho` dọn kho như khi đóng tay |
 | Duyệt một phần | Xóa mục không duyệt khỏi branch và file của nó khỏi kho, comment kết quả. `kiem-file` dựng lại generated file, `validate` chạy lại; khi `validate` qua, cron của Worker (5 phút một lần) merge |
 
-Quyết định ghi ở `review/<mã bài>.json` trong bucket quarantine, gồm email người duyệt (để tra khi cần; PR công khai nên comment không ghi người duyệt). Cron gửi email kết quả khi PR đã đóng rồi xóa email cùng file này; bài không có email thì cron xóa file này khi PR đóng. Cron chạy trong Worker vì Cloudflare chặn request từ runner của GitHub Actions (403), nên workflow không gọi Worker. Cron chỉ merge khi đã có quyết định chờ merge, PR còn mở, check của đầu branch đã qua, commit đầu là của `kiem-file`, và mục trên branch đúng bằng danh sách được duyệt.
+Quyết định ghi ở `review/<mã bài>.json` trong bucket quarantine, gồm email người duyệt (để tra khi cần; PR công khai nên comment không ghi người duyệt). Cron gửi email kết quả khi PR đã đóng rồi xóa email cùng file này; bài không có email thì cron xóa file này khi PR đóng. Cron chạy trong Worker vì Cloudflare chặn request từ runner của GitHub Actions (403), nên workflow không gọi Worker. Cron chỉ merge khi đã có quyết định chờ merge, PR còn mở, check của đầu branch đã qua, commit đầu là của `kiem-file`, và mục trên branch đúng bằng danh sách được duyệt. Nhiều bài cùng chờ thì workflow `cap-nhat-pr` gộp main vào từng branch đã kiểm xong và dựng lại generated file (`scripts/upload/sync-main.sh`), vì bài nào cũng sửa `index.json`, `v1/`, `worker-catalog.json`: bài merge trước làm bài sau xung đột. Xung đột ở item (hai bài trùng đường dẫn) thì bỏ qua để người duyệt xử lý.
 
 Form duyệt chỉ nhận POST có `Origin` là chính Worker (chống trang khác gửi form thay người duyệt đang đăng nhập). Duyệt tay trên GitHub (comment, approve, merge) vẫn dùng được như trước.
 
