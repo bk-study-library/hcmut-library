@@ -1,0 +1,25 @@
+{
+  "$schema": "../../../schema/item.schema.json",
+  "id": "bai-tap-trac-nghiem-va-quiz-ktlt-co-ky-thuat-co-dap-an-hk251",
+  "course": "AS2003",
+  "type": "exam-past",
+  "title": "Bài tập trắc nghiệm và quiz KTLT Cơ kỹ thuật (có đáp án, HK251)",
+  "lang": "vi",
+  "license": "CC-BY-SA-4.0",
+  "origin": "self-made",
+  "added": "2026-10-06",
+  "removed": false,
+  "description": "Các lần làm bài trắc nghiệm và quiz trên LMS môn KTLT Cơ kỹ thuật HK251, có đáp án, gộp một file để ôn tập.",
+  "term": "HK251",
+  "examKind": "quiz",
+  "files": [
+    {
+      "name": "AS2003_exam-past_bai-tap-trac-nghiem-va-quiz-ktlt-co-ky-thuat-co-dap-an-hk251_HK251.pdf",
+      "size": 2218474,
+      "sha256": "84df87317b2c653cd608592e4ab7bfff07fa602acd9d9c5a80997b9258443eed",
+      "mime": "application/pdf",
+      "quarantine": "pending/E9JBSiZIGy/AS2003_exam-past_bai-tap-trac-nghiem-va-quiz-ktlt-co-ky-thuat-co-dap-an-hk251_HK251.pdf",
+      "uploadSha256": "84df87317b2c653cd608592e4ab7bfff07fa602acd9d9c5a80997b9258443eed"
+    }
+  ]
+}
