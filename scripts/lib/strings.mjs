@@ -195,6 +195,14 @@ export const S = {
       batchTitle: 'Tiêu đề',
       batchType: 'Loại',
       batchFile: 'File',
+      // Ô ghi riêng cho một file trong đợt gửi; để trống thì theo ô chung phía trên.
+      batchOwn: { term: 'Học kỳ của file này', examKind: 'Loại kiểm tra của file này', chapter: 'Chương của file này' },
+      batchOwnHint: 'Để trống thì theo ô chung phía trên.',
+      // Gửi xong: giữ môn và các ô chung để gửi tiếp, xóa file và các ô riêng của bài.
+      kept: 'Form đã giữ môn, giảng viên, giấy phép, tên hiển thị và email để bạn gửi tiếp. Chọn file mới, ghi lại tiêu đề, mô tả và đánh dấu các ô xác nhận.',
+      sentFiles: 'file',
+      sentCsv: ['Thời gian', 'Mã bài', 'Môn', 'Số file', 'Link xem bài'],
+      sentCsvName: 'bai-da-gui',
       book:'Cần tên sách và ít nhất một tác giả.',
       confirm: 'Đánh dấu cả ba ô xác nhận.',
       busy: 'Đang gửi.',

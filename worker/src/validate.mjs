@@ -232,7 +232,13 @@ export function validateSubmission(fields, file, ctx) {
   const examKind = val(fields, 'examKind');
   if (examKind && !lim.examKinds.includes(examKind)) errors.examKind = MESSAGES.examKind;
   // Ô bắt buộc theo loại tài liệu (catalog/policy.json, typeFields), ví dụ đề thi cần học kỳ và loại kiểm tra.
-  for (const k of policy.typeFields?.[type]?.required || []) if (!val(fields, k) && !errors[k]) errors[k] = MESSAGES.required[k] || 'Thiếu thông tin bắt buộc.';
+  // Ngoại lệ: người gửi đánh dấu termUnknown (đề tổng hợp nhiều học kỳ, đề mẫu không rõ kỳ) thì không cần học kỳ;
+  // mục ghi không có term, đúng hơn là đoán một học kỳ.
+  const termUnknown = Boolean(val(fields, 'termUnknown'));
+  for (const k of policy.typeFields?.[type]?.required || []) {
+    if (k === 'term' && termUnknown) continue;
+    if (!val(fields, k) && !errors[k]) errors[k] = MESSAGES.required[k] || 'Thiếu thông tin bắt buộc.';
+  }
   if (val(fields, 'teacher').length > lim.teacherMax) errors.teacher = MESSAGES.teacher(lim.teacherMax);
   if (val(fields, 'displayName').length > lim.displayNameMax) errors.displayName = MESSAGES.displayName(lim.displayNameMax);
 

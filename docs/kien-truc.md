@@ -65,7 +65,7 @@ form web (site-src/assets/upload.js)
 | Form Gửi tài liệu | `site-src/pages/vi/gui-tai-lieu.html`, `site-src/assets/upload.js` (giao diện), `upload-core.js` (logic thuần) | Số liệu lấy từ `#upload-config` do `scripts/site/upload-page.mjs` (`uploadPage`) đổ từ `policy.json` |
 | Worker: định tuyến | `worker/src/index.mjs` (`createHandler`, `handleView`) | Mỗi việc một file trong `worker/src/routes/` |
 | Worker nhận bài | `worker/src/routes/submit.mjs`: `handleSubmit` (kiểm, dựng item và PR), `openSubmission` (ghi khóa phụ, mở PR); kiểm phiếu ở `worker/src/validate.mjs` | |
-| Ô theo loại tài liệu trên form (học kỳ, loại kiểm tra, chương; bắt buộc hay tùy chọn) | `catalog/policy.json` (`typeFields`); form `site-src/pages/vi/gui-tai-lieu.html` (`#type-fields`), `site-src/assets/upload.js` (`syncTypeFields`); kiểm ở `worker/src/validate.mjs` | |
+| Ô theo loại tài liệu trên form (học kỳ, loại kiểm tra, chương; bắt buộc hay tùy chọn) | `catalog/policy.json` (`typeFields`); form `site-src/pages/vi/gui-tai-lieu.html` (`#type-fields`), `site-src/assets/upload.js` (`syncTypeFields`); kiểm ở `worker/src/validate.mjs` | Đợt gửi: mỗi file ghi riêng được học kỳ, loại kiểm tra, chương (`<ô>-<i>`, `PER_FILE_FIELDS` trong `worker/src/routes/submit.mjs`), để trống thì theo ô chung. Ô `termUnknown` (đề tổng hợp nhiều học kỳ hay không rõ học kỳ) bỏ yêu cầu học kỳ, mục không có `term` |
 | Tải file lớn theo phần (tới 1 GB) | `worker/src/routes/upload.mjs` (phiên, từng phần, xong); `site-src/assets/upload-chunks.js` (sha256 theo luồng, gửi phần); ngưỡng `directMaxBytes`, `uploadPartBytes` ở `catalog/policy.json` | File trong git giới hạn riêng `maxGitFileBytes` |
 | Trang duyệt, nút Hoàn tất | `worker/src/routes/review.mjs` (`handleReview`, `handleDecision`, `continueMerge`), `worker/src/view.mjs` (`reviewBatchPage`), `worker/src/review.mjs` (quyết định, lý do: hàm thuần) | |
 | Email kết quả, cron | `worker/src/routes/notify.mjs` (`notifyCode`), `worker/src/notify.mjs` (nội dung email), `worker/src/cron.mjs` (`sweep`); lịch ở `worker/wrangler.jsonc` | Cloudflare chặn runner GitHub gọi Worker nên dùng cron |
@@ -85,7 +85,7 @@ Các file dưới đây gánh nhiều việc; sửa một chỗ phải đọc nh
 
 | File | Dòng | Hướng tách |
 |---|---|---|
-| `site-src/assets/upload.js` | khoảng 730 | Tách phần chọn môn, đợt gửi nhiều file, gửi và báo lỗi |
+| `site-src/assets/upload.js` | khoảng 980 | Tách phần chọn môn, đợt gửi nhiều file, gửi và báo lỗi |
 | `scripts/upload/check.mjs` | khoảng 660 | `locate`, `scan`, `apply`, CLI riêng |
 
 ## Quy ước

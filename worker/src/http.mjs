@@ -19,6 +19,7 @@ export const MESSAGES = {
   batchTooLarge: (max) => `Tổng các file quá lớn. Gửi tối đa ${max} mỗi lần, chia thành nhiều lần gửi.`,
   batchCount: (max) => `Mỗi lần gửi tối đa ${max} file. Chia thành nhiều lần gửi.`,
   batchSame: 'Có hai file giống hệt nhau trong lần gửi này. Bỏ bớt một file.',
+  batchDrop: 'Bỏ file này khỏi lần gửi rồi gửi lại các file còn lại.',
   batchReplaces: 'Bản cập nhật chỉ gửi được từng file một. Gửi riêng file này.',
   oneCourse: 'Mỗi bài chỉ gửi cho một môn. Tải lại trang rồi chọn lại môn.',
 };

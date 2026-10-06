@@ -49,6 +49,7 @@
   <div data-field="term" hidden>
     <label for="term">Học kỳ</label>
     <input id="term" name="term" type="text" autocomplete="off" placeholder="Ví dụ HK251">
+    <label class="check" id="term-unknown-box" hidden><input type="checkbox" id="termUnknown" name="termUnknown" value="on"> Đề tổng hợp nhiều học kỳ hoặc không rõ học kỳ</label>
     <p class="err" data-err="term" role="alert"></p>
   </div>
   <div data-field="examKind" hidden>
@@ -166,8 +167,13 @@
 
 <div class="cf-turnstile" data-sitekey="{{upload:sitekey}}"></div>
 <p class="err" data-err="form" role="alert"></p>
-<p class="actions"><button class="btn primary" type="submit" id="submit">Gửi tài liệu</button></p>
+<p class="actions"><button class="btn primary" type="submit" id="submit">Gửi tài liệu</button> <button class="btn subtle" type="button" id="reset-all" hidden>Xóa hết thông tin</button></p>
 <p id="upload-status" class="note" role="status" hidden></p>
+<div id="sent-box" class="note" hidden>
+  <p>Bài đã gửi trong lần mở trang này. Danh sách chỉ nằm trên trình duyệt của bạn và mất khi đóng tab, nên tải về để giữ link xem bài.</p>
+  <ul id="sent-list" class="sent"></ul>
+  <p class="actions"><button class="btn" type="button" id="sent-csv">Tải danh sách (CSV)</button> <button class="btn subtle" type="button" id="sent-clear">Xóa danh sách</button></p>
+</div>
 </fieldset>
 </form>
 
