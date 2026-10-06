@@ -30,6 +30,50 @@
       ]
     },
     {
+      "id": "code-python-chuong-5-ly-thuyet-dan-hoi",
+      "type": "exercise-solution",
+      "title": "Code Python chương 5 - Lý thuyết đàn hồi",
+      "description": "Lời giải bài tập Lý thuyết đàn hồi bằng MATLAB và Python của lớp tài năng (bài 5.27, 5.30, 6.41-6.44) gồm code và hình kết quả, cùng code Python chương 5.",
+      "lang": "vi",
+      "license": "CC-BY-SA-4.0",
+      "origin": "self-made",
+      "added": "2026-10-06",
+      "updated": "2026-10-06",
+      "files": [
+        {
+          "name": "AS2011_exercise-solution_code-python-chuong-5-ly-thuyet-dan-hoi.pdf",
+          "mime": "application/pdf",
+          "size": 670129,
+          "sha256": "63afecc40ab4403c84ac26318536c7f82af7615fe50d1f422c4924fbdef352b1",
+          "urls": [
+            "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS2011_exercise-solution_code-python-chuong-5-ly-thuyet-dan-hoi.pdf"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "loi-giai-bai-tap-ly-thuyet-dan-hoi-bang-matlab-python-lop",
+      "type": "exercise-solution",
+      "title": "Lời giải bài tập Lý thuyết đàn hồi bằng MATLAB/Python (lớp tài năng)",
+      "description": "Lời giải bài tập Lý thuyết đàn hồi bằng MATLAB và Python của lớp tài năng (bài 5.27, 5.30, 6.41-6.44) gồm code và hình kết quả, cùng code Python chương 5.",
+      "lang": "vi",
+      "license": "CC-BY-SA-4.0",
+      "origin": "self-made",
+      "added": "2026-10-06",
+      "updated": "2026-10-06",
+      "files": [
+        {
+          "name": "AS2011_exercise-solution_loi-giai-bai-tap-ly-thuyet-dan-hoi-bang-matlab-python-lop.pdf",
+          "mime": "application/pdf",
+          "size": 2088544,
+          "sha256": "bb5e240903a3e82799b30e90ef83e3265ef2434fc0fd251d3661cddcaefb1a8f",
+          "urls": [
+            "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS2011_exercise-solution_loi-giai-bai-tap-ly-thuyet-dan-hoi-bang-matlab-python-lop.pdf"
+          ]
+        }
+      ]
+    },
+    {
       "id": "slide-ly-thuyet-dan-hoi-chuong-1-ky-hieu-chi-so",
       "type": "lecture-slides",
       "title": "Slide Lý thuyết đàn hồi chương 1: Ký hiệu chỉ số",
