@@ -144,7 +144,7 @@ export async function handleDecision(req, env, deps, code, who, github) {
   return resultPage(code, REVIEW_MESSAGES.waiting(drop.length));
 }
 
-export const prTitleMerge = (code) => `Gộp bài gửi ${code} (đã duyệt trên trang duyệt)`;
+export const prTitleMerge = (code, auto = false) => `Gộp bài gửi ${code} (${auto ? 'tự động, đã qua kiểm file' : 'đã duyệt trên trang duyệt'})`;
 
 // POST /duyet-tiep { code }: workflow tu-gop gọi sau khi bước kiểm qua trên commit dựng lại.
 // Không cần khóa: chỉ merge khi đã có quyết định của người duyệt (review/<mã>.json, waiting), PR còn mở,
@@ -178,7 +178,7 @@ export async function continueMerge(env, deps, code) {
   if (!(await gh.commitMessage(state.sha)).startsWith('kiem-file:')) return false;
   const ids = ((await gh.branchItems(env.BRANCH, `upload/${code}`, ITEM_FILE)) ?? []).map((p) => p.split('/').pop().replace(/\.json$/, ''));
   if (ids.length !== record.keep.length || ids.some((id) => !record.keep.includes(id))) return false;
-  await gh.mergePr(state.number, state.sha, prTitleMerge(code));
+  await gh.mergePr(state.number, state.sha, prTitleMerge(code, record.auto));
   await env.QUARANTINE.put(reviewKey(code), JSON.stringify({ ...record, waiting: false }));
   return true;
 }

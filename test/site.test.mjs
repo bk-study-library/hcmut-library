@@ -816,7 +816,7 @@ test('sitemap.xml: mọi trang thật, địa chỉ tuyệt đối, lastmod theo
   assert.ok(!locs.some((l) => /404|course\/402030\/|course\/EE1009\/|course\/EE1010\//.test(l)));
   assert.deepEqual(locs, [...locs].sort());
   // Mọi trang HTML có trong sitemap, trừ 404 và trang chuyển hướng.
-  const pages = allHtml().map((f) => path.relative(out, f).split(path.sep).join('/')).filter((p) => p !== '404.html' && !read(p).includes('http-equiv="refresh"'));
+  const pages = allHtml().map((f) => path.relative(out, f).split(path.sep).join('/')).filter((p) => p !== '404.html' && !read(p).includes('http-equiv="refresh"') && !read(p).includes('content="noindex"'));
   assert.equal(locs.length, pages.length);
   assert.match(xml, new RegExp(`<url><loc>${SITE}mon/ky-thuat-so/</loc><lastmod>2026-10-01</lastmod></url>`));
   // Chương trình listed: false không vào sitemap.
@@ -1066,4 +1066,11 @@ test('mọi trang có icon: SVG, PNG 32 px và apple-touch-icon, file có thật
     assert.match(html, /<link rel="icon" href="[^"]*assets\/favicon\.svg" type="image\/svg\+xml">/, p);
     assert.match(html, /<link rel="apple-touch-icon" href="[^"]*assets\/apple-touch-icon\.png">/, p);
   }
+});
+
+test('trang chua-phan-loai/: noindex, liệt kê tài liệu có trường unclassified kèm lý do và link sửa item', () => {
+  const html = read('chua-phan-loai/index.html');
+  assert.match(html, /<meta name="robots" content="noindex">/);
+  assert.match(html, /<h1>Tài liệu chưa phân loại<\/h1>/);
+  assert.match(read('en/chua-phan-loai/index.html'), /<h1>Unclassified material<\/h1>/);
 });

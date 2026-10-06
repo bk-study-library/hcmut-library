@@ -30,6 +30,7 @@ import { writeProgramPages } from './site/pages/program.mjs';
 import { writeMajorPages } from './site/pages/major.mjs';
 import { writeCoursePages } from './site/pages/course.mjs';
 import { writeStaticPages } from './site/pages/static.mjs';
+import { writeUnclassifiedPage } from './site/pages/unclassified.mjs';
 
 // Cấu hình của repo cần dựng: dùng file trong root nếu có, không thì dùng của công cụ (repo mẫu trong test không có).
 export function readSiteConfig(root) {
@@ -245,6 +246,7 @@ export function buildSite({ root = TOOL_ROOT, out = path.join(TOOL_ROOT, 'site')
     writeMajorPages(ctx, L);
     writeCoursePages(ctx, L);
     writeStaticPages(ctx, L);
+    writeUnclassifiedPage(ctx, L);
   }
 
   // Trang Gửi tài liệu: chỉ có bản tiếng Việt, bản tiếng Anh trỏ sang đây.

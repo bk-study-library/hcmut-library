@@ -255,7 +255,11 @@ Thử:
 
 `uploadEndpoint` trong `catalog/site.json` đã là `https://upload.xerozsoft.com/submit`.
 
-### 8.6. Duyệt trên trang duyệt
+### 8.6. Phân loại tự động và người duyệt
+
+`kiem-file` phân loại bài sau khi quét (`scripts/upload/triage.mjs`, ngưỡng ở `catalog/policy.json` mục `triage`): bài không cần người duyệt thì ghi `review/<mã bài>.json` với `auto: true`, cron của Worker merge khi check qua. Bài cần người duyệt thì bot yêu cầu review từ các tài khoản GitHub trong biến repo `REVIEWERS` (Settings > Secrets and variables > Actions > Variables, cách nhau bằng dấu phẩy); GitHub tự báo chuông và email. Chưa đặt biến này thì không ai được báo.
+
+### 8.7. Duyệt trên trang duyệt
 
 Một bài (một PR) có thể gồm nhiều file: form nhận tối đa `batchMaxFiles` file, tổng `batchMaxBytes` (`catalog/policy.json`, hiện 10 file và 50 MB), mỗi file vẫn tối đa `maxFileBytes`. Mỗi file thành một item riêng trong cùng PR. `kiem-file` quét từng file và ghi kết quả từng file trong một comment.
 

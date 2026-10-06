@@ -36,6 +36,8 @@ import { scanText, PII_PATTERNS, TOOL_ROOT } from '../lib/repo.mjs';
 import { loadPolicy } from '../lib/policy.mjs';
 import { extensionsFor } from '../lib/extensions.mjs';
 import { newCoursePath } from './course.mjs';
+import { triageFile, triageBatch } from './triage.mjs';
+import { hasSimilarTitle } from '../lib/similar.mjs';
 
 const QUARANTINE = /^(pending|clean)\/([A-Za-z0-9]{10})\/([^/]+)$/;
 const BRANCH = /^upload\/([A-Za-z0-9]{10})$/;
@@ -558,9 +560,9 @@ function apply(a) {
 }
 
 // Comment kết quả của bài (một hay nhiều file): một bảng, một link duyệt.
-export function batchReport(code, parts) {
+export function batchReport(code, parts, decision = null) {
   const site = readJson(path.join(TOOL_ROOT, 'catalog', 'site.json'));
-  return renderReport({ code, reviewUrl: reviewUrl(site, code), files: parts.map((x) => x.file) });
+  return renderReport({ code, reviewUrl: reviewUrl(site, code), files: parts.map((x) => x.file), decision });
 }
 
 // Đợt gửi: --manifest <file JSON của locate> --pr <thư mục PR> --res-dir <thư mục có <i>/result.json, <i>/clean>
@@ -575,9 +577,34 @@ function applyBatch(a) {
     return { ...one, name: m.name };
   });
   const virus = parts.find((x) => x.values.virus);
-  fs.writeFileSync(a.report, batchReport(list[0].code, parts));
+  const decision = virus ? 'review' : triageItems(a, list, parts, policy);
+  fs.writeFileSync(a.report, batchReport(list[0].code, parts, decision));
   fs.writeFileSync(a.pairs, virus ? '' : parts.map((x) => `${x.values.clean}\t${x.values.quarantine}\n`).join(''));
-  writeOutputs(a['output-file'], { virus: virus ? virus.values.virus : '', manual: String(parts.some((x) => x.values.manual === 'true')) });
+  writeOutputs(a['output-file'], { virus: virus ? virus.values.virus : '', manual: String(parts.some((x) => x.values.manual === 'true')), decision });
+}
+
+// Phân loại từng file (scripts/upload/triage.mjs), ghi lý do vào trường unclassified của item. Bài không cần người duyệt
+// thì ghi --auto-file: bản ghi để cron của Worker tự merge khi check qua (giống quyết định trên trang duyệt).
+function triageItems(a, list, parts, policy) {
+  const course = ITEM_FILE.exec(list[0].item)[1];
+  // Môn mới: PR thêm file môn mà bản main chưa có.
+  const newCourse = !fs.existsSync(path.join(TOOL_ROOT, 'catalog', 'courses', `${course}.json`));
+  const itemsDir = path.join(TOOL_ROOT, 'courses', course, 'items');
+  const existing = fs.existsSync(itemsDir) ? fs.readdirSync(itemsDir).map((f) => readJson(path.join(itemsDir, f))).filter((x) => !x.removed) : [];
+  const results = parts.map((x, i) => {
+    const itemPath = path.join(a.pr, list[i].item);
+    const item = readJson(itemPath);
+    const r = triageFile(x.file, item, { newCourse, similar: hasSimilarTitle(item.title, existing) }, policy.triage || {});
+    if (r.decision === 'unclassified') fs.writeFileSync(itemPath, `${JSON.stringify({ ...item, unclassified: r.unclassified }, null, 2)}\n`);
+    x.file.triage = r;
+    return { ...r, id: item.id, title: item.title };
+  });
+  const decision = triageBatch(results);
+  if (decision !== 'review' && a['auto-file']) {
+    const record = { reviewer: 'auto', at: new Date().toISOString(), keep: results.map((r) => r.id), drop: [], titles: Object.fromEntries(results.map((r) => [r.id, r.title])), waiting: true, auto: true };
+    fs.writeFileSync(a['auto-file'], JSON.stringify(record));
+  }
+  return decision;
 }
 
 // Dòng cho vòng lặp bash của workflow: "<chỉ số>\t<khóa kho>\t<tên file>\t<đường dẫn mục>" cho mỗi mục có file.
