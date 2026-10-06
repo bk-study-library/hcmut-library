@@ -1,0 +1,23 @@
+{
+  "$schema": "../../../schema/item.schema.json",
+  "id": "cheatsheet-co-ly-thuyet-dong-hoc-dong-luc-hoc",
+  "course": "AS1003",
+  "type": "cheatsheet",
+  "title": "Cheatsheet Cơ lý thuyết (động học, động lực học)",
+  "lang": "vi",
+  "license": "CC-BY-SA-4.0",
+  "origin": "self-made",
+  "added": "2026-10-06",
+  "removed": false,
+  "description": "Tài liệu Cơ lý thuyết (AS1003) dung lượng lớn gửi chung một đợt: slide chương 9 của TS. Nguyễn Hữu Hào; tóm tắt lý thuyết kèm ví dụ giải mẫu chương 8, 10, 12, 14 do sinh viên tự soạn; cheatsheet động học và động lực học; ghi chép tay toàn môn (479 trang, chia 4 phần theo trang).",
+  "files": [
+    {
+      "name": "AS1003_cheatsheet_cheatsheet-co-ly-thuyet-dong-hoc-dong-luc-hoc.pdf",
+      "size": 18166298,
+      "sha256": "b8039d824ee46136ff1d57b88420f24c8f060dec2c1b5e37cd38508aa9d331bb",
+      "mime": "application/pdf",
+      "quarantine": "pending/3lWWiGvNNH/AS1003_cheatsheet_cheatsheet-co-ly-thuyet-dong-hoc-dong-luc-hoc.pdf",
+      "uploadSha256": "b8039d824ee46136ff1d57b88420f24c8f060dec2c1b5e37cd38508aa9d331bb"
+    }
+  ]
+}
