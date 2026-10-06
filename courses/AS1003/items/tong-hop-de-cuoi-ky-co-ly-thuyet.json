@@ -14,11 +14,15 @@
   "files": [
     {
       "name": "AS1003_exam-past_tong-hop-de-cuoi-ky-co-ly-thuyet.pdf",
-      "size": 4193604,
-      "sha256": "ef52f40aa72a59ea808c6fe8f18e247fdf6239cc2d9c448d24264f6f51659471",
+      "size": 4170711,
+      "sha256": "599c9e5028002c54b42188f042fe64ef02057cbe7900d3219c39e2ef86590fb8",
       "mime": "application/pdf",
-      "quarantine": "pending/mXZnyHkMa4/AS1003_exam-past_tong-hop-de-cuoi-ky-co-ly-thuyet.pdf",
-      "uploadSha256": "ef52f40aa72a59ea808c6fe8f18e247fdf6239cc2d9c448d24264f6f51659471"
+      "quarantine": "clean/mXZnyHkMa4/AS1003_exam-past_tong-hop-de-cuoi-ky-co-ly-thuyet.pdf",
+      "uploadSha256": "ef52f40aa72a59ea808c6fe8f18e247fdf6239cc2d9c448d24264f6f51659471",
+      "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_exam-past_tong-hop-de-cuoi-ky-co-ly-thuyet.pdf"
     }
+  ],
+  "unclassified": [
+    "no-text"
   ]
 }

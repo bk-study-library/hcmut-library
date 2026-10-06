@@ -62,6 +62,10 @@
 
 - **Cheatsheet Cơ lý thuyết (động học, động lực học)** (vi, CC-BY-SA-4.0): [AS1003_cheatsheet_cheatsheet-co-ly-thuyet-dong-hoc-dong-luc-hoc.pdf, 17.3 MB](https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_cheatsheet_cheatsheet-co-ly-thuyet-dong-hoc-dong-luc-hoc.pdf)
 
+### Đề cũ
+
+- **Tổng hợp đề cuối kỳ Cơ lý thuyết** (vi, CC-BY-SA-4.0): [AS1003_exam-past_tong-hop-de-cuoi-ky-co-ly-thuyet.pdf, 4.0 MB](https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_exam-past_tong-hop-de-cuoi-ky-co-ly-thuyet.pdf)
+
 ## Link
 
 Chưa có link.
