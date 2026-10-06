@@ -7,3 +7,13 @@
 # /courses/EE*/  @xeroz369 @nguoi-duyet-khoa-dien
 # /courses/MT*/  @xeroz369 @nguoi-duyet-toan
 # /catalog/      @xeroz369
+
+# File do bot ghi (bài gửi qua form, file sinh ra): không có code owner, để GitHub không tự gọi người duyệt mỗi khi bot
+# mở PR. Bot chỉ gọi khi bài cần (scripts/upload/triage.mjs), người duyệt tra theo thư mục môn ở trên. Giữ các dòng này
+# ở cuối file. Merge vẫn cần quyền ghi và một approval (ruleset).
+/courses/*/items/
+/courses/*/README.md
+/index.json
+/index.min.json
+/v1/
+/worker-catalog.json

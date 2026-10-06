@@ -2,9 +2,10 @@
 // Hàm thuần; ngưỡng ở catalog/policy.json (triage). Có virus thì workflow đã đóng PR trước bước này.
 //
 //   review        cần người duyệt: cảnh báo nặng (macro, JavaScript, không quét hết), loại dễ dính bản quyền
-//                 (policy.triage.reviewTypes, ví dụ đề thi), file dày như sách (từ bookPagesMin trang).
-//   unclassified  an toàn nhưng chưa chắc: môn mới, cảnh báo nhẹ, trùng tên gần giống, bản cập nhật. Vẫn đăng,
-//                 item ghi lý do ở trường unclassified để người duyệt xử lý sau (trang chua-phan-loai/).
+//                 (policy.triage.reviewTypes, ví dụ đề thi), file dày như sách (từ bookPagesMin trang), tên gần
+//                 giống tài liệu đã có. Bot yêu cầu review.
+//   unclassified  an toàn nhưng chưa phân loại được: môn mới, cảnh báo nhẹ, bản cập nhật. Vẫn đăng, item ghi lý do
+//                 ở trường unclassified; bot nhắc người duyệt phân loại ở trang chua-phan-loai/.
 //   publish       còn lại.
 import { needsManualReview, WARNINGS } from './report.mjs';
 
@@ -18,11 +19,11 @@ export function triageFile(file, item, ctx, rules) {
   if (needsManualReview(file)) review.push('manual');
   if ((rules.reviewTypes || []).includes(item.type)) review.push('type');
   if (rules.bookPagesMin && Number.isInteger(file.totalPages) && file.totalPages >= rules.bookPagesMin) review.push('book-like');
+  if (ctx.similar) review.push('duplicate');
   if (ctx.newCourse) unclassified.push('new-course');
   if ((file.pii || []).length) unclassified.push('pii');
   if (file.hasText === false) unclassified.push('no-text');
   if ((file.warnings || []).some((w) => WARNINGS[w] && !WARNINGS[w].manual)) unclassified.push('warning');
-  if (ctx.similar) unclassified.push('duplicate');
   if (item.replaces) unclassified.push('update');
   const decision = review.length ? 'review' : unclassified.length ? 'unclassified' : 'publish';
   return { decision, review, unclassified };

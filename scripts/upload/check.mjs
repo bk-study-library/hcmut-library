@@ -38,6 +38,8 @@ import { extensionsFor } from '../lib/extensions.mjs';
 import { newCoursePath } from './course.mjs';
 import { triageFile, triageBatch } from './triage.mjs';
 import { hasSimilarTitle } from '../lib/similar.mjs';
+import { ownersFor } from './reviewers.mjs';
+import { SITE_URL } from '../lib/labels.mjs';
 
 const QUARANTINE = /^(pending|clean)\/([A-Za-z0-9]{10})\/([^/]+)$/;
 const BRANCH = /^upload\/([A-Za-z0-9]{10})$/;
@@ -565,9 +567,15 @@ function apply(a) {
 }
 
 // Comment kết quả của bài (một hay nhiều file): một bảng, một link duyệt.
-export function batchReport(code, parts, decision = null) {
+export function batchReport(code, parts, decision = null, reviewers = []) {
   const site = readJson(path.join(TOOL_ROOT, 'catalog', 'site.json'));
-  return renderReport({ code, reviewUrl: reviewUrl(site, code), files: parts.map((x) => x.file), decision });
+  return renderReport({ code, reviewUrl: reviewUrl(site, code), files: parts.map((x) => x.file), decision, reviewers, unclassifiedUrl: `${SITE_URL}chua-phan-loai/` });
+}
+
+// Người duyệt của môn theo .github/CODEOWNERS của bản main (tra theo thư mục môn: file bot ghi không có code owner).
+function courseReviewers(item) {
+  const file = path.join(TOOL_ROOT, '.github', 'CODEOWNERS');
+  return fs.existsSync(file) ? ownersFor(fs.readFileSync(file, 'utf8'), `courses/${ITEM_FILE.exec(item)[1]}/`) : [];
 }
 
 // Đợt gửi: --manifest <file JSON của locate> --pr <thư mục PR> --res-dir <thư mục có <i>/result.json, <i>/clean>
@@ -583,9 +591,10 @@ function applyBatch(a) {
   });
   const virus = parts.find((x) => x.values.virus);
   const decision = virus ? 'review' : triageItems(a, list, parts, policy);
-  fs.writeFileSync(a.report, batchReport(list[0].code, parts, decision));
+  const reviewers = courseReviewers(list[0].item);
+  fs.writeFileSync(a.report, batchReport(list[0].code, parts, decision, reviewers));
   fs.writeFileSync(a.pairs, virus ? '' : parts.map((x) => `${x.values.clean}\t${x.values.quarantine}\n`).join(''));
-  writeOutputs(a['output-file'], { virus: virus ? virus.values.virus : '', manual: String(parts.some((x) => x.values.manual === 'true')), decision });
+  writeOutputs(a['output-file'], { virus: virus ? virus.values.virus : '', manual: String(parts.some((x) => x.values.manual === 'true')), decision, reviewers: reviewers.join(' ') });
 }
 
 // Phân loại từng file (scripts/upload/triage.mjs), ghi lý do vào trường unclassified của item. Bài không cần người duyệt
