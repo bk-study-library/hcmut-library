@@ -15,11 +15,12 @@
   "files": [
     {
       "name": "CI2003_exam-past_de-giua-ky-co-luu-chat-hk231-anh-chup_HK231.pdf",
-      "size": 1424701,
-      "sha256": "8ebca48efd46fe285b35cb306171ac2064933d046d1264eb78e5bfd8a675ea1f",
+      "size": 1426919,
+      "sha256": "1d2d32a644767134cc099c5e18a0481f5c2a3ac2c0bea1b91bed3ad72844ba04",
       "mime": "application/pdf",
-      "quarantine": "pending/JUM0EWL6QA/CI2003_exam-past_de-giua-ky-co-luu-chat-hk231-anh-chup_HK231.pdf",
-      "uploadSha256": "8ebca48efd46fe285b35cb306171ac2064933d046d1264eb78e5bfd8a675ea1f"
+      "quarantine": "clean/JUM0EWL6QA/CI2003_exam-past_de-giua-ky-co-luu-chat-hk231-anh-chup_HK231.pdf",
+      "uploadSha256": "8ebca48efd46fe285b35cb306171ac2064933d046d1264eb78e5bfd8a675ea1f",
+      "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/CI2003_exam-past_de-giua-ky-co-luu-chat-hk231-anh-chup_HK231.pdf"
     }
   ]
 }
