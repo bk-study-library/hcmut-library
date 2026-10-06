@@ -16,8 +16,9 @@
       "size": 1795,
       "sha256": "bc6364b887139f315695caef6f23fed36e98a9721cbb6cde502a6057904d478e",
       "mime": "text/markdown",
-      "quarantine": "pending/vChSgAmWYM/CI2003_notes_danh-sach-video-bai-giang-giai-bai-tap-va-quiz-co-luu-chat.md",
-      "uploadSha256": "bc6364b887139f315695caef6f23fed36e98a9721cbb6cde502a6057904d478e"
+      "quarantine": "clean/vChSgAmWYM/CI2003_notes_danh-sach-video-bai-giang-giai-bai-tap-va-quiz-co-luu-chat.md",
+      "uploadSha256": "bc6364b887139f315695caef6f23fed36e98a9721cbb6cde502a6057904d478e",
+      "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/CI2003_notes_danh-sach-video-bai-giang-giai-bai-tap-va-quiz-co-luu-chat.md"
     }
   ]
 }
