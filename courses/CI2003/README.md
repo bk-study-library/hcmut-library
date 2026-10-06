@@ -25,6 +25,10 @@
 - **Bài giảng Cơ lưu chất - Nguyễn Thị Bảy** (vi, CC-BY-SA-4.0): [CI2003_lecture-slides_bai-giang-co-luu-chat-nguyen-thi-bay.pdf, 7.4 MB](https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/CI2003_lecture-slides_bai-giang-co-luu-chat-nguyen-thi-bay.pdf)
 - **Bài giảng Cơ lưu chất - Võ Thị Tuyết Giang** (vi, CC-BY-SA-4.0): [CI2003_lecture-slides_bai-giang-co-luu-chat-vo-thi-tuyet-giang.pdf, 7.8 MB](https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/CI2003_lecture-slides_bai-giang-co-luu-chat-vo-thi-tuyet-giang.pdf)
 
+### Ghi chú
+
+- **Danh sách video bài giảng, giải bài tập và quiz Cơ lưu chất (YouTube)** (vi, CC-BY-SA-4.0): [CI2003_notes_danh-sach-video-bai-giang-giai-bai-tap-va-quiz-co-luu-chat.md, 2 KB](https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/CI2003_notes_danh-sach-video-bai-giang-giai-bai-tap-va-quiz-co-luu-chat.md)
+
 ### Bảng công thức
 
 - **Bảng tra Cơ lưu chất (thủy tĩnh, tổn thất, ống, đơn vị...)** (vi, CC-BY-SA-4.0): [CI2003_cheatsheet_bang-tra-co-luu-chat-thuy-tinh-ton-that-ong-don-vi.pdf, 10.0 MB](https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/CI2003_cheatsheet_bang-tra-co-luu-chat-thuy-tinh-ton-that-ong-don-vi.pdf)
