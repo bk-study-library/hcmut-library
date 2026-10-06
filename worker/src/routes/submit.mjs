@@ -40,6 +40,33 @@ export const VN_OFFSET_MS = 7 * 60 * 60 * 1000;
 // Ô chọn môn và ô môn mới: mỗi ô chỉ được gửi một lần.
 export const COURSE_FIELDS = ['course', 'newCourseCode', 'newCourseName'];
 
+// Đợt gửi: ô ghi riêng cho file i (<ô>-<i>); để trống thì file dùng ô chung. Tiêu đề và loại luôn là ô riêng.
+export const PER_FILE_FIELDS = ['term', 'examKind', 'chapter'];
+
+// Phiếu của file i trong đợt gửi, và các ô mà file này ghi riêng (lỗi của các ô đó báo ở dòng của file).
+export function ownFields(fields, i) {
+  const own = { ...fields };
+  const perFile = new Set(['title', 'type', 'file']);
+  if (fields[`title-${i}`] !== undefined) own.title = fields[`title-${i}`];
+  if (fields[`type-${i}`] !== undefined) own.type = fields[`type-${i}`];
+  for (const k of PER_FILE_FIELDS) {
+    const v = String(fields[`${k}-${i}`] ?? '').trim();
+    if (v) {
+      own[k] = v;
+      perFile.add(k);
+    }
+  }
+  return { own, perFile };
+}
+
+// File trùng (đã có, đã gỡ, đang chờ duyệt) ở dạng [số thứ tự, lý do]. Một file: lỗi chung như cũ. Đợt gửi: thêm lỗi
+// ở dòng của từng file trùng, để người gửi bỏ đúng file rồi gửi phần còn lại.
+export function duplicateBody(dups, batch) {
+  const body = { ok: false, error: dups[0][1] };
+  if (batch) body.errors = Object.fromEntries(dups.map(([i, why]) => [`file-${i}`, `${why} ${MESSAGES.batchDrop}`]));
+  return body;
+}
+
 // Đọc form, đếm byte khi đọc; vượt max thì dừng đọc, kể cả khi Content-Length nói sai.
 export async function readForm(req, max) {
   if (!req.body) return { error: 'bad' };
@@ -230,7 +257,8 @@ export async function handleSubmit(req, env, deps, cors) {
   }
 
   // Môn, loại, file, các ô. Đợt gửi nhiều file: mỗi file i có tiêu đề title-<i> và loại type-<i> riêng
-  // (không có thì dùng ô chung title, type); các ô khác dùng chung cho cả đợt.
+  // (không có thì dùng ô chung title, type), học kỳ, loại kiểm tra, chương ghi riêng được (ownFields);
+  // các ô khác dùng chung cho cả đợt.
   const fields = {};
   for (const [k, v] of data.entries()) if (typeof v === 'string') fields[k] = v;
   // Tải theo phần (file lớn, xem routes/upload.mjs): form chỉ gửi tên, cỡ, sha256, 16 byte đầu của từng file.
@@ -247,14 +275,12 @@ export async function handleSubmit(req, env, deps, cors) {
     const upload = uploads[i];
     const bytes = upload && !chunked ? new Uint8Array(await upload.arrayBuffer()) : null;
     const file = !upload ? null : chunked ? { name: upload.name, size: upload.size, head: upload.head } : { name: upload.name, size: bytes.length, head: bytes.subarray(0, HEAD_BYTES) };
-    const own = { ...fields };
-    if (fields[`title-${i}`] !== undefined) own.title = fields[`title-${i}`];
-    if (fields[`type-${i}`] !== undefined) own.type = fields[`type-${i}`];
+    const { own, perFile } = ownFields(fields, i);
     const checked = validateSubmission(own, file, { policy, courses: catalog.courses });
     if (!checked.ok) {
-      // Lỗi riêng của một file trong đợt gửi ghi kèm số thứ tự để form đặt đúng chỗ.
+      // Lỗi của ô file này ghi riêng thì kèm số thứ tự để form đặt đúng dòng; lỗi ô chung đặt ở ô chung.
       const errors = {};
-      for (const [k, v] of Object.entries(checked.errors)) errors[batch && ['title', 'type', 'file'].includes(k) ? `${k}-${i}` : k] = v;
+      for (const [k, v] of Object.entries(checked.errors)) errors[batch && perFile.has(k) ? `${k}-${i}` : k] = v;
       return reply(400, { ok: false, errors }, cors);
     }
     entries.push({ form: checked.form, ext: checked.ext, bytes, file, clientSha: upload?.sha256 ?? null });
@@ -268,7 +294,8 @@ export async function handleSubmit(req, env, deps, cors) {
   const code = makeCode(deps.random);
   const used = new Set(course.ids);
   const seenSha = new Set();
-  for (const e of entries) {
+  const dups = [];
+  for (const [i, e] of entries.entries()) {
     e.id = await freeId(env, course.id, slugify(e.form.title), used);
     used.add(e.id);
     e.stored = null;
@@ -276,15 +303,20 @@ export async function handleSubmit(req, env, deps, cors) {
     // Trùng tài liệu đã có trong thư viện (so cả sha256 file gốc, vì bản đã sanitize khác sha256).
     // Tài liệu đã gỡ vẫn chặn gửi lại, để file bị gỡ theo yêu cầu không quay lại qua form.
     // Tải theo phần: sha256 do trình duyệt tính; kiem-file tính lại trên file thật, sai thì bài không qua.
+    // Đợt gửi: xét hết các file rồi mới báo, để người gửi biết mọi file trùng một lần.
     const sha256 = e.bytes ? await sha256Hex(e.bytes) : e.clientSha;
-    if (catalog.blocked.has(sha256)) return reply(409, { ok: false, error: MESSAGES.removed }, cors);
-    if (catalog.shas.has(sha256)) return reply(409, { ok: false, error: MESSAGES.exists }, cors);
+    const known = catalog.blocked.has(sha256) ? MESSAGES.removed : catalog.shas.has(sha256) ? MESSAGES.exists : null;
+    if (known) {
+      dups.push([i, known]);
+      continue;
+    }
     if (seenSha.has(sha256)) return reply(400, { ok: false, errors: { file: MESSAGES.batchSame } }, cors);
     seenSha.add(sha256);
     // Tên file theo id (đã khác mọi id khác của môn), để tên file trên Release cũng không trùng.
     const name = fileName({ code: course.code, type: e.form.type, slug: e.id, term: e.form.term, ext: e.ext });
     e.stored = { name, size: e.file.size, sha256, uploadSha256: sha256, mime: policy.extensions[e.ext].mime, quarantine: `pending/${code}/${name}` };
   }
+  if (dups.length) return reply(409, duplicateBody(dups, batch), cors);
   const stored = entries[0].stored;
 
   // Dựng sẵn mục và PR trước khi ghi R2, để lỗi ở đây không để lại file mồ côi.
@@ -314,7 +346,8 @@ export async function handleSubmit(req, env, deps, cors) {
     prText,
     notifyEmail: form.notifyEmail || null,
   };
-  if (await pendingSha(env, draft)) return reply(409, { ok: false, error: MESSAGES.pending }, cors);
+  const waiting = await pendingFiles(env, draft);
+  if (waiting.length) return reply(409, duplicateBody(waiting.map((i) => [i, MESSAGES.pending]), batch), cors);
   if (!(await countSubmission(env.QUARANTINE, cap, deps.now()))) return capReached();
   // File lớn: tạo phiên tải theo phần, trình duyệt gửi từng phần rồi gọi /submit/<mã>/xong (routes/upload.mjs).
   if (chunked) return startUpload(env, deps, draft, policy, cors);
@@ -344,10 +377,11 @@ async function freeId(env, course, slug, taken) {
   return id;
 }
 
-// Bài đang chờ duyệt có cùng file (sha/<sha256> trong R2).
-async function pendingSha(env, draft) {
-  for (const e of draft.entries) if (e.stored && (await env.QUARANTINE.head(`sha/${e.stored.sha256}`))) return true;
-  return false;
+// Số thứ tự các file đã có trong một bài đang chờ duyệt (sha/<sha256> trong R2).
+async function pendingFiles(env, draft) {
+  const out = [];
+  for (const [i, e] of draft.entries.entries()) if (e.stored && (await env.QUARANTINE.head(`sha/${e.stored.sha256}`))) out.push(i);
+  return out;
 }
 
 async function deleteKeys(env, keys) {

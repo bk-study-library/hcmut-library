@@ -918,6 +918,93 @@ describe('đợt gửi nhiều file', () => {
     expect(upd.body.errors).toHaveProperty('replaces');
     expect(await r2Keys()).toEqual([]);
   });
+
+  // Mục ghi lên branch, đọc lại từ lời gọi PUT.
+  const itemsOf = (fetch) =>
+    fetch.find('PUT', '/contents/courses/').map((c) => JSON.parse(new TextDecoder().decode(Uint8Array.from(atob(JSON.parse(c.body).content), (x) => x.charCodeAt(0)))));
+
+  function examForm(over = {}) {
+    const fd = form({ title: undefined, type: 'exam-past', examKind: 'ck', ...over }, null);
+    for (let i = 0; i < 3; i += 1) {
+      fd.append('file', new File([pdfBytes(700 + i * 10, i + 11)], `de-${i}.pdf`, { type: 'application/pdf' }));
+      fd.set(`title-${i}`, `Đề cuối kỳ ${i}`);
+      fd.set(`type-${i}`, 'exam-past');
+    }
+    return fd;
+  }
+
+  it('học kỳ, loại kiểm tra, chương ghi riêng từng file; để trống thì theo ô chung', async () => {
+    const fd = examForm({ term: 'HK251' });
+    fd.set('term-0', 'HK222');
+    fd.set('term-1', '  ');
+    fd.set('examKind-2', 'gk');
+    const { res, fetch } = await run(post(fd));
+    expect(res.status).toBe(201);
+    const items = itemsOf(fetch);
+    expect(items.map((x) => [x.term, x.examKind])).toEqual([
+      ['HK222', 'ck'],
+      ['HK251', 'ck'],
+      ['HK251', 'gk'],
+    ]);
+    // Tên file theo học kỳ của từng file.
+    expect((await r2Keys()).filter((k) => k.startsWith('pending/')).some((k) => k.endsWith('_HK222.pdf'))).toBe(true);
+  });
+
+  it('học kỳ riêng sai dạng: lỗi ở dòng của file đó; thiếu học kỳ chung: lỗi ở ô chung', async () => {
+    const bad = examForm({ term: 'HK251' });
+    bad.set('term-1', 'K21');
+    const r = await run(post(bad));
+    expect(r.res.status).toBe(400);
+    expect(Object.keys(r.body.errors)).toEqual(['term-1']);
+    const none = examForm();
+    none.set('term-0', 'HK222');
+    const r2 = await run(post(none));
+    expect(r2.res.status).toBe(400);
+    expect(Object.keys(r2.body.errors)).toEqual(['term']);
+    expect(await r2Keys()).toEqual([]);
+  });
+
+  it('đề tổng hợp, không rõ học kỳ (termUnknown): nhận bài, mục không có term; file có học kỳ riêng vẫn giữ', async () => {
+    const fd = examForm({ termUnknown: 'on' });
+    fd.set('term-2', 'HK231');
+    const { res, fetch } = await run(post(fd));
+    expect(res.status).toBe(201);
+    const items = itemsOf(fetch);
+    expect(items.map((x) => x.term)).toEqual([undefined, undefined, 'HK231']);
+    for (const x of items) expect(x).not.toHaveProperty('termUnknown');
+  });
+
+  it('file trùng trong đợt: báo mọi file trùng ở đúng dòng, không lưu gì', async () => {
+    const fd = batchForm(3);
+    const files = fd.getAll('file');
+    const shas = await Promise.all(files.map(async (f) => sha256Hex(new Uint8Array(await f.arrayBuffer()))));
+    const item = index.faculties[0].courses[0].items[0].files[0];
+    const removed = index.faculties[0].courses[0].items[2].files[0];
+    const saved = [item.sha256, removed.sha256];
+    item.sha256 = shas[0];
+    removed.sha256 = shas[2];
+    try {
+      const { res, body } = await run(post(fd));
+      expect(res.status).toBe(409);
+      expect(Object.keys(body.errors)).toEqual(['file-0', 'file-2']);
+      expect(body.errors['file-0']).toContain('đã có trong thư viện');
+      expect(body.errors['file-2']).toContain('đã bị gỡ');
+      expect(body.errors['file-0']).toContain('Bỏ file này');
+      expect(await r2Keys()).toEqual([]);
+    } finally {
+      [item.sha256, removed.sha256] = saved;
+    }
+  });
+
+  it('đợt gửi có file đang chờ duyệt ở bài khác: 409 ở dòng file đó', async () => {
+    const fetch = fakeFetch();
+    const single = form({}, pdfBytes(900 + 10, 8));
+    expect((await run(post(single), { fetch })).res.status).toBe(201);
+    const { res, body } = await run(post(batchForm(2)), { fetch });
+    expect(res.status).toBe(409);
+    expect(Object.keys(body.errors)).toEqual(['file-1']);
+    expect(body.errors['file-1']).toContain('đang chờ duyệt');
+  });
 });
 
 describe('tải file lớn theo phần', () => {

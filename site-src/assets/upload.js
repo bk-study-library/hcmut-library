@@ -69,6 +69,16 @@
   var batchTotal = document.getElementById('batch-total');
   var batchFiles = cfg.batchFiles || 1;
   var batchBytes = cfg.batchBytes || cfg.maxBytes;
+  // Ô ghi riêng cho từng file của đợt gửi (Worker: PER_FILE_FIELDS); để trống thì file theo ô chung.
+  var PER_FILE = ['term', 'examKind', 'chapter'];
+  var termInput = document.getElementById('term');
+  var termUnknown = document.getElementById('termUnknown');
+  var termUnknownBox = document.getElementById('term-unknown-box');
+  var resetAllBtn = document.getElementById('reset-all');
+  // Bài đã gửi trong lần mở trang: chỉ nằm trong sessionStorage của tab, tải về được dạng CSV.
+  var sentBox = document.getElementById('sent-box');
+  var sentList = document.getElementById('sent-list');
+  var SENT_KEY = 'bk-sent';
 
   // Chỗ hiện lỗi theo thứ tự trên trang; dựng lại khi danh sách file của đợt gửi đổi. Khóa lạ từ server
   // không tra được thì rơi về dòng chung.
@@ -157,6 +167,7 @@
     } else if (!courseId.value) bad('course', msg.course);
     if (!typeSel.value) bad('type', msg.type);
     fieldRules().required.forEach(function (k) {
+      if (k === 'term' && termUnknown && termUnknown.checked) return;
       if (!String(form.elements[k].value).trim()) bad(k, (msg.required || {})[k] || msg.title);
     });
     if (!isBatch() && !form.elements.title.value.trim()) bad('title', msg.title);
@@ -200,19 +211,40 @@
     renderBatch();
   }
 
-  // Ô theo loại (cfg.typeFields từ policy.json): hiện ô của mọi loại đang chọn (đợt gửi có loại riêng từng file), ô bắt
-  // buộc không ghi "không bắt buộc". Ô ẩn bị tắt để không gửi đi.
+  // Ô theo loại (cfg.typeFields từ policy.json). Một file: ô của loại đang chọn. Đợt gửi: ô chung là giá trị mặc định
+  // của các file; ô bắt buộc với một file mà file đó chưa ghi riêng thì ô chung bắt buộc. Ô ẩn bị tắt để không gửi đi.
   var typeFieldsBox = document.getElementById('type-fields');
+  function rulesOf(t) {
+    return (cfg.typeFields || {})[t] || {};
+  }
+  function rowType(li) {
+    return li.querySelector('[name^="type-"]').value;
+  }
+  function ownValue(li, k) {
+    var el = li.querySelector('[data-own="' + k + '"]');
+    return el && !el.disabled ? String(el.value).trim() : '';
+  }
   function fieldRules() {
-    var types = [typeSel.value].concat(Array.prototype.map.call(batchList.querySelectorAll('select'), function (s) { return s.value; }));
     var required = [];
     var optional = [];
-    types.forEach(function (t) {
-      var r = (cfg.typeFields || {})[t] || {};
-      (r.required || []).forEach(function (k) { if (required.indexOf(k) < 0) required.push(k); });
-      (r.optional || []).forEach(function (k) { if (optional.indexOf(k) < 0) optional.push(k); });
-    });
-    return { required: required, optional: optional.filter(function (k) { return required.indexOf(k) < 0; }) };
+    var termNeeded = false;
+    function add(list, k) {
+      if (list.indexOf(k) < 0) list.push(k);
+    }
+    function take(t, li) {
+      var r = rulesOf(t);
+      (r.required || []).forEach(function (k) {
+        if (k === 'term') termNeeded = true;
+        add(li && ownValue(li, k) ? optional : required, k);
+      });
+      (r.optional || []).forEach(function (k) { add(optional, k); });
+    }
+    if (isBatch()) {
+      Array.prototype.forEach.call(batchList.children, function (li) { take(rowType(li), li); });
+    } else {
+      take(typeSel.value, null);
+    }
+    return { required: required, optional: optional.filter(function (k) { return required.indexOf(k) < 0; }), termNeeded: termNeeded };
   }
   function syncTypeFields() {
     if (!typeFieldsBox) return;
@@ -228,7 +260,26 @@
       form.elements[k].disabled = !on;
       any = any || on;
     });
+    // Đề tổng hợp nhiều học kỳ hay không rõ học kỳ: chỉ hiện khi có loại cần học kỳ; đánh dấu thì tắt ô học kỳ chung.
+    if (termUnknown) {
+      var show = rules.termNeeded && !termInput.closest('[data-field]').hidden;
+      termUnknownBox.hidden = !show;
+      termUnknown.disabled = !show;
+      if (!show) termUnknown.checked = false;
+      if (termUnknown.checked) termInput.disabled = true;
+    }
     typeFieldsBox.hidden = !any;
+  }
+
+  // Ô riêng của một dòng trong đợt gửi: hiện theo loại của dòng đó.
+  function syncRow(li) {
+    var r = rulesOf(rowType(li));
+    PER_FILE.forEach(function (k) {
+      var box = li.querySelector('[data-own-box="' + k + '"]');
+      var on = (r.required || []).indexOf(k) >= 0 || (r.optional || []).indexOf(k) >= 0;
+      box.hidden = !on;
+      li.querySelector('[data-own="' + k + '"]').disabled = !on;
+    });
   }
 
   function chosenFiles() {
@@ -245,7 +296,11 @@
     var on = isBatch();
     var prev = Object.create(null);
     Array.prototype.forEach.call(batchList.children, function (li) {
-      prev[li.getAttribute('data-key')] = { title: li.querySelector('input').value, type: li.querySelector('select').value };
+      var old = { title: li.querySelector('[name^="title-"]').value, type: rowType(li) };
+      PER_FILE.forEach(function (k) {
+        old[k] = li.querySelector('[data-own="' + k + '"]').value;
+      });
+      prev[li.getAttribute('data-key')] = old;
     });
     batchList.textContent = '';
     batchBox.hidden = !on;
@@ -293,11 +348,50 @@
         });
         // Dòng chưa chọn loại riêng theo loại chung.
         ys.value = old && old.type ? old.type : typeSel.value;
-        ys.addEventListener('change', syncTypeFields);
+        ys.addEventListener('change', function () {
+          syncRow(li);
+          syncTypeFields();
+        });
         li.appendChild(yl);
         li.appendChild(ys);
         li.appendChild(errLine('type-' + i));
+        // Học kỳ, loại kiểm tra, chương riêng của file: để trống thì theo ô chung.
+        PER_FILE.forEach(function (k) {
+          var box = document.createElement('div');
+          box.setAttribute('data-own-box', k);
+          box.hidden = true;
+          var lab = document.createElement('label');
+          lab.htmlFor = k + '-' + i;
+          lab.textContent = msg.batchOwn[k] + ' ' + msg.optional;
+          var shared = form.elements[k];
+          var el;
+          if (shared.tagName === 'SELECT') {
+            el = document.createElement('select');
+            Array.prototype.forEach.call(shared.options, function (o) {
+              var c = o.cloneNode(true);
+              if (!o.value) c.textContent = msg.batchOwnHint;
+              el.appendChild(c);
+            });
+          } else {
+            el = document.createElement('input');
+            el.type = 'text';
+            el.autocomplete = 'off';
+            el.placeholder = msg.batchOwnHint;
+            if (shared.maxLength > 0) el.maxLength = shared.maxLength;
+          }
+          el.id = k + '-' + i;
+          el.name = k + '-' + i;
+          el.setAttribute('data-own', k);
+          el.value = old && old[k] ? old[k] : '';
+          el.addEventListener('input', syncTypeFields);
+          el.addEventListener('change', syncTypeFields);
+          box.appendChild(lab);
+          box.appendChild(el);
+          box.appendChild(errLine(k + '-' + i));
+          li.appendChild(box);
+        });
         batchList.appendChild(li);
+        syncRow(li);
       });
       batchTotal.textContent = files.length + ' ' + msg.batchSum + ' ' + core.formatSize(total) + '. ' + msg.batchLimit;
     }
@@ -688,6 +782,7 @@
     submit.textContent = busy ? msg.busy : msg.send;
   }
 
+  // Xóa hết, như mở trang mới.
   function resetForm() {
     form.reset();
     setUpdate(false);
@@ -697,8 +792,110 @@
     list.textContent = '';
     offer.hidden = true;
     syncType();
+    if (resetAllBtn) resetAllBtn.hidden = true;
     if (window.turnstile) window.turnstile.reset();
   }
+
+  // Gửi xong: giữ môn, loại, giảng viên, giấy phép, tên hiển thị, email, ngôn ngữ để gửi tiếp. Xóa file và các ô
+  // riêng của bài (tiêu đề, mô tả, học kỳ, loại kiểm tra, chương, sách, bản cập nhật), bỏ dấu các ô xác nhận để
+  // người gửi xác nhận lại cho bài mới.
+  function resetKeep() {
+    fileInput.value = '';
+    ['title', 'description', 'term', 'examKind', 'chapter', 'book-title', 'book-authors', 'book-year', 'book-publisher', 'book-isbn'].forEach(function (k) {
+      if (form.elements[k]) form.elements[k].value = '';
+    });
+    ['termUnknown', 'confirm-own', 'confirm-license', 'confirm-not-book'].forEach(function (k) {
+      if (form.elements[k]) form.elements[k].checked = false;
+    });
+    setUpdate(false);
+    if (dupWarn) dupWarn.hidden = true;
+    syncType();
+    if (resetAllBtn) resetAllBtn.hidden = false;
+    if (window.turnstile) window.turnstile.reset();
+  }
+
+  // Danh sách bài đã gửi (sessionStorage). Trình duyệt chặn bộ nhớ thì form vẫn chạy, chỉ không có danh sách.
+  function loadSent() {
+    try {
+      var a = JSON.parse(sessionStorage.getItem(SENT_KEY) || '[]');
+      return Array.isArray(a) ? a : [];
+    } catch (e) {
+      return [];
+    }
+  }
+  function renderSent() {
+    if (!sentBox) return;
+    var a = loadSent();
+    sentList.textContent = '';
+    a.forEach(function (x) {
+      var li = document.createElement('li');
+      li.appendChild(document.createTextNode(x.time + ', ' + x.code + ', ' + x.course + ', ' + x.files + ' ' + msg.sentFiles));
+      if (x.url) {
+        li.appendChild(document.createTextNode(': '));
+        var link = document.createElement('a');
+        link.href = x.url;
+        link.rel = 'noopener noreferrer';
+        link.textContent = x.url;
+        li.appendChild(link);
+      }
+      sentList.appendChild(li);
+    });
+    sentBox.hidden = !a.length;
+  }
+  function addSent(x) {
+    var a = loadSent();
+    a.push(x);
+    try {
+      sessionStorage.setItem(SENT_KEY, JSON.stringify(a));
+    } catch (e) {
+      return;
+    }
+    renderSent();
+  }
+  function courseLabel() {
+    if (isNew()) return core.normCode(newCode.value);
+    var c = byId[courseId.value];
+    return c ? c.code : courseId.value;
+  }
+  function csvCell(v) {
+    var s = String(v == null ? '' : v);
+    return /[",\r\n]/.test(s) ? '"' + s.replace(/"/g, '""') + '"' : s;
+  }
+  function downloadSent() {
+    var rows = [msg.sentCsv].concat(
+      loadSent().map(function (x) {
+        return [x.time, x.code, x.course, x.files, x.url];
+      }),
+    );
+    var text = '﻿' + rows.map(function (r) { return r.map(csvCell).join(','); }).join('\r\n') + '\r\n';
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(new Blob([text], { type: 'text/csv;charset=utf-8' }));
+    a.download = msg.sentCsvName + '.csv';
+    document.body.appendChild(a);
+    a.click();
+    setTimeout(function () {
+      URL.revokeObjectURL(a.href);
+      a.remove();
+    }, 0);
+  }
+  if (sentBox) {
+    document.getElementById('sent-csv').addEventListener('click', downloadSent);
+    document.getElementById('sent-clear').addEventListener('click', function () {
+      try {
+        sessionStorage.removeItem(SENT_KEY);
+      } catch (e) {}
+      renderSent();
+    });
+    renderSent();
+  }
+  if (resetAllBtn) {
+    resetAllBtn.addEventListener('click', function () {
+      resetForm();
+      clearErrors();
+      q.focus();
+    });
+  }
+  if (termUnknown) termUnknown.addEventListener('change', syncTypeFields);
 
   // Tổng file tới cfg.directBytes thì gửi một request như cũ; lớn hơn thì tải theo phần (upload-chunks.js), nút gửi
   // hiện phần trăm. Kết quả cùng dạng { ok, body } cho phần xử lý chung bên dưới.
@@ -740,17 +937,20 @@
         if (res.ok && body && body.ok && typeof body.code === 'string') {
           statusBox.textContent = msg.done + ' ' + body.code + '. ' + msg.waiting;
           // Link xem bài (có mã bí mật) chỉ hiện một lần; chỉ nhận địa chỉ https.
-          if (typeof body.viewUrl === 'string' && /^https:\/\//.test(body.viewUrl)) {
+          var viewUrl = typeof body.viewUrl === 'string' && /^https:\/\//.test(body.viewUrl) ? body.viewUrl : '';
+          if (viewUrl) {
             var view = document.createElement('a');
-            view.href = body.viewUrl;
+            view.href = viewUrl;
             view.rel = 'noopener noreferrer';
-            view.textContent = body.viewUrl;
+            view.textContent = viewUrl;
             statusBox.appendChild(document.createTextNode(' ' + msg.viewLink + ': '));
             statusBox.appendChild(view);
             statusBox.appendChild(document.createTextNode('. ' + msg.viewSave));
           }
+          statusBox.appendChild(document.createTextNode(' ' + msg.kept));
           statusBox.hidden = false;
-          resetForm();
+          addSent({ time: new Date().toLocaleString('vi-VN'), code: body.code, course: courseLabel(), files: isBook() ? 0 : chosenFiles().length, url: viewUrl });
+          resetKeep();
           statusBox.scrollIntoView({ block: 'nearest' });
           return;
         }
