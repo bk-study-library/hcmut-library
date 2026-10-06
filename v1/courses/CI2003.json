@@ -3,5 +3,29 @@
   "id": "CI2003",
   "code": "CI2003",
   "name": "Cơ lưu chất",
-  "items": []
+  "items": [
+    {
+      "id": "bai-giang-co-luu-chat-nguyen-thi-bay",
+      "type": "lecture-slides",
+      "title": "Bài giảng Cơ lưu chất - Nguyễn Thị Bảy",
+      "description": "Bài giảng Cơ lưu chất (Fluid Mechanics) của giảng viên Khoa Kỹ thuật Xây dựng và Bộ môn Kỹ thuật Hàng không, ĐH Bách Khoa TP.HCM: tĩnh học lưu chất, động học, phương trình năng lượng, động lượng, dòng chảy trong ống, thế lưu.",
+      "lang": "vi",
+      "teacher": "Nguyễn Thị Bảy",
+      "license": "CC-BY-SA-4.0",
+      "origin": "self-made",
+      "added": "2026-10-06",
+      "updated": "2026-10-06",
+      "files": [
+        {
+          "name": "CI2003_lecture-slides_bai-giang-co-luu-chat-nguyen-thi-bay.pdf",
+          "mime": "application/pdf",
+          "size": 7766966,
+          "sha256": "251f9c7e731ad3f685c9dfb0f3b5cc292eeb371a5f7f6a335aba66543b975c7e",
+          "urls": [
+            "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/CI2003_lecture-slides_bai-giang-co-luu-chat-nguyen-thi-bay.pdf"
+          ]
+        }
+      ]
+    }
+  ]
 }

@@ -1,13 +1,13 @@
 {
   "version": 1,
   "repo": "bk-study-library/hcmut-library",
-  "generated": "2026-10-05",
+  "generated": "2026-10-06",
   "counts": {
     "faculties": 16,
     "courses": 3796,
     "programs": 838,
     "majors": 140,
-    "items": 23
+    "items": 24
   },
   "faculties": [
     {
@@ -50862,7 +50862,32 @@
           "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/CI2003",
           "note": "Nhập từ nguồn công khai (truy cập 03/10/2026).",
           "updated": "2026-10-04",
-          "items": []
+          "items": [
+            {
+              "id": "bai-giang-co-luu-chat-nguyen-thi-bay",
+              "course": "CI2003",
+              "type": "lecture-slides",
+              "title": "Bài giảng Cơ lưu chất - Nguyễn Thị Bảy",
+              "lang": "vi",
+              "license": "CC-BY-SA-4.0",
+              "origin": "self-made",
+              "added": "2026-10-06",
+              "removed": false,
+              "description": "Bài giảng Cơ lưu chất (Fluid Mechanics) của giảng viên Khoa Kỹ thuật Xây dựng và Bộ môn Kỹ thuật Hàng không, ĐH Bách Khoa TP.HCM: tĩnh học lưu chất, động học, phương trình năng lượng, động lượng, dòng chảy trong ống, thế lưu.",
+              "teacher": "Nguyễn Thị Bảy",
+              "files": [
+                {
+                  "name": "CI2003_lecture-slides_bai-giang-co-luu-chat-nguyen-thi-bay.pdf",
+                  "size": 7766966,
+                  "sha256": "251f9c7e731ad3f685c9dfb0f3b5cc292eeb371a5f7f6a335aba66543b975c7e",
+                  "mime": "application/pdf",
+                  "quarantine": "clean/5H3aUrb4in/CI2003_lecture-slides_bai-giang-co-luu-chat-nguyen-thi-bay.pdf",
+                  "uploadSha256": "fb5c7de74592459f9b96188cd624ce00aafdcb6c82498c3ffdfc312758998175",
+                  "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/CI2003_lecture-slides_bai-giang-co-luu-chat-nguyen-thi-bay.pdf"
+                }
+              ]
+            }
+          ]
         },
         {
           "id": "CI2007",

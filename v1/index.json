@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "generated": "2026-10-05",
+  "generated": "2026-10-06",
   "site": "https://bk-study-library.github.io/hcmut-library/",
   "counts": {
     "courses": 3796,
-    "items": 22
+    "items": 23
   },
   "faculties": [
     {
@@ -10521,7 +10521,10 @@
       "aliases": [],
       "oldNames": [],
       "status": "active",
-      "items": 0,
+      "items": 1,
+      "teachers": [
+        "Nguyễn Thị Bảy"
+      ],
       "url": "https://bk-study-library.github.io/hcmut-library/course/CI2003/",
       "detail": "courses/CI2003.json"
     },
