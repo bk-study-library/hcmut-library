@@ -4,7 +4,7 @@
   "site": "https://bk-study-library.github.io/hcmut-library/",
   "counts": {
     "courses": 3796,
-    "items": 31
+    "items": 32
   },
   "faculties": [
     {
@@ -145,7 +145,7 @@
       "aliases": [],
       "oldNames": [],
       "status": "active",
-      "items": 15,
+      "items": 16,
       "teachers": [
         "Nguyễn Hữu Hào",
         "Trần Kim Bằng"
