@@ -59,9 +59,9 @@ export async function reviewer(req, env, deps) {
   return ok ? { email: accessEmail(jwt) } : null;
 }
 
-// Trạng thái PR của bài để quyết: PR mở và mọi check của đầu branch đã qua.
-export async function prState(gh, code) {
-  const found = await gh.findPr(`upload/${code}`);
+// Trạng thái PR của branch (upload/<mã>, hay phan-loai/<mã> của form phân loại): PR mở và mọi check của đầu branch đã qua.
+export async function prState(gh, branch) {
+  const found = await gh.findPr(branch);
   if (!found || found.state !== 'open') return { open: false };
   const pr = await gh.getPr(found.number);
   return { open: true, number: pr.number, sha: pr.head.sha, green: checksGreen(await gh.checkRuns(pr.head.sha)) };
@@ -89,24 +89,26 @@ export async function handleReview(req, env, deps, code, wantFile, fileName = nu
       downloadHref: `/xem-duyet/${code}/file${fileName ? `/${encodeURIComponent(fileName)}` : ''}?tai=1`,
     });
   }
-  const [{ docs, newCourse }, state] = await Promise.all([branchDocs(env, github, code), prState(await github(), code).catch(() => ({ open: false }))]);
+  const [{ docs, newCourse }, state] = await Promise.all([branchDocs(env, github, code), prState(await github(), `upload/${code}`).catch(() => ({ open: false }))]);
   return reviewBatchPage({ code, docs, newCourse, open: state.open, canDecide: state.open && state.green });
+}
+
+// Form gửi từ chính Worker. Trang của Worker đặt Referrer-Policy: no-referrer nên trình duyệt gửi Origin "null"; khi đó
+// dựa vào Sec-Fetch-Site (trình duyệt tự đặt, trang khác không giả được). Chống trang khác gửi form kèm cookie Access.
+export function sameOriginForm(req) {
+  const origin = req.headers.get('Origin');
+  return origin === new URL(req.url).origin || (origin === 'null' && req.headers.get('Sec-Fetch-Site') === 'same-origin');
 }
 
 // Gộp hay đóng PR thay người duyệt và ghi kết quả. Lỗi GitHub thì trả trang lỗi, không đổi gì thêm.
 export async function handleDecision(req, env, deps, code, who, github) {
-  // Chống gửi form từ trang khác (cookie Access đi kèm): chỉ nhận khi Origin là chính Worker.
-  // Trang duyệt đặt Referrer-Policy: no-referrer nên trình duyệt gửi Origin "null"; khi đó dựa vào
-  // Sec-Fetch-Site (trình duyệt tự đặt, trang khác không giả được).
-  const origin = req.headers.get('Origin');
-  const sameSite = req.headers.get('Sec-Fetch-Site') === 'same-origin';
-  if (!(origin === new URL(req.url).origin || (origin === 'null' && sameSite))) return forbiddenPage();
+  if (!sameOriginForm(req)) return forbiddenPage();
   const form = await req.formData().catch(() => null);
   if (!form) return resultPage(code, REVIEW_MESSAGES.missing, false);
   const fields = {};
   for (const [k, v] of form.entries()) if (typeof v === 'string') fields[k] = v;
   const gh = await github();
-  const state = await prState(gh, code);
+  const state = await prState(gh, `upload/${code}`);
   if (!state.open) return resultPage(code, REVIEW_MESSAGES.closed, false);
   if (!state.green) return resultPage(code, REVIEW_MESSAGES.checks, false);
   const { docs } = await branchDocs(env, github, code);
@@ -145,6 +147,9 @@ export async function handleDecision(req, env, deps, code, who, github) {
 }
 
 export const prTitleMerge = (code, auto = false) => `Gộp bài gửi ${code} (${auto ? 'tự động, đã qua kiểm file' : 'đã duyệt trên trang duyệt'})`;
+const mergeTitle = (code, record) => (record.kind === 'phan-loai' ? `Gộp phân loại ${code} (người duyệt)` : prTitleMerge(code, record.auto));
+// Branch của quyết định: bài gửi là upload/<mã>; form phân loại ghi branch phan-loai/<mã> trong bản ghi.
+export const recordBranch = (code, record) => (record.kind === 'phan-loai' && /^phan-loai\/[A-Za-z0-9]{10}$/.test(record.branch) ? record.branch : `upload/${code}`);
 
 // POST /duyet-tiep { code }: workflow tu-gop gọi sau khi bước kiểm qua trên commit dựng lại.
 // Không cần khóa: chỉ merge khi đã có quyết định của người duyệt (review/<mã>.json, waiting), PR còn mở,
@@ -173,16 +178,19 @@ export async function continueMerge(env, deps, code) {
   const record = JSON.parse(await obj.text());
   if (!record.waiting) return false;
   const gh = await githubFactory(env, deps)();
-  const state = await prState(gh, code);
+  const head = recordBranch(code, record);
+  const state = await prState(gh, head);
   if (!state.open || !state.green) return false;
   if (!(await gh.commitMessage(state.sha)).startsWith('kiem-file:')) return false;
-  const branch = await gh.branchItems(env.BRANCH, `upload/${code}`, ITEM_FILE);
+  const branch = await gh.branchItems(env.BRANCH, head, ITEM_FILE);
   // Nhánh chưa gồm main mới nhất thì chờ workflow cap-nhat-pr gộp main và dựng lại generated file; merge lúc này thì
   // git ghép generated file theo dòng và có thể sai.
   if (!branch || branch.behindBy > 0) return false;
   const ids = branch.items.map((p) => p.split('/').pop().replace(/\.json$/, ''));
   if (ids.length !== record.keep.length || ids.some((id) => !record.keep.includes(id))) return false;
-  await gh.mergePr(state.number, state.sha, prTitleMerge(code, record.auto));
+  await gh.mergePr(state.number, state.sha, mergeTitle(code, record));
   await env.QUARANTINE.put(reviewKey(code), JSON.stringify({ ...record, waiting: false }));
+  // Branch phân loại không có workflow don-kho dọn (chỉ dọn upload/*): xóa ngay sau khi merge.
+  if (record.kind === 'phan-loai') await gh.deleteBranch(head).catch((e) => logFailure('classify_branch', e));
   return true;
 }

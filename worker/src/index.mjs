@@ -8,6 +8,7 @@ import { handleUploadPart, handleUploadDone } from './routes/upload.mjs';
 import { handleReview, handleContinue } from './routes/review.mjs';
 import { handleOwner } from './routes/owner.mjs';
 import { handleNotify } from './routes/notify.mjs';
+import { CLASSIFY_PATH, handleClassify } from './routes/classify.mjs';
 import { sweep } from './cron.mjs';
 
 // /xem-duyet/<mã>, /xem-duyet/<mã>/file, /xem-duyet/<mã>/file/<tên>, /xem-duyet/<mã>/duyet (POST).
@@ -50,6 +51,9 @@ export function createHandler(deps = {}) {
       if (url.pathname === PREVIEW_PATH) return handlePreview(req, env, d);
       if (url.pathname === '/bao-ket-qua') return handleNotify(req, env, d);
       if (url.pathname === '/duyet-tiep') return handleContinue(req, env, d);
+      // Form phân loại của người duyệt (sau Cloudflare Access): routes/classify.mjs.
+      const classify = CLASSIFY_PATH.exec(url.pathname);
+      if (classify) return handleClassify(req, env, d, classify[1], classify[2]);
       if (REVIEW_PATH.test(url.pathname) || OWNER_PATH.test(url.pathname)) return handleView(req, env, d, url.pathname);
       const up = UPLOAD_PATH.exec(url.pathname);
       if (url.pathname !== '/submit' && !up) return reply(404, { ok: false, error: MESSAGES.notFound }, cors);

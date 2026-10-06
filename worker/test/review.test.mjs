@@ -64,12 +64,18 @@ function fakeGitHub({ state = 'open', runs = [{ name: 'validate', status: 'compl
     if (u.host === TEAM && p === '/cdn-cgi/access/certs') return json({ keys: [jwk] });
     if (p.startsWith('/app/installations/')) return json({ token: 'ghs_x' }, 201);
     if (p === `/repos/${REPO}/contents/catalog/policy.json`) return new Response(JSON.stringify(policy));
+    if (p === `/repos/${REPO}/contents/worker-catalog.json`) return new Response(JSON.stringify({ courses: [{ id: 'MT1005', code: 'MT1005', status: 'active', ids: [] }], shas: [] }));
     if (p === `/repos/${REPO}/pulls` && method === 'GET') return json([{ number: 7, state, merged_at: null }]);
     if (p === `/repos/${REPO}/pulls/7` && method === 'GET') return json({ number: 7, state, merged_at: null, head: { ref: `upload/${CODE}`, sha: 'head1' } });
+    if (p === `/repos/${REPO}/git/ref/heads/main`) return json({ object: { sha: 'base1' } });
+    if (p === `/repos/${REPO}/pulls` && method === 'POST') {
+      writes.push({ method, path: p, body });
+      return json({ number: 9, html_url: '' }, 201);
+    }
     if (p === `/repos/${REPO}/commits/head1/check-runs`) return json({ check_runs: runs });
     if (p === `/repos/${REPO}/commits/head1`) return json({ commit: { message } });
     if (p === `/repos/${REPO}/git/commits/head1`) return json({ tree: { sha: "tree1" } });
-    if (p === `/repos/${REPO}/compare/main...upload/${CODE}`) return json({ behind_by: behind, files: Object.keys(files).map((filename) => ({ filename, status: 'added' })) });
+    if (p === `/repos/${REPO}/compare/main...upload/${CODE}` || p === `/repos/${REPO}/compare/main...phan-loai/${CODE}`) return json({ behind_by: behind, files: Object.keys(files).map((filename) => ({ filename, status: 'added' })) });
     const content = /^\/repos\/own\/lib\/contents\/(courses\/.+)$/.exec(p);
     if (content) {
       const path = decodeURIComponent(content[1]);
@@ -78,6 +84,10 @@ function fakeGitHub({ state = 'open', runs = [{ name: 'validate', status: 'compl
         writes.push({ method, path, body });
         delete files[path];
         return json({});
+      }
+      if (method === 'PUT') {
+        writes.push({ method, path, body });
+        return json({}, 201);
       }
       const text = JSON.stringify(files[path]);
       if (init.headers?.Accept === 'application/vnd.github.raw') return new Response(text);
@@ -260,6 +270,14 @@ describe('POST /duyet-tiep', () => {
     expect((await stored()).waiting).toBe(false);
   });
 
+  it('bản ghi của form phân loại: gộp branch phan-loai/<mã> rồi xóa branch', async () => {
+    await env.QUARANTINE.put(reviewKey(CODE), JSON.stringify({ keep: ['chuong-1'], drop: [], waiting: true, kind: 'phan-loai', branch: `phan-loai/${CODE}` }));
+    const fetch = fakeGitHub({ items: onlyA });
+    expect(await (await cont(fetch, { code: CODE })).json()).toEqual({ ok: true, merged: true });
+    expect(fetch.writes.find((w) => w.path.endsWith('/pulls/7/merge')).body.commit_title).toBe(`Gộp phân loại ${CODE} (người duyệt)`);
+    expect(fetch.writes.some((w) => w.method === 'DELETE' && w.path.endsWith(`/git/refs/heads/phan-loai/${CODE}`))).toBe(true);
+  });
+
   it('commit đầu branch không phải của kiem-file, mục trên branch khác danh sách duyệt, check chưa qua, nhánh chưa gồm main: không gộp', async () => {
     await waiting();
     for (const fetch of [
@@ -351,5 +369,58 @@ describe('lý do chọn sẵn và Duyệt tất cả', () => {
     expect(html).toContain('name="all" value="keep" formnovalidate>Duyệt cả 2 file');
     expect(html).toContain('name="p-chuong-2" value="trung"');
     expect(html).toContain('<div class="bar">');
+  });
+});
+
+describe('form phân loại /xem-duyet/phan-loai/<môn>/<id>', () => {
+  const PATH = '/xem-duyet/phan-loai/MT1005/chuong-1';
+  const unclassified = { ...item('chuong-1', 'MT1005_lecture-slides_chuong-1.pdf', SHA_A), type: 'lecture-slides', teacher: 'Cũ', unclassified: ['no-text'] };
+  const gh = (it = unclassified) => fakeGitHub({ items: { [PATH_A]: it } });
+  const save = async (fetch, fields, headers = { Origin: ORIGIN }) => call(PATH, { fetch, method: 'POST', headers: { ...(await auth()), ...headers }, body: new URLSearchParams(fields) });
+
+  it('cần đăng nhập Access; GET hiện form với lý do và giá trị hiện có', async () => {
+    expect((await call(PATH, { fetch: gh() })).status).toBe(403);
+    const res = await call(PATH, { fetch: gh(), headers: await auth() });
+    expect(res.status).toBe(200);
+    const html = await res.text();
+    expect(html).toContain('PDF không có lớp chữ');
+    expect(html).toContain('value="Slide chuong-1"');
+    expect(html).toContain('<option value="lecture-slides" selected>');
+    expect(res.headers.get('Content-Security-Policy')).toContain("form-action 'self'");
+  });
+
+  it('tài liệu không nằm trong Chưa phân loại: 409, không mở PR', async () => {
+    const fetch = gh({ ...unclassified, unclassified: undefined });
+    expect((await call(PATH, { fetch, headers: await auth() })).status).toBe(409);
+    expect((await save(fetch, { type: 'summary', title: 'Tóm tắt' })).status).toBe(409);
+    expect(fetch.writes).toEqual([]);
+  });
+
+  it('POST từ trang khác: 403; ô sai: 400 hiện lại form, không ghi gì', async () => {
+    const fetch = gh();
+    expect((await save(fetch, { type: 'summary', title: 'x' }, { Origin: 'https://la.example' })).status).toBe(403);
+    const bad = await save(fetch, { type: 'exam-past', title: 'Đề' });
+    expect(bad.status).toBe(400);
+    expect(await bad.text()).toContain('Đề thi cần học kỳ');
+    expect(fetch.writes).toEqual([]);
+  });
+
+  it('lưu: mở PR phan-loai/<mã> sửa đúng item (bỏ unclassified, ô trống bị bỏ), ghi quyết định chờ merge', async () => {
+    const fetch = gh();
+    const res = await save(fetch, { type: 'summary', title: 'Tóm tắt chương 1', term: 'HK251', teacher: '' });
+    expect(res.status).toBe(200);
+    const ref = fetch.writes.find((w) => w.path.endsWith('/git/refs'));
+    const branch = ref.body.ref.replace('refs/heads/', '');
+    expect(branch).toMatch(/^phan-loai\/[A-Za-z0-9]{10}$/);
+    const put = fetch.writes.find((w) => w.method === 'PUT' && w.path === PATH_A);
+    expect(put.body.branch).toBe(branch);
+    const saved = JSON.parse(new TextDecoder().decode(Uint8Array.from(atob(put.body.content), (c) => c.charCodeAt(0))));
+    expect(saved).toEqual({ id: 'chuong-1', course: 'MT1005', type: 'summary', title: 'Tóm tắt chương 1', files: unclassified.files, term: 'HK251' });
+    expect(fetch.writes.find((w) => w.path.endsWith('/issues/9/labels')).body).toEqual({ labels: ['phan-loai'] });
+    const code = branch.split('/')[1];
+    const record = JSON.parse(await (await env.QUARANTINE.get(reviewKey(code))).text());
+    expect(record).toMatchObject({ keep: ['chuong-1'], waiting: true, branch, kind: 'phan-loai', reviewer: 'nguoi.duyet@truong.example' });
+    // Lần phân loại thứ hai khi lần trước chưa merge: chặn.
+    expect((await call(PATH, { fetch: gh(), headers: await auth() })).status).toBe(409);
   });
 });

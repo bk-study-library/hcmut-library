@@ -63,7 +63,9 @@ const CHAPTER_PATTERN = /^[0-9A-Za-z.-]+$/;
 // mọi ô chữ (trừ mã Turnstile): chặn đẩy dữ liệu lớn vào repo, nhất là qua book-ref.
 const TEXT_TOTAL_SKIP = new Set(['cf-turnstile-response']);
 const CONFIRMS = ['confirm-own', 'confirm-license', 'confirm-not-book'];
-const OPTIONAL = ['description', 'term', 'chapter', 'examKind', 'teacher', 'displayName'];
+// Ô metadata tùy chọn của mục (validateMeta); bài gửi có thêm tên hiển thị.
+const META_OPTIONAL = ['description', 'term', 'chapter', 'examKind', 'teacher'];
+const OPTIONAL = [...META_OPTIONAL, 'displayName'];
 
 const val = (fields, key) => String(fields[key] ?? '').trim();
 
@@ -106,7 +108,6 @@ const PII_FIELDS = [
   ['description', 'mô tả'],
   ['chapter', 'chương'],
   ['teacher', 'tên giảng viên'],
-  ['displayName', 'tên hiển thị'],
 ];
 const PII_BOOK = 'thông tin sách';
 
@@ -185,6 +186,59 @@ function parseBook(fields, errors, lim) {
   return book;
 }
 
+// Thông tin cá nhân: chỉ xét ô chưa có lỗi khác. Tiêu đề xét cả slug vì slug thành id và tên file.
+function piiErrors(fields, list, errors) {
+  for (const [key, where] of list) {
+    if (errors[key]) continue;
+    const v = val(fields, key);
+    const label = piiLabel(v, ...(key === 'title' ? [slugify(v)] : []));
+    if (label) errors[key] = MESSAGES.pii(where, label);
+  }
+}
+
+// Metadata mô tả tài liệu: loại, tiêu đề, mô tả, học kỳ, chương, loại kiểm tra, giảng viên. Dùng chung cho bài gửi
+// (validateSubmission) và form phân loại của người duyệt (routes/classify.mjs), để luật chỉ nằm một chỗ.
+// Trả { errors, meta }; meta chỉ có ô không trống.
+export function validateMeta(fields, policy) {
+  const lim = policy.fields;
+  const errors = {};
+  const type = val(fields, 'type');
+  // Link đi theo form Issue "Thêm link", không qua đường tải file.
+  if (type === 'link') errors.type = MESSAGES.typeLink;
+  else if (!policy.openTypes.includes(type)) errors.type = MESSAGES.type;
+
+  const title = val(fields, 'title');
+  if (!title) errors.title = MESSAGES.titleEmpty;
+  else if (title.length > lim.titleMax) errors.title = MESSAGES.titleLong(lim.titleMax);
+  else if (!slugify(title)) errors.title = MESSAGES.titleSlug;
+
+  // Ô tùy chọn: để trống thì bỏ qua.
+  if (val(fields, 'description').length > lim.descriptionMax) errors.description = MESSAGES.description(lim.descriptionMax);
+  const term = val(fields, 'term');
+  if (term && !TERM_PATTERN.test(term)) errors.term = MESSAGES.term;
+  const chapter = val(fields, 'chapter');
+  if (chapter && !(chapter.length <= lim.chapterMax && CHAPTER_PATTERN.test(chapter))) errors.chapter = MESSAGES.chapter;
+  const examKind = val(fields, 'examKind');
+  if (examKind && !lim.examKinds.includes(examKind)) errors.examKind = MESSAGES.examKind;
+  // Ô bắt buộc theo loại tài liệu (catalog/policy.json, typeFields), ví dụ đề thi cần học kỳ và loại kiểm tra.
+  // Ngoại lệ: đánh dấu termUnknown (đề tổng hợp nhiều học kỳ, đề mẫu không rõ kỳ) thì không cần học kỳ;
+  // mục ghi không có term, đúng hơn là đoán một học kỳ.
+  const termUnknown = Boolean(val(fields, 'termUnknown'));
+  for (const k of policy.typeFields?.[type]?.required || []) {
+    if (k === 'term' && termUnknown) continue;
+    if (!val(fields, k) && !errors[k]) errors[k] = MESSAGES.required[k] || 'Thiếu thông tin bắt buộc.';
+  }
+  if (val(fields, 'teacher').length > lim.teacherMax) errors.teacher = MESSAGES.teacher(lim.teacherMax);
+  piiErrors(fields, PII_FIELDS, errors);
+
+  const meta = { type, title };
+  for (const key of META_OPTIONAL) {
+    const v = val(fields, key);
+    if (v) meta[key] = v;
+  }
+  return { errors, meta };
+}
+
 export function validateSubmission(fields, file, ctx) {
   const { policy, courses } = ctx;
   const lim = policy.fields;
@@ -200,15 +254,9 @@ export function validateSubmission(fields, file, ctx) {
     if (newCourse) course = newCourse.code;
   } else if (!courses.has(course)) errors.course = MESSAGES.course;
 
-  const type = val(fields, 'type');
-  // Link đi theo form Issue "Thêm link", không qua đường tải file.
-  if (type === 'link') errors.type = MESSAGES.typeLink;
-  else if (!policy.openTypes.includes(type)) errors.type = MESSAGES.type;
-
-  const title = val(fields, 'title');
-  if (!title) errors.title = MESSAGES.titleEmpty;
-  else if (title.length > lim.titleMax) errors.title = MESSAGES.titleLong(lim.titleMax);
-  else if (!slugify(title)) errors.title = MESSAGES.titleSlug;
+  const { errors: metaErrors, meta } = validateMeta(fields, policy);
+  Object.assign(errors, metaErrors);
+  const { type, title } = meta;
 
   const license = val(fields, 'license');
   if (!policy.selfMadeLicenses.includes(license)) errors.license = MESSAGES.license;
@@ -223,23 +271,7 @@ export function validateSubmission(fields, file, ctx) {
     .reduce((sum, [, v]) => sum + new TextEncoder().encode(v).length, 0);
   if (textBytes > lim.textTotalMax) errors.form = MESSAGES.textTotal;
 
-  // Ô tùy chọn: để trống thì bỏ qua (tên hiển thị trống là ẩn danh).
-  if (val(fields, 'description').length > lim.descriptionMax) errors.description = MESSAGES.description(lim.descriptionMax);
-  const term = val(fields, 'term');
-  if (term && !TERM_PATTERN.test(term)) errors.term = MESSAGES.term;
-  const chapter = val(fields, 'chapter');
-  if (chapter && !(chapter.length <= lim.chapterMax && CHAPTER_PATTERN.test(chapter))) errors.chapter = MESSAGES.chapter;
-  const examKind = val(fields, 'examKind');
-  if (examKind && !lim.examKinds.includes(examKind)) errors.examKind = MESSAGES.examKind;
-  // Ô bắt buộc theo loại tài liệu (catalog/policy.json, typeFields), ví dụ đề thi cần học kỳ và loại kiểm tra.
-  // Ngoại lệ: người gửi đánh dấu termUnknown (đề tổng hợp nhiều học kỳ, đề mẫu không rõ kỳ) thì không cần học kỳ;
-  // mục ghi không có term, đúng hơn là đoán một học kỳ.
-  const termUnknown = Boolean(val(fields, 'termUnknown'));
-  for (const k of policy.typeFields?.[type]?.required || []) {
-    if (k === 'term' && termUnknown) continue;
-    if (!val(fields, k) && !errors[k]) errors[k] = MESSAGES.required[k] || 'Thiếu thông tin bắt buộc.';
-  }
-  if (val(fields, 'teacher').length > lim.teacherMax) errors.teacher = MESSAGES.teacher(lim.teacherMax);
+  // Tên hiển thị trống là ẩn danh.
   if (val(fields, 'displayName').length > lim.displayNameMax) errors.displayName = MESSAGES.displayName(lim.displayNameMax);
 
   let ext;
@@ -254,13 +286,7 @@ export function validateSubmission(fields, file, ctx) {
     errors.file = MESSAGES.fileMissing;
   }
 
-  // Thông tin cá nhân: chỉ xét ô chưa có lỗi khác. Tiêu đề xét cả slug vì slug thành id và tên file.
-  for (const [key, where] of PII_FIELDS) {
-    if (errors[key]) continue;
-    const v = val(fields, key);
-    const label = piiLabel(v, ...(key === 'title' ? [slugify(v)] : []));
-    if (label) errors[key] = MESSAGES.pii(where, label);
-  }
+  piiErrors(fields, [['displayName', 'tên hiển thị']], errors);
   if (book && !errors.book) {
     const label = piiLabel(book.title, ...book.authors, book.publisher ?? '');
     if (label) errors.book = MESSAGES.pii(PII_BOOK, label);
