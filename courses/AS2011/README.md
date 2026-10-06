@@ -16,7 +16,6 @@
 
 ### Slide bài giảng
 
-- **Bài tập ký hiệu chỉ số (Lý thuyết đàn hồi)** (vi, CC-BY-SA-4.0): [AS2011_lecture-slides_bai-tap-ky-hieu-chi-so-ly-thuyet-dan-hoi.pdf, 726 KB](https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS2011_lecture-slides_bai-tap-ky-hieu-chi-so-ly-thuyet-dan-hoi.pdf)
 - **Slide Lý thuyết đàn hồi chương 1: Ký hiệu chỉ số** (vi, CC-BY-SA-4.0): [AS2011_lecture-slides_slide-ly-thuyet-dan-hoi-chuong-1-ky-hieu-chi-so.pdf, 828 KB](https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS2011_lecture-slides_slide-ly-thuyet-dan-hoi-chuong-1-ky-hieu-chi-so.pdf)
 - **Slide Lý thuyết đàn hồi chương 2: Quan hệ giữa biến dạng và chuyển vị** (vi, CC-BY-SA-4.0): [AS2011_lecture-slides_slide-ly-thuyet-dan-hoi-chuong-2-quan-he-giua-bien-dang-va.pdf, 577 KB](https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS2011_lecture-slides_slide-ly-thuyet-dan-hoi-chuong-2-quan-he-giua-bien-dang-va.pdf)
 - **Slide Lý thuyết đàn hồi chương 3: Ứng suất và sự cân bằng cơ học** (vi, CC-BY-SA-4.0): [AS2011_lecture-slides_slide-ly-thuyet-dan-hoi-chuong-3-ung-suat-va-su-can-bang-co.pdf, 644 KB](https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS2011_lecture-slides_slide-ly-thuyet-dan-hoi-chuong-3-ung-suat-va-su-can-bang-co.pdf)
@@ -28,6 +27,7 @@
 
 ### Lời giải bài tập
 
+- **Bài tập ký hiệu chỉ số (Lý thuyết đàn hồi)** (vi, CC-BY-SA-4.0): [AS2011_lecture-slides_bai-tap-ky-hieu-chi-so-ly-thuyet-dan-hoi.pdf, 726 KB](https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS2011_lecture-slides_bai-tap-ky-hieu-chi-so-ly-thuyet-dan-hoi.pdf)
 - **Code Python chương 5 - Lý thuyết đàn hồi** (vi, CC-BY-SA-4.0): [AS2011_exercise-solution_code-python-chuong-5-ly-thuyet-dan-hoi.pdf, 654 KB](https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS2011_exercise-solution_code-python-chuong-5-ly-thuyet-dan-hoi.pdf)
 - **Lời giải bài tập Lý thuyết đàn hồi bằng MATLAB/Python (lớp tài năng)** (vi, CC-BY-SA-4.0): [AS2011_exercise-solution_loi-giai-bai-tap-ly-thuyet-dan-hoi-bang-matlab-python-lop.pdf, 2.0 MB](https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS2011_exercise-solution_loi-giai-bai-tap-ly-thuyet-dan-hoi-bang-matlab-python-lop.pdf)
 
