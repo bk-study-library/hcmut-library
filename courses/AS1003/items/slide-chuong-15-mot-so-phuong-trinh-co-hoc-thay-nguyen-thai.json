@@ -14,11 +14,12 @@
   "files": [
     {
       "name": "AS1003_lecture-slides_slide-chuong-15-mot-so-phuong-trinh-co-hoc-thay-nguyen-thai.pdf",
-      "size": 3147701,
-      "sha256": "07c6220a476217b75668e9713c5ba988c750eaff1b6210c8be653515cf934eaf",
+      "size": 3144914,
+      "sha256": "e659376c3116006419deb76ecf6bd52d1266382005a720bd9d9369aca1df2935",
       "mime": "application/pdf",
-      "quarantine": "pending/dWIeiJ0Uwp/AS1003_lecture-slides_slide-chuong-15-mot-so-phuong-trinh-co-hoc-thay-nguyen-thai.pdf",
-      "uploadSha256": "07c6220a476217b75668e9713c5ba988c750eaff1b6210c8be653515cf934eaf"
+      "quarantine": "clean/dWIeiJ0Uwp/AS1003_lecture-slides_slide-chuong-15-mot-so-phuong-trinh-co-hoc-thay-nguyen-thai.pdf",
+      "uploadSha256": "07c6220a476217b75668e9713c5ba988c750eaff1b6210c8be653515cf934eaf",
+      "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_lecture-slides_slide-chuong-15-mot-so-phuong-trinh-co-hoc-thay-nguyen-thai.pdf"
     }
   ]
 }
