@@ -838,6 +838,32 @@
           ]
         }
       ]
+    },
+    {
+      "id": "tong-hop-de-cuoi-ky-co-ly-thuyet",
+      "type": "exam-past",
+      "title": "Tổng hợp đề cuối kỳ Cơ lý thuyết",
+      "description": "Tổng hợp đề kiểm tra cuối kỳ Cơ lý thuyết qua nhiều học kỳ (102 trang, bản scan), dạng trắc nghiệm và tự luận.",
+      "lang": "vi",
+      "examKind": "ck",
+      "license": "CC-BY-SA-4.0",
+      "origin": "self-made",
+      "added": "2026-10-06",
+      "unclassified": [
+        "no-text"
+      ],
+      "updated": "2026-10-06",
+      "files": [
+        {
+          "name": "AS1003_exam-past_tong-hop-de-cuoi-ky-co-ly-thuyet.pdf",
+          "mime": "application/pdf",
+          "size": 4170711,
+          "sha256": "599c9e5028002c54b42188f042fe64ef02057cbe7900d3219c39e2ef86590fb8",
+          "urls": [
+            "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_exam-past_tong-hop-de-cuoi-ky-co-ly-thuyet.pdf"
+          ]
+        }
+      ]
     }
   ]
 }

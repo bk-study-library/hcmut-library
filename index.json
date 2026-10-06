@@ -7,7 +7,7 @@
     "courses": 3796,
     "programs": 838,
     "majors": 140,
-    "items": 100
+    "items": 101
   },
   "faculties": [
     {
@@ -25218,6 +25218,33 @@
                   "quarantine": "clean/ORxV9P5LlY/AS1003_summary_tom-tat-chuong-9-chuyen-dong-phuc-hop.pdf",
                   "uploadSha256": "bf5211cf2291e5f9521227cf3690da982b66d297bf98f4a8e865a8c96682f05d",
                   "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_summary_tom-tat-chuong-9-chuyen-dong-phuc-hop.pdf"
+                }
+              ],
+              "unclassified": [
+                "no-text"
+              ]
+            },
+            {
+              "id": "tong-hop-de-cuoi-ky-co-ly-thuyet",
+              "course": "AS1003",
+              "type": "exam-past",
+              "title": "Tổng hợp đề cuối kỳ Cơ lý thuyết",
+              "lang": "vi",
+              "license": "CC-BY-SA-4.0",
+              "origin": "self-made",
+              "added": "2026-10-06",
+              "removed": false,
+              "description": "Tổng hợp đề kiểm tra cuối kỳ Cơ lý thuyết qua nhiều học kỳ (102 trang, bản scan), dạng trắc nghiệm và tự luận.",
+              "examKind": "ck",
+              "files": [
+                {
+                  "name": "AS1003_exam-past_tong-hop-de-cuoi-ky-co-ly-thuyet.pdf",
+                  "size": 4170711,
+                  "sha256": "599c9e5028002c54b42188f042fe64ef02057cbe7900d3219c39e2ef86590fb8",
+                  "mime": "application/pdf",
+                  "quarantine": "clean/mXZnyHkMa4/AS1003_exam-past_tong-hop-de-cuoi-ky-co-ly-thuyet.pdf",
+                  "uploadSha256": "ef52f40aa72a59ea808c6fe8f18e247fdf6239cc2d9c448d24264f6f51659471",
+                  "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_exam-past_tong-hop-de-cuoi-ky-co-ly-thuyet.pdf"
                 }
               ],
               "unclassified": [
