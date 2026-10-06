@@ -228,6 +228,29 @@
       ]
     },
     {
+      "id": "slide-chuong-12-cac-dinh-ly-tong-quat-dong-luc-hoc-thay",
+      "type": "lecture-slides",
+      "title": "Slide chương 12: Các định lý tổng quát động lực học - thầy Nguyễn Hữu Hào",
+      "description": "Bộ slide bài giảng Cơ lý thuyết (Engineering Mechanics) của TS. Nguyễn Hữu Hào, Bộ môn Cơ kỹ thuật, Khoa Khoa học Ứng dụng, bản 2020-2021. Đủ 15 chương: tĩnh học (hệ tiên đề, thu gọn hệ lực, cân bằng vật rắn và hệ vật rắn, giàn, ma sát, trọng tâm), động học (động học điểm, hai chuyển động cơ bản, chuyển động phức hợp, song phẳng) và động lực học (chất điểm, các định lý tổng quát, nguyên lý D'Alembert, di chuyển khả dĩ, phương trình cơ học). Mỗi chương một file; ảnh đã nén để vừa giới hạn 20 MB.",
+      "lang": "vi",
+      "teacher": "Nguyễn Hữu Hào",
+      "license": "CC-BY-SA-4.0",
+      "origin": "self-made",
+      "added": "2026-10-06",
+      "updated": "2026-10-06",
+      "files": [
+        {
+          "name": "AS1003_lecture-slides_slide-chuong-12-cac-dinh-ly-tong-quat-dong-luc-hoc-thay.pdf",
+          "mime": "application/pdf",
+          "size": 4637123,
+          "sha256": "ec9f4d9b22d9780477c4f13fd97767ae05a30da68e40d843692d8c423b671c15",
+          "urls": [
+            "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_lecture-slides_slide-chuong-12-cac-dinh-ly-tong-quat-dong-luc-hoc-thay.pdf"
+          ]
+        }
+      ]
+    },
+    {
       "id": "slide-chuong-15-mot-so-phuong-trinh-co-hoc-thay-nguyen-huu",
       "type": "lecture-slides",
       "title": "Slide chương 15: Một số phương trình cơ học - thầy Nguyễn Hữu Hào",
