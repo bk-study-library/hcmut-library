@@ -40,6 +40,7 @@
 ### Tóm tắt
 
 - **Tóm tắt Chương 11 - Định lý D' Alembert** (vi, CC-BY-SA-4.0): [AS1003_summary_tom-tat-chuong-11-dinh-ly-d-alembert.pdf, 6.7 MB](https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_summary_tom-tat-chuong-11-dinh-ly-d-alembert.pdf)
+- **Tóm tắt Chương 13 - Nguyên lý di chuyển khả dĩ** (vi, CC-BY-SA-4.0): [AS1003_summary_tom-tat-chuong-13-nguyen-ly-di-chuyen-kha-di.pdf, 6.1 MB](https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_summary_tom-tat-chuong-13-nguyen-ly-di-chuyen-kha-di.pdf)
 - **Tóm tắt Chương 9 - Chuyển động phức hợp** (vi, CC-BY-SA-4.0): [AS1003_summary_tom-tat-chuong-9-chuyen-dong-phuc-hop.pdf, 7.0 MB](https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_summary_tom-tat-chuong-9-chuyen-dong-phuc-hop.pdf)
 
 ## Link
