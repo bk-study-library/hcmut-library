@@ -198,6 +198,7 @@ export const S = {
       book:'Cần tên sách và ít nhất một tác giả.',
       confirm: 'Đánh dấu cả ba ô xác nhận.',
       busy: 'Đang gửi.',
+      uploading: 'Đang tải lên',
       send: 'Gửi tài liệu',
       failed: 'Chưa gửi được. Thử lại sau ít phút.',
       done: 'Đã nhận tài liệu. Mã bài của bạn là',

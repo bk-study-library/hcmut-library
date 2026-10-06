@@ -443,12 +443,17 @@ const IMAGES = new Set(['.png', '.jpg']);
 // Quét cả bên trong file nén; file mã hóa hay vượt giới hạn quét thì ClamAV báo Heuristics.Encrypted
 // hay Heuristics.Limits.Exceeded thay vì coi là sạch.
 const CLAMSCAN_ARGS = ['--no-summary', '--scan-archive=yes', '--alert-encrypted=yes', '--alert-exceeds-max=yes'];
+// Mặc định ClamAV bỏ qua file trên 100 MB (báo Limits.Exceeded): nâng theo maxFileBytes của policy (tối đa 4000 MB).
+const clamArgs = (policy) => {
+  const mb = Math.min(4000, Math.ceil(policy.maxFileBytes / 1024 / 1024) + 1);
+  return CLAMSCAN_ARGS.concat(`--max-filesize=${mb}M`, `--max-scansize=${mb}M`);
+};
 
 // Quét mọi file của bài trong một lần chạy clamscan (nạp cơ sở dữ liệu một lần thay vì mỗi file một lần).
 // --root <thư mục in/> --out <file JSON { status, stdout }>.
 function clamscanAll(a) {
   toolTimeoutMs = scanLimits(loadPolicy(TOOL_ROOT)).toolTimeoutSeconds * 1000;
-  const r = tool('clamscan', CLAMSCAN_ARGS.concat('-r', path.resolve(a.root)), [0, 1, 2]);
+  const r = tool('clamscan', clamArgs(loadPolicy(TOOL_ROOT)).concat('-r', path.resolve(a.root)), [0, 1, 2]);
   fs.writeFileSync(a.out, JSON.stringify({ status: r.status, stdout: r.stdout }));
 }
 
@@ -475,7 +480,7 @@ function scan(a) {
   const write = (r) => fs.writeFileSync(path.join(a.out, 'result.json'), JSON.stringify(r));
 
   // --clam: kết quả clamscanAll của cả bài (nạp cơ sở dữ liệu ClamAV một lần); không có thì quét riêng file này.
-  const av = a.clam ? clamFor(readJson(a.clam), src) : tool('clamscan', CLAMSCAN_ARGS.concat(src), [0, 1, 2]);
+  const av = a.clam ? clamFor(readJson(a.clam), src) : tool('clamscan', clamArgs(policy).concat(src), [0, 1, 2]);
   const verdict = parseClamscan(av.stdout, av.status);
   if (verdict.infected) return write({ code: info.code, name: info.name, virus: verdict.signature });
 

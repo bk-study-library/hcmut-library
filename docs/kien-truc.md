@@ -64,7 +64,8 @@ form web (site-src/assets/upload.js)
 | Ô tìm trang chủ | `site-src/assets/search.js` (giao diện), `search-core.js` (tìm môn), `search-docs.js` (tìm tài liệu), `subject-core.js` (gộp môn cùng tên) | Thay đổi cách tìm môn phải qua `test/search-cases.json` |
 | Form Gửi tài liệu | `site-src/pages/vi/gui-tai-lieu.html`, `site-src/assets/upload.js` (giao diện), `upload-core.js` (logic thuần) | Số liệu lấy từ `#upload-config` do `scripts/site/upload-page.mjs` (`uploadPage`) đổ từ `policy.json` |
 | Worker: định tuyến | `worker/src/index.mjs` (`createHandler`, `handleView`) | Mỗi việc một file trong `worker/src/routes/` |
-| Worker nhận bài | `worker/src/routes/submit.mjs`: `handleSubmit`; kiểm phiếu ở `worker/src/validate.mjs` | |
+| Worker nhận bài | `worker/src/routes/submit.mjs`: `handleSubmit` (kiểm, dựng item và PR), `openSubmission` (ghi khóa phụ, mở PR); kiểm phiếu ở `worker/src/validate.mjs` | |
+| Tải file lớn theo phần (tới 1 GB) | `worker/src/routes/upload.mjs` (phiên, từng phần, xong); `site-src/assets/upload-chunks.js` (sha256 theo luồng, gửi phần); ngưỡng `directMaxBytes`, `uploadPartBytes` ở `catalog/policy.json` | File trong git giới hạn riêng `maxGitFileBytes` |
 | Trang duyệt, nút Hoàn tất | `worker/src/routes/review.mjs` (`handleReview`, `handleDecision`, `continueMerge`), `worker/src/view.mjs` (`reviewBatchPage`), `worker/src/review.mjs` (quyết định, lý do: hàm thuần) | |
 | Email kết quả, cron | `worker/src/routes/notify.mjs` (`notifyCode`), `worker/src/notify.mjs` (nội dung email), `worker/src/cron.mjs` (`sweep`); lịch ở `worker/wrangler.jsonc` | Cloudflare chặn runner GitHub gọi Worker nên dùng cron |
 | Trang người gửi `/xem/<mã>` | `worker/src/routes/owner.mjs`, `worker/src/view.mjs` (`statusPage`) | |

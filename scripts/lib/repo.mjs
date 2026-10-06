@@ -124,6 +124,8 @@ export function loadRepo(root) {
   const LIMITS = {
     maxFileBytes: policy.maxFileBytes,
     maxMdInGitBytes: policy.maxMdInGitBytes,
+    // File nằm trong git (GitHub chặn file trên 100 MB): giới hạn riêng, nhỏ hơn maxFileBytes của file trên Release.
+    maxGitFileBytes: policy.maxGitFileBytes ?? policy.maxFileBytes,
     allowedExt: Object.keys(policy.extensions),
     quizExt: policy.quizExtensions,
     selfMadeLicenses: policy.selfMadeLicenses,
@@ -459,7 +461,7 @@ function scanDisk(root, dir, err, LIMITS) {
       continue;
     }
     const size = fs.statSync(p).size;
-    if (size > LIMITS.maxFileBytes) err('FILE_SIZE', r, `${size} byte, quá ${fmtSize(LIMITS.maxFileBytes)}`);
+    if (size > LIMITS.maxGitFileBytes) err('FILE_SIZE', r, `${size} byte, quá ${fmtSize(LIMITS.maxGitFileBytes)} (file trong git)`);
     if (r.startsWith('courses/')) {
       const parts = r.split('/');
       const okLayout =

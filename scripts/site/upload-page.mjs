@@ -26,6 +26,9 @@ export function uploadPage({ policy, site, root, raw, t }) {
     batchFiles,
     batchBytes,
     batchSize: formatSize(batchBytes),
+    // Tải theo phần khi tổng file lớn hơn directMaxBytes (Worker nhận thân request tối đa 100 MB).
+    directBytes: Number.isInteger(policy.directMaxBytes) ? policy.directMaxBytes : batchBytes,
+    partBytes: policy.uploadPartBytes,
     extensions: exts,
     // Đuôi nhận theo từng loại (extensions[].types, quizExtensions): form lọc ô chọn file theo loại.
     byType: Object.fromEntries(formTypes.map((x) => [x, extensionsFor(policy, x)])),
@@ -50,6 +53,7 @@ export function uploadPage({ policy, site, root, raw, t }) {
     `<script src="${root}assets/search-core.js" defer></script>`,
     `<script src="${root}assets/subject-core.js" defer></script>`,
     `<script src="${root}assets/upload-core.js" defer></script>`,
+    `<script src="${root}assets/upload-chunks.js" defer></script>`,
     `<script src="${root}assets/upload.js" defer></script>`,
     open ? '<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>' : '',
   ]
