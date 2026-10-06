@@ -1,0 +1,23 @@
+{
+  "$schema": "../../../schema/item.schema.json",
+  "id": "code-python-chuong-5-ly-thuyet-dan-hoi",
+  "course": "AS2011",
+  "type": "exercise-solution",
+  "title": "Code Python chương 5 - Lý thuyết đàn hồi",
+  "lang": "vi",
+  "license": "CC-BY-SA-4.0",
+  "origin": "self-made",
+  "added": "2026-10-06",
+  "removed": false,
+  "description": "Lời giải bài tập Lý thuyết đàn hồi bằng MATLAB và Python của lớp tài năng (bài 5.27, 5.30, 6.41-6.44) gồm code và hình kết quả, cùng code Python chương 5.",
+  "files": [
+    {
+      "name": "AS2011_exercise-solution_code-python-chuong-5-ly-thuyet-dan-hoi.pdf",
+      "size": 668361,
+      "sha256": "08408248b2a1c0b74532a126704485f199eb6aa887fc30a6c82b319aa3189122",
+      "mime": "application/pdf",
+      "quarantine": "pending/0xvy7fErXf/AS2011_exercise-solution_code-python-chuong-5-ly-thuyet-dan-hoi.pdf",
+      "uploadSha256": "08408248b2a1c0b74532a126704485f199eb6aa887fc30a6c82b319aa3189122"
+    }
+  ]
+}
