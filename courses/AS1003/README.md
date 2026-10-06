@@ -25,6 +25,11 @@
 - **Chuong 6 Trong tam cua vat ran** (vi, CC-BY-SA-4.0): [AS1003_lecture-slides_chuong-6-trong-tam-cua-vat-ran.pdf, 8.8 MB](https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_lecture-slides_chuong-6-trong-tam-cua-vat-ran.pdf)
 - **Chuong 7 Dong hoc diem** (vi, CC-BY-SA-4.0): [AS1003_lecture-slides_chuong-7-dong-hoc-diem.pdf, 5.0 MB](https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_lecture-slides_chuong-7-dong-hoc-diem.pdf)
 - **Slide chương 10: Chuyển động song phẳng của vật rắn - thầy Nguyễn Hữu Hào** (vi, CC-BY-SA-4.0): [AS1003_lecture-slides_slide-chuong-10-chuyen-dong-song-phang-cua-vat-ran-thay.pdf, 5.7 MB](https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_lecture-slides_slide-chuong-10-chuyen-dong-song-phang-cua-vat-ran-thay.pdf)
+- **Slide chương 15: Một số phương trình cơ học - thầy Nguyễn Hữu Hào** (vi, CC-BY-SA-4.0): [AS1003_lecture-slides_slide-chuong-15-mot-so-phuong-trinh-co-hoc-thay-nguyen-huu.pdf, 2.3 MB](https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_lecture-slides_slide-chuong-15-mot-so-phuong-trinh-co-hoc-thay-nguyen-huu.pdf)
+
+### Tóm tắt
+
+- **Tóm tắt Chương 11 - Định lý D' Alembert** (vi, CC-BY-SA-4.0): [AS1003_summary_tom-tat-chuong-11-dinh-ly-d-alembert.pdf, 6.7 MB](https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_summary_tom-tat-chuong-11-dinh-ly-d-alembert.pdf)
 
 ## Link
 

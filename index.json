@@ -7,7 +7,7 @@
     "courses": 3796,
     "programs": 838,
     "majors": 140,
-    "items": 26
+    "items": 28
   },
   "faculties": [
     {
@@ -24560,6 +24560,59 @@
                   "uploadSha256": "2a1d44d3cffc074561fff0be2b4df541a06e16469c2db0bd8d7f882fdaef5229",
                   "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_lecture-slides_slide-chuong-10-chuyen-dong-song-phang-cua-vat-ran-thay.pdf"
                 }
+              ]
+            },
+            {
+              "id": "slide-chuong-15-mot-so-phuong-trinh-co-hoc-thay-nguyen-huu",
+              "course": "AS1003",
+              "type": "lecture-slides",
+              "title": "Slide chương 15: Một số phương trình cơ học - thầy Nguyễn Hữu Hào",
+              "lang": "vi",
+              "license": "CC-BY-SA-4.0",
+              "origin": "self-made",
+              "added": "2026-10-06",
+              "removed": false,
+              "description": "Bộ slide bài giảng Cơ lý thuyết (Engineering Mechanics) của TS. Nguyễn Hữu Hào, Bộ môn Cơ kỹ thuật, Khoa Khoa học Ứng dụng, bản 2020-2021. Đủ 15 chương: tĩnh học (hệ tiên đề, thu gọn hệ lực, cân bằng vật rắn và hệ vật rắn, giàn, ma sát, trọng tâm), động học (động học điểm, hai chuyển động cơ bản, chuyển động phức hợp, song phẳng) và động lực học (chất điểm, các định lý tổng quát, nguyên lý D'Alembert, di chuyển khả dĩ, phương trình cơ học). Mỗi chương một file; ảnh đã nén để vừa giới hạn 20 MB.",
+              "teacher": "Nguyễn Hữu Hào",
+              "files": [
+                {
+                  "name": "AS1003_lecture-slides_slide-chuong-15-mot-so-phuong-trinh-co-hoc-thay-nguyen-huu.pdf",
+                  "size": 2403318,
+                  "sha256": "13a4c1e290ba66160519493d8f908dd72f59082b1d89ba82f3a566e60dec035c",
+                  "mime": "application/pdf",
+                  "quarantine": "clean/D3CgOFCVBy/AS1003_lecture-slides_slide-chuong-15-mot-so-phuong-trinh-co-hoc-thay-nguyen-huu.pdf",
+                  "uploadSha256": "47d0f513247c2ca012b7c69e000ae8af395b03dc672d13bb357f444ee742df1d",
+                  "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_lecture-slides_slide-chuong-15-mot-so-phuong-trinh-co-hoc-thay-nguyen-huu.pdf"
+                }
+              ],
+              "unclassified": [
+                "pii"
+              ]
+            },
+            {
+              "id": "tom-tat-chuong-11-dinh-ly-d-alembert",
+              "course": "AS1003",
+              "type": "summary",
+              "title": "Tóm tắt Chương 11 - Định lý D' Alembert",
+              "lang": "vi",
+              "license": "CC-BY-SA-4.0",
+              "origin": "self-made",
+              "added": "2026-10-06",
+              "removed": false,
+              "description": "Tóm tắt lý thuyết kèm ví dụ giải mẫu từng chương phần động học và động lực học (chương 8-14), sinh viên tự soạn: chuyển động song phẳng, chuyển động phức hợp, phương trình vi phân chuyển động, nguyên lý D'Alembert, các định lý động lực học, nguyên lý di chuyển khả dĩ, các phương trình cơ học (Lagrange loại II). Mỗi chương một file.",
+              "files": [
+                {
+                  "name": "AS1003_summary_tom-tat-chuong-11-dinh-ly-d-alembert.pdf",
+                  "size": 7075119,
+                  "sha256": "9de9dabcddee49189630945232fc4e67077ea0fa828a79a92cc4119accd5761d",
+                  "mime": "application/pdf",
+                  "quarantine": "clean/yrViZScQ0s/AS1003_summary_tom-tat-chuong-11-dinh-ly-d-alembert.pdf",
+                  "uploadSha256": "bc5f8ec6fea30c3409bb1bf74e15306f3343c367e76e8f208150e8dad9aaba75",
+                  "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_summary_tom-tat-chuong-11-dinh-ly-d-alembert.pdf"
+                }
+              ],
+              "unclassified": [
+                "no-text"
               ]
             }
           ]
