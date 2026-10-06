@@ -1,0 +1,23 @@
+{
+  "$schema": "../../../schema/item.schema.json",
+  "id": "slide-ly-thuyet-dan-hoi-chuong-2-quan-he-giua-bien-dang-va",
+  "course": "AS2011",
+  "type": "lecture-slides",
+  "title": "Slide Lý thuyết đàn hồi chương 2: Quan hệ giữa biến dạng và chuyển vị",
+  "lang": "vi",
+  "license": "CC-BY-SA-4.0",
+  "origin": "self-made",
+  "added": "2026-10-06",
+  "removed": false,
+  "description": "Slide Lý thuyết đàn hồi 8 chương: ký hiệu chỉ số, biến dạng và chuyển vị, ứng suất và cân bằng, vật liệu đàn hồi tuyến tính, bài toán phẳng trong tọa độ Descartes và tọa độ cực, tấm mỏng chịu uốn (Descartes và tọa độ trụ). Kèm phiếu bài tập ký hiệu chỉ số.",
+  "files": [
+    {
+      "name": "AS2011_lecture-slides_slide-ly-thuyet-dan-hoi-chuong-2-quan-he-giua-bien-dang-va.pdf",
+      "size": 623528,
+      "sha256": "db7e7a5978d169248ff066ec1542876cbdf59886e859754971a48c53eddd49c8",
+      "mime": "application/pdf",
+      "quarantine": "pending/0vecojbJiS/AS2011_lecture-slides_slide-ly-thuyet-dan-hoi-chuong-2-quan-he-giua-bien-dang-va.pdf",
+      "uploadSha256": "db7e7a5978d169248ff066ec1542876cbdf59886e859754971a48c53eddd49c8"
+    }
+  ]
+}
