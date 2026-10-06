@@ -168,6 +168,57 @@
       ]
     },
     {
+      "id": "bao-cao-bai-tap-lon-ktlt-co-ky-thuat-hk251-thuat-toan-giai",
+      "type": "project-reference",
+      "title": "Báo cáo bài tập lớn KTLT Cơ kỹ thuật HK251: thuật toán giải bài toán dàn",
+      "description": "Bài tập lớn KTLT Cơ kỹ thuật HK251, lớp L01, GVHD TS. Nguyễn Thanh Nhã: giải bài toán dàn bằng phương pháp phần tử hữu hạn, có giao diện Tkinter. Gồm báo cáo (đã che họ tên và MSSV sinh viên) và toàn bộ code Python.",
+      "lang": "vi",
+      "term": "HK251",
+      "teacher": "Nguyễn Thanh Nhã",
+      "license": "CC-BY-SA-4.0",
+      "origin": "self-made",
+      "added": "2026-10-06",
+      "unclassified": [
+        "warning"
+      ],
+      "updated": "2026-10-06",
+      "files": [
+        {
+          "name": "AS2003_project-reference_bao-cao-bai-tap-lon-ktlt-co-ky-thuat-hk251-thuat-toan-giai_HK251.pdf",
+          "mime": "application/pdf",
+          "size": 1582448,
+          "sha256": "1b14d6ae78c4b3a3e4b20f4c514e19c788aa602d4647741074936b2e6dee6749",
+          "urls": [
+            "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS2003_project-reference_bao-cao-bai-tap-lon-ktlt-co-ky-thuat-hk251-thuat-toan-giai_HK251.pdf"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "code-bai-tap-lon-ktlt-co-ky-thuat-hk251-python",
+      "type": "project-reference",
+      "title": "Code bài tập lớn KTLT Cơ kỹ thuật HK251 (Python)",
+      "description": "Bài tập lớn KTLT Cơ kỹ thuật HK251, lớp L01, GVHD TS. Nguyễn Thanh Nhã: giải bài toán dàn bằng phương pháp phần tử hữu hạn, có giao diện Tkinter. Gồm báo cáo (đã che họ tên và MSSV sinh viên) và toàn bộ code Python.",
+      "lang": "vi",
+      "term": "HK251",
+      "teacher": "Nguyễn Thanh Nhã",
+      "license": "CC-BY-SA-4.0",
+      "origin": "self-made",
+      "added": "2026-10-06",
+      "updated": "2026-10-06",
+      "files": [
+        {
+          "name": "AS2003_project-reference_code-bai-tap-lon-ktlt-co-ky-thuat-hk251-python_HK251.pdf",
+          "mime": "application/pdf",
+          "size": 1860325,
+          "sha256": "034e366318d14d0bcfcfc0e20ea924cdee07e10a1d3589203fa66ec72474c73f",
+          "urls": [
+            "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS2003_project-reference_code-bai-tap-lon-ktlt-co-ky-thuat-hk251-python_HK251.pdf"
+          ]
+        }
+      ]
+    },
+    {
       "id": "code-on-tap-cuoi-ky-ktlt-co-ky-thuat",
       "type": "exercise-solution",
       "title": "Code ôn tập cuối kỳ KTLT Cơ kỹ thuật",
