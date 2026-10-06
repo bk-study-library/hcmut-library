@@ -90,7 +90,7 @@ Người duyệt là sinh viên đã học qua môn, làm tình nguyện. Danh s
 4. Người duyệt đọc theo danh sách kiểm bên dưới. Chữ người gửi đã công khai trong file mục của PR từ lúc gửi: PR có chữ xúc phạm, nói xấu người khác, quảng cáo hay link lạ thì đóng ngay, không cần đợi `kiem-file`. Cần hỏi người gửi thì hỏi trong PR (hoặc issue).
 5. Đạt thì merge. Không đạt thì comment lý do rồi đóng PR; file chờ duyệt sẽ được dọn tự động.
 
-Phần lớn bài không cần bước trên: `kiem-file` phân loại (`scripts/upload/triage.mjs`, ngưỡng ở `catalog/policy.json` mục `triage`). Bài sạch được merge tự động khi check qua. Bài an toàn nhưng chưa chắc (môn mới, cảnh báo nhẹ, trùng tên, bản cập nhật) cũng được merge, item có trường `unclassified` và hiện ở trang `chua-phan-loai/`: người duyệt xem lại, đúng thì bỏ trường này, sai thì sửa hay gỡ. Chỉ đề thi, file dày như sách và bài có cảnh báo nặng chờ người duyệt; bot yêu cầu review từ người trong biến repo `REVIEWERS`.
+Phần lớn bài không cần bước trên: `kiem-file` phân loại (`scripts/upload/triage.mjs`, ngưỡng ở `catalog/policy.json` mục `triage`). Bài sạch được merge tự động khi check qua. Bài an toàn nhưng chưa chắc (môn mới, cảnh báo nhẹ, trùng tên, bản cập nhật) cũng được merge, item có trường `unclassified` và hiện ở trang `chua-phan-loai/`: người duyệt xem lại, đúng thì bỏ trường này, sai thì sửa hay gỡ. Chỉ đề thi, file dày như sách và bài có cảnh báo nặng chờ người duyệt; bot yêu cầu review từ code owner của item trong `.github/CODEOWNERS` (`scripts/upload/reviewers.mjs`).
 6. Mục tiêu: trả lời bài trong 7 ngày. Yêu cầu gỡ được ưu tiên, xem [TAKEDOWN.md](TAKEDOWN.md).
 
 ### Danh sách kiểm của người duyệt

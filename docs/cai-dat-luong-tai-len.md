@@ -257,7 +257,7 @@ Thử:
 
 ### 8.6. Phân loại tự động và người duyệt
 
-`kiem-file` phân loại bài sau khi quét (`scripts/upload/triage.mjs`, ngưỡng ở `catalog/policy.json` mục `triage`): bài không cần người duyệt thì ghi `review/<mã bài>.json` với `auto: true`, cron của Worker merge khi check qua. Bài cần người duyệt thì bot yêu cầu review từ các tài khoản GitHub trong biến repo `REVIEWERS` (Settings > Secrets and variables > Actions > Variables, cách nhau bằng dấu phẩy); GitHub tự báo chuông và email. Chưa đặt biến này thì không ai được báo.
+`kiem-file` phân loại bài sau khi quét (`scripts/upload/triage.mjs`, ngưỡng ở `catalog/policy.json` mục `triage`): bài không cần người duyệt thì ghi `review/<mã bài>.json` với `auto: true`, cron của Worker merge khi check qua. Bài cần người duyệt thì bot yêu cầu review từ code owner của item trong `.github/CODEOWNERS` (cùng file ruleset dùng; dòng khớp sau cùng thắng, ví dụ `/courses/EE*/ @nguoi-duyet`), GitHub tự báo chuông và email. Người duyệt phải là thành viên org.
 
 ### 8.7. Duyệt trên trang duyệt
 
