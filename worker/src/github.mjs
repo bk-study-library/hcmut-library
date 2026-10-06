@@ -168,12 +168,18 @@ export class GitHub {
     return Array.isArray(list) && list.length ? String(list[0].body ?? '') : null;
   }
 
-  // File đổi giữa base và head (compare API): [{ filename, status }]. Nhánh không còn thì null.
-  async changedFiles(base, head) {
+  // So base với head (compare API): file đổi [{ filename, status }] và số commit của base mà head chưa có. Nhánh không
+  // còn thì null.
+  async compare(base, head) {
     const res = await this.#call('GET', `/compare/${encodePath(base)}...${encodePath(head)}`, undefined, [404]);
     if (res.status === 404) return null;
     const data = await res.json();
-    return (Array.isArray(data.files) ? data.files : []).map((f) => ({ filename: String(f.filename), status: String(f.status) }));
+    const files = (Array.isArray(data.files) ? data.files : []).map((f) => ({ filename: String(f.filename), status: String(f.status) }));
+    return { files, behindBy: Number(data.behind_by) || 0 };
+  }
+
+  async changedFiles(base, head) {
+    return (await this.compare(base, head))?.files ?? null;
   }
 
   // PR theo số: trạng thái, nhánh, sha đầu nhánh.
@@ -221,11 +227,11 @@ export class GitHub {
     await this.#call('PATCH', `/pulls/${encodeURIComponent(String(number))}`, { state: 'closed' });
   }
 
-  // Mọi mục tài liệu trên nhánh so với nhánh chính (đợt gửi có nhiều mục). Nhánh không còn thì null.
+  // Mọi mục tài liệu trên nhánh so với nhánh chính (đợt gửi có nhiều mục), kèm behindBy. Nhánh không còn thì null.
   async branchItems(base, head, itemPattern) {
-    const files = await this.changedFiles(base, head);
-    if (files === null) return null;
-    return files.filter((f) => itemPattern.test(f.filename) && f.status !== 'removed').map((f) => f.filename).sort();
+    const cmp = await this.compare(base, head);
+    if (cmp === null) return null;
+    return { items: cmp.files.filter((f) => itemPattern.test(f.filename) && f.status !== 'removed').map((f) => f.filename).sort(), behindBy: cmp.behindBy };
   }
 
   async addLabels(number, labels) {
