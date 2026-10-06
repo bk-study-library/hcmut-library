@@ -319,3 +319,15 @@ describe('môn mới gửi kèm bài', () => {
     expect(validateSubmission({ ...nc, newCourseCode: '' }, pdf, nctx).errors.newCourseCode).toBeTruthy();
   });
 });
+
+describe('ô bắt buộc theo loại (policy.typeFields)', () => {
+  const p = { ...policy, openTypes: [...policy.openTypes, 'exam-past'], typeFields: { 'exam-past': { required: ['term', 'examKind'] } } };
+  it('đề thi thiếu học kỳ và loại kiểm tra: lỗi đúng ô; đủ thì qua; loại khác không bắt buộc', () => {
+    const exam = { ...base, type: 'exam-past', title: 'Đề giữa kỳ' };
+    const bad = validateSubmission(exam, pdf, { policy: p, courses });
+    expect(bad.ok).toBe(false);
+    expect(Object.keys(bad.errors).sort()).toEqual(['examKind', 'term']);
+    expect(validateSubmission({ ...exam, term: 'HK251', examKind: 'gk' }, pdf, { policy: p, courses }).ok).toBe(true);
+    expect(validateSubmission(base, pdf, { policy: p, courses }).ok).toBe(true);
+  });
+});

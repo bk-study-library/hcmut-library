@@ -34,6 +34,8 @@ const MESSAGES = {
   term: 'Học kỳ không hợp lệ. Dùng dạng HK251.',
   chapter: 'Chương không hợp lệ. Dùng số hoặc chữ không dấu, ví dụ 3 hay 3.2.',
   examKind: 'Loại kiểm tra không hợp lệ. Chọn trong danh sách.',
+  // Ô bắt buộc theo loại tài liệu (policy.typeFields).
+  required: { term: 'Đề thi cần học kỳ, ví dụ HK251.', examKind: 'Chọn giữa kỳ, cuối kỳ hay loại kiểm tra khác.', chapter: 'Cần ghi chương.' },
   teacher: (max) => `Tên giảng viên quá dài. Rút xuống tối đa ${max} ký tự.`,
   displayName: (max) => `Tên hiển thị quá dài. Rút xuống tối đa ${max} ký tự.`,
   bookFile: 'Không nhận file cho sách tham khảo. Sách chỉ ghi tên, hãy bỏ file đi.',
@@ -229,6 +231,8 @@ export function validateSubmission(fields, file, ctx) {
   if (chapter && !(chapter.length <= lim.chapterMax && CHAPTER_PATTERN.test(chapter))) errors.chapter = MESSAGES.chapter;
   const examKind = val(fields, 'examKind');
   if (examKind && !lim.examKinds.includes(examKind)) errors.examKind = MESSAGES.examKind;
+  // Ô bắt buộc theo loại tài liệu (catalog/policy.json, typeFields), ví dụ đề thi cần học kỳ và loại kiểm tra.
+  for (const k of policy.typeFields?.[type]?.required || []) if (!val(fields, k) && !errors[k]) errors[k] = MESSAGES.required[k] || 'Thiếu thông tin bắt buộc.';
   if (val(fields, 'teacher').length > lim.teacherMax) errors.teacher = MESSAGES.teacher(lim.teacherMax);
   if (val(fields, 'displayName').length > lim.displayNameMax) errors.displayName = MESSAGES.displayName(lim.displayNameMax);
 

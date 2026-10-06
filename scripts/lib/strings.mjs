@@ -199,6 +199,8 @@ export const S = {
       confirm: 'Đánh dấu cả ba ô xác nhận.',
       busy: 'Đang gửi.',
       uploading: 'Đang tải lên',
+      optional: '(không bắt buộc)',
+      required: { term: 'Đề thi cần học kỳ, ví dụ HK251.', examKind: 'Chọn giữa kỳ, cuối kỳ hay loại kiểm tra khác.', chapter: 'Cần ghi chương.' },
       send: 'Gửi tài liệu',
       failed: 'Chưa gửi được. Thử lại sau ít phút.',
       done: 'Đã nhận tài liệu. Mã bài của bạn là',

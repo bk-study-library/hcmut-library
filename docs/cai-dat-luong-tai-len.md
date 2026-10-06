@@ -275,6 +275,22 @@ Quyết định ghi ở `review/<mã bài>.json` trong bucket quarantine, gồm 
 
 Form duyệt chỉ nhận POST có `Origin` là chính Worker (chống trang khác gửi form thay người duyệt đang đăng nhập). Duyệt tay trên GitHub (comment, approve, merge) vẫn dùng được như trước.
 
+### 8.8. Nạp riêng cho chủ dự án (`POST /xem-duyet/nap`)
+
+Dùng khi người gửi nhắn riêng tài liệu cho chủ dự án. Route nằm dưới `/xem-duyet` nên ứng dụng Access ở mục 8.4 chặn trước; web không có link nào tới đây. Khác form công khai: không có Turnstile, không giới hạn theo IP; còn lại giống hệt (`worker/src/routes/intake.mjs` gọi `handleSubmit`): cùng phiếu, cùng phần kiểm, bot mở PR, file qua `kiem-file`, rồi phân loại tự động như mọi bài.
+
+Cho script dùng (không qua trình duyệt) cần một service token:
+
+1. Zero Trust > **Access** > **Service Auth** > **Service Tokens** > **Create Service Token**, đặt tên (ví dụ `nap-tai-lieu`), thời hạn ngắn. Ghi lại Client ID và Client Secret (chỉ hiện một lần; không gửi qua chat).
+2. Ứng dụng `xem-file-cho-duyet` > **Policies** > **Add a policy**: Action **Service Auth**, Include **Service Token** chọn token vừa tạo.
+3. Gọi với hai header `CF-Access-Client-Id` và `CF-Access-Client-Secret`. Thân request là multipart giống form Gửi tài liệu (các ô `course`, `type`, `title`, `license`, `confirm-own`, `confirm-license`, `confirm-not-book`, `file`, và ô theo loại như `term`, `examKind`), không cần `cf-turnstile-response`:
+
+```bash
+curl -sS -X POST https://upload.xerozsoft.com/xem-duyet/nap -H "CF-Access-Client-Id: $CF_ID" -H "CF-Access-Client-Secret: $CF_SECRET" -F course=AS1003 -F type=lecture-slides -F "title=Slide chương 8" -F license=CC-BY-SA-4.0 -F confirm-own=on -F confirm-license=on -F confirm-not-book=on -F "file=@chuong-8.pdf"
+```
+
+Mỗi request tối đa 10 file (lặp `-F title-0=... -F file=@...`), tổng tới `directMaxBytes` (90 MB); file lớn hơn thì tải theo phần như form (`site-src/assets/upload-chunks.js`). Dùng xong thì xóa service token (hay bỏ policy) để đóng đường này.
+
 ## Chạy thử (repo private)
 
 GitHub Pages không chạy cho repo private ở gói Free, nên khi repo còn private bạn dựng web và mở trên máy:
