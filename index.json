@@ -7,7 +7,7 @@
     "courses": 3796,
     "programs": 838,
     "majors": 140,
-    "items": 36
+    "items": 48
   },
   "faculties": [
     {
@@ -24563,6 +24563,30 @@
               ]
             },
             {
+              "id": "slide-chuong-10-dong-luc-hoc-diem-phuong-trinh-vi-phan",
+              "course": "AS1003",
+              "type": "lecture-slides",
+              "title": "Slide chương 10: Động lực học điểm - phương trình vi phân chuyển động - thầy Nguyễn Thái Hiền",
+              "lang": "vi",
+              "license": "CC-BY-SA-4.0",
+              "origin": "self-made",
+              "added": "2026-10-06",
+              "removed": false,
+              "description": "Slide phần động học và động lực học Cơ lý thuyết của thầy Nguyễn Thái Hiền: chương 8 (song phẳng), 9 (chuyển động phức hợp của điểm), 10 (phương trình vi phân chuyển động), 11 (nguyên lý D'Alembert), 12 (các định lý tổng quát động lực học), 13 (nguyên lý di chuyển khả dĩ), 15 (một số phương trình cơ học). Có mục tiêu chương và ví dụ giải.",
+              "teacher": "Nguyễn Thái Hiền",
+              "files": [
+                {
+                  "name": "AS1003_lecture-slides_slide-chuong-10-dong-luc-hoc-diem-phuong-trinh-vi-phan.pdf",
+                  "size": 3027767,
+                  "sha256": "a5e07023df552bd8f2d85241f31f212f9190f0c2a73a7b6f6e25376ad3b61878",
+                  "mime": "application/pdf",
+                  "quarantine": "clean/vc3DJpC5Ih/AS1003_lecture-slides_slide-chuong-10-dong-luc-hoc-diem-phuong-trinh-vi-phan.pdf",
+                  "uploadSha256": "7868af46d834754e31b070a908fb920fee1ccbf68fc9b78b182a94ecdafc23bb",
+                  "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_lecture-slides_slide-chuong-10-dong-luc-hoc-diem-phuong-trinh-vi-phan.pdf"
+                }
+              ]
+            },
+            {
               "id": "slide-chuong-11-dong-luc-hoc-chat-diem-thay-nguyen-huu-hao",
               "course": "AS1003",
               "type": "lecture-slides",
@@ -24583,6 +24607,30 @@
                   "quarantine": "clean/GSO7UgqHog/AS1003_lecture-slides_slide-chuong-11-dong-luc-hoc-chat-diem-thay-nguyen-huu-hao.pdf",
                   "uploadSha256": "828fb8a3c67bdbe94b87032d66f2a4853cd61de1cea6cdbc5b8e42920dd34685",
                   "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_lecture-slides_slide-chuong-11-dong-luc-hoc-chat-diem-thay-nguyen-huu-hao.pdf"
+                }
+              ]
+            },
+            {
+              "id": "slide-chuong-11-nguyen-ly-d-alembert-thay-nguyen-thai-hien",
+              "course": "AS1003",
+              "type": "lecture-slides",
+              "title": "Slide chương 11: Nguyên lý D'Alembert - thầy Nguyễn Thái Hiền",
+              "lang": "vi",
+              "license": "CC-BY-SA-4.0",
+              "origin": "self-made",
+              "added": "2026-10-06",
+              "removed": false,
+              "description": "Slide phần động học và động lực học Cơ lý thuyết của thầy Nguyễn Thái Hiền: chương 8 (song phẳng), 9 (chuyển động phức hợp của điểm), 10 (phương trình vi phân chuyển động), 11 (nguyên lý D'Alembert), 12 (các định lý tổng quát động lực học), 13 (nguyên lý di chuyển khả dĩ), 15 (một số phương trình cơ học). Có mục tiêu chương và ví dụ giải.",
+              "teacher": "Nguyễn Thái Hiền",
+              "files": [
+                {
+                  "name": "AS1003_lecture-slides_slide-chuong-11-nguyen-ly-d-alembert-thay-nguyen-thai-hien.pdf",
+                  "size": 3831109,
+                  "sha256": "69f43a9130826a561ea10ddc5bc81395865e4126350cdf135c7b7a32f34fe47a",
+                  "mime": "application/pdf",
+                  "quarantine": "clean/vc3DJpC5Ih/AS1003_lecture-slides_slide-chuong-11-nguyen-ly-d-alembert-thay-nguyen-thai-hien.pdf",
+                  "uploadSha256": "07a2dad11d49e369ffa71c59a5c2645ecba92aaec247073fbda48343b2a89fec",
+                  "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_lecture-slides_slide-chuong-11-nguyen-ly-d-alembert-thay-nguyen-thai-hien.pdf"
                 }
               ]
             },
@@ -24686,6 +24734,30 @@
               ]
             },
             {
+              "id": "slide-chuong-8-chuyen-dong-song-phang-cua-vat-ran-thay",
+              "course": "AS1003",
+              "type": "lecture-slides",
+              "title": "Slide chương 8: Chuyển động song phẳng của vật rắn - thầy Nguyễn Thái Hiền",
+              "lang": "vi",
+              "license": "CC-BY-SA-4.0",
+              "origin": "self-made",
+              "added": "2026-10-06",
+              "removed": false,
+              "description": "Slide phần động học và động lực học Cơ lý thuyết của thầy Nguyễn Thái Hiền: chương 8 (song phẳng), 9 (chuyển động phức hợp của điểm), 10 (phương trình vi phân chuyển động), 11 (nguyên lý D'Alembert), 12 (các định lý tổng quát động lực học), 13 (nguyên lý di chuyển khả dĩ), 15 (một số phương trình cơ học). Có mục tiêu chương và ví dụ giải.",
+              "teacher": "Nguyễn Thái Hiền",
+              "files": [
+                {
+                  "name": "AS1003_lecture-slides_slide-chuong-8-chuyen-dong-song-phang-cua-vat-ran-thay.pdf",
+                  "size": 4232939,
+                  "sha256": "c9a4e547ab128e34e319164b6790fd6f28b7b3eb0aee087eb68402677a2e5a83",
+                  "mime": "application/pdf",
+                  "quarantine": "clean/ixGAJtYGzX/AS1003_lecture-slides_slide-chuong-8-chuyen-dong-song-phang-cua-vat-ran-thay.pdf",
+                  "uploadSha256": "307739974c496bd55c0f7e859d7f483765a0b7193f7b62b1ba075c991ebff7a2",
+                  "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_lecture-slides_slide-chuong-8-chuyen-dong-song-phang-cua-vat-ran-thay.pdf"
+                }
+              ]
+            },
+            {
               "id": "slide-chuong-8-hai-chuyen-dong-co-ban-cua-vat-ran-thay",
               "course": "AS1003",
               "type": "lecture-slides",
@@ -24706,6 +24778,30 @@
                   "quarantine": "clean/FwL9ugvZ0s/AS1003_lecture-slides_slide-chuong-8-hai-chuyen-dong-co-ban-cua-vat-ran-thay.pdf",
                   "uploadSha256": "7d5305e145c14ad1c7748508d5472ae3e99fe1121733b397febcb0c851a086f3",
                   "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_lecture-slides_slide-chuong-8-hai-chuyen-dong-co-ban-cua-vat-ran-thay.pdf"
+                }
+              ]
+            },
+            {
+              "id": "slide-chuong-9-chuyen-dong-phuc-hop-cua-diem-thay-nguyen",
+              "course": "AS1003",
+              "type": "lecture-slides",
+              "title": "Slide chương 9: Chuyển động phức hợp của điểm - thầy Nguyễn Thái Hiền",
+              "lang": "vi",
+              "license": "CC-BY-SA-4.0",
+              "origin": "self-made",
+              "added": "2026-10-06",
+              "removed": false,
+              "description": "Slide phần động học và động lực học Cơ lý thuyết của thầy Nguyễn Thái Hiền: chương 8 (song phẳng), 9 (chuyển động phức hợp của điểm), 10 (phương trình vi phân chuyển động), 11 (nguyên lý D'Alembert), 12 (các định lý tổng quát động lực học), 13 (nguyên lý di chuyển khả dĩ), 15 (một số phương trình cơ học). Có mục tiêu chương và ví dụ giải.",
+              "teacher": "Nguyễn Thái Hiền",
+              "files": [
+                {
+                  "name": "AS1003_lecture-slides_slide-chuong-9-chuyen-dong-phuc-hop-cua-diem-thay-nguyen.pdf",
+                  "size": 3868682,
+                  "sha256": "71e3b4d19cd3380ee7f4f67b1611efec52dc496f9f33911d33040556c0f6ded7",
+                  "mime": "application/pdf",
+                  "quarantine": "clean/ixGAJtYGzX/AS1003_lecture-slides_slide-chuong-9-chuyen-dong-phuc-hop-cua-diem-thay-nguyen.pdf",
+                  "uploadSha256": "6ed3027d9ff8c2fbbac73eef45fc31e0ef113329631a54662b084dd2e551b2ef",
+                  "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_lecture-slides_slide-chuong-9-chuyen-dong-phuc-hop-cua-diem-thay-nguyen.pdf"
                 }
               ]
             },
@@ -51161,6 +51257,54 @@
           "updated": "2026-10-04",
           "items": [
             {
+              "id": "bai-giang-co-luu-chat-le-song-giang",
+              "course": "CI2003",
+              "type": "lecture-slides",
+              "title": "Bài giảng Cơ lưu chất - Lê Song Giang",
+              "lang": "vi",
+              "license": "CC-BY-SA-4.0",
+              "origin": "self-made",
+              "added": "2026-10-06",
+              "removed": false,
+              "description": "Bài giảng Cơ lưu chất (Fluid Mechanics) của giảng viên Khoa Kỹ thuật Xây dựng và Bộ môn Kỹ thuật Hàng không, ĐH Bách Khoa TP.HCM: tĩnh học lưu chất, động học, phương trình năng lượng, động lượng, dòng chảy trong ống, thế lưu.",
+              "teacher": "Lê Song Giang",
+              "files": [
+                {
+                  "name": "CI2003_lecture-slides_bai-giang-co-luu-chat-le-song-giang.pdf",
+                  "size": 7141087,
+                  "sha256": "95c0f7413ea053003bc4c8cb70b2cb63461be9d5be2bbac6315f8d1d1bdc9622",
+                  "mime": "application/pdf",
+                  "quarantine": "clean/jEjQHX2a3w/CI2003_lecture-slides_bai-giang-co-luu-chat-le-song-giang.pdf",
+                  "uploadSha256": "61a90eca7a48a466e37a4085949ca2638531a63e6761a67541878ad628d61cfd",
+                  "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/CI2003_lecture-slides_bai-giang-co-luu-chat-le-song-giang.pdf"
+                }
+              ]
+            },
+            {
+              "id": "bai-giang-co-luu-chat-ly-hung-anh",
+              "course": "CI2003",
+              "type": "lecture-slides",
+              "title": "Bài giảng Cơ lưu chất - Lý Hùng Anh",
+              "lang": "vi",
+              "license": "CC-BY-SA-4.0",
+              "origin": "self-made",
+              "added": "2026-10-06",
+              "removed": false,
+              "description": "Bài giảng Cơ lưu chất (Fluid Mechanics) của giảng viên Khoa Kỹ thuật Xây dựng và Bộ môn Kỹ thuật Hàng không, ĐH Bách Khoa TP.HCM: tĩnh học lưu chất, động học, phương trình năng lượng, động lượng, dòng chảy trong ống, thế lưu.",
+              "teacher": "Lý Hùng Anh",
+              "files": [
+                {
+                  "name": "CI2003_lecture-slides_bai-giang-co-luu-chat-ly-hung-anh.pdf",
+                  "size": 9596881,
+                  "sha256": "151186cebbd1742bf539aa155d6d193ea97ac531a75e3ecef9bf4349afe8b428",
+                  "mime": "application/pdf",
+                  "quarantine": "clean/oyB2Ckwaeq/CI2003_lecture-slides_bai-giang-co-luu-chat-ly-hung-anh.pdf",
+                  "uploadSha256": "ca30a65723c232ce12aa013a96e84159f249cf7d43bb728701efa197ffddbf60",
+                  "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/CI2003_lecture-slides_bai-giang-co-luu-chat-ly-hung-anh.pdf"
+                }
+              ]
+            },
+            {
               "id": "bai-giang-co-luu-chat-nguyen-thi-bay",
               "course": "CI2003",
               "type": "lecture-slides",
@@ -51181,6 +51325,155 @@
                   "quarantine": "clean/5H3aUrb4in/CI2003_lecture-slides_bai-giang-co-luu-chat-nguyen-thi-bay.pdf",
                   "uploadSha256": "fb5c7de74592459f9b96188cd624ce00aafdcb6c82498c3ffdfc312758998175",
                   "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/CI2003_lecture-slides_bai-giang-co-luu-chat-nguyen-thi-bay.pdf"
+                }
+              ]
+            },
+            {
+              "id": "bai-giang-co-luu-chat-vo-thi-tuyet-giang",
+              "course": "CI2003",
+              "type": "lecture-slides",
+              "title": "Bài giảng Cơ lưu chất - Võ Thị Tuyết Giang",
+              "lang": "vi",
+              "license": "CC-BY-SA-4.0",
+              "origin": "self-made",
+              "added": "2026-10-06",
+              "removed": false,
+              "description": "Bài giảng Cơ lưu chất (Fluid Mechanics) của giảng viên Khoa Kỹ thuật Xây dựng và Bộ môn Kỹ thuật Hàng không, ĐH Bách Khoa TP.HCM: tĩnh học lưu chất, động học, phương trình năng lượng, động lượng, dòng chảy trong ống, thế lưu.",
+              "teacher": "Võ Thị Tuyết Giang",
+              "files": [
+                {
+                  "name": "CI2003_lecture-slides_bai-giang-co-luu-chat-vo-thi-tuyet-giang.pdf",
+                  "size": 8228322,
+                  "sha256": "7ad74caca91975a1b46afd781e8101c59c6339b6911c00a9e8a0e1d750406524",
+                  "mime": "application/pdf",
+                  "quarantine": "clean/UFY3BJAAH9/CI2003_lecture-slides_bai-giang-co-luu-chat-vo-thi-tuyet-giang.pdf",
+                  "uploadSha256": "59955500d0ae183729961eab12da47c89f468b8f4ca783d49e21632a17695e7a",
+                  "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/CI2003_lecture-slides_bai-giang-co-luu-chat-vo-thi-tuyet-giang.pdf"
+                }
+              ]
+            },
+            {
+              "id": "de-cuoi-ky-ci2005-hk191",
+              "course": "CI2003",
+              "type": "exam-past",
+              "title": "Đề cuối kỳ CI2005 HK191",
+              "lang": "vi",
+              "license": "CC-BY-SA-4.0",
+              "origin": "self-made",
+              "added": "2026-10-06",
+              "removed": false,
+              "description": "Đề thi cuối kỳ Cơ lưu chất (CI2003) các học kỳ, bản scan hoặc PDF gốc. Một số đề có tên PGS.TS. Lê Song Giang (người phê duyệt hoặc chủ nhiệm bộ môn) và PGS.TS. Lê Văn Dực. Có thêm một đề CI2005 HK191 cùng nội dung môn.",
+              "term": "HK191",
+              "examKind": "ck",
+              "files": [
+                {
+                  "name": "CI2003_exam-past_de-cuoi-ky-ci2005-hk191_HK191.pdf",
+                  "size": 546272,
+                  "sha256": "c152ef9924217a62e120573b765f27f550e23023db5a83ab58af737f3eb3dca4",
+                  "mime": "application/pdf",
+                  "quarantine": "clean/6lahc8hciM/CI2003_exam-past_de-cuoi-ky-ci2005-hk191_HK191.pdf",
+                  "uploadSha256": "5e49d6e8cb94d59628451ea856fbf39ba8b2b937e40b4a16a435270377679646",
+                  "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/CI2003_exam-past_de-cuoi-ky-ci2005-hk191_HK191.pdf"
+                }
+              ]
+            },
+            {
+              "id": "de-cuoi-ky-co-luu-chat-hk181",
+              "course": "CI2003",
+              "type": "exam-past",
+              "title": "Đề cuối kỳ Cơ lưu chất HK181",
+              "lang": "vi",
+              "license": "CC-BY-SA-4.0",
+              "origin": "self-made",
+              "added": "2026-10-06",
+              "removed": false,
+              "description": "Đề thi cuối kỳ Cơ lưu chất (CI2003) các học kỳ, bản scan hoặc PDF gốc. Một số đề có tên PGS.TS. Lê Song Giang (người phê duyệt hoặc chủ nhiệm bộ môn) và PGS.TS. Lê Văn Dực. Có thêm một đề CI2005 HK191 cùng nội dung môn.",
+              "term": "HK181",
+              "examKind": "ck",
+              "files": [
+                {
+                  "name": "CI2003_exam-past_de-cuoi-ky-co-luu-chat-hk181_HK181.pdf",
+                  "size": 427001,
+                  "sha256": "dd2b68e725c9f0f1c7d7224d8f9a974457770068320b989f7bd023aadcc3e7ee",
+                  "mime": "application/pdf",
+                  "quarantine": "clean/qK0dneaFWv/CI2003_exam-past_de-cuoi-ky-co-luu-chat-hk181_HK181.pdf",
+                  "uploadSha256": "d4bcdd649405c8b6e30208a92f3b45026fea49fe90cb86b707ff537b211902ce",
+                  "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/CI2003_exam-past_de-cuoi-ky-co-luu-chat-hk181_HK181.pdf"
+                }
+              ]
+            },
+            {
+              "id": "de-cuoi-ky-co-luu-chat-hk191",
+              "course": "CI2003",
+              "type": "exam-past",
+              "title": "Đề cuối kỳ Cơ lưu chất HK191",
+              "lang": "vi",
+              "license": "CC-BY-SA-4.0",
+              "origin": "self-made",
+              "added": "2026-10-06",
+              "removed": false,
+              "description": "Đề thi cuối kỳ Cơ lưu chất (CI2003) các học kỳ, bản scan hoặc PDF gốc. Một số đề có tên PGS.TS. Lê Song Giang (người phê duyệt hoặc chủ nhiệm bộ môn) và PGS.TS. Lê Văn Dực. Có thêm một đề CI2005 HK191 cùng nội dung môn.",
+              "term": "HK191",
+              "examKind": "ck",
+              "files": [
+                {
+                  "name": "CI2003_exam-past_de-cuoi-ky-co-luu-chat-hk191_HK191.pdf",
+                  "size": 353782,
+                  "sha256": "e9e4292d719129b1746e0723e5e8372afc8fc0c34335a7b6f2e35793c192497d",
+                  "mime": "application/pdf",
+                  "quarantine": "clean/6lahc8hciM/CI2003_exam-past_de-cuoi-ky-co-luu-chat-hk191_HK191.pdf",
+                  "uploadSha256": "def80dd0aa72421f841aba65f61ae304f6f7ff8a64ffdb01c7ab9662a4649736",
+                  "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/CI2003_exam-past_de-cuoi-ky-co-luu-chat-hk191_HK191.pdf"
+                }
+              ]
+            },
+            {
+              "id": "de-cuoi-ky-co-luu-chat-hk192",
+              "course": "CI2003",
+              "type": "exam-past",
+              "title": "Đề cuối kỳ Cơ lưu chất HK192",
+              "lang": "vi",
+              "license": "CC-BY-SA-4.0",
+              "origin": "self-made",
+              "added": "2026-10-06",
+              "removed": false,
+              "description": "Đề thi cuối kỳ Cơ lưu chất (CI2003) các học kỳ, bản scan hoặc PDF gốc. Một số đề có tên PGS.TS. Lê Song Giang (người phê duyệt hoặc chủ nhiệm bộ môn) và PGS.TS. Lê Văn Dực. Có thêm một đề CI2005 HK191 cùng nội dung môn.",
+              "term": "HK192",
+              "examKind": "ck",
+              "files": [
+                {
+                  "name": "CI2003_exam-past_de-cuoi-ky-co-luu-chat-hk192_HK192.pdf",
+                  "size": 568615,
+                  "sha256": "1d70884f9d062a75ab8f503db57d9f2e51693652e5d035c242e6e4a76f0dd093",
+                  "mime": "application/pdf",
+                  "quarantine": "clean/s3My5t8RqS/CI2003_exam-past_de-cuoi-ky-co-luu-chat-hk192_HK192.pdf",
+                  "uploadSha256": "23afac1a98f72c8d1f528799375bc5102fd44ff0c81ace26b460f0b6fdd89f4f",
+                  "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/CI2003_exam-past_de-cuoi-ky-co-luu-chat-hk192_HK192.pdf"
+                }
+              ]
+            },
+            {
+              "id": "de-thi-hoc-ky-co-luu-chat-hk172-de-mau-co-dap-an",
+              "course": "CI2003",
+              "type": "exam-past",
+              "title": "Đề thi học kỳ Cơ lưu chất HK172 - đề mẫu có đáp án",
+              "lang": "vi",
+              "license": "CC-BY-SA-4.0",
+              "origin": "self-made",
+              "added": "2026-10-06",
+              "removed": false,
+              "description": "Đề thi cuối kỳ Cơ lưu chất (CI2003) các học kỳ, bản scan hoặc PDF gốc. Một số đề có tên PGS.TS. Lê Song Giang (người phê duyệt hoặc chủ nhiệm bộ môn) và PGS.TS. Lê Văn Dực. Có thêm một đề CI2005 HK191 cùng nội dung môn.",
+              "term": "HK172",
+              "examKind": "ck",
+              "files": [
+                {
+                  "name": "CI2003_exam-past_de-thi-hoc-ky-co-luu-chat-hk172-de-mau-co-dap-an_HK172.pdf",
+                  "size": 525397,
+                  "sha256": "d3558835da47c9e549fc2173e67c03f41a77bbf207de3cba3ba7e3ec242a567a",
+                  "mime": "application/pdf",
+                  "quarantine": "clean/Dz4QFAp82s/CI2003_exam-past_de-thi-hoc-ky-co-luu-chat-hk172-de-mau-co-dap-an_HK172.pdf",
+                  "uploadSha256": "5b19b23c7d5b33c0469038137417e1eafb80083f28eb3db490c81e76aaeb74b2",
+                  "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/CI2003_exam-past_de-thi-hoc-ky-co-luu-chat-hk172-de-mau-co-dap-an_HK172.pdf"
                 }
               ]
             }

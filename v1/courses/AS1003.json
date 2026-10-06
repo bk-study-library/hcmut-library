@@ -205,6 +205,29 @@
       ]
     },
     {
+      "id": "slide-chuong-10-dong-luc-hoc-diem-phuong-trinh-vi-phan",
+      "type": "lecture-slides",
+      "title": "Slide chương 10: Động lực học điểm - phương trình vi phân chuyển động - thầy Nguyễn Thái Hiền",
+      "description": "Slide phần động học và động lực học Cơ lý thuyết của thầy Nguyễn Thái Hiền: chương 8 (song phẳng), 9 (chuyển động phức hợp của điểm), 10 (phương trình vi phân chuyển động), 11 (nguyên lý D'Alembert), 12 (các định lý tổng quát động lực học), 13 (nguyên lý di chuyển khả dĩ), 15 (một số phương trình cơ học). Có mục tiêu chương và ví dụ giải.",
+      "lang": "vi",
+      "teacher": "Nguyễn Thái Hiền",
+      "license": "CC-BY-SA-4.0",
+      "origin": "self-made",
+      "added": "2026-10-06",
+      "updated": "2026-10-06",
+      "files": [
+        {
+          "name": "AS1003_lecture-slides_slide-chuong-10-dong-luc-hoc-diem-phuong-trinh-vi-phan.pdf",
+          "mime": "application/pdf",
+          "size": 3027767,
+          "sha256": "a5e07023df552bd8f2d85241f31f212f9190f0c2a73a7b6f6e25376ad3b61878",
+          "urls": [
+            "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_lecture-slides_slide-chuong-10-dong-luc-hoc-diem-phuong-trinh-vi-phan.pdf"
+          ]
+        }
+      ]
+    },
+    {
       "id": "slide-chuong-11-dong-luc-hoc-chat-diem-thay-nguyen-huu-hao",
       "type": "lecture-slides",
       "title": "Slide chương 11: Động lực học chất điểm - thầy Nguyễn Hữu Hào",
@@ -223,6 +246,29 @@
           "sha256": "f0b1ade74db0c6fddbde675e74a30d9c8e91b283a568eada85fe7f165a78a797",
           "urls": [
             "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_lecture-slides_slide-chuong-11-dong-luc-hoc-chat-diem-thay-nguyen-huu-hao.pdf"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "slide-chuong-11-nguyen-ly-d-alembert-thay-nguyen-thai-hien",
+      "type": "lecture-slides",
+      "title": "Slide chương 11: Nguyên lý D'Alembert - thầy Nguyễn Thái Hiền",
+      "description": "Slide phần động học và động lực học Cơ lý thuyết của thầy Nguyễn Thái Hiền: chương 8 (song phẳng), 9 (chuyển động phức hợp của điểm), 10 (phương trình vi phân chuyển động), 11 (nguyên lý D'Alembert), 12 (các định lý tổng quát động lực học), 13 (nguyên lý di chuyển khả dĩ), 15 (một số phương trình cơ học). Có mục tiêu chương và ví dụ giải.",
+      "lang": "vi",
+      "teacher": "Nguyễn Thái Hiền",
+      "license": "CC-BY-SA-4.0",
+      "origin": "self-made",
+      "added": "2026-10-06",
+      "updated": "2026-10-06",
+      "files": [
+        {
+          "name": "AS1003_lecture-slides_slide-chuong-11-nguyen-ly-d-alembert-thay-nguyen-thai-hien.pdf",
+          "mime": "application/pdf",
+          "size": 3831109,
+          "sha256": "69f43a9130826a561ea10ddc5bc81395865e4126350cdf135c7b7a32f34fe47a",
+          "urls": [
+            "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_lecture-slides_slide-chuong-11-nguyen-ly-d-alembert-thay-nguyen-thai-hien.pdf"
           ]
         }
       ]
@@ -323,6 +369,29 @@
       ]
     },
     {
+      "id": "slide-chuong-8-chuyen-dong-song-phang-cua-vat-ran-thay",
+      "type": "lecture-slides",
+      "title": "Slide chương 8: Chuyển động song phẳng của vật rắn - thầy Nguyễn Thái Hiền",
+      "description": "Slide phần động học và động lực học Cơ lý thuyết của thầy Nguyễn Thái Hiền: chương 8 (song phẳng), 9 (chuyển động phức hợp của điểm), 10 (phương trình vi phân chuyển động), 11 (nguyên lý D'Alembert), 12 (các định lý tổng quát động lực học), 13 (nguyên lý di chuyển khả dĩ), 15 (một số phương trình cơ học). Có mục tiêu chương và ví dụ giải.",
+      "lang": "vi",
+      "teacher": "Nguyễn Thái Hiền",
+      "license": "CC-BY-SA-4.0",
+      "origin": "self-made",
+      "added": "2026-10-06",
+      "updated": "2026-10-06",
+      "files": [
+        {
+          "name": "AS1003_lecture-slides_slide-chuong-8-chuyen-dong-song-phang-cua-vat-ran-thay.pdf",
+          "mime": "application/pdf",
+          "size": 4232939,
+          "sha256": "c9a4e547ab128e34e319164b6790fd6f28b7b3eb0aee087eb68402677a2e5a83",
+          "urls": [
+            "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_lecture-slides_slide-chuong-8-chuyen-dong-song-phang-cua-vat-ran-thay.pdf"
+          ]
+        }
+      ]
+    },
+    {
       "id": "slide-chuong-8-hai-chuyen-dong-co-ban-cua-vat-ran-thay",
       "type": "lecture-slides",
       "title": "Slide chương 8: Hai chuyển động cơ bản của vật rắn - thầy Nguyễn Hữu Hào",
@@ -341,6 +410,29 @@
           "sha256": "84ebbd071fc8527a4181e8ebd283ca2fb85d32aac86d07a29f4f35c71ec1a32f",
           "urls": [
             "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_lecture-slides_slide-chuong-8-hai-chuyen-dong-co-ban-cua-vat-ran-thay.pdf"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "slide-chuong-9-chuyen-dong-phuc-hop-cua-diem-thay-nguyen",
+      "type": "lecture-slides",
+      "title": "Slide chương 9: Chuyển động phức hợp của điểm - thầy Nguyễn Thái Hiền",
+      "description": "Slide phần động học và động lực học Cơ lý thuyết của thầy Nguyễn Thái Hiền: chương 8 (song phẳng), 9 (chuyển động phức hợp của điểm), 10 (phương trình vi phân chuyển động), 11 (nguyên lý D'Alembert), 12 (các định lý tổng quát động lực học), 13 (nguyên lý di chuyển khả dĩ), 15 (một số phương trình cơ học). Có mục tiêu chương và ví dụ giải.",
+      "lang": "vi",
+      "teacher": "Nguyễn Thái Hiền",
+      "license": "CC-BY-SA-4.0",
+      "origin": "self-made",
+      "added": "2026-10-06",
+      "updated": "2026-10-06",
+      "files": [
+        {
+          "name": "AS1003_lecture-slides_slide-chuong-9-chuyen-dong-phuc-hop-cua-diem-thay-nguyen.pdf",
+          "mime": "application/pdf",
+          "size": 3868682,
+          "sha256": "71e3b4d19cd3380ee7f4f67b1611efec52dc496f9f33911d33040556c0f6ded7",
+          "urls": [
+            "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_lecture-slides_slide-chuong-9-chuyen-dong-phuc-hop-cua-diem-thay-nguyen.pdf"
           ]
         }
       ]
