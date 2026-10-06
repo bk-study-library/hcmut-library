@@ -25759,7 +25759,7 @@
             {
               "id": "bai-tap-ky-hieu-chi-so-ly-thuyet-dan-hoi",
               "course": "AS2011",
-              "type": "lecture-slides",
+              "type": "exercise-solution",
               "title": "Bài tập ký hiệu chỉ số (Lý thuyết đàn hồi)",
               "lang": "vi",
               "license": "CC-BY-SA-4.0",
@@ -25777,9 +25777,6 @@
                   "uploadSha256": "f62397b426e89365044dfa59bd7669c5974a6e2e48319ac5e07da046c26fbf8b",
                   "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS2011_lecture-slides_bai-tap-ky-hieu-chi-so-ly-thuyet-dan-hoi.pdf"
                 }
-              ],
-              "unclassified": [
-                "pii"
               ]
             },
             {
