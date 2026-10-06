@@ -3,7 +3,8 @@
 // site-src/assets/upload-chunks.js của form: trình duyệt hay script đều tính sha256 rồi gửi file theo phần, Worker chỉ
 // chuyển dữ liệu vào R2 (gói Worker miễn phí giới hạn 10 ms CPU mỗi request). Xem docs/cai-dat-luong-tai-len.md mục 8.8.
 //
-//   CF_ACCESS_CLIENT_ID=... CF_ACCESS_CLIENT_SECRET=... node scripts/upload/nap.mjs --bai bai.json [--worker https://upload.xerozsoft.com]
+//   cloudflared access login https://upload.xerozsoft.com/xem-duyet/nap      (một lần mỗi phiên)
+//   node scripts/upload/nap.mjs --bai bai.json [--worker https://upload.xerozsoft.com]
 //
 // bai.json (một bài, một môn, tối đa batchMaxFiles file):
 //   { "course": "AS1003", "type": "lecture-slides", "license": "CC-BY-SA-4.0", "teacher": "...", "term": "HK251",
@@ -12,6 +13,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import vm from 'node:vm';
+import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import { TOOL_ROOT } from '../lib/repo.mjs';
 import { loadPolicy } from '../lib/policy.mjs';
@@ -31,13 +33,22 @@ export function intakeFields(bai) {
   return fields;
 }
 
+// Xác thực với Access: phiên đăng nhập của chính người nạp (`cloudflared access login <url>`: đăng nhập GitHub trên
+// trình duyệt, token hết hạn theo phiên Access, không có secret lâu dài), hay service token nếu có biến môi trường.
+function accessHeaders(url) {
+  const { CF_ACCESS_CLIENT_ID: id, CF_ACCESS_CLIENT_SECRET: secret } = process.env;
+  if (id && secret) return { 'CF-Access-Client-Id': id, 'CF-Access-Client-Secret': secret };
+  const r = spawnSync('cloudflared', ['access', 'token', `-app=${url}`], { encoding: 'utf8' });
+  const token = r.status === 0 ? r.stdout.trim() : '';
+  if (!token) throw new Error(`Chưa đăng nhập Access: chạy "cloudflared access login ${url}" rồi chạy lại.`);
+  return { 'cf-access-token': token };
+}
+
 async function main(argv) {
   const a = { worker: 'https://upload.xerozsoft.com' };
   for (let i = 0; i < argv.length; i += 2) a[argv[i].replace(/^--/, '')] = argv[i + 1];
   if (!a.bai) throw new Error('Cần --bai <file JSON của bài>.');
-  const id = process.env.CF_ACCESS_CLIENT_ID;
-  const secret = process.env.CF_ACCESS_CLIENT_SECRET;
-  if (!id || !secret) throw new Error('Cần biến môi trường CF_ACCESS_CLIENT_ID và CF_ACCESS_CLIENT_SECRET (service token của Access).');
+  const headers = accessHeaders(`${a.worker}/xem-duyet/nap`);
   const bai = JSON.parse(fs.readFileSync(a.bai, 'utf8'));
   const dir = path.dirname(path.resolve(a.bai));
   const files = await Promise.all(bai.files.map(async (f) => new File([await fs.openAsBlob(path.resolve(dir, f.path))], path.basename(f.path))));
@@ -45,7 +56,7 @@ async function main(argv) {
   const ctx = vm.createContext({ fetch, FormData, File, Blob, btoa, Promise, Uint8Array, Uint32Array, Math, encodeURIComponent, JSON, String });
   vm.runInContext(fs.readFileSync(path.join(TOOL_ROOT, 'site-src', 'assets', 'upload-chunks.js'), 'utf8'), ctx);
   const res = await ctx.BkChunks.upload(`${a.worker}/xem-duyet/nap`, intakeFields(bai), files, loadPolicy(TOOL_ROOT).uploadPartBytes, (p) => process.stderr.write(`\r${Math.round(p * 100)}%`), {
-    headers: { 'CF-Access-Client-Id': id, 'CF-Access-Client-Secret': secret },
+    headers,
     uploadBase: a.worker,
   });
   process.stderr.write('\n');
