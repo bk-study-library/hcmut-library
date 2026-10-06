@@ -15,11 +15,12 @@
   "files": [
     {
       "name": "CI2003_exam-past_de-cuoi-ky-ci2005-hk191_HK191.pdf",
-      "size": 536878,
-      "sha256": "5e49d6e8cb94d59628451ea856fbf39ba8b2b937e40b4a16a435270377679646",
+      "size": 546272,
+      "sha256": "c152ef9924217a62e120573b765f27f550e23023db5a83ab58af737f3eb3dca4",
       "mime": "application/pdf",
-      "quarantine": "pending/6lahc8hciM/CI2003_exam-past_de-cuoi-ky-ci2005-hk191_HK191.pdf",
-      "uploadSha256": "5e49d6e8cb94d59628451ea856fbf39ba8b2b937e40b4a16a435270377679646"
+      "quarantine": "clean/6lahc8hciM/CI2003_exam-past_de-cuoi-ky-ci2005-hk191_HK191.pdf",
+      "uploadSha256": "5e49d6e8cb94d59628451ea856fbf39ba8b2b937e40b4a16a435270377679646",
+      "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/CI2003_exam-past_de-cuoi-ky-ci2005-hk191_HK191.pdf"
     }
   ]
 }
