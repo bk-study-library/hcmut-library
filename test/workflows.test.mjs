@@ -94,3 +94,13 @@ test('kiem-file: gắn nhãn can-xem-tay khi apply báo manual', () => {
   const text = read('kiem-file.yml');
   assert.match(text, /if: always\(\) && steps\.apply\.outputs\.manual == 'true'[\s\S]*?labels\[\]=can-xem-tay/);
 });
+
+test('cap-nhat-pr: chỉ chạy mã của main, chỉ gộp branch upload/<mã> của bot đã kiểm xong', () => {
+  const text = read('cap-nhat-pr.yml');
+  assert.doesNotMatch(text, /pull_request/);
+  assert.equal([...text.matchAll(/persist-credentials: false/g)].length, 2);
+  assert.match(text, /\^upload\/\[A-Za-z0-9\]\{10\}\$/);
+  assert.match(text, /\.user\.login == env\.BOT/);
+  assert.match(text, /kiem-file:\*\) ;; \*\) continue ;;/);
+  assert.match(text, /bash "\$TRUSTED\/scripts\/upload\/sync-main\.sh"/);
+});

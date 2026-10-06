@@ -38,7 +38,7 @@ form web (site-src/assets/upload.js)
 | `site-src/assets/` | CSS, JS chạy trên trình duyệt | File `*-core.js` thuần, test được bằng Node |
 | `site-src/pages/` | Trang tĩnh (đóng góp, duyệt bài, gỡ tài liệu, form gửi) | |
 | `worker/` | Cloudflare Worker (upload.xerozsoft.com) | Test riêng: `cd worker && npm test` |
-| `.github/workflows/` | validate, pages, kiem-file, phat-hanh-file, don-kho | Luật an toàn có test `test/workflows.test.mjs` |
+| `.github/workflows/` | validate, pages, kiem-file, cap-nhat-pr, phat-hanh-file, don-kho | Luật an toàn có test `test/workflows.test.mjs` |
 | `docs/` | Tài liệu cho người duy trì | `v1.md` là hợp đồng API công khai |
 | `test/` | Test của site và script (`npm test`) | |
 
@@ -73,6 +73,8 @@ form web (site-src/assets/upload.js)
 | Phản hồi JSON, CORS, log lỗi; client GitHub App, danh mục | `worker/src/http.mjs`; `worker/src/deps.mjs` | |
 | Quét file, sanitize, comment kết quả | `scripts/upload/check.mjs` (lệnh), `sanitize.mjs`, `report.mjs` (bảng comment) | Workflow `kiem-file.yml` |
 | Phân loại tự động (đăng, Chưa phân loại, cần người duyệt), tự merge, gọi người duyệt | `scripts/upload/triage.mjs` (quy tắc), ngưỡng ở `catalog/policy.json` (`triage`); `scripts/upload/check.mjs` (`triageItems`); bước `Tự merge khi check qua`, `Gọi người duyệt` trong `kiem-file.yml`; trang `scripts/site/pages/unclassified.mjs` | Người duyệt theo thư mục môn trong `.github/CODEOWNERS` (`scripts/upload/reviewers.mjs`, gọi ở `check.mjs` `courseReviewers`); file bot ghi không có code owner để GitHub không tự gọi |
+| Nhiều bài cùng chờ: gộp main vào branch bài đã kiểm, dựng lại generated file | `scripts/upload/sync-main.sh`, workflow `cap-nhat-pr.yml`; push của bot qua `scripts/upload/app-git.sh` | Xung đột ở item (trùng đường dẫn) thì để người duyệt |
+| Id item không trùng bài đang chờ | `worker/src/routes/submit.mjs` (`freeId`, khóa `id/<môn>/<id>` trong R2) | Tên file theo id |
 | Đưa file lên Release, dọn kho | `scripts/upload/publish.mjs` | Workflow `phat-hanh-file.yml`, `don-kho.yml` |
 | Nguồn dữ liệu chính thức, thứ tự nhập | `docs/nguon-du-lieu.md` | Chương trình đã gắn ngành thuộc `import-ctdt`, `import-research` không ghi đè |
 | Cách ghi file môn, chương trình, ngành khi nhập (thứ tự khóa, ngày cập nhật) | `scripts/lib/catalog-write.mjs`: `courseRecord`, `writeKeepDate`, `*_ORDER` | Dùng chung cho cả ba script nhập |
