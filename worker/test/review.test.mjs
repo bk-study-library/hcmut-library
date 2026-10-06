@@ -53,7 +53,7 @@ const PATH_A = 'courses/MT1005/items/chuong-1.json';
 const PATH_B = 'courses/MT1005/items/chuong-2.json';
 
 // GitHub giả có trạng thái: PR số 7 của branch upload/<mã> với hai mục; ghi lại mọi lệnh ghi.
-function fakeGitHub({ state = 'open', runs = [{ name: 'validate', status: 'completed', conclusion: 'success' }], message = 'kiem-file: MT1005', items = { [PATH_A]: item('chuong-1', 'a.pdf', SHA_A), [PATH_B]: item('chuong-2', 'b.pdf', SHA_B) } } = {}) {
+function fakeGitHub({ state = 'open', runs = [{ name: 'validate', status: 'completed', conclusion: 'success' }], message = 'kiem-file: MT1005', behind = 0, items = { [PATH_A]: item('chuong-1', 'a.pdf', SHA_A), [PATH_B]: item('chuong-2', 'b.pdf', SHA_B) } } = {}) {
   const files = { ...items };
   const writes = [];
   const fn = async (url, init = {}) => {
@@ -69,7 +69,7 @@ function fakeGitHub({ state = 'open', runs = [{ name: 'validate', status: 'compl
     if (p === `/repos/${REPO}/commits/head1/check-runs`) return json({ check_runs: runs });
     if (p === `/repos/${REPO}/commits/head1`) return json({ commit: { message } });
     if (p === `/repos/${REPO}/git/commits/head1`) return json({ tree: { sha: "tree1" } });
-    if (p === `/repos/${REPO}/compare/main...upload/${CODE}`) return json({ files: Object.keys(files).map((filename) => ({ filename, status: 'added' })) });
+    if (p === `/repos/${REPO}/compare/main...upload/${CODE}`) return json({ behind_by: behind, files: Object.keys(files).map((filename) => ({ filename, status: 'added' })) });
     const content = /^\/repos\/own\/lib\/contents\/(courses\/.+)$/.exec(p);
     if (content) {
       const path = decodeURIComponent(content[1]);
@@ -260,12 +260,13 @@ describe('POST /duyet-tiep', () => {
     expect((await stored()).waiting).toBe(false);
   });
 
-  it('commit đầu branch không phải của kiem-file, mục trên branch khác danh sách duyệt, check chưa qua: không gộp', async () => {
+  it('commit đầu branch không phải của kiem-file, mục trên branch khác danh sách duyệt, check chưa qua, nhánh chưa gồm main: không gộp', async () => {
     await waiting();
     for (const fetch of [
       fakeGitHub({ items: onlyA, message: 'review: bỏ chuong-2' }),
       fakeGitHub(),
       fakeGitHub({ items: onlyA, runs: [{ status: 'in_progress', conclusion: null }] }),
+      fakeGitHub({ items: onlyA, behind: 1 }),
     ]) {
       expect(await (await cont(fetch, { code: CODE })).json()).toEqual({ ok: true, merged: false });
       expect(fetch.writes).toEqual([]);
