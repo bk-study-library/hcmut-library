@@ -1,0 +1,23 @@
+{
+  "$schema": "../../../schema/item.schema.json",
+  "id": "on-giua-ky-ktlt-co-ky-thuat-bai-tap-tu-luyen-va-code",
+  "course": "AS2003",
+  "type": "exercise-solution",
+  "title": "Ôn giữa kỳ KTLT Cơ kỹ thuật - bài tập tự luyện và code",
+  "lang": "vi",
+  "license": "CC-BY-SA-4.0",
+  "origin": "self-made",
+  "added": "2026-10-06",
+  "removed": false,
+  "description": "Bài tập Python môn KTLT Cơ kỹ thuật do sinh viên làm: bài tập trên lớp năm 2025 (đề và code theo từng buổi, có bài khảo sát dầm cantilever, sắp xếp nổi bọt), code ôn giữa kỳ và cuối kỳ, bài tập lớp tài năng.",
+  "files": [
+    {
+      "name": "AS2003_exercise-solution_on-giua-ky-ktlt-co-ky-thuat-bai-tap-tu-luyen-va-code.pdf",
+      "size": 1029929,
+      "sha256": "f74a62554e6544d19cdab2acedc85f919e69c617c7bbe92e8cd094f3f347713e",
+      "mime": "application/pdf",
+      "quarantine": "pending/MSqXduDhXb/AS2003_exercise-solution_on-giua-ky-ktlt-co-ky-thuat-bai-tap-tu-luyen-va-code.pdf",
+      "uploadSha256": "f74a62554e6544d19cdab2acedc85f919e69c617c7bbe92e8cd094f3f347713e"
+    }
+  ]
+}
