@@ -4,6 +4,7 @@ import { handlePreview } from './preview.mjs';
 import { CODE, failedPage, methodPage, notFoundPage } from './view.mjs';
 import { corsHeaders, reply, logFailure, MESSAGES } from './http.mjs';
 import { handleSubmit } from './routes/submit.mjs';
+import { handleUploadPart, handleUploadDone } from './routes/upload.mjs';
 import { handleReview, handleContinue } from './routes/review.mjs';
 import { handleOwner } from './routes/owner.mjs';
 import { handleNotify } from './routes/notify.mjs';
@@ -15,6 +16,9 @@ const REVIEW_PATH = /^\/xem-duyet\/([^/]+)(?:(\/file)(?:\/([A-Za-z0-9_-][A-Za-z0
 const OWNER_PATH = /^\/xem\/([^/]+)(\/file)?$/;
 
 const PREVIEW_PATH = '/xem-truoc';
+
+// Tải file lớn theo phần: /submit/<mã>/<i>/<phần> hay /submit/<mã>/xong.
+const UPLOAD_PATH = /^\/submit\/([A-Za-z0-9]{10})\/(?:([0-9]{1,2})\/([0-9]{1,5})|xong)$/;
 
 async function handleView(req, env, deps, path) {
   const review = REVIEW_PATH.exec(path);
@@ -47,21 +51,25 @@ export function createHandler(deps = {}) {
       if (url.pathname === '/bao-ket-qua') return handleNotify(req, env, d);
       if (url.pathname === '/duyet-tiep') return handleContinue(req, env, d);
       if (REVIEW_PATH.test(url.pathname) || OWNER_PATH.test(url.pathname)) return handleView(req, env, d, url.pathname);
-      if (url.pathname !== '/submit') return reply(404, { ok: false, error: MESSAGES.notFound }, cors);
+      const up = UPLOAD_PATH.exec(url.pathname);
+      if (url.pathname !== '/submit' && !up) return reply(404, { ok: false, error: MESSAGES.notFound }, cors);
       if (req.method === 'OPTIONS') {
         return new Response(null, {
           status: 204,
           headers: {
             ...cors,
-            'Access-Control-Allow-Methods': 'POST, OPTIONS',
+            'Access-Control-Allow-Methods': 'POST, PUT, OPTIONS',
             'Access-Control-Allow-Headers': 'Content-Type',
             'Access-Control-Max-Age': '86400',
           },
         });
       }
-      if (req.method !== 'POST') return reply(405, { ok: false, error: MESSAGES.method }, cors, { Allow: 'POST, OPTIONS' });
+      // /submit/<mã>/<i>/<phần> (PUT) và /submit/<mã>/xong (POST): tải file lớn theo phần (routes/upload.mjs).
+      const method = up ? (up[2] ? 'PUT' : 'POST') : 'POST';
+      if (req.method !== method) return reply(405, { ok: false, error: MESSAGES.method }, cors, { Allow: `${method}, OPTIONS` });
       // Lỗi không lường trước vẫn trả JSON kèm CORS để form hiện được thông báo.
       try {
+        if (up) return await (up[2] ? handleUploadPart(req, env, d, cors, up[1], Number(up[2]), Number(up[3])) : handleUploadDone(req, env, d, cors, up[1]));
         return await handleSubmit(req, env, d, cors);
       } catch (err) {
         logFailure('unexpected', err);

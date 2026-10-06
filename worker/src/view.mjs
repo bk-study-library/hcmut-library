@@ -161,6 +161,11 @@ export async function newToken(random) {
   return { token, hash: await sha256Hex(token) };
 }
 
+// Mã bí mật k khớp sha256 đã lưu (so thời gian không đổi).
+export async function tokenMatches(k, hash) {
+  return typeof k === 'string' && TOKEN.test(k) && sameText(await sha256Hex(k), String(hash));
+}
+
 // Đọc token/<mã>: trả metadata (môn) khi mã bí mật đúng, null khi sai, thiếu hay không có bài.
 export async function checkToken(r2, code, k) {
   if (!CODE.test(code) || typeof k !== 'string' || !TOKEN.test(k)) return null;

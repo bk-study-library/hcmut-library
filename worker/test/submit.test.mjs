@@ -403,10 +403,10 @@ describe('POST /submit', () => {
     expect((await r2Keys()).some((k) => k.startsWith('dem/'))).toBe(false);
   });
 
-  it('Content-Length vượt tổng của đợt gửi (51 MB): 413 mà không đọc body', async () => {
+  it('Content-Length vượt giới hạn gửi thẳng (91 MB): 413 mà không đọc body', async () => {
     let pulled = 0;
     const stream = new ReadableStream({ pull(c) { pulled += 1; c.enqueue(new Uint8Array(10)); c.close(); } }, { highWaterMark: 0 });
-    const req = post(stream, { 'Content-Type': 'multipart/form-data; boundary=x', 'Content-Length': String(51 * 1024 * 1024) });
+    const req = post(stream, { 'Content-Type': 'multipart/form-data; boundary=x', 'Content-Length': String(91 * 1024 * 1024) });
     const { res, body } = await run(req);
     expect(res.status).toBe(413);
     expect(body.ok).toBe(false);
@@ -414,8 +414,8 @@ describe('POST /submit', () => {
     expect(req.bodyUsed).toBe(false);
   });
 
-  it('body thật 51 MB với Content-Length nhỏ: 413, kho rỗng', async () => {
-    const big = pdfBytes(51 * 1024 * 1024);
+  it('body thật 91 MB với Content-Length nhỏ: 413, kho rỗng', async () => {
+    const big = pdfBytes(91 * 1024 * 1024);
     const encoded = new Request('https://x/', { method: 'POST', body: form({}, big) });
     const type = encoded.headers.get('content-type');
     const raw = new Uint8Array(await encoded.arrayBuffer());
@@ -907,5 +907,56 @@ describe('đợt gửi nhiều file', () => {
     const upd = await run(post(batchForm(2, { replaces: 'MT1005/bang-cong-thuc' })));
     expect(upd.body.errors).toHaveProperty('replaces');
     expect(await r2Keys()).toEqual([]);
+  });
+});
+
+describe('tải file lớn theo phần', () => {
+  const b64 = (bytes) => btoa(String.fromCharCode(...bytes));
+  async function start(file, over = {}) {
+    const fd = form({ upload: 'chunked', 'file-count': '1', 'file-name-0': UPLOAD_NAME, 'file-size-0': String(file.length), 'file-sha256-0': await sha256Hex(file), 'file-head-0': b64(file.subarray(0, 16)), ...over }, null);
+    return run(post(fd));
+  }
+  const put = (code, k, part, bytes) =>
+    new Request(`https://worker.example/submit/${code}/0/${part}?k=${k}`, { method: 'PUT', body: bytes, headers: { Origin: SITE, 'Content-Length': String(bytes.length) } });
+  const done = (code, k, parts) =>
+    new Request(`https://worker.example/submit/${code}/xong?k=${k}`, { method: 'POST', body: JSON.stringify({ parts: [parts] }), headers: { Origin: SITE, 'Content-Type': 'application/json' } });
+
+  it('bắt đầu, gửi phần, xong: file trong kho đúng từng byte, mở PR, xóa phiên', async () => {
+    const file = pdfBytes(5000);
+    const { res, body } = await start(file);
+    expect(res.status).toBe(200);
+    const { code, upload } = body;
+    expect(upload.files).toEqual([{ index: 0, parts: 1 }]);
+    const fetch = fakeFetch();
+    const handler = createHandler({ fetch });
+    const p = await (await handler.fetch(put(code, upload.token, 1, file), makeEnv(), ctx())).json();
+    expect(p.ok).toBe(true);
+    const fin = await handler.fetch(done(code, upload.token, [{ partNumber: p.partNumber, etag: p.etag }]), makeEnv(), ctx());
+    expect(fin.status).toBe(201);
+    expect((await fin.json()).code).toBe(code);
+    const keys = await r2Keys();
+    const fileKey = keys.find((k) => k.startsWith(`pending/${code}/`));
+    expect(new Uint8Array(await (await env.QUARANTINE.get(fileKey)).arrayBuffer())).toEqual(file);
+    expect(keys).toContain(`sha/${await sha256Hex(file)}`);
+    expect(keys.some((k) => k.startsWith('upload/'))).toBe(false);
+  });
+
+  it('mã bí mật sai: 404; cỡ phần sai: 400; thiếu phần khi xong: 400 và dọn file', async () => {
+    const file = pdfBytes(5000, 3);
+    const { body } = await start(file);
+    const { code, upload } = body;
+    const handler = createHandler({ fetch: fakeFetch() });
+    const wrong = 'A'.repeat(43);
+    expect((await handler.fetch(put(code, wrong, 1, file), makeEnv(), ctx())).status).toBe(404);
+    expect((await handler.fetch(put(code, upload.token, 1, file.subarray(0, 100)), makeEnv(), ctx())).status).toBe(400);
+    const fin = await handler.fetch(done(code, upload.token, []), makeEnv(), ctx());
+    expect(fin.status).toBe(400);
+    expect((await r2Keys()).some((k) => k.startsWith('pending/'))).toBe(false);
+  });
+
+  it('sha256 sai dạng: 400, không tạo phiên', async () => {
+    const file = pdfBytes(5000, 5);
+    expect((await start(file, { 'file-sha256-0': 'xyz' })).res.status).toBe(400);
+    expect((await r2Keys()).some((k) => k.startsWith('upload/'))).toBe(false);
   });
 });

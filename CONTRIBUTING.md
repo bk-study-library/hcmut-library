@@ -8,7 +8,7 @@ Trang này nói thư viện nhận gì, bạn gửi bài bằng cách nào, và 
 |---|---|
 | Mọi tài liệu học tập bạn muốn chia sẻ: tóm tắt, ghi chú, bảng công thức, lời giải, slide, đề thi, đáp án, mẫu và bài tham khảo cho prelab, báo cáo, bài tập lớn, gói quiz Study Pack v1 | File sách có bản quyền (sách thương mại, sách của nhà xuất bản) |
 | Link tới tài liệu công khai khác | File chạy được (exe, bat, sh, apk, jar...) |
-| Đuôi file: .pdf, .md, .docx, .pptx, .xlsx, .png, .jpg, .json; riêng gói quiz nhận thêm .zip | File lớn hơn 20 MB, file .zip cho loại khác gói quiz |
+| Đuôi file: .pdf, .md, .docx, .pptx, .xlsx, .png, .jpg, .json; riêng gói quiz nhận thêm .zip | File lớn hơn 1 GB, file .zip cho loại khác gói quiz |
 
 Một số điều cần nhớ:
 
@@ -26,7 +26,7 @@ Một số điều cần nhớ:
 ### 1. Gửi file qua trang web (khuyên dùng, không cần tài khoản GitHub)
 
 1. Mở [Gửi tài liệu](https://bk-study-library.github.io/hcmut-library/gui-tai-lieu/), hoặc bấm **Gửi tài liệu** trên trang môn để form chọn sẵn môn.
-2. Tìm môn theo tên (mã có thể đổi qua các khóa). Môn có nhiều mã cùng tên (ví dụ Đồ án tốt nghiệp) hiện thành một dòng; bấm vào để chọn đúng mã theo ngành hoặc khóa. Chọn loại tài liệu, nhập tiêu đề, chọn file. File .zip chỉ nhận cho loại Gói quiz; loại khác thì gửi từng file, hoặc gộp thành một file PDF. Có nhiều file của cùng môn (ví dụ cả bộ slide của giảng viên) thì chọn tất cả một lần, tối đa 10 file và tổng 50 MB: mỗi file có tiêu đề (gợi ý từ tên file) và loại riêng, người duyệt xem cả đợt một lần và có thể duyệt từng file.
+2. Tìm môn theo tên (mã có thể đổi qua các khóa). Môn có nhiều mã cùng tên (ví dụ Đồ án tốt nghiệp) hiện thành một dòng; bấm vào để chọn đúng mã theo ngành hoặc khóa. Chọn loại tài liệu, nhập tiêu đề, chọn file. File .zip chỉ nhận cho loại Gói quiz; loại khác thì gửi từng file, hoặc gộp thành một file PDF. Có nhiều file của cùng môn (ví dụ cả bộ slide của giảng viên) thì chọn tất cả một lần, tối đa 10 file, mỗi file và tổng tới 1 GB: mỗi file có tiêu đề (gợi ý từ tên file) và loại riêng, người duyệt xem cả đợt một lần và có thể duyệt từng file.
 3. Chọn giấy phép, đánh dấu ba ô cam kết, qua bước xác minh Turnstile của Cloudflare.
 4. Bấm **Gửi tài liệu**. Trang hiện mã bài. Hãy lưu mã này để hỏi về bài của bạn.
 
@@ -90,7 +90,7 @@ Người duyệt là sinh viên đã học qua môn, làm tình nguyện. Danh s
 4. Người duyệt đọc theo danh sách kiểm bên dưới. Chữ người gửi đã công khai trong file mục của PR từ lúc gửi: PR có chữ xúc phạm, nói xấu người khác, quảng cáo hay link lạ thì đóng ngay, không cần đợi `kiem-file`. Cần hỏi người gửi thì hỏi trong PR (hoặc issue).
 5. Đạt thì merge. Không đạt thì comment lý do rồi đóng PR; file chờ duyệt sẽ được dọn tự động.
 
-Phần lớn bài không cần bước trên: `kiem-file` phân loại (`scripts/upload/triage.mjs`, ngưỡng ở `catalog/policy.json` mục `triage`). Bài sạch được merge tự động khi check qua. Bài an toàn nhưng chưa chắc (môn mới, cảnh báo nhẹ, trùng tên, bản cập nhật) cũng được merge, item có trường `unclassified` và hiện ở trang `chua-phan-loai/`: người duyệt xem lại, đúng thì bỏ trường này, sai thì sửa hay gỡ. Chỉ đề thi, file dày như sách và bài có cảnh báo nặng chờ người duyệt; bot yêu cầu review từ người trong biến repo `REVIEWERS`.
+Phần lớn bài không cần bước trên: `kiem-file` phân loại (`scripts/upload/triage.mjs`, ngưỡng ở `catalog/policy.json` mục `triage`). Bài sạch được merge tự động khi check qua. Bài an toàn nhưng chưa chắc (môn mới, cảnh báo nhẹ, trùng tên, bản cập nhật) cũng được merge, item có trường `unclassified` và hiện ở trang `chua-phan-loai/`: người duyệt xem lại, đúng thì bỏ trường này, sai thì sửa hay gỡ. Chỉ đề thi, file dày như sách và bài có cảnh báo nặng chờ người duyệt; bot yêu cầu review từ code owner của item trong `.github/CODEOWNERS` (`scripts/upload/reviewers.mjs`).
 6. Mục tiêu: trả lời bài trong 7 ngày. Yêu cầu gỡ được ưu tiên, xem [TAKEDOWN.md](TAKEDOWN.md).
 
 ### Danh sách kiểm của người duyệt

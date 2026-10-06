@@ -163,7 +163,7 @@ test('trang Gửi tài liệu: có site key, loại sách, không có loại lin
   assert.match(html, /Form gửi tài liệu chưa mở\./);
   assert.match(html, /<fieldset class="upload-set" disabled/);
   assert.doesNotMatch(html, /challenges\.cloudflare\.com/);
-  assert.match(html, /20\.0 MB/);
+  assert.match(html, /Mỗi file tối đa 1\.0 GB/);
   assert.match(html, /src="\.\.\/assets\/upload\.js"/);
 });
 

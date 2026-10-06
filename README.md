@@ -14,7 +14,7 @@ Bản khung (0.1.0). Danh mục có 2.414 môn, 62 ngành và 547 chương trìn
 |---|---|
 | Mọi tài liệu học tập bạn muốn chia sẻ: tóm tắt, ghi chú, lời giải, slide, đề thi, đáp án, báo cáo, gói quiz Study Pack v1 | File sách có bản quyền (sách thương mại, sách của nhà xuất bản). Muốn giới thiệu sách thì ghi tên, loại "Sách tham khảo" |
 | Link tới tài liệu công khai khác | File chạy được |
-| Đuôi file: .pdf, .md, .docx, .pptx, .xlsx, .png, .jpg, .json; riêng gói quiz nhận thêm .zip | File lớn hơn 20 MB, file .zip cho loại khác gói quiz |
+| Đuôi file: .pdf, .md, .docx, .pptx, .xlsx, .png, .jpg, .json; riêng gói quiz nhận thêm .zip | File lớn hơn 1 GB, file .zip cho loại khác gói quiz |
 
 Máy chỉ cảnh báo khi thấy MSSV, email, số điện thoại trong file, người duyệt quyết định. Riêng các ô chữ của form và file `.md` trong git thì bị từ chối nếu có thông tin cá nhân, vì phần này hiện công khai. Quy định đầy đủ: [CONTRIBUTING.md](CONTRIBUTING.md).
 

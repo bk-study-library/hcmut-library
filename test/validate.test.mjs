@@ -188,8 +188,8 @@ test('thư mục môn không có trong danh mục', () => {
   assert.deepEqual(errorsAfter((d) => fs.mkdirSync(path.join(d, 'courses', 'ZZ0000', 'items'), { recursive: true })), ['COURSE_DIR_ORPHAN']);
 });
 
-test('file trên 20 MB bị từ chối (khai báo và trên đĩa)', () => {
-  assert.deepEqual(errorsAfter((d) => editJson(d, PRELAB, (it) => { it.files[0].size = 21 * 1024 * 1024; })), ['FILE_SIZE']);
+test('file khai báo trên 1 GB, file trong git trên 20 MB bị từ chối', () => {
+  assert.deepEqual(errorsAfter((d) => editJson(d, PRELAB, (it) => { it.files[0].size = 1025 * 1024 * 1024; })), ['FILE_SIZE']);
   const onDisk = errorsAfter((d) => {
     const fd = fs.openSync(path.join(d, 'big.bin'), 'w');
     fs.ftruncateSync(fd, 21 * 1024 * 1024);

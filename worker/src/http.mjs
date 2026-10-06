@@ -14,6 +14,8 @@ export const MESSAGES = {
   removed: 'Tài liệu này đã bị gỡ khỏi thư viện nên không nhận lại.',
   dailyCap: 'Hôm nay thư viện đã nhận đủ số bài. Gửi lại vào ngày mai.',
   failed: 'Chưa gửi được. Thử lại sau ít phút.',
+  uploadExpired: 'Phiên tải file đã hết hạn hoặc không còn. Gửi lại bài.',
+  uploadBroken: 'File tải lên không đủ hay bị lỗi giữa chừng. Gửi lại bài.',
   batchTooLarge: (max) => `Tổng các file quá lớn. Gửi tối đa ${max} mỗi lần, chia thành nhiều lần gửi.`,
   batchCount: (max) => `Mỗi lần gửi tối đa ${max} file. Chia thành nhiều lần gửi.`,
   batchSame: 'Có hai file giống hệt nhau trong lần gửi này. Bỏ bớt một file.',

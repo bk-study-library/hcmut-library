@@ -14,6 +14,7 @@ import { notifyKey } from '../notify.mjs';
 import { newToken, tokenKey } from '../view.mjs';
 import { allowedOrigins, reply, logFailure, MESSAGES } from '../http.mjs';
 import { githubFactory, catalogFor, reviewBase } from '../deps.mjs';
+import { startUpload } from './upload.mjs';
 
 export const TURNSTILE_URL = 'https://challenges.cloudflare.com/turnstile/v0/siteverify';
 
@@ -63,6 +64,28 @@ export async function readForm(req, max) {
   } catch {
     return { error: over ? 'large' : 'bad' };
   }
+}
+
+// File của bài tải theo phần: ô file-count và file-name-<i>, file-size-<i>, file-sha256-<i>, file-head-<i> (16 byte
+// đầu, base64, để kiểm dạng file như bài thường). Sai dạng thì null.
+export function chunkedFiles(fields) {
+  const n = Number(fields['file-count']);
+  if (!Number.isInteger(n) || n < 1 || n > 99) return null;
+  const out = [];
+  for (let i = 0; i < n; i += 1) {
+    const name = String(fields[`file-name-${i}`] ?? '');
+    const size = Number(fields[`file-size-${i}`]);
+    const sha256 = String(fields[`file-sha256-${i}`] ?? '');
+    let head;
+    try {
+      head = Uint8Array.from(atob(String(fields[`file-head-${i}`] ?? '')), (c) => c.charCodeAt(0));
+    } catch {
+      return null;
+    }
+    if (!name || !Number.isSafeInteger(size) || size < 1 || !/^[0-9a-f]{64}$/.test(sha256) || head.length > HEAD_BYTES) return null;
+    out.push({ name, size, sha256, head });
+  }
+  return out;
 }
 
 // Qua Turnstile và widget nằm trên trang của mình (hostname thuộc ALLOWED_ORIGINS).
@@ -187,7 +210,9 @@ export async function handleSubmit(req, env, deps, cors) {
   // Đợt gửi: tối đa batchMaxFiles file, tổng batchMaxBytes (policy.json); thiếu thì một file như cũ.
   const maxFiles = Number.isInteger(policy.batchMaxFiles) && policy.batchMaxFiles > 0 ? policy.batchMaxFiles : 1;
   const maxTotal = maxFiles > 1 && Number.isInteger(policy.batchMaxBytes) && policy.batchMaxBytes > 0 ? policy.batchMaxBytes : policy.maxFileBytes;
-  const maxBody = maxTotal + MULTIPART_OVERHEAD;
+  // Gửi thẳng trong một request: Worker nhận thân request tối đa 100 MB, nên file lớn hơn directMaxBytes đi đường tải
+  // theo phần (routes/upload.mjs); request đó chỉ có các ô chữ.
+  const maxBody = Math.min(maxTotal, Number.isInteger(policy.directMaxBytes) ? policy.directMaxBytes : maxTotal) + MULTIPART_OVERHEAD;
   const tooLarge = () => reply(413, { ok: false, error: maxFiles > 1 ? MESSAGES.batchTooLarge(formatSize(maxTotal)) : MESSAGES.tooLarge(formatSize(policy.maxFileBytes)) }, cors);
 
   const declared = Number(req.headers.get('Content-Length'));
@@ -208,7 +233,10 @@ export async function handleSubmit(req, env, deps, cors) {
   // (không có thì dùng ô chung title, type); các ô khác dùng chung cho cả đợt.
   const fields = {};
   for (const [k, v] of data.entries()) if (typeof v === 'string') fields[k] = v;
-  const uploads = data.getAll('file').filter((u) => u && typeof u === 'object' && (u.size > 0 || u.name));
+  // Tải theo phần (file lớn, xem routes/upload.mjs): form chỉ gửi tên, cỡ, sha256, 16 byte đầu của từng file.
+  const chunked = fields.upload === 'chunked';
+  const uploads = chunked ? chunkedFiles(fields) : data.getAll('file').filter((u) => u && typeof u === 'object' && (u.size > 0 || u.name));
+  if (uploads === null) return reply(400, { ok: false, errors: { form: MESSAGES.badForm } }, cors);
   if (uploads.length > maxFiles) return reply(400, { ok: false, errors: { file: MESSAGES.batchCount(maxFiles) } }, cors);
   // Mỗi bài đúng một môn: ô môn hay môn mới gửi lặp thì không đoán ô nào là đúng.
   if (COURSE_FIELDS.some((k) => data.getAll(k).length > 1)) return reply(400, { ok: false, errors: { course: MESSAGES.oneCourse } }, cors);
@@ -217,8 +245,8 @@ export async function handleSubmit(req, env, deps, cors) {
   const entries = [];
   for (let i = 0; i < Math.max(uploads.length, 1); i += 1) {
     const upload = uploads[i];
-    const bytes = upload ? new Uint8Array(await upload.arrayBuffer()) : null;
-    const file = bytes ? { name: upload.name, size: bytes.length, head: bytes.subarray(0, HEAD_BYTES) } : null;
+    const bytes = upload && !chunked ? new Uint8Array(await upload.arrayBuffer()) : null;
+    const file = !upload ? null : chunked ? { name: upload.name, size: upload.size, head: upload.head } : { name: upload.name, size: bytes.length, head: bytes.subarray(0, HEAD_BYTES) };
     const own = { ...fields };
     if (fields[`title-${i}`] !== undefined) own.title = fields[`title-${i}`];
     if (fields[`type-${i}`] !== undefined) own.type = fields[`type-${i}`];
@@ -229,9 +257,9 @@ export async function handleSubmit(req, env, deps, cors) {
       for (const [k, v] of Object.entries(checked.errors)) errors[batch && ['title', 'type', 'file'].includes(k) ? `${k}-${i}` : k] = v;
       return reply(400, { ok: false, errors }, cors);
     }
-    entries.push({ form: checked.form, ext: checked.ext, bytes });
+    entries.push({ form: checked.form, ext: checked.ext, bytes, file, clientSha: upload?.sha256 ?? null });
   }
-  const totalBytes = entries.reduce((n, e) => n + (e.bytes ? e.bytes.length : 0), 0);
+  const totalBytes = entries.reduce((n, e) => n + (e.file ? e.file.size : 0), 0);
   if (totalBytes > maxTotal) return tooLarge();
   const form = entries[0].form;
   const { newCourse } = form;
@@ -245,16 +273,17 @@ export async function handleSubmit(req, env, deps, cors) {
     e.id = uniqueId(e.slug, used);
     used.add(e.id);
     e.stored = null;
-    if (!e.bytes) continue;
+    if (!e.file) continue;
     // Trùng tài liệu đã có trong thư viện (so cả sha256 file gốc, vì bản đã sanitize khác sha256).
     // Tài liệu đã gỡ vẫn chặn gửi lại, để file bị gỡ theo yêu cầu không quay lại qua form.
-    const sha256 = await sha256Hex(e.bytes);
+    // Tải theo phần: sha256 do trình duyệt tính; kiem-file tính lại trên file thật, sai thì bài không qua.
+    const sha256 = e.bytes ? await sha256Hex(e.bytes) : e.clientSha;
     if (catalog.blocked.has(sha256)) return reply(409, { ok: false, error: MESSAGES.removed }, cors);
     if (catalog.shas.has(sha256)) return reply(409, { ok: false, error: MESSAGES.exists }, cors);
     if (seenSha.has(sha256)) return reply(400, { ok: false, errors: { file: MESSAGES.batchSame } }, cors);
     seenSha.add(sha256);
     const name = fileName({ code: course.code, type: e.form.type, slug: e.slug, term: e.form.term, ext: e.ext });
-    e.stored = { name, size: e.bytes.length, sha256, uploadSha256: sha256, mime: policy.extensions[e.ext].mime, quarantine: `pending/${code}/${name}` };
+    e.stored = { name, size: e.file.size, sha256, uploadSha256: sha256, mime: policy.extensions[e.ext].mime, quarantine: `pending/${code}/${name}` };
   }
   const stored = entries[0].stored;
 
@@ -276,37 +305,74 @@ export async function handleSubmit(req, env, deps, cors) {
     replaces: form.replaces ?? null,
     siteBase: String(env.SITE_BASE ?? ''),
   });
-  // Mã bí mật cho link xem bài của người gửi; R2 chỉ giữ sha256 của mã.
-  const view = base ? await newToken(deps.random) : null;
-
-  const keys = [];
-  const cleanup = async () => {
-    if (keys.length) await env.QUARANTINE.delete(keys).catch((e) => logFailure('cleanup', e));
+  const draft = {
+    code,
+    courseId: course.id,
+    courseCode: course.code,
+    entries: entries.map((e) => ({ id: e.id, stored: e.stored, itemText: e.itemText })),
+    courseText,
+    prText,
+    notifyEmail: form.notifyEmail || null,
   };
+  if (await pendingSha(env, draft)) return reply(409, { ok: false, error: MESSAGES.pending }, cors);
+  if (!(await countSubmission(env.QUARANTINE, cap, deps.now()))) return capReached();
+  // File lớn: tạo phiên tải theo phần, trình duyệt gửi từng phần rồi gọi /submit/<mã>/xong (routes/upload.mjs).
+  if (chunked) return startUpload(env, deps, draft, policy, cors);
+
+  // Tải thẳng: ghi file vào R2 rồi mở PR.
+  const keys = [];
   try {
-    // Trùng tài liệu đang chờ duyệt.
-    for (const e of entries) {
-      if (e.stored && (await env.QUARANTINE.head(`sha/${e.stored.sha256}`))) return reply(409, { ok: false, error: MESSAGES.pending }, cors);
-    }
-    if (!(await countSubmission(env.QUARANTINE, cap, deps.now()))) return capReached();
     for (const e of entries) {
       if (!e.stored) continue;
       await env.QUARANTINE.put(e.stored.quarantine, e.bytes, { httpMetadata: { contentType: e.stored.mime } });
       keys.push(e.stored.quarantine);
+    }
+  } catch (err) {
+    await deleteKeys(env, keys);
+    return fail('store', err);
+  }
+  return openSubmission(env, deps, draft, keys, cors);
+}
+
+// Bài đang chờ duyệt có cùng file (sha/<sha256> trong R2).
+async function pendingSha(env, draft) {
+  for (const e of draft.entries) if (e.stored && (await env.QUARANTINE.head(`sha/${e.stored.sha256}`))) return true;
+  return false;
+}
+
+async function deleteKeys(env, keys) {
+  if (keys.length) await env.QUARANTINE.delete(keys).catch((e) => logFailure('cleanup', e));
+}
+
+// File đã nằm trong R2 (keys): ghi khóa phụ của bài (sha256 file, mã xem bài, email), tạo branch, item (và môn mới),
+// mở PR có label. Lỗi thì xóa mọi khóa đã ghi và branch, để không còn file hay branch mồ côi.
+export async function openSubmission(env, deps, draft, keys, cors) {
+  const github = githubFactory(env, deps);
+  const fail = (step, err) => {
+    logFailure(step, err);
+    return reply(err instanceof GitHubError ? 502 : 500, { ok: false, error: MESSAGES.failed }, cors);
+  };
+  const { code } = draft;
+  const base = reviewBase(env);
+  // Mã bí mật cho link xem bài của người gửi; R2 chỉ giữ sha256 của mã.
+  const view = base ? await newToken(deps.random) : null;
+  try {
+    for (const e of draft.entries) {
+      if (!e.stored) continue;
       await env.QUARANTINE.put(`sha/${e.stored.sha256}`, code);
       keys.push(`sha/${e.stored.sha256}`);
     }
     if (view) {
-      await env.QUARANTINE.put(tokenKey(code), view.hash, { customMetadata: { course: course.id } });
+      await env.QUARANTINE.put(tokenKey(code), view.hash, { customMetadata: { course: draft.courseId } });
       keys.push(tokenKey(code));
     }
-    // Email báo kết quả: chỉ nằm trong bucket quarantine, xóa khi đã gửi (POST /bao-ket-qua) hay khi dọn kho.
-    if (form.notifyEmail) {
-      await env.QUARANTINE.put(notifyKey(code), JSON.stringify({ email: form.notifyEmail, course: course.id }));
+    // Email báo kết quả: chỉ nằm trong bucket quarantine, xóa khi đã gửi hay khi dọn kho.
+    if (draft.notifyEmail) {
+      await env.QUARANTINE.put(notifyKey(code), JSON.stringify({ email: draft.notifyEmail, course: draft.courseId }));
       keys.push(notifyKey(code));
     }
   } catch (err) {
-    await cleanup();
+    await deleteKeys(env, keys);
     return fail('store', err);
   }
 
@@ -318,16 +384,16 @@ export async function handleSubmit(req, env, deps, cors) {
     step = 'branch';
     await gh.createBranch(branch, await gh.branchSha(env.BRANCH));
     branchMade = true;
-    if (courseText) {
+    if (draft.courseText) {
       step = 'course';
-      await gh.putFile(newCoursePath(course.code), courseText, branch, `feat(catalog): thêm môn mới ${course.code} gửi qua form ${code}`);
+      await gh.putFile(newCoursePath(draft.courseCode), draft.courseText, branch, `feat(catalog): thêm môn mới ${draft.courseCode} gửi qua form ${code}`);
     }
     step = 'item';
-    for (const e of entries) {
-      await gh.putFile(`courses/${course.id}/items/${e.id}.json`, e.itemText, branch, `feat(courses): thêm tài liệu gửi qua form ${code}`);
+    for (const e of draft.entries) {
+      await gh.putFile(`courses/${draft.courseId}/items/${e.id}.json`, e.itemText, branch, `feat(courses): thêm tài liệu gửi qua form ${code}`);
     }
     step = 'pr';
-    const pr = await gh.openPr({ head: branch, base: env.BRANCH, title: prTitle(code, course.code), body: prText });
+    const pr = await gh.openPr({ head: branch, base: env.BRANCH, title: prTitle(code, draft.courseCode), body: draft.prText });
     step = 'label';
     await gh.addLabels(pr.number, [LABEL]);
     const out = { ok: true, code };
@@ -336,7 +402,7 @@ export async function handleSubmit(req, env, deps, cors) {
     return reply(201, out, cors);
   } catch (err) {
     // Dọn hết để không còn file hay branch mồ côi; xóa branch cũng đóng PR nếu đã mở.
-    await cleanup();
+    await deleteKeys(env, keys);
     if (branchMade) {
       const gh = await github();
       await gh.deleteBranch(branch).catch((e) => logFailure('cleanup', e));

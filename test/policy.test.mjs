@@ -19,8 +19,9 @@ test('extensions: mime và magic', () => {
   assert.equal(e['.md'].mime, 'text/markdown');
 });
 
-test('maxFileBytes là 20 MB', () => {
-  assert.equal(loadPolicy(TOOL_ROOT).maxFileBytes, 20 * 1024 * 1024);
+test('maxFileBytes là 1 GB (file trên Release), maxGitFileBytes là 20 MB (file trong git)', () => {
+  assert.equal(loadPolicy(TOOL_ROOT).maxFileBytes, 1024 * 1024 * 1024);
+  assert.equal(loadPolicy(TOOL_ROOT).maxGitFileBytes, 20 * 1024 * 1024);
 });
 
 test('terms gom đủ 12 tháng, không tháng nào thuộc hai học kỳ', () => {

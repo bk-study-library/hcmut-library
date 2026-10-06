@@ -664,6 +664,30 @@
     if (window.turnstile) window.turnstile.reset();
   }
 
+  // Tổng file tới cfg.directBytes thì gửi một request như cũ; lớn hơn thì tải theo phần (upload-chunks.js), nút gửi
+  // hiện phần trăm. Kết quả cùng dạng { ok, body } cho phần xử lý chung bên dưới.
+  function send() {
+    var files = isBook() ? [] : chosenFiles();
+    var total = files.reduce(function (n, f) { return n + f.size; }, 0);
+    if (!window.BkChunks || total <= cfg.directBytes) {
+      return fetch(endpoint, { method: 'POST', body: new FormData(form) }).then(function (r) {
+        return r.json().then(
+          function (body) {
+            return { ok: r.ok, body: body };
+          },
+          function () {
+            return { ok: false, body: null };
+          },
+        );
+      });
+    }
+    var fields = new FormData(form);
+    fields.delete('file');
+    return window.BkChunks.upload(endpoint, fields, files, cfg.partBytes, function (p) {
+      submit.textContent = msg.uploading + ' ' + Math.round(p * 100) + '%';
+    });
+  }
+
   form.addEventListener('submit', function (e) {
     e.preventDefault();
     clearErrors();
@@ -673,17 +697,7 @@
       return;
     }
     setBusy(true);
-    fetch(endpoint, { method: 'POST', body: new FormData(form) })
-      .then(function (r) {
-        return r.json().then(
-          function (body) {
-            return { ok: r.ok, body: body };
-          },
-          function () {
-            return { ok: false, body: null };
-          },
-        );
-      })
+    send()
       .then(function (res) {
         setBusy(false);
         var body = res.body;

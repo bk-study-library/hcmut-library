@@ -366,7 +366,7 @@ jobs:
           COURSE: ${{ needs.gate.outputs.course }}
         run: bash ../trusted/scripts/upload/commit-pr.sh
       # Phân loại (scripts/upload/triage.mjs): bài không cần người duyệt thì ghi quyết định vào R2, cron của Worker
-      # merge khi check qua; bài cần người duyệt thì yêu cầu review từ người trong biến repo REVIEWERS.
+      # merge khi check qua; bài cần người duyệt thì yêu cầu review từ code owner của item (.github/CODEOWNERS).
       - name: Tự merge khi check qua
         if: steps.apply.outputs.virus == '' && steps.apply.outputs.decision != 'review'
         env:
@@ -378,14 +378,19 @@ jobs:
           aws s3 cp "$RUNNER_TEMP/auto.json" "s3://$R2_BUCKET/review/$CODE.json" \
             --endpoint-url "https://${R2_ACCOUNT_ID}.r2.cloudflarestorage.com" --only-show-errors
       - name: Gọi người duyệt
-        if: steps.apply.outputs.virus == '' && steps.apply.outputs.decision == 'review' && vars.REVIEWERS != ''
+        if: steps.apply.outputs.virus == '' && steps.apply.outputs.decision == 'review'
         env:
           GH_TOKEN: ${{ github.token }}
-          REVIEWERS: ${{ vars.REVIEWERS }}
+          ITEM: ${{ needs.gate.outputs.item }}
         run: |
           args=()
-          for r in ${REVIEWERS//,/ }; do args+=(-f "reviewers[]=$r"); done
-          gh api -X POST "repos/$REPO/pulls/$PR/requested_reviewers" "${args[@]}" > /dev/null
+          while IFS= read -r who; do
+            case "$who" in
+              */*) args+=(-f "team_reviewers[]=${who#*/}") ;;
+              ?*) args+=(-f "reviewers[]=$who") ;;
+            esac
+          done < <(node trusted/scripts/upload/reviewers.mjs --codeowners trusted/.github/CODEOWNERS --path "$ITEM")
+          if [ ${#args[@]} -gt 0 ]; then gh api -X POST "repos/$REPO/pulls/$PR/requested_reviewers" "${args[@]}" > /dev/null; fi
       - if: failure()
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:

@@ -64,13 +64,14 @@ form web (site-src/assets/upload.js)
 | Ô tìm trang chủ | `site-src/assets/search.js` (giao diện), `search-core.js` (tìm môn), `search-docs.js` (tìm tài liệu), `subject-core.js` (gộp môn cùng tên) | Thay đổi cách tìm môn phải qua `test/search-cases.json` |
 | Form Gửi tài liệu | `site-src/pages/vi/gui-tai-lieu.html`, `site-src/assets/upload.js` (giao diện), `upload-core.js` (logic thuần) | Số liệu lấy từ `#upload-config` do `scripts/site/upload-page.mjs` (`uploadPage`) đổ từ `policy.json` |
 | Worker: định tuyến | `worker/src/index.mjs` (`createHandler`, `handleView`) | Mỗi việc một file trong `worker/src/routes/` |
-| Worker nhận bài | `worker/src/routes/submit.mjs`: `handleSubmit`; kiểm phiếu ở `worker/src/validate.mjs` | |
+| Worker nhận bài | `worker/src/routes/submit.mjs`: `handleSubmit` (kiểm, dựng item và PR), `openSubmission` (ghi khóa phụ, mở PR); kiểm phiếu ở `worker/src/validate.mjs` | |
+| Tải file lớn theo phần (tới 1 GB) | `worker/src/routes/upload.mjs` (phiên, từng phần, xong); `site-src/assets/upload-chunks.js` (sha256 theo luồng, gửi phần); ngưỡng `directMaxBytes`, `uploadPartBytes` ở `catalog/policy.json` | File trong git giới hạn riêng `maxGitFileBytes` |
 | Trang duyệt, nút Hoàn tất | `worker/src/routes/review.mjs` (`handleReview`, `handleDecision`, `continueMerge`), `worker/src/view.mjs` (`reviewBatchPage`), `worker/src/review.mjs` (quyết định, lý do: hàm thuần) | |
 | Email kết quả, cron | `worker/src/routes/notify.mjs` (`notifyCode`), `worker/src/notify.mjs` (nội dung email), `worker/src/cron.mjs` (`sweep`); lịch ở `worker/wrangler.jsonc` | Cloudflare chặn runner GitHub gọi Worker nên dùng cron |
 | Trang người gửi `/xem/<mã>` | `worker/src/routes/owner.mjs`, `worker/src/view.mjs` (`statusPage`) | |
 | Phản hồi JSON, CORS, log lỗi; client GitHub App, danh mục | `worker/src/http.mjs`; `worker/src/deps.mjs` | |
 | Quét file, sanitize, comment kết quả | `scripts/upload/check.mjs` (lệnh), `sanitize.mjs`, `report.mjs` (bảng comment) | Workflow `kiem-file.yml` |
-| Phân loại tự động (đăng, Chưa phân loại, cần người duyệt), tự merge, gọi người duyệt | `scripts/upload/triage.mjs` (quy tắc), ngưỡng ở `catalog/policy.json` (`triage`); `scripts/upload/check.mjs` (`triageItems`); bước `Tự merge khi check qua`, `Gọi người duyệt` trong `kiem-file.yml`; trang `scripts/site/pages/unclassified.mjs` | Người duyệt đặt ở biến repo `REVIEWERS` |
+| Phân loại tự động (đăng, Chưa phân loại, cần người duyệt), tự merge, gọi người duyệt | `scripts/upload/triage.mjs` (quy tắc), ngưỡng ở `catalog/policy.json` (`triage`); `scripts/upload/check.mjs` (`triageItems`); bước `Tự merge khi check qua`, `Gọi người duyệt` trong `kiem-file.yml`; trang `scripts/site/pages/unclassified.mjs` | Người duyệt theo `.github/CODEOWNERS` (`scripts/upload/reviewers.mjs`) |
 | Đưa file lên Release, dọn kho | `scripts/upload/publish.mjs` | Workflow `phat-hanh-file.yml`, `don-kho.yml` |
 | Nguồn dữ liệu chính thức, thứ tự nhập | `docs/nguon-du-lieu.md` | Chương trình đã gắn ngành thuộc `import-ctdt`, `import-research` không ghi đè |
 | Cách ghi file môn, chương trình, ngành khi nhập (thứ tự khóa, ngày cập nhật) | `scripts/lib/catalog-write.mjs`: `courseRecord`, `writeKeepDate`, `*_ORDER` | Dùng chung cho cả ba script nhập |

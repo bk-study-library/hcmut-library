@@ -257,11 +257,11 @@ Thử:
 
 ### 8.6. Phân loại tự động và người duyệt
 
-`kiem-file` phân loại bài sau khi quét (`scripts/upload/triage.mjs`, ngưỡng ở `catalog/policy.json` mục `triage`): bài không cần người duyệt thì ghi `review/<mã bài>.json` với `auto: true`, cron của Worker merge khi check qua. Bài cần người duyệt thì bot yêu cầu review từ các tài khoản GitHub trong biến repo `REVIEWERS` (Settings > Secrets and variables > Actions > Variables, cách nhau bằng dấu phẩy); GitHub tự báo chuông và email. Chưa đặt biến này thì không ai được báo.
+`kiem-file` phân loại bài sau khi quét (`scripts/upload/triage.mjs`, ngưỡng ở `catalog/policy.json` mục `triage`): bài không cần người duyệt thì ghi `review/<mã bài>.json` với `auto: true`, cron của Worker merge khi check qua. Bài cần người duyệt thì bot yêu cầu review từ code owner của item trong `.github/CODEOWNERS` (cùng file ruleset dùng; dòng khớp sau cùng thắng, ví dụ `/courses/EE*/ @nguoi-duyet`), GitHub tự báo chuông và email. Người duyệt phải là thành viên org.
 
 ### 8.7. Duyệt trên trang duyệt
 
-Một bài (một PR) có thể gồm nhiều file: form nhận tối đa `batchMaxFiles` file, tổng `batchMaxBytes` (`catalog/policy.json`, hiện 10 file và 50 MB), mỗi file vẫn tối đa `maxFileBytes`. Mỗi file thành một item riêng trong cùng PR. `kiem-file` quét từng file và ghi kết quả từng file trong một comment.
+Một bài (một PR) có thể gồm nhiều file: form nhận tối đa `batchMaxFiles` file, tổng `batchMaxBytes` (`catalog/policy.json`, hiện 10 file và 1 GB), mỗi file tối đa `maxFileBytes` (1 GB). Tổng tới `directMaxBytes` (90 MB) thì gửi trong một request; lớn hơn thì trình duyệt tải theo phần `uploadPartBytes` (32 MB) qua Worker vào R2 multipart (`worker/src/routes/upload.mjs`, `site-src/assets/upload-chunks.js`), vì Worker nhận thân request tối đa 100 MB. R2 miễn phí 10 GB: file chờ duyệt lớn nên được duyệt sớm; R2 tự hủy multipart dở dang sau 7 ngày. Mỗi file thành một item riêng trong cùng PR. `kiem-file` quét từng file và ghi kết quả từng file trong một comment.
 
 Trang `/xem-duyet/<mã bài>` hiện từng file: chữ người gửi nhập, tên và cỡ file, nút Xem và Tải, rồi lựa chọn **Duyệt** hay **Không duyệt** kèm lý do. Khi PR còn mở và mọi check của đầu branch đã qua, cuối trang có nút **Hoàn tất duyệt**:
 
