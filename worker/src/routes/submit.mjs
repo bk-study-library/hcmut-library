@@ -2,7 +2,7 @@
 // bot GitHub App tạo branch upload/<mã bài>, ghi item (và môn mới nếu có), mở PR có label tai-lieu-moi.
 import { validateSubmission } from '../validate.mjs';
 import { GitHubError } from '../github.mjs';
-import { slugify, fileName, uniqueId } from '../../../scripts/upload/naming.mjs';
+import { slugify, fileName } from '../../../scripts/upload/naming.mjs';
 import { buildItem } from '../../../scripts/upload/item.mjs';
 import { buildNewCourse, handbookUrlFor, newCoursePath } from '../../../scripts/upload/course.mjs';
 // Tiền tố khoa và mẫu link Sổ tay đóng gói lúc deploy (như policy.json ở preview.mjs): đổi thì deploy lại.
@@ -269,8 +269,7 @@ export async function handleSubmit(req, env, deps, cors) {
   const used = new Set(course.ids);
   const seenSha = new Set();
   for (const e of entries) {
-    e.slug = slugify(e.form.title);
-    e.id = uniqueId(e.slug, used);
+    e.id = await freeId(env, course.id, slugify(e.form.title), used);
     used.add(e.id);
     e.stored = null;
     if (!e.file) continue;
@@ -282,7 +281,8 @@ export async function handleSubmit(req, env, deps, cors) {
     if (catalog.shas.has(sha256)) return reply(409, { ok: false, error: MESSAGES.exists }, cors);
     if (seenSha.has(sha256)) return reply(400, { ok: false, errors: { file: MESSAGES.batchSame } }, cors);
     seenSha.add(sha256);
-    const name = fileName({ code: course.code, type: e.form.type, slug: e.slug, term: e.form.term, ext: e.ext });
+    // Tên file theo id (đã khác mọi id khác của môn), để tên file trên Release cũng không trùng.
+    const name = fileName({ code: course.code, type: e.form.type, slug: e.id, term: e.form.term, ext: e.ext });
     e.stored = { name, size: e.file.size, sha256, uploadSha256: sha256, mime: policy.extensions[e.ext].mime, quarantine: `pending/${code}/${name}` };
   }
   const stored = entries[0].stored;
@@ -334,6 +334,16 @@ export async function handleSubmit(req, env, deps, cors) {
   return openSubmission(env, deps, draft, keys, cors);
 }
 
+// Id của item: khác id trên main (taken) và id của bài đang chờ duyệt (khóa id/<môn>/<id> trong R2, ghi ở
+// openSubmission). Hai bài cùng môn mở PR song song mà trùng id thì bài merge sau ghi đè item của bài trước.
+// Khóa không cần dọn: lifecycle rule của bucket xóa sau 30 ngày (docs/cai-dat-luong-tai-len.md, bước 2).
+export const idKey = (course, id) => `id/${course}/${id}`;
+async function freeId(env, course, slug, taken) {
+  let id = slug;
+  for (let n = 2; taken.has(id) || (await env.QUARANTINE.head(idKey(course, id))); n += 1) id = `${slug}-${n}`;
+  return id;
+}
+
 // Bài đang chờ duyệt có cùng file (sha/<sha256> trong R2).
 async function pendingSha(env, draft) {
   for (const e of draft.entries) if (e.stored && (await env.QUARANTINE.head(`sha/${e.stored.sha256}`))) return true;
@@ -358,6 +368,8 @@ export async function openSubmission(env, deps, draft, keys, cors) {
   const view = base ? await newToken(deps.random) : null;
   try {
     for (const e of draft.entries) {
+      await env.QUARANTINE.put(idKey(draft.courseId, e.id), code);
+      keys.push(idKey(draft.courseId, e.id));
       if (!e.stored) continue;
       await env.QUARANTINE.put(`sha/${e.stored.sha256}`, code);
       keys.push(`sha/${e.stored.sha256}`);
