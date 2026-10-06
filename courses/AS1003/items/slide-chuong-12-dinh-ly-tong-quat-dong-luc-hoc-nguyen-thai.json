@@ -1,6 +1,6 @@
 {
   "$schema": "../../../schema/item.schema.json",
-  "id": "slide-chuong-12-cac-dinh-ly-tong-quat-dong-luc-hoc-thay",
+  "id": "slide-chuong-12-dinh-ly-tong-quat-dong-luc-hoc-nguyen-thai",
   "course": "AS1003",
   "type": "lecture-slides",
   "title": "Slide chương 12: Các định lý tổng quát động lực học - thầy Nguyễn Thái Hiền",
@@ -13,13 +13,13 @@
   "teacher": "Nguyễn Thái Hiền",
   "files": [
     {
-      "name": "AS1003_lecture-slides_slide-chuong-12-cac-dinh-ly-tong-quat-dong-luc-hoc-thay.pdf",
+      "name": "AS1003_lecture-slides_slide-chuong-12-dinh-ly-tong-quat-dong-luc-hoc-nguyen-thai.pdf",
       "size": 2775213,
       "sha256": "30da97902d83a75b71dfbd80886f35c7e1f62c1701146fdce89f0b82a09f98a7",
       "mime": "application/pdf",
-      "quarantine": "clean/dWIeiJ0Uwp/AS1003_lecture-slides_slide-chuong-12-cac-dinh-ly-tong-quat-dong-luc-hoc-thay.pdf",
+      "quarantine": "clean/dWIeiJ0Uwp/AS1003_lecture-slides_slide-chuong-12-dinh-ly-tong-quat-dong-luc-hoc-nguyen-thai.pdf",
       "uploadSha256": "1398601e39c060c536281cd344db581d87554b9814acb248655595e1414582ba",
-      "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_lecture-slides_slide-chuong-12-cac-dinh-ly-tong-quat-dong-luc-hoc-thay.pdf"
+      "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_lecture-slides_slide-chuong-12-dinh-ly-tong-quat-dong-luc-hoc-nguyen-thai.pdf"
     }
   ]
 }
