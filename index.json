@@ -7,7 +7,7 @@
     "courses": 3796,
     "programs": 838,
     "majors": 140,
-    "items": 36
+    "items": 37
   },
   "faculties": [
     {
@@ -51134,6 +51134,30 @@
           "note": "Nhập từ nguồn công khai (truy cập 03/10/2026).",
           "updated": "2026-10-04",
           "items": [
+            {
+              "id": "bai-giang-co-luu-chat-le-song-giang",
+              "course": "CI2003",
+              "type": "lecture-slides",
+              "title": "Bài giảng Cơ lưu chất - Lê Song Giang",
+              "lang": "vi",
+              "license": "CC-BY-SA-4.0",
+              "origin": "self-made",
+              "added": "2026-10-06",
+              "removed": false,
+              "description": "Bài giảng Cơ lưu chất (Fluid Mechanics) của giảng viên Khoa Kỹ thuật Xây dựng và Bộ môn Kỹ thuật Hàng không, ĐH Bách Khoa TP.HCM: tĩnh học lưu chất, động học, phương trình năng lượng, động lượng, dòng chảy trong ống, thế lưu.",
+              "teacher": "Lê Song Giang",
+              "files": [
+                {
+                  "name": "CI2003_lecture-slides_bai-giang-co-luu-chat-le-song-giang.pdf",
+                  "size": 7141087,
+                  "sha256": "95c0f7413ea053003bc4c8cb70b2cb63461be9d5be2bbac6315f8d1d1bdc9622",
+                  "mime": "application/pdf",
+                  "quarantine": "clean/jEjQHX2a3w/CI2003_lecture-slides_bai-giang-co-luu-chat-le-song-giang.pdf",
+                  "uploadSha256": "61a90eca7a48a466e37a4085949ca2638531a63e6761a67541878ad628d61cfd",
+                  "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/CI2003_lecture-slides_bai-giang-co-luu-chat-le-song-giang.pdf"
+                }
+              ]
+            },
             {
               "id": "bai-giang-co-luu-chat-nguyen-thi-bay",
               "course": "CI2003",
