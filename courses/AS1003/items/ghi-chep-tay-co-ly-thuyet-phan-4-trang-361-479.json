@@ -1,0 +1,23 @@
+{
+  "$schema": "../../../schema/item.schema.json",
+  "id": "ghi-chep-tay-co-ly-thuyet-phan-4-trang-361-479",
+  "course": "AS1003",
+  "type": "notes",
+  "title": "Ghi chép tay Cơ lý thuyết (phần 4, trang 361-479)",
+  "lang": "vi",
+  "license": "CC-BY-SA-4.0",
+  "origin": "self-made",
+  "added": "2026-10-06",
+  "removed": false,
+  "description": "Tài liệu Cơ lý thuyết (AS1003) dung lượng lớn gửi chung một đợt: slide chương 9 của TS. Nguyễn Hữu Hào; tóm tắt lý thuyết kèm ví dụ giải mẫu chương 8, 10, 12, 14 do sinh viên tự soạn; cheatsheet động học và động lực học; ghi chép tay toàn môn (479 trang, chia 4 phần theo trang).",
+  "files": [
+    {
+      "name": "AS1003_notes_ghi-chep-tay-co-ly-thuyet-phan-4-trang-361-479.pdf",
+      "size": 14858719,
+      "sha256": "a11a8577138fed6c982f8eca76db8bcacf476207e637774fb7888348d7780be5",
+      "mime": "application/pdf",
+      "quarantine": "pending/3lWWiGvNNH/AS1003_notes_ghi-chep-tay-co-ly-thuyet-phan-4-trang-361-479.pdf",
+      "uploadSha256": "a11a8577138fed6c982f8eca76db8bcacf476207e637774fb7888348d7780be5"
+    }
+  ]
+}
