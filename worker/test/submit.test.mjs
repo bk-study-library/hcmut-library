@@ -960,3 +960,41 @@ describe('tải file lớn theo phần', () => {
     expect((await r2Keys()).some((k) => k.startsWith('upload/'))).toBe(false);
   });
 });
+
+describe('POST /xem-duyet/nap (nạp riêng sau Cloudflare Access)', () => {
+  const TEAM = 'nhom.cloudflareaccess.com';
+  const AUD = 'aud-thu-vien';
+  let key;
+  let jwk;
+  beforeAll(async () => {
+    key = await crypto.subtle.generateKey({ name: 'RSASSA-PKCS1-v1_5', modulusLength: 2048, publicExponent: new Uint8Array([1, 0, 1]), hash: 'SHA-256' }, true, ['sign', 'verify']);
+    const pub = await crypto.subtle.exportKey('jwk', key.publicKey);
+    jwk = { kid: 'k1', kty: 'RSA', alg: 'RS256', n: pub.n, e: pub.e };
+  });
+  const b64 = (o) => btoa(JSON.stringify(o)).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+  async function jwt() {
+    const t = Math.floor(Date.now() / 1000);
+    const head = b64({ alg: 'RS256', kid: 'k1' });
+    const body = b64({ aud: [AUD], iss: `https://${TEAM}`, exp: t + 600, common_name: 'lab2-token' });
+    const sig = new Uint8Array(await crypto.subtle.sign('RSASSA-PKCS1-v1_5', key.privateKey, new TextEncoder().encode(`${head}.${body}`)));
+    return `${head}.${body}.${btoa(String.fromCharCode(...sig)).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '')}`;
+  }
+  const withCerts = (inner) => async (url, init) => (String(url).startsWith(`https://${TEAM}/cdn-cgi/access/certs`) ? json({ keys: [jwk] }) : inner(url, init));
+  const intake = (body, headers = {}) => new Request('https://worker.example/xem-duyet/nap', { method: 'POST', body, headers: { 'CF-Connecting-IP': IP, ...headers } });
+  const accessEnv = { ACCESS_TEAM_DOMAIN: TEAM, ACCESS_AUD: AUD, SUBMIT_LIMIT: { limit: async () => ({ success: false }) } };
+
+  it('có JWT Access hợp lệ: nhận bài không cần Turnstile, bỏ giới hạn theo IP, mở PR', async () => {
+    const inner = fakeFetch({ turnstile: false });
+    const { res, body } = await run(intake(form({ 'cf-turnstile-response': undefined }), { 'Cf-Access-Jwt-Assertion': await jwt() }), { fetch: withCerts(inner), envOver: accessEnv });
+    expect(res.status).toBe(201);
+    expect(body.code).toMatch(/^[A-Za-z0-9]{10}$/);
+    expect((await r2Keys()).some((k) => k.startsWith(`pending/${body.code}/`))).toBe(true);
+  });
+
+  it('không có hay sai JWT: 403; chưa cấu hình Access: 503; không ghi gì', async () => {
+    expect((await run(intake(form()), { fetch: withCerts(fakeFetch()), envOver: accessEnv })).res.status).toBe(403);
+    expect((await run(intake(form(), { 'Cf-Access-Jwt-Assertion': 'a.b.c' }), { fetch: withCerts(fakeFetch()), envOver: accessEnv })).res.status).toBe(403);
+    expect((await run(intake(form(), { 'Cf-Access-Jwt-Assertion': await jwt() }))).res.status).toBe(503);
+    expect(await r2Keys()).toEqual([]);
+  });
+});

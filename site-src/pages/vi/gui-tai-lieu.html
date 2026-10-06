@@ -44,6 +44,27 @@
   <p class="err" data-err="type" role="alert"></p>
 </div>
 
+<!-- Ô theo loại tài liệu (catalog/policy.json, typeFields): upload.js hiện ô của loại đang chọn, ô ẩn không gửi đi. -->
+<div class="field" id="type-fields" hidden>
+  <div data-field="term" hidden>
+    <label for="term">Học kỳ</label>
+    <input id="term" name="term" type="text" autocomplete="off" placeholder="Ví dụ HK251">
+    <p class="err" data-err="term" role="alert"></p>
+  </div>
+  <div data-field="examKind" hidden>
+    <label for="examKind">Loại kiểm tra</label>
+    <select id="examKind" name="examKind"><option value="">Chọn loại kiểm tra</option>
+{{upload:examKinds}}
+    </select>
+    <p class="err" data-err="examKind" role="alert"></p>
+  </div>
+  <div data-field="chapter" hidden>
+    <label for="chapter">Chương, ví dụ 3 hoặc 3.2</label>
+    <input id="chapter" name="chapter" type="text" maxlength="{{upload:chapterMax}}">
+    <p class="err" data-err="chapter" role="alert"></p>
+  </div>
+</div>
+
 <div class="field" id="title-field">
   <label for="title">Tiêu đề</label>
   <input id="title" name="title" type="text" maxlength="{{upload:titleMax}}" autocomplete="off">
@@ -134,17 +155,6 @@
   <p class="err" data-err="description" role="alert"></p>
   <label for="lang">Ngôn ngữ</label>
   <select id="lang" name="lang"><option value="vi">Tiếng Việt</option><option value="en">English</option></select>
-  <label for="term">Học kỳ, ví dụ HK251</label>
-  <input id="term" name="term" type="text">
-  <p class="err" data-err="term" role="alert"></p>
-  <label for="chapter">Chương, ví dụ 3 hoặc 3.2</label>
-  <input id="chapter" name="chapter" type="text" maxlength="{{upload:chapterMax}}">
-  <p class="err" data-err="chapter" role="alert"></p>
-  <label for="examKind">Loại kiểm tra (nếu là đề)</label>
-  <select id="examKind" name="examKind"><option value="">Không chọn</option>
-{{upload:examKinds}}
-  </select>
-  <p class="err" data-err="examKind" role="alert"></p>
 </details>
 
 <div class="field checks">

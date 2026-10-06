@@ -156,6 +156,9 @@
       });
     } else if (!courseId.value) bad('course', msg.course);
     if (!typeSel.value) bad('type', msg.type);
+    fieldRules().required.forEach(function (k) {
+      if (!String(form.elements[k].value).trim()) bad(k, (msg.required || {})[k] || msg.title);
+    });
     if (!isBatch() && !form.elements.title.value.trim()) bad('title', msg.title);
     if (isBook()) {
       if (!form.elements['book-title'].value.trim() || !form.elements['book-authors'].value.trim()) bad('book', msg.book);
@@ -195,6 +198,37 @@
     // Đợt gửi: mỗi file chọn loại riêng, nên ô chọn file nhận mọi đuôi.
     fileInput.setAttribute('accept', (batchFiles > 1 ? cfg.extensions : allowedExts()).join(','));
     renderBatch();
+  }
+
+  // Ô theo loại (cfg.typeFields từ policy.json): hiện ô của mọi loại đang chọn (đợt gửi có loại riêng từng file), ô bắt
+  // buộc không ghi "không bắt buộc". Ô ẩn bị tắt để không gửi đi.
+  var typeFieldsBox = document.getElementById('type-fields');
+  function fieldRules() {
+    var types = [typeSel.value].concat(Array.prototype.map.call(batchList.querySelectorAll('select'), function (s) { return s.value; }));
+    var required = [];
+    var optional = [];
+    types.forEach(function (t) {
+      var r = (cfg.typeFields || {})[t] || {};
+      (r.required || []).forEach(function (k) { if (required.indexOf(k) < 0) required.push(k); });
+      (r.optional || []).forEach(function (k) { if (optional.indexOf(k) < 0) optional.push(k); });
+    });
+    return { required: required, optional: optional.filter(function (k) { return required.indexOf(k) < 0; }) };
+  }
+  function syncTypeFields() {
+    if (!typeFieldsBox) return;
+    var rules = fieldRules();
+    var any = false;
+    Array.prototype.forEach.call(typeFieldsBox.querySelectorAll('[data-field]'), function (box) {
+      var k = box.getAttribute('data-field');
+      var on = rules.required.indexOf(k) >= 0 || rules.optional.indexOf(k) >= 0;
+      var label = box.querySelector('label');
+      if (!label.hasAttribute('data-base')) label.setAttribute('data-base', label.textContent);
+      label.textContent = label.getAttribute('data-base') + (rules.optional.indexOf(k) >= 0 ? ' ' + msg.optional : '');
+      box.hidden = !on;
+      form.elements[k].disabled = !on;
+      any = any || on;
+    });
+    typeFieldsBox.hidden = !any;
   }
 
   function chosenFiles() {
@@ -259,6 +293,7 @@
         });
         // Dòng chưa chọn loại riêng theo loại chung.
         ys.value = old && old.type ? old.type : typeSel.value;
+        ys.addEventListener('change', syncTypeFields);
         li.appendChild(yl);
         li.appendChild(ys);
         li.appendChild(errLine('type-' + i));
@@ -266,6 +301,7 @@
       });
       batchTotal.textContent = files.length + ' ' + msg.batchSum + ' ' + core.formatSize(total) + '. ' + msg.batchLimit;
     }
+    syncTypeFields();
     collectErrBoxes();
   }
 

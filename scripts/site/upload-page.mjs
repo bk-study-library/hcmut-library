@@ -32,6 +32,8 @@ export function uploadPage({ policy, site, root, raw, t }) {
     extensions: exts,
     // Đuôi nhận theo từng loại (extensions[].types, quizExtensions): form lọc ô chọn file theo loại.
     byType: Object.fromEntries(formTypes.map((x) => [x, extensionsFor(policy, x)])),
+    // Ô theo loại tài liệu (học kỳ, loại kiểm tra, chương): bắt buộc hay tùy chọn.
+    typeFields: policy.typeFields || {},
     msg: {
       ...msg,
       fileExt: msg.fileExt(exts.join(', ')),

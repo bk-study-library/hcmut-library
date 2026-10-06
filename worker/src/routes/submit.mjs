@@ -182,7 +182,9 @@ export function prBody({ code, courseCode, type, file, files = null, viewBase, n
   return `${lines.join('\n')}\n`;
 }
 
-export async function handleSubmit(req, env, deps, cors) {
+// trusted: gọi từ POST /xem-duyet/nap (routes/intake.mjs) sau khi Access đã xác nhận người duyệt: bỏ giới hạn theo IP và
+// Turnstile; mọi phần kiểm khác như bài gửi qua form.
+export async function handleSubmit(req, env, deps, cors, { trusted = false } = {}) {
   const github = githubFactory(env, deps);
   const fail = (step, err) => {
     logFailure(step, err);
@@ -191,7 +193,7 @@ export async function handleSubmit(req, env, deps, cors) {
 
   // Số lần gửi theo dải địa chỉ (IPv4 /32, IPv6 /64), trước mọi lời gọi GitHub và trước khi đọc body.
   // IP chỉ dùng làm khóa, không lưu.
-  const limit = await env.SUBMIT_LIMIT.limit({ key: rateKey(req.headers.get('CF-Connecting-IP')) });
+  const limit = trusted ? { success: true } : await env.SUBMIT_LIMIT.limit({ key: rateKey(req.headers.get('CF-Connecting-IP')) });
   if (!limit.success) return reply(429, { ok: false, error: MESSAGES.rateLimit }, cors);
   // Trần chung mỗi ngày (UTC) cho mọi người gửi. Ở đây chỉ đọc; bài chỉ được đếm khi đã qua kiểm.
   const cap = dailyCap(env);
@@ -225,7 +227,7 @@ export async function handleSubmit(req, env, deps, cors) {
 
   // Turnstile.
   const hosts = allowedOrigins(env).map((o) => (URL.canParse(o) ? new URL(o).hostname : '')).filter(Boolean);
-  if (!(await verifyTurnstile(data.get('cf-turnstile-response'), env.TURNSTILE_SECRET, hosts, deps.fetch))) {
+  if (!trusted && !(await verifyTurnstile(data.get('cf-turnstile-response'), env.TURNSTILE_SECRET, hosts, deps.fetch))) {
     return reply(403, { ok: false, error: MESSAGES.turnstile }, cors);
   }
 
