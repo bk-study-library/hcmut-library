@@ -7,7 +7,7 @@
     "courses": 3796,
     "programs": 838,
     "majors": 140,
-    "items": 38
+    "items": 39
   },
   "faculties": [
     {
@@ -51227,6 +51227,31 @@
                   "quarantine": "clean/UFY3BJAAH9/CI2003_lecture-slides_bai-giang-co-luu-chat-vo-thi-tuyet-giang.pdf",
                   "uploadSha256": "59955500d0ae183729961eab12da47c89f468b8f4ca783d49e21632a17695e7a",
                   "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/CI2003_lecture-slides_bai-giang-co-luu-chat-vo-thi-tuyet-giang.pdf"
+                }
+              ]
+            },
+            {
+              "id": "de-cuoi-ky-co-luu-chat-hk181",
+              "course": "CI2003",
+              "type": "exam-past",
+              "title": "Đề cuối kỳ Cơ lưu chất HK181",
+              "lang": "vi",
+              "license": "CC-BY-SA-4.0",
+              "origin": "self-made",
+              "added": "2026-10-06",
+              "removed": false,
+              "description": "Đề thi cuối kỳ Cơ lưu chất (CI2003) các học kỳ, bản scan hoặc PDF gốc. Một số đề có tên PGS.TS. Lê Song Giang (người phê duyệt hoặc chủ nhiệm bộ môn) và PGS.TS. Lê Văn Dực. Có thêm một đề CI2005 HK191 cùng nội dung môn.",
+              "term": "HK181",
+              "examKind": "ck",
+              "files": [
+                {
+                  "name": "CI2003_exam-past_de-cuoi-ky-co-luu-chat-hk181_HK181.pdf",
+                  "size": 427001,
+                  "sha256": "dd2b68e725c9f0f1c7d7224d8f9a974457770068320b989f7bd023aadcc3e7ee",
+                  "mime": "application/pdf",
+                  "quarantine": "clean/qK0dneaFWv/CI2003_exam-past_de-cuoi-ky-co-luu-chat-hk181_HK181.pdf",
+                  "uploadSha256": "d4bcdd649405c8b6e30208a92f3b45026fea49fe90cb86b707ff537b211902ce",
+                  "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/CI2003_exam-past_de-cuoi-ky-co-luu-chat-hk181_HK181.pdf"
                 }
               ]
             }

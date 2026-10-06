@@ -21,6 +21,10 @@
 - **Bài giảng Cơ lưu chất - Nguyễn Thị Bảy** (vi, CC-BY-SA-4.0): [CI2003_lecture-slides_bai-giang-co-luu-chat-nguyen-thi-bay.pdf, 7.4 MB](https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/CI2003_lecture-slides_bai-giang-co-luu-chat-nguyen-thi-bay.pdf)
 - **Bài giảng Cơ lưu chất - Võ Thị Tuyết Giang** (vi, CC-BY-SA-4.0): [CI2003_lecture-slides_bai-giang-co-luu-chat-vo-thi-tuyet-giang.pdf, 7.8 MB](https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/CI2003_lecture-slides_bai-giang-co-luu-chat-vo-thi-tuyet-giang.pdf)
 
+### Đề cũ
+
+- **Đề cuối kỳ Cơ lưu chất HK181** (HK181, vi, CC-BY-SA-4.0): [CI2003_exam-past_de-cuoi-ky-co-luu-chat-hk181_HK181.pdf, 417 KB](https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/CI2003_exam-past_de-cuoi-ky-co-luu-chat-hk181_HK181.pdf)
+
 ## Link
 
 Chưa có link.
