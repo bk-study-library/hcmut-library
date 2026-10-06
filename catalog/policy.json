@@ -3,7 +3,7 @@
   "note": "Cấu hình chung: loại tài liệu nhận, giới hạn file, đuôi file (types: chỉ nhận cho các loại này), giới hạn khi quét file (scan) và học kỳ. releaseTagOverrides: tag Release thay cho files-<học kỳ> khi tag cũ không dùng lại được (ví dụ từng là immutable release), giá trị là files-<học kỳ> thêm một chữ thường; xem docs/cai-dat-luong-tai-len.md, mục Release.",
   "maxFileBytes": 1073741824,
   "batchMaxFiles": 10,
-  "batchMaxBytes": 1073741824, "directMaxBytes": 94371840, "uploadPartBytes": 33554432,
+  "batchMaxBytes": 1073741824, "directMaxBytes": 0, "uploadPartBytes": 33554432,
   "maxMdInGitBytes": 1048576,
   "maxGitFileBytes": 20971520,
   "extensions": {

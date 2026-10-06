@@ -22,3 +22,15 @@ test('Sha256 theo luồng khớp crypto với mọi cách chia phần và độ 
     }
   }
 });
+
+test('script nạp riêng: ô chung, tiêu đề và loại từng file, ba ô xác nhận', async () => {
+  const { intakeFields } = await import('../scripts/upload/nap.mjs');
+  const f = intakeFields({ course: 'AS1003', type: 'exam-past', term: 'HK251', examKind: 'ck', license: 'CC-BY-SA-4.0', files: [{ path: 'a.pdf', title: 'Đề cuối kỳ' }, { path: 'b.pdf', title: 'Đáp án', type: 'exam-solution' }] });
+  assert.equal(f.get('course'), 'AS1003');
+  assert.equal(f.get('term'), 'HK251');
+  assert.equal(f.get('title'), 'Đề cuối kỳ');
+  assert.equal(f.get('title-1'), 'Đáp án');
+  assert.equal(f.get('type-1'), 'exam-solution');
+  assert.equal(f.get('confirm-not-book'), 'on');
+  assert.equal(f.has('file'), false);
+});
