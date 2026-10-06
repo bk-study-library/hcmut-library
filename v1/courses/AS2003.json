@@ -5,6 +5,98 @@
   "name": "Kỹ thuật Lập trình Cơ Kỹ thuật",
   "items": [
     {
+      "id": "bai-tap-chuong-3-loi-giai-python-thay-nguyen-thanh-nha",
+      "type": "exercise-solution",
+      "title": "Bài tập chương 3 - lời giải Python (thầy Nguyễn Thanh Nhã)",
+      "description": "Bài tập chương 3-6 môn KTLT Cơ kỹ thuật (lớp TS. Nguyễn Thanh Nhã): đề bài kèm lời giải Python của sinh viên, mỗi chương một file.",
+      "lang": "vi",
+      "teacher": "Nguyễn Thanh Nhã",
+      "license": "CC-BY-SA-4.0",
+      "origin": "self-made",
+      "added": "2026-10-06",
+      "updated": "2026-10-06",
+      "files": [
+        {
+          "name": "AS2003_exercise-solution_bai-tap-chuong-3-loi-giai-python-thay-nguyen-thanh-nha.pdf",
+          "mime": "application/pdf",
+          "size": 933453,
+          "sha256": "be7544286557a635948e55023e391185738d6fbce8a746b49b9cc19a55e38f79",
+          "urls": [
+            "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS2003_exercise-solution_bai-tap-chuong-3-loi-giai-python-thay-nguyen-thanh-nha.pdf"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bai-tap-chuong-4-loi-giai-python-thay-nguyen-thanh-nha",
+      "type": "exercise-solution",
+      "title": "Bài tập chương 4 - lời giải Python (thầy Nguyễn Thanh Nhã)",
+      "description": "Bài tập chương 3-6 môn KTLT Cơ kỹ thuật (lớp TS. Nguyễn Thanh Nhã): đề bài kèm lời giải Python của sinh viên, mỗi chương một file.",
+      "lang": "vi",
+      "teacher": "Nguyễn Thanh Nhã",
+      "license": "CC-BY-SA-4.0",
+      "origin": "self-made",
+      "added": "2026-10-06",
+      "updated": "2026-10-06",
+      "files": [
+        {
+          "name": "AS2003_exercise-solution_bai-tap-chuong-4-loi-giai-python-thay-nguyen-thanh-nha.pdf",
+          "mime": "application/pdf",
+          "size": 938899,
+          "sha256": "45231ff2a665c3ca07e5586851a594cc8c63e4093791f60ee815714f74a4a998",
+          "urls": [
+            "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS2003_exercise-solution_bai-tap-chuong-4-loi-giai-python-thay-nguyen-thanh-nha.pdf"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bai-tap-chuong-5-loi-giai-python-thay-nguyen-thanh-nha",
+      "type": "exercise-solution",
+      "title": "Bài tập chương 5 - lời giải Python (thầy Nguyễn Thanh Nhã)",
+      "description": "Bài tập chương 3-6 môn KTLT Cơ kỹ thuật (lớp TS. Nguyễn Thanh Nhã): đề bài kèm lời giải Python của sinh viên, mỗi chương một file.",
+      "lang": "vi",
+      "teacher": "Nguyễn Thanh Nhã",
+      "license": "CC-BY-SA-4.0",
+      "origin": "self-made",
+      "added": "2026-10-06",
+      "updated": "2026-10-06",
+      "files": [
+        {
+          "name": "AS2003_exercise-solution_bai-tap-chuong-5-loi-giai-python-thay-nguyen-thanh-nha.pdf",
+          "mime": "application/pdf",
+          "size": 1172622,
+          "sha256": "9925f5a28565bb7cc54651ce55a35c4176b7bf1fc62cff93201e3401dfe1478c",
+          "urls": [
+            "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS2003_exercise-solution_bai-tap-chuong-5-loi-giai-python-thay-nguyen-thanh-nha.pdf"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bai-tap-chuong-6-loi-giai-python-thay-nguyen-thanh-nha",
+      "type": "exercise-solution",
+      "title": "Bài tập chương 6 - lời giải Python (thầy Nguyễn Thanh Nhã)",
+      "description": "Bài tập chương 3-6 môn KTLT Cơ kỹ thuật (lớp TS. Nguyễn Thanh Nhã): đề bài kèm lời giải Python của sinh viên, mỗi chương một file.",
+      "lang": "vi",
+      "teacher": "Nguyễn Thanh Nhã",
+      "license": "CC-BY-SA-4.0",
+      "origin": "self-made",
+      "added": "2026-10-06",
+      "updated": "2026-10-06",
+      "files": [
+        {
+          "name": "AS2003_exercise-solution_bai-tap-chuong-6-loi-giai-python-thay-nguyen-thanh-nha.pdf",
+          "mime": "application/pdf",
+          "size": 1093673,
+          "sha256": "ccb7b99bff037c67a0bbab5945e1fa536de4fa66df4078801e667e2f70b50e50",
+          "urls": [
+            "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS2003_exercise-solution_bai-tap-chuong-6-loi-giai-python-thay-nguyen-thanh-nha.pdf"
+          ]
+        }
+      ]
+    },
+    {
       "id": "bai-tap-lop-tai-nang-ktlt-co-ky-thuat-code-python",
       "type": "exercise-solution",
       "title": "Bài tập lớp tài năng KTLT Cơ kỹ thuật - code Python",
