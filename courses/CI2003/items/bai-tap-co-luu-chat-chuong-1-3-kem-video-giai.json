@@ -13,11 +13,12 @@
   "files": [
     {
       "name": "CI2003_exercise-solution_bai-tap-co-luu-chat-chuong-1-3-kem-video-giai.pdf",
-      "size": 1325121,
-      "sha256": "1dab3c32fefda1cc8eafa639cc994cb88919fec26fb1ab9410fca14866747634",
+      "size": 1327659,
+      "sha256": "6fc476a83cdabb89ac08a294541be6e91c5d9c652decec15f05d54698d8c0410",
       "mime": "application/pdf",
-      "quarantine": "pending/qgW07ogqKr/CI2003_exercise-solution_bai-tap-co-luu-chat-chuong-1-3-kem-video-giai.pdf",
-      "uploadSha256": "1dab3c32fefda1cc8eafa639cc994cb88919fec26fb1ab9410fca14866747634"
+      "quarantine": "clean/qgW07ogqKr/CI2003_exercise-solution_bai-tap-co-luu-chat-chuong-1-3-kem-video-giai.pdf",
+      "uploadSha256": "1dab3c32fefda1cc8eafa639cc994cb88919fec26fb1ab9410fca14866747634",
+      "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/CI2003_exercise-solution_bai-tap-co-luu-chat-chuong-1-3-kem-video-giai.pdf"
     }
   ]
 }
