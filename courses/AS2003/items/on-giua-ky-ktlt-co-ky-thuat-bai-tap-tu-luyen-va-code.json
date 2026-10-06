@@ -13,11 +13,12 @@
   "files": [
     {
       "name": "AS2003_exercise-solution_on-giua-ky-ktlt-co-ky-thuat-bai-tap-tu-luyen-va-code.pdf",
-      "size": 1029929,
-      "sha256": "f74a62554e6544d19cdab2acedc85f919e69c617c7bbe92e8cd094f3f347713e",
+      "size": 1032059,
+      "sha256": "155b35ed934260d1a450afb0772f2f20ee9b60efb30be2781dd7b5c67d4b02bf",
       "mime": "application/pdf",
-      "quarantine": "pending/MSqXduDhXb/AS2003_exercise-solution_on-giua-ky-ktlt-co-ky-thuat-bai-tap-tu-luyen-va-code.pdf",
-      "uploadSha256": "f74a62554e6544d19cdab2acedc85f919e69c617c7bbe92e8cd094f3f347713e"
+      "quarantine": "clean/MSqXduDhXb/AS2003_exercise-solution_on-giua-ky-ktlt-co-ky-thuat-bai-tap-tu-luyen-va-code.pdf",
+      "uploadSha256": "f74a62554e6544d19cdab2acedc85f919e69c617c7bbe92e8cd094f3f347713e",
+      "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS2003_exercise-solution_on-giua-ky-ktlt-co-ky-thuat-bai-tap-tu-luyen-va-code.pdf"
     }
   ]
 }

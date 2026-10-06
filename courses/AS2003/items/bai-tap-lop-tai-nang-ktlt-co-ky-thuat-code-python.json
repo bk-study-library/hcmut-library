@@ -13,11 +13,12 @@
   "files": [
     {
       "name": "AS2003_exercise-solution_bai-tap-lop-tai-nang-ktlt-co-ky-thuat-code-python.pdf",
-      "size": 2759699,
-      "sha256": "5c50bb91fbd952bedd68894fb4c4c3b9018aa4b967f717f2284630daa6debcdf",
+      "size": 2764113,
+      "sha256": "470b4b4d25a374a1b30412d6431b454aa86abf668ebeb5e139e661528f59a19b",
       "mime": "application/pdf",
-      "quarantine": "pending/MSqXduDhXb/AS2003_exercise-solution_bai-tap-lop-tai-nang-ktlt-co-ky-thuat-code-python.pdf",
-      "uploadSha256": "5c50bb91fbd952bedd68894fb4c4c3b9018aa4b967f717f2284630daa6debcdf"
+      "quarantine": "clean/MSqXduDhXb/AS2003_exercise-solution_bai-tap-lop-tai-nang-ktlt-co-ky-thuat-code-python.pdf",
+      "uploadSha256": "5c50bb91fbd952bedd68894fb4c4c3b9018aa4b967f717f2284630daa6debcdf",
+      "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS2003_exercise-solution_bai-tap-lop-tai-nang-ktlt-co-ky-thuat-code-python.pdf"
     }
   ]
 }
