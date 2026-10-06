@@ -5,6 +5,28 @@
   "name": "Kỹ thuật Lập trình Cơ Kỹ thuật",
   "items": [
     {
+      "id": "bai-tap-lop-tai-nang-ktlt-co-ky-thuat-code-python",
+      "type": "exercise-solution",
+      "title": "Bài tập lớp tài năng KTLT Cơ kỹ thuật - code Python",
+      "description": "Bài tập Python môn KTLT Cơ kỹ thuật do sinh viên làm: bài tập trên lớp năm 2025 (đề và code theo từng buổi, có bài khảo sát dầm cantilever, sắp xếp nổi bọt), code ôn giữa kỳ và cuối kỳ, bài tập lớp tài năng.",
+      "lang": "vi",
+      "license": "CC-BY-SA-4.0",
+      "origin": "self-made",
+      "added": "2026-10-06",
+      "updated": "2026-10-06",
+      "files": [
+        {
+          "name": "AS2003_exercise-solution_bai-tap-lop-tai-nang-ktlt-co-ky-thuat-code-python.pdf",
+          "mime": "application/pdf",
+          "size": 2764113,
+          "sha256": "470b4b4d25a374a1b30412d6431b454aa86abf668ebeb5e139e661528f59a19b",
+          "urls": [
+            "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS2003_exercise-solution_bai-tap-lop-tai-nang-ktlt-co-ky-thuat-code-python.pdf"
+          ]
+        }
+      ]
+    },
+    {
       "id": "bai-tap-trac-nghiem-va-quiz-ktlt-co-ky-thuat-co-dap-an-hk251",
       "type": "exam-past",
       "title": "Bài tập trắc nghiệm và quiz KTLT Cơ kỹ thuật (có đáp án, HK251)",
@@ -27,6 +49,28 @@
           "sha256": "5776fe291338e4a9f070b143ff2e9d7ded7b7e7f454f2bc0a11f85a66ea592f6",
           "urls": [
             "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS2003_exam-past_bai-tap-trac-nghiem-va-quiz-ktlt-co-ky-thuat-co-dap-an-hk251_HK251.pdf"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bai-tap-tren-lop-ktlt-co-ky-thuat-nam-2025-de-va-code-python",
+      "type": "exercise-solution",
+      "title": "Bài tập trên lớp KTLT Cơ kỹ thuật (năm 2025) - đề và code Python",
+      "description": "Bài tập Python môn KTLT Cơ kỹ thuật do sinh viên làm: bài tập trên lớp năm 2025 (đề và code theo từng buổi, có bài khảo sát dầm cantilever, sắp xếp nổi bọt), code ôn giữa kỳ và cuối kỳ, bài tập lớp tài năng.",
+      "lang": "vi",
+      "license": "CC-BY-SA-4.0",
+      "origin": "self-made",
+      "added": "2026-10-06",
+      "updated": "2026-10-06",
+      "files": [
+        {
+          "name": "AS2003_exercise-solution_bai-tap-tren-lop-ktlt-co-ky-thuat-nam-2025-de-va-code-python.pdf",
+          "mime": "application/pdf",
+          "size": 3262951,
+          "sha256": "8f0ad87e4b34e5e8861b420e3453cb65c9e0a9d0ade5fdc59967b0b3a791f4d0",
+          "urls": [
+            "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS2003_exercise-solution_bai-tap-tren-lop-ktlt-co-ky-thuat-nam-2025-de-va-code-python.pdf"
           ]
         }
       ]
@@ -78,6 +122,50 @@
           "sha256": "034e366318d14d0bcfcfc0e20ea924cdee07e10a1d3589203fa66ec72474c73f",
           "urls": [
             "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS2003_project-reference_code-bai-tap-lon-ktlt-co-ky-thuat-hk251-python_HK251.pdf"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "code-on-tap-cuoi-ky-ktlt-co-ky-thuat",
+      "type": "exercise-solution",
+      "title": "Code ôn tập cuối kỳ KTLT Cơ kỹ thuật",
+      "description": "Bài tập Python môn KTLT Cơ kỹ thuật do sinh viên làm: bài tập trên lớp năm 2025 (đề và code theo từng buổi, có bài khảo sát dầm cantilever, sắp xếp nổi bọt), code ôn giữa kỳ và cuối kỳ, bài tập lớp tài năng.",
+      "lang": "vi",
+      "license": "CC-BY-SA-4.0",
+      "origin": "self-made",
+      "added": "2026-10-06",
+      "updated": "2026-10-06",
+      "files": [
+        {
+          "name": "AS2003_exercise-solution_code-on-tap-cuoi-ky-ktlt-co-ky-thuat.pdf",
+          "mime": "application/pdf",
+          "size": 1710842,
+          "sha256": "a7dd42c68ae4f78f40e2b76a5d69d4f512426cc7e0e34bbb2df41fb71d8abf06",
+          "urls": [
+            "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS2003_exercise-solution_code-on-tap-cuoi-ky-ktlt-co-ky-thuat.pdf"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "on-giua-ky-ktlt-co-ky-thuat-bai-tap-tu-luyen-va-code",
+      "type": "exercise-solution",
+      "title": "Ôn giữa kỳ KTLT Cơ kỹ thuật - bài tập tự luyện và code",
+      "description": "Bài tập Python môn KTLT Cơ kỹ thuật do sinh viên làm: bài tập trên lớp năm 2025 (đề và code theo từng buổi, có bài khảo sát dầm cantilever, sắp xếp nổi bọt), code ôn giữa kỳ và cuối kỳ, bài tập lớp tài năng.",
+      "lang": "vi",
+      "license": "CC-BY-SA-4.0",
+      "origin": "self-made",
+      "added": "2026-10-06",
+      "updated": "2026-10-06",
+      "files": [
+        {
+          "name": "AS2003_exercise-solution_on-giua-ky-ktlt-co-ky-thuat-bai-tap-tu-luyen-va-code.pdf",
+          "mime": "application/pdf",
+          "size": 1032059,
+          "sha256": "155b35ed934260d1a450afb0772f2f20ee9b60efb30be2781dd7b5c67d4b02bf",
+          "urls": [
+            "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS2003_exercise-solution_on-giua-ky-ktlt-co-ky-thuat-bai-tap-tu-luyen-va-code.pdf"
           ]
         }
       ]
