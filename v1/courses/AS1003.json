@@ -5,6 +5,29 @@
   "name": "Cơ lý thuyết",
   "items": [
     {
+      "id": "bai-tap-co-ly-thuyet-cac-chuong-1-4-9-14-thay-tran-kim-bang",
+      "type": "lecture-slides",
+      "title": "Bài tập Cơ lý thuyết các chương 1-4, 9-14 - thầy Trần Kim Bằng",
+      "description": "Slide và bài tập Cơ lý thuyết của ThS. Trần Kim Bằng (Bộ môn Cơ kỹ thuật), bản 2018-2021. File slide gộp chương 0-14 (giới thiệu, tĩnh học, động học, động lực học); file bài tập gộp các chương 1-4 và 9-14.",
+      "lang": "vi",
+      "teacher": "Trần Kim Bằng",
+      "license": "CC-BY-SA-4.0",
+      "origin": "self-made",
+      "added": "2026-10-06",
+      "updated": "2026-10-06",
+      "files": [
+        {
+          "name": "AS1003_lecture-slides_bai-tap-co-ly-thuyet-cac-chuong-1-4-9-14-thay-tran-kim-bang.pdf",
+          "mime": "application/pdf",
+          "size": 3895053,
+          "sha256": "b9b029e8106743f7ac5d977169da5d569a2601a26e90036c371c0b1adf03102c",
+          "urls": [
+            "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_lecture-slides_bai-tap-co-ly-thuyet-cac-chuong-1-4-9-14-thay-tran-kim-bang.pdf"
+          ]
+        }
+      ]
+    },
+    {
       "id": "chuong-1-cac-khai-niem-co-ban-he-tien-de-tinh-hoc-bk",
       "type": "lecture-slides",
       "title": "Chuong 1 Cac khai niem co ban He tien de tinh hoc BK",
@@ -182,6 +205,124 @@
       ]
     },
     {
+      "id": "slide-chuong-11-dong-luc-hoc-chat-diem-thay-nguyen-huu-hao",
+      "type": "lecture-slides",
+      "title": "Slide chương 11: Động lực học chất điểm - thầy Nguyễn Hữu Hào",
+      "description": "Bộ slide bài giảng Cơ lý thuyết (Engineering Mechanics) của TS. Nguyễn Hữu Hào, Bộ môn Cơ kỹ thuật, Khoa Khoa học Ứng dụng, bản 2020-2021. Đủ 15 chương: tĩnh học (hệ tiên đề, thu gọn hệ lực, cân bằng vật rắn và hệ vật rắn, giàn, ma sát, trọng tâm), động học (động học điểm, hai chuyển động cơ bản, chuyển động phức hợp, song phẳng) và động lực học (chất điểm, các định lý tổng quát, nguyên lý D'Alembert, di chuyển khả dĩ, phương trình cơ học). Mỗi chương một file; ảnh đã nén để vừa giới hạn 20 MB.",
+      "lang": "vi",
+      "teacher": "Nguyễn Hữu Hào",
+      "license": "CC-BY-SA-4.0",
+      "origin": "self-made",
+      "added": "2026-10-06",
+      "updated": "2026-10-06",
+      "files": [
+        {
+          "name": "AS1003_lecture-slides_slide-chuong-11-dong-luc-hoc-chat-diem-thay-nguyen-huu-hao.pdf",
+          "mime": "application/pdf",
+          "size": 7565107,
+          "sha256": "f0b1ade74db0c6fddbde675e74a30d9c8e91b283a568eada85fe7f165a78a797",
+          "urls": [
+            "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_lecture-slides_slide-chuong-11-dong-luc-hoc-chat-diem-thay-nguyen-huu-hao.pdf"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "slide-chuong-12-cac-dinh-ly-tong-quat-dong-luc-hoc-thay",
+      "type": "lecture-slides",
+      "title": "Slide chương 12: Các định lý tổng quát động lực học - thầy Nguyễn Hữu Hào",
+      "description": "Bộ slide bài giảng Cơ lý thuyết (Engineering Mechanics) của TS. Nguyễn Hữu Hào, Bộ môn Cơ kỹ thuật, Khoa Khoa học Ứng dụng, bản 2020-2021. Đủ 15 chương: tĩnh học (hệ tiên đề, thu gọn hệ lực, cân bằng vật rắn và hệ vật rắn, giàn, ma sát, trọng tâm), động học (động học điểm, hai chuyển động cơ bản, chuyển động phức hợp, song phẳng) và động lực học (chất điểm, các định lý tổng quát, nguyên lý D'Alembert, di chuyển khả dĩ, phương trình cơ học). Mỗi chương một file; ảnh đã nén để vừa giới hạn 20 MB.",
+      "lang": "vi",
+      "teacher": "Nguyễn Hữu Hào",
+      "license": "CC-BY-SA-4.0",
+      "origin": "self-made",
+      "added": "2026-10-06",
+      "updated": "2026-10-06",
+      "files": [
+        {
+          "name": "AS1003_lecture-slides_slide-chuong-12-cac-dinh-ly-tong-quat-dong-luc-hoc-thay.pdf",
+          "mime": "application/pdf",
+          "size": 4637123,
+          "sha256": "ec9f4d9b22d9780477c4f13fd97767ae05a30da68e40d843692d8c423b671c15",
+          "urls": [
+            "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_lecture-slides_slide-chuong-12-cac-dinh-ly-tong-quat-dong-luc-hoc-thay.pdf"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "slide-chuong-13-nguyen-ly-d-alembert-thay-nguyen-huu-hao",
+      "type": "lecture-slides",
+      "title": "Slide chương 13: Nguyên lý D'Alembert - thầy Nguyễn Hữu Hào",
+      "description": "Bộ slide bài giảng Cơ lý thuyết (Engineering Mechanics) của TS. Nguyễn Hữu Hào, Bộ môn Cơ kỹ thuật, Khoa Khoa học Ứng dụng, bản 2020-2021. Đủ 15 chương: tĩnh học (hệ tiên đề, thu gọn hệ lực, cân bằng vật rắn và hệ vật rắn, giàn, ma sát, trọng tâm), động học (động học điểm, hai chuyển động cơ bản, chuyển động phức hợp, song phẳng) và động lực học (chất điểm, các định lý tổng quát, nguyên lý D'Alembert, di chuyển khả dĩ, phương trình cơ học). Mỗi chương một file; ảnh đã nén để vừa giới hạn 20 MB.",
+      "lang": "vi",
+      "teacher": "Nguyễn Hữu Hào",
+      "license": "CC-BY-SA-4.0",
+      "origin": "self-made",
+      "added": "2026-10-06",
+      "updated": "2026-10-06",
+      "files": [
+        {
+          "name": "AS1003_lecture-slides_slide-chuong-13-nguyen-ly-d-alembert-thay-nguyen-huu-hao.pdf",
+          "mime": "application/pdf",
+          "size": 8963737,
+          "sha256": "ce2cc5ac6e522057b2e96d985903643388045c5efc3847cd2990949ab8e5f4f8",
+          "urls": [
+            "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_lecture-slides_slide-chuong-13-nguyen-ly-d-alembert-thay-nguyen-huu-hao.pdf"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "slide-chuong-14-nguyen-ly-di-chuyen-kha-di-thay-nguyen-huu",
+      "type": "lecture-slides",
+      "title": "Slide chương 14: Nguyên lý di chuyển khả dĩ - thầy Nguyễn Hữu Hào",
+      "description": "Bộ slide bài giảng Cơ lý thuyết (Engineering Mechanics) của TS. Nguyễn Hữu Hào, Bộ môn Cơ kỹ thuật, Khoa Khoa học Ứng dụng, bản 2020-2021. Đủ 15 chương: tĩnh học (hệ tiên đề, thu gọn hệ lực, cân bằng vật rắn và hệ vật rắn, giàn, ma sát, trọng tâm), động học (động học điểm, hai chuyển động cơ bản, chuyển động phức hợp, song phẳng) và động lực học (chất điểm, các định lý tổng quát, nguyên lý D'Alembert, di chuyển khả dĩ, phương trình cơ học). Mỗi chương một file; ảnh đã nén để vừa giới hạn 20 MB.",
+      "lang": "vi",
+      "teacher": "Nguyễn Hữu Hào",
+      "license": "CC-BY-SA-4.0",
+      "origin": "self-made",
+      "added": "2026-10-06",
+      "updated": "2026-10-06",
+      "files": [
+        {
+          "name": "AS1003_lecture-slides_slide-chuong-14-nguyen-ly-di-chuyen-kha-di-thay-nguyen-huu.pdf",
+          "mime": "application/pdf",
+          "size": 7877072,
+          "sha256": "e563b3f22005cd37f53aa9f429db53079a4475616bf59e082986941d95d3a3e9",
+          "urls": [
+            "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_lecture-slides_slide-chuong-14-nguyen-ly-di-chuyen-kha-di-thay-nguyen-huu.pdf"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "slide-chuong-15-mot-so-phuong-trinh-co-hoc-thay-nguyen-huu",
+      "type": "lecture-slides",
+      "title": "Slide chương 15: Một số phương trình cơ học - thầy Nguyễn Hữu Hào",
+      "description": "Bộ slide bài giảng Cơ lý thuyết (Engineering Mechanics) của TS. Nguyễn Hữu Hào, Bộ môn Cơ kỹ thuật, Khoa Khoa học Ứng dụng, bản 2020-2021. Đủ 15 chương: tĩnh học (hệ tiên đề, thu gọn hệ lực, cân bằng vật rắn và hệ vật rắn, giàn, ma sát, trọng tâm), động học (động học điểm, hai chuyển động cơ bản, chuyển động phức hợp, song phẳng) và động lực học (chất điểm, các định lý tổng quát, nguyên lý D'Alembert, di chuyển khả dĩ, phương trình cơ học). Mỗi chương một file; ảnh đã nén để vừa giới hạn 20 MB.",
+      "lang": "vi",
+      "teacher": "Nguyễn Hữu Hào",
+      "license": "CC-BY-SA-4.0",
+      "origin": "self-made",
+      "added": "2026-10-06",
+      "unclassified": [
+        "pii"
+      ],
+      "updated": "2026-10-06",
+      "files": [
+        {
+          "name": "AS1003_lecture-slides_slide-chuong-15-mot-so-phuong-trinh-co-hoc-thay-nguyen-huu.pdf",
+          "mime": "application/pdf",
+          "size": 2403318,
+          "sha256": "13a4c1e290ba66160519493d8f908dd72f59082b1d89ba82f3a566e60dec035c",
+          "urls": [
+            "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_lecture-slides_slide-chuong-15-mot-so-phuong-trinh-co-hoc-thay-nguyen-huu.pdf"
+          ]
+        }
+      ]
+    },
+    {
       "id": "slide-chuong-8-chuyen-dong-song-phang-cua-vat-ran-thay",
       "type": "lecture-slides",
       "title": "Slide chương 8: Chuyển động song phẳng của vật rắn - thầy Nguyễn Thái Hiền",
@@ -205,6 +346,29 @@
       ]
     },
     {
+      "id": "slide-chuong-8-hai-chuyen-dong-co-ban-cua-vat-ran-thay",
+      "type": "lecture-slides",
+      "title": "Slide chương 8: Hai chuyển động cơ bản của vật rắn - thầy Nguyễn Hữu Hào",
+      "description": "Bộ slide bài giảng Cơ lý thuyết (Engineering Mechanics) của TS. Nguyễn Hữu Hào, Bộ môn Cơ kỹ thuật, Khoa Khoa học Ứng dụng, bản 2020-2021. Đủ 15 chương: tĩnh học (hệ tiên đề, thu gọn hệ lực, cân bằng vật rắn và hệ vật rắn, giàn, ma sát, trọng tâm), động học (động học điểm, hai chuyển động cơ bản, chuyển động phức hợp, song phẳng) và động lực học (chất điểm, các định lý tổng quát, nguyên lý D'Alembert, di chuyển khả dĩ, phương trình cơ học). Mỗi chương một file; ảnh đã nén để vừa giới hạn 20 MB.",
+      "lang": "vi",
+      "teacher": "Nguyễn Hữu Hào",
+      "license": "CC-BY-SA-4.0",
+      "origin": "self-made",
+      "added": "2026-10-06",
+      "updated": "2026-10-06",
+      "files": [
+        {
+          "name": "AS1003_lecture-slides_slide-chuong-8-hai-chuyen-dong-co-ban-cua-vat-ran-thay.pdf",
+          "mime": "application/pdf",
+          "size": 4654974,
+          "sha256": "84ebbd071fc8527a4181e8ebd283ca2fb85d32aac86d07a29f4f35c71ec1a32f",
+          "urls": [
+            "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_lecture-slides_slide-chuong-8-hai-chuyen-dong-co-ban-cua-vat-ran-thay.pdf"
+          ]
+        }
+      ]
+    },
+    {
       "id": "slide-chuong-9-chuyen-dong-phuc-hop-cua-diem-thay-nguyen",
       "type": "lecture-slides",
       "title": "Slide chương 9: Chuyển động phức hợp của điểm - thầy Nguyễn Thái Hiền",
@@ -223,6 +387,54 @@
           "sha256": "71e3b4d19cd3380ee7f4f67b1611efec52dc496f9f33911d33040556c0f6ded7",
           "urls": [
             "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_lecture-slides_slide-chuong-9-chuyen-dong-phuc-hop-cua-diem-thay-nguyen.pdf"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "slide-co-ly-thuyet-chuong-0-14-thay-tran-kim-bang",
+      "type": "lecture-slides",
+      "title": "Slide Cơ lý thuyết chương 0-14 - thầy Trần Kim Bằng",
+      "description": "Slide và bài tập Cơ lý thuyết của ThS. Trần Kim Bằng (Bộ môn Cơ kỹ thuật), bản 2018-2021. File slide gộp chương 0-14 (giới thiệu, tĩnh học, động học, động lực học); file bài tập gộp các chương 1-4 và 9-14.",
+      "lang": "vi",
+      "teacher": "Trần Kim Bằng",
+      "license": "CC-BY-SA-4.0",
+      "origin": "self-made",
+      "added": "2026-10-06",
+      "updated": "2026-10-06",
+      "files": [
+        {
+          "name": "AS1003_lecture-slides_slide-co-ly-thuyet-chuong-0-14-thay-tran-kim-bang.pdf",
+          "mime": "application/pdf",
+          "size": 8106032,
+          "sha256": "d6eae40edae7f76850864da6ec487a35be28fd1125d8ee2391bc155776702a0a",
+          "urls": [
+            "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_lecture-slides_slide-co-ly-thuyet-chuong-0-14-thay-tran-kim-bang.pdf"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tom-tat-chuong-11-dinh-ly-d-alembert",
+      "type": "summary",
+      "title": "Tóm tắt Chương 11 - Định lý D' Alembert",
+      "description": "Tóm tắt lý thuyết kèm ví dụ giải mẫu từng chương phần động học và động lực học (chương 8-14), sinh viên tự soạn: chuyển động song phẳng, chuyển động phức hợp, phương trình vi phân chuyển động, nguyên lý D'Alembert, các định lý động lực học, nguyên lý di chuyển khả dĩ, các phương trình cơ học (Lagrange loại II). Mỗi chương một file.",
+      "lang": "vi",
+      "license": "CC-BY-SA-4.0",
+      "origin": "self-made",
+      "added": "2026-10-06",
+      "unclassified": [
+        "no-text"
+      ],
+      "updated": "2026-10-06",
+      "files": [
+        {
+          "name": "AS1003_summary_tom-tat-chuong-11-dinh-ly-d-alembert.pdf",
+          "mime": "application/pdf",
+          "size": 7075119,
+          "sha256": "9de9dabcddee49189630945232fc4e67077ea0fa828a79a92cc4119accd5761d",
+          "urls": [
+            "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_summary_tom-tat-chuong-11-dinh-ly-d-alembert.pdf"
           ]
         }
       ]
