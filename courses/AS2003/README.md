@@ -14,6 +14,12 @@
 
 ## Tài liệu
 
+### Slide bài giảng
+
+- **Slide chương 3 - Các kiểu dữ liệu (thầy Nguyễn Thanh Nhã)** (vi, CC-BY-SA-4.0): [AS2003_lecture-slides_slide-chuong-3-cac-kieu-du-lieu-thay-nguyen-thanh-nha.pdf, 265 KB](https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS2003_lecture-slides_slide-chuong-3-cac-kieu-du-lieu-thay-nguyen-thanh-nha.pdf)
+- **Slide chương 4 - Các cấu trúc điều khiển (thầy Nguyễn Thanh Nhã)** (vi, CC-BY-SA-4.0): [AS2003_lecture-slides_slide-chuong-4-cac-cau-truc-dieu-khien-thay-nguyen-thanh-nha.pdf, 319 KB](https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS2003_lecture-slides_slide-chuong-4-cac-cau-truc-dieu-khien-thay-nguyen-thanh-nha.pdf)
+- **Slide chương 6 - Lập trình hướng đối tượng (thầy Nguyễn Thanh Nhã)** (vi, CC-BY-SA-4.0): [AS2003_lecture-slides_slide-chuong-6-lap-trinh-huong-doi-tuong-thay-nguyen-thanh.pdf, 448 KB](https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS2003_lecture-slides_slide-chuong-6-lap-trinh-huong-doi-tuong-thay-nguyen-thanh.pdf)
+
 ### Lời giải bài tập
 
 - **Bài tập lớp tài năng KTLT Cơ kỹ thuật - code Python** (vi, CC-BY-SA-4.0): [AS2003_exercise-solution_bai-tap-lop-tai-nang-ktlt-co-ky-thuat-code-python.pdf, 2.6 MB](https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS2003_exercise-solution_bai-tap-lop-tai-nang-ktlt-co-ky-thuat-code-python.pdf)

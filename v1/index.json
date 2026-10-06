@@ -4,7 +4,7 @@
   "site": "https://bk-study-library.github.io/hcmut-library/",
   "counts": {
     "courses": 3796,
-    "items": 74
+    "items": 77
   },
   "faculties": [
     {
@@ -204,7 +204,10 @@
       "aliases": [],
       "oldNames": [],
       "status": "active",
-      "items": 5,
+      "items": 8,
+      "teachers": [
+        "Nguyễn Thanh Nhã"
+      ],
       "url": "https://bk-study-library.github.io/hcmut-library/course/AS2003/",
       "detail": "courses/AS2003.json"
     },
