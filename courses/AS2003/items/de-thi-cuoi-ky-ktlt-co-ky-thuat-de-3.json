@@ -1,0 +1,24 @@
+{
+  "$schema": "../../../schema/item.schema.json",
+  "id": "de-thi-cuoi-ky-ktlt-co-ky-thuat-de-3",
+  "course": "AS2003",
+  "type": "exam-past",
+  "title": "Đề thi cuối kỳ KTLT Cơ kỹ thuật - đề 3",
+  "lang": "vi",
+  "license": "CC-BY-SA-4.0",
+  "origin": "self-made",
+  "added": "2026-10-06",
+  "removed": false,
+  "description": "Ba đề thi cuối kỳ KTLT Cơ kỹ thuật (Python): trắc nghiệm và tự luận lập trình. Đề không ghi học kỳ.",
+  "examKind": "ck",
+  "files": [
+    {
+      "name": "AS2003_exam-past_de-thi-cuoi-ky-ktlt-co-ky-thuat-de-3.pdf",
+      "size": 107275,
+      "sha256": "dd6db73c08e86a08f5279add350f8450ff06ce3174b7c7df68ea613b62bda0ae",
+      "mime": "application/pdf",
+      "quarantine": "pending/JQOk1CzkRd/AS2003_exam-past_de-thi-cuoi-ky-ktlt-co-ky-thuat-de-3.pdf",
+      "uploadSha256": "dd6db73c08e86a08f5279add350f8450ff06ce3174b7c7df68ea613b62bda0ae"
+    }
+  ]
+}
