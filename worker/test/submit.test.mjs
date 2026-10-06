@@ -177,8 +177,10 @@ describe('POST /submit', () => {
     expect(body).not.toHaveProperty('pr');
     expect(res.headers.get('Access-Control-Allow-Origin')).toBe(SITE);
 
-    const name = `MT1005_summary_${SLUG}_HK251.pdf`;
-    expect(await r2Keys()).toEqual([`pending/${body.code}/${name}`, `sha/${sha}`, `token/${body.code}`].sort());
+    // Tên file theo id (id trùng mục đã gỡ nên thành -2), để tên trên Release không trùng.
+    const name = `MT1005_summary_${SLUG}-2_HK251.pdf`;
+    expect(await r2Keys()).toEqual([`id/MT1005/${SLUG}-2`, `pending/${body.code}/${name}`, `sha/${sha}`, `token/${body.code}`].sort());
+    expect(await (await env.QUARANTINE.get(`id/MT1005/${SLUG}-2`)).text()).toBe(body.code);
     // Link xem bài của người gửi: R2 chỉ giữ sha256 của mã bí mật, kèm môn.
     const view = new URL(body.viewUrl);
     expect(`${view.origin}${view.pathname}`).toBe(`https://up.example/xem/${body.code}`);
@@ -442,6 +444,14 @@ describe('POST /submit', () => {
     expect(fetch.find('POST', '/pulls')).toHaveLength(1);
   });
 
+  it('hai bài cùng môn cùng tiêu đề đang chờ duyệt song song: bài sau nhận id khác (khóa id/ trong R2)', async () => {
+    const fetch = fakeFetch();
+    expect((await run(post(form()), { fetch })).res.status).toBe(201);
+    expect((await run(post(form({}, pdfBytes(5000, 7))), { fetch })).res.status).toBe(201);
+    const paths = fetch.find('PUT', '/contents/').map((r) => new URL(r.url).pathname.split('/').pop());
+    expect(paths).toEqual([`${SLUG}-2.json`, `${SLUG}-3.json`]);
+  });
+
   it('trùng sha256 với tài liệu đã có: 409 đã có trong thư viện', async () => {
     const bytes = pdfBytes(500, 7);
     const sha = await sha256Hex(bytes);
@@ -536,10 +546,10 @@ describe('POST /submit', () => {
     expect(JSON.parse(pr.body).title).toBe(`Bài gửi ${body.code}: GE4169`);
   });
 
-  it('sách tham khảo: không có file, vẫn mở PR, kho chỉ có mã xem bài', async () => {
+  it('sách tham khảo: không có file, vẫn mở PR, kho chỉ có mã xem bài và khóa id', async () => {
     const { res, body, fetch } = await run(post(form({ type: 'book-ref', 'book-title': 'Giải tích', 'book-authors': 'A, B' }, null)));
     expect(res.status).toBe(201);
-    expect(await r2Keys()).toEqual([`token/${body.code}`]);
+    expect(await r2Keys()).toEqual([`id/MT1005/${SLUG}-2`, `token/${body.code}`]);
     const prText = JSON.parse(fetch.find('POST', '/pulls')[0].body).body;
     expect(prText).toContain(`Xem bài (người duyệt): https://up.example/xem-duyet/${body.code}`);
     for (const userText of ['Giải tích', 'A, B']) expect(prText).not.toContain(userText);
