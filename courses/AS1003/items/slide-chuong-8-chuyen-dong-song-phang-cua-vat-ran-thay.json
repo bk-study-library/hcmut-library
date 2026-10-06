@@ -14,11 +14,12 @@
   "files": [
     {
       "name": "AS1003_lecture-slides_slide-chuong-8-chuyen-dong-song-phang-cua-vat-ran-thay.pdf",
-      "size": 4235748,
-      "sha256": "307739974c496bd55c0f7e859d7f483765a0b7193f7b62b1ba075c991ebff7a2",
+      "size": 4232939,
+      "sha256": "c9a4e547ab128e34e319164b6790fd6f28b7b3eb0aee087eb68402677a2e5a83",
       "mime": "application/pdf",
-      "quarantine": "pending/ixGAJtYGzX/AS1003_lecture-slides_slide-chuong-8-chuyen-dong-song-phang-cua-vat-ran-thay.pdf",
-      "uploadSha256": "307739974c496bd55c0f7e859d7f483765a0b7193f7b62b1ba075c991ebff7a2"
+      "quarantine": "clean/ixGAJtYGzX/AS1003_lecture-slides_slide-chuong-8-chuyen-dong-song-phang-cua-vat-ran-thay.pdf",
+      "uploadSha256": "307739974c496bd55c0f7e859d7f483765a0b7193f7b62b1ba075c991ebff7a2",
+      "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_lecture-slides_slide-chuong-8-chuyen-dong-song-phang-cua-vat-ran-thay.pdf"
     }
   ]
 }

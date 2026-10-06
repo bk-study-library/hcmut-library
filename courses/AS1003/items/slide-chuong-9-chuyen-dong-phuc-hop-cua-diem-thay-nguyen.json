@@ -14,11 +14,12 @@
   "files": [
     {
       "name": "AS1003_lecture-slides_slide-chuong-9-chuyen-dong-phuc-hop-cua-diem-thay-nguyen.pdf",
-      "size": 3871807,
-      "sha256": "6ed3027d9ff8c2fbbac73eef45fc31e0ef113329631a54662b084dd2e551b2ef",
+      "size": 3868682,
+      "sha256": "71e3b4d19cd3380ee7f4f67b1611efec52dc496f9f33911d33040556c0f6ded7",
       "mime": "application/pdf",
-      "quarantine": "pending/ixGAJtYGzX/AS1003_lecture-slides_slide-chuong-9-chuyen-dong-phuc-hop-cua-diem-thay-nguyen.pdf",
-      "uploadSha256": "6ed3027d9ff8c2fbbac73eef45fc31e0ef113329631a54662b084dd2e551b2ef"
+      "quarantine": "clean/ixGAJtYGzX/AS1003_lecture-slides_slide-chuong-9-chuyen-dong-phuc-hop-cua-diem-thay-nguyen.pdf",
+      "uploadSha256": "6ed3027d9ff8c2fbbac73eef45fc31e0ef113329631a54662b084dd2e551b2ef",
+      "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_lecture-slides_slide-chuong-9-chuyen-dong-phuc-hop-cua-diem-thay-nguyen.pdf"
     }
   ]
 }
