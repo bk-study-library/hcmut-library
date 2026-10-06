@@ -392,6 +392,31 @@
           ]
         }
       ]
+    },
+    {
+      "id": "tom-tat-chuong-9-chuyen-dong-phuc-hop",
+      "type": "summary",
+      "title": "Tóm tắt Chương 9 - Chuyển động phức hợp",
+      "description": "Tóm tắt lý thuyết kèm ví dụ giải mẫu từng chương phần động học và động lực học (chương 8-14), sinh viên tự soạn: chuyển động song phẳng, chuyển động phức hợp, phương trình vi phân chuyển động, nguyên lý D'Alembert, các định lý động lực học, nguyên lý di chuyển khả dĩ, các phương trình cơ học (Lagrange loại II). Mỗi chương một file.",
+      "lang": "vi",
+      "license": "CC-BY-SA-4.0",
+      "origin": "self-made",
+      "added": "2026-10-06",
+      "unclassified": [
+        "no-text"
+      ],
+      "updated": "2026-10-06",
+      "files": [
+        {
+          "name": "AS1003_summary_tom-tat-chuong-9-chuyen-dong-phuc-hop.pdf",
+          "mime": "application/pdf",
+          "size": 7308310,
+          "sha256": "045d1182088598617a4048d79494c0e42a127efc93bb929f034836b951d1989d",
+          "urls": [
+            "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_summary_tom-tat-chuong-9-chuyen-dong-phuc-hop.pdf"
+          ]
+        }
+      ]
     }
   ]
 }
