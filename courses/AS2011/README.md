@@ -26,6 +26,11 @@
 - **Slide Lý thuyết đàn hồi chương 7: Bài toán tấm mỏng chịu uốn** (vi, CC-BY-SA-4.0): [AS2011_lecture-slides_slide-ly-thuyet-dan-hoi-chuong-7-bai-toan-tam-mong-chiu-uon.pdf, 799 KB](https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS2011_lecture-slides_slide-ly-thuyet-dan-hoi-chuong-7-bai-toan-tam-mong-chiu-uon.pdf)
 - **Slide Lý thuyết đàn hồi chương 8: Bài toán tấm mỏng chịu uốn trong hệ tọa độ trụ** (vi, CC-BY-SA-4.0): [AS2011_lecture-slides_slide-ly-thuyet-dan-hoi-chuong-8-bai-toan-tam-mong-chiu-uon.pdf, 437 KB](https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS2011_lecture-slides_slide-ly-thuyet-dan-hoi-chuong-8-bai-toan-tam-mong-chiu-uon.pdf)
 
+### Lời giải bài tập
+
+- **Code Python chương 5 - Lý thuyết đàn hồi** (vi, CC-BY-SA-4.0): [AS2011_exercise-solution_code-python-chuong-5-ly-thuyet-dan-hoi.pdf, 654 KB](https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS2011_exercise-solution_code-python-chuong-5-ly-thuyet-dan-hoi.pdf)
+- **Lời giải bài tập Lý thuyết đàn hồi bằng MATLAB/Python (lớp tài năng)** (vi, CC-BY-SA-4.0): [AS2011_exercise-solution_loi-giai-bai-tap-ly-thuyet-dan-hoi-bang-matlab-python-lop.pdf, 2.0 MB](https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS2011_exercise-solution_loi-giai-bai-tap-ly-thuyet-dan-hoi-bang-matlab-python-lop.pdf)
+
 ## Link
 
 Chưa có link.
