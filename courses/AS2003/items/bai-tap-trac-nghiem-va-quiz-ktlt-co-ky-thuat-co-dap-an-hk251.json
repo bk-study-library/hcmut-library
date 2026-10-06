@@ -15,11 +15,15 @@
   "files": [
     {
       "name": "AS2003_exam-past_bai-tap-trac-nghiem-va-quiz-ktlt-co-ky-thuat-co-dap-an-hk251_HK251.pdf",
-      "size": 2218474,
-      "sha256": "84df87317b2c653cd608592e4ab7bfff07fa602acd9d9c5a80997b9258443eed",
+      "size": 2233936,
+      "sha256": "5776fe291338e4a9f070b143ff2e9d7ded7b7e7f454f2bc0a11f85a66ea592f6",
       "mime": "application/pdf",
-      "quarantine": "pending/E9JBSiZIGy/AS2003_exam-past_bai-tap-trac-nghiem-va-quiz-ktlt-co-ky-thuat-co-dap-an-hk251_HK251.pdf",
-      "uploadSha256": "84df87317b2c653cd608592e4ab7bfff07fa602acd9d9c5a80997b9258443eed"
+      "quarantine": "clean/E9JBSiZIGy/AS2003_exam-past_bai-tap-trac-nghiem-va-quiz-ktlt-co-ky-thuat-co-dap-an-hk251_HK251.pdf",
+      "uploadSha256": "84df87317b2c653cd608592e4ab7bfff07fa602acd9d9c5a80997b9258443eed",
+      "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS2003_exam-past_bai-tap-trac-nghiem-va-quiz-ktlt-co-ky-thuat-co-dap-an-hk251_HK251.pdf"
     }
+  ],
+  "unclassified": [
+    "pii"
   ]
 }
