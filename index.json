@@ -7,7 +7,7 @@
     "courses": 3796,
     "programs": 838,
     "majors": 140,
-    "items": 78
+    "items": 79
   },
   "faculties": [
     {
@@ -52162,6 +52162,31 @@
                   "quarantine": "clean/5OEACrQ2z4/CI2003_exam-past_de-giua-ky-co-luu-chat-hk171_HK171.pdf",
                   "uploadSha256": "997981c7dc35b6d879d38e093f2a3cc560693d9321e1898b17bf48f4f9d6f717",
                   "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/CI2003_exam-past_de-giua-ky-co-luu-chat-hk171_HK171.pdf"
+                }
+              ]
+            },
+            {
+              "id": "de-giua-ky-co-luu-chat-hk231-anh-chup",
+              "course": "CI2003",
+              "type": "exam-past",
+              "title": "Đề giữa kỳ Cơ lưu chất HK231 (ảnh chụp)",
+              "lang": "vi",
+              "license": "CC-BY-SA-4.0",
+              "origin": "self-made",
+              "added": "2026-10-06",
+              "removed": false,
+              "description": "Đề kiểm tra giữa kỳ Cơ lưu chất: đề HK171, đề mẫu và ảnh chụp đề HK231.",
+              "term": "HK231",
+              "examKind": "gk",
+              "files": [
+                {
+                  "name": "CI2003_exam-past_de-giua-ky-co-luu-chat-hk231-anh-chup_HK231.pdf",
+                  "size": 1426919,
+                  "sha256": "1d2d32a644767134cc099c5e18a0481f5c2a3ac2c0bea1b91bed3ad72844ba04",
+                  "mime": "application/pdf",
+                  "quarantine": "clean/JUM0EWL6QA/CI2003_exam-past_de-giua-ky-co-luu-chat-hk231-anh-chup_HK231.pdf",
+                  "uploadSha256": "8ebca48efd46fe285b35cb306171ac2064933d046d1264eb78e5bfd8a675ea1f",
+                  "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/CI2003_exam-past_de-giua-ky-co-luu-chat-hk231-anh-chup_HK231.pdf"
                 }
               ]
             },
