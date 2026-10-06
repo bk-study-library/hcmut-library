@@ -119,6 +119,28 @@
       ]
     },
     {
+      "id": "danh-sach-video-bai-giang-giai-bai-tap-va-quiz-co-luu-chat",
+      "type": "notes",
+      "title": "Danh sách video bài giảng, giải bài tập và quiz Cơ lưu chất (YouTube)",
+      "description": "Danh sách playlist YouTube bài giảng chi tiết, giải bài tập và quiz Cơ lưu chất theo từng chương, do sinh viên tổng hợp (file Markdown).",
+      "lang": "vi",
+      "license": "CC-BY-SA-4.0",
+      "origin": "self-made",
+      "added": "2026-10-06",
+      "updated": "2026-10-06",
+      "files": [
+        {
+          "name": "CI2003_notes_danh-sach-video-bai-giang-giai-bai-tap-va-quiz-co-luu-chat.md",
+          "mime": "text/markdown",
+          "size": 1795,
+          "sha256": "bc6364b887139f315695caef6f23fed36e98a9721cbb6cde502a6057904d478e",
+          "urls": [
+            "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/CI2003_notes_danh-sach-video-bai-giang-giai-bai-tap-va-quiz-co-luu-chat.md"
+          ]
+        }
+      ]
+    },
+    {
       "id": "de-cuoi-ky-ci2005-hk191",
       "type": "exam-past",
       "title": "Đề cuối kỳ CI2005 HK191",
