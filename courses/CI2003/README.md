@@ -18,6 +18,10 @@
 
 - **Bài giảng Cơ lưu chất - Nguyễn Thị Bảy** (vi, CC-BY-SA-4.0): [CI2003_lecture-slides_bai-giang-co-luu-chat-nguyen-thi-bay.pdf, 7.4 MB](https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/CI2003_lecture-slides_bai-giang-co-luu-chat-nguyen-thi-bay.pdf)
 
+### Đề cũ
+
+- **Đề cuối kỳ Cơ lưu chất HK161** (HK161, vi, CC-BY-SA-4.0): [CI2003_exam-past_de-cuoi-ky-co-luu-chat-hk161_HK161.pdf, 725 KB](https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/CI2003_exam-past_de-cuoi-ky-co-luu-chat-hk161_HK161.pdf)
+
 ## Link
 
 Chưa có link.
