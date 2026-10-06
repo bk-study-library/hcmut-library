@@ -1,0 +1,25 @@
+{
+  "$schema": "../../../schema/item.schema.json",
+  "id": "de-giua-ky-co-luu-chat-de-mau",
+  "course": "CI2003",
+  "type": "exam-past",
+  "title": "Đề giữa kỳ Cơ lưu chất - đề mẫu",
+  "lang": "vi",
+  "license": "CC-BY-SA-4.0",
+  "origin": "self-made",
+  "added": "2026-10-06",
+  "removed": false,
+  "description": "Đề và trắc nghiệm Cơ lưu chất không ghi học kỳ: ngân hàng câu hỏi có đáp án, bộ trắc nghiệm Fluid Mechanics, đề thi kỳ hè, đề cuối kỳ mẫu (lý thuyết và bài tập, có ghi năm học 2017-2018), đề giữa kỳ mẫu và đề giữa kỳ mẫu có đáp án.",
+  "examKind": "gk",
+  "files": [
+    {
+      "name": "CI2003_exam-past_de-giua-ky-co-luu-chat-de-mau.pdf",
+      "size": 560408,
+      "sha256": "3933d701c77ed107b72a05bd6c0924eb2b1742f937f2b121b03e0dc578825d9b",
+      "mime": "application/pdf",
+      "quarantine": "clean/HH8PnBzaQr/CI2003_exam-past_de-giua-ky-co-luu-chat-de-mau.pdf",
+      "uploadSha256": "00ca96af848b8b0cd575de03dda31e0dc4b9ce476df58d9903a60e03fde083c4",
+      "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/CI2003_exam-past_de-giua-ky-co-luu-chat-de-mau.pdf"
+    }
+  ]
+}

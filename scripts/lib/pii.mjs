@@ -1,10 +1,11 @@
 // Mẫu thông tin cá nhân dùng chung cho validate.mjs, kiem-file và Worker. Chỉ dùng JS chuẩn
 // (không import node:) để Worker đóng gói được.
 
-// MSSV Bách Khoa: 7 chữ số, hai số đầu là khóa (ví dụ 19..., 21...).
+// MSSV Bách Khoa: 7 chữ số, hai số đầu là khóa (ví dụ 19..., 21...). Số tròn (bốn số cuối là 0000, như 1000000 trong
+// đề lập trình hay 2500000 đồng) không phải MSSV.
 // Số điện thoại Việt Nam: 0 hoặc +84, rồi 9 chữ số (cho phép cách bằng dấu cách, chấm, gạch).
 export const PII_PATTERNS = [
-  { code: 'PII_STUDENT_ID', label: 'MSSV 7 chữ số', re: /(?<![\p{L}\p{N}.,])[12]\d{6}(?![\p{L}\p{N}])/gu },
+  { code: 'PII_STUDENT_ID', label: 'MSSV 7 chữ số', re: /(?<![\p{L}\p{N}.,])[12]\d{2}(?!0000)\d{4}(?![\p{L}\p{N}])/gu },
   { code: 'PII_EMAIL', label: 'email', re: /[A-Za-z0-9._%+-]+@[A-Za-z0-9-]+(?:\.[A-Za-z0-9-]+)*\.[A-Za-z]{2,}/g },
   { code: 'PII_PHONE', label: 'số điện thoại', re: /(?<![\p{N}.,])(?:\+84[ .-]?|0)[235789]\d(?:[ .-]?\d){7}(?!\p{N})/gu },
 ];
