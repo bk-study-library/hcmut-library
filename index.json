@@ -7,7 +7,7 @@
     "courses": 3796,
     "programs": 838,
     "majors": 140,
-    "items": 31
+    "items": 32
   },
   "faculties": [
     {
@@ -24607,6 +24607,30 @@
                   "quarantine": "clean/qcY5fjr24i/AS1003_lecture-slides_slide-chuong-12-cac-dinh-ly-tong-quat-dong-luc-hoc-thay.pdf",
                   "uploadSha256": "88e34dbc02bf66b0e2e9d9617113c8d356cd643c1b3175460e0a293e70f373aa",
                   "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_lecture-slides_slide-chuong-12-cac-dinh-ly-tong-quat-dong-luc-hoc-thay.pdf"
+                }
+              ]
+            },
+            {
+              "id": "slide-chuong-13-nguyen-ly-d-alembert-thay-nguyen-huu-hao",
+              "course": "AS1003",
+              "type": "lecture-slides",
+              "title": "Slide chương 13: Nguyên lý D'Alembert - thầy Nguyễn Hữu Hào",
+              "lang": "vi",
+              "license": "CC-BY-SA-4.0",
+              "origin": "self-made",
+              "added": "2026-10-06",
+              "removed": false,
+              "description": "Bộ slide bài giảng Cơ lý thuyết (Engineering Mechanics) của TS. Nguyễn Hữu Hào, Bộ môn Cơ kỹ thuật, Khoa Khoa học Ứng dụng, bản 2020-2021. Đủ 15 chương: tĩnh học (hệ tiên đề, thu gọn hệ lực, cân bằng vật rắn và hệ vật rắn, giàn, ma sát, trọng tâm), động học (động học điểm, hai chuyển động cơ bản, chuyển động phức hợp, song phẳng) và động lực học (chất điểm, các định lý tổng quát, nguyên lý D'Alembert, di chuyển khả dĩ, phương trình cơ học). Mỗi chương một file; ảnh đã nén để vừa giới hạn 20 MB.",
+              "teacher": "Nguyễn Hữu Hào",
+              "files": [
+                {
+                  "name": "AS1003_lecture-slides_slide-chuong-13-nguyen-ly-d-alembert-thay-nguyen-huu-hao.pdf",
+                  "size": 8963737,
+                  "sha256": "ce2cc5ac6e522057b2e96d985903643388045c5efc3847cd2990949ab8e5f4f8",
+                  "mime": "application/pdf",
+                  "quarantine": "clean/S76NHbIsVZ/AS1003_lecture-slides_slide-chuong-13-nguyen-ly-d-alembert-thay-nguyen-huu-hao.pdf",
+                  "uploadSha256": "4cafd344a89383de4d7ba477bf0344dc0fece845ceee9597011e9650347b1b4d",
+                  "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_lecture-slides_slide-chuong-13-nguyen-ly-d-alembert-thay-nguyen-huu-hao.pdf"
                 }
               ]
             },
