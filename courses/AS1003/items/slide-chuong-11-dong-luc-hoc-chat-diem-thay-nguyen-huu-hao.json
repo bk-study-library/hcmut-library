@@ -14,11 +14,12 @@
   "files": [
     {
       "name": "AS1003_lecture-slides_slide-chuong-11-dong-luc-hoc-chat-diem-thay-nguyen-huu-hao.pdf",
-      "size": 7568370,
-      "sha256": "828fb8a3c67bdbe94b87032d66f2a4853cd61de1cea6cdbc5b8e42920dd34685",
+      "size": 7565107,
+      "sha256": "f0b1ade74db0c6fddbde675e74a30d9c8e91b283a568eada85fe7f165a78a797",
       "mime": "application/pdf",
-      "quarantine": "pending/GSO7UgqHog/AS1003_lecture-slides_slide-chuong-11-dong-luc-hoc-chat-diem-thay-nguyen-huu-hao.pdf",
-      "uploadSha256": "828fb8a3c67bdbe94b87032d66f2a4853cd61de1cea6cdbc5b8e42920dd34685"
+      "quarantine": "clean/GSO7UgqHog/AS1003_lecture-slides_slide-chuong-11-dong-luc-hoc-chat-diem-thay-nguyen-huu-hao.pdf",
+      "uploadSha256": "828fb8a3c67bdbe94b87032d66f2a4853cd61de1cea6cdbc5b8e42920dd34685",
+      "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_lecture-slides_slide-chuong-11-dong-luc-hoc-chat-diem-thay-nguyen-huu-hao.pdf"
     }
   ]
 }
