@@ -4,7 +4,7 @@
   "site": "https://bk-study-library.github.io/hcmut-library/",
   "counts": {
     "courses": 3796,
-    "items": 35
+    "items": 46
   },
   "faculties": [
     {
@@ -145,7 +145,7 @@
       "aliases": [],
       "oldNames": [],
       "status": "active",
-      "items": 19,
+      "items": 22,
       "teachers": [
         "Nguyễn Hữu Hào",
         "Nguyễn Thái Hiền",
@@ -10523,9 +10523,12 @@
       "aliases": [],
       "oldNames": [],
       "status": "active",
-      "items": 1,
+      "items": 9,
       "teachers": [
-        "Nguyễn Thị Bảy"
+        "Lê Song Giang",
+        "Lý Hùng Anh",
+        "Nguyễn Thị Bảy",
+        "Võ Thị Tuyết Giang"
       ],
       "url": "https://bk-study-library.github.io/hcmut-library/course/CI2003/",
       "detail": "courses/CI2003.json"

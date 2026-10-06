@@ -369,6 +369,29 @@
       ]
     },
     {
+      "id": "slide-chuong-8-chuyen-dong-song-phang-cua-vat-ran-thay",
+      "type": "lecture-slides",
+      "title": "Slide chương 8: Chuyển động song phẳng của vật rắn - thầy Nguyễn Thái Hiền",
+      "description": "Slide phần động học và động lực học Cơ lý thuyết của thầy Nguyễn Thái Hiền: chương 8 (song phẳng), 9 (chuyển động phức hợp của điểm), 10 (phương trình vi phân chuyển động), 11 (nguyên lý D'Alembert), 12 (các định lý tổng quát động lực học), 13 (nguyên lý di chuyển khả dĩ), 15 (một số phương trình cơ học). Có mục tiêu chương và ví dụ giải.",
+      "lang": "vi",
+      "teacher": "Nguyễn Thái Hiền",
+      "license": "CC-BY-SA-4.0",
+      "origin": "self-made",
+      "added": "2026-10-06",
+      "updated": "2026-10-06",
+      "files": [
+        {
+          "name": "AS1003_lecture-slides_slide-chuong-8-chuyen-dong-song-phang-cua-vat-ran-thay.pdf",
+          "mime": "application/pdf",
+          "size": 4232939,
+          "sha256": "c9a4e547ab128e34e319164b6790fd6f28b7b3eb0aee087eb68402677a2e5a83",
+          "urls": [
+            "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_lecture-slides_slide-chuong-8-chuyen-dong-song-phang-cua-vat-ran-thay.pdf"
+          ]
+        }
+      ]
+    },
+    {
       "id": "slide-chuong-8-hai-chuyen-dong-co-ban-cua-vat-ran-thay",
       "type": "lecture-slides",
       "title": "Slide chương 8: Hai chuyển động cơ bản của vật rắn - thầy Nguyễn Hữu Hào",
@@ -387,6 +410,29 @@
           "sha256": "84ebbd071fc8527a4181e8ebd283ca2fb85d32aac86d07a29f4f35c71ec1a32f",
           "urls": [
             "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_lecture-slides_slide-chuong-8-hai-chuyen-dong-co-ban-cua-vat-ran-thay.pdf"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "slide-chuong-9-chuyen-dong-phuc-hop-cua-diem-thay-nguyen",
+      "type": "lecture-slides",
+      "title": "Slide chương 9: Chuyển động phức hợp của điểm - thầy Nguyễn Thái Hiền",
+      "description": "Slide phần động học và động lực học Cơ lý thuyết của thầy Nguyễn Thái Hiền: chương 8 (song phẳng), 9 (chuyển động phức hợp của điểm), 10 (phương trình vi phân chuyển động), 11 (nguyên lý D'Alembert), 12 (các định lý tổng quát động lực học), 13 (nguyên lý di chuyển khả dĩ), 15 (một số phương trình cơ học). Có mục tiêu chương và ví dụ giải.",
+      "lang": "vi",
+      "teacher": "Nguyễn Thái Hiền",
+      "license": "CC-BY-SA-4.0",
+      "origin": "self-made",
+      "added": "2026-10-06",
+      "updated": "2026-10-06",
+      "files": [
+        {
+          "name": "AS1003_lecture-slides_slide-chuong-9-chuyen-dong-phuc-hop-cua-diem-thay-nguyen.pdf",
+          "mime": "application/pdf",
+          "size": 3868682,
+          "sha256": "71e3b4d19cd3380ee7f4f67b1611efec52dc496f9f33911d33040556c0f6ded7",
+          "urls": [
+            "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_lecture-slides_slide-chuong-9-chuyen-dong-phuc-hop-cua-diem-thay-nguyen.pdf"
           ]
         }
       ]
@@ -435,6 +481,31 @@
           "sha256": "9de9dabcddee49189630945232fc4e67077ea0fa828a79a92cc4119accd5761d",
           "urls": [
             "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_summary_tom-tat-chuong-11-dinh-ly-d-alembert.pdf"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tom-tat-chuong-9-chuyen-dong-phuc-hop",
+      "type": "summary",
+      "title": "Tóm tắt Chương 9 - Chuyển động phức hợp",
+      "description": "Tóm tắt lý thuyết kèm ví dụ giải mẫu từng chương phần động học và động lực học (chương 8-14), sinh viên tự soạn: chuyển động song phẳng, chuyển động phức hợp, phương trình vi phân chuyển động, nguyên lý D'Alembert, các định lý động lực học, nguyên lý di chuyển khả dĩ, các phương trình cơ học (Lagrange loại II). Mỗi chương một file.",
+      "lang": "vi",
+      "license": "CC-BY-SA-4.0",
+      "origin": "self-made",
+      "added": "2026-10-06",
+      "unclassified": [
+        "no-text"
+      ],
+      "updated": "2026-10-06",
+      "files": [
+        {
+          "name": "AS1003_summary_tom-tat-chuong-9-chuyen-dong-phuc-hop.pdf",
+          "mime": "application/pdf",
+          "size": 7308310,
+          "sha256": "045d1182088598617a4048d79494c0e42a127efc93bb929f034836b951d1989d",
+          "urls": [
+            "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_summary_tom-tat-chuong-9-chuyen-dong-phuc-hop.pdf"
           ]
         }
       ]
