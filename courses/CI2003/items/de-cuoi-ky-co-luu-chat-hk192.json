@@ -1,0 +1,25 @@
+{
+  "$schema": "../../../schema/item.schema.json",
+  "id": "de-cuoi-ky-co-luu-chat-hk192",
+  "course": "CI2003",
+  "type": "exam-past",
+  "title": "Đề cuối kỳ Cơ lưu chất HK192",
+  "lang": "vi",
+  "license": "CC-BY-SA-4.0",
+  "origin": "self-made",
+  "added": "2026-10-06",
+  "removed": false,
+  "description": "Đề thi cuối kỳ Cơ lưu chất (CI2003) các học kỳ, bản scan hoặc PDF gốc. Một số đề có tên PGS.TS. Lê Song Giang (người phê duyệt hoặc chủ nhiệm bộ môn) và PGS.TS. Lê Văn Dực. Có thêm một đề CI2005 HK191 cùng nội dung môn.",
+  "term": "HK192",
+  "examKind": "ck",
+  "files": [
+    {
+      "name": "CI2003_exam-past_de-cuoi-ky-co-luu-chat-hk192_HK192.pdf",
+      "size": 579990,
+      "sha256": "23afac1a98f72c8d1f528799375bc5102fd44ff0c81ace26b460f0b6fdd89f4f",
+      "mime": "application/pdf",
+      "quarantine": "pending/s3My5t8RqS/CI2003_exam-past_de-cuoi-ky-co-luu-chat-hk192_HK192.pdf",
+      "uploadSha256": "23afac1a98f72c8d1f528799375bc5102fd44ff0c81ace26b460f0b6fdd89f4f"
+    }
+  ]
+}
