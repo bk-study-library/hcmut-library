@@ -4,7 +4,7 @@
   "site": "https://bk-study-library.github.io/hcmut-library/",
   "counts": {
     "courses": 3796,
-    "items": 26
+    "items": 27
   },
   "faculties": [
     {
@@ -10521,8 +10521,9 @@
       "aliases": [],
       "oldNames": [],
       "status": "active",
-      "items": 1,
+      "items": 2,
       "teachers": [
+        "Lê Song Giang",
         "Nguyễn Thị Bảy"
       ],
       "url": "https://bk-study-library.github.io/hcmut-library/course/CI2003/",

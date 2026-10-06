@@ -14,11 +14,12 @@
   "files": [
     {
       "name": "CI2003_lecture-slides_bai-giang-co-luu-chat-le-song-giang.pdf",
-      "size": 7144560,
-      "sha256": "61a90eca7a48a466e37a4085949ca2638531a63e6761a67541878ad628d61cfd",
+      "size": 7141087,
+      "sha256": "95c0f7413ea053003bc4c8cb70b2cb63461be9d5be2bbac6315f8d1d1bdc9622",
       "mime": "application/pdf",
-      "quarantine": "pending/jEjQHX2a3w/CI2003_lecture-slides_bai-giang-co-luu-chat-le-song-giang.pdf",
-      "uploadSha256": "61a90eca7a48a466e37a4085949ca2638531a63e6761a67541878ad628d61cfd"
+      "quarantine": "clean/jEjQHX2a3w/CI2003_lecture-slides_bai-giang-co-luu-chat-le-song-giang.pdf",
+      "uploadSha256": "61a90eca7a48a466e37a4085949ca2638531a63e6761a67541878ad628d61cfd",
+      "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/CI2003_lecture-slides_bai-giang-co-luu-chat-le-song-giang.pdf"
     }
   ]
 }
