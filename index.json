@@ -7,7 +7,7 @@
     "courses": 3796,
     "programs": 838,
     "majors": 140,
-    "items": 28
+    "items": 29
   },
   "faculties": [
     {
@@ -24587,6 +24587,30 @@
               ],
               "unclassified": [
                 "pii"
+              ]
+            },
+            {
+              "id": "slide-chuong-8-hai-chuyen-dong-co-ban-cua-vat-ran-thay",
+              "course": "AS1003",
+              "type": "lecture-slides",
+              "title": "Slide chương 8: Hai chuyển động cơ bản của vật rắn - thầy Nguyễn Hữu Hào",
+              "lang": "vi",
+              "license": "CC-BY-SA-4.0",
+              "origin": "self-made",
+              "added": "2026-10-06",
+              "removed": false,
+              "description": "Bộ slide bài giảng Cơ lý thuyết (Engineering Mechanics) của TS. Nguyễn Hữu Hào, Bộ môn Cơ kỹ thuật, Khoa Khoa học Ứng dụng, bản 2020-2021. Đủ 15 chương: tĩnh học (hệ tiên đề, thu gọn hệ lực, cân bằng vật rắn và hệ vật rắn, giàn, ma sát, trọng tâm), động học (động học điểm, hai chuyển động cơ bản, chuyển động phức hợp, song phẳng) và động lực học (chất điểm, các định lý tổng quát, nguyên lý D'Alembert, di chuyển khả dĩ, phương trình cơ học). Mỗi chương một file; ảnh đã nén để vừa giới hạn 20 MB.",
+              "teacher": "Nguyễn Hữu Hào",
+              "files": [
+                {
+                  "name": "AS1003_lecture-slides_slide-chuong-8-hai-chuyen-dong-co-ban-cua-vat-ran-thay.pdf",
+                  "size": 4654974,
+                  "sha256": "84ebbd071fc8527a4181e8ebd283ca2fb85d32aac86d07a29f4f35c71ec1a32f",
+                  "mime": "application/pdf",
+                  "quarantine": "clean/FwL9ugvZ0s/AS1003_lecture-slides_slide-chuong-8-hai-chuyen-dong-co-ban-cua-vat-ran-thay.pdf",
+                  "uploadSha256": "7d5305e145c14ad1c7748508d5472ae3e99fe1121733b397febcb0c851a086f3",
+                  "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_lecture-slides_slide-chuong-8-hai-chuyen-dong-co-ban-cua-vat-ran-thay.pdf"
+                }
               ]
             },
             {
