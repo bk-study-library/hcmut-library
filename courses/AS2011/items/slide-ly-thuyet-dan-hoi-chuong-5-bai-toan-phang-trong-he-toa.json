@@ -1,0 +1,24 @@
+{
+  "$schema": "../../../schema/item.schema.json",
+  "id": "slide-ly-thuyet-dan-hoi-chuong-5-bai-toan-phang-trong-he-toa",
+  "course": "AS2011",
+  "type": "lecture-slides",
+  "title": "Slide Lý thuyết đàn hồi chương 5: Bài toán phẳng trong hệ tọa độ Descartes",
+  "lang": "vi",
+  "license": "CC-BY-SA-4.0",
+  "origin": "self-made",
+  "added": "2026-10-06",
+  "removed": false,
+  "description": "Slide Lý thuyết đàn hồi 8 chương: ký hiệu chỉ số, biến dạng và chuyển vị, ứng suất và cân bằng, vật liệu đàn hồi tuyến tính, bài toán phẳng trong tọa độ Descartes và tọa độ cực, tấm mỏng chịu uốn (Descartes và tọa độ trụ). Kèm phiếu bài tập ký hiệu chỉ số.",
+  "files": [
+    {
+      "name": "AS2011_lecture-slides_slide-ly-thuyet-dan-hoi-chuong-5-bai-toan-phang-trong-he-toa.pdf",
+      "size": 613616,
+      "sha256": "548494561094068f1467edeaea34cd0fdb67d896be93ae3ec173c87c166e1a3b",
+      "mime": "application/pdf",
+      "quarantine": "clean/0vecojbJiS/AS2011_lecture-slides_slide-ly-thuyet-dan-hoi-chuong-5-bai-toan-phang-trong-he-toa.pdf",
+      "uploadSha256": "b7efb9504f5e65b91fd1ca379361348d43505feaefbf439aef52cca03749589a",
+      "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS2011_lecture-slides_slide-ly-thuyet-dan-hoi-chuong-5-bai-toan-phang-trong-he-toa.pdf"
+    }
+  ]
+}
