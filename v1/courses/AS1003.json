@@ -297,6 +297,29 @@
       ]
     },
     {
+      "id": "slide-chuong-12-dinh-ly-tong-quat-dong-luc-hoc-nguyen-thai",
+      "type": "lecture-slides",
+      "title": "Slide chương 12: Các định lý tổng quát động lực học - thầy Nguyễn Thái Hiền",
+      "description": "Slide phần động học và động lực học Cơ lý thuyết của thầy Nguyễn Thái Hiền: chương 8 (song phẳng), 9 (chuyển động phức hợp của điểm), 10 (phương trình vi phân chuyển động), 11 (nguyên lý D'Alembert), 12 (các định lý tổng quát động lực học), 13 (nguyên lý di chuyển khả dĩ), 15 (một số phương trình cơ học). Có mục tiêu chương và ví dụ giải.",
+      "lang": "vi",
+      "teacher": "Nguyễn Thái Hiền",
+      "license": "CC-BY-SA-4.0",
+      "origin": "self-made",
+      "added": "2026-10-06",
+      "updated": "2026-10-06",
+      "files": [
+        {
+          "name": "AS1003_lecture-slides_slide-chuong-12-dinh-ly-tong-quat-dong-luc-hoc-nguyen-thai.pdf",
+          "mime": "application/pdf",
+          "size": 2775213,
+          "sha256": "30da97902d83a75b71dfbd80886f35c7e1f62c1701146fdce89f0b82a09f98a7",
+          "urls": [
+            "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_lecture-slides_slide-chuong-12-dinh-ly-tong-quat-dong-luc-hoc-nguyen-thai.pdf"
+          ]
+        }
+      ]
+    },
+    {
       "id": "slide-chuong-13-nguyen-ly-d-alembert-thay-nguyen-huu-hao",
       "type": "lecture-slides",
       "title": "Slide chương 13: Nguyên lý D'Alembert - thầy Nguyễn Hữu Hào",
@@ -315,6 +338,29 @@
           "sha256": "ce2cc5ac6e522057b2e96d985903643388045c5efc3847cd2990949ab8e5f4f8",
           "urls": [
             "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_lecture-slides_slide-chuong-13-nguyen-ly-d-alembert-thay-nguyen-huu-hao.pdf"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "slide-chuong-13-nguyen-ly-di-chuyen-kha-di-thay-nguyen-thai",
+      "type": "lecture-slides",
+      "title": "Slide chương 13: Nguyên lý di chuyển khả dĩ - thầy Nguyễn Thái Hiền",
+      "description": "Slide phần động học và động lực học Cơ lý thuyết của thầy Nguyễn Thái Hiền: chương 8 (song phẳng), 9 (chuyển động phức hợp của điểm), 10 (phương trình vi phân chuyển động), 11 (nguyên lý D'Alembert), 12 (các định lý tổng quát động lực học), 13 (nguyên lý di chuyển khả dĩ), 15 (một số phương trình cơ học). Có mục tiêu chương và ví dụ giải.",
+      "lang": "vi",
+      "teacher": "Nguyễn Thái Hiền",
+      "license": "CC-BY-SA-4.0",
+      "origin": "self-made",
+      "added": "2026-10-06",
+      "updated": "2026-10-06",
+      "files": [
+        {
+          "name": "AS1003_lecture-slides_slide-chuong-13-nguyen-ly-di-chuyen-kha-di-thay-nguyen-thai.pdf",
+          "mime": "application/pdf",
+          "size": 3289800,
+          "sha256": "e7f732820b5ec374a8ebf71c2e8558fbf8e1968c5aa69c62de572aa796d31154",
+          "urls": [
+            "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_lecture-slides_slide-chuong-13-nguyen-ly-di-chuyen-kha-di-thay-nguyen-thai.pdf"
           ]
         }
       ]
@@ -364,6 +410,29 @@
           "sha256": "13a4c1e290ba66160519493d8f908dd72f59082b1d89ba82f3a566e60dec035c",
           "urls": [
             "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_lecture-slides_slide-chuong-15-mot-so-phuong-trinh-co-hoc-thay-nguyen-huu.pdf"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "slide-chuong-15-mot-so-phuong-trinh-co-hoc-thay-nguyen-thai",
+      "type": "lecture-slides",
+      "title": "Slide chương 15: Một số phương trình cơ học - thầy Nguyễn Thái Hiền",
+      "description": "Slide phần động học và động lực học Cơ lý thuyết của thầy Nguyễn Thái Hiền: chương 8 (song phẳng), 9 (chuyển động phức hợp của điểm), 10 (phương trình vi phân chuyển động), 11 (nguyên lý D'Alembert), 12 (các định lý tổng quát động lực học), 13 (nguyên lý di chuyển khả dĩ), 15 (một số phương trình cơ học). Có mục tiêu chương và ví dụ giải.",
+      "lang": "vi",
+      "teacher": "Nguyễn Thái Hiền",
+      "license": "CC-BY-SA-4.0",
+      "origin": "self-made",
+      "added": "2026-10-06",
+      "updated": "2026-10-06",
+      "files": [
+        {
+          "name": "AS1003_lecture-slides_slide-chuong-15-mot-so-phuong-trinh-co-hoc-thay-nguyen-thai.pdf",
+          "mime": "application/pdf",
+          "size": 3144914,
+          "sha256": "e659376c3116006419deb76ecf6bd52d1266382005a720bd9d9369aca1df2935",
+          "urls": [
+            "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_lecture-slides_slide-chuong-15-mot-so-phuong-trinh-co-hoc-thay-nguyen-thai.pdf"
           ]
         }
       ]
