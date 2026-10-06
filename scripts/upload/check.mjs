@@ -613,10 +613,12 @@ function triageItems(a, list, parts, policy) {
   const newCourse = !fs.existsSync(path.join(TOOL_ROOT, 'catalog', 'courses', `${course}.json`));
   const itemsDir = path.join(TOOL_ROOT, 'courses', course, 'items');
   const existing = fs.existsSync(itemsDir) ? fs.readdirSync(itemsDir).map((f) => readJson(path.join(itemsDir, f))).filter((x) => !x.removed) : [];
+  // Trùng tên chỉ so với tài liệu cùng loại: "Đề thi cuối kỳ KTLT" và "Code ôn tập cuối kỳ KTLT" chung nhiều chữ nhưng là
+  // hai tài liệu khác nhau.
   const results = parts.map((x, i) => {
     const itemPath = path.join(a.pr, list[i].item);
     const item = readJson(itemPath);
-    const r = triageFile(x.file, item, { newCourse, similar: hasSimilarTitle(item.title, existing) }, policy.triage || {});
+    const r = triageFile(x.file, item, { newCourse, similar: hasSimilarTitle(item.title, existing.filter((d) => d.type === item.type)) }, policy.triage || {});
     if (r.decision === 'unclassified') fs.writeFileSync(itemPath, `${JSON.stringify({ ...item, unclassified: r.unclassified }, null, 2)}\n`);
     x.file.triage = r;
     return { ...r, id: item.id, title: item.title };
