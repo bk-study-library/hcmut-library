@@ -13,11 +13,15 @@
   "files": [
     {
       "name": "AS1003_summary_tom-tat-chuong-11-dinh-ly-d-alembert.pdf",
-      "size": 7070489,
-      "sha256": "bc5f8ec6fea30c3409bb1bf74e15306f3343c367e76e8f208150e8dad9aaba75",
+      "size": 7075119,
+      "sha256": "9de9dabcddee49189630945232fc4e67077ea0fa828a79a92cc4119accd5761d",
       "mime": "application/pdf",
-      "quarantine": "pending/yrViZScQ0s/AS1003_summary_tom-tat-chuong-11-dinh-ly-d-alembert.pdf",
-      "uploadSha256": "bc5f8ec6fea30c3409bb1bf74e15306f3343c367e76e8f208150e8dad9aaba75"
+      "quarantine": "clean/yrViZScQ0s/AS1003_summary_tom-tat-chuong-11-dinh-ly-d-alembert.pdf",
+      "uploadSha256": "bc5f8ec6fea30c3409bb1bf74e15306f3343c367e76e8f208150e8dad9aaba75",
+      "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_summary_tom-tat-chuong-11-dinh-ly-d-alembert.pdf"
     }
+  ],
+  "unclassified": [
+    "no-text"
   ]
 }
