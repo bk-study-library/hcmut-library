@@ -13,11 +13,12 @@
   "files": [
     {
       "name": "AS1003_summary_tom-tat-chuong-8-song-phang.pdf",
-      "size": 10107299,
-      "sha256": "ded4a1ff8e88e9fc06805330e79405096063e688ce3f86d5463e6b8ad22c7024",
+      "size": 10113322,
+      "sha256": "246aa2239d50e768f2f4caf3d723c09706a683da91754f5380e55a045463e195",
       "mime": "application/pdf",
-      "quarantine": "pending/3lWWiGvNNH/AS1003_summary_tom-tat-chuong-8-song-phang.pdf",
-      "uploadSha256": "ded4a1ff8e88e9fc06805330e79405096063e688ce3f86d5463e6b8ad22c7024"
+      "quarantine": "clean/3lWWiGvNNH/AS1003_summary_tom-tat-chuong-8-song-phang.pdf",
+      "uploadSha256": "ded4a1ff8e88e9fc06805330e79405096063e688ce3f86d5463e6b8ad22c7024",
+      "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_summary_tom-tat-chuong-8-song-phang.pdf"
     }
   ]
 }

@@ -13,11 +13,15 @@
   "files": [
     {
       "name": "AS1003_summary_tom-tat-chuong-14-cac-phuong-trinh-co-hoc.pdf",
-      "size": 12726937,
-      "sha256": "0d862e6243d954df54aec64edb09c1cebdbf8617b24010e47d00e0ca31e6861e",
+      "size": 12729394,
+      "sha256": "693203839f7a14523b4ba473991d3a11be2d4c3368c7321886094aa997fb97e6",
       "mime": "application/pdf",
-      "quarantine": "pending/3lWWiGvNNH/AS1003_summary_tom-tat-chuong-14-cac-phuong-trinh-co-hoc.pdf",
-      "uploadSha256": "0d862e6243d954df54aec64edb09c1cebdbf8617b24010e47d00e0ca31e6861e"
+      "quarantine": "clean/3lWWiGvNNH/AS1003_summary_tom-tat-chuong-14-cac-phuong-trinh-co-hoc.pdf",
+      "uploadSha256": "0d862e6243d954df54aec64edb09c1cebdbf8617b24010e47d00e0ca31e6861e",
+      "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_summary_tom-tat-chuong-14-cac-phuong-trinh-co-hoc.pdf"
     }
+  ],
+  "unclassified": [
+    "no-text"
   ]
 }

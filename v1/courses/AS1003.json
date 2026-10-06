@@ -28,6 +28,28 @@
       ]
     },
     {
+      "id": "cheatsheet-co-ly-thuyet-dong-hoc-dong-luc-hoc",
+      "type": "cheatsheet",
+      "title": "Cheatsheet Cơ lý thuyết (động học, động lực học)",
+      "description": "Tài liệu Cơ lý thuyết (AS1003) dung lượng lớn gửi chung một đợt: slide chương 9 của TS. Nguyễn Hữu Hào; tóm tắt lý thuyết kèm ví dụ giải mẫu chương 8, 10, 12, 14 do sinh viên tự soạn; cheatsheet động học và động lực học; ghi chép tay toàn môn (479 trang, chia 4 phần theo trang).",
+      "lang": "vi",
+      "license": "CC-BY-SA-4.0",
+      "origin": "self-made",
+      "added": "2026-10-06",
+      "updated": "2026-10-06",
+      "files": [
+        {
+          "name": "AS1003_cheatsheet_cheatsheet-co-ly-thuyet-dong-hoc-dong-luc-hoc.pdf",
+          "mime": "application/pdf",
+          "size": 18183610,
+          "sha256": "00d5b398314119fcfb2a9387fddbbc60c7e160b83a598c8512741e95733e38d1",
+          "urls": [
+            "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_cheatsheet_cheatsheet-co-ly-thuyet-dong-hoc-dong-luc-hoc.pdf"
+          ]
+        }
+      ]
+    },
+    {
       "id": "chuong-1-cac-khai-niem-co-ban-he-tien-de-tinh-hoc-bk",
       "type": "lecture-slides",
       "title": "Chuong 1 Cac khai niem co ban He tien de tinh hoc BK",
@@ -177,6 +199,106 @@
           "sha256": "7dafe8b94f078f8778ec15f9174dec5b34488d1363f0d78015d7a12a5349ff6e",
           "urls": [
             "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_lecture-slides_chuong-7-dong-hoc-diem.pdf"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ghi-chep-tay-co-ly-thuyet-phan-1-trang-1-120",
+      "type": "notes",
+      "title": "Ghi chép tay Cơ lý thuyết (phần 1, trang 1-120)",
+      "description": "Tài liệu Cơ lý thuyết (AS1003) dung lượng lớn gửi chung một đợt: slide chương 9 của TS. Nguyễn Hữu Hào; tóm tắt lý thuyết kèm ví dụ giải mẫu chương 8, 10, 12, 14 do sinh viên tự soạn; cheatsheet động học và động lực học; ghi chép tay toàn môn (479 trang, chia 4 phần theo trang).",
+      "lang": "vi",
+      "license": "CC-BY-SA-4.0",
+      "origin": "self-made",
+      "added": "2026-10-06",
+      "unclassified": [
+        "no-text"
+      ],
+      "updated": "2026-10-06",
+      "files": [
+        {
+          "name": "AS1003_notes_ghi-chep-tay-co-ly-thuyet-phan-1-trang-1-120.pdf",
+          "mime": "application/pdf",
+          "size": 13017952,
+          "sha256": "e758dba20ff9cb6a31de49fd7cd4e8f180eabed922ed800c7d398097959e3456",
+          "urls": [
+            "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_notes_ghi-chep-tay-co-ly-thuyet-phan-1-trang-1-120.pdf"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ghi-chep-tay-co-ly-thuyet-phan-2-trang-121-240",
+      "type": "notes",
+      "title": "Ghi chép tay Cơ lý thuyết (phần 2, trang 121-240)",
+      "description": "Tài liệu Cơ lý thuyết (AS1003) dung lượng lớn gửi chung một đợt: slide chương 9 của TS. Nguyễn Hữu Hào; tóm tắt lý thuyết kèm ví dụ giải mẫu chương 8, 10, 12, 14 do sinh viên tự soạn; cheatsheet động học và động lực học; ghi chép tay toàn môn (479 trang, chia 4 phần theo trang).",
+      "lang": "vi",
+      "license": "CC-BY-SA-4.0",
+      "origin": "self-made",
+      "added": "2026-10-06",
+      "unclassified": [
+        "no-text"
+      ],
+      "updated": "2026-10-06",
+      "files": [
+        {
+          "name": "AS1003_notes_ghi-chep-tay-co-ly-thuyet-phan-2-trang-121-240.pdf",
+          "mime": "application/pdf",
+          "size": 12653178,
+          "sha256": "3bb047f6613f8d2a263ab8bd7224fbdfc57905e1bf57598800b0b04c10f2dbc6",
+          "urls": [
+            "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_notes_ghi-chep-tay-co-ly-thuyet-phan-2-trang-121-240.pdf"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ghi-chep-tay-co-ly-thuyet-phan-3-trang-241-360",
+      "type": "notes",
+      "title": "Ghi chép tay Cơ lý thuyết (phần 3, trang 241-360)",
+      "description": "Tài liệu Cơ lý thuyết (AS1003) dung lượng lớn gửi chung một đợt: slide chương 9 của TS. Nguyễn Hữu Hào; tóm tắt lý thuyết kèm ví dụ giải mẫu chương 8, 10, 12, 14 do sinh viên tự soạn; cheatsheet động học và động lực học; ghi chép tay toàn môn (479 trang, chia 4 phần theo trang).",
+      "lang": "vi",
+      "license": "CC-BY-SA-4.0",
+      "origin": "self-made",
+      "added": "2026-10-06",
+      "unclassified": [
+        "no-text"
+      ],
+      "updated": "2026-10-06",
+      "files": [
+        {
+          "name": "AS1003_notes_ghi-chep-tay-co-ly-thuyet-phan-3-trang-241-360.pdf",
+          "mime": "application/pdf",
+          "size": 14358185,
+          "sha256": "df22b45e782c003e43dd33c74eb43dc5f23a90c43391d9ed31e96e8d6684f78b",
+          "urls": [
+            "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_notes_ghi-chep-tay-co-ly-thuyet-phan-3-trang-241-360.pdf"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ghi-chep-tay-co-ly-thuyet-phan-4-trang-361-479",
+      "type": "notes",
+      "title": "Ghi chép tay Cơ lý thuyết (phần 4, trang 361-479)",
+      "description": "Tài liệu Cơ lý thuyết (AS1003) dung lượng lớn gửi chung một đợt: slide chương 9 của TS. Nguyễn Hữu Hào; tóm tắt lý thuyết kèm ví dụ giải mẫu chương 8, 10, 12, 14 do sinh viên tự soạn; cheatsheet động học và động lực học; ghi chép tay toàn môn (479 trang, chia 4 phần theo trang).",
+      "lang": "vi",
+      "license": "CC-BY-SA-4.0",
+      "origin": "self-made",
+      "added": "2026-10-06",
+      "unclassified": [
+        "no-text"
+      ],
+      "updated": "2026-10-06",
+      "files": [
+        {
+          "name": "AS1003_notes_ghi-chep-tay-co-ly-thuyet-phan-4-trang-361-479.pdf",
+          "mime": "application/pdf",
+          "size": 14863971,
+          "sha256": "e124c4819b91345d4eaad3486c0e9f610715c15189d957e59a807b46a0df6e0c",
+          "urls": [
+            "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_notes_ghi-chep-tay-co-ly-thuyet-phan-4-trang-361-479.pdf"
           ]
         }
       ]
@@ -507,6 +629,28 @@
       ]
     },
     {
+      "id": "slide-chuong-9-chuyen-dong-phuc-hop-cua-diem-thay-nguyen-huu",
+      "type": "lecture-slides",
+      "title": "Slide chương 9: Chuyển động phức hợp của điểm - thầy Nguyễn Hữu Hào",
+      "description": "Tài liệu Cơ lý thuyết (AS1003) dung lượng lớn gửi chung một đợt: slide chương 9 của TS. Nguyễn Hữu Hào; tóm tắt lý thuyết kèm ví dụ giải mẫu chương 8, 10, 12, 14 do sinh viên tự soạn; cheatsheet động học và động lực học; ghi chép tay toàn môn (479 trang, chia 4 phần theo trang).",
+      "lang": "vi",
+      "license": "CC-BY-SA-4.0",
+      "origin": "self-made",
+      "added": "2026-10-06",
+      "updated": "2026-10-06",
+      "files": [
+        {
+          "name": "AS1003_lecture-slides_slide-chuong-9-chuyen-dong-phuc-hop-cua-diem-thay-nguyen-huu.pdf",
+          "mime": "application/pdf",
+          "size": 10231006,
+          "sha256": "21463f36996945e00e59efc06b5d95713eeb308e52879528e69db4b96f3cb050",
+          "urls": [
+            "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_lecture-slides_slide-chuong-9-chuyen-dong-phuc-hop-cua-diem-thay-nguyen-huu.pdf"
+          ]
+        }
+      ]
+    },
+    {
       "id": "slide-co-ly-thuyet-chuong-0-14-thay-tran-kim-bang",
       "type": "lecture-slides",
       "title": "Slide Cơ lý thuyết chương 0-14 - thầy Trần Kim Bằng",
@@ -525,6 +669,28 @@
           "sha256": "d6eae40edae7f76850864da6ec487a35be28fd1125d8ee2391bc155776702a0a",
           "urls": [
             "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_lecture-slides_slide-co-ly-thuyet-chuong-0-14-thay-tran-kim-bang.pdf"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tom-tat-chuong-10-phuong-trinh-vi-phan-chuyen-dong",
+      "type": "summary",
+      "title": "Tóm tắt Chương 10 - Phương trình vi phân chuyển động",
+      "description": "Tài liệu Cơ lý thuyết (AS1003) dung lượng lớn gửi chung một đợt: slide chương 9 của TS. Nguyễn Hữu Hào; tóm tắt lý thuyết kèm ví dụ giải mẫu chương 8, 10, 12, 14 do sinh viên tự soạn; cheatsheet động học và động lực học; ghi chép tay toàn môn (479 trang, chia 4 phần theo trang).",
+      "lang": "vi",
+      "license": "CC-BY-SA-4.0",
+      "origin": "self-made",
+      "added": "2026-10-06",
+      "updated": "2026-10-06",
+      "files": [
+        {
+          "name": "AS1003_summary_tom-tat-chuong-10-phuong-trinh-vi-phan-chuyen-dong.pdf",
+          "mime": "application/pdf",
+          "size": 18726531,
+          "sha256": "4341d77d5d599acabdcffd6a6b94db451e12b8eb7d4cc7a06cf1f6281ba0594f",
+          "urls": [
+            "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_summary_tom-tat-chuong-10-phuong-trinh-vi-phan-chuyen-dong.pdf"
           ]
         }
       ]
@@ -555,6 +721,28 @@
       ]
     },
     {
+      "id": "tom-tat-chuong-12-cac-dinh-ly-dong-luc-hoc",
+      "type": "summary",
+      "title": "Tóm tắt Chương 12 - Các định lý động lực học",
+      "description": "Tài liệu Cơ lý thuyết (AS1003) dung lượng lớn gửi chung một đợt: slide chương 9 của TS. Nguyễn Hữu Hào; tóm tắt lý thuyết kèm ví dụ giải mẫu chương 8, 10, 12, 14 do sinh viên tự soạn; cheatsheet động học và động lực học; ghi chép tay toàn môn (479 trang, chia 4 phần theo trang).",
+      "lang": "vi",
+      "license": "CC-BY-SA-4.0",
+      "origin": "self-made",
+      "added": "2026-10-06",
+      "updated": "2026-10-06",
+      "files": [
+        {
+          "name": "AS1003_summary_tom-tat-chuong-12-cac-dinh-ly-dong-luc-hoc.pdf",
+          "mime": "application/pdf",
+          "size": 10212748,
+          "sha256": "73f391a0d672c6fd94e019ad533cf7dadae04440ea092d8d7d1573475b763ea0",
+          "urls": [
+            "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_summary_tom-tat-chuong-12-cac-dinh-ly-dong-luc-hoc.pdf"
+          ]
+        }
+      ]
+    },
+    {
       "id": "tom-tat-chuong-13-nguyen-ly-di-chuyen-kha-di",
       "type": "summary",
       "title": "Tóm tắt Chương 13 - Nguyên lý di chuyển khả dĩ",
@@ -575,6 +763,53 @@
           "sha256": "d1681dbb446cc31edb97115d38de26a02bb7bedfe9e62523fd6b79fb755d535a",
           "urls": [
             "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_summary_tom-tat-chuong-13-nguyen-ly-di-chuyen-kha-di.pdf"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tom-tat-chuong-14-cac-phuong-trinh-co-hoc",
+      "type": "summary",
+      "title": "Tóm tắt Chương 14 - Các phương trình cơ học",
+      "description": "Tài liệu Cơ lý thuyết (AS1003) dung lượng lớn gửi chung một đợt: slide chương 9 của TS. Nguyễn Hữu Hào; tóm tắt lý thuyết kèm ví dụ giải mẫu chương 8, 10, 12, 14 do sinh viên tự soạn; cheatsheet động học và động lực học; ghi chép tay toàn môn (479 trang, chia 4 phần theo trang).",
+      "lang": "vi",
+      "license": "CC-BY-SA-4.0",
+      "origin": "self-made",
+      "added": "2026-10-06",
+      "unclassified": [
+        "no-text"
+      ],
+      "updated": "2026-10-06",
+      "files": [
+        {
+          "name": "AS1003_summary_tom-tat-chuong-14-cac-phuong-trinh-co-hoc.pdf",
+          "mime": "application/pdf",
+          "size": 12729394,
+          "sha256": "693203839f7a14523b4ba473991d3a11be2d4c3368c7321886094aa997fb97e6",
+          "urls": [
+            "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_summary_tom-tat-chuong-14-cac-phuong-trinh-co-hoc.pdf"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tom-tat-chuong-8-song-phang",
+      "type": "summary",
+      "title": "Tóm tắt Chương 8 - Song phẳng",
+      "description": "Tài liệu Cơ lý thuyết (AS1003) dung lượng lớn gửi chung một đợt: slide chương 9 của TS. Nguyễn Hữu Hào; tóm tắt lý thuyết kèm ví dụ giải mẫu chương 8, 10, 12, 14 do sinh viên tự soạn; cheatsheet động học và động lực học; ghi chép tay toàn môn (479 trang, chia 4 phần theo trang).",
+      "lang": "vi",
+      "license": "CC-BY-SA-4.0",
+      "origin": "self-made",
+      "added": "2026-10-06",
+      "updated": "2026-10-06",
+      "files": [
+        {
+          "name": "AS1003_summary_tom-tat-chuong-8-song-phang.pdf",
+          "mime": "application/pdf",
+          "size": 10113322,
+          "sha256": "246aa2239d50e768f2f4caf3d723c09706a683da91754f5380e55a045463e195",
+          "urls": [
+            "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_summary_tom-tat-chuong-8-song-phang.pdf"
           ]
         }
       ]

@@ -38,13 +38,29 @@
 - **Slide chương 8: Chuyển động song phẳng của vật rắn - thầy Nguyễn Thái Hiền** (vi, CC-BY-SA-4.0): [AS1003_lecture-slides_slide-chuong-8-chuyen-dong-song-phang-cua-vat-ran-thay.pdf, 4.0 MB](https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_lecture-slides_slide-chuong-8-chuyen-dong-song-phang-cua-vat-ran-thay.pdf)
 - **Slide chương 8: Hai chuyển động cơ bản của vật rắn - thầy Nguyễn Hữu Hào** (vi, CC-BY-SA-4.0): [AS1003_lecture-slides_slide-chuong-8-hai-chuyen-dong-co-ban-cua-vat-ran-thay.pdf, 4.4 MB](https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_lecture-slides_slide-chuong-8-hai-chuyen-dong-co-ban-cua-vat-ran-thay.pdf)
 - **Slide chương 9: Chuyển động phức hợp của điểm - thầy Nguyễn Thái Hiền** (vi, CC-BY-SA-4.0): [AS1003_lecture-slides_slide-chuong-9-chuyen-dong-phuc-hop-cua-diem-thay-nguyen.pdf, 3.7 MB](https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_lecture-slides_slide-chuong-9-chuyen-dong-phuc-hop-cua-diem-thay-nguyen.pdf)
+- **Slide chương 9: Chuyển động phức hợp của điểm - thầy Nguyễn Hữu Hào** (vi, CC-BY-SA-4.0): [AS1003_lecture-slides_slide-chuong-9-chuyen-dong-phuc-hop-cua-diem-thay-nguyen-huu.pdf, 9.8 MB](https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_lecture-slides_slide-chuong-9-chuyen-dong-phuc-hop-cua-diem-thay-nguyen-huu.pdf)
 - **Slide Cơ lý thuyết chương 0-14 - thầy Trần Kim Bằng** (vi, CC-BY-SA-4.0): [AS1003_lecture-slides_slide-co-ly-thuyet-chuong-0-14-thay-tran-kim-bang.pdf, 7.7 MB](https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_lecture-slides_slide-co-ly-thuyet-chuong-0-14-thay-tran-kim-bang.pdf)
 
 ### Tóm tắt
 
+- **Tóm tắt Chương 10 - Phương trình vi phân chuyển động** (vi, CC-BY-SA-4.0): [AS1003_summary_tom-tat-chuong-10-phuong-trinh-vi-phan-chuyen-dong.pdf, 17.9 MB](https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_summary_tom-tat-chuong-10-phuong-trinh-vi-phan-chuyen-dong.pdf)
 - **Tóm tắt Chương 11 - Định lý D' Alembert** (vi, CC-BY-SA-4.0): [AS1003_summary_tom-tat-chuong-11-dinh-ly-d-alembert.pdf, 6.7 MB](https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_summary_tom-tat-chuong-11-dinh-ly-d-alembert.pdf)
+- **Tóm tắt Chương 12 - Các định lý động lực học** (vi, CC-BY-SA-4.0): [AS1003_summary_tom-tat-chuong-12-cac-dinh-ly-dong-luc-hoc.pdf, 9.7 MB](https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_summary_tom-tat-chuong-12-cac-dinh-ly-dong-luc-hoc.pdf)
 - **Tóm tắt Chương 13 - Nguyên lý di chuyển khả dĩ** (vi, CC-BY-SA-4.0): [AS1003_summary_tom-tat-chuong-13-nguyen-ly-di-chuyen-kha-di.pdf, 6.1 MB](https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_summary_tom-tat-chuong-13-nguyen-ly-di-chuyen-kha-di.pdf)
+- **Tóm tắt Chương 14 - Các phương trình cơ học** (vi, CC-BY-SA-4.0): [AS1003_summary_tom-tat-chuong-14-cac-phuong-trinh-co-hoc.pdf, 12.1 MB](https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_summary_tom-tat-chuong-14-cac-phuong-trinh-co-hoc.pdf)
+- **Tóm tắt Chương 8 - Song phẳng** (vi, CC-BY-SA-4.0): [AS1003_summary_tom-tat-chuong-8-song-phang.pdf, 9.6 MB](https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_summary_tom-tat-chuong-8-song-phang.pdf)
 - **Tóm tắt Chương 9 - Chuyển động phức hợp** (vi, CC-BY-SA-4.0): [AS1003_summary_tom-tat-chuong-9-chuyen-dong-phuc-hop.pdf, 7.0 MB](https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_summary_tom-tat-chuong-9-chuyen-dong-phuc-hop.pdf)
+
+### Ghi chú
+
+- **Ghi chép tay Cơ lý thuyết (phần 1, trang 1-120)** (vi, CC-BY-SA-4.0): [AS1003_notes_ghi-chep-tay-co-ly-thuyet-phan-1-trang-1-120.pdf, 12.4 MB](https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_notes_ghi-chep-tay-co-ly-thuyet-phan-1-trang-1-120.pdf)
+- **Ghi chép tay Cơ lý thuyết (phần 2, trang 121-240)** (vi, CC-BY-SA-4.0): [AS1003_notes_ghi-chep-tay-co-ly-thuyet-phan-2-trang-121-240.pdf, 12.1 MB](https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_notes_ghi-chep-tay-co-ly-thuyet-phan-2-trang-121-240.pdf)
+- **Ghi chép tay Cơ lý thuyết (phần 3, trang 241-360)** (vi, CC-BY-SA-4.0): [AS1003_notes_ghi-chep-tay-co-ly-thuyet-phan-3-trang-241-360.pdf, 13.7 MB](https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_notes_ghi-chep-tay-co-ly-thuyet-phan-3-trang-241-360.pdf)
+- **Ghi chép tay Cơ lý thuyết (phần 4, trang 361-479)** (vi, CC-BY-SA-4.0): [AS1003_notes_ghi-chep-tay-co-ly-thuyet-phan-4-trang-361-479.pdf, 14.2 MB](https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_notes_ghi-chep-tay-co-ly-thuyet-phan-4-trang-361-479.pdf)
+
+### Bảng công thức
+
+- **Cheatsheet Cơ lý thuyết (động học, động lực học)** (vi, CC-BY-SA-4.0): [AS1003_cheatsheet_cheatsheet-co-ly-thuyet-dong-hoc-dong-luc-hoc.pdf, 17.3 MB](https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_cheatsheet_cheatsheet-co-ly-thuyet-dong-hoc-dong-luc-hoc.pdf)
 
 ## Link
 

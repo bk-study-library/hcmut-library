@@ -13,11 +13,15 @@
   "files": [
     {
       "name": "AS1003_notes_ghi-chep-tay-co-ly-thuyet-phan-4-trang-361-479.pdf",
-      "size": 14858719,
-      "sha256": "a11a8577138fed6c982f8eca76db8bcacf476207e637774fb7888348d7780be5",
+      "size": 14863971,
+      "sha256": "e124c4819b91345d4eaad3486c0e9f610715c15189d957e59a807b46a0df6e0c",
       "mime": "application/pdf",
-      "quarantine": "pending/3lWWiGvNNH/AS1003_notes_ghi-chep-tay-co-ly-thuyet-phan-4-trang-361-479.pdf",
-      "uploadSha256": "a11a8577138fed6c982f8eca76db8bcacf476207e637774fb7888348d7780be5"
+      "quarantine": "clean/3lWWiGvNNH/AS1003_notes_ghi-chep-tay-co-ly-thuyet-phan-4-trang-361-479.pdf",
+      "uploadSha256": "a11a8577138fed6c982f8eca76db8bcacf476207e637774fb7888348d7780be5",
+      "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_notes_ghi-chep-tay-co-ly-thuyet-phan-4-trang-361-479.pdf"
     }
+  ],
+  "unclassified": [
+    "no-text"
   ]
 }

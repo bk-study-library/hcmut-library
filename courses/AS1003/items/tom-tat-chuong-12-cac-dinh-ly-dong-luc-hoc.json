@@ -13,11 +13,12 @@
   "files": [
     {
       "name": "AS1003_summary_tom-tat-chuong-12-cac-dinh-ly-dong-luc-hoc.pdf",
-      "size": 10206729,
-      "sha256": "5a822c9ff8a6d1987e09860db288639b52f7d81ab0f356a912bed8b0ffccb4c5",
+      "size": 10212748,
+      "sha256": "73f391a0d672c6fd94e019ad533cf7dadae04440ea092d8d7d1573475b763ea0",
       "mime": "application/pdf",
-      "quarantine": "pending/3lWWiGvNNH/AS1003_summary_tom-tat-chuong-12-cac-dinh-ly-dong-luc-hoc.pdf",
-      "uploadSha256": "5a822c9ff8a6d1987e09860db288639b52f7d81ab0f356a912bed8b0ffccb4c5"
+      "quarantine": "clean/3lWWiGvNNH/AS1003_summary_tom-tat-chuong-12-cac-dinh-ly-dong-luc-hoc.pdf",
+      "uploadSha256": "5a822c9ff8a6d1987e09860db288639b52f7d81ab0f356a912bed8b0ffccb4c5",
+      "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_summary_tom-tat-chuong-12-cac-dinh-ly-dong-luc-hoc.pdf"
     }
   ]
 }

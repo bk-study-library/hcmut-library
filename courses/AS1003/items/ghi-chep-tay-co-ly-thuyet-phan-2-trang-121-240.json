@@ -13,11 +13,15 @@
   "files": [
     {
       "name": "AS1003_notes_ghi-chep-tay-co-ly-thuyet-phan-2-trang-121-240.pdf",
-      "size": 12648069,
-      "sha256": "c6e417285fff6b9ce9872a534f292a0b93fcf734851c5866f538d618627497be",
+      "size": 12653178,
+      "sha256": "3bb047f6613f8d2a263ab8bd7224fbdfc57905e1bf57598800b0b04c10f2dbc6",
       "mime": "application/pdf",
-      "quarantine": "pending/3lWWiGvNNH/AS1003_notes_ghi-chep-tay-co-ly-thuyet-phan-2-trang-121-240.pdf",
-      "uploadSha256": "c6e417285fff6b9ce9872a534f292a0b93fcf734851c5866f538d618627497be"
+      "quarantine": "clean/3lWWiGvNNH/AS1003_notes_ghi-chep-tay-co-ly-thuyet-phan-2-trang-121-240.pdf",
+      "uploadSha256": "c6e417285fff6b9ce9872a534f292a0b93fcf734851c5866f538d618627497be",
+      "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_notes_ghi-chep-tay-co-ly-thuyet-phan-2-trang-121-240.pdf"
     }
+  ],
+  "unclassified": [
+    "no-text"
   ]
 }

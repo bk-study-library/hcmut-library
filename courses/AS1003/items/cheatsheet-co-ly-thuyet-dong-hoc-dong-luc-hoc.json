@@ -13,11 +13,12 @@
   "files": [
     {
       "name": "AS1003_cheatsheet_cheatsheet-co-ly-thuyet-dong-hoc-dong-luc-hoc.pdf",
-      "size": 18166298,
-      "sha256": "b8039d824ee46136ff1d57b88420f24c8f060dec2c1b5e37cd38508aa9d331bb",
+      "size": 18183610,
+      "sha256": "00d5b398314119fcfb2a9387fddbbc60c7e160b83a598c8512741e95733e38d1",
       "mime": "application/pdf",
-      "quarantine": "pending/3lWWiGvNNH/AS1003_cheatsheet_cheatsheet-co-ly-thuyet-dong-hoc-dong-luc-hoc.pdf",
-      "uploadSha256": "b8039d824ee46136ff1d57b88420f24c8f060dec2c1b5e37cd38508aa9d331bb"
+      "quarantine": "clean/3lWWiGvNNH/AS1003_cheatsheet_cheatsheet-co-ly-thuyet-dong-hoc-dong-luc-hoc.pdf",
+      "uploadSha256": "b8039d824ee46136ff1d57b88420f24c8f060dec2c1b5e37cd38508aa9d331bb",
+      "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_cheatsheet_cheatsheet-co-ly-thuyet-dong-hoc-dong-luc-hoc.pdf"
     }
   ]
 }

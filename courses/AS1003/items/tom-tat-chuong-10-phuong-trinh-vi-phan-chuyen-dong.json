@@ -13,11 +13,12 @@
   "files": [
     {
       "name": "AS1003_summary_tom-tat-chuong-10-phuong-trinh-vi-phan-chuyen-dong.pdf",
-      "size": 18723242,
-      "sha256": "56f0c28a5fe9dafa22b255461d9872426c228c2fedfb16274458e9f2946f19aa",
+      "size": 18726531,
+      "sha256": "4341d77d5d599acabdcffd6a6b94db451e12b8eb7d4cc7a06cf1f6281ba0594f",
       "mime": "application/pdf",
-      "quarantine": "pending/3lWWiGvNNH/AS1003_summary_tom-tat-chuong-10-phuong-trinh-vi-phan-chuyen-dong.pdf",
-      "uploadSha256": "56f0c28a5fe9dafa22b255461d9872426c228c2fedfb16274458e9f2946f19aa"
+      "quarantine": "clean/3lWWiGvNNH/AS1003_summary_tom-tat-chuong-10-phuong-trinh-vi-phan-chuyen-dong.pdf",
+      "uploadSha256": "56f0c28a5fe9dafa22b255461d9872426c228c2fedfb16274458e9f2946f19aa",
+      "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_summary_tom-tat-chuong-10-phuong-trinh-vi-phan-chuyen-dong.pdf"
     }
   ]
 }
