@@ -14,11 +14,15 @@
   "files": [
     {
       "name": "AS2003_lecture-slides_slide-chuong-6-lap-trinh-huong-doi-tuong-thay-nguyen-thanh.pdf",
-      "size": 460667,
-      "sha256": "573d91eb7b6b3ef44685fba34a571f8fc9a02ad69cef970fa158df90b1ff628f",
+      "size": 458356,
+      "sha256": "edf1f10fbcadfb753fb8ca8f02ebed41d42d99ff30495f80c98840a785a6ab37",
       "mime": "application/pdf",
-      "quarantine": "pending/VYBaKewwi2/AS2003_lecture-slides_slide-chuong-6-lap-trinh-huong-doi-tuong-thay-nguyen-thanh.pdf",
-      "uploadSha256": "573d91eb7b6b3ef44685fba34a571f8fc9a02ad69cef970fa158df90b1ff628f"
+      "quarantine": "clean/VYBaKewwi2/AS2003_lecture-slides_slide-chuong-6-lap-trinh-huong-doi-tuong-thay-nguyen-thanh.pdf",
+      "uploadSha256": "573d91eb7b6b3ef44685fba34a571f8fc9a02ad69cef970fa158df90b1ff628f",
+      "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS2003_lecture-slides_slide-chuong-6-lap-trinh-huong-doi-tuong-thay-nguyen-thanh.pdf"
     }
+  ],
+  "unclassified": [
+    "pii"
   ]
 }

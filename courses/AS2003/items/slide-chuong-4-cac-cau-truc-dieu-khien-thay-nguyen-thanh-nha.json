@@ -14,11 +14,15 @@
   "files": [
     {
       "name": "AS2003_lecture-slides_slide-chuong-4-cac-cau-truc-dieu-khien-thay-nguyen-thanh-nha.pdf",
-      "size": 329629,
-      "sha256": "cd9dd715295a6676332ae76cc1aac5a523ca2c35d6009c6b05dc50c0cd8e34c2",
+      "size": 327029,
+      "sha256": "7856be12e2ff359f8f31590e926f22c2279f5ac1520dc590cd5f03a8fcb696f5",
       "mime": "application/pdf",
-      "quarantine": "pending/VYBaKewwi2/AS2003_lecture-slides_slide-chuong-4-cac-cau-truc-dieu-khien-thay-nguyen-thanh-nha.pdf",
-      "uploadSha256": "cd9dd715295a6676332ae76cc1aac5a523ca2c35d6009c6b05dc50c0cd8e34c2"
+      "quarantine": "clean/VYBaKewwi2/AS2003_lecture-slides_slide-chuong-4-cac-cau-truc-dieu-khien-thay-nguyen-thanh-nha.pdf",
+      "uploadSha256": "cd9dd715295a6676332ae76cc1aac5a523ca2c35d6009c6b05dc50c0cd8e34c2",
+      "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS2003_lecture-slides_slide-chuong-4-cac-cau-truc-dieu-khien-thay-nguyen-thanh-nha.pdf"
     }
+  ],
+  "unclassified": [
+    "pii"
   ]
 }
