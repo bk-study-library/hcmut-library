@@ -4,7 +4,7 @@
   "site": "https://bk-study-library.github.io/hcmut-library/",
   "counts": {
     "courses": 3796,
-    "items": 69
+    "items": 70
   },
   "faculties": [
     {
@@ -10523,7 +10523,7 @@
       "aliases": [],
       "oldNames": [],
       "status": "active",
-      "items": 12,
+      "items": 13,
       "teachers": [
         "Lê Song Giang",
         "Lý Hùng Anh",
