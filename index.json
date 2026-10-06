@@ -7,7 +7,7 @@
     "courses": 3796,
     "programs": 838,
     "majors": 140,
-    "items": 84
+    "items": 85
   },
   "faculties": [
     {
@@ -52067,6 +52067,29 @@
                   "quarantine": "clean/qgW07ogqKr/CI2003_exercise-solution_bai-tap-co-luu-chat-chuong-1-3-kem-video-giai.pdf",
                   "uploadSha256": "1dab3c32fefda1cc8eafa639cc994cb88919fec26fb1ab9410fca14866747634",
                   "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/CI2003_exercise-solution_bai-tap-co-luu-chat-chuong-1-3-kem-video-giai.pdf"
+                }
+              ]
+            },
+            {
+              "id": "danh-sach-video-bai-giang-giai-bai-tap-va-quiz-co-luu-chat",
+              "course": "CI2003",
+              "type": "notes",
+              "title": "Danh sách video bài giảng, giải bài tập và quiz Cơ lưu chất (YouTube)",
+              "lang": "vi",
+              "license": "CC-BY-SA-4.0",
+              "origin": "self-made",
+              "added": "2026-10-06",
+              "removed": false,
+              "description": "Danh sách playlist YouTube bài giảng chi tiết, giải bài tập và quiz Cơ lưu chất theo từng chương, do sinh viên tổng hợp (file Markdown).",
+              "files": [
+                {
+                  "name": "CI2003_notes_danh-sach-video-bai-giang-giai-bai-tap-va-quiz-co-luu-chat.md",
+                  "size": 1795,
+                  "sha256": "bc6364b887139f315695caef6f23fed36e98a9721cbb6cde502a6057904d478e",
+                  "mime": "text/markdown",
+                  "quarantine": "clean/vChSgAmWYM/CI2003_notes_danh-sach-video-bai-giang-giai-bai-tap-va-quiz-co-luu-chat.md",
+                  "uploadSha256": "bc6364b887139f315695caef6f23fed36e98a9721cbb6cde502a6057904d478e",
+                  "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/CI2003_notes_danh-sach-video-bai-giang-giai-bai-tap-va-quiz-co-luu-chat.md"
                 }
               ]
             },
