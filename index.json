@@ -7,7 +7,7 @@
     "courses": 3796,
     "programs": 838,
     "majors": 140,
-    "items": 55
+    "items": 64
   },
   "faculties": [
     {
@@ -25145,7 +25145,218 @@
           "handbookUrl": "https://hcmut.edu.vn/study/handbook/subject/AS2011",
           "note": "Nhập từ CTĐT chính thức (Sổ tay HCMUT, truy cập 04/10/2026).",
           "updated": "2026-10-04",
-          "items": []
+          "items": [
+            {
+              "id": "bai-tap-ky-hieu-chi-so-ly-thuyet-dan-hoi",
+              "course": "AS2011",
+              "type": "lecture-slides",
+              "title": "Bài tập ký hiệu chỉ số (Lý thuyết đàn hồi)",
+              "lang": "vi",
+              "license": "CC-BY-SA-4.0",
+              "origin": "self-made",
+              "added": "2026-10-06",
+              "removed": false,
+              "description": "Slide Lý thuyết đàn hồi 8 chương: ký hiệu chỉ số, biến dạng và chuyển vị, ứng suất và cân bằng, vật liệu đàn hồi tuyến tính, bài toán phẳng trong tọa độ Descartes và tọa độ cực, tấm mỏng chịu uốn (Descartes và tọa độ trụ). Kèm phiếu bài tập ký hiệu chỉ số.",
+              "files": [
+                {
+                  "name": "AS2011_lecture-slides_bai-tap-ky-hieu-chi-so-ly-thuyet-dan-hoi.pdf",
+                  "size": 743020,
+                  "sha256": "6c43d9d705b3169accdb20e8d378f7173a6248f0d399773e2bca43efeef94575",
+                  "mime": "application/pdf",
+                  "quarantine": "clean/0vecojbJiS/AS2011_lecture-slides_bai-tap-ky-hieu-chi-so-ly-thuyet-dan-hoi.pdf",
+                  "uploadSha256": "f62397b426e89365044dfa59bd7669c5974a6e2e48319ac5e07da046c26fbf8b",
+                  "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS2011_lecture-slides_bai-tap-ky-hieu-chi-so-ly-thuyet-dan-hoi.pdf"
+                }
+              ],
+              "unclassified": [
+                "pii"
+              ]
+            },
+            {
+              "id": "slide-ly-thuyet-dan-hoi-chuong-1-ky-hieu-chi-so",
+              "course": "AS2011",
+              "type": "lecture-slides",
+              "title": "Slide Lý thuyết đàn hồi chương 1: Ký hiệu chỉ số",
+              "lang": "vi",
+              "license": "CC-BY-SA-4.0",
+              "origin": "self-made",
+              "added": "2026-10-06",
+              "removed": false,
+              "description": "Slide Lý thuyết đàn hồi 8 chương: ký hiệu chỉ số, biến dạng và chuyển vị, ứng suất và cân bằng, vật liệu đàn hồi tuyến tính, bài toán phẳng trong tọa độ Descartes và tọa độ cực, tấm mỏng chịu uốn (Descartes và tọa độ trụ). Kèm phiếu bài tập ký hiệu chỉ số.",
+              "files": [
+                {
+                  "name": "AS2011_lecture-slides_slide-ly-thuyet-dan-hoi-chuong-1-ky-hieu-chi-so.pdf",
+                  "size": 847740,
+                  "sha256": "18b29660f8f893eaa70b761734787c870a44c99596b9a734c1cab0252677dc33",
+                  "mime": "application/pdf",
+                  "quarantine": "clean/0vecojbJiS/AS2011_lecture-slides_slide-ly-thuyet-dan-hoi-chuong-1-ky-hieu-chi-so.pdf",
+                  "uploadSha256": "4b54e8259a3fce3e1db570a16838e5d613cac6be298d236c9d41d24699fe24e5",
+                  "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS2011_lecture-slides_slide-ly-thuyet-dan-hoi-chuong-1-ky-hieu-chi-so.pdf"
+                }
+              ]
+            },
+            {
+              "id": "slide-ly-thuyet-dan-hoi-chuong-2-quan-he-giua-bien-dang-va",
+              "course": "AS2011",
+              "type": "lecture-slides",
+              "title": "Slide Lý thuyết đàn hồi chương 2: Quan hệ giữa biến dạng và chuyển vị",
+              "lang": "vi",
+              "license": "CC-BY-SA-4.0",
+              "origin": "self-made",
+              "added": "2026-10-06",
+              "removed": false,
+              "description": "Slide Lý thuyết đàn hồi 8 chương: ký hiệu chỉ số, biến dạng và chuyển vị, ứng suất và cân bằng, vật liệu đàn hồi tuyến tính, bài toán phẳng trong tọa độ Descartes và tọa độ cực, tấm mỏng chịu uốn (Descartes và tọa độ trụ). Kèm phiếu bài tập ký hiệu chỉ số.",
+              "files": [
+                {
+                  "name": "AS2011_lecture-slides_slide-ly-thuyet-dan-hoi-chuong-2-quan-he-giua-bien-dang-va.pdf",
+                  "size": 590582,
+                  "sha256": "d20b13b525ee0520084cf14ba5a6d2f59d2805e807a6165a810254c284efd9e2",
+                  "mime": "application/pdf",
+                  "quarantine": "clean/0vecojbJiS/AS2011_lecture-slides_slide-ly-thuyet-dan-hoi-chuong-2-quan-he-giua-bien-dang-va.pdf",
+                  "uploadSha256": "db7e7a5978d169248ff066ec1542876cbdf59886e859754971a48c53eddd49c8",
+                  "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS2011_lecture-slides_slide-ly-thuyet-dan-hoi-chuong-2-quan-he-giua-bien-dang-va.pdf"
+                }
+              ]
+            },
+            {
+              "id": "slide-ly-thuyet-dan-hoi-chuong-3-ung-suat-va-su-can-bang-co",
+              "course": "AS2011",
+              "type": "lecture-slides",
+              "title": "Slide Lý thuyết đàn hồi chương 3: Ứng suất và sự cân bằng cơ học",
+              "lang": "vi",
+              "license": "CC-BY-SA-4.0",
+              "origin": "self-made",
+              "added": "2026-10-06",
+              "removed": false,
+              "description": "Slide Lý thuyết đàn hồi 8 chương: ký hiệu chỉ số, biến dạng và chuyển vị, ứng suất và cân bằng, vật liệu đàn hồi tuyến tính, bài toán phẳng trong tọa độ Descartes và tọa độ cực, tấm mỏng chịu uốn (Descartes và tọa độ trụ). Kèm phiếu bài tập ký hiệu chỉ số.",
+              "files": [
+                {
+                  "name": "AS2011_lecture-slides_slide-ly-thuyet-dan-hoi-chuong-3-ung-suat-va-su-can-bang-co.pdf",
+                  "size": 659381,
+                  "sha256": "d2ddfcc24cbc7462770f22e8b2b9850eff2b4df6953458d12959b3409100df5c",
+                  "mime": "application/pdf",
+                  "quarantine": "clean/0vecojbJiS/AS2011_lecture-slides_slide-ly-thuyet-dan-hoi-chuong-3-ung-suat-va-su-can-bang-co.pdf",
+                  "uploadSha256": "f5f05a9b38b8f0e195b4bc15ffcd560cdc898d1dbe3c516ea75f1e7483effe49",
+                  "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS2011_lecture-slides_slide-ly-thuyet-dan-hoi-chuong-3-ung-suat-va-su-can-bang-co.pdf"
+                }
+              ]
+            },
+            {
+              "id": "slide-ly-thuyet-dan-hoi-chuong-4-ung-xu-vat-lieu-dan-hoi",
+              "course": "AS2011",
+              "type": "lecture-slides",
+              "title": "Slide Lý thuyết đàn hồi chương 4: Ứng xử vật liệu đàn hồi tuyến tính",
+              "lang": "vi",
+              "license": "CC-BY-SA-4.0",
+              "origin": "self-made",
+              "added": "2026-10-06",
+              "removed": false,
+              "description": "Slide Lý thuyết đàn hồi 8 chương: ký hiệu chỉ số, biến dạng và chuyển vị, ứng suất và cân bằng, vật liệu đàn hồi tuyến tính, bài toán phẳng trong tọa độ Descartes và tọa độ cực, tấm mỏng chịu uốn (Descartes và tọa độ trụ). Kèm phiếu bài tập ký hiệu chỉ số.",
+              "files": [
+                {
+                  "name": "AS2011_lecture-slides_slide-ly-thuyet-dan-hoi-chuong-4-ung-xu-vat-lieu-dan-hoi.pdf",
+                  "size": 705720,
+                  "sha256": "bff7231ef942ec9830c79c0f14b70392c16188c875cc6bb70014822fde5baac8",
+                  "mime": "application/pdf",
+                  "quarantine": "clean/0vecojbJiS/AS2011_lecture-slides_slide-ly-thuyet-dan-hoi-chuong-4-ung-xu-vat-lieu-dan-hoi.pdf",
+                  "uploadSha256": "96cf4c8b9020835cc0fe3b463f2daa6b16754cd20a0c50eee17864518ffb2753",
+                  "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS2011_lecture-slides_slide-ly-thuyet-dan-hoi-chuong-4-ung-xu-vat-lieu-dan-hoi.pdf"
+                }
+              ]
+            },
+            {
+              "id": "slide-ly-thuyet-dan-hoi-chuong-5-bai-toan-phang-trong-he-toa",
+              "course": "AS2011",
+              "type": "lecture-slides",
+              "title": "Slide Lý thuyết đàn hồi chương 5: Bài toán phẳng trong hệ tọa độ Descartes",
+              "lang": "vi",
+              "license": "CC-BY-SA-4.0",
+              "origin": "self-made",
+              "added": "2026-10-06",
+              "removed": false,
+              "description": "Slide Lý thuyết đàn hồi 8 chương: ký hiệu chỉ số, biến dạng và chuyển vị, ứng suất và cân bằng, vật liệu đàn hồi tuyến tính, bài toán phẳng trong tọa độ Descartes và tọa độ cực, tấm mỏng chịu uốn (Descartes và tọa độ trụ). Kèm phiếu bài tập ký hiệu chỉ số.",
+              "files": [
+                {
+                  "name": "AS2011_lecture-slides_slide-ly-thuyet-dan-hoi-chuong-5-bai-toan-phang-trong-he-toa.pdf",
+                  "size": 613616,
+                  "sha256": "548494561094068f1467edeaea34cd0fdb67d896be93ae3ec173c87c166e1a3b",
+                  "mime": "application/pdf",
+                  "quarantine": "clean/0vecojbJiS/AS2011_lecture-slides_slide-ly-thuyet-dan-hoi-chuong-5-bai-toan-phang-trong-he-toa.pdf",
+                  "uploadSha256": "b7efb9504f5e65b91fd1ca379361348d43505feaefbf439aef52cca03749589a",
+                  "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS2011_lecture-slides_slide-ly-thuyet-dan-hoi-chuong-5-bai-toan-phang-trong-he-toa.pdf"
+                }
+              ]
+            },
+            {
+              "id": "slide-ly-thuyet-dan-hoi-chuong-6-bai-toan-phang-trong-he-toa",
+              "course": "AS2011",
+              "type": "lecture-slides",
+              "title": "Slide Lý thuyết đàn hồi chương 6: Bài toán phẳng trong hệ tọa độ cực",
+              "lang": "vi",
+              "license": "CC-BY-SA-4.0",
+              "origin": "self-made",
+              "added": "2026-10-06",
+              "removed": false,
+              "description": "Slide Lý thuyết đàn hồi 8 chương: ký hiệu chỉ số, biến dạng và chuyển vị, ứng suất và cân bằng, vật liệu đàn hồi tuyến tính, bài toán phẳng trong tọa độ Descartes và tọa độ cực, tấm mỏng chịu uốn (Descartes và tọa độ trụ). Kèm phiếu bài tập ký hiệu chỉ số.",
+              "files": [
+                {
+                  "name": "AS2011_lecture-slides_slide-ly-thuyet-dan-hoi-chuong-6-bai-toan-phang-trong-he-toa.pdf",
+                  "size": 547083,
+                  "sha256": "5bc235b9eafe28cecaa2bbb0ef3aa3348cc9795ada4a42150ae592ae4be58df8",
+                  "mime": "application/pdf",
+                  "quarantine": "clean/0vecojbJiS/AS2011_lecture-slides_slide-ly-thuyet-dan-hoi-chuong-6-bai-toan-phang-trong-he-toa.pdf",
+                  "uploadSha256": "ce37e4de17a53d0d1bea7062d09ebddb89c6bcaf0bea61f76e661726bd1b77d3",
+                  "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS2011_lecture-slides_slide-ly-thuyet-dan-hoi-chuong-6-bai-toan-phang-trong-he-toa.pdf"
+                }
+              ]
+            },
+            {
+              "id": "slide-ly-thuyet-dan-hoi-chuong-7-bai-toan-tam-mong-chiu-uon",
+              "course": "AS2011",
+              "type": "lecture-slides",
+              "title": "Slide Lý thuyết đàn hồi chương 7: Bài toán tấm mỏng chịu uốn",
+              "lang": "vi",
+              "license": "CC-BY-SA-4.0",
+              "origin": "self-made",
+              "added": "2026-10-06",
+              "removed": false,
+              "description": "Slide Lý thuyết đàn hồi 8 chương: ký hiệu chỉ số, biến dạng và chuyển vị, ứng suất và cân bằng, vật liệu đàn hồi tuyến tính, bài toán phẳng trong tọa độ Descartes và tọa độ cực, tấm mỏng chịu uốn (Descartes và tọa độ trụ). Kèm phiếu bài tập ký hiệu chỉ số.",
+              "files": [
+                {
+                  "name": "AS2011_lecture-slides_slide-ly-thuyet-dan-hoi-chuong-7-bai-toan-tam-mong-chiu-uon.pdf",
+                  "size": 817861,
+                  "sha256": "74216063f98ae03a9bddae82121503038a9ef17c147a93131fe662bf7bbc13eb",
+                  "mime": "application/pdf",
+                  "quarantine": "clean/0vecojbJiS/AS2011_lecture-slides_slide-ly-thuyet-dan-hoi-chuong-7-bai-toan-tam-mong-chiu-uon.pdf",
+                  "uploadSha256": "fd21002cbb495527ef1b4553725c7f37ed51a56fecb5e9343a45c0066778aeec",
+                  "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS2011_lecture-slides_slide-ly-thuyet-dan-hoi-chuong-7-bai-toan-tam-mong-chiu-uon.pdf"
+                }
+              ]
+            },
+            {
+              "id": "slide-ly-thuyet-dan-hoi-chuong-8-bai-toan-tam-mong-chiu-uon",
+              "course": "AS2011",
+              "type": "lecture-slides",
+              "title": "Slide Lý thuyết đàn hồi chương 8: Bài toán tấm mỏng chịu uốn trong hệ tọa độ trụ",
+              "lang": "vi",
+              "license": "CC-BY-SA-4.0",
+              "origin": "self-made",
+              "added": "2026-10-06",
+              "removed": false,
+              "description": "Slide Lý thuyết đàn hồi 8 chương: ký hiệu chỉ số, biến dạng và chuyển vị, ứng suất và cân bằng, vật liệu đàn hồi tuyến tính, bài toán phẳng trong tọa độ Descartes và tọa độ cực, tấm mỏng chịu uốn (Descartes và tọa độ trụ). Kèm phiếu bài tập ký hiệu chỉ số.",
+              "files": [
+                {
+                  "name": "AS2011_lecture-slides_slide-ly-thuyet-dan-hoi-chuong-8-bai-toan-tam-mong-chiu-uon.pdf",
+                  "size": 447508,
+                  "sha256": "5c7e0abd3dfc06a41b32e31412ddc0e12157319885e42d7cd67e41eeae8a635d",
+                  "mime": "application/pdf",
+                  "quarantine": "clean/0vecojbJiS/AS2011_lecture-slides_slide-ly-thuyet-dan-hoi-chuong-8-bai-toan-tam-mong-chiu-uon.pdf",
+                  "uploadSha256": "99a3a272176f1fd1de8c8bbccb8e153538c193825591d770c097d3d1274e87f6",
+                  "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS2011_lecture-slides_slide-ly-thuyet-dan-hoi-chuong-8-bai-toan-tam-mong-chiu-uon.pdf"
+                }
+              ]
+            }
+          ]
         },
         {
           "id": "AS2013",
