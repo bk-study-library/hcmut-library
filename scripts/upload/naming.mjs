@@ -21,10 +21,3 @@ export function fileName({ code, type, slug, term, ext }) {
   const tail = term ? `_${term}` : '';
   return `${code}_${type}_${slug}${tail}${String(ext).toLowerCase()}`;
 }
-
-export function uniqueId(slug, taken) {
-  if (!taken.has(slug)) return slug;
-  let n = 2;
-  while (taken.has(`${slug}-${n}`)) n += 1;
-  return `${slug}-${n}`;
-}
