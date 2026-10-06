@@ -169,6 +169,84 @@
           ]
         }
       ]
+    },
+    {
+      "id": "slide-chuong-3-cac-kieu-du-lieu-thay-nguyen-thanh-nha",
+      "type": "lecture-slides",
+      "title": "Slide chương 3 - Các kiểu dữ liệu (thầy Nguyễn Thanh Nhã)",
+      "description": "Slide Kỹ thuật lập trình cho Cơ kỹ thuật (Python) của TS. Nguyễn Thanh Nhã, bản 2021: chương 3 kiểu dữ liệu, chương 4 cấu trúc điều khiển, chương 6 lập trình hướng đối tượng.",
+      "lang": "vi",
+      "teacher": "Nguyễn Thanh Nhã",
+      "license": "CC-BY-SA-4.0",
+      "origin": "self-made",
+      "added": "2026-10-06",
+      "unclassified": [
+        "pii"
+      ],
+      "updated": "2026-10-06",
+      "files": [
+        {
+          "name": "AS2003_lecture-slides_slide-chuong-3-cac-kieu-du-lieu-thay-nguyen-thanh-nha.pdf",
+          "mime": "application/pdf",
+          "size": 271842,
+          "sha256": "92e607a326ef18d04633bec8a159d1aa9548a941406f6ab120192e33f6e0e319",
+          "urls": [
+            "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS2003_lecture-slides_slide-chuong-3-cac-kieu-du-lieu-thay-nguyen-thanh-nha.pdf"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "slide-chuong-4-cac-cau-truc-dieu-khien-thay-nguyen-thanh-nha",
+      "type": "lecture-slides",
+      "title": "Slide chương 4 - Các cấu trúc điều khiển (thầy Nguyễn Thanh Nhã)",
+      "description": "Slide Kỹ thuật lập trình cho Cơ kỹ thuật (Python) của TS. Nguyễn Thanh Nhã, bản 2021: chương 3 kiểu dữ liệu, chương 4 cấu trúc điều khiển, chương 6 lập trình hướng đối tượng.",
+      "lang": "vi",
+      "teacher": "Nguyễn Thanh Nhã",
+      "license": "CC-BY-SA-4.0",
+      "origin": "self-made",
+      "added": "2026-10-06",
+      "unclassified": [
+        "pii"
+      ],
+      "updated": "2026-10-06",
+      "files": [
+        {
+          "name": "AS2003_lecture-slides_slide-chuong-4-cac-cau-truc-dieu-khien-thay-nguyen-thanh-nha.pdf",
+          "mime": "application/pdf",
+          "size": 327029,
+          "sha256": "7856be12e2ff359f8f31590e926f22c2279f5ac1520dc590cd5f03a8fcb696f5",
+          "urls": [
+            "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS2003_lecture-slides_slide-chuong-4-cac-cau-truc-dieu-khien-thay-nguyen-thanh-nha.pdf"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "slide-chuong-6-lap-trinh-huong-doi-tuong-thay-nguyen-thanh",
+      "type": "lecture-slides",
+      "title": "Slide chương 6 - Lập trình hướng đối tượng (thầy Nguyễn Thanh Nhã)",
+      "description": "Slide Kỹ thuật lập trình cho Cơ kỹ thuật (Python) của TS. Nguyễn Thanh Nhã, bản 2021: chương 3 kiểu dữ liệu, chương 4 cấu trúc điều khiển, chương 6 lập trình hướng đối tượng.",
+      "lang": "vi",
+      "teacher": "Nguyễn Thanh Nhã",
+      "license": "CC-BY-SA-4.0",
+      "origin": "self-made",
+      "added": "2026-10-06",
+      "unclassified": [
+        "pii"
+      ],
+      "updated": "2026-10-06",
+      "files": [
+        {
+          "name": "AS2003_lecture-slides_slide-chuong-6-lap-trinh-huong-doi-tuong-thay-nguyen-thanh.pdf",
+          "mime": "application/pdf",
+          "size": 458356,
+          "sha256": "edf1f10fbcadfb753fb8ca8f02ebed41d42d99ff30495f80c98840a785a6ab37",
+          "urls": [
+            "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS2003_lecture-slides_slide-chuong-6-lap-trinh-huong-doi-tuong-thay-nguyen-thanh.pdf"
+          ]
+        }
+      ]
     }
   ]
 }
