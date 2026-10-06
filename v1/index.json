@@ -4,7 +4,7 @@
   "site": "https://bk-study-library.github.io/hcmut-library/",
   "counts": {
     "courses": 3796,
-    "items": 25
+    "items": 26
   },
   "faculties": [
     {
@@ -10521,9 +10521,10 @@
       "aliases": [],
       "oldNames": [],
       "status": "active",
-      "items": 1,
+      "items": 2,
       "teachers": [
-        "Nguyễn Thị Bảy"
+        "Nguyễn Thị Bảy",
+        "Võ Thị Tuyết Giang"
       ],
       "url": "https://bk-study-library.github.io/hcmut-library/course/CI2003/",
       "detail": "courses/CI2003.json"

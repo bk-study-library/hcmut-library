@@ -7,7 +7,7 @@
     "courses": 3796,
     "programs": 838,
     "majors": 140,
-    "items": 26
+    "items": 27
   },
   "faculties": [
     {
@@ -50935,6 +50935,30 @@
                   "quarantine": "clean/5H3aUrb4in/CI2003_lecture-slides_bai-giang-co-luu-chat-nguyen-thi-bay.pdf",
                   "uploadSha256": "fb5c7de74592459f9b96188cd624ce00aafdcb6c82498c3ffdfc312758998175",
                   "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/CI2003_lecture-slides_bai-giang-co-luu-chat-nguyen-thi-bay.pdf"
+                }
+              ]
+            },
+            {
+              "id": "bai-giang-co-luu-chat-vo-thi-tuyet-giang",
+              "course": "CI2003",
+              "type": "lecture-slides",
+              "title": "Bài giảng Cơ lưu chất - Võ Thị Tuyết Giang",
+              "lang": "vi",
+              "license": "CC-BY-SA-4.0",
+              "origin": "self-made",
+              "added": "2026-10-06",
+              "removed": false,
+              "description": "Bài giảng Cơ lưu chất (Fluid Mechanics) của giảng viên Khoa Kỹ thuật Xây dựng và Bộ môn Kỹ thuật Hàng không, ĐH Bách Khoa TP.HCM: tĩnh học lưu chất, động học, phương trình năng lượng, động lượng, dòng chảy trong ống, thế lưu.",
+              "teacher": "Võ Thị Tuyết Giang",
+              "files": [
+                {
+                  "name": "CI2003_lecture-slides_bai-giang-co-luu-chat-vo-thi-tuyet-giang.pdf",
+                  "size": 8228322,
+                  "sha256": "7ad74caca91975a1b46afd781e8101c59c6339b6911c00a9e8a0e1d750406524",
+                  "mime": "application/pdf",
+                  "quarantine": "clean/UFY3BJAAH9/CI2003_lecture-slides_bai-giang-co-luu-chat-vo-thi-tuyet-giang.pdf",
+                  "uploadSha256": "59955500d0ae183729961eab12da47c89f468b8f4ca783d49e21632a17695e7a",
+                  "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/CI2003_lecture-slides_bai-giang-co-luu-chat-vo-thi-tuyet-giang.pdf"
                 }
               ]
             }

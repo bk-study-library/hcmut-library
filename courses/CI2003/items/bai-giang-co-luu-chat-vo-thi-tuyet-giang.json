@@ -14,11 +14,12 @@
   "files": [
     {
       "name": "CI2003_lecture-slides_bai-giang-co-luu-chat-vo-thi-tuyet-giang.pdf",
-      "size": 8889551,
-      "sha256": "59955500d0ae183729961eab12da47c89f468b8f4ca783d49e21632a17695e7a",
+      "size": 8228322,
+      "sha256": "7ad74caca91975a1b46afd781e8101c59c6339b6911c00a9e8a0e1d750406524",
       "mime": "application/pdf",
-      "quarantine": "pending/UFY3BJAAH9/CI2003_lecture-slides_bai-giang-co-luu-chat-vo-thi-tuyet-giang.pdf",
-      "uploadSha256": "59955500d0ae183729961eab12da47c89f468b8f4ca783d49e21632a17695e7a"
+      "quarantine": "clean/UFY3BJAAH9/CI2003_lecture-slides_bai-giang-co-luu-chat-vo-thi-tuyet-giang.pdf",
+      "uploadSha256": "59955500d0ae183729961eab12da47c89f468b8f4ca783d49e21632a17695e7a",
+      "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/CI2003_lecture-slides_bai-giang-co-luu-chat-vo-thi-tuyet-giang.pdf"
     }
   ]
 }
