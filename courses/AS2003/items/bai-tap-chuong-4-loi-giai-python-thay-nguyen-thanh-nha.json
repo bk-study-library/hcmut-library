@@ -1,0 +1,25 @@
+{
+  "$schema": "../../../schema/item.schema.json",
+  "id": "bai-tap-chuong-4-loi-giai-python-thay-nguyen-thanh-nha",
+  "course": "AS2003",
+  "type": "exercise-solution",
+  "title": "Bài tập chương 4 - lời giải Python (thầy Nguyễn Thanh Nhã)",
+  "lang": "vi",
+  "license": "CC-BY-SA-4.0",
+  "origin": "self-made",
+  "added": "2026-10-06",
+  "removed": false,
+  "description": "Bài tập chương 3-6 môn KTLT Cơ kỹ thuật (lớp TS. Nguyễn Thanh Nhã): đề bài kèm lời giải Python của sinh viên, mỗi chương một file.",
+  "teacher": "Nguyễn Thanh Nhã",
+  "files": [
+    {
+      "name": "AS2003_exercise-solution_bai-tap-chuong-4-loi-giai-python-thay-nguyen-thanh-nha.pdf",
+      "size": 938899,
+      "sha256": "45231ff2a665c3ca07e5586851a594cc8c63e4093791f60ee815714f74a4a998",
+      "mime": "application/pdf",
+      "quarantine": "clean/Vs8Uim0pgM/AS2003_exercise-solution_bai-tap-chuong-4-loi-giai-python-thay-nguyen-thanh-nha.pdf",
+      "uploadSha256": "2e56fd6bc2f061e9021d9cd8ded56799ca5597aefa7a97fe6b345e729ef40451",
+      "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS2003_exercise-solution_bai-tap-chuong-4-loi-giai-python-thay-nguyen-thanh-nha.pdf"
+    }
+  ]
+}
