@@ -7,7 +7,7 @@
     "courses": 3796,
     "programs": 838,
     "majors": 140,
-    "items": 74
+    "items": 76
   },
   "faculties": [
     {
@@ -52078,6 +52078,56 @@
                   "quarantine": "clean/cBNynMBrZZ/CI2003_exam-past_de-cuoi-ky-co-luu-chat-hk212_HK212.pdf",
                   "uploadSha256": "bc83dc08a0caafb010db55ce7c5bc9c8e02c0e2fc4cf2c50b9b6057e45a98d99",
                   "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/CI2003_exam-past_de-cuoi-ky-co-luu-chat-hk212_HK212.pdf"
+                }
+              ]
+            },
+            {
+              "id": "de-cuoi-ky-co-luu-chat-hk222",
+              "course": "CI2003",
+              "type": "exam-past",
+              "title": "Đề cuối kỳ Cơ lưu chất HK222",
+              "lang": "vi",
+              "license": "CC-BY-SA-4.0",
+              "origin": "self-made",
+              "added": "2026-10-06",
+              "removed": false,
+              "description": "Đề thi cuối kỳ Cơ lưu chất (CI2003) các học kỳ, bản scan hoặc PDF gốc. Một số đề có tên PGS.TS. Lê Song Giang (người phê duyệt hoặc chủ nhiệm bộ môn) và PGS.TS. Lê Văn Dực.",
+              "term": "HK222",
+              "examKind": "ck",
+              "files": [
+                {
+                  "name": "CI2003_exam-past_de-cuoi-ky-co-luu-chat-hk222_HK222.pdf",
+                  "size": 3607099,
+                  "sha256": "197247212c8dbc00d754381648099c037e16646f0bdbe80bdab8cc66a8f5c164",
+                  "mime": "application/pdf",
+                  "quarantine": "clean/L3mQEYPwpN/CI2003_exam-past_de-cuoi-ky-co-luu-chat-hk222_HK222.pdf",
+                  "uploadSha256": "662e77601d0f75e17aed458f500645e400348d2426f1446e8a4caea8aaaad8f4",
+                  "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/CI2003_exam-past_de-cuoi-ky-co-luu-chat-hk222_HK222.pdf"
+                }
+              ]
+            },
+            {
+              "id": "de-giua-ky-co-luu-chat-hk171",
+              "course": "CI2003",
+              "type": "exam-past",
+              "title": "Đề giữa kỳ Cơ lưu chất HK171",
+              "lang": "vi",
+              "license": "CC-BY-SA-4.0",
+              "origin": "self-made",
+              "added": "2026-10-06",
+              "removed": false,
+              "description": "Đề kiểm tra giữa kỳ Cơ lưu chất: đề HK171, đề mẫu và ảnh chụp đề HK231.",
+              "term": "HK171",
+              "examKind": "gk",
+              "files": [
+                {
+                  "name": "CI2003_exam-past_de-giua-ky-co-luu-chat-hk171_HK171.pdf",
+                  "size": 482089,
+                  "sha256": "34e76808d9f5ec34b8ac36a85360f32dbf1c38ccdc95f4c40044eceaa808c9a1",
+                  "mime": "application/pdf",
+                  "quarantine": "clean/5OEACrQ2z4/CI2003_exam-past_de-giua-ky-co-luu-chat-hk171_HK171.pdf",
+                  "uploadSha256": "997981c7dc35b6d879d38e093f2a3cc560693d9321e1898b17bf48f4f9d6f717",
+                  "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/CI2003_exam-past_de-giua-ky-co-luu-chat-hk171_HK171.pdf"
                 }
               ]
             },
