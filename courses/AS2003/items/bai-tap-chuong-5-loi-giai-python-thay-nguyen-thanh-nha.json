@@ -14,11 +14,12 @@
   "files": [
     {
       "name": "AS2003_exercise-solution_bai-tap-chuong-5-loi-giai-python-thay-nguyen-thanh-nha.pdf",
-      "size": 1169157,
-      "sha256": "0c0195914c6f9ed6eda4db97faa7a2b0e96bc8a9f165299dd64739539e0b5a72",
+      "size": 1172622,
+      "sha256": "9925f5a28565bb7cc54651ce55a35c4176b7bf1fc62cff93201e3401dfe1478c",
       "mime": "application/pdf",
-      "quarantine": "pending/Vs8Uim0pgM/AS2003_exercise-solution_bai-tap-chuong-5-loi-giai-python-thay-nguyen-thanh-nha.pdf",
-      "uploadSha256": "0c0195914c6f9ed6eda4db97faa7a2b0e96bc8a9f165299dd64739539e0b5a72"
+      "quarantine": "clean/Vs8Uim0pgM/AS2003_exercise-solution_bai-tap-chuong-5-loi-giai-python-thay-nguyen-thanh-nha.pdf",
+      "uploadSha256": "0c0195914c6f9ed6eda4db97faa7a2b0e96bc8a9f165299dd64739539e0b5a72",
+      "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS2003_exercise-solution_bai-tap-chuong-5-loi-giai-python-thay-nguyen-thanh-nha.pdf"
     }
   ]
 }
