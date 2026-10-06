@@ -1,0 +1,23 @@
+{
+  "$schema": "../../../schema/item.schema.json",
+  "id": "bai-tap-ky-hieu-chi-so-ly-thuyet-dan-hoi",
+  "course": "AS2011",
+  "type": "lecture-slides",
+  "title": "Bài tập ký hiệu chỉ số (Lý thuyết đàn hồi)",
+  "lang": "vi",
+  "license": "CC-BY-SA-4.0",
+  "origin": "self-made",
+  "added": "2026-10-06",
+  "removed": false,
+  "description": "Slide Lý thuyết đàn hồi 8 chương: ký hiệu chỉ số, biến dạng và chuyển vị, ứng suất và cân bằng, vật liệu đàn hồi tuyến tính, bài toán phẳng trong tọa độ Descartes và tọa độ cực, tấm mỏng chịu uốn (Descartes và tọa độ trụ). Kèm phiếu bài tập ký hiệu chỉ số.",
+  "files": [
+    {
+      "name": "AS2011_lecture-slides_bai-tap-ky-hieu-chi-so-ly-thuyet-dan-hoi.pdf",
+      "size": 745679,
+      "sha256": "f62397b426e89365044dfa59bd7669c5974a6e2e48319ac5e07da046c26fbf8b",
+      "mime": "application/pdf",
+      "quarantine": "pending/0vecojbJiS/AS2011_lecture-slides_bai-tap-ky-hieu-chi-so-ly-thuyet-dan-hoi.pdf",
+      "uploadSha256": "f62397b426e89365044dfa59bd7669c5974a6e2e48319ac5e07da046c26fbf8b"
+    }
+  ]
+}
