@@ -13,11 +13,15 @@
   "files": [
     {
       "name": "AS1003_summary_tom-tat-chuong-13-nguyen-ly-di-chuyen-kha-di.pdf",
-      "size": 6391171,
-      "sha256": "d8f86223f94342f667ec0522ec763eb153ac7c9fb2e7793f9619d1b3e22b05fa",
+      "size": 6395379,
+      "sha256": "d1681dbb446cc31edb97115d38de26a02bb7bedfe9e62523fd6b79fb755d535a",
       "mime": "application/pdf",
-      "quarantine": "pending/ZXErbD6Zfs/AS1003_summary_tom-tat-chuong-13-nguyen-ly-di-chuyen-kha-di.pdf",
-      "uploadSha256": "d8f86223f94342f667ec0522ec763eb153ac7c9fb2e7793f9619d1b3e22b05fa"
+      "quarantine": "clean/ZXErbD6Zfs/AS1003_summary_tom-tat-chuong-13-nguyen-ly-di-chuyen-kha-di.pdf",
+      "uploadSha256": "d8f86223f94342f667ec0522ec763eb153ac7c9fb2e7793f9619d1b3e22b05fa",
+      "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_summary_tom-tat-chuong-13-nguyen-ly-di-chuyen-kha-di.pdf"
     }
+  ],
+  "unclassified": [
+    "no-text"
   ]
 }

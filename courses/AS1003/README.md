@@ -26,6 +26,10 @@
 - **Slide chương 10: Chuyển động song phẳng của vật rắn - thầy Nguyễn Hữu Hào** (vi, CC-BY-SA-4.0): [AS1003_lecture-slides_slide-chuong-10-chuyen-dong-song-phang-cua-vat-ran-thay.pdf, 5.7 MB](https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_lecture-slides_slide-chuong-10-chuyen-dong-song-phang-cua-vat-ran-thay.pdf)
 - **Slide chương 15: Một số phương trình cơ học - thầy Nguyễn Hữu Hào** (vi, CC-BY-SA-4.0): [AS1003_lecture-slides_slide-chuong-15-mot-so-phuong-trinh-co-hoc-thay-nguyen-huu.pdf, 2.3 MB](https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_lecture-slides_slide-chuong-15-mot-so-phuong-trinh-co-hoc-thay-nguyen-huu.pdf)
 
+### Tóm tắt
+
+- **Tóm tắt Chương 13 - Nguyên lý di chuyển khả dĩ** (vi, CC-BY-SA-4.0): [AS1003_summary_tom-tat-chuong-13-nguyen-ly-di-chuyen-kha-di.pdf, 6.1 MB](https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_summary_tom-tat-chuong-13-nguyen-ly-di-chuyen-kha-di.pdf)
+
 ## Link
 
 Chưa có link.
