@@ -6,9 +6,11 @@ import path from 'node:path';
 import { ownersFor } from '../scripts/upload/reviewers.mjs';
 import { TOOL_ROOT } from '../scripts/lib/repo.mjs';
 
-test('CODEOWNERS của repo: mọi item do xeroz369 duyệt', () => {
+test('CODEOWNERS của repo: file bot ghi không có code owner, người duyệt tra theo thư mục môn', () => {
   const text = fs.readFileSync(path.join(TOOL_ROOT, '.github', 'CODEOWNERS'), 'utf8');
-  assert.deepEqual(ownersFor(text, 'courses/MT1005/items/a.json'), ['xeroz369']);
+  for (const f of ['courses/MT1005/items/a.json', 'courses/MT1005/README.md', 'index.json', 'index.min.json', 'v1/courses/MT1005.json', 'worker-catalog.json']) assert.deepEqual(ownersFor(text, f), [], f);
+  assert.deepEqual(ownersFor(text, 'courses/MT1005/'), ['xeroz369']);
+  assert.deepEqual(ownersFor(text, 'catalog/courses/MT1005.json'), ['xeroz369']);
 });
 
 test('dòng theo thư mục môn, glob, nhóm; dòng sau cùng thắng; ghi chú bị bỏ', () => {

@@ -366,7 +366,8 @@ jobs:
           COURSE: ${{ needs.gate.outputs.course }}
         run: bash ../trusted/scripts/upload/commit-pr.sh
       # Phân loại (scripts/upload/triage.mjs): bài không cần người duyệt thì ghi quyết định vào R2, cron của Worker
-      # merge khi check qua; bài cần người duyệt thì yêu cầu review từ code owner của item (.github/CODEOWNERS).
+      # merge khi check qua. Bài cần người duyệt hay Chưa phân loại thì gắn label; cần người duyệt thì yêu cầu review
+      # (người duyệt do check.mjs tra trong .github/CODEOWNERS; comment kết quả đã nhắc tên họ khi Chưa phân loại).
       - name: Tự merge khi check qua
         if: steps.apply.outputs.virus == '' && steps.apply.outputs.decision != 'review'
         env:
@@ -378,18 +379,23 @@ jobs:
           aws s3 cp "$RUNNER_TEMP/auto.json" "s3://$R2_BUCKET/review/$CODE.json" \
             --endpoint-url "https://${R2_ACCOUNT_ID}.r2.cloudflarestorage.com" --only-show-errors
       - name: Gọi người duyệt
-        if: steps.apply.outputs.virus == '' && steps.apply.outputs.decision == 'review'
+        if: steps.apply.outputs.virus == '' && steps.apply.outputs.decision != 'publish'
         env:
           GH_TOKEN: ${{ github.token }}
-          ITEM: ${{ needs.gate.outputs.item }}
+          DECISION: ${{ steps.apply.outputs.decision }}
+          REVIEWERS: ${{ steps.apply.outputs.reviewers }}
         run: |
+          label=chua-phan-loai
+          if [ "$DECISION" = review ]; then label=can-duyet; fi
+          gh api -X POST "repos/$REPO/issues/$PR/labels" -f "labels[]=$label" > /dev/null
+          [ "$DECISION" = review ] || exit 0
           args=()
-          while IFS= read -r who; do
+          for who in $REVIEWERS; do
             case "$who" in
               */*) args+=(-f "team_reviewers[]=${who#*/}") ;;
-              ?*) args+=(-f "reviewers[]=$who") ;;
+              *) args+=(-f "reviewers[]=$who") ;;
             esac
-          done < <(node trusted/scripts/upload/reviewers.mjs --codeowners trusted/.github/CODEOWNERS --path "$ITEM")
+          done
           if [ ${#args[@]} -gt 0 ]; then gh api -X POST "repos/$REPO/pulls/$PR/requested_reviewers" "${args[@]}" > /dev/null; fi
       - if: failure()
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1

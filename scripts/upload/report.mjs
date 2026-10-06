@@ -90,25 +90,28 @@ function fileNotes(f) {
 }
 
 // Kết quả phân loại (scripts/upload/triage.mjs) cho dòng đầu comment.
-const REVIEW_REASONS = { manual: 'cảnh báo cần xem tay', type: 'loại tài liệu cần người duyệt (đề thi)', 'book-like': 'file dày như sách' };
-const UNCLASSIFIED_REASONS = { 'new-course': 'môn mới', pii: 'có thể có thông tin cá nhân', 'no-text': 'PDF không có lớp chữ', warning: 'cảnh báo nhẹ', duplicate: 'tên gần giống tài liệu đã có', update: 'bản cập nhật' };
-function decisionLine(decision, files) {
+const REVIEW_REASONS = { manual: 'cảnh báo cần xem tay', type: 'loại tài liệu cần người duyệt (đề thi)', 'book-like': 'file dày như sách', duplicate: 'tên gần giống tài liệu đã có' };
+const UNCLASSIFIED_REASONS = { 'new-course': 'môn mới', pii: 'có thể có thông tin cá nhân', 'no-text': 'PDF không có lớp chữ', warning: 'cảnh báo nhẹ', update: 'bản cập nhật' };
+// reviewers: người duyệt (bỏ @) theo .github/CODEOWNERS; bài Chưa phân loại nhắc tên để GitHub báo cho họ.
+// Bot merge ở lượt cron kế tiếp của Worker (worker/wrangler.jsonc), không ngay khi check qua.
+function decisionLine(decision, files, reviewers, unclassifiedUrl) {
   const reasons = (key, names) => [...new Set(files.flatMap((f) => f.triage?.[key] || []))].map((r) => names[r] || r).join(', ');
   if (decision === 'review') return `Cần người duyệt: ${reasons('review', REVIEW_REASONS)}. Bot đã yêu cầu review.`;
-  if (decision === 'unclassified') return `Tự đăng vào mục Chưa phân loại (${reasons('unclassified', UNCLASSIFIED_REASONS)}): bài tự merge khi check qua, người duyệt xử lý sau ở trang chua-phan-loai/.`;
-  return 'Tự đăng: bài tự merge khi check qua.';
+  const merge = 'bot merge ở lượt chạy kế tiếp (vài phút) sau khi check qua';
+  if (decision === 'unclassified') return `Đăng vào mục Chưa phân loại (${reasons('unclassified', UNCLASSIFIED_REASONS)}), ${merge}. ${reviewers.map((r) => `@${r}`).join(' ')} phân loại ở ${unclassifiedUrl}`.replace(/  +/g, ' ');
+  return `Tự đăng: ${merge}.`;
 }
 
 // Comment kết quả kiểm của một bài (một hay nhiều file): một bảng, một link duyệt.
 // files: [{ name, size, virus, unscannable, warnings, hasText, pii, piiChecked, textPages, totalPages }].
 // reviewUrl: trang duyệt (sau Cloudflare Access); không có thì bỏ dòng này.
-export function renderReport({ code, reviewUrl = '', files, decision = null }) {
+export function renderReport({ code, reviewUrl = '', files, decision = null, reviewers = [], unclassifiedUrl = 'chua-phan-loai/' }) {
   const virus = files.some((f) => f.virus);
   const manual = !virus && files.some((f) => needsManualReview(f));
   const out = [REPORT_MARKER, `## Kiểm file bài ${cell(code)}: ${files.length} file, ${virus ? 'CÓ VIRUS' : 'không có virus'}`, ''];
   if (virus) out.push('Bài bị đóng, file không được dùng. Hãy quét máy rồi gửi lại bằng file sạch.', '');
   else {
-    if (decision) out.push(decisionLine(decision, files), '');
+    if (decision) out.push(decisionLine(decision, files, reviewers, unclassifiedUrl), '');
     if (reviewUrl) out.push(`Duyệt: ${reviewUrl}`, '');
   }
   out.push('| # | File | Cần xem |', '|---|---|---|');

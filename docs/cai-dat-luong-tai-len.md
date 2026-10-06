@@ -257,7 +257,15 @@ Thử:
 
 ### 8.6. Phân loại tự động và người duyệt
 
-`kiem-file` phân loại bài sau khi quét (`scripts/upload/triage.mjs`, ngưỡng ở `catalog/policy.json` mục `triage`): bài không cần người duyệt thì ghi `review/<mã bài>.json` với `auto: true`, cron của Worker merge khi check qua. Bài cần người duyệt thì bot yêu cầu review từ code owner của item trong `.github/CODEOWNERS` (cùng file ruleset dùng; dòng khớp sau cùng thắng, ví dụ `/courses/EE*/ @nguoi-duyet`), GitHub tự báo chuông và email. Người duyệt phải là thành viên org.
+`kiem-file` phân loại bài sau khi quét (`scripts/upload/triage.mjs`, ngưỡng ở `catalog/policy.json` mục `triage`):
+
+| Quyết định | Khi nào | Bot làm |
+|---|---|---|
+| Tự đăng | Sạch, phân loại được | Ghi `review/<mã bài>.json` với `auto: true`; cron của Worker (5 phút) merge khi check qua. Không gọi ai |
+| Chưa phân loại | An toàn nhưng chưa phân loại được: môn mới, cảnh báo nhẹ, bản cập nhật | Như Tự đăng, item có trường `unclassified`; label `chua-phan-loai`, comment nhắc tên người duyệt, họ phân loại ở trang `chua-phan-loai/` |
+| Cần người duyệt | Đề thi, file dày như sách, tên gần giống tài liệu đã có, cảnh báo nặng | Không merge; label `can-duyet`, yêu cầu review; người duyệt dùng trang duyệt (mục 8.7) |
+
+Người duyệt lấy từ `.github/CODEOWNERS` theo thư mục môn (dòng khớp sau cùng thắng, ví dụ `/courses/EE*/ @nguoi-duyet`), phải là thành viên org. Các file bot ghi (item, README môn, index, `v1/`, `worker-catalog.json`) không có code owner, nên GitHub không tự gọi người duyệt khi bot mở PR; bài thêm môn mới vẫn có file `catalog/courses/` nên GitHub gọi ngay.
 
 ### 8.7. Duyệt trên trang duyệt
 
