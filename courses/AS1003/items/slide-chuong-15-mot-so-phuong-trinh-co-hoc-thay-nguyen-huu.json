@@ -4,6 +4,7 @@
   "course": "AS1003",
   "type": "lecture-slides",
   "title": "Slide chương 15: Một số phương trình cơ học - thầy Nguyễn Hữu Hào",
+  "chapter": "15",
   "lang": "vi",
   "license": "CC-BY-SA-4.0",
   "origin": "self-made",
@@ -21,8 +22,5 @@
       "uploadSha256": "47d0f513247c2ca012b7c69e000ae8af395b03dc672d13bb357f444ee742df1d",
       "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_lecture-slides_slide-chuong-15-mot-so-phuong-trinh-co-hoc-thay-nguyen-huu.pdf"
     }
-  ],
-  "unclassified": [
-    "pii"
   ]
 }

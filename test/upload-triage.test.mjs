@@ -30,6 +30,15 @@ test('Chưa phân loại: môn mới, thông tin cá nhân, không lớp chữ, 
   assert.equal(triageFile({ ...clean, warnings: ['pdf-javascript'], pii: [{}] }, slides, ctx, rules).decision, 'review');
 });
 
+test('slide bài giảng: email, số điện thoại là liên hệ của giảng viên; MSSV vẫn tính', () => {
+  const r = { ...rules, contactTypes: ['lecture-slides'] };
+  const lecture = { ...slides, type: 'lecture-slides' };
+  const contact = [{ label: 'email', page: 1 }, { label: 'số điện thoại', page: 1 }];
+  assert.equal(triageFile({ ...clean, pii: contact }, lecture, ctx, r).decision, 'publish');
+  assert.deepEqual(triageFile({ ...clean, pii: [...contact, { label: 'MSSV 7 chữ số', page: 2 }] }, lecture, ctx, r).unclassified, ['pii']);
+  assert.deepEqual(triageFile({ ...clean, pii: contact }, { ...slides, type: 'notes' }, ctx, r).unclassified, ['pii']);
+});
+
 test('cả bài lấy mức nặng nhất', () => {
   assert.equal(triageBatch([{ decision: 'publish' }, { decision: 'unclassified' }]), 'unclassified');
   assert.equal(triageBatch([{ decision: 'unclassified' }, { decision: 'review' }, { decision: 'publish' }]), 'review');

@@ -28,6 +28,13 @@ export function takedownUrl(t, it) {
   return issueUrl('yeu-cau-go.yml', { title: `[Gỡ] ${it.course} ${it.id}`, item: page });
 }
 
+// Form Báo lỗi điền sẵn link tới đúng mục: người đọc thấy loại, tiêu đề, học kỳ sai thì báo, người duyệt sửa qua form
+// phân loại hay sửa item (bot đăng tự động nên cần đường góp ý này).
+export function wrongInfoUrl(t, it) {
+  const page = `${SITE_URL}${pagePath(t.lang, state.page.path(it.course))}#${state.page.anchor(it)}`;
+  return issueUrl('bao-loi.yml', { title: `[Sai thông tin] ${it.course} ${it.id}`, url: page });
+}
+
 // Một file của tài liệu: link tải, link xem trước (nếu được), định dạng và cỡ.
 export function fileLinks(it, f, site, root) {
   // File .md trong git: web phục vụ ở files/<ID>/<tên> (cùng link với v1).
@@ -82,7 +89,8 @@ export function renderItem(t, it, site, root) {
   const codeTag = state.page.subject(it.course) ? `<span class="tag">${esc([codeOf, plabel].filter(Boolean).join(', '))}</span>` : '';
   const badges = [codeTag, it.example ? `<span class="tag accent">${esc(t.example)}</span>` : '', it.removed ? `<span class="tag warn">${esc(t.removed)}</span>` : '', it.unclassified && !it.removed ? `<span class="tag warn" title="${esc(t.unclassifiedHint)}">${esc(t.unclassifiedTag)}</span>` : ''].join('');
   const takedown = btn('btn subtle', takedownUrl(t, it), t.requestTakedown, ' rel="noopener"');
-  const row = (buttons) => `<p class="actions">${[...buttons, takedown].join('')}</p>`;
+  const wrong = btn('btn subtle', wrongInfoUrl(t, it), t.reportWrongInfo, ' rel="noopener"');
+  const row = (buttons) => `<p class="actions">${[...buttons, wrong, takedown].join('')}</p>`;
   const fileButtons = (x, named) => {
     const out = [];
     if (x.preview) out.push(btn('btn', x.preview, named ? t.previewNamed(x.f.name) : t.preview, ' target="_blank" rel="noopener"'));

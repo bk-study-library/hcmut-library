@@ -4,6 +4,7 @@
   "course": "AS2003",
   "type": "lecture-slides",
   "title": "Slide chương 3 - Các kiểu dữ liệu (thầy Nguyễn Thanh Nhã)",
+  "chapter": "3",
   "lang": "vi",
   "license": "CC-BY-SA-4.0",
   "origin": "self-made",
@@ -21,8 +22,5 @@
       "uploadSha256": "43e3fa0c005a381260a7ab2e66c945605501f9d276222b79d86d0dc4a06ec646",
       "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS2003_lecture-slides_slide-chuong-3-cac-kieu-du-lieu-thay-nguyen-thanh-nha.pdf"
     }
-  ],
-  "unclassified": [
-    "pii"
   ]
 }
