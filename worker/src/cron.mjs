@@ -5,7 +5,7 @@ import { notifyKey } from './notify.mjs';
 import { CODE } from './view.mjs';
 import { logFailure } from './http.mjs';
 import { githubFactory } from './deps.mjs';
-import { continueMerge } from './routes/review.mjs';
+import { asObject, continueMerge, recordBranch } from './routes/review.mjs';
 import { notifyCode } from './routes/notify.mjs';
 
 // Cron (wrangler.jsonc triggers.crons): GitHub Actions không gọi được Worker (Cloudflare chặn IP của
@@ -20,7 +20,8 @@ export async function sweep(env, deps) {
     try {
       if (await continueMerge(env, deps, code)) continue;
       if (await env.QUARANTINE.head(notifyKey(code))) continue;
-      const pr = await (await githubFactory(env, deps)()).findPr(`upload/${code}`);
+      const record = asObject((await (await env.QUARANTINE.get(reviewKey(code)))?.text()) ?? null) ?? {};
+      const pr = await (await githubFactory(env, deps)()).findPr(recordBranch(code, record));
       if (pr && pr.state !== 'open') await env.QUARANTINE.delete(reviewKey(code));
     } catch (err) {
       logFailure('cron_review', err);

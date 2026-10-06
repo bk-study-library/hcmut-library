@@ -267,6 +267,12 @@ Thử:
 
 Người duyệt lấy từ `.github/CODEOWNERS` theo thư mục môn (dòng khớp sau cùng thắng, ví dụ `/courses/EE*/ @nguoi-duyet`), phải là thành viên org. Các file bot ghi (item, README môn, index, `v1/`, `worker-catalog.json`) không có code owner, nên GitHub không tự gọi người duyệt khi bot mở PR; bài thêm môn mới vẫn có file `catalog/courses/` nên GitHub gọi ngay.
 
+#### Form phân loại
+
+Trang `chua-phan-loai/` có nút **Phân loại** cho từng tài liệu, mở `https://upload.xerozsoft.com/xem-duyet/phan-loai/<môn>/<id>` (sau Cloudflare Access như trang duyệt). Người duyệt sửa loại, tiêu đề, học kỳ, loại kiểm tra, chương, giảng viên, mô tả rồi bấm **Lưu phân loại**; không cần dùng git hay sửa JSON. Luật các ô giống form Gửi tài liệu (`validateMeta` trong `worker/src/validate.mjs`).
+
+Lưu thì Worker (`worker/src/routes/classify.mjs`) mở PR `phan-loai/<mã>` có label `phan-loai`, sửa đúng item đó và bỏ trường `unclassified`, rồi ghi `review/<mã>.json` như bài đã duyệt. Workflow `cap-nhat-pr` dựng lại generated file trên branch, cron của Worker merge khi check qua và xóa branch. Mỗi tài liệu chỉ có một lần phân loại chờ merge.
+
 ### 8.7. Duyệt trên trang duyệt
 
 Một bài (một PR) có thể gồm nhiều file: form nhận tối đa `batchMaxFiles` file, tổng `batchMaxBytes` (`catalog/policy.json`, hiện 10 file và 1 GB), mỗi file tối đa `maxFileBytes` (1 GB). Bài có file luôn tải theo phần `uploadPartBytes` (32 MB) qua Worker vào R2 multipart (`worker/src/routes/upload.mjs`, `site-src/assets/upload-chunks.js`): trình duyệt tính sha256, Worker chỉ chuyển dữ liệu, vì gói Worker miễn phí cho mỗi request 10 ms CPU (băm hay đọc cả file lớn trong Worker sẽ vượt) và thân request tối đa 100 MB. `directMaxBytes` (0) là cỡ tối đa còn gửi trong một request; bài không có file (sách) vẫn đi đường này. R2 miễn phí 10 GB: file chờ duyệt lớn nên được duyệt sớm; R2 tự hủy multipart dở dang sau 7 ngày. Mỗi file thành một item riêng trong cùng PR. `kiem-file` quét từng file và ghi kết quả từng file trong một comment.

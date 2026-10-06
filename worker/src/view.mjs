@@ -66,7 +66,7 @@ export const VIEW_MESSAGES = {
   backToReview: 'Quay lại trang duyệt',
 };
 
-const esc = (s) =>
+export const esc = (s) =>
   String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
 
 // Bảng màu giống site (site-src/assets), sáng tối theo hệ thống.
@@ -102,6 +102,9 @@ const CSS = [
   'textarea{width:100%;box-sizing:border-box;min-height:3.5rem;margin-top:.5rem;font:inherit;padding:.5rem;border:1px solid var(--border);border-radius:6px;background:var(--surface);color:var(--text)}',
   '.bar{position:sticky;bottom:0;display:flex;gap:.75rem;align-items:center;justify-content:space-between;flex-wrap:wrap;margin:1rem -1rem -1.5rem;padding:.75rem 1rem;background:var(--surface);border-top:1px solid var(--border)}',
   'button.btn{border:0;font:inherit;cursor:pointer}button.btn.subtle{border:1px solid var(--border)}',
+  // Form phân loại (classify.mjs).
+  'p.f{margin:.75rem 0}p.f label{display:block;font-weight:600}p.f label:has(input[type=checkbox]){font-weight:400}',
+  'input:not([type=checkbox]),select{width:100%;box-sizing:border-box;font:inherit;padding:.45rem .5rem;border:1px solid var(--border);border-radius:6px;background:var(--surface);color:var(--text)}',
 ].join('');
 
 const SECURITY_HEADERS = {

@@ -95,12 +95,15 @@ test('kiem-file: gắn nhãn can-xem-tay khi apply báo manual', () => {
   assert.match(text, /if: always\(\) && steps\.apply\.outputs\.manual == 'true'[\s\S]*?labels\[\]=can-xem-tay/);
 });
 
-test('cap-nhat-pr: chỉ chạy mã của main, chỉ gộp branch upload/<mã> của bot đã kiểm xong', () => {
+test('cap-nhat-pr: chỉ chạy mã của main, chỉ gộp branch upload/<mã>, phan-loai/<mã> của bot', () => {
   const text = read('cap-nhat-pr.yml');
-  assert.doesNotMatch(text, /pull_request/);
+  // pull_request_target chỉ để nghe label; không checkout ref của PR.
+  assert.match(text, /\n {2}pull_request_target:\n {4}types: \[labeled\]\n/);
+  assert.doesNotMatch(text, /github\.event\.pull_request\.head/);
+  assert.equal([...text.matchAll(/ref: main/g)].length, 2);
   assert.equal([...text.matchAll(/persist-credentials: false/g)].length, 2);
-  assert.match(text, /\^upload\/\[A-Za-z0-9\]\{10\}\$/);
+  assert.match(text, /\^\(upload\|phan-loai\)\/\[A-Za-z0-9\]\{10\}\$/);
   assert.match(text, /\.user\.login == env\.BOT/);
-  assert.match(text, /kiem-file:\*\) ;; \*\) continue ;;/);
+  assert.match(text, /kiem-file:\*\|phan-loai:\*\) ;; \*\) continue ;;/);
   assert.match(text, /bash "\$TRUSTED\/scripts\/upload\/sync-main\.sh"/);
 });
