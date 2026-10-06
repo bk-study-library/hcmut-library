@@ -14,11 +14,12 @@
   "files": [
     {
       "name": "AS1003_lecture-slides_slide-chuong-14-nguyen-ly-di-chuyen-kha-di-thay-nguyen-huu.pdf",
-      "size": 7880592,
-      "sha256": "34d12c27da8459bd2a99e5800949c88a4ce7b844981c18f3c5d724e91d4198cc",
+      "size": 7877072,
+      "sha256": "e563b3f22005cd37f53aa9f429db53079a4475616bf59e082986941d95d3a3e9",
       "mime": "application/pdf",
-      "quarantine": "pending/fp8v2hExg5/AS1003_lecture-slides_slide-chuong-14-nguyen-ly-di-chuyen-kha-di-thay-nguyen-huu.pdf",
-      "uploadSha256": "34d12c27da8459bd2a99e5800949c88a4ce7b844981c18f3c5d724e91d4198cc"
+      "quarantine": "clean/fp8v2hExg5/AS1003_lecture-slides_slide-chuong-14-nguyen-ly-di-chuyen-kha-di-thay-nguyen-huu.pdf",
+      "uploadSha256": "34d12c27da8459bd2a99e5800949c88a4ce7b844981c18f3c5d724e91d4198cc",
+      "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_lecture-slides_slide-chuong-14-nguyen-ly-di-chuyen-kha-di-thay-nguyen-huu.pdf"
     }
   ]
 }

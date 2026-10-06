@@ -180,6 +180,29 @@
           ]
         }
       ]
+    },
+    {
+      "id": "slide-chuong-14-nguyen-ly-di-chuyen-kha-di-thay-nguyen-huu",
+      "type": "lecture-slides",
+      "title": "Slide chương 14: Nguyên lý di chuyển khả dĩ - thầy Nguyễn Hữu Hào",
+      "description": "Bộ slide bài giảng Cơ lý thuyết (Engineering Mechanics) của TS. Nguyễn Hữu Hào, Bộ môn Cơ kỹ thuật, Khoa Khoa học Ứng dụng, bản 2020-2021. Đủ 15 chương: tĩnh học (hệ tiên đề, thu gọn hệ lực, cân bằng vật rắn và hệ vật rắn, giàn, ma sát, trọng tâm), động học (động học điểm, hai chuyển động cơ bản, chuyển động phức hợp, song phẳng) và động lực học (chất điểm, các định lý tổng quát, nguyên lý D'Alembert, di chuyển khả dĩ, phương trình cơ học). Mỗi chương một file; ảnh đã nén để vừa giới hạn 20 MB.",
+      "lang": "vi",
+      "teacher": "Nguyễn Hữu Hào",
+      "license": "CC-BY-SA-4.0",
+      "origin": "self-made",
+      "added": "2026-10-06",
+      "updated": "2026-10-06",
+      "files": [
+        {
+          "name": "AS1003_lecture-slides_slide-chuong-14-nguyen-ly-di-chuyen-kha-di-thay-nguyen-huu.pdf",
+          "mime": "application/pdf",
+          "size": 7877072,
+          "sha256": "e563b3f22005cd37f53aa9f429db53079a4475616bf59e082986941d95d3a3e9",
+          "urls": [
+            "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_lecture-slides_slide-chuong-14-nguyen-ly-di-chuyen-kha-di-thay-nguyen-huu.pdf"
+          ]
+        }
+      ]
     }
   ]
 }
