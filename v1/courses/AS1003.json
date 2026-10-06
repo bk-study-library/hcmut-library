@@ -212,9 +212,6 @@
       "license": "CC-BY-SA-4.0",
       "origin": "self-made",
       "added": "2026-10-06",
-      "unclassified": [
-        "no-text"
-      ],
       "updated": "2026-10-06",
       "files": [
         {
@@ -237,9 +234,6 @@
       "license": "CC-BY-SA-4.0",
       "origin": "self-made",
       "added": "2026-10-06",
-      "unclassified": [
-        "no-text"
-      ],
       "updated": "2026-10-06",
       "files": [
         {
@@ -262,9 +256,6 @@
       "license": "CC-BY-SA-4.0",
       "origin": "self-made",
       "added": "2026-10-06",
-      "unclassified": [
-        "no-text"
-      ],
       "updated": "2026-10-06",
       "files": [
         {
@@ -287,9 +278,6 @@
       "license": "CC-BY-SA-4.0",
       "origin": "self-made",
       "added": "2026-10-06",
-      "unclassified": [
-        "no-text"
-      ],
       "updated": "2026-10-06",
       "files": [
         {
@@ -543,12 +531,10 @@
       "description": "Bộ slide bài giảng Cơ lý thuyết (Engineering Mechanics) của TS. Nguyễn Hữu Hào, Bộ môn Cơ kỹ thuật, Khoa Khoa học Ứng dụng, bản 2020-2021. Đủ 15 chương: tĩnh học (hệ tiên đề, thu gọn hệ lực, cân bằng vật rắn và hệ vật rắn, giàn, ma sát, trọng tâm), động học (động học điểm, hai chuyển động cơ bản, chuyển động phức hợp, song phẳng) và động lực học (chất điểm, các định lý tổng quát, nguyên lý D'Alembert, di chuyển khả dĩ, phương trình cơ học). Mỗi chương một file; ảnh đã nén để vừa giới hạn 20 MB.",
       "lang": "vi",
       "teacher": "Nguyễn Hữu Hào",
+      "chapter": "15",
       "license": "CC-BY-SA-4.0",
       "origin": "self-made",
       "added": "2026-10-06",
-      "unclassified": [
-        "pii"
-      ],
       "updated": "2026-10-06",
       "files": [
         {
@@ -727,12 +713,10 @@
       "title": "Tóm tắt Chương 11 - Định lý D' Alembert",
       "description": "Tóm tắt lý thuyết kèm ví dụ giải mẫu từng chương phần động học và động lực học (chương 8-14), sinh viên tự soạn: chuyển động song phẳng, chuyển động phức hợp, phương trình vi phân chuyển động, nguyên lý D'Alembert, các định lý động lực học, nguyên lý di chuyển khả dĩ, các phương trình cơ học (Lagrange loại II). Mỗi chương một file.",
       "lang": "vi",
+      "chapter": "11",
       "license": "CC-BY-SA-4.0",
       "origin": "self-made",
       "added": "2026-10-06",
-      "unclassified": [
-        "no-text"
-      ],
       "updated": "2026-10-06",
       "files": [
         {
@@ -774,12 +758,10 @@
       "title": "Tóm tắt Chương 13 - Nguyên lý di chuyển khả dĩ",
       "description": "Tóm tắt lý thuyết kèm ví dụ giải mẫu từng chương phần động học và động lực học (chương 8-14), sinh viên tự soạn: chuyển động song phẳng, chuyển động phức hợp, phương trình vi phân chuyển động, nguyên lý D'Alembert, các định lý động lực học, nguyên lý di chuyển khả dĩ, các phương trình cơ học (Lagrange loại II). Mỗi chương một file.",
       "lang": "vi",
+      "chapter": "13",
       "license": "CC-BY-SA-4.0",
       "origin": "self-made",
       "added": "2026-10-06",
-      "unclassified": [
-        "no-text"
-      ],
       "updated": "2026-10-06",
       "files": [
         {
@@ -799,12 +781,10 @@
       "title": "Tóm tắt Chương 14 - Các phương trình cơ học",
       "description": "Tài liệu Cơ lý thuyết (AS1003) dung lượng lớn gửi chung một đợt: slide chương 9 của TS. Nguyễn Hữu Hào; tóm tắt lý thuyết kèm ví dụ giải mẫu chương 8, 10, 12, 14 do sinh viên tự soạn; cheatsheet động học và động lực học; ghi chép tay toàn môn (479 trang, chia 4 phần theo trang).",
       "lang": "vi",
+      "chapter": "14",
       "license": "CC-BY-SA-4.0",
       "origin": "self-made",
       "added": "2026-10-06",
-      "unclassified": [
-        "no-text"
-      ],
       "updated": "2026-10-06",
       "files": [
         {
@@ -846,12 +826,10 @@
       "title": "Tóm tắt Chương 9 - Chuyển động phức hợp",
       "description": "Tóm tắt lý thuyết kèm ví dụ giải mẫu từng chương phần động học và động lực học (chương 8-14), sinh viên tự soạn: chuyển động song phẳng, chuyển động phức hợp, phương trình vi phân chuyển động, nguyên lý D'Alembert, các định lý động lực học, nguyên lý di chuyển khả dĩ, các phương trình cơ học (Lagrange loại II). Mỗi chương một file.",
       "lang": "vi",
+      "chapter": "9",
       "license": "CC-BY-SA-4.0",
       "origin": "self-made",
       "added": "2026-10-06",
-      "unclassified": [
-        "no-text"
-      ],
       "updated": "2026-10-06",
       "files": [
         {

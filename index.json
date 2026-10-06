@@ -24582,9 +24582,6 @@
                   "uploadSha256": "3cf170d5f312389faaa13867aec26b16c3c0c6d0c6d7eb9fec7e4cb7091ca601",
                   "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_notes_ghi-chep-tay-co-ly-thuyet-phan-1-trang-1-120.pdf"
                 }
-              ],
-              "unclassified": [
-                "no-text"
               ]
             },
             {
@@ -24608,9 +24605,6 @@
                   "uploadSha256": "c6e417285fff6b9ce9872a534f292a0b93fcf734851c5866f538d618627497be",
                   "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_notes_ghi-chep-tay-co-ly-thuyet-phan-2-trang-121-240.pdf"
                 }
-              ],
-              "unclassified": [
-                "no-text"
               ]
             },
             {
@@ -24634,9 +24628,6 @@
                   "uploadSha256": "55a2f90e477db792d8be06b5964afbd3f891bd3417be49e9a5ed9a6bb3c4ae6e",
                   "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_notes_ghi-chep-tay-co-ly-thuyet-phan-3-trang-241-360.pdf"
                 }
-              ],
-              "unclassified": [
-                "no-text"
               ]
             },
             {
@@ -24660,9 +24651,6 @@
                   "uploadSha256": "a11a8577138fed6c982f8eca76db8bcacf476207e637774fb7888348d7780be5",
                   "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_notes_ghi-chep-tay-co-ly-thuyet-phan-4-trang-361-479.pdf"
                 }
-              ],
-              "unclassified": [
-                "no-text"
               ]
             },
             {
@@ -24913,6 +24901,7 @@
               "course": "AS1003",
               "type": "lecture-slides",
               "title": "Slide chương 15: Một số phương trình cơ học - thầy Nguyễn Hữu Hào",
+              "chapter": "15",
               "lang": "vi",
               "license": "CC-BY-SA-4.0",
               "origin": "self-made",
@@ -24930,9 +24919,6 @@
                   "uploadSha256": "47d0f513247c2ca012b7c69e000ae8af395b03dc672d13bb357f444ee742df1d",
                   "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_lecture-slides_slide-chuong-15-mot-so-phuong-trinh-co-hoc-thay-nguyen-huu.pdf"
                 }
-              ],
-              "unclassified": [
-                "pii"
               ]
             },
             {
@@ -25106,6 +25092,7 @@
               "course": "AS1003",
               "type": "summary",
               "title": "Tóm tắt Chương 11 - Định lý D' Alembert",
+              "chapter": "11",
               "lang": "vi",
               "license": "CC-BY-SA-4.0",
               "origin": "self-made",
@@ -25122,9 +25109,6 @@
                   "uploadSha256": "bc5f8ec6fea30c3409bb1bf74e15306f3343c367e76e8f208150e8dad9aaba75",
                   "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_summary_tom-tat-chuong-11-dinh-ly-d-alembert.pdf"
                 }
-              ],
-              "unclassified": [
-                "no-text"
               ]
             },
             {
@@ -25155,6 +25139,7 @@
               "course": "AS1003",
               "type": "summary",
               "title": "Tóm tắt Chương 13 - Nguyên lý di chuyển khả dĩ",
+              "chapter": "13",
               "lang": "vi",
               "license": "CC-BY-SA-4.0",
               "origin": "self-made",
@@ -25171,9 +25156,6 @@
                   "uploadSha256": "d8f86223f94342f667ec0522ec763eb153ac7c9fb2e7793f9619d1b3e22b05fa",
                   "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_summary_tom-tat-chuong-13-nguyen-ly-di-chuyen-kha-di.pdf"
                 }
-              ],
-              "unclassified": [
-                "no-text"
               ]
             },
             {
@@ -25181,6 +25163,7 @@
               "course": "AS1003",
               "type": "summary",
               "title": "Tóm tắt Chương 14 - Các phương trình cơ học",
+              "chapter": "14",
               "lang": "vi",
               "license": "CC-BY-SA-4.0",
               "origin": "self-made",
@@ -25197,9 +25180,6 @@
                   "uploadSha256": "0d862e6243d954df54aec64edb09c1cebdbf8617b24010e47d00e0ca31e6861e",
                   "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_summary_tom-tat-chuong-14-cac-phuong-trinh-co-hoc.pdf"
                 }
-              ],
-              "unclassified": [
-                "no-text"
               ]
             },
             {
@@ -25230,6 +25210,7 @@
               "course": "AS1003",
               "type": "summary",
               "title": "Tóm tắt Chương 9 - Chuyển động phức hợp",
+              "chapter": "9",
               "lang": "vi",
               "license": "CC-BY-SA-4.0",
               "origin": "self-made",
@@ -25246,9 +25227,6 @@
                   "uploadSha256": "bf5211cf2291e5f9521227cf3690da982b66d297bf98f4a8e865a8c96682f05d",
                   "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_summary_tom-tat-chuong-9-chuyen-dong-phuc-hop.pdf"
                 }
-              ],
-              "unclassified": [
-                "no-text"
               ]
             },
             {
@@ -25489,9 +25467,6 @@
                   "uploadSha256": "84df87317b2c653cd608592e4ab7bfff07fa602acd9d9c5a80997b9258443eed",
                   "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS2003_exam-past_bai-tap-trac-nghiem-va-quiz-ktlt-co-ky-thuat-co-dap-an-hk251_HK251.pdf"
                 }
-              ],
-              "unclassified": [
-                "pii"
               ]
             },
             {
@@ -25540,9 +25515,6 @@
                   "uploadSha256": "14e168499723d46ab89514a6d09ad82894019af96d810d77b4726261e673c5ea",
                   "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS2003_project-reference_bao-cao-bai-tap-lon-ktlt-co-ky-thuat-hk251-thuat-toan-giai_HK251.pdf"
                 }
-              ],
-              "unclassified": [
-                "warning"
               ]
             },
             {
@@ -25621,6 +25593,7 @@
               "course": "AS2003",
               "type": "lecture-slides",
               "title": "Slide chương 3 - Các kiểu dữ liệu (thầy Nguyễn Thanh Nhã)",
+              "chapter": "3",
               "lang": "vi",
               "license": "CC-BY-SA-4.0",
               "origin": "self-made",
@@ -25638,9 +25611,6 @@
                   "uploadSha256": "43e3fa0c005a381260a7ab2e66c945605501f9d276222b79d86d0dc4a06ec646",
                   "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS2003_lecture-slides_slide-chuong-3-cac-kieu-du-lieu-thay-nguyen-thanh-nha.pdf"
                 }
-              ],
-              "unclassified": [
-                "pii"
               ]
             },
             {
@@ -25648,6 +25618,7 @@
               "course": "AS2003",
               "type": "lecture-slides",
               "title": "Slide chương 4 - Các cấu trúc điều khiển (thầy Nguyễn Thanh Nhã)",
+              "chapter": "4",
               "lang": "vi",
               "license": "CC-BY-SA-4.0",
               "origin": "self-made",
@@ -25665,9 +25636,6 @@
                   "uploadSha256": "cd9dd715295a6676332ae76cc1aac5a523ca2c35d6009c6b05dc50c0cd8e34c2",
                   "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS2003_lecture-slides_slide-chuong-4-cac-cau-truc-dieu-khien-thay-nguyen-thanh-nha.pdf"
                 }
-              ],
-              "unclassified": [
-                "pii"
               ]
             },
             {
@@ -25675,6 +25643,7 @@
               "course": "AS2003",
               "type": "lecture-slides",
               "title": "Slide chương 6 - Lập trình hướng đối tượng (thầy Nguyễn Thanh Nhã)",
+              "chapter": "6",
               "lang": "vi",
               "license": "CC-BY-SA-4.0",
               "origin": "self-made",
@@ -25692,9 +25661,6 @@
                   "uploadSha256": "573d91eb7b6b3ef44685fba34a571f8fc9a02ad69cef970fa158df90b1ff628f",
                   "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS2003_lecture-slides_slide-chuong-6-lap-trinh-huong-doi-tuong-thay-nguyen-thanh.pdf"
                 }
-              ],
-              "unclassified": [
-                "pii"
               ]
             },
             {

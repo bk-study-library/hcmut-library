@@ -141,6 +141,20 @@ test('pdfActiveContent: tìm khóa trong từ điển, bỏ qua stream, giải m
   assert.deepEqual(pdfActiveContent('<< /JSFoo 1 /AAA 2 >>'), []);
 });
 
+test('pdfActiveContent: OpenAction chỉ mở tới một trang thì không cảnh báo', () => {
+  const cat = (oa) => `1 0 obj << /Type /Catalog /OpenAction ${oa} >> endobj\n3 0 obj << /Type /Page >> endobj`;
+  // File LaTeX của bài tập lớn: hành động /GoTo tới trang đầu.
+  assert.deepEqual(pdfActiveContent(`${cat('9 0 R')}\n9 0 obj << /D [ 3 0 R /Fit ] /S /GoTo >> endobj`), []);
+  assert.deepEqual(pdfActiveContent(cat('[ 3 0 R /XYZ 0 792 0 ]')), []);
+  assert.deepEqual(pdfActiveContent(cat('<< /S /GoTo /D [ 3 0 R /Fit ] >>')), []);
+  // Hành động khác, nối /Next, hay không tìm được object: vẫn cảnh báo.
+  assert.deepEqual(pdfActiveContent(`${cat('9 0 R')}\n9 0 obj << /S /URI /URI (https://x) >> endobj`), ['pdf-openaction']);
+  assert.deepEqual(pdfActiveContent(`${cat('9 0 R')}\n9 0 obj << /S /GoTo /D [ 3 0 R /Fit ] /Next 10 0 R >> endobj`), ['pdf-openaction']);
+  assert.deepEqual(pdfActiveContent(cat('9 0 R')), ['pdf-openaction']);
+  // AA (hành động theo sự kiện) vẫn cảnh báo dù OpenAction chỉ mở trang.
+  assert.deepEqual(pdfActiveContent(`${cat('[ 3 0 R /Fit ]')}\n3 0 obj << /AA << /O 5 0 R >> >> endobj`), ['pdf-openaction']);
+});
+
 test('splitPdfText: tách trang theo \\f, cắt theo số trang tối đa', () => {
   assert.deepEqual(splitPdfText('trang 1\ftrang 2\f', 10), ['trang 1', 'trang 2']);
   assert.deepEqual(splitPdfText('a\fb\fc\f', 2), ['a', 'b']);

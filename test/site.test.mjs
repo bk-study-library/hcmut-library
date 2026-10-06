@@ -425,7 +425,7 @@ const buttons = (li) => [...li.matchAll(/<a class="([^"]+)" href="([^"]+)"[^>]*>
 test('mục có file PDF: Xem trước, Tải xuống (cỡ), Yêu cầu gỡ theo đúng thứ tự', () => {
   const li = itemHtml(read4('mon/ky-thuat-so/index.html'), 'co-pdf');
   const b = buttons(li);
-  assert.deepEqual(b.map((x) => [x.cls, x.label]), [['btn', 'Xem trước'], ['btn', 'Tải xuống (2.0 MB)'], ['btn subtle', 'Yêu cầu gỡ']]);
+  assert.deepEqual(b.map((x) => [x.cls, x.label]), [['btn', 'Xem trước'], ['btn', 'Tải xuống (2.0 MB)'], ['btn subtle', 'Báo sai thông tin'], ['btn subtle', 'Yêu cầu gỡ']]);
   const url = 'https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261/EE1009_summary_co-pdf.pdf';
   assert.equal(b[0].href, `https://up.example/xem-truoc?u=${encodeURIComponent(url)}`);
   assert.match(li, /target="_blank" rel="noopener">Xem trước/);
@@ -455,14 +455,14 @@ test('Yêu cầu gỡ: mở form yeu-cau-go.yml điền sẵn link mục (ô ite
 test('mục docx, zip: không có nút Xem trước', () => {
   const html = read4('mon/ky-thuat-so/index.html');
   for (const id of ['co-docx', 'co-zip']) {
-    assert.deepEqual(buttons(itemHtml(html, id)).map((x) => x.label), ['Tải xuống (2.0 MB)', 'Yêu cầu gỡ'], id);
+    assert.deepEqual(buttons(itemHtml(html, id)).map((x) => x.label), ['Tải xuống (2.0 MB)', 'Báo sai thông tin', 'Yêu cầu gỡ'], id);
   }
 });
 
 test('mục Markdown trong git: xem trước qua link files/ của site, tải từ files/ cùng site', () => {
   const li = itemHtml(read4('mon/ky-thuat-so/index.html'), 'tom-tat-c1');
   const b = buttons(li);
-  assert.deepEqual(b.map((x) => x.label), ['Xem trước', 'Tải xuống (82 B)', 'Yêu cầu gỡ']);
+  assert.deepEqual(b.map((x) => x.label), ['Xem trước', 'Tải xuống (82 B)', 'Báo sai thông tin', 'Yêu cầu gỡ']);
   assert.equal(b[0].href, `https://up.example/xem-truoc?u=${encodeURIComponent('https://bk-study-library.github.io/hcmut-library/files/EE1009/tom-tat-c1.md')}`);
   assert.equal(b[1].href, '../../files/EE1009/tom-tat-c1.md');
   assert.match(li, /download="tom-tat-c1\.md"/);
@@ -470,12 +470,12 @@ test('mục Markdown trong git: xem trước qua link files/ của site, tải t
 
 test('file Release không theo dạng files-HK<xxx>: không có nút Xem trước', () => {
   const li = itemHtml(read('mon/ky-thuat-so/index.html'), 'prelab-2-tham-khao');
-  assert.deepEqual(buttons(li).map((x) => x.label), ['Tải xuống (117 KB)', 'Yêu cầu gỡ']);
+  assert.deepEqual(buttons(li).map((x) => x.label), ['Tải xuống (117 KB)', 'Báo sai thông tin', 'Yêu cầu gỡ']);
 });
 
 test('mục link: Mở link rồi Yêu cầu gỡ; mục đã gỡ: không có nút', () => {
   const html = read('mon/ky-thuat-so/index.html');
-  assert.deepEqual(buttons(itemHtml(html, 'link-doi-tac')).map((x) => [x.cls, x.label]), [['btn', 'Mở link'], ['btn subtle', 'Yêu cầu gỡ']]);
+  assert.deepEqual(buttons(itemHtml(html, 'link-doi-tac')).map((x) => [x.cls, x.label]), [['btn', 'Mở link'], ['btn subtle', 'Báo sai thông tin'], ['btn subtle', 'Yêu cầu gỡ']]);
   const gone = itemHtml(html, 'go-bo');
   assert.deepEqual(buttons(gone), []);
   assert.doesNotMatch(gone, /class="actions"/);
@@ -995,10 +995,10 @@ test('thẻ tài liệu: khối chi tiết đủ thông tin; nhiều file thì m
     'Giấy phép': 'CC-BY-SA-4.0',
     'Nguồn': 'Tự soạn',
   });
-  // Mỗi file một dòng: tên, định dạng và cỡ, nút riêng; hàng nút cuối chỉ còn Yêu cầu gỡ.
+  // Mỗi file một dòng: tên, định dạng và cỡ, nút riêng; hàng nút cuối chỉ còn Báo sai thông tin và Yêu cầu gỡ.
   assert.match(li, /<ul class="files"><li><span class="file-name">de\.pdf<\/span> <span class="muted">PDF, 259 KB<\/span><p class="actions"><a class="btn" href="https:\/\/up\.example\/xem-truoc[^"]*"[^>]*>Xem trước de\.pdf<\/a><a class="btn" href="[^"]*de\.pdf" rel="noopener">Tải xuống de\.pdf \(259 KB\)<\/a><\/p><\/li>/);
   assert.match(li, /<span class="file-name">dap-an\.docx<\/span> <span class="muted">DOCX, 2 KB<\/span><p class="actions"><a class="btn" href="[^"]*dap-an\.docx" rel="noopener">Tải xuống dap-an\.docx \(2 KB\)<\/a><\/p>/);
-  assert.deepEqual(buttons(li.slice(li.indexOf('</ul>'))).map((x) => x.label), ['Yêu cầu gỡ']);
+  assert.deepEqual(buttons(li.slice(li.indexOf('</ul>'))).map((x) => x.label), ['Báo sai thông tin', 'Yêu cầu gỡ']);
   // Bản tiếng Anh: nhãn tiếng Anh.
   const en = itemHtml(fs.readFileSync(path.join(o, 'en', 'mon', 'ky-thuat-so', 'index.html'), 'utf8'), 'de-thi');
   assert.match(en, /<dt>Format<\/dt><dd>PDF, DOCX<\/dd>/);
@@ -1073,4 +1073,14 @@ test('trang chua-phan-loai/: noindex, liệt kê tài liệu có trường uncla
   assert.match(html, /<meta name="robots" content="noindex">/);
   assert.match(html, /<h1>Tài liệu chưa phân loại<\/h1>/);
   assert.match(read('en/chua-phan-loai/index.html'), /<h1>Unclassified material<\/h1>/);
+});
+
+test('Báo sai thông tin: mở form bao-loi.yml điền sẵn link mục và id mục trong tiêu đề', async () => {
+  const { wrongInfoUrl } = await import('../scripts/site/items.mjs');
+  const { state } = await import('../scripts/site/state.mjs');
+  state.page = state.page ?? { path: (c) => `course/${c}/`, anchor: (it) => it.id };
+  const u = new URL(wrongInfoUrl({ lang: 'vi' }, { course: 'MT1005', id: 'tom-tat' }));
+  assert.equal(u.searchParams.get('template'), 'bao-loi.yml');
+  assert.equal(u.searchParams.get('title'), '[Sai thông tin] MT1005 tom-tat');
+  assert.match(u.searchParams.get('url'), /#tom-tat$/);
 });

@@ -4,6 +4,7 @@
   "course": "AS1003",
   "type": "summary",
   "title": "Tóm tắt Chương 13 - Nguyên lý di chuyển khả dĩ",
+  "chapter": "13",
   "lang": "vi",
   "license": "CC-BY-SA-4.0",
   "origin": "self-made",
@@ -20,8 +21,5 @@
       "uploadSha256": "d8f86223f94342f667ec0522ec763eb153ac7c9fb2e7793f9619d1b3e22b05fa",
       "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_summary_tom-tat-chuong-13-nguyen-ly-di-chuyen-kha-di.pdf"
     }
-  ],
-  "unclassified": [
-    "no-text"
   ]
 }
