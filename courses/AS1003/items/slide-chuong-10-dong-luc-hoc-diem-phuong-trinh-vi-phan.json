@@ -14,11 +14,12 @@
   "files": [
     {
       "name": "AS1003_lecture-slides_slide-chuong-10-dong-luc-hoc-diem-phuong-trinh-vi-phan.pdf",
-      "size": 3032270,
-      "sha256": "7868af46d834754e31b070a908fb920fee1ccbf68fc9b78b182a94ecdafc23bb",
+      "size": 3027767,
+      "sha256": "a5e07023df552bd8f2d85241f31f212f9190f0c2a73a7b6f6e25376ad3b61878",
       "mime": "application/pdf",
-      "quarantine": "pending/vc3DJpC5Ih/AS1003_lecture-slides_slide-chuong-10-dong-luc-hoc-diem-phuong-trinh-vi-phan.pdf",
-      "uploadSha256": "7868af46d834754e31b070a908fb920fee1ccbf68fc9b78b182a94ecdafc23bb"
+      "quarantine": "clean/vc3DJpC5Ih/AS1003_lecture-slides_slide-chuong-10-dong-luc-hoc-diem-phuong-trinh-vi-phan.pdf",
+      "uploadSha256": "7868af46d834754e31b070a908fb920fee1ccbf68fc9b78b182a94ecdafc23bb",
+      "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_lecture-slides_slide-chuong-10-dong-luc-hoc-diem-phuong-trinh-vi-phan.pdf"
     }
   ]
 }

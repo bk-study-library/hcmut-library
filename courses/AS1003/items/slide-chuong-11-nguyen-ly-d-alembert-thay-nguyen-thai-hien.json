@@ -14,11 +14,12 @@
   "files": [
     {
       "name": "AS1003_lecture-slides_slide-chuong-11-nguyen-ly-d-alembert-thay-nguyen-thai-hien.pdf",
-      "size": 3836201,
-      "sha256": "07a2dad11d49e369ffa71c59a5c2645ecba92aaec247073fbda48343b2a89fec",
+      "size": 3831109,
+      "sha256": "69f43a9130826a561ea10ddc5bc81395865e4126350cdf135c7b7a32f34fe47a",
       "mime": "application/pdf",
-      "quarantine": "pending/vc3DJpC5Ih/AS1003_lecture-slides_slide-chuong-11-nguyen-ly-d-alembert-thay-nguyen-thai-hien.pdf",
-      "uploadSha256": "07a2dad11d49e369ffa71c59a5c2645ecba92aaec247073fbda48343b2a89fec"
+      "quarantine": "clean/vc3DJpC5Ih/AS1003_lecture-slides_slide-chuong-11-nguyen-ly-d-alembert-thay-nguyen-thai-hien.pdf",
+      "uploadSha256": "07a2dad11d49e369ffa71c59a5c2645ecba92aaec247073fbda48343b2a89fec",
+      "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_lecture-slides_slide-chuong-11-nguyen-ly-d-alembert-thay-nguyen-thai-hien.pdf"
     }
   ]
 }
