@@ -15,11 +15,12 @@
   "files": [
     {
       "name": "AS2003_project-reference_code-bai-tap-lon-ktlt-co-ky-thuat-hk251-python_HK251.pdf",
-      "size": 1856586,
-      "sha256": "4513c2bf156aa1420851b8bb30e4672bcd0c901685e2acde557c3f6859c48811",
+      "size": 1860325,
+      "sha256": "034e366318d14d0bcfcfc0e20ea924cdee07e10a1d3589203fa66ec72474c73f",
       "mime": "application/pdf",
-      "quarantine": "pending/WAEmwlglFO/AS2003_project-reference_code-bai-tap-lon-ktlt-co-ky-thuat-hk251-python_HK251.pdf",
-      "uploadSha256": "4513c2bf156aa1420851b8bb30e4672bcd0c901685e2acde557c3f6859c48811"
+      "quarantine": "clean/WAEmwlglFO/AS2003_project-reference_code-bai-tap-lon-ktlt-co-ky-thuat-hk251-python_HK251.pdf",
+      "uploadSha256": "4513c2bf156aa1420851b8bb30e4672bcd0c901685e2acde557c3f6859c48811",
+      "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS2003_project-reference_code-bai-tap-lon-ktlt-co-ky-thuat-hk251-python_HK251.pdf"
     }
   ]
 }

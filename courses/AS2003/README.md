@@ -14,7 +14,10 @@
 
 ## Tài liệu
 
-Chưa có tài liệu.
+### Bài tập lớn tham khảo
+
+- **Báo cáo bài tập lớn KTLT Cơ kỹ thuật HK251: thuật toán giải bài toán dàn** (HK251, vi, CC-BY-SA-4.0): [AS2003_project-reference_bao-cao-bai-tap-lon-ktlt-co-ky-thuat-hk251-thuat-toan-giai_HK251.pdf, 1.5 MB](https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS2003_project-reference_bao-cao-bai-tap-lon-ktlt-co-ky-thuat-hk251-thuat-toan-giai_HK251.pdf)
+- **Code bài tập lớn KTLT Cơ kỹ thuật HK251 (Python)** (HK251, vi, CC-BY-SA-4.0): [AS2003_project-reference_code-bai-tap-lon-ktlt-co-ky-thuat-hk251-python_HK251.pdf, 1.8 MB](https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS2003_project-reference_code-bai-tap-lon-ktlt-co-ky-thuat-hk251-python_HK251.pdf)
 
 ## Link
 
