@@ -333,7 +333,15 @@ function cleanPdf(src, dest) {
   const work = `${dest}.work.pdf`;
   fs.copyFileSync(src, work);
   const before = exifJson(work);
-  tool('exiftool', ['-all:all=', '-overwrite_original', work]);
+  try {
+    tool('exiftool', ['-all:all=', '-overwrite_original', work]);
+  } catch {
+    // File hỏng nhẹ mà trình đọc PDF vẫn mở được, ví dụ stream xref nén dở ở phần sửa nối thêm vào cuối file LaTeX:
+    // exiftool báo "Error inflating stream". qpdf dựng lại xref và viết lại không nén object, rồi xóa metadata lần nữa.
+    // Vẫn lỗi thì báo lỗi như cũ. Chỉ chạy khi cần, để file bình thường giữ nguyên bản đã sanitize (sha256 ổn định).
+    tool('qpdf', ['--object-streams=disable', src, work], [0, 3]);
+    tool('exiftool', ['-all:all=', '-overwrite_original', work]);
+  }
   // qpdf trả mã 3 khi chỉ có cảnh báo, file vẫn được ghi. --deterministic-id: cùng file gốc
   // cho cùng bản đã sanitize (ID không lấy theo giờ), nên sha256 bản đã sanitize ổn định giữa các lần chạy.
   tool('qpdf', ['--linearize', '--deterministic-id', work, dest], [0, 3]);
