@@ -13,11 +13,15 @@
   "files": [
     {
       "name": "AS1003_summary_tom-tat-chuong-9-chuyen-dong-phuc-hop.pdf",
-      "size": 7303825,
-      "sha256": "bf5211cf2291e5f9521227cf3690da982b66d297bf98f4a8e865a8c96682f05d",
+      "size": 7308310,
+      "sha256": "045d1182088598617a4048d79494c0e42a127efc93bb929f034836b951d1989d",
       "mime": "application/pdf",
-      "quarantine": "pending/ORxV9P5LlY/AS1003_summary_tom-tat-chuong-9-chuyen-dong-phuc-hop.pdf",
-      "uploadSha256": "bf5211cf2291e5f9521227cf3690da982b66d297bf98f4a8e865a8c96682f05d"
+      "quarantine": "clean/ORxV9P5LlY/AS1003_summary_tom-tat-chuong-9-chuyen-dong-phuc-hop.pdf",
+      "uploadSha256": "bf5211cf2291e5f9521227cf3690da982b66d297bf98f4a8e865a8c96682f05d",
+      "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_summary_tom-tat-chuong-9-chuyen-dong-phuc-hop.pdf"
     }
+  ],
+  "unclassified": [
+    "no-text"
   ]
 }
