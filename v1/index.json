@@ -4,7 +4,7 @@
   "site": "https://bk-study-library.github.io/hcmut-library/",
   "counts": {
     "courses": 3796,
-    "items": 62
+    "items": 63
   },
   "faculties": [
     {
@@ -204,7 +204,7 @@
       "aliases": [],
       "oldNames": [],
       "status": "active",
-      "items": 0,
+      "items": 1,
       "url": "https://bk-study-library.github.io/hcmut-library/course/AS2003/",
       "detail": "courses/AS2003.json"
     },
