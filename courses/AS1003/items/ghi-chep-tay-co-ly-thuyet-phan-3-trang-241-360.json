@@ -1,0 +1,27 @@
+{
+  "$schema": "../../../schema/item.schema.json",
+  "id": "ghi-chep-tay-co-ly-thuyet-phan-3-trang-241-360",
+  "course": "AS1003",
+  "type": "notes",
+  "title": "Ghi chép tay Cơ lý thuyết (phần 3, trang 241-360)",
+  "lang": "vi",
+  "license": "CC-BY-SA-4.0",
+  "origin": "self-made",
+  "added": "2026-10-06",
+  "removed": false,
+  "description": "Tài liệu Cơ lý thuyết (AS1003) dung lượng lớn gửi chung một đợt: slide chương 9 của TS. Nguyễn Hữu Hào; tóm tắt lý thuyết kèm ví dụ giải mẫu chương 8, 10, 12, 14 do sinh viên tự soạn; cheatsheet động học và động lực học; ghi chép tay toàn môn (479 trang, chia 4 phần theo trang).",
+  "files": [
+    {
+      "name": "AS1003_notes_ghi-chep-tay-co-ly-thuyet-phan-3-trang-241-360.pdf",
+      "size": 14358185,
+      "sha256": "df22b45e782c003e43dd33c74eb43dc5f23a90c43391d9ed31e96e8d6684f78b",
+      "mime": "application/pdf",
+      "quarantine": "clean/3lWWiGvNNH/AS1003_notes_ghi-chep-tay-co-ly-thuyet-phan-3-trang-241-360.pdf",
+      "uploadSha256": "55a2f90e477db792d8be06b5964afbd3f891bd3417be49e9a5ed9a6bb3c4ae6e",
+      "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_notes_ghi-chep-tay-co-ly-thuyet-phan-3-trang-241-360.pdf"
+    }
+  ],
+  "unclassified": [
+    "no-text"
+  ]
+}
