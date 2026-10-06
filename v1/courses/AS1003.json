@@ -180,6 +180,29 @@
           ]
         }
       ]
+    },
+    {
+      "id": "slide-co-ly-thuyet-chuong-0-14-thay-tran-kim-bang",
+      "type": "lecture-slides",
+      "title": "Slide Cơ lý thuyết chương 0-14 - thầy Trần Kim Bằng",
+      "description": "Slide và bài tập Cơ lý thuyết của ThS. Trần Kim Bằng (Bộ môn Cơ kỹ thuật), bản 2018-2021. File slide gộp chương 0-14 (giới thiệu, tĩnh học, động học, động lực học); file bài tập gộp các chương 1-4 và 9-14.",
+      "lang": "vi",
+      "teacher": "Trần Kim Bằng",
+      "license": "CC-BY-SA-4.0",
+      "origin": "self-made",
+      "added": "2026-10-06",
+      "updated": "2026-10-06",
+      "files": [
+        {
+          "name": "AS1003_lecture-slides_slide-co-ly-thuyet-chuong-0-14-thay-tran-kim-bang.pdf",
+          "mime": "application/pdf",
+          "size": 8106032,
+          "sha256": "d6eae40edae7f76850864da6ec487a35be28fd1125d8ee2391bc155776702a0a",
+          "urls": [
+            "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_lecture-slides_slide-co-ly-thuyet-chuong-0-14-thay-tran-kim-bang.pdf"
+          ]
+        }
+      ]
     }
   ]
 }

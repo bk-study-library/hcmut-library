@@ -14,11 +14,12 @@
   "files": [
     {
       "name": "AS1003_lecture-slides_slide-co-ly-thuyet-chuong-0-14-thay-tran-kim-bang.pdf",
-      "size": 8067230,
-      "sha256": "36ecdbfcc1d568340ce5204298cac4052b58625e834486beabc97d80c80976e8",
+      "size": 8106032,
+      "sha256": "d6eae40edae7f76850864da6ec487a35be28fd1125d8ee2391bc155776702a0a",
       "mime": "application/pdf",
-      "quarantine": "pending/nSjvV11PZy/AS1003_lecture-slides_slide-co-ly-thuyet-chuong-0-14-thay-tran-kim-bang.pdf",
-      "uploadSha256": "36ecdbfcc1d568340ce5204298cac4052b58625e834486beabc97d80c80976e8"
+      "quarantine": "clean/nSjvV11PZy/AS1003_lecture-slides_slide-co-ly-thuyet-chuong-0-14-thay-tran-kim-bang.pdf",
+      "uploadSha256": "36ecdbfcc1d568340ce5204298cac4052b58625e834486beabc97d80c80976e8",
+      "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_lecture-slides_slide-co-ly-thuyet-chuong-0-14-thay-tran-kim-bang.pdf"
     }
   ]
 }
