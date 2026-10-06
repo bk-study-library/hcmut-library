@@ -15,11 +15,12 @@
   "files": [
     {
       "name": "CI2003_exam-past_de-cuoi-ky-co-luu-chat-hk193_HK193.pdf",
-      "size": 591413,
-      "sha256": "fc5d6ee22034156b860c65a38020796e3fec2258c8276da8f25945894fab1fce",
+      "size": 595437,
+      "sha256": "d9f3bd80c79d4d7ca5dc02e010a66d0d21e448b28068c4be218248ea71a1de29",
       "mime": "application/pdf",
-      "quarantine": "pending/E3MZUwUNDx/CI2003_exam-past_de-cuoi-ky-co-luu-chat-hk193_HK193.pdf",
-      "uploadSha256": "fc5d6ee22034156b860c65a38020796e3fec2258c8276da8f25945894fab1fce"
+      "quarantine": "clean/E3MZUwUNDx/CI2003_exam-past_de-cuoi-ky-co-luu-chat-hk193_HK193.pdf",
+      "uploadSha256": "fc5d6ee22034156b860c65a38020796e3fec2258c8276da8f25945894fab1fce",
+      "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/CI2003_exam-past_de-cuoi-ky-co-luu-chat-hk193_HK193.pdf"
     }
   ]
 }
