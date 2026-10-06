@@ -263,7 +263,7 @@ Thử:
 |---|---|---|
 | Tự đăng | Sạch, phân loại được | Ghi `review/<mã bài>.json` với `auto: true`; cron của Worker (5 phút) merge khi check qua. Không gọi ai |
 | Chưa phân loại | An toàn nhưng chưa phân loại được: môn mới, cảnh báo nhẹ, bản cập nhật | Như Tự đăng, item có trường `unclassified`; label `chua-phan-loai`, comment nhắc tên người duyệt, họ phân loại ở trang `chua-phan-loai/` |
-| Cần người duyệt | Đề thi, file dày như sách, tên gần giống tài liệu đã có, cảnh báo nặng | Không merge; label `can-duyet`, yêu cầu review; người duyệt dùng trang duyệt (mục 8.7) |
+| Cần người duyệt | File dày như sách, tên gần giống tài liệu đã có, cảnh báo nặng | Không merge; label `can-duyet`, yêu cầu review; người duyệt dùng trang duyệt (mục 8.7) |
 
 Người duyệt lấy từ `.github/CODEOWNERS` theo thư mục môn (dòng khớp sau cùng thắng, ví dụ `/courses/EE*/ @nguoi-duyet`), phải là thành viên org. Các file bot ghi (item, README môn, index, `v1/`, `worker-catalog.json`) không có code owner, nên GitHub không tự gọi người duyệt khi bot mở PR; bài thêm môn mới vẫn có file `catalog/courses/` nên GitHub gọi ngay.
 
