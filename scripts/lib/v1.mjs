@@ -37,7 +37,7 @@ function fileUrls(courseId, f, site) {
   return [];
 }
 
-const ITEM_FIELDS = ['id', 'type', 'title', 'description', 'lang', 'term', 'teacher', 'examKind', 'chapter', 'lab', 'license', 'origin', 'source', 'authors', 'added', 'example', 'book'];
+const ITEM_FIELDS = ['id', 'type', 'title', 'description', 'lang', 'term', 'teacher', 'examKind', 'chapter', 'lab', 'license', 'origin', 'source', 'authors', 'added', 'example', 'book', 'unclassified'];
 
 // mime của file: ưu tiên giá trị ghi trong item, không có thì theo đuôi trong policy.
 function fileMime(f, extensions) {

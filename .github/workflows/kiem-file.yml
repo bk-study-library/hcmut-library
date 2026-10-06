@@ -274,7 +274,7 @@ jobs:
           printf '%s' "$MANIFEST" > "$RUNNER_TEMP/manifest.json"
           node trusted/scripts/upload/check.mjs apply-batch --manifest "$RUNNER_TEMP/manifest.json" --pr pr \
             --res-dir "$RUNNER_TEMP/res" --repo "$REPO" --report "$RUNNER_TEMP/report.md" \
-            --pairs "$RUNNER_TEMP/pairs.tsv" --output-file "$GITHUB_OUTPUT"
+            --pairs "$RUNNER_TEMP/pairs.tsv" --auto-file "$RUNNER_TEMP/auto.json" --output-file "$GITHUB_OUTPUT"
           {
             echo "items<<ITEMS_EOF"
             jq -r '.[].item' "$RUNNER_TEMP/manifest.json"
@@ -365,6 +365,27 @@ jobs:
           ITEMS: ${{ steps.apply.outputs.items }}
           COURSE: ${{ needs.gate.outputs.course }}
         run: bash ../trusted/scripts/upload/commit-pr.sh
+      # Phân loại (scripts/upload/triage.mjs): bài không cần người duyệt thì ghi quyết định vào R2, cron của Worker
+      # merge khi check qua; bài cần người duyệt thì yêu cầu review từ người trong biến repo REVIEWERS.
+      - name: Tự merge khi check qua
+        if: steps.apply.outputs.virus == '' && steps.apply.outputs.decision != 'review'
+        env:
+          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          CODE: ${{ needs.gate.outputs.code }}
+        run: |
+          aws s3 cp "$RUNNER_TEMP/auto.json" "s3://$R2_BUCKET/review/$CODE.json" \
+            --endpoint-url "https://${R2_ACCOUNT_ID}.r2.cloudflarestorage.com" --only-show-errors
+      - name: Gọi người duyệt
+        if: steps.apply.outputs.virus == '' && steps.apply.outputs.decision == 'review' && vars.REVIEWERS != ''
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REVIEWERS: ${{ vars.REVIEWERS }}
+        run: |
+          args=()
+          for r in ${REVIEWERS//,/ }; do args+=(-f "reviewers[]=$r"); done
+          gh api -X POST "repos/$REPO/pulls/$PR/requested_reviewers" "${args[@]}" > /dev/null
       - if: failure()
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:

@@ -89,15 +89,28 @@ function fileNotes(f) {
   return notes;
 }
 
+// Kết quả phân loại (scripts/upload/triage.mjs) cho dòng đầu comment.
+const REVIEW_REASONS = { manual: 'cảnh báo cần xem tay', type: 'loại tài liệu cần người duyệt (đề thi)', 'book-like': 'file dày như sách' };
+const UNCLASSIFIED_REASONS = { 'new-course': 'môn mới', pii: 'có thể có thông tin cá nhân', 'no-text': 'PDF không có lớp chữ', warning: 'cảnh báo nhẹ', duplicate: 'tên gần giống tài liệu đã có', update: 'bản cập nhật' };
+function decisionLine(decision, files) {
+  const reasons = (key, names) => [...new Set(files.flatMap((f) => f.triage?.[key] || []))].map((r) => names[r] || r).join(', ');
+  if (decision === 'review') return `Cần người duyệt: ${reasons('review', REVIEW_REASONS)}. Bot đã yêu cầu review.`;
+  if (decision === 'unclassified') return `Tự đăng vào mục Chưa phân loại (${reasons('unclassified', UNCLASSIFIED_REASONS)}): bài tự merge khi check qua, người duyệt xử lý sau ở trang chua-phan-loai/.`;
+  return 'Tự đăng: bài tự merge khi check qua.';
+}
+
 // Comment kết quả kiểm của một bài (một hay nhiều file): một bảng, một link duyệt.
 // files: [{ name, size, virus, unscannable, warnings, hasText, pii, piiChecked, textPages, totalPages }].
 // reviewUrl: trang duyệt (sau Cloudflare Access); không có thì bỏ dòng này.
-export function renderReport({ code, reviewUrl = '', files }) {
+export function renderReport({ code, reviewUrl = '', files, decision = null }) {
   const virus = files.some((f) => f.virus);
   const manual = !virus && files.some((f) => needsManualReview(f));
   const out = [REPORT_MARKER, `## Kiểm file bài ${cell(code)}: ${files.length} file, ${virus ? 'CÓ VIRUS' : 'không có virus'}`, ''];
   if (virus) out.push('Bài bị đóng, file không được dùng. Hãy quét máy rồi gửi lại bằng file sạch.', '');
-  else if (reviewUrl) out.push(`Duyệt: ${reviewUrl}`, '');
+  else {
+    if (decision) out.push(decisionLine(decision, files), '');
+    if (reviewUrl) out.push(`Duyệt: ${reviewUrl}`, '');
+  }
   out.push('| # | File | Cần xem |', '|---|---|---|');
   files.forEach((f, i) => {
     const notes = fileNotes(f);

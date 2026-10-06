@@ -14,7 +14,7 @@
   <li><strong>Gửi</strong>: qua trang Gửi tài liệu (bot mở một Pull Request cho bài), qua form Thêm link (issue có label <code>cần duyệt</code>, người duyệt tự tạo Pull Request từ issue), hoặc bạn tự mở Pull Request.</li>
   <li><strong>Kiểm tự động</strong>: với file gửi qua trang web, workflow <code>kiem-file</code> quét virus, xóa metadata (PDF, ảnh, file Office), cảnh báo MSSV, email, số điện thoại, JavaScript trong PDF, macro trong Office, rồi ghi link Release vào Pull Request. CI <code>validate</code> kiểm định dạng, loại file, dung lượng và file trùng.</li>
   <li><strong>Người duyệt đọc</strong>: theo danh sách bên dưới, hỏi lại người gửi trong Pull Request hoặc issue nếu cần.</li>
-  <li><strong>Merge</strong>: người duyệt merge Pull Request. Workflow <code>phat-hanh-file</code> đưa file lên GitHub Release <code>files-HKxxx</code> (pre-release). Pull Request bị đóng thì <code>don-kho</code> dọn file chờ duyệt.</li>
+  <li><strong>Merge</strong>: bài sạch được merge tự động khi check qua (cron của Worker); bài an toàn nhưng chưa chắc vẫn được merge và hiện ở trang <a href="{{root}}chua-phan-loai/">Tài liệu chưa phân loại</a>; đề thi, file dày như sách và bài có cảnh báo nặng chờ người duyệt merge. Workflow <code>phat-hanh-file</code> đưa file lên GitHub Release <code>files-HKxxx</code> (pre-release). Pull Request bị đóng thì <code>don-kho</code> dọn file chờ duyệt.</li>
   <li><strong>Đóng issue</strong> (với link) kèm link tới trang môn.</li>
 </ol>
 <p>Mục tiêu: trả lời mọi bài gửi trong 7 ngày. Yêu cầu gỡ được xử lý trước, xem <a href="{{root}}takedown/">Gỡ tài liệu</a>.</p>

@@ -80,7 +80,7 @@ export function renderItem(t, it, site, root) {
   const details = facts.length ? `<dl class="item-facts">${facts.map(([k, v]) => `<div><dt>${esc(k)}</dt><dd>${v}</dd></div>`).join('')}</dl>` : '';
   // Trang môn nhiều mã: nhãn mã và chương trình ngay cạnh tiêu đề để thấy tài liệu này của mã nào.
   const codeTag = state.page.subject(it.course) ? `<span class="tag">${esc([codeOf, plabel].filter(Boolean).join(', '))}</span>` : '';
-  const badges = [codeTag, it.example ? `<span class="tag accent">${esc(t.example)}</span>` : '', it.removed ? `<span class="tag warn">${esc(t.removed)}</span>` : ''].join('');
+  const badges = [codeTag, it.example ? `<span class="tag accent">${esc(t.example)}</span>` : '', it.removed ? `<span class="tag warn">${esc(t.removed)}</span>` : '', it.unclassified && !it.removed ? `<span class="tag warn" title="${esc(t.unclassifiedHint)}">${esc(t.unclassifiedTag)}</span>` : ''].join('');
   const takedown = btn('btn subtle', takedownUrl(t, it), t.requestTakedown, ' rel="noopener"');
   const row = (buttons) => `<p class="actions">${[...buttons, takedown].join('')}</p>`;
   const fileButtons = (x, named) => {
