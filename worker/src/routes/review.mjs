@@ -176,7 +176,11 @@ export async function continueMerge(env, deps, code) {
   const state = await prState(gh, code);
   if (!state.open || !state.green) return false;
   if (!(await gh.commitMessage(state.sha)).startsWith('kiem-file:')) return false;
-  const ids = ((await gh.branchItems(env.BRANCH, `upload/${code}`, ITEM_FILE)) ?? []).map((p) => p.split('/').pop().replace(/\.json$/, ''));
+  const branch = await gh.branchItems(env.BRANCH, `upload/${code}`, ITEM_FILE);
+  // Nhánh chưa gồm main mới nhất thì chờ workflow cap-nhat-pr gộp main và dựng lại generated file; merge lúc này thì
+  // git ghép generated file theo dòng và có thể sai.
+  if (!branch || branch.behindBy > 0) return false;
+  const ids = branch.items.map((p) => p.split('/').pop().replace(/\.json$/, ''));
   if (ids.length !== record.keep.length || ids.some((id) => !record.keep.includes(id))) return false;
   await gh.mergePr(state.number, state.sha, prTitleMerge(code, record.auto));
   await env.QUARANTINE.put(reviewKey(code), JSON.stringify({ ...record, waiting: false }));
