@@ -18,6 +18,10 @@
 
 - **Tự học Tkinter (Python GUI) - code mẫu** (vi, CC-BY-SA-4.0): [AS2003_notes_tu-hoc-tkinter-python-gui-code-mau.pdf, 1.8 MB](https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS2003_notes_tu-hoc-tkinter-python-gui-code-mau.pdf)
 
+### Đề cũ
+
+- **Bài tập trắc nghiệm và quiz KTLT Cơ kỹ thuật (có đáp án, HK251)** (HK251, vi, CC-BY-SA-4.0): [AS2003_exam-past_bai-tap-trac-nghiem-va-quiz-ktlt-co-ky-thuat-co-dap-an-hk251_HK251.pdf, 2.1 MB](https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS2003_exam-past_bai-tap-trac-nghiem-va-quiz-ktlt-co-ky-thuat-co-dap-an-hk251_HK251.pdf)
+
 ## Link
 
 Chưa có link.
