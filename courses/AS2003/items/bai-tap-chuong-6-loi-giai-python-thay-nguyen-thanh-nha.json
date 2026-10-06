@@ -1,0 +1,24 @@
+{
+  "$schema": "../../../schema/item.schema.json",
+  "id": "bai-tap-chuong-6-loi-giai-python-thay-nguyen-thanh-nha",
+  "course": "AS2003",
+  "type": "exercise-solution",
+  "title": "Bài tập chương 6 - lời giải Python (thầy Nguyễn Thanh Nhã)",
+  "lang": "vi",
+  "license": "CC-BY-SA-4.0",
+  "origin": "self-made",
+  "added": "2026-10-06",
+  "removed": false,
+  "description": "Bài tập chương 3-6 môn KTLT Cơ kỹ thuật (lớp TS. Nguyễn Thanh Nhã): đề bài kèm lời giải Python của sinh viên, mỗi chương một file.",
+  "teacher": "Nguyễn Thanh Nhã",
+  "files": [
+    {
+      "name": "AS2003_exercise-solution_bai-tap-chuong-6-loi-giai-python-thay-nguyen-thanh-nha.pdf",
+      "size": 1090874,
+      "sha256": "d281128ed531acdefc88c77ce39eecb4f983c610e90d9f8839ec46ea340c2d26",
+      "mime": "application/pdf",
+      "quarantine": "pending/Vs8Uim0pgM/AS2003_exercise-solution_bai-tap-chuong-6-loi-giai-python-thay-nguyen-thanh-nha.pdf",
+      "uploadSha256": "d281128ed531acdefc88c77ce39eecb4f983c610e90d9f8839ec46ea340c2d26"
+    }
+  ]
+}
