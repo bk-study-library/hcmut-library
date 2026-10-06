@@ -4,7 +4,7 @@
   "site": "https://bk-study-library.github.io/hcmut-library/",
   "counts": {
     "courses": 3796,
-    "items": 27
+    "items": 36
   },
   "faculties": [
     {
@@ -145,9 +145,10 @@
       "aliases": [],
       "oldNames": [],
       "status": "active",
-      "items": 10,
+      "items": 18,
       "teachers": [
-        "Nguyễn Hữu Hào"
+        "Nguyễn Hữu Hào",
+        "Trần Kim Bằng"
       ],
       "url": "https://bk-study-library.github.io/hcmut-library/course/AS1003/",
       "detail": "courses/AS1003.json"
@@ -10521,10 +10522,11 @@
       "aliases": [],
       "oldNames": [],
       "status": "active",
-      "items": 2,
+      "items": 3,
       "teachers": [
         "Lê Song Giang",
-        "Nguyễn Thị Bảy"
+        "Nguyễn Thị Bảy",
+        "Võ Thị Tuyết Giang"
       ],
       "url": "https://bk-study-library.github.io/hcmut-library/course/CI2003/",
       "detail": "courses/CI2003.json"
