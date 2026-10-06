@@ -14,11 +14,12 @@
   "files": [
     {
       "name": "AS1003_lecture-slides_slide-chuong-13-nguyen-ly-d-alembert-thay-nguyen-huu-hao.pdf",
-      "size": 8967725,
-      "sha256": "4cafd344a89383de4d7ba477bf0344dc0fece845ceee9597011e9650347b1b4d",
+      "size": 8963737,
+      "sha256": "ce2cc5ac6e522057b2e96d985903643388045c5efc3847cd2990949ab8e5f4f8",
       "mime": "application/pdf",
-      "quarantine": "pending/S76NHbIsVZ/AS1003_lecture-slides_slide-chuong-13-nguyen-ly-d-alembert-thay-nguyen-huu-hao.pdf",
-      "uploadSha256": "4cafd344a89383de4d7ba477bf0344dc0fece845ceee9597011e9650347b1b4d"
+      "quarantine": "clean/S76NHbIsVZ/AS1003_lecture-slides_slide-chuong-13-nguyen-ly-d-alembert-thay-nguyen-huu-hao.pdf",
+      "uploadSha256": "4cafd344a89383de4d7ba477bf0344dc0fece845ceee9597011e9650347b1b4d",
+      "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_lecture-slides_slide-chuong-13-nguyen-ly-d-alembert-thay-nguyen-huu-hao.pdf"
     }
   ]
 }

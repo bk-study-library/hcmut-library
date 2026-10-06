@@ -24,6 +24,7 @@
 - **Chuong 6 Trong tam cua vat ran** (vi, CC-BY-SA-4.0): [AS1003_lecture-slides_chuong-6-trong-tam-cua-vat-ran.pdf, 8.8 MB](https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_lecture-slides_chuong-6-trong-tam-cua-vat-ran.pdf)
 - **Chuong 7 Dong hoc diem** (vi, CC-BY-SA-4.0): [AS1003_lecture-slides_chuong-7-dong-hoc-diem.pdf, 5.0 MB](https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_lecture-slides_chuong-7-dong-hoc-diem.pdf)
 - **Slide chương 10: Chuyển động song phẳng của vật rắn - thầy Nguyễn Hữu Hào** (vi, CC-BY-SA-4.0): [AS1003_lecture-slides_slide-chuong-10-chuyen-dong-song-phang-cua-vat-ran-thay.pdf, 5.7 MB](https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_lecture-slides_slide-chuong-10-chuyen-dong-song-phang-cua-vat-ran-thay.pdf)
+- **Slide chương 13: Nguyên lý D'Alembert - thầy Nguyễn Hữu Hào** (vi, CC-BY-SA-4.0): [AS1003_lecture-slides_slide-chuong-13-nguyen-ly-d-alembert-thay-nguyen-huu-hao.pdf, 8.5 MB](https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_lecture-slides_slide-chuong-13-nguyen-ly-d-alembert-thay-nguyen-huu-hao.pdf)
 
 ## Link
 
