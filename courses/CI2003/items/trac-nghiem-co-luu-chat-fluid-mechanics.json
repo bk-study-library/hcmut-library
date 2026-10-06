@@ -14,11 +14,12 @@
   "files": [
     {
       "name": "CI2003_exam-past_trac-nghiem-co-luu-chat-fluid-mechanics.pdf",
-      "size": 1433098,
-      "sha256": "aa477d1924f5a9a7fd2e4383a6e528cb09c12d0d194bb4173ff2ba7de1860bba",
+      "size": 1425055,
+      "sha256": "c4c563ed025e24fea821f22da9366795a4f6bcd8fe79cd6c0c11754492eb2ceb",
       "mime": "application/pdf",
-      "quarantine": "pending/HH8PnBzaQr/CI2003_exam-past_trac-nghiem-co-luu-chat-fluid-mechanics.pdf",
-      "uploadSha256": "aa477d1924f5a9a7fd2e4383a6e528cb09c12d0d194bb4173ff2ba7de1860bba"
+      "quarantine": "clean/HH8PnBzaQr/CI2003_exam-past_trac-nghiem-co-luu-chat-fluid-mechanics.pdf",
+      "uploadSha256": "aa477d1924f5a9a7fd2e4383a6e528cb09c12d0d194bb4173ff2ba7de1860bba",
+      "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/CI2003_exam-past_trac-nghiem-co-luu-chat-fluid-mechanics.pdf"
     }
   ]
 }

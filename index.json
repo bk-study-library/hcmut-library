@@ -7,7 +7,7 @@
     "courses": 3796,
     "programs": 838,
     "majors": 140,
-    "items": 100
+    "items": 106
   },
   "faculties": [
     {
@@ -52662,6 +52662,78 @@
               ]
             },
             {
+              "id": "de-cuoi-ky-mau-co-luu-chat-ly-thuyet-va-bai-tap",
+              "course": "CI2003",
+              "type": "exam-past",
+              "title": "Đề cuối kỳ mẫu Cơ lưu chất (lý thuyết và bài tập)",
+              "lang": "vi",
+              "license": "CC-BY-SA-4.0",
+              "origin": "self-made",
+              "added": "2026-10-06",
+              "removed": false,
+              "description": "Đề và trắc nghiệm Cơ lưu chất không ghi học kỳ: ngân hàng câu hỏi có đáp án, bộ trắc nghiệm Fluid Mechanics, đề thi kỳ hè, đề cuối kỳ mẫu (lý thuyết và bài tập, có ghi năm học 2017-2018), đề giữa kỳ mẫu và đề giữa kỳ mẫu có đáp án.",
+              "examKind": "ck",
+              "files": [
+                {
+                  "name": "CI2003_exam-past_de-cuoi-ky-mau-co-luu-chat-ly-thuyet-va-bai-tap.pdf",
+                  "size": 1451099,
+                  "sha256": "76d161ebd9d6a1532a81cec95b83460d1ab650ad4d34fed9af91f50d1e5f1647",
+                  "mime": "application/pdf",
+                  "quarantine": "clean/HH8PnBzaQr/CI2003_exam-past_de-cuoi-ky-mau-co-luu-chat-ly-thuyet-va-bai-tap.pdf",
+                  "uploadSha256": "335366eacab55b9ace021c57f55da648db5b6a5ffd5b66e991a5aadf7629b2e4",
+                  "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/CI2003_exam-past_de-cuoi-ky-mau-co-luu-chat-ly-thuyet-va-bai-tap.pdf"
+                }
+              ]
+            },
+            {
+              "id": "de-giua-ky-co-luu-chat-de-mau",
+              "course": "CI2003",
+              "type": "exam-past",
+              "title": "Đề giữa kỳ Cơ lưu chất - đề mẫu",
+              "lang": "vi",
+              "license": "CC-BY-SA-4.0",
+              "origin": "self-made",
+              "added": "2026-10-06",
+              "removed": false,
+              "description": "Đề và trắc nghiệm Cơ lưu chất không ghi học kỳ: ngân hàng câu hỏi có đáp án, bộ trắc nghiệm Fluid Mechanics, đề thi kỳ hè, đề cuối kỳ mẫu (lý thuyết và bài tập, có ghi năm học 2017-2018), đề giữa kỳ mẫu và đề giữa kỳ mẫu có đáp án.",
+              "examKind": "gk",
+              "files": [
+                {
+                  "name": "CI2003_exam-past_de-giua-ky-co-luu-chat-de-mau.pdf",
+                  "size": 560408,
+                  "sha256": "3933d701c77ed107b72a05bd6c0924eb2b1742f937f2b121b03e0dc578825d9b",
+                  "mime": "application/pdf",
+                  "quarantine": "clean/HH8PnBzaQr/CI2003_exam-past_de-giua-ky-co-luu-chat-de-mau.pdf",
+                  "uploadSha256": "00ca96af848b8b0cd575de03dda31e0dc4b9ce476df58d9903a60e03fde083c4",
+                  "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/CI2003_exam-past_de-giua-ky-co-luu-chat-de-mau.pdf"
+                }
+              ]
+            },
+            {
+              "id": "de-giua-ky-co-luu-chat-de-mau-co-dap-an",
+              "course": "CI2003",
+              "type": "exam-solution",
+              "title": "Đề giữa kỳ Cơ lưu chất - đề mẫu có đáp án",
+              "lang": "vi",
+              "license": "CC-BY-SA-4.0",
+              "origin": "self-made",
+              "added": "2026-10-06",
+              "removed": false,
+              "description": "Đề và trắc nghiệm Cơ lưu chất không ghi học kỳ: ngân hàng câu hỏi có đáp án, bộ trắc nghiệm Fluid Mechanics, đề thi kỳ hè, đề cuối kỳ mẫu (lý thuyết và bài tập, có ghi năm học 2017-2018), đề giữa kỳ mẫu và đề giữa kỳ mẫu có đáp án.",
+              "examKind": "gk",
+              "files": [
+                {
+                  "name": "CI2003_exam-solution_de-giua-ky-co-luu-chat-de-mau-co-dap-an.pdf",
+                  "size": 239884,
+                  "sha256": "c6c96eaf2e83da66964b916e1c0d66ff3edd7e0eaffe178e7984b2525f8f1647",
+                  "mime": "application/pdf",
+                  "quarantine": "clean/HH8PnBzaQr/CI2003_exam-solution_de-giua-ky-co-luu-chat-de-mau-co-dap-an.pdf",
+                  "uploadSha256": "c7c7a70db0b314ef916aa67f8b3acc0cc0e7c9dd2e656e10ed1fc40090cdcaec",
+                  "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/CI2003_exam-solution_de-giua-ky-co-luu-chat-de-mau-co-dap-an.pdf"
+                }
+              ]
+            },
+            {
               "id": "de-giua-ky-co-luu-chat-hk171",
               "course": "CI2003",
               "type": "exam-past",
@@ -52733,6 +52805,78 @@
                   "quarantine": "clean/Dz4QFAp82s/CI2003_exam-past_de-thi-hoc-ky-co-luu-chat-hk172-de-mau-co-dap-an_HK172.pdf",
                   "uploadSha256": "5b19b23c7d5b33c0469038137417e1eafb80083f28eb3db490c81e76aaeb74b2",
                   "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/CI2003_exam-past_de-thi-hoc-ky-co-luu-chat-hk172-de-mau-co-dap-an_HK172.pdf"
+                }
+              ]
+            },
+            {
+              "id": "de-thi-ky-he-co-luu-chat",
+              "course": "CI2003",
+              "type": "exam-past",
+              "title": "Đề thi kỳ hè Cơ lưu chất",
+              "lang": "vi",
+              "license": "CC-BY-SA-4.0",
+              "origin": "self-made",
+              "added": "2026-10-06",
+              "removed": false,
+              "description": "Đề và trắc nghiệm Cơ lưu chất không ghi học kỳ: ngân hàng câu hỏi có đáp án, bộ trắc nghiệm Fluid Mechanics, đề thi kỳ hè, đề cuối kỳ mẫu (lý thuyết và bài tập, có ghi năm học 2017-2018), đề giữa kỳ mẫu và đề giữa kỳ mẫu có đáp án.",
+              "examKind": "ck",
+              "files": [
+                {
+                  "name": "CI2003_exam-past_de-thi-ky-he-co-luu-chat.pdf",
+                  "size": 832402,
+                  "sha256": "1b30f32b91b9a06cf1e506fb274b994df09ccf7bed5759502b5cbe04d3197102",
+                  "mime": "application/pdf",
+                  "quarantine": "clean/HH8PnBzaQr/CI2003_exam-past_de-thi-ky-he-co-luu-chat.pdf",
+                  "uploadSha256": "66158064fe50d94a95c1d17f4a3698eddb3f10e712cdce1220c0cd033b85eac2",
+                  "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/CI2003_exam-past_de-thi-ky-he-co-luu-chat.pdf"
+                }
+              ]
+            },
+            {
+              "id": "ngan-hang-cau-hoi-trac-nghiem-co-luu-chat-co-dap-an",
+              "course": "CI2003",
+              "type": "exam-past",
+              "title": "Ngân hàng câu hỏi trắc nghiệm Cơ lưu chất (có đáp án)",
+              "lang": "vi",
+              "license": "CC-BY-SA-4.0",
+              "origin": "self-made",
+              "added": "2026-10-06",
+              "removed": false,
+              "description": "Đề và trắc nghiệm Cơ lưu chất không ghi học kỳ: ngân hàng câu hỏi có đáp án, bộ trắc nghiệm Fluid Mechanics, đề thi kỳ hè, đề cuối kỳ mẫu (lý thuyết và bài tập, có ghi năm học 2017-2018), đề giữa kỳ mẫu và đề giữa kỳ mẫu có đáp án.",
+              "examKind": "quiz",
+              "files": [
+                {
+                  "name": "CI2003_exam-past_ngan-hang-cau-hoi-trac-nghiem-co-luu-chat-co-dap-an.pdf",
+                  "size": 1594496,
+                  "sha256": "c89781cd023befef78fe5bfbf6b0039bdf5c46a436f8d7402fc2a3ef97cf28b0",
+                  "mime": "application/pdf",
+                  "quarantine": "clean/HH8PnBzaQr/CI2003_exam-past_ngan-hang-cau-hoi-trac-nghiem-co-luu-chat-co-dap-an.pdf",
+                  "uploadSha256": "27aea86ab52d61547ecab7a8355d329d60ede050e15376ed44501f8ac630fa42",
+                  "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/CI2003_exam-past_ngan-hang-cau-hoi-trac-nghiem-co-luu-chat-co-dap-an.pdf"
+                }
+              ]
+            },
+            {
+              "id": "trac-nghiem-co-luu-chat-fluid-mechanics",
+              "course": "CI2003",
+              "type": "exam-past",
+              "title": "Trắc nghiệm Cơ lưu chất (Fluid Mechanics)",
+              "lang": "vi",
+              "license": "CC-BY-SA-4.0",
+              "origin": "self-made",
+              "added": "2026-10-06",
+              "removed": false,
+              "description": "Đề và trắc nghiệm Cơ lưu chất không ghi học kỳ: ngân hàng câu hỏi có đáp án, bộ trắc nghiệm Fluid Mechanics, đề thi kỳ hè, đề cuối kỳ mẫu (lý thuyết và bài tập, có ghi năm học 2017-2018), đề giữa kỳ mẫu và đề giữa kỳ mẫu có đáp án.",
+              "examKind": "quiz",
+              "files": [
+                {
+                  "name": "CI2003_exam-past_trac-nghiem-co-luu-chat-fluid-mechanics.pdf",
+                  "size": 1425055,
+                  "sha256": "c4c563ed025e24fea821f22da9366795a4f6bcd8fe79cd6c0c11754492eb2ceb",
+                  "mime": "application/pdf",
+                  "quarantine": "clean/HH8PnBzaQr/CI2003_exam-past_trac-nghiem-co-luu-chat-fluid-mechanics.pdf",
+                  "uploadSha256": "aa477d1924f5a9a7fd2e4383a6e528cb09c12d0d194bb4173ff2ba7de1860bba",
+                  "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/CI2003_exam-past_trac-nghiem-co-luu-chat-fluid-mechanics.pdf"
                 }
               ]
             }

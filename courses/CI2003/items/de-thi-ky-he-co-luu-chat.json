@@ -14,11 +14,12 @@
   "files": [
     {
       "name": "CI2003_exam-past_de-thi-ky-he-co-luu-chat.pdf",
-      "size": 834944,
-      "sha256": "66158064fe50d94a95c1d17f4a3698eddb3f10e712cdce1220c0cd033b85eac2",
+      "size": 832402,
+      "sha256": "1b30f32b91b9a06cf1e506fb274b994df09ccf7bed5759502b5cbe04d3197102",
       "mime": "application/pdf",
-      "quarantine": "pending/HH8PnBzaQr/CI2003_exam-past_de-thi-ky-he-co-luu-chat.pdf",
-      "uploadSha256": "66158064fe50d94a95c1d17f4a3698eddb3f10e712cdce1220c0cd033b85eac2"
+      "quarantine": "clean/HH8PnBzaQr/CI2003_exam-past_de-thi-ky-he-co-luu-chat.pdf",
+      "uploadSha256": "66158064fe50d94a95c1d17f4a3698eddb3f10e712cdce1220c0cd033b85eac2",
+      "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/CI2003_exam-past_de-thi-ky-he-co-luu-chat.pdf"
     }
   ]
 }

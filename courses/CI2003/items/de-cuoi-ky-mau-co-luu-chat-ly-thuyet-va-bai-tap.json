@@ -14,11 +14,12 @@
   "files": [
     {
       "name": "CI2003_exam-past_de-cuoi-ky-mau-co-luu-chat-ly-thuyet-va-bai-tap.pdf",
-      "size": 1455786,
-      "sha256": "335366eacab55b9ace021c57f55da648db5b6a5ffd5b66e991a5aadf7629b2e4",
+      "size": 1451099,
+      "sha256": "76d161ebd9d6a1532a81cec95b83460d1ab650ad4d34fed9af91f50d1e5f1647",
       "mime": "application/pdf",
-      "quarantine": "pending/HH8PnBzaQr/CI2003_exam-past_de-cuoi-ky-mau-co-luu-chat-ly-thuyet-va-bai-tap.pdf",
-      "uploadSha256": "335366eacab55b9ace021c57f55da648db5b6a5ffd5b66e991a5aadf7629b2e4"
+      "quarantine": "clean/HH8PnBzaQr/CI2003_exam-past_de-cuoi-ky-mau-co-luu-chat-ly-thuyet-va-bai-tap.pdf",
+      "uploadSha256": "335366eacab55b9ace021c57f55da648db5b6a5ffd5b66e991a5aadf7629b2e4",
+      "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/CI2003_exam-past_de-cuoi-ky-mau-co-luu-chat-ly-thuyet-va-bai-tap.pdf"
     }
   ]
 }

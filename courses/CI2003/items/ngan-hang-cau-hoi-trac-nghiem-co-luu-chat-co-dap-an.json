@@ -14,11 +14,12 @@
   "files": [
     {
       "name": "CI2003_exam-past_ngan-hang-cau-hoi-trac-nghiem-co-luu-chat-co-dap-an.pdf",
-      "size": 1686861,
-      "sha256": "27aea86ab52d61547ecab7a8355d329d60ede050e15376ed44501f8ac630fa42",
+      "size": 1594496,
+      "sha256": "c89781cd023befef78fe5bfbf6b0039bdf5c46a436f8d7402fc2a3ef97cf28b0",
       "mime": "application/pdf",
-      "quarantine": "pending/HH8PnBzaQr/CI2003_exam-past_ngan-hang-cau-hoi-trac-nghiem-co-luu-chat-co-dap-an.pdf",
-      "uploadSha256": "27aea86ab52d61547ecab7a8355d329d60ede050e15376ed44501f8ac630fa42"
+      "quarantine": "clean/HH8PnBzaQr/CI2003_exam-past_ngan-hang-cau-hoi-trac-nghiem-co-luu-chat-co-dap-an.pdf",
+      "uploadSha256": "27aea86ab52d61547ecab7a8355d329d60ede050e15376ed44501f8ac630fa42",
+      "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/CI2003_exam-past_ngan-hang-cau-hoi-trac-nghiem-co-luu-chat-co-dap-an.pdf"
     }
   ]
 }
