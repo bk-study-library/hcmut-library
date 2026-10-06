@@ -1,0 +1,24 @@
+{
+  "$schema": "../../../schema/item.schema.json",
+  "id": "slide-chuong-13-nguyen-ly-di-chuyen-kha-di-thay-nguyen-thai",
+  "course": "AS1003",
+  "type": "lecture-slides",
+  "title": "Slide chương 13: Nguyên lý di chuyển khả dĩ - thầy Nguyễn Thái Hiền",
+  "lang": "vi",
+  "license": "CC-BY-SA-4.0",
+  "origin": "self-made",
+  "added": "2026-10-06",
+  "removed": false,
+  "description": "Slide phần động học và động lực học Cơ lý thuyết của thầy Nguyễn Thái Hiền: chương 8 (song phẳng), 9 (chuyển động phức hợp của điểm), 10 (phương trình vi phân chuyển động), 11 (nguyên lý D'Alembert), 12 (các định lý tổng quát động lực học), 13 (nguyên lý di chuyển khả dĩ), 15 (một số phương trình cơ học). Có mục tiêu chương và ví dụ giải.",
+  "teacher": "Nguyễn Thái Hiền",
+  "files": [
+    {
+      "name": "AS1003_lecture-slides_slide-chuong-13-nguyen-ly-di-chuyen-kha-di-thay-nguyen-thai.pdf",
+      "size": 3293145,
+      "sha256": "a8a94b991a2c8eea834cd83123be37662623e46b5ff62bb2fb230f63c51d0b07",
+      "mime": "application/pdf",
+      "quarantine": "pending/dWIeiJ0Uwp/AS1003_lecture-slides_slide-chuong-13-nguyen-ly-di-chuyen-kha-di-thay-nguyen-thai.pdf",
+      "uploadSha256": "a8a94b991a2c8eea834cd83123be37662623e46b5ff62bb2fb230f63c51d0b07"
+    }
+  ]
+}
