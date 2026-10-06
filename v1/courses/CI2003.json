@@ -5,6 +5,29 @@
   "name": "Cơ lưu chất",
   "items": [
     {
+      "id": "bai-giang-co-luu-chat-ly-hung-anh",
+      "type": "lecture-slides",
+      "title": "Bài giảng Cơ lưu chất - Lý Hùng Anh",
+      "description": "Bài giảng Cơ lưu chất (Fluid Mechanics) của giảng viên Khoa Kỹ thuật Xây dựng và Bộ môn Kỹ thuật Hàng không, ĐH Bách Khoa TP.HCM: tĩnh học lưu chất, động học, phương trình năng lượng, động lượng, dòng chảy trong ống, thế lưu.",
+      "lang": "vi",
+      "teacher": "Lý Hùng Anh",
+      "license": "CC-BY-SA-4.0",
+      "origin": "self-made",
+      "added": "2026-10-06",
+      "updated": "2026-10-06",
+      "files": [
+        {
+          "name": "CI2003_lecture-slides_bai-giang-co-luu-chat-ly-hung-anh.pdf",
+          "mime": "application/pdf",
+          "size": 9596881,
+          "sha256": "151186cebbd1742bf539aa155d6d193ea97ac531a75e3ecef9bf4349afe8b428",
+          "urls": [
+            "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/CI2003_lecture-slides_bai-giang-co-luu-chat-ly-hung-anh.pdf"
+          ]
+        }
+      ]
+    },
+    {
       "id": "bai-giang-co-luu-chat-nguyen-thi-bay",
       "type": "lecture-slides",
       "title": "Bài giảng Cơ lưu chất - Nguyễn Thị Bảy",
