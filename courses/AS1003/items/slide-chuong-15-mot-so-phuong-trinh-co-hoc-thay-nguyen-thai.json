@@ -1,0 +1,25 @@
+{
+  "$schema": "../../../schema/item.schema.json",
+  "id": "slide-chuong-15-mot-so-phuong-trinh-co-hoc-thay-nguyen-thai",
+  "course": "AS1003",
+  "type": "lecture-slides",
+  "title": "Slide chương 15: Một số phương trình cơ học - thầy Nguyễn Thái Hiền",
+  "lang": "vi",
+  "license": "CC-BY-SA-4.0",
+  "origin": "self-made",
+  "added": "2026-10-06",
+  "removed": false,
+  "description": "Slide phần động học và động lực học Cơ lý thuyết của thầy Nguyễn Thái Hiền: chương 8 (song phẳng), 9 (chuyển động phức hợp của điểm), 10 (phương trình vi phân chuyển động), 11 (nguyên lý D'Alembert), 12 (các định lý tổng quát động lực học), 13 (nguyên lý di chuyển khả dĩ), 15 (một số phương trình cơ học). Có mục tiêu chương và ví dụ giải.",
+  "teacher": "Nguyễn Thái Hiền",
+  "files": [
+    {
+      "name": "AS1003_lecture-slides_slide-chuong-15-mot-so-phuong-trinh-co-hoc-thay-nguyen-thai.pdf",
+      "size": 3144914,
+      "sha256": "e659376c3116006419deb76ecf6bd52d1266382005a720bd9d9369aca1df2935",
+      "mime": "application/pdf",
+      "quarantine": "clean/dWIeiJ0Uwp/AS1003_lecture-slides_slide-chuong-15-mot-so-phuong-trinh-co-hoc-thay-nguyen-thai.pdf",
+      "uploadSha256": "07c6220a476217b75668e9713c5ba988c750eaff1b6210c8be653515cf934eaf",
+      "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_lecture-slides_slide-chuong-15-mot-so-phuong-trinh-co-hoc-thay-nguyen-thai.pdf"
+    }
+  ]
+}

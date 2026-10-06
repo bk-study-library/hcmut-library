@@ -5,6 +5,52 @@
   "name": "Cơ lưu chất",
   "items": [
     {
+      "id": "bai-giang-co-luu-chat-le-song-giang",
+      "type": "lecture-slides",
+      "title": "Bài giảng Cơ lưu chất - Lê Song Giang",
+      "description": "Bài giảng Cơ lưu chất (Fluid Mechanics) của giảng viên Khoa Kỹ thuật Xây dựng và Bộ môn Kỹ thuật Hàng không, ĐH Bách Khoa TP.HCM: tĩnh học lưu chất, động học, phương trình năng lượng, động lượng, dòng chảy trong ống, thế lưu.",
+      "lang": "vi",
+      "teacher": "Lê Song Giang",
+      "license": "CC-BY-SA-4.0",
+      "origin": "self-made",
+      "added": "2026-10-06",
+      "updated": "2026-10-06",
+      "files": [
+        {
+          "name": "CI2003_lecture-slides_bai-giang-co-luu-chat-le-song-giang.pdf",
+          "mime": "application/pdf",
+          "size": 7141087,
+          "sha256": "95c0f7413ea053003bc4c8cb70b2cb63461be9d5be2bbac6315f8d1d1bdc9622",
+          "urls": [
+            "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/CI2003_lecture-slides_bai-giang-co-luu-chat-le-song-giang.pdf"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bai-giang-co-luu-chat-ly-hung-anh",
+      "type": "lecture-slides",
+      "title": "Bài giảng Cơ lưu chất - Lý Hùng Anh",
+      "description": "Bài giảng Cơ lưu chất (Fluid Mechanics) của giảng viên Khoa Kỹ thuật Xây dựng và Bộ môn Kỹ thuật Hàng không, ĐH Bách Khoa TP.HCM: tĩnh học lưu chất, động học, phương trình năng lượng, động lượng, dòng chảy trong ống, thế lưu.",
+      "lang": "vi",
+      "teacher": "Lý Hùng Anh",
+      "license": "CC-BY-SA-4.0",
+      "origin": "self-made",
+      "added": "2026-10-06",
+      "updated": "2026-10-06",
+      "files": [
+        {
+          "name": "CI2003_lecture-slides_bai-giang-co-luu-chat-ly-hung-anh.pdf",
+          "mime": "application/pdf",
+          "size": 9596881,
+          "sha256": "151186cebbd1742bf539aa155d6d193ea97ac531a75e3ecef9bf4349afe8b428",
+          "urls": [
+            "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/CI2003_lecture-slides_bai-giang-co-luu-chat-ly-hung-anh.pdf"
+          ]
+        }
+      ]
+    },
+    {
       "id": "bai-giang-co-luu-chat-nguyen-thi-bay",
       "type": "lecture-slides",
       "title": "Bài giảng Cơ lưu chất - Nguyễn Thị Bảy",
@@ -23,6 +69,195 @@
           "sha256": "251f9c7e731ad3f685c9dfb0f3b5cc292eeb371a5f7f6a335aba66543b975c7e",
           "urls": [
             "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/CI2003_lecture-slides_bai-giang-co-luu-chat-nguyen-thi-bay.pdf"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bai-giang-co-luu-chat-vo-thi-tuyet-giang",
+      "type": "lecture-slides",
+      "title": "Bài giảng Cơ lưu chất - Võ Thị Tuyết Giang",
+      "description": "Bài giảng Cơ lưu chất (Fluid Mechanics) của giảng viên Khoa Kỹ thuật Xây dựng và Bộ môn Kỹ thuật Hàng không, ĐH Bách Khoa TP.HCM: tĩnh học lưu chất, động học, phương trình năng lượng, động lượng, dòng chảy trong ống, thế lưu.",
+      "lang": "vi",
+      "teacher": "Võ Thị Tuyết Giang",
+      "license": "CC-BY-SA-4.0",
+      "origin": "self-made",
+      "added": "2026-10-06",
+      "updated": "2026-10-06",
+      "files": [
+        {
+          "name": "CI2003_lecture-slides_bai-giang-co-luu-chat-vo-thi-tuyet-giang.pdf",
+          "mime": "application/pdf",
+          "size": 8228322,
+          "sha256": "7ad74caca91975a1b46afd781e8101c59c6339b6911c00a9e8a0e1d750406524",
+          "urls": [
+            "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/CI2003_lecture-slides_bai-giang-co-luu-chat-vo-thi-tuyet-giang.pdf"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bai-tap-co-luu-chat-chuong-1-3-kem-video-giai",
+      "type": "exercise-solution",
+      "title": "Bài tập Cơ lưu chất chương 1-3 (kèm video giải)",
+      "description": "Bài tập Cơ lưu chất chương 1-3 (tính chất lưu chất, thủy tĩnh) kèm hình đề, dùng cùng các video giải bài tập.",
+      "lang": "vi",
+      "license": "CC-BY-SA-4.0",
+      "origin": "self-made",
+      "added": "2026-10-06",
+      "updated": "2026-10-06",
+      "files": [
+        {
+          "name": "CI2003_exercise-solution_bai-tap-co-luu-chat-chuong-1-3-kem-video-giai.pdf",
+          "mime": "application/pdf",
+          "size": 1327659,
+          "sha256": "6fc476a83cdabb89ac08a294541be6e91c5d9c652decec15f05d54698d8c0410",
+          "urls": [
+            "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/CI2003_exercise-solution_bai-tap-co-luu-chat-chuong-1-3-kem-video-giai.pdf"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "de-cuoi-ky-ci2005-hk191",
+      "type": "exam-past",
+      "title": "Đề cuối kỳ CI2005 HK191",
+      "description": "Đề thi cuối kỳ Cơ lưu chất (CI2003) các học kỳ, bản scan hoặc PDF gốc. Một số đề có tên PGS.TS. Lê Song Giang (người phê duyệt hoặc chủ nhiệm bộ môn) và PGS.TS. Lê Văn Dực. Có thêm một đề CI2005 HK191 cùng nội dung môn.",
+      "lang": "vi",
+      "term": "HK191",
+      "examKind": "ck",
+      "license": "CC-BY-SA-4.0",
+      "origin": "self-made",
+      "added": "2026-10-06",
+      "updated": "2026-10-06",
+      "files": [
+        {
+          "name": "CI2003_exam-past_de-cuoi-ky-ci2005-hk191_HK191.pdf",
+          "mime": "application/pdf",
+          "size": 546272,
+          "sha256": "c152ef9924217a62e120573b765f27f550e23023db5a83ab58af737f3eb3dca4",
+          "urls": [
+            "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/CI2003_exam-past_de-cuoi-ky-ci2005-hk191_HK191.pdf"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "de-cuoi-ky-co-luu-chat-hk161",
+      "type": "exam-past",
+      "title": "Đề cuối kỳ Cơ lưu chất HK161",
+      "description": "Đề thi cuối kỳ Cơ lưu chất (CI2003) các học kỳ, bản scan hoặc PDF gốc. Một số đề có tên PGS.TS. Lê Song Giang (người phê duyệt hoặc chủ nhiệm bộ môn) và PGS.TS. Lê Văn Dực. Có thêm một đề CI2005 HK191 cùng nội dung môn.",
+      "lang": "vi",
+      "term": "HK161",
+      "examKind": "ck",
+      "license": "CC-BY-SA-4.0",
+      "origin": "self-made",
+      "added": "2026-10-06",
+      "updated": "2026-10-06",
+      "files": [
+        {
+          "name": "CI2003_exam-past_de-cuoi-ky-co-luu-chat-hk161_HK161.pdf",
+          "mime": "application/pdf",
+          "size": 742189,
+          "sha256": "dae9972f9db5671eb0d445ec9b2e36d263c754d1fcb500df2de1275e932a293c",
+          "urls": [
+            "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/CI2003_exam-past_de-cuoi-ky-co-luu-chat-hk161_HK161.pdf"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "de-cuoi-ky-co-luu-chat-hk181",
+      "type": "exam-past",
+      "title": "Đề cuối kỳ Cơ lưu chất HK181",
+      "description": "Đề thi cuối kỳ Cơ lưu chất (CI2003) các học kỳ, bản scan hoặc PDF gốc. Một số đề có tên PGS.TS. Lê Song Giang (người phê duyệt hoặc chủ nhiệm bộ môn) và PGS.TS. Lê Văn Dực. Có thêm một đề CI2005 HK191 cùng nội dung môn.",
+      "lang": "vi",
+      "term": "HK181",
+      "examKind": "ck",
+      "license": "CC-BY-SA-4.0",
+      "origin": "self-made",
+      "added": "2026-10-06",
+      "updated": "2026-10-06",
+      "files": [
+        {
+          "name": "CI2003_exam-past_de-cuoi-ky-co-luu-chat-hk181_HK181.pdf",
+          "mime": "application/pdf",
+          "size": 427001,
+          "sha256": "dd2b68e725c9f0f1c7d7224d8f9a974457770068320b989f7bd023aadcc3e7ee",
+          "urls": [
+            "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/CI2003_exam-past_de-cuoi-ky-co-luu-chat-hk181_HK181.pdf"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "de-cuoi-ky-co-luu-chat-hk191",
+      "type": "exam-past",
+      "title": "Đề cuối kỳ Cơ lưu chất HK191",
+      "description": "Đề thi cuối kỳ Cơ lưu chất (CI2003) các học kỳ, bản scan hoặc PDF gốc. Một số đề có tên PGS.TS. Lê Song Giang (người phê duyệt hoặc chủ nhiệm bộ môn) và PGS.TS. Lê Văn Dực. Có thêm một đề CI2005 HK191 cùng nội dung môn.",
+      "lang": "vi",
+      "term": "HK191",
+      "examKind": "ck",
+      "license": "CC-BY-SA-4.0",
+      "origin": "self-made",
+      "added": "2026-10-06",
+      "updated": "2026-10-06",
+      "files": [
+        {
+          "name": "CI2003_exam-past_de-cuoi-ky-co-luu-chat-hk191_HK191.pdf",
+          "mime": "application/pdf",
+          "size": 353782,
+          "sha256": "e9e4292d719129b1746e0723e5e8372afc8fc0c34335a7b6f2e35793c192497d",
+          "urls": [
+            "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/CI2003_exam-past_de-cuoi-ky-co-luu-chat-hk191_HK191.pdf"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "de-cuoi-ky-co-luu-chat-hk192",
+      "type": "exam-past",
+      "title": "Đề cuối kỳ Cơ lưu chất HK192",
+      "description": "Đề thi cuối kỳ Cơ lưu chất (CI2003) các học kỳ, bản scan hoặc PDF gốc. Một số đề có tên PGS.TS. Lê Song Giang (người phê duyệt hoặc chủ nhiệm bộ môn) và PGS.TS. Lê Văn Dực. Có thêm một đề CI2005 HK191 cùng nội dung môn.",
+      "lang": "vi",
+      "term": "HK192",
+      "examKind": "ck",
+      "license": "CC-BY-SA-4.0",
+      "origin": "self-made",
+      "added": "2026-10-06",
+      "updated": "2026-10-06",
+      "files": [
+        {
+          "name": "CI2003_exam-past_de-cuoi-ky-co-luu-chat-hk192_HK192.pdf",
+          "mime": "application/pdf",
+          "size": 568615,
+          "sha256": "1d70884f9d062a75ab8f503db57d9f2e51693652e5d035c242e6e4a76f0dd093",
+          "urls": [
+            "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/CI2003_exam-past_de-cuoi-ky-co-luu-chat-hk192_HK192.pdf"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "de-cuoi-ky-co-luu-chat-hk193",
+      "type": "exam-past",
+      "title": "Đề cuối kỳ Cơ lưu chất HK193",
+      "description": "Đề thi cuối kỳ Cơ lưu chất (CI2003) các học kỳ, bản scan hoặc PDF gốc. Một số đề có tên PGS.TS. Lê Song Giang (người phê duyệt hoặc chủ nhiệm bộ môn) và PGS.TS. Lê Văn Dực. Có thêm một đề CI2005 HK191 cùng nội dung môn.",
+      "lang": "vi",
+      "term": "HK193",
+      "examKind": "ck",
+      "license": "CC-BY-SA-4.0",
+      "origin": "self-made",
+      "added": "2026-10-06",
+      "updated": "2026-10-06",
+      "files": [
+        {
+          "name": "CI2003_exam-past_de-cuoi-ky-co-luu-chat-hk193_HK193.pdf",
+          "mime": "application/pdf",
+          "size": 595437,
+          "sha256": "d9f3bd80c79d4d7ca5dc02e010a66d0d21e448b28068c4be218248ea71a1de29",
+          "urls": [
+            "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/CI2003_exam-past_de-cuoi-ky-co-luu-chat-hk193_HK193.pdf"
           ]
         }
       ]
@@ -47,6 +282,30 @@
           "sha256": "c5378a6b0e495824b0781b0688995974ba351f333cef14ca3487fb1cfac6d84c",
           "urls": [
             "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/CI2003_exam-past_de-cuoi-ky-co-luu-chat-hk212_HK212.pdf"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "de-thi-hoc-ky-co-luu-chat-hk172-de-mau-co-dap-an",
+      "type": "exam-past",
+      "title": "Đề thi học kỳ Cơ lưu chất HK172 - đề mẫu có đáp án",
+      "description": "Đề thi cuối kỳ Cơ lưu chất (CI2003) các học kỳ, bản scan hoặc PDF gốc. Một số đề có tên PGS.TS. Lê Song Giang (người phê duyệt hoặc chủ nhiệm bộ môn) và PGS.TS. Lê Văn Dực. Có thêm một đề CI2005 HK191 cùng nội dung môn.",
+      "lang": "vi",
+      "term": "HK172",
+      "examKind": "ck",
+      "license": "CC-BY-SA-4.0",
+      "origin": "self-made",
+      "added": "2026-10-06",
+      "updated": "2026-10-06",
+      "files": [
+        {
+          "name": "CI2003_exam-past_de-thi-hoc-ky-co-luu-chat-hk172-de-mau-co-dap-an_HK172.pdf",
+          "mime": "application/pdf",
+          "size": 525397,
+          "sha256": "d3558835da47c9e549fc2173e67c03f41a77bbf207de3cba3ba7e3ec242a567a",
+          "urls": [
+            "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/CI2003_exam-past_de-thi-hoc-ky-co-luu-chat-hk172-de-mau-co-dap-an_HK172.pdf"
           ]
         }
       ]

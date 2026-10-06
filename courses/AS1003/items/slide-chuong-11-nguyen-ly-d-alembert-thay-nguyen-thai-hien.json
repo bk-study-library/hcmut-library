@@ -1,0 +1,25 @@
+{
+  "$schema": "../../../schema/item.schema.json",
+  "id": "slide-chuong-11-nguyen-ly-d-alembert-thay-nguyen-thai-hien",
+  "course": "AS1003",
+  "type": "lecture-slides",
+  "title": "Slide chương 11: Nguyên lý D'Alembert - thầy Nguyễn Thái Hiền",
+  "lang": "vi",
+  "license": "CC-BY-SA-4.0",
+  "origin": "self-made",
+  "added": "2026-10-06",
+  "removed": false,
+  "description": "Slide phần động học và động lực học Cơ lý thuyết của thầy Nguyễn Thái Hiền: chương 8 (song phẳng), 9 (chuyển động phức hợp của điểm), 10 (phương trình vi phân chuyển động), 11 (nguyên lý D'Alembert), 12 (các định lý tổng quát động lực học), 13 (nguyên lý di chuyển khả dĩ), 15 (một số phương trình cơ học). Có mục tiêu chương và ví dụ giải.",
+  "teacher": "Nguyễn Thái Hiền",
+  "files": [
+    {
+      "name": "AS1003_lecture-slides_slide-chuong-11-nguyen-ly-d-alembert-thay-nguyen-thai-hien.pdf",
+      "size": 3831109,
+      "sha256": "69f43a9130826a561ea10ddc5bc81395865e4126350cdf135c7b7a32f34fe47a",
+      "mime": "application/pdf",
+      "quarantine": "clean/vc3DJpC5Ih/AS1003_lecture-slides_slide-chuong-11-nguyen-ly-d-alembert-thay-nguyen-thai-hien.pdf",
+      "uploadSha256": "07a2dad11d49e369ffa71c59a5c2645ecba92aaec247073fbda48343b2a89fec",
+      "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS1003_lecture-slides_slide-chuong-11-nguyen-ly-d-alembert-thay-nguyen-thai-hien.pdf"
+    }
+  ]
+}

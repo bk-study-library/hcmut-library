@@ -2,7 +2,7 @@
 // Hàm thuần; ngưỡng ở catalog/policy.json (triage). Có virus thì workflow đã đóng PR trước bước này.
 //
 //   review        cần người duyệt: cảnh báo nặng (macro, JavaScript, không quét hết), loại dễ dính bản quyền
-//                 (policy.triage.reviewTypes, ví dụ đề thi), file dày như sách (từ bookPagesMin trang), tên gần
+//                 (policy.triage.reviewTypes, hiện không có), file dày như sách (từ bookPagesMin trang), tên gần
 //                 giống tài liệu đã có. Bot yêu cầu review.
 //   unclassified  an toàn nhưng chưa phân loại được: môn mới, cảnh báo nhẹ, bản cập nhật. Vẫn đăng, item ghi lý do
 //                 ở trường unclassified; bot nhắc người duyệt phân loại ở trang chua-phan-loai/.

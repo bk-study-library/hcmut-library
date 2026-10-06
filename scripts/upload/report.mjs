@@ -90,7 +90,7 @@ function fileNotes(f) {
 }
 
 // Kết quả phân loại (scripts/upload/triage.mjs) cho dòng đầu comment.
-const REVIEW_REASONS = { manual: 'cảnh báo cần xem tay', type: 'loại tài liệu cần người duyệt (đề thi)', 'book-like': 'file dày như sách', duplicate: 'tên gần giống tài liệu đã có' };
+const REVIEW_REASONS = { manual: 'cảnh báo cần xem tay', type: 'loại tài liệu cần người duyệt', 'book-like': 'file dày như sách', duplicate: 'tên gần giống tài liệu đã có' };
 const UNCLASSIFIED_REASONS = { 'new-course': 'môn mới', pii: 'có thể có thông tin cá nhân', 'no-text': 'PDF không có lớp chữ', warning: 'cảnh báo nhẹ', update: 'bản cập nhật' };
 // reviewers: người duyệt (bỏ @) theo .github/CODEOWNERS; bài Chưa phân loại nhắc tên để GitHub báo cho họ.
 // Bot merge ở lượt cron kế tiếp của Worker (worker/wrangler.jsonc), không ngay khi check qua.
