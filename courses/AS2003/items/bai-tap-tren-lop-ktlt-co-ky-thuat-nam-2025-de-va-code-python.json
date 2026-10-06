@@ -1,0 +1,23 @@
+{
+  "$schema": "../../../schema/item.schema.json",
+  "id": "bai-tap-tren-lop-ktlt-co-ky-thuat-nam-2025-de-va-code-python",
+  "course": "AS2003",
+  "type": "exercise-solution",
+  "title": "Bài tập trên lớp KTLT Cơ kỹ thuật (năm 2025) - đề và code Python",
+  "lang": "vi",
+  "license": "CC-BY-SA-4.0",
+  "origin": "self-made",
+  "added": "2026-10-06",
+  "removed": false,
+  "description": "Bài tập Python môn KTLT Cơ kỹ thuật do sinh viên làm: bài tập trên lớp năm 2025 (đề và code theo từng buổi, có bài khảo sát dầm cantilever, sắp xếp nổi bọt), code ôn giữa kỳ và cuối kỳ, bài tập lớp tài năng.",
+  "files": [
+    {
+      "name": "AS2003_exercise-solution_bai-tap-tren-lop-ktlt-co-ky-thuat-nam-2025-de-va-code-python.pdf",
+      "size": 3256666,
+      "sha256": "f49279192842c85a27e6cea55b018bff7d0522464bb16945b070858b934a23aa",
+      "mime": "application/pdf",
+      "quarantine": "pending/MSqXduDhXb/AS2003_exercise-solution_bai-tap-tren-lop-ktlt-co-ky-thuat-nam-2025-de-va-code-python.pdf",
+      "uploadSha256": "f49279192842c85a27e6cea55b018bff7d0522464bb16945b070858b934a23aa"
+    }
+  ]
+}
