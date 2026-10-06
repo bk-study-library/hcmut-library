@@ -235,6 +235,75 @@
       ]
     },
     {
+      "id": "de-thi-cuoi-ky-ktlt-co-ky-thuat-de-1",
+      "type": "exam-past",
+      "title": "Đề thi cuối kỳ KTLT Cơ kỹ thuật - đề 1",
+      "description": "Ba đề thi cuối kỳ KTLT Cơ kỹ thuật (Python): trắc nghiệm và tự luận lập trình. Đề không ghi học kỳ.",
+      "lang": "vi",
+      "examKind": "ck",
+      "license": "CC-BY-SA-4.0",
+      "origin": "self-made",
+      "added": "2026-10-06",
+      "updated": "2026-10-06",
+      "files": [
+        {
+          "name": "AS2003_exam-past_de-thi-cuoi-ky-ktlt-co-ky-thuat-de-1.pdf",
+          "mime": "application/pdf",
+          "size": 161046,
+          "sha256": "74a5f3d3ac50e24064bbb1931ca1737a56fe86cd63797aa64b8e4a1e88c4de45",
+          "urls": [
+            "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS2003_exam-past_de-thi-cuoi-ky-ktlt-co-ky-thuat-de-1.pdf"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "de-thi-cuoi-ky-ktlt-co-ky-thuat-de-2",
+      "type": "exam-past",
+      "title": "Đề thi cuối kỳ KTLT Cơ kỹ thuật - đề 2",
+      "description": "Ba đề thi cuối kỳ KTLT Cơ kỹ thuật (Python): trắc nghiệm và tự luận lập trình. Đề không ghi học kỳ.",
+      "lang": "vi",
+      "examKind": "ck",
+      "license": "CC-BY-SA-4.0",
+      "origin": "self-made",
+      "added": "2026-10-06",
+      "updated": "2026-10-06",
+      "files": [
+        {
+          "name": "AS2003_exam-past_de-thi-cuoi-ky-ktlt-co-ky-thuat-de-2.pdf",
+          "mime": "application/pdf",
+          "size": 169957,
+          "sha256": "23cf1e559fab8357d928bd04b4e92bbec9dd8c41f3942bc2fdef3f8fd35a431a",
+          "urls": [
+            "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS2003_exam-past_de-thi-cuoi-ky-ktlt-co-ky-thuat-de-2.pdf"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "de-thi-cuoi-ky-ktlt-co-ky-thuat-de-3",
+      "type": "exam-past",
+      "title": "Đề thi cuối kỳ KTLT Cơ kỹ thuật - đề 3",
+      "description": "Ba đề thi cuối kỳ KTLT Cơ kỹ thuật (Python): trắc nghiệm và tự luận lập trình. Đề không ghi học kỳ.",
+      "lang": "vi",
+      "examKind": "ck",
+      "license": "CC-BY-SA-4.0",
+      "origin": "self-made",
+      "added": "2026-10-06",
+      "updated": "2026-10-06",
+      "files": [
+        {
+          "name": "AS2003_exam-past_de-thi-cuoi-ky-ktlt-co-ky-thuat-de-3.pdf",
+          "mime": "application/pdf",
+          "size": 107148,
+          "sha256": "87dac0dab530663052087113f42a6ff44d69a958936a1743f7d6f1f215e78657",
+          "urls": [
+            "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/AS2003_exam-past_de-thi-cuoi-ky-ktlt-co-ky-thuat-de-3.pdf"
+          ]
+        }
+      ]
+    },
+    {
       "id": "on-giua-ky-ktlt-co-ky-thuat-bai-tap-tu-luyen-va-code",
       "type": "exercise-solution",
       "title": "Ôn giữa kỳ KTLT Cơ kỹ thuật - bài tập tự luyện và code",

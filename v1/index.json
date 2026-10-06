@@ -4,7 +4,7 @@
   "site": "https://bk-study-library.github.io/hcmut-library/",
   "counts": {
     "courses": 3796,
-    "items": 107
+    "items": 110
   },
   "faculties": [
     {
@@ -204,7 +204,7 @@
       "aliases": [],
       "oldNames": [],
       "status": "active",
-      "items": 15,
+      "items": 18,
       "teachers": [
         "Nguyễn Thanh Nhã"
       ],
