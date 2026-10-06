@@ -1,0 +1,24 @@
+{
+  "$schema": "../../../schema/item.schema.json",
+  "id": "bang-tra-co-luu-chat-thuy-tinh-ton-that-ong-don-vi",
+  "course": "CI2003",
+  "type": "cheatsheet",
+  "title": "Bảng tra Cơ lưu chất (thủy tĩnh, tổn thất, ống, đơn vị...)",
+  "lang": "vi",
+  "license": "CC-BY-SA-4.0",
+  "origin": "self-made",
+  "added": "2026-10-06",
+  "removed": false,
+  "description": "Bài giảng Cơ lưu chất (Fluid Mechanics) của giảng viên Khoa Kỹ thuật Xây dựng và Bộ môn Kỹ thuật Hàng không, ĐH Bách Khoa TP.HCM: tĩnh học lưu chất, động học, phương trình năng lượng, động lượng, dòng chảy trong ống, thế lưu. Đợt này gồm bộ của thầy Lê Văn Dực (chia 2 phần theo trang), thầy Huỳnh Công Hoài, thầy Nguyễn Quốc Ý và bảng tra Cơ lưu chất.",
+  "files": [
+    {
+      "name": "CI2003_cheatsheet_bang-tra-co-luu-chat-thuy-tinh-ton-that-ong-don-vi.pdf",
+      "size": 10450660,
+      "sha256": "2e6574c8f28fcee43ecbe4cef9672757d249cceebcaeee9ec2a7f8497ec954bf",
+      "mime": "application/pdf",
+      "quarantine": "clean/k9dvSlUwmC/CI2003_cheatsheet_bang-tra-co-luu-chat-thuy-tinh-ton-that-ong-don-vi.pdf",
+      "uploadSha256": "85239bbe629ad8fb06a89d8c5ad217f8bb0d3ffd62715a47ffd8ac064e74f832",
+      "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/CI2003_cheatsheet_bang-tra-co-luu-chat-thuy-tinh-ton-that-ong-don-vi.pdf"
+    }
+  ]
+}
