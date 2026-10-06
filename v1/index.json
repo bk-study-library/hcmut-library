@@ -4,7 +4,7 @@
   "site": "https://bk-study-library.github.io/hcmut-library/",
   "counts": {
     "courses": 3796,
-    "items": 66
+    "items": 68
   },
   "faculties": [
     {
@@ -262,7 +262,7 @@
       "aliases": [],
       "oldNames": [],
       "status": "active",
-      "items": 9,
+      "items": 11,
       "url": "https://bk-study-library.github.io/hcmut-library/course/AS2011/",
       "detail": "courses/AS2011.json"
     },
