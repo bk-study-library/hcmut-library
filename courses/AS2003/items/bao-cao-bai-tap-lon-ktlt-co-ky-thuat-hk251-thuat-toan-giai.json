@@ -1,0 +1,25 @@
+{
+  "$schema": "../../../schema/item.schema.json",
+  "id": "bao-cao-bai-tap-lon-ktlt-co-ky-thuat-hk251-thuat-toan-giai",
+  "course": "AS2003",
+  "type": "project-reference",
+  "title": "Báo cáo bài tập lớn KTLT Cơ kỹ thuật HK251: thuật toán giải bài toán dàn",
+  "lang": "vi",
+  "license": "CC-BY-SA-4.0",
+  "origin": "self-made",
+  "added": "2026-10-06",
+  "removed": false,
+  "description": "Bài tập lớn KTLT Cơ kỹ thuật HK251, lớp L01, GVHD TS. Nguyễn Thanh Nhã: giải bài toán dàn bằng phương pháp phần tử hữu hạn, có giao diện Tkinter. Gồm báo cáo (đã che họ tên và MSSV sinh viên) và toàn bộ code Python.",
+  "term": "HK251",
+  "teacher": "Nguyễn Thanh Nhã",
+  "files": [
+    {
+      "name": "AS2003_project-reference_bao-cao-bai-tap-lon-ktlt-co-ky-thuat-hk251-thuat-toan-giai_HK251.pdf",
+      "size": 1571902,
+      "sha256": "14e168499723d46ab89514a6d09ad82894019af96d810d77b4726261e673c5ea",
+      "mime": "application/pdf",
+      "quarantine": "pending/WAEmwlglFO/AS2003_project-reference_bao-cao-bai-tap-lon-ktlt-co-ky-thuat-hk251-thuat-toan-giai_HK251.pdf",
+      "uploadSha256": "14e168499723d46ab89514a6d09ad82894019af96d810d77b4726261e673c5ea"
+    }
+  ]
+}
