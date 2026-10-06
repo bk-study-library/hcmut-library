@@ -1,0 +1,23 @@
+{
+  "$schema": "../../../schema/item.schema.json",
+  "id": "tom-tat-chuong-12-cac-dinh-ly-dong-luc-hoc",
+  "course": "AS1003",
+  "type": "summary",
+  "title": "Tóm tắt Chương 12 - Các định lý động lực học",
+  "lang": "vi",
+  "license": "CC-BY-SA-4.0",
+  "origin": "self-made",
+  "added": "2026-10-06",
+  "removed": false,
+  "description": "Tài liệu Cơ lý thuyết (AS1003) dung lượng lớn gửi chung một đợt: slide chương 9 của TS. Nguyễn Hữu Hào; tóm tắt lý thuyết kèm ví dụ giải mẫu chương 8, 10, 12, 14 do sinh viên tự soạn; cheatsheet động học và động lực học; ghi chép tay toàn môn (479 trang, chia 4 phần theo trang).",
+  "files": [
+    {
+      "name": "AS1003_summary_tom-tat-chuong-12-cac-dinh-ly-dong-luc-hoc.pdf",
+      "size": 10206729,
+      "sha256": "5a822c9ff8a6d1987e09860db288639b52f7d81ab0f356a912bed8b0ffccb4c5",
+      "mime": "application/pdf",
+      "quarantine": "pending/3lWWiGvNNH/AS1003_summary_tom-tat-chuong-12-cac-dinh-ly-dong-luc-hoc.pdf",
+      "uploadSha256": "5a822c9ff8a6d1987e09860db288639b52f7d81ab0f356a912bed8b0ffccb4c5"
+    }
+  ]
+}
