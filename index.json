@@ -52530,7 +52530,8 @@
               "license": "CC-BY-SA-4.0",
               "origin": "self-made",
               "added": "2026-10-06",
-              "removed": false,
+              "removed": true,
+              "removedReason": "Sai môn hay sai nội dung. Các playlist YouTube trong danh sách không còn tồn tại",
               "description": "Danh sách playlist YouTube bài giảng chi tiết, giải bài tập và quiz Cơ lưu chất theo từng chương, do sinh viên tổng hợp (file Markdown).",
               "files": [
                 {

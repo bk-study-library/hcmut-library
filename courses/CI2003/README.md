@@ -27,7 +27,7 @@
 
 ### Ghi chú
 
-- **Danh sách video bài giảng, giải bài tập và quiz Cơ lưu chất (YouTube)** (vi, CC-BY-SA-4.0): [CI2003_notes_danh-sach-video-bai-giang-giai-bai-tap-va-quiz-co-luu-chat.md, 2 KB](https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/CI2003_notes_danh-sach-video-bai-giang-giai-bai-tap-va-quiz-co-luu-chat.md)
+- ~~Danh sách video bài giảng, giải bài tập và quiz Cơ lưu chất (YouTube)~~ (đã gỡ: Sai môn hay sai nội dung. Các playlist YouTube trong danh sách không còn tồn tại)
 
 ### Bảng công thức
 
