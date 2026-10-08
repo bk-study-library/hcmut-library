@@ -30,6 +30,7 @@ export const CLASSIFY_MESSAGES = {
   saved: 'Đã lưu. Bot đang dựng lại dữ liệu; tài liệu rời mục Chưa phân loại sau khi merge (vài phút).',
   pending: 'Tài liệu này đang có một lần phân loại chờ merge. Đợi merge xong rồi sửa tiếp.',
   back: 'Về danh sách Chưa phân loại',
+  remove: 'Không giữ tài liệu này: gỡ tài liệu',
   resultTitle: 'Kết quả phân loại',
 };
 
@@ -75,6 +76,7 @@ export function classifyPage({ item, policy, values = item, errors = {}, action,
     field(m.chapter, 'chapter', `<input id="chapter" name="chapter" maxlength="${policy.fields.chapterMax}" value="${esc(v('chapter'))}">`, errors.chapter),
     field(m.teacher, 'teacher', `<input id="teacher" name="teacher" maxlength="${policy.fields.teacherMax}" value="${esc(v('teacher'))}">`, errors.teacher),
     field(m.description, 'description', `<textarea id="description" name="description" maxlength="${policy.fields.descriptionMax}">${esc(v('description'))}</textarea>`, errors.description),
+    `<p class="small"><a href="/xem-duyet/go/${esc(item.course)}/${esc(item.id)}">${esc(m.remove)}</a></p>`,
     `<div class="bar"><a class="small" href="${esc(listUrl)}">${esc(m.back)}</a><button class="btn" type="submit">${esc(m.save)}</button></div></form>`,
   );
   return htmlPage(Object.keys(errors).length ? 400 : 200, m.title(String(item.title ?? item.id)), parts.join(''), {}, { formSelf: true });

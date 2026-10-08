@@ -1,13 +1,13 @@
 name: cap-nhat-pr
 
-# Giữ các PR upload/<mã> đã kiểm xong và PR phan-loai/<mã> của form phân loại (worker/src/routes/classify.mjs) luôn gồm
+# Giữ các PR upload/<mã> đã kiểm xong và PR phan-loai/<mã>, go/<mã> của form người duyệt (worker/src/routes/item-edit.mjs) luôn gồm
 # main mới nhất (scripts/upload/sync-main.sh), để cron của Worker merge
 # được và generated file trên main đúng khi nhiều bài cùng chờ. Chạy khi main đổi và khi kiem-file vừa xong (bài vừa
 # kiểm có thể đã cũ hơn main).
 #
 # Chỉ chạy mã của main. Branch PR chỉ là dữ liệu: git merge không chạy mã trong branch, rebuild dùng script của main
-# (như kiem-file). Chỉ nhận PR do bot mở, có label tai-lieu-moi hay phan-loai, branch dạng upload/<mã 10 ký tự> hay
-# phan-loai/<mã>, commit đầu là commit của kiem-file hay của form phân loại (bài chưa kiểm xong thì để kiem-file làm trước).
+# (như kiem-file). Chỉ nhận PR do bot mở, có label tai-lieu-moi, phan-loai hay go-tai-lieu, branch dạng upload/<mã 10 ký tự>,
+# phan-loai/<mã> hay go/<mã>, commit đầu là commit của kiem-file hay của form người duyệt (bài chưa kiểm xong thì để kiem-file làm trước).
 
 on:
   push:
@@ -15,7 +15,7 @@ on:
   workflow_run:
     workflows: [kiem-file]
     types: [completed]
-  # Worker gắn label phan-loai khi người duyệt lưu form phân loại. pull_request_target chạy workflow của main, không
+  # Worker gắn label phan-loai, go-tai-lieu khi người duyệt lưu form phân loại, form gỡ tài liệu. pull_request_target chạy workflow của main, không
   # chạy mã của branch (branch chỉ được fetch làm dữ liệu như dưới).
   pull_request_target:
     types: [labeled]
@@ -68,13 +68,13 @@ jobs:
           TRUSTED: ${{ github.workspace }}/trusted
         run: |
           gh api --paginate "repos/$REPO/pulls?state=open&per_page=100" --jq '.[]
-            | select(.user.login == env.BOT and .head.repo.full_name == env.REPO and any(.labels[]; .name == "tai-lieu-moi" or .name == "phan-loai"))
+            | select(.user.login == env.BOT and .head.repo.full_name == env.REPO and any(.labels[]; .name == "tai-lieu-moi" or .name == "phan-loai" or .name == "go-tai-lieu"))
             | .head.ref' > "$RUNNER_TEMP/branches.txt"
           while IFS= read -r branch; do
-            [[ "$branch" =~ ^(upload|phan-loai)/[A-Za-z0-9]{10}$ ]] || continue
+            [[ "$branch" =~ ^(upload|phan-loai|go)/[A-Za-z0-9]{10}$ ]] || continue
             git fetch -q origin "$branch"
             msg=$(git log -1 --format=%s FETCH_HEAD)
-            case "$msg" in kiem-file:*|phan-loai:*) ;; *) continue ;; esac
+            case "$msg" in kiem-file:*|phan-loai:*|go:*) ;; *) continue ;; esac
             git checkout -q -B "$branch" FETCH_HEAD
             CODE="${branch#*/}" BRANCH="$branch" bash "$TRUSTED/scripts/upload/sync-main.sh" \
               || echo "::warning::Không gộp được main vào $branch."

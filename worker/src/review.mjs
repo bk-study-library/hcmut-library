@@ -5,6 +5,13 @@
 
 export const reviewKey = (code) => `review/${code}.json`;
 
+// Người duyệt sửa một item qua form (routes/item-edit.mjs): mỗi loại một tiền tố branch <loại>/<mã>, một label, tiêu đề
+// PR và tiêu đề merge. Cron merge và xóa branch như nhau cho mọi loại (routes/review.mjs, continueMerge).
+export const EDIT_KINDS = {
+  'phan-loai': { label: 'phan-loai', title: (x) => `Phân loại ${x}`, merge: (code) => `Gộp phân loại ${code} (người duyệt)` },
+  go: { label: 'go-tai-lieu', title: (x) => `Gỡ tài liệu ${x}`, merge: (code) => `Gộp gỡ tài liệu ${code} (người duyệt)` },
+};
+
 // id mục: phần tên file của courses/<môn>/items/<id>.json.
 export const ITEM_ID = /^[a-z0-9][a-z0-9-]{0,99}$/;
 const REASON_MAX = 500;

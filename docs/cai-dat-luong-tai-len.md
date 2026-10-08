@@ -273,6 +273,10 @@ Trang `chua-phan-loai/` có nút **Phân loại** cho từng tài liệu, mở `
 
 Lưu thì Worker (`worker/src/routes/classify.mjs`) mở PR `phan-loai/<mã>` có label `phan-loai`, sửa đúng item đó và bỏ trường `unclassified`, rồi ghi `review/<mã>.json` như bài đã duyệt. Workflow `cap-nhat-pr` dựng lại generated file trên branch, cron của Worker merge khi check qua và xóa branch. Mỗi tài liệu chỉ có một lần phân loại chờ merge.
 
+#### Form gỡ tài liệu
+
+`https://upload.xerozsoft.com/xem-duyet/go` (sau Cloudflare Access): dán tiêu đề issue Yêu cầu gỡ hay `<môn> <id>`, chọn lý do (chọn sẵn, kèm ghi thêm không có thông tin cá nhân), xác nhận rồi bấm **Gỡ tài liệu**. Worker (`worker/src/routes/remove.mjs`) mở PR `go/<mã>` có label `go-tai-lieu` đặt `removed`, `removedReason`, rồi đi như form phân loại: `cap-nhat-pr` dựng lại, cron merge, `phat-hanh-file` xóa file trên Release. Form phân loại cũng có link sang form này.
+
 ### 8.7. Duyệt trên trang duyệt
 
 Một bài (một PR) có thể gồm nhiều file: form nhận tối đa `batchMaxFiles` file, tổng `batchMaxBytes` (`catalog/policy.json`, hiện 10 file và 1 GB), mỗi file tối đa `maxFileBytes` (1 GB). Bài có file luôn tải theo phần `uploadPartBytes` (32 MB) qua Worker vào R2 multipart (`worker/src/routes/upload.mjs`, `site-src/assets/upload-chunks.js`): trình duyệt tính sha256, Worker chỉ chuyển dữ liệu, vì gói Worker miễn phí cho mỗi request 10 ms CPU (băm hay đọc cả file lớn trong Worker sẽ vượt) và thân request tối đa 100 MB. `directMaxBytes` (0) là cỡ tối đa còn gửi trong một request; bài không có file (sách) vẫn đi đường này. R2 miễn phí 10 GB: file chờ duyệt lớn nên được duyệt sớm; R2 tự hủy multipart dở dang sau 7 ngày. Mỗi file thành một item riêng trong cùng PR. `kiem-file` quét từng file và ghi kết quả từng file trong một comment.

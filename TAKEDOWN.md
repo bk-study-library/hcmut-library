@@ -21,8 +21,8 @@ Bạn gửi tài liệu và muốn rút lại: ghi mã bài đã nhận khi gử
 ## Người duy trì làm gì
 
 1. Đọc yêu cầu. Yêu cầu có cơ sở thì gỡ ngay, chưa cần chờ trao đổi thêm.
-2. Sửa item `courses/<ID>/items/<id>.json`: đặt `removed: true` và `removedReason` ngắn gọn (không ghi thông tin cá nhân). **Giữ nguyên `id`**. Giữ nguyên `files` trong lần sửa này, vì workflow đọc `url` trong `files` để biết xóa file nào trên Release. Nếu file `.md` nằm trong git, xóa luôn file đó.
-3. Chạy `npm run build`, mở PR và merge.
+2. Mở form **Gỡ tài liệu** `https://upload.xerozsoft.com/xem-duyet/go` (sau Cloudflare Access), dán tiêu đề issue (dạng `[Gỡ] MT1005 slide-chuong-1`), chọn lý do, xác nhận rồi bấm **Gỡ tài liệu**. Không cần dùng git: bot mở PR `go/<mã>` đặt `removed: true` và `removedReason` (không ghi thông tin cá nhân), giữ nguyên `id` và `files` (workflow đọc `url` trong `files` để biết xóa file nào trên Release), xóa file `.md` nằm trong git nếu có.
+3. Bot dựng lại dữ liệu và merge khi check qua (vài phút). Sửa tay vẫn được: sửa item như trên, chạy `npm run build`, mở PR và merge.
 4. File trên GitHub Release: khi mục chuyển sang `removed` và merge vào `main`, workflow `phat-hanh-file` (job `go-file`) tự xóa file tương ứng trên Release. Người duy trì kiểm lại rằng file đã mất. Xóa asset trên Release là mất hẳn.
 5. Bài còn đang chờ duyệt (PR chưa merge): đóng PR. Workflow `don-kho` xóa file trong kho riêng và branch.
 6. Item vẫn còn với nhãn "Đã gỡ", kèm lý do, để link cũ không hỏng và mọi người biết tài liệu đã bị gỡ. Web và `v1/` chỉ còn `id`, loại, lý do và ngày thêm; app xóa bản đã lưu của mục này.

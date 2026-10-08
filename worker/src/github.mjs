@@ -133,11 +133,13 @@ export class GitHub {
     await this.#call('DELETE', `/git/refs/heads/${encodePath(name)}`);
   }
 
-  async putFile(path, text, branch, message) {
+  // sha: sha của file đang có (getFile), bắt buộc khi sửa file đã có; tạo file mới thì bỏ trống.
+  async putFile(path, text, branch, message, sha) {
     await this.#call('PUT', `/contents/${encodePath(path)}`, {
       message,
       content: bytesToBase64(encoder.encode(text)),
       branch,
+      ...(sha ? { sha } : {}),
     });
   }
 
