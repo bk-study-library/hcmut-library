@@ -3,7 +3,7 @@
 import { fileName } from '../../../scripts/upload/naming.mjs';
 import { newCoursePath } from '../../../scripts/upload/course.mjs';
 import { accessConfigured, accessEmail, verifyAccessJwt } from '../access.mjs';
-import { checksGreen, decisionComment, ITEM_ID, parseDecisions, REVIEW_MESSAGES, reviewKey } from '../review.mjs';
+import { checksGreen, decisionComment, EDIT_KINDS, ITEM_ID, parseDecisions, REVIEW_MESSAGES, reviewKey } from '../review.mjs';
 import { CODE, forbiddenPage, locateFile, notFoundPage, resultPage, reviewBatchPage, serveFile, unconfiguredPage } from '../view.mjs';
 import { reply, logFailure, MESSAGES } from '../http.mjs';
 import { githubFactory, catalogFor } from '../deps.mjs';
@@ -147,9 +147,12 @@ export async function handleDecision(req, env, deps, code, who, github) {
 }
 
 export const prTitleMerge = (code, auto = false) => `Gộp bài gửi ${code} (${auto ? 'tự động, đã qua kiểm file' : 'đã duyệt trên trang duyệt'})`;
-const mergeTitle = (code, record) => (record.kind === 'phan-loai' ? `Gộp phân loại ${code} (người duyệt)` : prTitleMerge(code, record.auto));
-// Branch của quyết định: bài gửi là upload/<mã>; form phân loại ghi branch phan-loai/<mã> trong bản ghi.
-export const recordBranch = (code, record) => (record.kind === 'phan-loai' && /^phan-loai\/[A-Za-z0-9]{10}$/.test(record.branch) ? record.branch : `upload/${code}`);
+const mergeTitle = (code, record) => EDIT_KINDS[record.kind]?.merge(code) ?? prTitleMerge(code, record.auto);
+// Branch của quyết định: bài gửi là upload/<mã>; form của người duyệt (EDIT_KINDS) ghi branch <loại>/<mã> trong bản ghi.
+export function recordBranch(code, record) {
+  const [kind, tail] = String(record.branch ?? '').split('/');
+  return EDIT_KINDS[record.kind] && kind === record.kind && CODE.test(tail ?? '') ? record.branch : `upload/${code}`;
+}
 
 // POST /duyet-tiep { code }: workflow tu-gop gọi sau khi bước kiểm qua trên commit dựng lại.
 // Không cần khóa: chỉ merge khi đã có quyết định của người duyệt (review/<mã>.json, waiting), PR còn mở,
@@ -190,7 +193,7 @@ export async function continueMerge(env, deps, code) {
   if (ids.length !== record.keep.length || ids.some((id) => !record.keep.includes(id))) return false;
   await gh.mergePr(state.number, state.sha, mergeTitle(code, record));
   await env.QUARANTINE.put(reviewKey(code), JSON.stringify({ ...record, waiting: false }));
-  // Branch phân loại không có workflow don-kho dọn (chỉ dọn upload/*): xóa ngay sau khi merge.
-  if (record.kind === 'phan-loai') await gh.deleteBranch(head).catch((e) => logFailure('classify_branch', e));
+  // Branch của form người duyệt không có workflow don-kho dọn (chỉ dọn upload/*): xóa ngay sau khi merge.
+  if (EDIT_KINDS[record.kind]) await gh.deleteBranch(head).catch((e) => logFailure('classify_branch', e));
   return true;
 }

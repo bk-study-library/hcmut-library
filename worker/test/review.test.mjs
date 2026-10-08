@@ -75,7 +75,7 @@ function fakeGitHub({ state = 'open', runs = [{ name: 'validate', status: 'compl
     if (p === `/repos/${REPO}/commits/head1/check-runs`) return json({ check_runs: runs });
     if (p === `/repos/${REPO}/commits/head1`) return json({ commit: { message } });
     if (p === `/repos/${REPO}/git/commits/head1`) return json({ tree: { sha: "tree1" } });
-    if (p === `/repos/${REPO}/compare/main...upload/${CODE}` || p === `/repos/${REPO}/compare/main...phan-loai/${CODE}`) return json({ behind_by: behind, files: Object.keys(files).map((filename) => ({ filename, status: 'added' })) });
+    if (p === `/repos/${REPO}/compare/main...upload/${CODE}` || p === `/repos/${REPO}/compare/main...phan-loai/${CODE}` || p === `/repos/${REPO}/compare/main...go/${CODE}`) return json({ behind_by: behind, files: Object.keys(files).map((filename) => ({ filename, status: 'added' })) });
     const content = /^\/repos\/own\/lib\/contents\/(courses\/.+)$/.exec(p);
     if (content) {
       const path = decodeURIComponent(content[1]);
@@ -86,6 +86,8 @@ function fakeGitHub({ state = 'open', runs = [{ name: 'validate', status: 'compl
         return json({});
       }
       if (method === 'PUT') {
+        // Như GitHub: sửa file đã có mà thiếu sha thì 422.
+        if (body.sha !== `sha-${path}`) return json({ message: '"sha" wasn\'t supplied.' }, 422);
         writes.push({ method, path, body });
         return json({}, 201);
       }
@@ -422,5 +424,59 @@ describe('form phân loại /xem-duyet/phan-loai/<môn>/<id>', () => {
     expect(record).toMatchObject({ keep: ['chuong-1'], waiting: true, branch, kind: 'phan-loai', reviewer: 'nguoi.duyet@truong.example' });
     // Lần phân loại thứ hai khi lần trước chưa merge: chặn.
     expect((await call(PATH, { fetch: gh(), headers: await auth() })).status).toBe(409);
+  });
+});
+
+describe('form gỡ tài liệu /xem-duyet/go', () => {
+  const PATH = '/xem-duyet/go/MT1005/chuong-1';
+  const published = { ...item('chuong-1', 'MT1005_slides_chuong-1.pdf', SHA_A), removed: false, unclassified: ['no-text'] };
+  const gh = (it = published) => fakeGitHub({ items: { [PATH_A]: it } });
+  const send = async (fetch, fields, headers = { Origin: ORIGIN }) => call(PATH, { fetch, method: 'POST', headers: { ...(await auth()), ...headers }, body: new URLSearchParams(fields) });
+
+  it('ô tìm: cần Access; dán tiêu đề issue Yêu cầu gỡ thì chuyển tới form của tài liệu', async () => {
+    expect((await call('/xem-duyet/go', { fetch: gh() })).status).toBe(403);
+    expect((await call('/xem-duyet/go', { fetch: gh(), headers: await auth() })).status).toBe(200);
+    const res = await call(`/xem-duyet/go?t=${encodeURIComponent('[Gỡ] MT1005 chuong-1')}`, { fetch: gh(), headers: await auth() });
+    expect(res.status).toBe(303);
+    expect(res.headers.get('Location')).toBe(PATH);
+    expect((await call('/xem-duyet/go?t=abc', { fetch: gh(), headers: await auth() })).status).toBe(400);
+  });
+
+  it('GET hiện lý do chọn sẵn; tài liệu đã gỡ: 409', async () => {
+    const html = await (await call(PATH, { fetch: gh(), headers: await auth() })).text();
+    expect(html).toContain('value="ban-quyen"');
+    expect((await call(PATH, { fetch: gh({ ...published, removed: true, removedReason: 'x' }), headers: await auth() })).status).toBe(409);
+  });
+
+  it('thiếu lý do, thiếu xác nhận, ghi thêm có thông tin cá nhân, gửi từ trang khác: không ghi gì', async () => {
+    const fetch = gh();
+    expect((await send(fetch, { note: 'x' })).status).toBe(400);
+    expect((await send(fetch, { reason: 'ban-quyen' })).status).toBe(400);
+    expect((await send(fetch, { reason: 'ban-quyen', confirm: 'on', note: 'liên hệ an@hcmut.edu.vn' })).status).toBe(400);
+    expect((await send(fetch, { reason: 'ban-quyen', confirm: 'on' }, { Origin: 'https://la.example' })).status).toBe(403);
+    expect(fetch.writes).toEqual([]);
+  });
+
+  it('gỡ: mở PR go/<mã> đặt removed và lý do, giữ files, ghi quyết định; lần sửa thứ hai bị chặn', async () => {
+    const fetch = gh();
+    expect((await send(fetch, { reason: 'ban-quyen', note: 'Theo yêu cầu của tác giả', confirm: 'on' })).status).toBe(200);
+    const branch = fetch.writes.find((w) => w.path.endsWith('/git/refs')).body.ref.replace('refs/heads/', '');
+    expect(branch).toMatch(/^go\/[A-Za-z0-9]{10}$/);
+    const put = fetch.writes.find((w) => w.method === 'PUT' && w.path === PATH_A);
+    const saved = JSON.parse(new TextDecoder().decode(Uint8Array.from(atob(put.body.content), (c) => c.charCodeAt(0))));
+    expect(saved).toEqual({ id: 'chuong-1', course: 'MT1005', type: 'slides', title: 'Slide chuong-1', files: published.files, removed: true, removedReason: 'Vi phạm bản quyền. Theo yêu cầu của tác giả' });
+    expect(fetch.writes.find((w) => w.path.endsWith('/issues/9/labels')).body).toEqual({ labels: ['go-tai-lieu'] });
+    const record = JSON.parse(await (await env.QUARANTINE.get(reviewKey(branch.split('/')[1]))).text());
+    expect(record).toMatchObject({ kind: 'go', branch, keep: ['chuong-1'], waiting: true });
+    expect((await call(PATH, { fetch: gh(), headers: await auth() })).status).toBe(409);
+    expect((await call('/xem-duyet/phan-loai/MT1005/chuong-1', { fetch: gh(), headers: await auth() })).status).toBe(409);
+  });
+
+  it('cron gộp bản ghi gỡ tài liệu theo branch go/<mã> rồi xóa branch', async () => {
+    await env.QUARANTINE.put(reviewKey(CODE), JSON.stringify({ keep: ['chuong-1'], drop: [], waiting: true, kind: 'go', branch: `go/${CODE}` }));
+    const fetch = fakeGitHub({ items: { [PATH_A]: item('chuong-1', 'a.pdf', SHA_A) } });
+    expect(await (await call('/duyet-tiep', { fetch, method: 'POST', body: JSON.stringify({ code: CODE }) })).json()).toEqual({ ok: true, merged: true });
+    expect(fetch.writes.find((w) => w.path.endsWith('/pulls/7/merge')).body.commit_title).toBe(`Gộp gỡ tài liệu ${CODE} (người duyệt)`);
+    expect(fetch.writes.some((w) => w.method === 'DELETE' && w.path.endsWith(`/git/refs/heads/go/${CODE}`))).toBe(true);
   });
 });

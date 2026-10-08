@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Gộp main vào một branch upload/<mã> đã kiểm xong, hay phan-loai/<mã> của form phân loại (workflow cap-nhat-pr), rồi
+# Gộp main vào một branch upload/<mã> đã kiểm xong, hay phan-loai/<mã>, go/<mã> của form người duyệt (workflow cap-nhat-pr), rồi
 # dựng lại generated file. Mọi bài đều sửa generated file (index.json,
 # index.min.json, worker-catalog.json, v1/, README môn), nên bài merge trước làm bài sau xung đột, hay merge sạch mà
 # generated file sai. Gộp main rồi dựng lại từ item của branch thì bài nào merge cũng đúng.
@@ -11,7 +11,7 @@ set -euo pipefail
 . "$(dirname "$0")/app-git.sh"
 
 bot_identity
-# Branch đã gồm main thì không gộp, vẫn dựng lại (branch phan-loai/ tách từ main mới nhất nhưng sửa item).
+# Branch đã gồm main thì không gộp, vẫn dựng lại (branch của form người duyệt tách từ main mới nhất nhưng sửa item).
 if git merge-base --is-ancestor origin/main HEAD; then
   :
 elif ! git merge --no-commit --no-ff origin/main > /dev/null; then
