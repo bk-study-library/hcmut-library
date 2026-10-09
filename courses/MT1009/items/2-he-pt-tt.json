@@ -1,0 +1,24 @@
+{
+  "$schema": "../../../schema/item.schema.json",
+  "id": "2-he-pt-tt",
+  "course": "MT1009",
+  "type": "lecture-slides",
+  "title": "2 he pt tt",
+  "lang": "vi",
+  "license": "CC-BY-SA-4.0",
+  "origin": "self-made",
+  "added": "2026-10-09",
+  "removed": false,
+  "term": "HK251",
+  "teacher": "Nguyễn Thái Anh",
+  "files": [
+    {
+      "name": "MT1009_lecture-slides_2-he-pt-tt_HK251.pdf",
+      "size": 1817321,
+      "sha256": "520b28882ad17b034cf0716ad824e4e428dd6301d2a6df5da18762c5a6920f37",
+      "mime": "application/pdf",
+      "quarantine": "pending/Vy3AwSRgbj/MT1009_lecture-slides_2-he-pt-tt_HK251.pdf",
+      "uploadSha256": "520b28882ad17b034cf0716ad824e4e428dd6301d2a6df5da18762c5a6920f37"
+    }
+  ]
+}
