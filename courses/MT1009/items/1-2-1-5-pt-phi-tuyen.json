@@ -14,11 +14,12 @@
   "files": [
     {
       "name": "MT1009_lecture-slides_1-2-1-5-pt-phi-tuyen_HK251.pdf",
-      "size": 2739421,
-      "sha256": "fb2bd08ce5682db37c6ab07034d449c68ff423eb8b65a48cf740e307e4621e56",
+      "size": 2734372,
+      "sha256": "c146ea6c0c5aa3b3b50c953cf2fb95011e438cea88e327b7a484a84bf8c90de8",
       "mime": "application/pdf",
-      "quarantine": "pending/Vy3AwSRgbj/MT1009_lecture-slides_1-2-1-5-pt-phi-tuyen_HK251.pdf",
-      "uploadSha256": "fb2bd08ce5682db37c6ab07034d449c68ff423eb8b65a48cf740e307e4621e56"
+      "quarantine": "clean/Vy3AwSRgbj/MT1009_lecture-slides_1-2-1-5-pt-phi-tuyen_HK251.pdf",
+      "uploadSha256": "fb2bd08ce5682db37c6ab07034d449c68ff423eb8b65a48cf740e307e4621e56",
+      "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/MT1009_lecture-slides_1-2-1-5-pt-phi-tuyen_HK251.pdf"
     }
   ]
 }

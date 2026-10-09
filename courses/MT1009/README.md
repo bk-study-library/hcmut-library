@@ -15,7 +15,18 @@
 
 ## Tài liệu
 
-Chưa có tài liệu.
+### Slide bài giảng
+
+- **1.1 sai so** (HK251, vi, CC-BY-SA-4.0): [MT1009_lecture-slides_1-1-sai-so_HK251.pdf, 826 KB](https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/MT1009_lecture-slides_1-1-sai-so_HK251.pdf)
+- **1.2 1.5 pt phi tuyen** (HK251, vi, CC-BY-SA-4.0): [MT1009_lecture-slides_1-2-1-5-pt-phi-tuyen_HK251.pdf, 2.6 MB](https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/MT1009_lecture-slides_1-2-1-5-pt-phi-tuyen_HK251.pdf)
+- **2 he pt tt** (HK251, vi, CC-BY-SA-4.0): [MT1009_lecture-slides_2-he-pt-tt_HK251.pdf, 1.7 MB](https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/MT1009_lecture-slides_2-he-pt-tt_HK251.pdf)
+- **3 Noi suy va BPCT** (HK251, vi, CC-BY-SA-4.0): [MT1009_lecture-slides_3-noi-suy-va-bpct_HK251.pdf, 1.6 MB](https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/MT1009_lecture-slides_3-noi-suy-va-bpct_HK251.pdf)
+- **C1 1.1 error analysis** (HK251, vi, CC-BY-SA-4.0): [MT1009_lecture-slides_c1-1-1-error-analysis_HK251.pdf, 907 KB](https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/MT1009_lecture-slides_c1-1-1-error-analysis_HK251.pdf)
+- **C1 1.2 1.5 nonlinear equation** (HK251, vi, CC-BY-SA-4.0): [MT1009_lecture-slides_c1-1-2-1-5-nonlinear-equation_HK251.pdf, 2.8 MB](https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/MT1009_lecture-slides_c1-1-2-1-5-nonlinear-equation_HK251.pdf)
+- **C2 linear system** (HK251, vi, CC-BY-SA-4.0): [MT1009_lecture-slides_c2-linear-system_HK251.pdf, 1.0 MB](https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/MT1009_lecture-slides_c2-linear-system_HK251.pdf)
+- **C3 interpolation** (HK251, vi, CC-BY-SA-4.0): [MT1009_lecture-slides_c3-interpolation_HK251.pdf, 1.4 MB](https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/MT1009_lecture-slides_c3-interpolation_HK251.pdf)
+- **Chương 1 Phương trình phi tuyến (1)** (HK251, vi, CC-BY-SA-4.0): [MT1009_lecture-slides_chuong-1-phuong-trinh-phi-tuyen-1_HK251.pptx, 909 KB](https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/MT1009_lecture-slides_chuong-1-phuong-trinh-phi-tuyen-1_HK251.pptx)
+- **Chương 3 Hệ phương trình tuyến tính** (HK251, vi, CC-BY-SA-4.0): [MT1009_lecture-slides_chuong-3-he-phuong-trinh-tuyen-tinh_HK251.pptx, 810 KB](https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/MT1009_lecture-slides_chuong-3-he-phuong-trinh-tuyen-tinh_HK251.pptx)
 
 ## Link
 

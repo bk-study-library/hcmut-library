@@ -14,11 +14,12 @@
   "files": [
     {
       "name": "MT1009_lecture-slides_chuong-1-phuong-trinh-phi-tuyen-1_HK251.pptx",
-      "size": 933198,
-      "sha256": "93fae257b133de744fa166d56a0de9c89669e2591f34d62a6ebd52f0970e9720",
+      "size": 931046,
+      "sha256": "47633831029aeb3f32ef6330457832ee21270b81248d7260d81c016e4798ee98",
       "mime": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
-      "quarantine": "pending/Vy3AwSRgbj/MT1009_lecture-slides_chuong-1-phuong-trinh-phi-tuyen-1_HK251.pptx",
-      "uploadSha256": "93fae257b133de744fa166d56a0de9c89669e2591f34d62a6ebd52f0970e9720"
+      "quarantine": "clean/Vy3AwSRgbj/MT1009_lecture-slides_chuong-1-phuong-trinh-phi-tuyen-1_HK251.pptx",
+      "uploadSha256": "93fae257b133de744fa166d56a0de9c89669e2591f34d62a6ebd52f0970e9720",
+      "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/MT1009_lecture-slides_chuong-1-phuong-trinh-phi-tuyen-1_HK251.pptx"
     }
   ]
 }

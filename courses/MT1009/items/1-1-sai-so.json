@@ -14,11 +14,12 @@
   "files": [
     {
       "name": "MT1009_lecture-slides_1-1-sai-so_HK251.pdf",
-      "size": 848280,
-      "sha256": "f2c2a0bf8b935f2d9a750f5ac5b2b8067dd216d6f7e758ca577386bf6d1954dd",
+      "size": 845842,
+      "sha256": "cb0c35cf053150d549ca4e458589a0f1ccf8d21cd859f3656efe0b209a55e5fc",
       "mime": "application/pdf",
-      "quarantine": "pending/Vy3AwSRgbj/MT1009_lecture-slides_1-1-sai-so_HK251.pdf",
-      "uploadSha256": "f2c2a0bf8b935f2d9a750f5ac5b2b8067dd216d6f7e758ca577386bf6d1954dd"
+      "quarantine": "clean/Vy3AwSRgbj/MT1009_lecture-slides_1-1-sai-so_HK251.pdf",
+      "uploadSha256": "f2c2a0bf8b935f2d9a750f5ac5b2b8067dd216d6f7e758ca577386bf6d1954dd",
+      "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/MT1009_lecture-slides_1-1-sai-so_HK251.pdf"
     }
   ]
 }

@@ -14,11 +14,12 @@
   "files": [
     {
       "name": "MT1009_lecture-slides_c3-interpolation_HK251.pdf",
-      "size": 1455442,
-      "sha256": "3354c65497097aac68836b872054186fad3b99763a0e1e24adefca910f5729c6",
+      "size": 1443505,
+      "sha256": "36b0a8985b21157e3dd29efe798f5aa4c43885b703bd4fdaa11b96ecb3c68624",
       "mime": "application/pdf",
-      "quarantine": "pending/Vy3AwSRgbj/MT1009_lecture-slides_c3-interpolation_HK251.pdf",
-      "uploadSha256": "3354c65497097aac68836b872054186fad3b99763a0e1e24adefca910f5729c6"
+      "quarantine": "clean/Vy3AwSRgbj/MT1009_lecture-slides_c3-interpolation_HK251.pdf",
+      "uploadSha256": "3354c65497097aac68836b872054186fad3b99763a0e1e24adefca910f5729c6",
+      "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/MT1009_lecture-slides_c3-interpolation_HK251.pdf"
     }
   ]
 }

@@ -14,11 +14,12 @@
   "files": [
     {
       "name": "MT1009_lecture-slides_c1-1-2-1-5-nonlinear-equation_HK251.pdf",
-      "size": 2903921,
-      "sha256": "9f827ab0abb2637fffa249217c79c1da351dbcc9fc294fd6ef0eb43d31754fce",
+      "size": 2929809,
+      "sha256": "2641d6091a58088427a81c4c70d092f3690a45fa97b45b29b015672958230466",
       "mime": "application/pdf",
-      "quarantine": "pending/Vy3AwSRgbj/MT1009_lecture-slides_c1-1-2-1-5-nonlinear-equation_HK251.pdf",
-      "uploadSha256": "9f827ab0abb2637fffa249217c79c1da351dbcc9fc294fd6ef0eb43d31754fce"
+      "quarantine": "clean/Vy3AwSRgbj/MT1009_lecture-slides_c1-1-2-1-5-nonlinear-equation_HK251.pdf",
+      "uploadSha256": "9f827ab0abb2637fffa249217c79c1da351dbcc9fc294fd6ef0eb43d31754fce",
+      "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/MT1009_lecture-slides_c1-1-2-1-5-nonlinear-equation_HK251.pdf"
     }
   ]
 }

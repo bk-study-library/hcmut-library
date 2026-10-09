@@ -14,11 +14,12 @@
   "files": [
     {
       "name": "MT1009_lecture-slides_c2-linear-system_HK251.pdf",
-      "size": 1068106,
-      "sha256": "c216c040759b09849d926d79c7226d0df670aed592334cf4cbdc232bde6bde43",
+      "size": 1098601,
+      "sha256": "9c94b332c8c891710157f1a0410a78fe8e30de12da67b3ec5782fd8195f9885c",
       "mime": "application/pdf",
-      "quarantine": "pending/Vy3AwSRgbj/MT1009_lecture-slides_c2-linear-system_HK251.pdf",
-      "uploadSha256": "c216c040759b09849d926d79c7226d0df670aed592334cf4cbdc232bde6bde43"
+      "quarantine": "clean/Vy3AwSRgbj/MT1009_lecture-slides_c2-linear-system_HK251.pdf",
+      "uploadSha256": "c216c040759b09849d926d79c7226d0df670aed592334cf4cbdc232bde6bde43",
+      "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/MT1009_lecture-slides_c2-linear-system_HK251.pdf"
     }
   ]
 }

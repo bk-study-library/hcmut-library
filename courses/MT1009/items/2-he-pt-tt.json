@@ -14,11 +14,12 @@
   "files": [
     {
       "name": "MT1009_lecture-slides_2-he-pt-tt_HK251.pdf",
-      "size": 1817321,
-      "sha256": "520b28882ad17b034cf0716ad824e4e428dd6301d2a6df5da18762c5a6920f37",
+      "size": 1814418,
+      "sha256": "01ccc2c4806e17e395120e9a475168ec55bc059018c384b0c319d03d3b95849c",
       "mime": "application/pdf",
-      "quarantine": "pending/Vy3AwSRgbj/MT1009_lecture-slides_2-he-pt-tt_HK251.pdf",
-      "uploadSha256": "520b28882ad17b034cf0716ad824e4e428dd6301d2a6df5da18762c5a6920f37"
+      "quarantine": "clean/Vy3AwSRgbj/MT1009_lecture-slides_2-he-pt-tt_HK251.pdf",
+      "uploadSha256": "520b28882ad17b034cf0716ad824e4e428dd6301d2a6df5da18762c5a6920f37",
+      "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/MT1009_lecture-slides_2-he-pt-tt_HK251.pdf"
     }
   ]
 }

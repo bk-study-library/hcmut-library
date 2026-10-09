@@ -14,11 +14,12 @@
   "files": [
     {
       "name": "MT1009_lecture-slides_c1-1-1-error-analysis_HK251.pdf",
-      "size": 910530,
-      "sha256": "9553653ed36c4b44c28cacb58fe3287c0846c9309f82afe632b94aa886ea72d8",
+      "size": 929025,
+      "sha256": "765532b3f88e2a75635bafe3eac97b747a4c79a50353d1ce7ba8ea840db0ad9d",
       "mime": "application/pdf",
-      "quarantine": "pending/Vy3AwSRgbj/MT1009_lecture-slides_c1-1-1-error-analysis_HK251.pdf",
-      "uploadSha256": "9553653ed36c4b44c28cacb58fe3287c0846c9309f82afe632b94aa886ea72d8"
+      "quarantine": "clean/Vy3AwSRgbj/MT1009_lecture-slides_c1-1-1-error-analysis_HK251.pdf",
+      "uploadSha256": "9553653ed36c4b44c28cacb58fe3287c0846c9309f82afe632b94aa886ea72d8",
+      "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/MT1009_lecture-slides_c1-1-1-error-analysis_HK251.pdf"
     }
   ]
 }
