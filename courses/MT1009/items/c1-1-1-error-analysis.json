@@ -1,0 +1,24 @@
+{
+  "$schema": "../../../schema/item.schema.json",
+  "id": "c1-1-1-error-analysis",
+  "course": "MT1009",
+  "type": "lecture-slides",
+  "title": "C1 1.1 error analysis",
+  "lang": "vi",
+  "license": "CC-BY-SA-4.0",
+  "origin": "self-made",
+  "added": "2026-10-09",
+  "removed": false,
+  "term": "HK251",
+  "teacher": "Nguyễn Thái Anh",
+  "files": [
+    {
+      "name": "MT1009_lecture-slides_c1-1-1-error-analysis_HK251.pdf",
+      "size": 910530,
+      "sha256": "9553653ed36c4b44c28cacb58fe3287c0846c9309f82afe632b94aa886ea72d8",
+      "mime": "application/pdf",
+      "quarantine": "pending/Vy3AwSRgbj/MT1009_lecture-slides_c1-1-1-error-analysis_HK251.pdf",
+      "uploadSha256": "9553653ed36c4b44c28cacb58fe3287c0846c9309f82afe632b94aa886ea72d8"
+    }
+  ]
+}
