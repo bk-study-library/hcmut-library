@@ -1,0 +1,24 @@
+{
+  "$schema": "../../../schema/item.schema.json",
+  "id": "c3-interpolation",
+  "course": "MT1009",
+  "type": "lecture-slides",
+  "title": "C3 interpolation",
+  "lang": "vi",
+  "license": "CC-BY-SA-4.0",
+  "origin": "self-made",
+  "added": "2026-10-09",
+  "removed": false,
+  "term": "HK251",
+  "teacher": "Nguyễn Thái Anh",
+  "files": [
+    {
+      "name": "MT1009_lecture-slides_c3-interpolation_HK251.pdf",
+      "size": 1455442,
+      "sha256": "3354c65497097aac68836b872054186fad3b99763a0e1e24adefca910f5729c6",
+      "mime": "application/pdf",
+      "quarantine": "pending/Vy3AwSRgbj/MT1009_lecture-slides_c3-interpolation_HK251.pdf",
+      "uploadSha256": "3354c65497097aac68836b872054186fad3b99763a0e1e24adefca910f5729c6"
+    }
+  ]
+}
