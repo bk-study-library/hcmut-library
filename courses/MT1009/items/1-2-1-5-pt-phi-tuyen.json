@@ -1,0 +1,24 @@
+{
+  "$schema": "../../../schema/item.schema.json",
+  "id": "1-2-1-5-pt-phi-tuyen",
+  "course": "MT1009",
+  "type": "lecture-slides",
+  "title": "1.2 1.5 pt phi tuyen",
+  "lang": "vi",
+  "license": "CC-BY-SA-4.0",
+  "origin": "self-made",
+  "added": "2026-10-09",
+  "removed": false,
+  "term": "HK251",
+  "teacher": "Nguyễn Thái Anh",
+  "files": [
+    {
+      "name": "MT1009_lecture-slides_1-2-1-5-pt-phi-tuyen_HK251.pdf",
+      "size": 2739421,
+      "sha256": "fb2bd08ce5682db37c6ab07034d449c68ff423eb8b65a48cf740e307e4621e56",
+      "mime": "application/pdf",
+      "quarantine": "pending/Vy3AwSRgbj/MT1009_lecture-slides_1-2-1-5-pt-phi-tuyen_HK251.pdf",
+      "uploadSha256": "fb2bd08ce5682db37c6ab07034d449c68ff423eb8b65a48cf740e307e4621e56"
+    }
+  ]
+}
