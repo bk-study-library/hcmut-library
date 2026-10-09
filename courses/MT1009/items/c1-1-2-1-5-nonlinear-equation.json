@@ -1,0 +1,24 @@
+{
+  "$schema": "../../../schema/item.schema.json",
+  "id": "c1-1-2-1-5-nonlinear-equation",
+  "course": "MT1009",
+  "type": "lecture-slides",
+  "title": "C1 1.2 1.5 nonlinear equation",
+  "lang": "vi",
+  "license": "CC-BY-SA-4.0",
+  "origin": "self-made",
+  "added": "2026-10-09",
+  "removed": false,
+  "term": "HK251",
+  "teacher": "Nguyễn Thái Anh",
+  "files": [
+    {
+      "name": "MT1009_lecture-slides_c1-1-2-1-5-nonlinear-equation_HK251.pdf",
+      "size": 2903921,
+      "sha256": "9f827ab0abb2637fffa249217c79c1da351dbcc9fc294fd6ef0eb43d31754fce",
+      "mime": "application/pdf",
+      "quarantine": "pending/Vy3AwSRgbj/MT1009_lecture-slides_c1-1-2-1-5-nonlinear-equation_HK251.pdf",
+      "uploadSha256": "9f827ab0abb2637fffa249217c79c1da351dbcc9fc294fd6ef0eb43d31754fce"
+    }
+  ]
+}
