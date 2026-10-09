@@ -1,0 +1,24 @@
+{
+  "$schema": "../../../schema/item.schema.json",
+  "id": "1-1-sai-so",
+  "course": "MT1009",
+  "type": "lecture-slides",
+  "title": "1.1 sai so",
+  "lang": "vi",
+  "license": "CC-BY-SA-4.0",
+  "origin": "self-made",
+  "added": "2026-10-09",
+  "removed": false,
+  "term": "HK251",
+  "teacher": "Nguyễn Thái Anh",
+  "files": [
+    {
+      "name": "MT1009_lecture-slides_1-1-sai-so_HK251.pdf",
+      "size": 848280,
+      "sha256": "f2c2a0bf8b935f2d9a750f5ac5b2b8067dd216d6f7e758ca577386bf6d1954dd",
+      "mime": "application/pdf",
+      "quarantine": "pending/Vy3AwSRgbj/MT1009_lecture-slides_1-1-sai-so_HK251.pdf",
+      "uploadSha256": "f2c2a0bf8b935f2d9a750f5ac5b2b8067dd216d6f7e758ca577386bf6d1954dd"
+    }
+  ]
+}
