@@ -1,11 +1,11 @@
 {
-  "note": "Bộ câu tìm mẫu. Web (site-src/assets/search-core.js) và app BK Study Desk phải qua hết. top: môn phải đứng đầu; in + within: các môn phải nằm trong N kết quả đầu; none: không ra kết quả nào. Thêm câu khi gặp câu tìm thật không ra đúng môn.",
+  "note": "Bộ câu tìm mẫu. Web (site-src/assets/search-core.js) và app BK Study Desk phải qua hết. top: môn phải đứng đầu; in + within: các môn phải nằm trong N kết quả đầu; prefix + within: N kết quả đầu đều có mã bắt đầu bằng prefix (câu tìm theo đầu mã: thứ tự trong nhóm đổi theo số tài liệu, không cố định); none: không ra kết quả nào. Thêm câu khi gặp câu tìm thật không ra đúng môn.",
   "index": "v1/index.json",
   "cases": [
     { "q": "MT1005", "top": "MT1005" },
     { "q": "mt1005", "top": "MT1005" },
     { "q": "mt 1005", "top": "MT1005" },
-    { "q": "MT10", "in": ["MT1003", "MT1005", "MT1007"], "within": 3 },
+    { "q": "MT10", "prefix": "MT10", "within": 8 },
     { "q": "giải tích 2", "top": "MT1005" },
     { "q": "giai tich 2", "top": "MT1005" },
     { "q": "Giải tích II", "top": "MT1005" },

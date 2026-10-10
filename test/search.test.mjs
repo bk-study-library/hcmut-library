@@ -25,6 +25,7 @@ for (const c of spec.cases) {
     if (c.none) assert.equal(ids.length, 0, `kết quả: ${ids.join(", ")}`);
     if (c.top) assert.equal(ids[0], c.top, `kết quả: ${ids.join(', ')}`);
     if (c.in) for (const id of c.in) assert.ok(ids.slice(0, c.within).includes(id), `${id} không nằm trong ${c.within} kết quả đầu: ${ids.join(', ')}`);
+    if (c.prefix) assert.ok(ids.length >= c.within && ids.slice(0, c.within).every((id) => id.startsWith(c.prefix)), `${c.within} kết quả đầu phải bắt đầu bằng ${c.prefix}: ${ids.join(', ')}`);
   });
 }
 
