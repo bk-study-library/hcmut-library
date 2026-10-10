@@ -1,0 +1,25 @@
+{
+  "$schema": "../../../schema/item.schema.json",
+  "id": "3-noi-suy-va-bpct",
+  "course": "MT1009",
+  "type": "lecture-slides",
+  "title": "3 Noi suy va BPCT",
+  "lang": "vi",
+  "license": "CC-BY-SA-4.0",
+  "origin": "self-made",
+  "added": "2026-10-09",
+  "removed": false,
+  "term": "HK251",
+  "teacher": "Nguyễn Thái Anh",
+  "files": [
+    {
+      "name": "MT1009_lecture-slides_3-noi-suy-va-bpct_HK251.pdf",
+      "size": 1707002,
+      "sha256": "5237f96d1c4cf95c78903bb510409a890803ddf2b533e9a6c86ce037baba231c",
+      "mime": "application/pdf",
+      "quarantine": "clean/Vy3AwSRgbj/MT1009_lecture-slides_3-noi-suy-va-bpct_HK251.pdf",
+      "uploadSha256": "4af7d242efdf999ae2f248ed14b6d9456815c7de9a79ad905f1515e0c7f995e2",
+      "url": "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/MT1009_lecture-slides_3-noi-suy-va-bpct_HK251.pdf"
+    }
+  ]
+}

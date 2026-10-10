@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "generated": "2026-10-06",
+  "generated": "2026-10-09",
   "site": "https://bk-study-library.github.io/hcmut-library/",
   "counts": {
     "courses": 3796,
-    "items": 109
+    "items": 119
   },
   "faculties": [
     {
@@ -52952,7 +52952,10 @@
       "aliases": [],
       "oldNames": [],
       "status": "active",
-      "items": 0,
+      "items": 10,
+      "teachers": [
+        "Nguyễn Thái Anh"
+      ],
       "url": "https://bk-study-library.github.io/hcmut-library/course/MT1009/",
       "detail": "courses/MT1009.json"
     },

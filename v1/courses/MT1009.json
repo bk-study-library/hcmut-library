@@ -3,5 +3,236 @@
   "id": "MT1009",
   "code": "MT1009",
   "name": "Phương pháp tính",
-  "items": []
+  "items": [
+    {
+      "id": "1-1-sai-so",
+      "type": "lecture-slides",
+      "title": "1.1 sai so",
+      "lang": "vi",
+      "term": "HK251",
+      "teacher": "Nguyễn Thái Anh",
+      "license": "CC-BY-SA-4.0",
+      "origin": "self-made",
+      "added": "2026-10-09",
+      "updated": "2026-10-09",
+      "files": [
+        {
+          "name": "MT1009_lecture-slides_1-1-sai-so_HK251.pdf",
+          "mime": "application/pdf",
+          "size": 845842,
+          "sha256": "cb0c35cf053150d549ca4e458589a0f1ccf8d21cd859f3656efe0b209a55e5fc",
+          "urls": [
+            "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/MT1009_lecture-slides_1-1-sai-so_HK251.pdf"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "1-2-1-5-pt-phi-tuyen",
+      "type": "lecture-slides",
+      "title": "1.2 1.5 pt phi tuyen",
+      "lang": "vi",
+      "term": "HK251",
+      "teacher": "Nguyễn Thái Anh",
+      "license": "CC-BY-SA-4.0",
+      "origin": "self-made",
+      "added": "2026-10-09",
+      "updated": "2026-10-09",
+      "files": [
+        {
+          "name": "MT1009_lecture-slides_1-2-1-5-pt-phi-tuyen_HK251.pdf",
+          "mime": "application/pdf",
+          "size": 2734372,
+          "sha256": "c146ea6c0c5aa3b3b50c953cf2fb95011e438cea88e327b7a484a84bf8c90de8",
+          "urls": [
+            "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/MT1009_lecture-slides_1-2-1-5-pt-phi-tuyen_HK251.pdf"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "2-he-pt-tt",
+      "type": "lecture-slides",
+      "title": "2 he pt tt",
+      "lang": "vi",
+      "term": "HK251",
+      "teacher": "Nguyễn Thái Anh",
+      "license": "CC-BY-SA-4.0",
+      "origin": "self-made",
+      "added": "2026-10-09",
+      "updated": "2026-10-09",
+      "files": [
+        {
+          "name": "MT1009_lecture-slides_2-he-pt-tt_HK251.pdf",
+          "mime": "application/pdf",
+          "size": 1814418,
+          "sha256": "01ccc2c4806e17e395120e9a475168ec55bc059018c384b0c319d03d3b95849c",
+          "urls": [
+            "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/MT1009_lecture-slides_2-he-pt-tt_HK251.pdf"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "3-noi-suy-va-bpct",
+      "type": "lecture-slides",
+      "title": "3 Noi suy va BPCT",
+      "lang": "vi",
+      "term": "HK251",
+      "teacher": "Nguyễn Thái Anh",
+      "license": "CC-BY-SA-4.0",
+      "origin": "self-made",
+      "added": "2026-10-09",
+      "updated": "2026-10-09",
+      "files": [
+        {
+          "name": "MT1009_lecture-slides_3-noi-suy-va-bpct_HK251.pdf",
+          "mime": "application/pdf",
+          "size": 1707002,
+          "sha256": "5237f96d1c4cf95c78903bb510409a890803ddf2b533e9a6c86ce037baba231c",
+          "urls": [
+            "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/MT1009_lecture-slides_3-noi-suy-va-bpct_HK251.pdf"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "c1-1-1-error-analysis",
+      "type": "lecture-slides",
+      "title": "C1 1.1 error analysis",
+      "lang": "vi",
+      "term": "HK251",
+      "teacher": "Nguyễn Thái Anh",
+      "license": "CC-BY-SA-4.0",
+      "origin": "self-made",
+      "added": "2026-10-09",
+      "updated": "2026-10-09",
+      "files": [
+        {
+          "name": "MT1009_lecture-slides_c1-1-1-error-analysis_HK251.pdf",
+          "mime": "application/pdf",
+          "size": 929025,
+          "sha256": "765532b3f88e2a75635bafe3eac97b747a4c79a50353d1ce7ba8ea840db0ad9d",
+          "urls": [
+            "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/MT1009_lecture-slides_c1-1-1-error-analysis_HK251.pdf"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "c1-1-2-1-5-nonlinear-equation",
+      "type": "lecture-slides",
+      "title": "C1 1.2 1.5 nonlinear equation",
+      "lang": "vi",
+      "term": "HK251",
+      "teacher": "Nguyễn Thái Anh",
+      "license": "CC-BY-SA-4.0",
+      "origin": "self-made",
+      "added": "2026-10-09",
+      "updated": "2026-10-09",
+      "files": [
+        {
+          "name": "MT1009_lecture-slides_c1-1-2-1-5-nonlinear-equation_HK251.pdf",
+          "mime": "application/pdf",
+          "size": 2929809,
+          "sha256": "2641d6091a58088427a81c4c70d092f3690a45fa97b45b29b015672958230466",
+          "urls": [
+            "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/MT1009_lecture-slides_c1-1-2-1-5-nonlinear-equation_HK251.pdf"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "c2-linear-system",
+      "type": "lecture-slides",
+      "title": "C2 linear system",
+      "lang": "vi",
+      "term": "HK251",
+      "teacher": "Nguyễn Thái Anh",
+      "license": "CC-BY-SA-4.0",
+      "origin": "self-made",
+      "added": "2026-10-09",
+      "updated": "2026-10-09",
+      "files": [
+        {
+          "name": "MT1009_lecture-slides_c2-linear-system_HK251.pdf",
+          "mime": "application/pdf",
+          "size": 1098601,
+          "sha256": "9c94b332c8c891710157f1a0410a78fe8e30de12da67b3ec5782fd8195f9885c",
+          "urls": [
+            "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/MT1009_lecture-slides_c2-linear-system_HK251.pdf"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "c3-interpolation",
+      "type": "lecture-slides",
+      "title": "C3 interpolation",
+      "lang": "vi",
+      "term": "HK251",
+      "teacher": "Nguyễn Thái Anh",
+      "license": "CC-BY-SA-4.0",
+      "origin": "self-made",
+      "added": "2026-10-09",
+      "updated": "2026-10-09",
+      "files": [
+        {
+          "name": "MT1009_lecture-slides_c3-interpolation_HK251.pdf",
+          "mime": "application/pdf",
+          "size": 1443505,
+          "sha256": "36b0a8985b21157e3dd29efe798f5aa4c43885b703bd4fdaa11b96ecb3c68624",
+          "urls": [
+            "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/MT1009_lecture-slides_c3-interpolation_HK251.pdf"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "chuong-1-phuong-trinh-phi-tuyen-1",
+      "type": "lecture-slides",
+      "title": "Chương 1 Phương trình phi tuyến (1)",
+      "lang": "vi",
+      "term": "HK251",
+      "teacher": "Nguyễn Thái Anh",
+      "license": "CC-BY-SA-4.0",
+      "origin": "self-made",
+      "added": "2026-10-09",
+      "updated": "2026-10-09",
+      "files": [
+        {
+          "name": "MT1009_lecture-slides_chuong-1-phuong-trinh-phi-tuyen-1_HK251.pptx",
+          "mime": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+          "size": 931046,
+          "sha256": "47633831029aeb3f32ef6330457832ee21270b81248d7260d81c016e4798ee98",
+          "urls": [
+            "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/MT1009_lecture-slides_chuong-1-phuong-trinh-phi-tuyen-1_HK251.pptx"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "chuong-3-he-phuong-trinh-tuyen-tinh",
+      "type": "lecture-slides",
+      "title": "Chương 3 Hệ phương trình tuyến tính",
+      "lang": "vi",
+      "term": "HK251",
+      "teacher": "Nguyễn Thái Anh",
+      "license": "CC-BY-SA-4.0",
+      "origin": "self-made",
+      "added": "2026-10-09",
+      "updated": "2026-10-09",
+      "files": [
+        {
+          "name": "MT1009_lecture-slides_chuong-3-he-phuong-trinh-tuyen-tinh_HK251.pptx",
+          "mime": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+          "size": 829658,
+          "sha256": "1a3000d2ea097c2542c83da0b2a0a35b20a55e039191ad323bd5cf8726249b83",
+          "urls": [
+            "https://github.com/bk-study-library/hcmut-library/releases/download/files-HK261b/MT1009_lecture-slides_chuong-3-he-phuong-trinh-tuyen-tinh_HK251.pptx"
+          ]
+        }
+      ]
+    }
+  ]
 }
