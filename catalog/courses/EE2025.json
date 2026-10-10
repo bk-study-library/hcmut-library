@@ -328,6 +328,11 @@
       "program": "DEE_THIET_KE_VI_MACH_2025_CTTA",
       "block": "K09",
       "required": true
+    },
+    {
+      "program": "DEE_TS_257_2026_TA",
+      "block": "K09",
+      "required": true
     }
   ],
   "parts": [

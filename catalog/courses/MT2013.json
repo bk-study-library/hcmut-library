@@ -680,6 +680,11 @@
       "required": true
     },
     {
+      "program": "DEE_TS_257_2026_TA",
+      "block": "K01",
+      "required": true
+    },
+    {
       "program": "DEE_TS_258_2026_TA",
       "block": "K01",
       "required": true
