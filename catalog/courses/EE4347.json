@@ -68,6 +68,11 @@
       "program": "DEE_KY_THUAT_DIEN_2026_CTTA",
       "block": "K16",
       "required": true
+    },
+    {
+      "program": "DEE_TS_257_2026_TA",
+      "block": "K16",
+      "required": true
     }
   ],
   "parts": [

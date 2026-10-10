@@ -323,6 +323,11 @@
       "program": "DEE_SONG_NGANH_KY_THUAT_DIEU_KHIEN_VA_TU_DONG_HOA_KY_THUAT_DIEN_TU_VIEN_THONG_2023",
       "block": "K04",
       "required": false
+    },
+    {
+      "program": "DEE_TS_257_2026_TA",
+      "block": "K09",
+      "required": true
     }
   ],
   "parts": [

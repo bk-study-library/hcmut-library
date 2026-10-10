@@ -20,6 +20,11 @@
       "required": true
     },
     {
+      "program": "DEE_TS_257_2026_TA",
+      "block": "K13",
+      "required": true
+    },
+    {
       "program": "FME_KY_THUAT_NHIET_2019",
       "block": "K07",
       "required": false
