@@ -179,7 +179,7 @@ test('danh mục thật: 3796 môn, 838 chương trình, 140 ngành, không lỗ
   assert.equal([...repo.majors.values()].filter((m) => !pg(m)).length, 62);
   // Chương trình đại học rỗng chỉ còn mục tuyển sinh 2026 chưa khớp ngành nào; chương trình gắn ngành đều có môn.
   const empty = [...repo.programs.values()].filter((p) => !p.blocks.some((b) => b.courses.length));
-  assert.equal(empty.filter((p) => !pg(p)).length, 45);
+  assert.equal(empty.filter((p) => !pg(p)).length, 44);
   assert.ok(empty.filter((p) => !pg(p)).every((p) => !p.major && p.code.includes('_TS_')));
   // Sau đại học rỗng là CTĐT trước khóa 2025 không ghi mã môn: có ngành và link PDF.
   assert.equal(empty.filter(pg).length, 73);
