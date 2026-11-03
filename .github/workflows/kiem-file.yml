@@ -125,7 +125,7 @@ jobs:
           node trusted/scripts/upload/check.mjs locate --files "$RUNNER_TEMP/files.jsonl" --pr pr \
             --branch "$BRANCH" --repo "$REPO" --output-file "$GITHUB_OUTPUT"
       - if: failure()
-        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           name: loi-gate
           path: ${{ runner.temp }}/loi/
@@ -164,14 +164,14 @@ jobs:
               exit 1
             }
           done < "$RUNNER_TEMP/list.tsv"
-      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           name: kiem-file-goc
           path: ${{ runner.temp }}/in/
           if-no-files-found: error
           retention-days: 1
       - if: failure()
-        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           name: loi-fetch
           path: ${{ runner.temp }}/loi/
@@ -214,14 +214,14 @@ jobs:
             node trusted/scripts/upload/check.mjs scan --item "$d/item.json" \
               --dir "$d/file" --out "$RUNNER_TEMP/out/$i" --clam "$RUNNER_TEMP/clam.json"
           done
-      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           name: kiem-file-ket-qua
           path: ${{ runner.temp }}/out/
           if-no-files-found: error
           retention-days: 1
       - if: failure()
-        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           name: loi-scan
           path: ${{ runner.temp }}/loi/
@@ -398,7 +398,7 @@ jobs:
           done
           if [ ${#args[@]} -gt 0 ]; then gh api -X POST "repos/$REPO/pulls/$PR/requested_reviewers" "${args[@]}" > /dev/null; fi
       - if: failure()
-        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           name: loi-apply
           path: ${{ github.workspace }}/loi/
@@ -459,7 +459,7 @@ jobs:
           node trusted/scripts/upload/check.mjs book-report --code "$CODE" > "$RUNNER_TEMP/report.md"
           node trusted/scripts/upload/check.mjs comment --repo "$REPO" --pr "$PR" --body-file "$RUNNER_TEMP/report.md"
       - if: failure()
-        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           name: loi-sach
           path: ${{ github.workspace }}/loi/
